@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 const banner1Img = "/assets/log03.png";
 const banner2Img = "/assets/bigthinkers.png";
+const aiServerImg = "/assets/ai.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -29,6 +30,8 @@ export function Hero() {
 
   const banners = [
     {
+      type: "video",
+      videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-digital-connection-concept-24622-large.mp4",
       title: (
         <>
           Future ready with <br />
@@ -36,10 +39,11 @@ export function Hero() {
         </>
       ),
       description: "Stay ahead of the curve with Cloud Solutions. Outpace change with cloud agility.",
-      image: banner1Img,
+      image: banner1Img, // Fallback image
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
     {
+      type: "image",
       title: (
         <>
           Unlock the Power <br />
@@ -51,6 +55,7 @@ export function Hero() {
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
     {
+      type: "image",
       title: (
         <>
           Elevate with <br />
@@ -58,23 +63,36 @@ export function Hero() {
         </>
       ),
       description: "Redefine the art of possibilities. Transform ideas into reality.",
-      image: "https://images.unsplash.com/photo-1760503850332-60a301c92c9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBza3lzY3JhcGVycyUyMGNvbnN1bHRpbmclMjBmaXJtfGVufDF8fHx8MTc3MTg5NDczNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: aiServerImg,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
   ];
 
   return (
-    <section className="relative h-[500px] md:h-[650px] overflow-hidden group">
+    <section className="relative h-[500px] md:h-[620px] overflow-hidden group">
       <Slider ref={sliderRef} {...settings} className="h-full">
         {banners.map((banner, index) => (
-          <div key={index} className="relative h-[500px] md:h-[650px] outline-none">
-            {/* Background Image Reverted */}
+          <div key={index} className="relative h-[500px] md:h-[620px] outline-none">
+            {/* Background Image / Video */}
             <div className="absolute inset-0">
-              <ImageWithFallback 
-                src={banner.image} 
-                alt="Banner" 
-                className="w-full h-full object-cover"
-              />
+              {banner.type === "video" ? (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  poster={typeof banner.image === 'string' ? banner.image : undefined}
+                >
+                  <source src={banner.videoSrc} type="video/mp4" />
+                </video>
+              ) : (
+                <ImageWithFallback 
+                  src={banner.image as string} 
+                  alt="Banner" 
+                  className="w-full h-full object-cover"
+                />
+              )}
               <div className={`absolute inset-0 ${banner.overlay}`}></div>
               
               {/* Pattern Overlay to match Industries section style */}
@@ -218,7 +236,6 @@ export function Hero() {
           }
         }
       `}</style>
-
     </section>
   );
 }

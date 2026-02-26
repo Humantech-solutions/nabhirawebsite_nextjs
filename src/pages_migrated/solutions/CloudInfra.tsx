@@ -15,60 +15,67 @@ export default function CloudInfraSolution() {
 
   return (
     <>
-      {/* Engineering Hero */}
-      <section className="relative py-24 lg:py-40 bg-[#11253e] overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      {/* Cinematic Hero */}
+      <section className="relative min-h-[80vh] flex items-center bg-[#11253e] overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#f99d1c1a_0%,transparent_70%)]"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
-              <Motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="space-y-10"
-              >
-                <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-2">
-                  <Terminal size={16} className="text-[#f99d1c]" />
-                  <span className="text-white text-[10px] font-bold uppercase tracking-[0.4em]">Infrastructure as Code</span>
-                </div>
-                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                  Architecting <br />
-                  <span className="text-[#f99d1c]">Resilience.</span>
-                </h1>
-                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail.
-                </p>
-                <div className="flex flex-wrap gap-6 pt-4">
-                  <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:shadow-[0_0_50px_rgba(249,157,28,0.4)] transition-all">
-                    Scale Infrastructure
-                  </button>
-                  <button className="text-white/60 hover:text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] border border-white/10 transition-all">
-                    Explore Stack
-                  </button>
-                </div>
-              </Motion.div>
+          <div className="max-w-7xl mx-auto px-6 relative z-10 py-20">
+            <div className="grid lg:grid-cols-12 gap-16 items-center">
+              <div className="lg:col-span-7 space-y-12">
+                <Motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-5 py-2 mb-10">
+                    <Terminal size={14} className="text-[#f99d1c]" />
+                    <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Infrastructure as Code</span>
+                  </div>
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                    Architecting <br />
+                    <span className="text-[#f99d1c]">Resilience.</span>
+                  </h1>
+                  <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                    Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail.
+                  </p>
+                  <div className="flex flex-wrap gap-8">
+                    <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                      Scale Infrastructure
+                    </button>
+                    <button className="text-white/40 hover:text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] flex items-center gap-3 transition-colors">
+                      Explore Stack <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </Motion.div>
+              </div>
               
-              <div className="relative hidden lg:block">
-                <div className="aspect-[4/5] bg-gradient-to-br from-[#11253e] to-black border border-white/10 p-12 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#f99d1c]/10 blur-[120px]"></div>
-                  <div className="space-y-8 relative z-10">
-                    <div className="w-12 h-1 bg-[#f99d1c]"></div>
-                    <div className="space-y-4">
-                      <h3 className="text-white text-3xl font-bold tracking-tight">Cloud Sovereignty <br />First Principles</h3>
-                      <p className="text-white/30 text-sm font-light leading-relaxed">
-                        Every deployment is designed with data residency and sovereignty at its core. We don't just deploy to the cloud; we own the architectural integrity of your digital estate.
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-8 pt-12">
-                      <div className="space-y-2">
-                        <p className="text-[#f99d1c] text-4xl font-bold">99.999%</p>
-                        <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest">Target Uptime</p>
-                      </div>
-                      <div className="space-y-2">
-                        <p className="text-[#f99d1c] text-4xl font-bold">&lt;50ms</p>
-                        <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest">Global Latency</p>
+              <div className="lg:col-span-5 hidden lg:block">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#f99d1c] to-blue-600 rounded-sm blur opacity-20 animate-pulse"></div>
+                  <div className="relative bg-[#11253e] border border-white/10 p-1 rounded-sm">
+                    <div className="aspect-[4/5] bg-gradient-to-br from-[#11253e] to-black p-12 relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-[#f99d1c]/10 blur-[120px]"></div>
+                      <div className="space-y-8 relative z-10">
+                        <div className="w-12 h-1 bg-[#f99d1c]"></div>
+                        <div className="space-y-4">
+                          <h3 className="text-white text-3xl font-bold tracking-tight">Cloud Sovereignty <br />First Principles</h3>
+                          <p className="text-white/30 text-sm font-light leading-relaxed">
+                            Every deployment is designed with data residency and sovereignty at its core. We don't just deploy to the cloud; we own the architectural integrity of your digital estate.
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-8 pt-12">
+                          <div className="space-y-2">
+                            <p className="text-[#f99d1c] text-4xl font-bold">99.999%</p>
+                            <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest">Target Uptime</p>
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-[#f99d1c] text-4xl font-bold">&lt;50ms</p>
+                            <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest">Global Latency</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -188,3 +195,4 @@ export default function CloudInfraSolution() {
     </>
   );
 }
+

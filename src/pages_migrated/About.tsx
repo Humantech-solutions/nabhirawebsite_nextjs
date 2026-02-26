@@ -40,7 +40,7 @@ export default function About() {
   return (
     <>
       {/* About Hero Section */}
-      <section className="relative h-[450px] md:h-[520px] overflow-hidden">
+      <section className="relative h-[450px] md:h-[520px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmUlMjBnbGFzcyUyMGJ1aWxkaW5nJTIwc3Vuc2V0fGVufDF8fHx8MTc3MTg5NzM2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"

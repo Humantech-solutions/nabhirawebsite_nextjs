@@ -1,29 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import Link from "next/link";
-
 const logo = '/assets/footer.png';
+import { motion, AnimatePresence } from "motion/react";
+import { Plus, Minus } from "lucide-react";
+import Link from "next/link";
 
 const whyNabhiraQA = [
   {
-    question: "Accelerate Speed",
-    answer: "Our team promises to offer you the best design quality through our noteworthy works, ensuring rapid deployment without compromising on architectural integrity."
+    question: "Structured Approach",
+    answer: "Defined framework from inception to realization with milestones, governance and measurable checkpoints"
   },
   {
-    question: "Enhance Quality",
-    answer: "Nabhira offers the best comprehensive architectural services having conceptual, schematic, and design development, driven by rigorous quality assurance frameworks."
+    question: "Delivery Maturity",
+    answer: "Consistently executing complex programs with proven governance, risk control, quality standards and predictable results at scale."
   },
   {
-    question: "Drive Sustainable",
-    answer: "Nabhira is a team of professionals including AutoCAD designers, GIS Engineers, Civil Draughtsman, and Graphical Designers, who execute each project smartly and with enthusiasm for long-term sustainability."
+    "question": "Automation to the core",
+    "answer": "Embedding intelligent automation across processes, delivery, and operations to drive efficiency, consistency, and scalability by design."
   },
   {
-    question: "Cost Efficiency",
-    answer: "We plan each project carefully keeping the requirement of the customers in mind, optimizing resources to deliver maximum value at an optimized cost structure."
+    "question": "Predictable Outcome",
+    "answer": "⁠Leveraging architecture rigor, automation, observability, and data-driven controls to consistently deliver measurable technology and business results."
   }
 ];
 
@@ -47,9 +46,17 @@ export function LimitlessTogether() {
             <h2 className="text-5xl font-extralight tracking-tight leading-tight">
               Why Nabhira?
             </h2>
-            <p className="text-white/70 text-lg font-light leading-relaxed max-w-lg">
-              We bring a structured, outcome-driven approach to every transformation initiative. Our delivery maturity ensures predictable execution, governance discipline, and measurable results.
-            </p>
+            <div className="text-white/70 text-lg font-light leading-relaxed max-w-lg space-y-6">
+              <p>
+                We bring a structured, outcome-driven approach to every transformation initiative.
+              </p>
+              <p>
+                Our delivery maturity ensures predictable execution, governance discipline, and measurable results.
+              </p>
+              <p>
+                With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency.
+              </p>
+            </div>
           </div>
 
           <div className="space-y-4">
@@ -72,7 +79,6 @@ export function LimitlessTogether() {
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div
-
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -104,8 +110,8 @@ export function Footer() {
           <div className="space-y-8">
             <div className="flex items-center">
               <Link href="/">
-  <img src={logo} alt="Nabhira Logo" className="h-10 w-auto" />
-</Link>
+                <img src={logo} alt="Nabhira Logo" className="h-10 w-auto" />
+              </Link>
             </div>
             <div className="space-y-4 max-w-xs">
               <p className="text-white/40 text-xs font-light leading-relaxed tracking-wide">

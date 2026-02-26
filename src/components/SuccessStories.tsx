@@ -41,22 +41,22 @@ export function SuccessStories() {
           {stories.map((story, i) => (
             <div 
               key={i} 
-              className={`group cursor-pointer relative flex flex-col p-10 min-h-[320px] transition-all duration-500 border border-gray-100 hover:border-[#f99d1c]/30 hover:shadow-2xl hover:shadow-[#f99d1c]/5 ${i === 3 ? 'bg-[#11253e] text-white' : 'bg-[#f8f9fa]'}`}
+              className="group cursor-pointer relative flex flex-col p-10 min-h-[320px] transition-all duration-500 border border-gray-100 bg-[#f8f9fa] hover:bg-[#11253e] hover:border-[#f99d1c]/30 hover:shadow-2xl hover:shadow-[#f99d1c]/5"
             >
               <div className="mb-8">
-                <Quote className={`w-10 h-10 ${i === 3 ? 'text-[#f99d1c]/40' : 'text-gray-200'}`} />
+                <Quote className="w-10 h-10 text-gray-200 group-hover:text-[#f99d1c]/40 transition-colors duration-500" />
               </div>
 
               <div className="flex-grow flex flex-col justify-between">
-                <p className={`text-lg font-light leading-relaxed mb-8 ${i === 3 ? 'text-white' : 'text-[#11253e]'}`}>
+                <p className="text-lg font-light leading-relaxed mb-8 text-[#11253e] group-hover:text-white transition-colors duration-500">
                   "{story.title}"
                 </p>
                 
-                <div className="space-y-2 border-t pt-6 border-current/10">
-                  <p className={`font-black text-xs uppercase tracking-widest ${i === 3 ? 'text-[#f99d1c]' : 'text-[#11253e]'}`}>
+                <div className="space-y-2 border-t pt-6 border-[#11253e]/10 group-hover:border-white/10 transition-colors duration-500">
+                  <p className="font-black text-xs uppercase tracking-widest text-[#11253e] group-hover:text-[#f99d1c] transition-colors duration-500">
                     {story.author}
                   </p>
-                  <p className={`text-[10px] font-medium uppercase tracking-wider opacity-60`}>
+                  <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e]/60 group-hover:text-white/60 transition-colors duration-500">
                     {story.role}
                   </p>
                 </div>
@@ -75,4 +75,3 @@ export function SuccessStories() {
     </section>
   );
 }
-

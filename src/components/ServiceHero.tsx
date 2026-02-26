@@ -60,4 +60,3 @@ export function ServiceHero({ title, subtitle, category = "Services", image, des
     </section>
   );
 }
-

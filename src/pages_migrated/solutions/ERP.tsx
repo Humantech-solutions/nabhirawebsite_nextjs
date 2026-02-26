@@ -15,55 +15,62 @@ export default function ERPSolution() {
 
   return (
     <>
-      {/* Modern Corporate Hero */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#11253e] -skew-x-12 translate-x-24 hidden lg:block"></div>
+      {/* Cinematic Hero */}
+      <section className="relative min-h-[80vh] flex items-center bg-[#11253e] overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#f99d1c1a_0%,transparent_70%)]"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+          </div>
           
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="space-y-12">
+          <div className="max-w-7xl mx-auto px-6 relative z-10 py-20">
+            <div className="grid lg:grid-cols-12 gap-16 items-center">
+              <div className="lg:col-span-7 space-y-12">
                 <Motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="space-y-8"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-1 bg-[#f99d1c]"></div>
-                    <span className="text-[#11253e] text-[10px] font-bold uppercase tracking-[0.4em]">Integrated Intelligence</span>
+                  <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-5 py-2 mb-10">
+                    <Briefcase size={14} className="text-[#f99d1c]" />
+                    <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Integrated Intelligence</span>
                   </div>
-                  <h1 className="text-[#11253e] text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                     WorkbookNow <br />
                     <span className="text-[#f99d1c]">Enterprise ERP</span>
                   </h1>
-                  <p className="text-[#11253e]/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                  <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
                     One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform.
                   </p>
-                  <div className="flex flex-wrap gap-6 pt-6">
-                    <button className="bg-[#11253e] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
-                      Discover the Platform
+                  <div className="flex flex-wrap gap-8">
+                    <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                      Discover Platform
                     </button>
-                    <button className="text-[#11253e] px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] border border-gray-200 hover:bg-gray-50 transition-all">
-                      Watch Video
+                    <button className="text-white/40 hover:text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] flex items-center gap-3 transition-colors">
+                      Watch Product Demo <ArrowRight size={16} />
                     </button>
                   </div>
                 </Motion.div>
               </div>
               
-              <div className="hidden lg:block">
-                <div className="relative p-12 bg-white shadow-2xl rounded-sm border border-gray-100">
-                  <div className="grid grid-cols-2 gap-8">
-                    {[
-                      { label: "Revenue Growth", val: "+24%", color: "text-green-500" },
-                      { label: "Efficiency Gain", val: "+40%", color: "text-[#f99d1c]" },
-                      { label: "Data Accuracy", val: "99.9%", color: "text-blue-500" },
-                      { label: "Cloud Uptime", val: "99.99%", color: "text-purple-500" }
-                    ].map((stat, i) => (
-                      <div key={i} className="p-8 bg-gray-50 border border-gray-100 rounded-sm space-y-2">
-                        <p className={`${stat.color} text-4xl font-bold tracking-tight`}>{stat.val}</p>
-                        <p className="text-[#11253e]/40 text-[10px] font-bold uppercase tracking-widest">{stat.label}</p>
+              <div className="lg:col-span-5 hidden lg:block">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#f99d1c] to-blue-600 rounded-sm blur opacity-20 animate-pulse"></div>
+                  <div className="relative bg-[#11253e] border border-white/10 p-1 rounded-sm">
+                    <div className="bg-white shadow-2xl p-12 space-y-8">
+                      <div className="grid grid-cols-2 gap-8">
+                        {[
+                          { label: "Revenue Growth", val: "+24%", color: "text-green-500" },
+                          { label: "Efficiency Gain", val: "+40%", color: "text-[#f99d1c]" },
+                          { label: "Data Accuracy", val: "99.9%", color: "text-blue-500" },
+                          { label: "Cloud Uptime", val: "99.99%", color: "text-purple-500" }
+                        ].map((stat, i) => (
+                          <div key={i} className="p-6 bg-gray-50 border border-gray-100 rounded-sm space-y-2">
+                            <p className={`${stat.color} text-3xl font-bold tracking-tight`}>{stat.val}</p>
+                            <p className="text-[#11253e]/40 text-[9px] font-bold uppercase tracking-widest">{stat.label}</p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -188,3 +195,5 @@ export default function ERPSolution() {
     </>
   );
 }
+
+

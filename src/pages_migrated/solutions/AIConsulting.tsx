@@ -2,10 +2,9 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ArrowRight, Brain, Lightbulb, TrendingUp, ShieldCheck, Target, Zap } from "lucide-react";
+const aiServerImg = "/assets/ai.png";
+import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
 export default function AIConsulting() {
   useEffect(() => {
@@ -39,10 +38,10 @@ export default function AIConsulting() {
   return (
     <>
       {/* Hero Banner */}
-      <section className="relative min-h-[450px] md:h-[650px] bg-[#11253e] overflow-hidden flex items-center pt-[110px]">
+      <section className="relative min-h-[450px] md:h-[650px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1730025855696-d83fb722bcf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwYnJhaW4lMjBnbG93aW5nJTIwYmx1ZSUyMG9yYW5nZXxlbnwxfHx8fDE3NzE5Mzc5NDF8MA&ixlib=rb-4.1.0&q=80&w=2000"
+              src={aiServerImg}
               alt="AI Intelligence Brain"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />

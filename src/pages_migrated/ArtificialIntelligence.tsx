@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { Cpu, Brain, Sparkles, Workflow, ArrowRight, Zap, Target, Lightbulb } from "lucide-react";
 import Link from "next/link";
+const aiServerImg = "/assets/ai.png";
 
 export default function ArtificialIntelligence() {
   const solutions = [
@@ -61,7 +62,7 @@ export default function ArtificialIntelligence() {
           </>
         }
         description="We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."
-        image="https://images.unsplash.com/photo-1633164530923-309fd4c02969?auto=format&fit=crop&q=80&w=2000"
+        image={aiServerImg}
       />
 
       {/* Solutions Grid */}
