@@ -33,28 +33,29 @@ export function Industries() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 4000,
+    mobileFirst: true,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        }
-      },
-      {
-        breakpoint: 768,
+        breakpoint: 639,
         settings: {
           slidesToShow: 2,
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 767,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 5,
         }
       }
     ]
@@ -115,7 +116,7 @@ export function Industries() {
         <div className="industry-slider-container -mx-px">
           <Slider ref={sliderRef} {...settings}>
             {industries.map((industry, i) => (
-              <div key={i} className="px-2">
+              <div key={i} className="px-0 sm:px-2">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -153,13 +154,11 @@ export function Industries() {
       </div>
 
       <style>{`
-        .industry-slider-container .slick-track {
-          display: flex !important;
-          padding: 20px 0;
-        }
-        .industry-slider-container .slick-slide {
-          height: inherit !important;
-        }
+        /* 
+           FIX: DO NOT add 'display: flex !important' to .slick-track.
+           Adding flex forces all slides to squeeze into a single row, 
+           breaking the 'slidesToShow: 1' setting on mobile.
+        */
         .industry-slider-container .slick-slide > div {
           height: 100%;
         }
