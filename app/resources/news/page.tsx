@@ -1,7 +1,7 @@
-"use client";
-
 import News from "@/src/pages_migrated/News";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <News />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('news');
+  return <News wordpressData={wordpressData} />;
 }

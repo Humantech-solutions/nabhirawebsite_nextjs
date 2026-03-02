@@ -3,7 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "./Footer";
+import { LimitlessTogether, Footer } from "./Footer";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Cloud, Database, Cpu, ChevronRight, ArrowRight } from "lucide-react";
 
@@ -21,6 +21,10 @@ interface IndustryLayoutProps {
   cloudService: ServiceBlock;
   dataService: ServiceBlock;
   aiService: ServiceBlock;
+  globalSettings?: {
+    heroSlides: any;
+    limitlessTogether: any;
+  };
 }
 
 export function IndustryLayout({
@@ -30,20 +34,21 @@ export function IndustryLayout({
   overview,
   cloudService,
   dataService,
-  aiService
+  aiService,
+  globalSettings
 }: IndustryLayoutProps) {
   useEffect(() => {
     document.title = `${title} | Nabhira Technologies`;
     window.scrollTo(0, 0);
   }, [title]);
-
+ 
   return (
     <>
       {/* Industry Hero */}
       <section className="relative min-h-[450px] md:min-h-[520px] overflow-hidden flex items-center py-12 md:py-24">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src={heroImage}
+              src={globalSettings?.heroSlides?.heroS1ImageUrl || globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || heroImage}
               alt={title}
               className="w-full h-full object-cover"
             />
@@ -63,16 +68,20 @@ export function IndustryLayout({
                   <span className="text-white/30 font-light">&gt;</span>
                   <span className="text-[#f99d1c]">Industries</span>
                 </nav>
-
+ 
                 <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                    {title}
+                    {globalSettings?.heroSlides?.heroS1Title ? (
+                      <span dangerouslySetInnerHTML={{ __html: globalSettings.heroSlides.heroS1Title }} />
+                    ) : (
+                      title
+                    )}
                   </h1>
                   <p className="text-[#f99d1c] text-base md:text-xl font-medium tracking-normal uppercase mb-4">
                     {subtitle}
                   </p>
                   <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                    {overview}
+                    {globalSettings?.heroSlides?.heroS1Desc || overview}
                   </p>
                 </div>
               </Motion.div>
@@ -214,7 +223,8 @@ export function IndustryLayout({
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={globalSettings?.limitlessTogether} />
+        <Footer />
     </>
   );
 }

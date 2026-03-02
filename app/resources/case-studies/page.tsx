@@ -1,7 +1,7 @@
-"use client";
-
 import CaseStudies from "@/src/pages_migrated/CaseStudies";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <CaseStudies />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('case-studies');
+  return <CaseStudies wordpressData={wordpressData} />;
 }

@@ -2,7 +2,16 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-export default function GovernmentPSU() {
+interface GovernmentPSUProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function GovernmentPSU({ wordpressData }: GovernmentPSUProps) {
   return (
     <IndustryLayout
       title="Government & PSUs"
@@ -39,6 +48,7 @@ export default function GovernmentPSU() {
           "Intelligent Government Helpdesks"
         ]
       }}
+      globalSettings={wordpressData?.globalSettings}
     />
   );
 }

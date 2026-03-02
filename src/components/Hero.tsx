@@ -10,7 +10,32 @@ const aiServerImg = "/assets/ai.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export function Hero() {
+interface HeroProps {
+  data?: {
+    heroS1Title?: string;
+    heroS1Desc?: string;
+    heroS1Image?: { node: { sourceUrl: string } };
+    heroS1ImageUrl?: string;
+    heroS1VideoUrl?: string;
+    heroS1Button?: { url: string; title: string };
+    
+    heroS2Title?: string;
+    heroS2Desc?: string;
+    heroS2Image?: { node: { sourceUrl: string } };
+    heroS2ImageUrl?: string;
+    heroS2VideoUrl?: string;
+    heroS2Button?: { url: string; title: string };
+
+    heroS3Title?: string;
+    heroS3Desc?: string;
+    heroS3Image?: { node: { sourceUrl: string } };
+    heroS3ImageUrl?: string;
+    heroS3VideoUrl?: string;
+    heroS3Button?: { url: string; title: string };
+  };
+}
+
+export function Hero({ data }: HeroProps) {
   const sliderRef = useRef<Slider | null>(null);
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -28,9 +53,49 @@ export function Hero() {
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
   };
 
-  const banners = [
+  // Helper to render title with 2 colors using | separator
+  const renderTitle = (title: string | React.ReactNode) => {
+    if (typeof title !== 'string') return title;
+    if (!title.includes('|')) return title;
+
+    const parts = title.split('|');
+    return (
+      <>
+        {parts[0].trim()} <br />
+        <span className="text-[#f99d1c]">{parts[1].trim()}</span>
+      </>
+    );
+  };
+
+  // Map individual fields to banners array (ACF Free Compatibility)
+  const banners: any[] = [];
+
+  const mapBanner = (title?: string, desc?: string, image?: any, imageUrl?: string, videoUrl?: string, btnText?: string, btnUrl?: string) => {
+    if (!title && !image && !imageUrl && !videoUrl) return null;
+    return {
+      type: (videoUrl ? "video" : "image") as "video" | "image",
+      videoSrc: videoUrl || "",
+      title: renderTitle(title || ""),
+      description: desc || "",
+      image: imageUrl || image?.node?.sourceUrl || image?.sourceUrl || banner1Img,
+      buttonText: btnText || "SEE HOW",
+      buttonUrl: btnUrl || "#",
+      overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
+    };
+  };
+
+  const b1 = mapBanner(data?.heroS1Title, data?.heroS1Desc, data?.heroS1Image, data?.heroS1ImageUrl, data?.heroS1VideoUrl, data?.heroS1Button?.title, data?.heroS1Button?.url);
+  if (b1) banners.push(b1);
+
+  const b2 = mapBanner(data?.heroS2Title, data?.heroS2Desc, data?.heroS2Image, data?.heroS2ImageUrl, data?.heroS2VideoUrl, data?.heroS2Button?.title, data?.heroS2Button?.url);
+  if (b2) banners.push(b2);
+
+  const b3 = mapBanner(data?.heroS3Title, data?.heroS3Desc, data?.heroS3Image, data?.heroS3ImageUrl, data?.heroS3VideoUrl, data?.heroS3Button?.title, data?.heroS3Button?.url);
+  if (b3) banners.push(b3);
+  // If no dynamic data, use fallbacks
+  const finalBanners = banners.length > 0 ? banners : [
     {
-      type: "video",
+      type: "video" as const,
       videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-digital-connection-concept-24622-large.mp4",
       title: (
         <>
@@ -39,11 +104,13 @@ export function Hero() {
         </>
       ),
       description: "Stay ahead of the curve with Cloud Solutions. Outpace change with cloud agility.",
-      image: banner1Img, // Fallback image
+      image: banner1Img,
+      buttonText: "SEE HOW",
+      buttonUrl: "#",
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
     {
-      type: "image",
+      type: "image" as const,
       title: (
         <>
           Unlock the Power <br />
@@ -52,10 +119,12 @@ export function Hero() {
       ),
       description: "Discover insights that move your business forward. Turn complexity into clarity.",
       image: banner2Img,
+      buttonText: "SEE HOW",
+      buttonUrl: "#",
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
     {
-      type: "image",
+      type: "image" as const,
       title: (
         <>
           Elevate with <br />
@@ -64,6 +133,8 @@ export function Hero() {
       ),
       description: "Redefine the art of possibilities. Transform ideas into reality.",
       image: aiServerImg,
+      buttonText: "SEE HOW",
+      buttonUrl: "#",
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
   ];
@@ -71,7 +142,7 @@ export function Hero() {
   return (
     <section className="relative h-[500px] md:h-[620px] overflow-hidden group">
       <Slider ref={sliderRef} {...settings} className="h-full">
-        {banners.map((banner, index) => (
+        {finalBanners.map((banner, index) => (
           <div key={index} className="relative h-[500px] md:h-[620px] outline-none">
             {/* Background Image / Video */}
             <div className="absolute inset-0">
@@ -118,7 +189,7 @@ export function Hero() {
                   {banner.description}
                 </p>
                 <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer">
-                  <span>SEE HOW</span>
+                  <span>{banner.buttonText}</span>
                   <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
                   <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
                 </button>
@@ -133,7 +204,7 @@ export function Hero() {
         <div className="max-w-7xl mx-auto flex items-end justify-between">
           {/* Horizontal Indicators (One per slide) */}
           <div className="flex items-center space-x-2 md:space-x-3 mb-2">
-            {banners.map((_, i) => (
+            {finalBanners.map((_, i) => (
               <div 
                 key={i} 
                 className={`h-[2px] transition-all duration-500 ease-in-out ${

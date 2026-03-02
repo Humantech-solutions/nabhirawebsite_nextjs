@@ -7,7 +7,8 @@ import {
   HeartPulse, 
   Shield, 
   Film,
-  ChevronRight 
+  ChevronRight,
+  LayoutGrid
 } from "lucide-react";
 import { motion } from "motion/react";
 import Slider from "react-slick";
@@ -17,10 +18,78 @@ import { useRef } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export function Industries() {
+interface IndustriesProps {
+  data?: {
+    iTitle?: string;
+    iDesc?: string;
+    iI1Name?: string;
+    iI1Icon?: string;
+    iI1IconImg?: { node: { sourceUrl: string } };
+    iI2Name?: string;
+    iI2Icon?: string;
+    iI2IconImg?: { node: { sourceUrl: string } };
+    iI3Name?: string;
+    iI3Icon?: string;
+    iI3IconImg?: { node: { sourceUrl: string } };
+    iI4Name?: string;
+    iI4Icon?: string;
+    iI4IconImg?: { node: { sourceUrl: string } };
+    iI5Name?: string;
+    iI5Icon?: string;
+    iI5IconImg?: { node: { sourceUrl: string } };
+    iI6Name?: string;
+    iI6Icon?: string;
+    iI6IconImg?: { node: { sourceUrl: string } };
+  };
+}
+
+export function Industries({ data }: IndustriesProps) {
   const sliderRef = useRef<Slider>(null);
 
-  const industries = [
+  const iconMap: Record<string, any> = {
+    Building2, ShoppingCart, Factory, HeartPulse, Shield, Film, LayoutGrid
+  };
+
+  const dynamicItems = [];
+  
+  if (data?.iI1Name) {
+    dynamicItems.push({
+      title: data.iI1Name,
+      icon: (data.iI1IconImg as any)?.node?.sourceUrl || (data.iI1IconImg as any)?.sourceUrl || iconMap[data.iI1Icon || ""] || LayoutGrid
+    });
+  }
+  if (data?.iI2Name) {
+    dynamicItems.push({
+      title: data.iI2Name,
+      icon: (data.iI2IconImg as any)?.node?.sourceUrl || (data.iI2IconImg as any)?.sourceUrl || iconMap[data.iI2Icon || ""] || LayoutGrid
+    });
+  }
+  if (data?.iI3Name) {
+    dynamicItems.push({
+      title: data.iI3Name,
+      icon: (data.iI3IconImg as any)?.node?.sourceUrl || (data.iI3IconImg as any)?.sourceUrl || iconMap[data.iI3Icon || ""] || LayoutGrid
+    });
+  }
+  if (data?.iI4Name) {
+    dynamicItems.push({
+      title: data.iI4Name,
+      icon: (data.iI4IconImg as any)?.node?.sourceUrl || (data.iI4IconImg as any)?.sourceUrl || iconMap[data.iI4Icon || ""] || LayoutGrid
+    });
+  }
+  if (data?.iI5Name) {
+    dynamicItems.push({
+      title: data.iI5Name,
+      icon: (data.iI5IconImg as any)?.node?.sourceUrl || (data.iI5IconImg as any)?.sourceUrl || iconMap[data.iI5Icon || ""] || LayoutGrid
+    });
+  }
+  if (data?.iI6Name) {
+    dynamicItems.push({
+      title: data.iI6Name,
+      icon: (data.iI6IconImg as any)?.node?.sourceUrl || (data.iI6IconImg as any)?.sourceUrl || iconMap[data.iI6Icon || ""] || LayoutGrid
+    });
+  }
+
+  const industries = dynamicItems.length > 0 ? dynamicItems : [
     { title: "Banking & Financial Services", icon: Building2 },
     { title: "Retail & eCommerce", icon: ShoppingCart },
     { title: "Manufacturing & Automotive", icon: Factory },
@@ -28,6 +97,9 @@ export function Industries() {
     { title: "Government & PSUs", icon: Shield },
     { title: "Media & Entertainment", icon: Film }
   ];
+
+  const sectionTitle = data?.iTitle || "Expertise Across Industries";
+  const sectionDesc = data?.iDesc || "Our expertise spans 14 industries, including banking, insurance, telecommunications, media, entertainment, distribution, and retail.";
 
   const settings = {
     dots: false,
@@ -83,7 +155,7 @@ export function Industries() {
               viewport={{ once: true }}
               className="text-[#11253e] text-3xl sm:text-4xl md:text-[40px] font-medium tracking-normal leading-tight mb-4"
             >
-              Expertise Across Industries
+              {sectionTitle}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
@@ -92,7 +164,7 @@ export function Industries() {
               transition={{ delay: 0.2 }}
               className="text-[#11253e] text-sm md:text-base font-light max-w-3xl leading-relaxed mx-auto md:mx-0"
             >
-              Our expertise spans 14 industries, including banking, insurance, telecommunications, media, entertainment, distribution, and retail.
+              {sectionDesc}
             </motion.p>
           </div>
           
@@ -124,7 +196,11 @@ export function Industries() {
                   className="group bg-white p-8 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[240px] flex flex-col"
                 >
                   <div className="mb-8">
-                    <industry.icon className="w-10 h-10 text-[#11253e]" strokeWidth={1} />
+                    {typeof industry.icon !== 'string' ? (
+                      <industry.icon className="w-10 h-10 text-[#11253e]" strokeWidth={1} />
+                    ) : (
+                      <img src={industry.icon} alt={industry.title} className="w-10 h-10 object-contain text-[#11253e]" />
+                    )}
                   </div>
 
                   <div className="mt-auto flex justify-between items-end">

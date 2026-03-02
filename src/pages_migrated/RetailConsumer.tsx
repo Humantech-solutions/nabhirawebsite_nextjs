@@ -2,7 +2,16 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-export default function RetailConsumer() {
+interface RetailConsumerProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function RetailConsumer({ wordpressData }: RetailConsumerProps) {
   return (
     <IndustryLayout
       title="Retail & Consumer Goods"
@@ -39,6 +48,7 @@ export default function RetailConsumer() {
           "Intelligent Chat & Voice Commerce"
         ]
       }}
+      globalSettings={wordpressData?.globalSettings}
     />
   );
 }

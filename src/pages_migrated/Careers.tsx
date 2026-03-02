@@ -9,7 +9,18 @@ import { MapPin, Briefcase, Clock, ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
 import { jobs } from "../data/migrated_data";
 
-export default function Careers() {
+interface CareersProps {
+  wordpressData?: {
+    title: string;
+    content: string;
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function Careers({ wordpressData }: CareersProps) {
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -34,7 +45,7 @@ export default function Careers() {
         <section className="relative h-[520px] overflow-hidden pt-8 md:pt-12">
           <div className="absolute inset-0">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1718066236074-13f8cf7ae93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTkyODd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1718066236074-13f8cf7ae93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTkyODd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
                 alt="Nabhira Careers"
                 className="w-full h-full object-cover"
               />
@@ -57,11 +68,17 @@ export default function Careers() {
 
                   <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                     <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                      Architect Your <br />
-                      <span className="text-[#f99d1c]">Legacy</span>
+                      {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                        <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                      ) : (
+                        <>
+                          Architect Your <br />
+                          <span className="text-[#f99d1c]">Legacy</span>
+                        </>
+                      )}
                     </h1>
                     <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                      Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology.
+                      {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology."}
                     </p>
                   </div>
                 </Motion.div>
@@ -186,7 +203,7 @@ export default function Careers() {
             </div>
           </section>
         </main>
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
         <Footer />
     </>
   );

@@ -2,7 +2,16 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-export default function BankingFinance() {
+interface BankingFinanceProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function BankingFinance({ wordpressData }: BankingFinanceProps) {
   return (
     <IndustryLayout
       title="Banking & Financial Services"
@@ -39,6 +48,7 @@ export default function BankingFinance() {
           "Algorithmic Risk Management"
         ]
       }}
+      globalSettings={wordpressData?.globalSettings}
     />
   );
 }

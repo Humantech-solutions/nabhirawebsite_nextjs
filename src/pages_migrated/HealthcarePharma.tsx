@@ -2,7 +2,16 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-export default function HealthcarePharma() {
+interface HealthcarePharmaProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function HealthcarePharma({ wordpressData }: HealthcarePharmaProps) {
   return (
     <IndustryLayout
       title="Healthcare & Pharma"
@@ -39,6 +48,7 @@ export default function HealthcarePharma() {
           "Generative AI for Patient Support"
         ]
       }}
+      globalSettings={wordpressData?.globalSettings}
     />
   );
 }

@@ -1,7 +1,7 @@
-"use client";
-
 import Contact from "@/src/pages_migrated/Contact";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <Contact />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('contact');
+  return <Contact wordpressData={wordpressData} />;
 }

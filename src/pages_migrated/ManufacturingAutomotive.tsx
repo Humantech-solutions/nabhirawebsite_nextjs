@@ -2,7 +2,16 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-export default function ManufacturingAutomotive() {
+interface ManufacturingAutomotiveProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function ManufacturingAutomotive({ wordpressData }: ManufacturingAutomotiveProps) {
   return (
     <IndustryLayout
       title="Manufacturing & Automotive"
@@ -39,6 +48,7 @@ export default function ManufacturingAutomotive() {
           "Autonomous Logistics Planning"
         ]
       }}
+      globalSettings={wordpressData?.globalSettings}
     />
   );
 }

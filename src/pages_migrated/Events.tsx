@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
+import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { MapPin, Calendar, Clock, ArrowRight } from "lucide-react";
 
@@ -38,7 +38,16 @@ const events = [
   }
 ];
 
-export default function Events() {
+interface EventsProps {
+  wordpressData?: {
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function Events({ wordpressData }: EventsProps) {
   useEffect(() => {
     document.title = "Events | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -49,7 +58,7 @@ export default function Events() {
       <section className="relative h-[300px] overflow-hidden">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1670420421505-804c23232098?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29uZmVyZW5jZSUyMHN0YWdlJTIwYmx1ZSUyMGxpZ2h0aW5nJTIwZnV0dXJpc3RpY3xlbnwxfHx8fDE3NzE5MDA3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1670420421505-804c23232098?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29uZmVyZW5jZSUyMHN0YWdlJTIwYmx1ZSUyMGxpZ2h0aW5nJTIwZnV0dXJpc3RpY3xlbnwxfHx8fDE3NzE5MDA3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Nabhira Events"
               className="w-full h-full object-cover"
             />
@@ -58,10 +67,14 @@ export default function Events() {
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Connect & <span className="text-[#f99d1c]">Collaborate</span>
+                {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                  <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                ) : (
+                  <>Connect & <span className="text-[#f99d1c]">Collaborate</span></>
+                )}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Join us at global summits and specialized webinars to redefine what's possible.
+                {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join us at global summits and specialized webinars to redefine what's possible."}
               </p>
             </div>
           </div>
@@ -116,6 +129,8 @@ export default function Events() {
             </div>
           </div>
         </section>
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
+        <Footer />
     </>
   );
 }
