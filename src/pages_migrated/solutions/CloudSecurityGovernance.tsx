@@ -1,18 +1,77 @@
 "use client";
-
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ShieldCheck, Lock, Eye, Key, Globe, Shield, Activity, Fingerprint, ArrowRight, CheckCircle2 } from "lucide-react";
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Search, 
+  ShieldCheck, 
+  Lock, 
+  Eye, 
+  Activity, 
+  Fingerprint, 
+  BarChart3, 
+  Shield, 
+  Layers,
+  Settings,
+  Zap,
+  Layout
+} from "lucide-react";
 
 export default function CloudSecurityGovernance() {
   useEffect(() => {
     document.title = "Cloud Security & Governance | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const methodology = [
+    {
+      id: "assess",
+      title: "Assess",
+      icon: <Search className="text-[#f99d1c]" size={24} />,
+      points: [
+        "Cloud workload security posture review",
+        "Identity & Access Management evaluation",
+        "Compliance gap assessment",
+        "Cost & usage governance review"
+      ]
+    },
+    {
+      id: "design",
+      title: "Design",
+      icon: <Layout className="text-[#f99d1c]" size={24} />,
+      points: [
+        "Define cloud security architecture",
+        "Least-privilege policy framework",
+        "Policy-driven governance model",
+        "Centralized logging framework"
+      ]
+    },
+    {
+      id: "implement",
+      title: "Implement",
+      icon: <ShieldCheck className="text-[#f99d1c]" size={24} />,
+      points: [
+        "Configure security guardrails",
+        "Encryption & data protection setup",
+        "Automated policy enforcement",
+        "CI/CD security integration"
+      ]
+    },
+    {
+      id: "monitor",
+      title: "Optimize & Govern",
+      icon: <Activity className="text-[#f99d1c]" size={24} />,
+      points: [
+        "Continuous compliance monitoring",
+        "Threat detection alignment",
+        "Periodic governance reviews",
+        "FinOps & cost alignment"
+      ]
+    }
+  ];
 
   return (
     <>
@@ -24,154 +83,261 @@ export default function CloudSecurityGovernance() {
         image="https://images.unsplash.com/photo-1586036308218-5ed6553c98b6?auto=format&fit=crop&q=80&w=2000"
       />
 
-        {/* Security Pillars */}
-        <section className="py-32 bg-white relative">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="space-y-12">
-                <div className="space-y-6">
-                  <h2 className="text-[#11253e] text-4xl font-medium tracking-normal uppercase leading-tight">
-                    Multi-Layered <br />
-                    <span className="text-[#f99d1c]">Trust Guardrails</span>
-                  </h2>
-                  <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
-                    Cloud security is not a one-time setup—it's continuous vigilance. We implement automated guardrails that prevent non-compliant infrastructure from being deployed in the first place.
+      {/* Intro Section */}
+      <section className="py-20 bg-[#fdfbf7]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <Motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-[-0.02em] leading-tight">
+                Secure by Design. <br />
+                <span className="text-[#f99d1c]">Governed by Intelligence.</span>
+              </h2>
+              <p className="text-[#11253e] text-lg md:text-xl font-light leading-relaxed">
+                As organizations move faster in the cloud, the risk moves faster as well. Misconfigurations and compliance gaps can quietly grow until they become critical business problems.
+              </p>
+            </Motion.div>
+            
+            <Motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="space-y-6"
+            >
+              <p className="text-[#11253e] text-lg leading-relaxed font-light">
+                Cloud security and governance are not about slowing innovation. They are about enabling it safely. We help you build a secure, compliant environment so your teams can innovate with confidence.
+              </p>
+              <div className="w-20 h-px bg-[#f99d1c]"></div>
+            </Motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 1. Our Approach Section */}
+      <section className="py-20 bg-white relative overflow-hidden border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="order-2 lg:order-1 relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+              <ImageWithFallback 
+                src="https://images.unsplash.com/photo-1682559736721-c2e77ff4c650?auto=format&fit=crop&q=80&w=1200"
+                alt="Secure Cloud Infrastructure"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+              />
+              <div className="absolute inset-0 bg-[#11253e]/10"></div>
+            </div>
+
+            <div className="order-1 lg:order-2 space-y-12 p-5">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4 mb-4">
+                  <span className="text-[#f99d1c] font-black text-6xl">01</span>
+                  <div className="h-px w-12 bg-[#f99d1c]"></div>
+                </div>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Approach</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Protect Without Restricting Progress</h3>
+              </div>
+
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                Security should never become a bottleneck. We believe in "secure by design" and "governance by default" where protection is built into the foundation.
+              </p>
+
+              <div className="grid gap-y-4">
+                {[
+                  "Embedding security from architecture design",
+                  "Establishing clear governance guardrails",
+                  "Creating visibility across multi-cloud",
+                  "Aligning controls with business risk appetite",
+                  "Enabling financial and technical governance"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-base font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-8 bg-[#11253e] text-white rounded-sm relative overflow-hidden">
+                <div className="relative z-10">
+                  <p className="font-light italic leading-relaxed opacity-80">
+                    "Security is built into the foundation, not layered on later. We enable innovation to happen safely."
                   </p>
                 </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  {[
-                    { title: "Identity First", desc: "Granular RBAC and ABAC controls integrated with centralized IdPs." },
-                    { title: "Data Residency", desc: "Automated geofencing for data sovereignty and privacy compliance." },
-                    { title: "Threat Intel", desc: "Real-time AI-native anomaly detection across all cloud endpoints." },
-                    { title: "Drift Control", desc: "Automated remediation of infrastructure-as-code drift." }
-                  ].map((item, i) => (
-                    <div key={i} className="space-y-4 p-8 border border-gray-100 hover:border-[#f99d1c] transition-colors group">
-                       <h4 className="text-[#11253e] text-lg font-medium uppercase tracking-normal">{item.title}</h4>
-                       <p className="text-[#11253e]/50 text-xs font-light leading-relaxed">{item.desc}</p>
+                <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Our Methodology Section */}
+      <section className="py-20 bg-[#eeede9] relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto mb-24 space-y-6">
+            <div className="flex items-center justify-center space-x-4 mb-4">
+              <span className="text-[#f99d1c] font-black text-6xl">02</span>
+              <div className="h-px w-12 bg-[#f99d1c]"></div>
+            </div>
+            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Methodology</h2>
+            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">Structured Control with Continuous Monitoring</h3>
+            <p className="text-[#11253e] text-lg font-light max-w-2xl mx-auto">
+              We follow a phased framework to strengthen your cloud security posture and ensure continuous compliance.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {methodology.map((step, idx) => (
+              <Motion.div
+                key={step.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-5 border-b-4 border-[#11253e]/10 hover:border-[#f99d1c] transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col items-center text-center group"
+              >
+                <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto group-hover:bg-[#f99d1c]/10 transition-colors">
+                  {step.icon}
+                </div>
+                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{step.title}</h4>
+                <div className="space-y-4 flex-grow text-left w-full">
+                  {step.points.map((point, i) => (
+                    <div key={i} className="flex items-start space-x-3">
+                      <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
+                      <span className="text-[#11253e] text-[14px] leading-relaxed font-normal">{point}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-              
-              <div className="relative">
-                <div className="p-16 bg-gray-50 border border-gray-100 rounded-sm space-y-12 shadow-2xl">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-[#11253e] text-xl font-medium uppercase tracking-normal">Compliance Coverage</h3>
-                    <Shield className="text-[#f99d1c]" size={24} />
-                  </div>
-                  <div className="grid grid-cols-2 gap-8">
-                    {[
-                      "GDPR / CCPA",
-                      "HIPAA / HITRUST",
-                      "PCI-DSS v4.0",
-                      "SOC2 Type II",
-                      "ISO 27001",
-                      "FedRAMP / NIST"
-                    ].map((item, i) => (
-                      <div key={i} className="flex gap-4 items-center bg-white p-4 border border-gray-200 shadow-sm">
-                        <CheckCircle2 size={14} className="text-[#f99d1c]" />
-                        <span className="text-[10px] font-medium text-[#11253e] uppercase tracking-normal">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+              </Motion.div>
+            ))}
           </div>
-        </section>
-
-        {/* Security Stack Visualization */}
-        <section className="py-32 bg-gray-50 border-y border-gray-100">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-normal uppercase">Integrated Security Stack</h2>
-              <div className="w-16 h-1 bg-[#f99d1c] mx-auto"></div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-1px bg-gray-200 border border-gray-200 shadow-sm">
-              {[
-                { 
-                  title: "CSPM", 
-                  desc: "Cloud Security Posture Management for continuous visibility across multi-cloud.", 
-                  icon: <Activity size={32} /> 
-                },
-                { 
-                  title: "CWPP", 
-                  desc: "Cloud Workload Protection Platform for container and serverless runtime security.", 
-                  icon: <Fingerprint size={32} /> 
-                },
-                { 
-                  title: "CIEM", 
-                  desc: "Cloud Infrastructure Entitlement Management for identity governance at scale.", 
-                  icon: <Key size={32} /> 
-                },
-                { 
-                  title: "CNAPP", 
-                  desc: "Cloud-Native Application Protection Platform for end-to-end security lifecycle.", 
-                  icon: <Eye size={32} /> 
-                }
-              ].map((item, i) => (
-                <div key={i} className="bg-white p-16 space-y-8 hover:bg-gray-50 transition-all">
-                  <div className="text-[#f99d1c]">{item.icon}</div>
-                  <div className="space-y-4">
-                    <h3 className="text-[#11253e] text-lg font-medium tracking-normal uppercase">{item.title}</h3>
-                    <p className="text-[#11253e]/60 text-xs font-light leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="mt-20 text-center">
+            <p className="text-[#11253e] text-lg font-medium italic">
+              "Security and governance are not one-time activities, they are continuous disciplines."
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Adopt Zero Trust - Patterned Section */}
-        <section className="py-24 relative bg-[#11253e] overflow-hidden">
-          {/* Diagonal Hatch Pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.07]" 
-            style={{ 
-              backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #ffffff 20px, #ffffff 21px)`,
-              backgroundSize: '100% 100%'
-            }}
-          />
-          <div 
-            className="absolute inset-0 opacity-[0.03]" 
-            style={{ 
-              backgroundImage: `repeating-linear-gradient(20deg, transparent, transparent 40px, #ffffff 40px, #ffffff 41px)`,
-              backgroundSize: '100% 100%'
-            }}
-          />
-          
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <Motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-[#fdfbf7] p-10 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden"
-            >
-              {/* Decorative Accent */}
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
-              
-              <div className="max-w-2xl space-y-6 text-left">
-                <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight leading-[1.1]">
-                  Adopt <br className="hidden md:block" />
-                  <span className="text-[#f99d1c]">Zero Trust.</span>
-                </h2>
-                <p className="text-[#11253e]/70 text-lg md:text-xl font-light leading-relaxed">
-                  Don't wait for a breach to happen. Let Nabhira architect a security posture that proactively neutralizes threats.
+      {/* 3. Tools & Platforms Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-12 p-5">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 mb-4">
+                  <span className="text-[#f99d1c] font-black text-6xl">03</span>
+                  <div className="h-px w-12 bg-[#f99d1c]"></div>
+                </div>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">Tools & Platforms</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">Enterprise-Grade Security Systems.</h3>
+              </div>
+
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                We leverage the security ecosystems of AWS, Azure, and Google Cloud, enhanced by best-in-class specialized governance tools.
+              </p>
+
+              <div className="grid gap-4">
+                {[
+                  { icon: <Fingerprint size={18} />, text: "Identity & Access Management Frameworks" },
+                  { icon: <Eye size={18} />, text: "Cloud Security Posture Management (CSPM)" },
+                  { icon: <Lock size={18} />, text: "Policy-as-Code & IaC Control Frameworks" },
+                  { icon: <Activity size={18} />, text: "Centralized Logging & SIEM Integration" },
+                  { icon: <BarChart3 size={18} />, text: "Cost Governance & FinOps Dashboards" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
+                    <div className="text-[#f99d1c]">{item.icon}</div>
+                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            <div className="relative">
+              <div className="aspect-square bg-[#11253e] p-1 rounded-sm overflow-hidden shadow-2xl group">
+                <ImageWithFallback 
+                  src="https://images.unsplash.com/photo-1763128516808-785e80c1dd68?auto=format&fit=crop&q=80&w=1000"
+                  alt="Cyber Security Operations"
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-[#f99d1c] p-8 text-[#11253e] max-w-xs shadow-xl hidden md:block">
+                <p className="text-sm font-medium italic">
+                  "Our governance framework gives leadership teams the confidence to innovate without the fear of compliance drift."
                 </p>
               </div>
-              
-              <div className="flex-shrink-0 w-full md:w-auto">
-                <button className="w-full md:w-auto bg-[#f99d1c] hover:bg-[#11253e] text-white px-12 py-6 rounded-sm font-medium transition-all inline-flex items-center justify-center space-x-4 uppercase text-xs tracking-[0.2em] shadow-xl shadow-[#f99d1c]/20 group">
-                  <span>Speak to a Security Architect</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </Motion.div>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* 4. Value Proposition Section */}
+      <section className="py-20 bg-[#11253e] relative overflow-hidden">
+        {/* Decorative Background Patterns */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
+            <div className="flex items-center justify-center space-x-4 mb-4">
+              <span className="text-[#f99d1c] font-black text-6xl">04</span>
+              <div className="h-px w-12 bg-[#f99d1c]"></div>
+            </div>
+            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
+            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Confidence at Scale.</h3>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Risk Mitigation", desc: "Significantly reduce security risks and infrastructure misconfigurations." },
+              { title: "Continuous Compliance", desc: "Maintain adherence to industry standards with automated guardrails." },
+              { title: "Data Protection", desc: "Secure sensitive data and critical workloads with enterprise-grade controls." },
+              { title: "Full Visibility", desc: "Gain 360-degree visibility across hybrid and multi-cloud environments." },
+              { title: "Cost Control", desc: "Establish financial accountability and eliminate unmanaged cloud spend." },
+              { title: "Strategic Confidence", desc: "Empower leadership with the certainty that innovation is happening safely." }
+            ].map((item, i) => (
+              <Motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm p-10 border border-white/10 hover:border-[#f99d1c]/50 transition-all group"
+              >
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-8 h-8 rounded-full bg-[#f99d1c] flex items-center justify-center text-[#11253e]">
+                    <CheckCircle2 size={16} />
+                  </div>
+                  <h4 className="text-white text-lg font-medium tracking-tight">{item.title}</h4>
+                </div>
+                <p className="text-white/60 text-sm font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </Motion.div>
+            ))}
+          </div>
+
+          <div className="mt-20 p-12 bg-[#fdfbf7] shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+              <div className="max-w-2xl">
+                <h2 className="text-[#11253e] text-3xl font-medium tracking-tight mb-4">
+                  Ready to secure your cloud journey?
+                </h2>
+                <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                  Let our experts design a security and governance framework that proactively neutralizes threats while supporting your growth.
+                </p>
+              </div>
+              <button className="bg-[#f99d1c] hover:bg-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-xl shadow-[#f99d1c]/20 group">
+                <span>START YOUR JOURNEY</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

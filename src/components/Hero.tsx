@@ -1,14 +1,13 @@
 "use client";
-
-import { useState, useRef } from "react";
-import Slider from "react-slick";
+import React, { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-const banner1Img = "/assets/log03.png";
-const banner2Img = "/assets/bigthinkers.png";
-const aiServerImg = "/assets/ai.png";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import banner1Img from "../assets/log03.png";
+import banner2Img from "../assets/bigthinkers.png";
+import aiServerImg from "../assets/ai.png";
 
 interface HeroProps {
   data?: {
@@ -36,22 +35,8 @@ interface HeroProps {
 }
 
 export function Hero({ data }: HeroProps) {
-  const sliderRef = useRef<Slider | null>(null);
-
+  const sliderRef = useRef<Slider>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    fade: true,
-    arrows: false,
-    beforeChange: (_: number, next: number) => setCurrentSlide(next),
-  };
 
   // Helper to render title with 2 colors using | separator
   const renderTitle = (title: string | React.ReactNode) => {
@@ -67,9 +52,6 @@ export function Hero({ data }: HeroProps) {
     );
   };
 
-  // Map individual fields to banners array (ACF Free Compatibility)
-  const banners: any[] = [];
-
   const mapBanner = (title?: string, desc?: string, image?: any, imageUrl?: string, videoUrl?: string, btnText?: string, btnUrl?: string) => {
     if (!title && !image && !imageUrl && !videoUrl) return null;
     return {
@@ -84,6 +66,7 @@ export function Hero({ data }: HeroProps) {
     };
   };
 
+  const banners: any[] = [];
   const b1 = mapBanner(data?.heroS1Title, data?.heroS1Desc, data?.heroS1Image, data?.heroS1ImageUrl, data?.heroS1VideoUrl, data?.heroS1Button?.title, data?.heroS1Button?.url);
   if (b1) banners.push(b1);
 
@@ -92,7 +75,7 @@ export function Hero({ data }: HeroProps) {
 
   const b3 = mapBanner(data?.heroS3Title, data?.heroS3Desc, data?.heroS3Image, data?.heroS3ImageUrl, data?.heroS3VideoUrl, data?.heroS3Button?.title, data?.heroS3Button?.url);
   if (b3) banners.push(b3);
-  // If no dynamic data, use fallbacks
+
   const finalBanners = banners.length > 0 ? banners : [
     {
       type: "video" as const,
@@ -105,8 +88,6 @@ export function Hero({ data }: HeroProps) {
       ),
       description: "Stay ahead of the curve with Cloud Solutions. Outpace change with cloud agility.",
       image: banner1Img,
-      buttonText: "SEE HOW",
-      buttonUrl: "#",
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
     },
     {
@@ -139,8 +120,19 @@ export function Hero({ data }: HeroProps) {
     },
   ];
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
+  };
+
   return (
-    <section className="relative h-[500px] md:h-[620px] overflow-hidden group">
+    <section className="relative h-[500px] md:h-[620px] overflow-hidden group bg-[#11253e]">
       <Slider ref={sliderRef} {...settings} className="h-full">
         {finalBanners.map((banner, index) => (
           <div key={index} className="relative h-[500px] md:h-[620px] outline-none">
@@ -166,15 +158,15 @@ export function Hero({ data }: HeroProps) {
               )}
               <div className={`absolute inset-0 ${banner.overlay}`}></div>
               
-              {/* Pattern Overlay to match Industries section style */}
+              {/* Pattern Overlay */}
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <pattern id="pinstripe" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <pattern id="pinstripe-hero" width="40" height="40" patternUnits="userSpaceOnUse">
                       <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="0.5" />
                     </pattern>
                   </defs>
-                  <rect width="100%" height="100%" fill="url(#pinstripe)" />
+                  <rect width="100%" height="100%" fill="url(#pinstripe-hero)" />
                 </svg>
               </div>
             </div>
@@ -188,8 +180,8 @@ export function Hero({ data }: HeroProps) {
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] mb-8 md:mb-12 max-w-2xl font-light leading-relaxed drop-shadow-sm">
                   {banner.description}
                 </p>
-                <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer">
-                  <span>{banner.buttonText}</span>
+                <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none">
+                  <span>{banner.buttonText || "SEE HOW"}</span>
                   <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
                   <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
                 </button>
@@ -199,28 +191,29 @@ export function Hero({ data }: HeroProps) {
         ))}
       </Slider>
 
-      {/* Bottom Navigation Section (As per updated request) */}
+      {/* Navigation Controls */}
       <div className="absolute bottom-6 md:bottom-10 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-end justify-between">
-          {/* Horizontal Indicators (One per slide) */}
+          {/* Indicators */}
           <div className="flex items-center space-x-2 md:space-x-3 mb-2">
             {finalBanners.map((_, i) => (
-              <div 
+              <button 
                 key={i} 
-                className={`h-[2px] transition-all duration-500 ease-in-out ${
+                onClick={() => sliderRef.current?.slickGoTo(i)}
+                className={`h-[2px] transition-all duration-500 ease-in-out cursor-pointer border-none p-0 outline-none ${
                   currentSlide === i 
                   ? 'w-8 md:w-16 bg-[#f99d1c]' 
-                  : 'w-4 md:w-8 bg-white/30'
+                  : 'w-4 md:w-8 bg-white/30 hover:bg-white/50'
                 }`}
-              ></div>
+              ></button>
             ))}
           </div>
 
-          {/* Next/Previous Controls (< | >) */}
+          {/* Next/Previous Controls */}
           <div className="flex items-center space-x-4 md:space-x-6 bg-black/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 border-l border-white/20">
             <button 
               onClick={() => sliderRef.current?.slickPrev()}
-              className="text-white/60 hover:text-white transition-colors p-1"
+              className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer bg-transparent border-none outline-none"
             >
               <ChevronLeft size={20} className="md:w-6 md:h-6" strokeWidth={1} />
             </button>
@@ -229,84 +222,13 @@ export function Hero({ data }: HeroProps) {
             
             <button 
               onClick={() => sliderRef.current?.slickNext()}
-              className="text-white/60 hover:text-white transition-colors p-1"
+              className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer bg-transparent border-none outline-none"
             >
               <ChevronRight size={20} className="md:w-6 md:h-6" strokeWidth={1} />
             </button>
           </div>
         </div>
       </div>
-
-      {/* Custom Styles for Slick Dots */}
-      <style>{`
-        .custom-dots {
-          position: absolute;
-          bottom: 25px;
-          right: 20px;
-          width: auto;
-          display: flex !important;
-          flex-direction: row;
-          gap: 10px;
-        }
-        @media (min-width: 768px) {
-          .custom-dots {
-            bottom: 40px;
-            right: 50px;
-            flex-direction: column;
-            gap: 15px;
-          }
-        }
-        .custom-dots li {
-          margin: 0;
-          width: 20px;
-          height: 1px;
-        }
-        @media (min-width: 768px) {
-          .custom-dots li {
-            width: 30px;
-          }
-        }
-        .custom-dots li button {
-          width: 20px;
-          height: 1px;
-          padding: 0;
-        }
-        @media (min-width: 768px) {
-          .custom-dots li button {
-            width: 30px;
-          }
-        }
-        .custom-dots li button:before {
-          content: '';
-          width: 15px;
-          height: 1px;
-          background-color: rgba(255, 255, 255, 0.3);
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        @media (min-width: 768px) {
-          .custom-dots li button:before {
-            width: 20px;
-          }
-        }
-        .custom-dots li.slick-active {
-          width: 30px;
-        }
-        @media (min-width: 768px) {
-          .custom-dots li.slick-active {
-            width: 40px;
-          }
-        }
-        .custom-dots li.slick-active button:before {
-          width: 30px;
-          background-color: white;
-        }
-        @media (min-width: 768px) {
-          .custom-dots li.slick-active button:before {
-            width: 40px;
-          }
-        }
-      `}</style>
     </section>
   );
 }

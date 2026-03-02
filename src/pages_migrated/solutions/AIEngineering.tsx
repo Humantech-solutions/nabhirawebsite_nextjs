@@ -4,138 +4,138 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import aiServerImg from "../../assets/ai.png";
+import heroImg from "../../assets/heroImg.png";
 import {
   ArrowRight,
-  Network,
-  Check,
-  Layers,
   Brain,
-  Workflow,
-  Target,
+  Crosshair,
+  Layers,
+  Shield,
   Database,
-  Lock,
-  Eye,
-  FileCheck,
-  Server
+  Cpu,
+  Workflow,
+  Code2,
+  GitBranch,
+  Server,
+  Check
 } from "lucide-react";
 
-export default function AgenticAI() {
+export default function AIEngineering() {
   useEffect(() => {
-    document.title = "Agentic AI | Nabhira Technologies";
+    document.title = "AI Engineering | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
   const approachPoints = [
     {
-      title: "Strategic Selection",
-      text: "Identifying high value multi step workflows suitable for autonomous agents.",
-      icon: <Target className="text-white" size={24} />,
+      title: "Business Alignment",
+      text: "Aligning AI initiatives with measurable business objectives.",
+      icon: <Crosshair className="text-white" size={24} />,
     },
     {
-      title: "Bounded Autonomy",
-      text: "Designing bounded autonomy with defined escalation paths.",
-      icon: <Lock className="text-white" size={24} />,
+      title: "Scalable Architecture",
+      text: "Designing scalable AI and ML architecture.",
+      icon: <Layers className="text-white" size={24} />,
     },
     {
-      title: "Secure Integration",
-      text: "Integrating agents securely with enterprise systems APIs and data sources.",
-      icon: <Network className="text-white" size={24} />,
+      title: "Responsible AI",
+      text: "Embedding responsible AI principles into development lifecycle.",
+      icon: <Shield className="text-white" size={24} />,
     },
     {
-      title: "Human Oversight",
-      text: "Embedding human oversight risk management and compliance controls.",
-      icon: <Eye className="text-white" size={24} />,
+      title: "Data Governance",
+      text: "Ensuring data quality governance and model transparency.",
+      icon: <Database className="text-white" size={24} />,
     },
     {
-      title: "Explainability",
-      text: "Ensuring explainability traceability and accountability of agent decisions.",
-      icon: <FileCheck className="text-white" size={24} />,
+      title: "System Integration",
+      text: "Integrating AI into core enterprise systems and workflows.",
+      icon: <Workflow className="text-white" size={24} />,
     },
   ];
 
   const methodology = [
     {
-      id: "discover",
+      id: "define",
       phase: "01",
-      title: "Discover",
-      description: "Process analysis and suitability assessment.",
+      title: "Define",
+      description: "Use case prioritization and feasibility analysis.",
       points: [
-        "Risk and impact evaluation",
-        "Data and tool readiness assessment",
-        "Governance and compliance alignment",
+        "Business value quantification",
+        "Data readiness assessment",
+        "Risk and compliance evaluation",
       ],
     },
     {
-      id: "architect",
+      id: "design",
       phase: "02",
-      title: "Architect",
-      description: "Agent architecture design including planning and memory.",
+      title: "Design",
+      description: "Model architecture and system design.",
       points: [
-        "Integration blueprint with enterprise applications",
-        "Guardrail design including approval workflows",
-        "Observability and audit framework definition",
+        "MLOps and deployment strategy",
+        "Infrastructure sizing and scalability planning",
+        "Responsible AI framework integration",
       ],
     },
     {
       id: "build",
       phase: "03",
-      title: "Build & Orchestrate",
-      description: "Agent development using modular architecture.",
+      title: "Build & Train",
+      description: "Feature engineering and model development.",
       points: [
-        "Tool integration and API connectivity",
-        "Context management and memory optimization",
-        "Testing for safety reliability and bias mitigation",
+        "Training validation and performance optimization",
+        "Bias testing and explainability assessment",
+        "Security and privacy integration",
       ],
     },
     {
       id: "deploy",
       phase: "04",
-      title: "Deploy & Govern",
-      description: "Secure deployment within cloud environments.",
+      title: "Deploy & Operate",
+      description: "CI/CD for ML pipelines.",
       points: [
-        "Monitoring behavior performance and compliance",
-        "Continuous learning and performance optimization",
-        "Ongoing risk review and governance reinforcement",
+        "Real time and batch deployment models",
+        "Monitoring model drift performance and compliance",
+        "Continuous retraining and optimization",
       ],
     },
   ];
 
   const tools = [
     {
-      category: "Foundation Models",
-      items: "OpenAI, Anthropic, Google DeepMind",
-      icon: <Brain size={20} />,
+      category: "Platforms",
+      items: "Amazon SageMaker, Azure Machine Learning, Vertex AI",
+      icon: <Cpu size={20} />,
     },
     {
-      category: "Orchestration",
-      items: "Agent Orchestration Frameworks",
-      icon: <Network size={20} />,
-    },
-    {
-      category: "Architecture",
-      items: "Retrieval Augmented Generation (RAG)",
-      icon: <Layers size={20} />,
-    },
-    {
-      category: "Integration",
-      items: "Secure API Integration Layers",
-      icon: <Workflow size={20} />,
+      category: "Frameworks",
+      items: "TensorFlow, PyTorch",
+      icon: <Code2 size={20} />,
     },
     {
       category: "Infrastructure",
-      items: "Kubernetes, Containerization",
+      items: "Docker, Kubernetes",
       icon: <Server size={20} />,
+    },
+    {
+      category: "Operations",
+      items: "CI/CD, MLOps Automation",
+      icon: <GitBranch size={20} />,
+    },
+    {
+      category: "Governance",
+      items: "Model Monitoring, Explainability Tools",
+      icon: <Shield size={20} />,
     },
   ];
 
   const valueProps = [
-    "Automate complex multi step workflows",
-    "Reduce operational dependency on manual intervention",
-    "Accelerate decision cycles across business functions",
-    "Enhance productivity through intelligent task orchestration",
-    "Maintain transparency auditability and compliance",
-    "Build a scalable foundation for enterprise wide AI agents",
+    "Accelerate AI adoption from pilot to production",
+    "Reduce risk through responsible and governed AI",
+    "Improve operational efficiency through automation",
+    "Enable data driven decision making at scale",
+    "Build reusable AI platforms for long term innovation",
+    "Strengthen competitive differentiation through intelligent systems",
   ];
 
   return (
@@ -144,16 +144,16 @@ export default function AgenticAI() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={aiServerImg}
-            alt="Agentic AI Autonomous Robots"
-            className="w-full h-full object-cover opacity-50 mix-blend-screen"
+            src={heroImg}
+            alt="AI Machine Learning Technology"
+            className="w-full h-full object-cover opacity-30 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
           <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
           <Motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -164,22 +164,25 @@ export default function AgenticAI() {
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Agentic AI</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">AI Engineering</span>
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Autonomous <br /> 
-              <span className="text-white/40">Agentic Core.</span>
+              AI Engineering
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Building the next generation of <span className="text-white font-medium">Goal-Oriented AI</span> that acts as a proactive partner in your enterprise operations.
+              Engineering <span className="text-white font-medium">Intelligence</span> into the{" "}
+              <span className="text-[#f99d1c] font-medium">Core of Your Enterprise</span>
             </p>
 
-            <div className="pt-8 flex flex-wrap gap-4">
-              <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
-                <span>Explore Agentic Workflows</span>
-                <ArrowRight size={14} />
+            <div className="pt-6 flex flex-wrap gap-4">
+              <button
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group"
+                style={{ fontSize: "14px", fontWeight: 500 }}
+              >
+                <span>START YOUR JOURNEY</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </Motion.div>
@@ -197,15 +200,15 @@ export default function AgenticAI() {
             className="space-y-8"
           >
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light leading-snug">
-              Agentic AI <br />
-              <span className="font-semibold text-[#f99d1c]">From Intelligent Models to Autonomous Digital Agents</span>
+              Artificial Intelligence is no longer experimental. <br />
+              It is becoming the <span className="font-semibold text-[#f99d1c]">operating layer of modern enterprises</span>.
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
             <p className="text-[#11253e]/70 text-lg leading-relaxed max-w-3xl mx-auto">
-              The next evolution of AI is not just prediction or automation. It is autonomy. Agentic AI systems go beyond static models. They perceive context, reason across multiple steps, make decisions, and take action within defined boundaries.
+              However, scaling AI beyond pilots requires disciplined engineering, responsible governance, and production-grade infrastructure. Many organizations struggle to move from proof of concept to measurable enterprise value.
             </p>
             <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
-              We help enterprises design, build, deploy and govern Agentic AI systems that operate responsibly while delivering measurable business value.
+              AI Engineering bridges strategy and execution. It transforms algorithms into resilient, scalable intelligent systems that drive real business outcomes.
             </p>
           </Motion.div>
         </div>
@@ -219,9 +222,9 @@ export default function AgenticAI() {
           <div className="mb-16 md:flex md:items-end md:justify-between">
             <div className="max-w-2xl">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">01 Approach</span>
-              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">Engineering <br/><span className="text-white/50">Controlled Autonomy</span></h2>
+              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">From AI Ambition to <br/><span className="text-white/50">Enterprise Grade Execution</span></h2>
               <p className="text-white/70 text-lg font-light max-w-xl">
-                Agentic AI is not about replacing human judgment. It is about augmenting it with intelligent systems that operate within structured guardrails.
+                AI success is not about models alone. It is about architecture integration, governance, and business alignment.
               </p>
             </div>
           </div>
@@ -246,8 +249,8 @@ export default function AgenticAI() {
               </Motion.div>
             ))}
             <div className="bg-[#f99d1c] p-8 flex flex-col justify-center items-center text-center">
-              <h3 className="text-[#11253e] text-2xl font-bold mb-2">Mission Critical</h3>
-              <p className="text-[#11253e]/80 text-sm font-medium">We treat agentic systems as mission critical digital workforce components.</p>
+              <h3 className="text-[#11253e] text-2xl font-bold mb-2">Long Term Capability</h3>
+              <p className="text-[#11253e]/80 text-sm font-medium">We treat AI as a long term capability not a one time experiment.</p>
             </div>
           </div>
         </div>
@@ -258,9 +261,9 @@ export default function AgenticAI() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-20">
              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
-             <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured Lifecycle for Agentic AI</h2>
+             <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured AI Engineering Lifecycle</h2>
              <p className="text-[#11253e]/70 text-lg font-light">
-               We apply a disciplined framework to move from concept to production ready autonomous systems.
+               We apply a disciplined engineering framework to move AI from experimentation to enterprise scale.
              </p>
           </div>
 
@@ -308,13 +311,13 @@ export default function AgenticAI() {
                viewport={{ once: true }}
              >
                 <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">03 Tools</span>
-                <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">Enterprise Grade <br/>Agentic Ecosystem</h2>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">Enterprise AI and <br/>ML Ecosystem</h2>
                 <p className="text-white/60 text-lg font-light mb-8">
-                  We design agentic solutions leveraging secure and scalable environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
+                  We design AI engineering solutions leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
                 </p>
                 <div className="p-6 bg-white/[0.05] border border-white/10 rounded-sm">
                   <p className="italic text-white/80 font-light">
-                    "Technology choices are guided by enterprise scalability, regulatory alignment and long term sustainability."
+                    "Technology selection is aligned to enterprise scalability compliance and long term sustainability."
                   </p>
                 </div>
              </Motion.div>
@@ -348,7 +351,7 @@ export default function AgenticAI() {
         <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-16">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">04 Value Proposition</span>
-              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">Autonomous Execution <br/> Responsible Outcomes</h2>
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">Scalable Intelligence <br/> Measurable Outcomes</h2>
            </div>
 
            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -372,7 +375,7 @@ export default function AgenticAI() {
            <div className="mt-20 bg-[#11253e] rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
              <p className="text-white text-xl md:text-2xl font-light leading-relaxed relative z-10 max-w-4xl mx-auto">
-               Agentic AI when engineered responsibly becomes a strategic capability that drives efficiency, resilience and competitive differentiation.
+               Most importantly we help organizations institutionalize AI as a strategic capability ensuring it delivers measurable impact rather than isolated experimentation.
              </p>
            </div>
         </div>
@@ -388,11 +391,11 @@ export default function AgenticAI() {
             backgroundSize: '40px 100%' 
           }}
         ></div>
-
+        
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
-             <p className="text-[#11253e]/80 text-lg">Introduce autonomy with control.</p>
+             <p className="text-[#11253e]/80 text-lg">Transform from experimentation to production-grade intelligence.</p>
            </div>
            <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
              <span>Start Your Journey</span>

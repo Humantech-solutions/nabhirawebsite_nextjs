@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { ChevronRight, Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
-const logo = '/assets/logo.png';
+import { Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
+import logo from '../assets/logo.png';
 
 interface AboutProps {
   wordpressData?: {
@@ -51,7 +51,7 @@ export default function About({ wordpressData }: AboutProps) {
   return (
     <>
       {/* About Hero Section */}
-      <section className="relative h-[450px] md:h-[520px] overflow-hidden flex items-center">
+      <section className="relative h-[400px] md:h-[520px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"}
@@ -73,39 +73,38 @@ export default function About({ wordpressData }: AboutProps) {
             </div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <div className="max-w-3xl space-y-6 md:space-y-8">
-              <Motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                {/* Breadcrumb */}
-                <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-6 md:mb-8">
-                  <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-                  <span className="text-white/30 font-light">&gt;</span>
-                  <span className="text-[#f99d1c]">About Us</span>
-                </nav>
+          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <Motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-3xl space-y-8"
+            >
+              {/* Breadcrumb */}
+              <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
+                <Link href="/" className="hover:text-white cursor-pointer transition-colors">Home</Link>
+                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
+                <span className="text-[#f99d1c]">About Us</span>
+              </nav>
 
-                <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                    {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                      <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                    ) : wordpressData?.title ? (
-                      <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
-                    ) : (
-                      <>
-                        Architecting <br />
-                        <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
-                      </>
-                    )}
-                  </h1>
-                  <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                    {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
-                  </p>
-                </div>
-              </Motion.div>
-            </div>
+              <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
+                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
+                  {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                    <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                  ) : wordpressData?.title ? (
+                    <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
+                  ) : (
+                    <>
+                      Architecting <br />
+                      <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
+                    </>
+                  )}
+                </h1>
+                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                  {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
+                </p>
+              </div>
+            </Motion.div>
           </div>
         </section>
 
@@ -179,7 +178,7 @@ export default function About({ wordpressData }: AboutProps) {
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
                     <p className="text-white/60 font-light leading-relaxed">
-                      To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
+                      To be the foundational architecture upon which the world&apos;s most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
                     </p>
                   </div>
                 </div>
@@ -210,7 +209,7 @@ export default function About({ wordpressData }: AboutProps) {
         <section className="py-24 bg-gray-50 relative overflow-hidden">
           {/* Subtle logo watermark */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
-            <img src={logo} alt="" className="w-full grayscale" />
+            <ImageWithFallback src={logo} alt="" className="w-full grayscale" />
           </div>
           
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">

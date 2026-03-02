@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import Link from "next/link";
-const logo = '/assets/logo.png';
+import Link from "next/link"; // ✅ FIXED
+import Image from "next/image";
+import logo from '../assets/logo.png';
 
 export function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -47,17 +48,17 @@ export function Navbar() {
           ]
         },
         {
-          title: "DATA & ANALYTICS",
+          title: "DATA FOUNDATION",
           items: [
             "Data Engineering",
-            "Data Foundation",
+            "Data Analytics",
             "Data Governance"
           ]
         },
         {
-          title: "ARTIFICIAL INTELLIGENCE",
+          title: "AI ACCELERATION",
           items: [
-            "AI Consulting",
+            "AI Engineering",
             "Agentic AI",
             "Intelligent Automation"
           ]
@@ -107,21 +108,27 @@ export function Navbar() {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        scrolled 
-          ? 'backdrop-blur-xl border-gray-200 shadow-lg' 
-          : 'bg-white border-gray-100 shadow-sm'
-      }`}
-      style={scrolled ? { backgroundColor: 'color-mix(in oklab, var(--color-white) 90%, transparent)' } : {}}
-      onMouseLeave={() => setActiveMenu(null)}
-    >
+   <nav 
+  className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 border-b ${
+    scrolled 
+      ? 'bg-white shadow-lg border-gray-200' 
+      : 'bg-white shadow-sm border-gray-100'
+  }`}
+  onMouseLeave={() => setActiveMenu(null)}
+>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center shrink-0">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-  <img src={logo} alt="Nabhira Logo" className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} />
-</Link>
+              <Image 
+                src={logo} 
+                alt="Nabhira Logo" 
+                width={120}
+                height={40}
+                priority
+                className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} 
+              />
+            </Link>
           </div>
           
           <div className="hidden md:flex items-center">
@@ -133,15 +140,15 @@ export function Navbar() {
               };
 
               const LabelContent = (
-  <div className="flex items-center space-x-1">
-    <span className={`text-[12px] font-bold tracking-normal transition-colors ${activeMenu === link.key ? 'text-[#f99d1c]' : 'text-[#11253e] hover:text-[#f99d1c]'}`}>
-      {link.label}
-    </span>
-    {menuData[link.key] && (
-      <ChevronDown size={12} className={`transition-transform duration-200 text-[#11253e]/60 group-hover:text-[#f99d1c] ${activeMenu === link.key ? 'rotate-180 text-[#f99d1c]' : ''}`} />
-    )}
-  </div>
-);
+                <div className="flex items-center space-x-1">
+                  <span className={`text-[12px] font-bold tracking-normal transition-colors ${activeMenu === link.key ? 'text-[#f99d1c]' : 'text-[#11253e] hover:text-[#f99d1c]'}`}>
+                    {link.label}
+                  </span>
+                  {menuData[link.key] && (
+                    <ChevronDown size={12} className={`transition-transform duration-200 text-[#11253e]/60 group-hover:text-[#f99d1c] ${activeMenu === link.key ? 'rotate-180 text-[#f99d1c]' : ''}`} />
+                  )}
+                </div>
+              );
 
               return (
                 <div 
@@ -151,12 +158,12 @@ export function Navbar() {
                 >
                   <div className="relative cursor-pointer py-2">
                     {isDirectLink && routeMap[link.key] ? (
-  <Link href={routeMap[link.key]}>
-    {LabelContent}
-  </Link>
-) : (
-  LabelContent
-)}
+                      <Link href={routeMap[link.key]}>
+                        {LabelContent}
+                      </Link>
+                    ) : (
+                      LabelContent
+                    )}
                     {/* Active/Hover underline */}
                     <Motion.div 
                       initial={false}
@@ -199,12 +206,12 @@ export function Navbar() {
                                   };
                                   return (
                                     <Link 
-  href={categoryRoutes[col.title] || "#"} 
-  className="text-[10px] font-bold text-[#11253e]/40 tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
-  onClick={() => setActiveMenu(null)}
->
-  {col.title}
-</Link>
+                                      href={categoryRoutes[col.title] || "#"} 
+                                      className="text-[10px] font-bold text-[#11253e]/40 tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
+                                      onClick={() => setActiveMenu(null)}
+                                    >
+                                      {col.title}
+                                    </Link>
                                   );
                                 })()}
                               </div>
@@ -218,9 +225,11 @@ export function Navbar() {
                                     "Cloud Security & Governance": "/solutions/cloud-security-governance",
                                     "Cloud Financial Management": "/solutions/cloud-financial-management",
                                     "Data Engineering": "/solutions/data-engineering",
+                                    "Data Analytics": "/solutions/data-analytics-solution",
                                     "Data Foundation": "/solutions/data-foundation",
                                     "Data Governance": "/solutions/data-governance",
                                     "AI Consulting": "/solutions/ai-consulting",
+                                    "AI Engineering": "/solutions/ai-engineering",
                                     "Agentic AI": "/solutions/agentic-ai",
                                     "Intelligent Automation": "/solutions/intelligent-automation"
                                   };
@@ -229,12 +238,12 @@ export function Navbar() {
                                     if (solutionRoutes[item]) {
                                       return (
                                         <Link 
-  href={solutionRoutes[item]} 
-  className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
-  onClick={() => setActiveMenu(null)}
->
-  {children}
-</Link>
+                                          href={solutionRoutes[item]} 
+                                          className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          onClick={() => setActiveMenu(null)}
+                                        >
+                                          {children}
+                                        </Link>
                                       );
                                     }
                                     return (
@@ -287,12 +296,12 @@ export function Navbar() {
                               if (routes[item]) {
                                 return (
                                   <Link 
-  href={routes[item]} 
-  className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
-  onClick={() => setActiveMenu(null)}
->
-  {children}
-</Link>
+                                    href={routes[item]} 
+                                    className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    {children}
+                                  </Link>
                                 );
                               }
                               return (
@@ -361,8 +370,8 @@ export function Navbar() {
                     >
                       {isDirectLink && routeMap[link.key] ? (
                         <Link href={routeMap[link.key]} className="text-[16px] font-bold tracking-tight text-[#11253e] uppercase">
-  {link.label}
-</Link>
+                          {link.label}
+                        </Link>
                       ) : (
                         <span className={`text-[16px] font-bold tracking-tight uppercase transition-colors ${expandedMobileMenu === link.key ? 'text-[#f99d1c]' : 'text-[#11253e]'}`}>
                           {link.label}
@@ -395,12 +404,12 @@ export function Navbar() {
                               };
                               return (
                                 <Link 
-  href={categoryRoutes[col.title] || "#"} 
-  className="text-[11px] font-bold text-[#f99d1c] tracking-widest uppercase block"
-  onClick={() => setIsMobileMenuOpen(false)}
->
-  {col.title}
-</Link>
+                                  href={categoryRoutes[col.title] || "#"} 
+                                  className="text-[11px] font-bold text-[#f99d1c] tracking-widest uppercase block"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {col.title}
+                                </Link>
                               );
                             })()}
                             <div className="space-y-4 pl-2 border-l border-gray-100">
@@ -413,9 +422,11 @@ export function Navbar() {
                                   "Cloud Security & Governance": "/solutions/cloud-security-governance",
                                   "Cloud Financial Management": "/solutions/cloud-financial-management",
                                   "Data Engineering": "/solutions/data-engineering",
+                                  "Data Analytics": "/solutions/data-analytics-solution",
                                   "Data Foundation": "/solutions/data-foundation",
                                   "Data Governance": "/solutions/data-governance",
                                   "AI Consulting": "/solutions/ai-consulting",
+                                  "AI Engineering": "/solutions/ai-engineering",
                                   "Agentic AI": "/solutions/agentic-ai",
                                   "Intelligent Automation": "/solutions/intelligent-automation"
                                 };
@@ -423,13 +434,13 @@ export function Navbar() {
                                 if (solutionRoutes[item]) {
                                   return (
                                     <Link 
-  key={j} 
-  href={solutionRoutes[item]} 
-  className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
-  onClick={() => setIsMobileMenuOpen(false)}
->
-  {item}
-</Link>
+                                      key={j} 
+                                      href={solutionRoutes[item]} 
+                                      className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
+                                      onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                      {item}
+                                    </Link>
                                   );
                                 }
                                 return (
@@ -470,13 +481,13 @@ export function Navbar() {
                             if (routes[item]) {
                               return (
                                 <Link 
-  key={i} 
-  href={routes[item]} 
-  className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
-  onClick={() => setIsMobileMenuOpen(false)}
->
-  {item}
-</Link>
+                                  key={i} 
+                                  href={routes[item]} 
+                                  className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {item}
+                                </Link>
                               );
                             }
                             return (
@@ -494,10 +505,10 @@ export function Navbar() {
             })}
             <div className="pt-4">
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-  <button className="w-full bg-[#f99d1c] text-white py-4 text-[12px] font-medium tracking-normal uppercase rounded-sm">
-    CONTACT US
-  </button>
-</Link>
+                <button className="w-full bg-[#f99d1c] text-white py-4 text-[12px] font-medium tracking-normal uppercase rounded-sm">
+                  CONTACT US
+                </button>
+              </Link>
             </div>
             </div>
           </Motion.div>

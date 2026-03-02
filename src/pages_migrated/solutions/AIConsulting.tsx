@@ -1,9 +1,9 @@
 "use client";
-
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-const aiServerImg = "/assets/ai.png";
+import Image from "next/image";
+import aiServerImg from "../../assets/ai.png";
 import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
 export default function AIConsulting() {

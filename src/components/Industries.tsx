@@ -1,5 +1,4 @@
 "use client";
-
 import { 
   Building2, 
   ShoppingCart, 
@@ -8,13 +7,12 @@ import {
   Shield, 
   Film,
   ChevronRight,
+  ChevronLeft,
   LayoutGrid
 } from "lucide-react";
 import { motion } from "motion/react";
-import Slider from "react-slick";
 import { useRef } from "react";
-
-// Import slick carousel styles
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -134,7 +132,7 @@ export function Industries({ data }: IndustriesProps) {
 
   return (
     <section className="py-20 md:py-24 relative overflow-hidden bg-[#e6e2d8]">
-      {/* Background Image Removed - Maintaining structural patterns */}
+      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -173,7 +171,7 @@ export function Industries({ data }: IndustriesProps) {
               onClick={() => sliderRef.current?.slickPrev()}
               className="w-12 h-10 flex items-center justify-center bg-[#1d1d1b] text-white rounded-[20px] hover:bg-[#f99d1c] transition-colors cursor-pointer"
             >
-              <ChevronRight className="rotate-180" size={18} />
+              <ChevronLeft size={18} />
             </button>
             <button 
               onClick={() => sliderRef.current?.slickNext()}
@@ -184,17 +182,11 @@ export function Industries({ data }: IndustriesProps) {
           </div>
         </div>
         
-        <div className="industry-slider-container -mx-px">
+        <div className="relative">
           <Slider ref={sliderRef} {...settings}>
             {industries.map((industry, i) => (
-              <div key={i} className="px-2">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="group bg-white p-8 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[240px] flex flex-col"
-                >
+              <div key={i} className="px-2 outline-none">
+                <div className="group bg-white p-8 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[240px] flex flex-col">
                   <div className="mb-8">
                     {typeof industry.icon !== 'string' ? (
                       <industry.icon className="w-10 h-10 text-[#11253e]" strokeWidth={1} />
@@ -212,34 +204,21 @@ export function Industries({ data }: IndustriesProps) {
                     </div>
                   </div>
                   
-                  {/* Decorative orange diagonal lines like in reference image */}
+                  {/* Decorative orange diagonal lines */}
                   <div className="absolute bottom-0 right-0 w-full h-1/3 opacity-20 pointer-events-none overflow-hidden">
                     <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
-                      <pattern id="diagonal-lines" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+                      <pattern id="diagonal-lines-ind" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
                         <line x1="0" y1="0" x2="0" y2="10" stroke="#f99d1c" strokeWidth="1" />
                       </pattern>
-                      <rect width="100%" height="100%" fill="url(#diagonal-lines)" />
+                      <rect width="100%" height="100%" fill="url(#diagonal-lines-ind)" />
                     </svg>
                   </div>
-                </motion.div>
+                </div>
               </div>
             ))}
           </Slider>
         </div>
       </div>
-
-      <style>{`
-        .industry-slider-container .slick-track {
-          display: flex !important;
-          padding: 20px 0;
-        }
-        .industry-slider-container .slick-slide {
-          height: inherit !important;
-        }
-        .industry-slider-container .slick-slide > div {
-          height: 100%;
-        }
-      `}</style>
     </section>
   );
 }

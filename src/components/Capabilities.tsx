@@ -1,8 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import Link from "next/link";
+import Link from "next/link"; // ✅ FIXED
+import Image from "next/image";
 import { 
   Cloud, 
   Database, 
@@ -300,7 +300,7 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
     "Cloud Operations and Control": "/solutions/cloud-infra",
     "Cloud Financial Management": "/solutions/cloud-financial-management",
     "Data Engineering": "/solutions/data-engineering",
-    "Data Analytics": "/solutions/data-analytics",
+    "Data Analytics": "/solutions/data-analytics-solution",
     "Data Governance": "/solutions/data-governance",
     "AI Consulting": "/solutions/ai-consulting",
     "Agentic AI": "/solutions/agentic-ai",
@@ -335,13 +335,12 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
       </div>
 
       <div className="relative z-10 mt-auto pt-6 border-t border-[#11253e]/5">
-        <Link 
-  href={routeMap[service.title] || "#"}
-  className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300"
->
-  Explore More
-  <ChevronRight size={14} />
-</Link>
+        <Link href={routeMap[service.title] || "#"}
+          className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300"
+        >
+          Explore More
+          <ChevronRight size={14} />
+        </Link>
       </div>
 
       {/* Decorative side accent */}

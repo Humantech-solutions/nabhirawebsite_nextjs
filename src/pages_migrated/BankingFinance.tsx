@@ -1,5 +1,18 @@
 "use client";
 
+import { 
+  Shield, 
+  CreditCard, 
+  Cloud, 
+  Smartphone, 
+  Database, 
+  Cpu, 
+  FileCheck, 
+  UserCheck, 
+  Globe, 
+  Brain, 
+  LayoutTemplate 
+} from "lucide-react";
 import { IndustryLayout } from "../components/IndustryLayout";
 
 interface BankingFinanceProps {
@@ -12,6 +25,105 @@ interface BankingFinanceProps {
 }
 
 export default function BankingFinance({ wordpressData }: BankingFinanceProps) {
+  const challenges = [
+    {
+      title: "Legacy Systems",
+      text: "Legacy core systems limiting innovation speed and agility.",
+      icon: <Database size={32} />,
+    },
+    {
+      title: "Regulatory Complexity",
+      text: "Increasing regulatory and compliance complexity across jurisdictions.",
+      icon: <FileCheck size={32} />,
+    },
+    {
+      title: "Security Threats",
+      text: "Rising cybersecurity and fraud risks in an interconnected world.",
+      icon: <Lock size={32} />,
+    },
+    {
+      title: "Payment Evolution",
+      text: "Real time payment and open banking expectations from customers.",
+      icon: <CreditCard size={32} />,
+    },
+    {
+      title: "FinTech Competition",
+      text: "Competition from digital native FinTech firms and neo-banks.",
+      icon: <Zap size={32} />,
+    },
+    {
+      title: "Hyper-Personalization",
+      text: "Demand for hyper personalized customer experiences and services.",
+      icon: <UserCheck size={32} />,
+    },
+  ];
+
+  const impactAreas = [
+    {
+      id: "infrastructure",
+      title: "Modern Core & Cloud Infrastructure",
+      description: "Transitioning from monolithic legacy environments to secure cloud-enabled and API-driven architectures.",
+      details: ["Legacy-to-Cloud Migration", "API-First Architecture", "Scalability & Resilience"],
+      icon: <Cloud size={40} />
+    },
+    {
+      id: "digital",
+      title: "Digital & Embedded Finance",
+      description: "Enabling seamless omnichannel banking experiences including mobile platforms and digital onboarding.",
+      details: ["Omnichannel Experience", "Digital Onboarding", "Embedded Finance"],
+      icon: <Smartphone size={40} />
+    },
+    {
+      id: "risk",
+      title: "Risk Intelligence & Fraud Prevention",
+      description: "AI-driven systems for credit risk modeling, fraud detection, transaction monitoring, and regulatory reporting.",
+      details: ["AI Risk Modeling", "Fraud Detection", "Transaction Monitoring"],
+      icon: <Shield size={40} />
+    },
+    {
+      id: "governance",
+      title: "Data Governance & Regulatory Alignment",
+      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency, and audit readiness.",
+      details: ["Data Governance", "Audit Readiness", "Reporting Accuracy"],
+      icon: <LayoutTemplate size={40} />
+    },
+    {
+      id: "operations",
+      title: "Intelligent Operations",
+      description: "Streamlining high-volume banking processes through automation to improve efficiency and customer response time.",
+      details: ["Process Automation", "Operational Efficiency", "Faster Response Times"],
+      icon: <Cpu size={40} />
+    },
+  ];
+
+  const fintechServices = [
+    {
+      title: "Cloud Native Engineering",
+      desc: "Building scalable products on modern cloud stacks.",
+      icon: <Cloud />
+    },
+    {
+      title: "Secure API Integration",
+      desc: "Connecting ecosystems with banking-grade security.",
+      icon: <Globe />
+    },
+    {
+      title: "Payment Platforms",
+      desc: "Next-gen payment and lending infrastructure.",
+      icon: <CreditCard />
+    },
+    {
+      title: "Data Architecture",
+      desc: "Regulatory-ready data foundations.",
+      icon: <Database />
+    },
+    {
+      title: "AI Underwriting",
+      desc: "Machine learning models for smarter credit decisions.",
+      icon: <Brain />
+    },
+  ];
+
   return (
     <IndustryLayout
       title="Banking & Financial Services"
@@ -48,7 +160,15 @@ export default function BankingFinance({ wordpressData }: BankingFinanceProps) {
           "Algorithmic Risk Management"
         ]
       }}
+      challenges={challenges}
+      impactAreas={impactAreas}
+      specialityTitle="FinTech Innovation"
+      specialityDesc="We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products."
+      specialityServices={fintechServices}
       globalSettings={wordpressData?.globalSettings}
     />
   );
 }
+
+// Helper icons missing from imports (Lock and Zap were used in challenges)
+import { Lock, Zap } from "lucide-react";
