@@ -1,8 +1,8 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import automationHeroImg from "../../assets/ai.png";
 import {
@@ -223,9 +223,6 @@ export default function IntelligentAutomation() {
                 Automation initiatives often fail when treated as isolated tools. Sustainable impact requires alignment with business priorities, governance frameworks and long term digital strategy.
               </p>
             </div>
-            <div className="hidden md:block">
-               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -382,6 +379,15 @@ export default function IntelligentAutomation() {
 
       {/* ─── CTA ─── */}
       <section className="py-20 relative bg-[#f99d1c] overflow-hidden">
+        {/* Vertical Lines Background */}
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none" 
+          style={{ 
+            backgroundImage: 'linear-gradient(to right, #11253e 1px, transparent 1px)', 
+            backgroundSize: '40px 100%' 
+          }}
+        ></div>
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>

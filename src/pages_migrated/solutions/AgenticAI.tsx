@@ -1,30 +1,23 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import aiServerImg from "../../assets/ai.png";
 import {
   ArrowRight,
-  Settings,
   Network,
-  Zap,
-  Search,
   Check,
   Layers,
-  Cog,
-  Rocket,
-  Shield,
   Brain,
-  Cpu,
   Workflow,
   Target,
-  GitBranch,
   Database,
   Lock,
   Eye,
-  FileCheck
+  FileCheck,
+  Server
 } from "lucide-react";
 
 export default function AgenticAI() {
@@ -132,16 +125,9 @@ export default function AgenticAI() {
     {
       category: "Infrastructure",
       items: "Kubernetes, Containerization",
-      icon: <ServerIcon size={20} />,
+      icon: <Server size={20} />,
     },
   ];
-
-  // Helper component for icon since Server is already imported as something else potentially or just use lucide directly
-  function ServerIcon({ size, className }: { size?: number, className?: string }) {
-      return (
-          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-      )
-  }
 
   const valueProps = [
     "Automate complex multi step workflows",
@@ -237,9 +223,6 @@ export default function AgenticAI() {
               <p className="text-white/70 text-lg font-light max-w-xl">
                 Agentic AI is not about replacing human judgment. It is about augmenting it with intelligent systems that operate within structured guardrails.
               </p>
-            </div>
-            <div className="hidden md:block">
-               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
             </div>
           </div>
 
@@ -397,6 +380,15 @@ export default function AgenticAI() {
 
       {/* ─── CTA ─── */}
       <section className="py-20 relative bg-[#f99d1c] overflow-hidden">
+        {/* Vertical Lines Background */}
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none" 
+          style={{ 
+            backgroundImage: 'linear-gradient(to right, #11253e 1px, transparent 1px)', 
+            backgroundSize: '40px 100%' 
+          }}
+        ></div>
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>

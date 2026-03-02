@@ -3,7 +3,6 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Award, Trophy, Star, Medal } from "lucide-react";
@@ -44,43 +43,44 @@ export default function Awards() {
   return (
     <>
       {/* Awards Hero */}
-      <section className="relative h-[520px] overflow-hidden pt-8 md:pt-12">
-        <div className="absolute inset-0">
+      <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1681022407484-1ff39a10ba62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhd2FyZCUyMHRyb3BoeSUyMGdsYXNzJTIwb2ZmaWNlJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc3MTg5OTAyNnww&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Awards & Recognition"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
+            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <div className="max-w-3xl space-y-8">
-              <Motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                {/* Breadcrumb */}
-                <nav className="flex items-center space-x-3 text-[13px] font-medium tracking-[-0.02em] mb-8">
-                  <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-                  <span className="text-white/30 font-light">&gt;</span>
-                  <Link href="/about" className="text-white/60 hover:text-white transition-colors">About Us</Link>
-                  <span className="text-white/30 font-light">&gt;</span>
-                  <span className="text-[#f99d1c]">Awards & Recognition</span>
-                </nav>
-
-                <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                    Excellence <br />
-                    <span className="text-[#f99d1c]">Recognized</span>
-                  </h1>
-                  <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                    Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.
-                  </p>
-                </div>
-              </Motion.div>
-            </div>
+          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <Motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-3xl space-y-8"
+            >
+              <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
+                <Link href="/" className="hover:text-white cursor-pointer transition-colors">Home</Link>
+                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
+                <Link href="/about" className="hover:text-white cursor-pointer transition-colors">About Us</Link>
+                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
+                <span className="text-[#f99d1c]">Awards & Recognition</span>
+              </nav>
+              
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                Architecturing <br />
+                <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
+              </h1>
+              
+              <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
+                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                  Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.
+                </p>
+              </div>
+            </Motion.div>
           </div>
         </section>
 

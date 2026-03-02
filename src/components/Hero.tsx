@@ -93,7 +93,7 @@ export function Hero() {
                 muted
                 playsInline
                 className="w-full h-full object-cover"
-                poster={banner.image}
+                poster={typeof banner.image === 'string' ? banner.image : (banner.image as import('next/image').StaticImageData).src}
               >
                 <source src={banner.videoSrc} type="video/mp4" />
               </video>

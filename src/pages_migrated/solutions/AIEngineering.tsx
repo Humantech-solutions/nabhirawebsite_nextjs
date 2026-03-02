@@ -1,29 +1,23 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import heroImg from "../../assets/heroImg.png";
 import {
   ArrowRight,
-  CheckCircle2,
   Brain,
   Crosshair,
   Layers,
-  Cog,
-  Rocket,
-  Sparkles,
-  Server,
   Shield,
-  Lightbulb,
   Database,
-  BarChart3,
   Cpu,
   Workflow,
-  Check,
   Code2,
   GitBranch,
+  Server,
+  Check
 } from "lucide-react";
 
 export default function AIEngineering() {
@@ -233,9 +227,6 @@ export default function AIEngineering() {
                 AI success is not about models alone. It is about architecture integration, governance, and business alignment.
               </p>
             </div>
-            <div className="hidden md:block">
-               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -392,6 +383,15 @@ export default function AIEngineering() {
 
       {/* ─── CTA ─── */}
       <section className="py-20 relative bg-[#f99d1c] overflow-hidden">
+        {/* Vertical Lines Background */}
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none" 
+          style={{ 
+            backgroundImage: 'linear-gradient(to right, #11253e 1px, transparent 1px)', 
+            backgroundSize: '40px 100%' 
+          }}
+        ></div>
+        
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>

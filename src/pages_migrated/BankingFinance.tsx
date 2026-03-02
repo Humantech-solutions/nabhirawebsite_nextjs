@@ -1,8 +1,8 @@
 "use client";
+
 import { motion as Motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import {
   ArrowRight,
@@ -210,7 +210,6 @@ export default function BankingFinance() {
               >
                 <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] group-hover:text-white transition-colors duration-300">
                   <div className="group-hover:text-white text-[#11253e] transition-colors duration-300">
-                    {/* Clone icon to handle color change if needed, though class logic above handles bg/text context */}
                     {item.icon} 
                   </div>
                 </div>
@@ -268,7 +267,6 @@ export default function BankingFinance() {
                   <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
                     <div className="absolute inset-0 bg-[#11253e]/5 pattern-grid-lg opacity-20"></div>
                     <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      {/* Render icon with large size */}
                       <div className="transform scale-150">
                         {area.icon}
                       </div>
@@ -316,8 +314,17 @@ export default function BankingFinance() {
       </section>
 
       {/* ─── Outcomes (Metrics Style) ─── */}
-      <section className="py-24 bg-[#f99d1c]">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
+        {/* Vertical Lines Background */}
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none" 
+          style={{ 
+            backgroundImage: 'linear-gradient(to right, #11253e 1px, transparent 1px)', 
+            backgroundSize: '40px 100%' 
+          }}
+        ></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
