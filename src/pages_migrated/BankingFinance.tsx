@@ -1,44 +1,354 @@
 "use client";
-
-import { IndustryLayout } from "../components/IndustryLayout";
+import { motion as Motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef } from "react";
+import Link from "next/link"; // ✅ FIXED
+import Image from "next/image";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import {
+  ArrowRight,
+  Shield,
+  CreditCard,
+  Cloud,
+  Smartphone,
+  Database,
+  Cpu,
+  Check,
+  Zap,
+  Lock,
+  FileCheck,
+  UserCheck,
+  Globe,
+  Brain,
+  TrendingUp,
+  LayoutTemplate
+} from "lucide-react";
 
 export default function BankingFinance() {
+  useEffect(() => {
+    document.title = "Banking & Financial Services | Nabhira Technologies";
+    window.scrollTo(0, 0);
+  }, []);
+
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const challenges = [
+    {
+      title: "Legacy Systems",
+      text: "Legacy core systems limiting innovation speed and agility.",
+      icon: <Database className="text-[#f99d1c]" size={32} />,
+    },
+    {
+      title: "Regulatory Complexity",
+      text: "Increasing regulatory and compliance complexity across jurisdictions.",
+      icon: <FileCheck className="text-[#f99d1c]" size={32} />,
+    },
+    {
+      title: "Security Threats",
+      text: "Rising cybersecurity and fraud risks in an interconnected world.",
+      icon: <Lock className="text-[#f99d1c]" size={32} />,
+    },
+    {
+      title: "Payment Evolution",
+      text: "Real time payment and open banking expectations from customers.",
+      icon: <CreditCard className="text-[#f99d1c]" size={32} />,
+    },
+    {
+      title: "FinTech Competition",
+      text: "Competition from digital native FinTech firms and neo-banks.",
+      icon: <Zap className="text-[#f99d1c]" size={32} />,
+    },
+    {
+      title: "Hyper-Personalization",
+      text: "Demand for hyper personalized customer experiences and services.",
+      icon: <UserCheck className="text-[#f99d1c]" size={32} />,
+    },
+  ];
+
+  const impactAreas = [
+    {
+      id: "infrastructure",
+      title: "Modern Core & Cloud Infrastructure",
+      description: "Transitioning from monolithic legacy environments to secure cloud-enabled and API-driven architectures.",
+      details: ["Legacy-to-Cloud Migration", "API-First Architecture", "Scalability & Resilience"],
+      icon: <Cloud size={40} />
+    },
+    {
+      id: "digital",
+      title: "Digital & Embedded Finance",
+      description: "Enabling seamless omnichannel banking experiences including mobile platforms and digital onboarding.",
+      details: ["Omnichannel Experience", "Digital Onboarding", "Embedded Finance"],
+      icon: <Smartphone size={40} />
+    },
+    {
+      id: "risk",
+      title: "Risk Intelligence & Fraud Prevention",
+      description: "AI-driven systems for credit risk modeling, fraud detection, transaction monitoring, and regulatory reporting.",
+      details: ["AI Risk Modeling", "Fraud Detection", "Transaction Monitoring"],
+      icon: <Shield size={40} />
+    },
+    {
+      id: "governance",
+      title: "Data Governance & Regulatory Alignment",
+      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency, and audit readiness.",
+      details: ["Data Governance", "Audit Readiness", "Reporting Accuracy"],
+      icon: <LayoutTemplate size={40} />
+    },
+    {
+      id: "operations",
+      title: "Intelligent Operations",
+      description: "Streamlining high-volume banking processes through automation to improve efficiency and customer response time.",
+      details: ["Process Automation", "Operational Efficiency", "Faster Response Times"],
+      icon: <Cpu size={40} />
+    },
+  ];
+
+  const fintechServices = [
+    {
+      title: "Cloud Native Engineering",
+      desc: "Building scalable products on modern cloud stacks.",
+      icon: <Cloud />
+    },
+    {
+      title: "Secure API Integration",
+      desc: "Connecting ecosystems with banking-grade security.",
+      icon: <Globe />
+    },
+    {
+      title: "Payment Platforms",
+      desc: "Next-gen payment and lending infrastructure.",
+      icon: <CreditCard />
+    },
+    {
+      title: "Data Architecture",
+      desc: "Regulatory-ready data foundations.",
+      icon: <Database />
+    },
+    {
+      title: "AI Underwriting",
+      desc: "Machine learning models for smarter credit decisions.",
+      icon: <Brain />
+    },
+  ];
+
   return (
-    <IndustryLayout
-      title="Banking & Financial Services"
-      subtitle="The Future of Trust & Transparency"
-      heroImage="https://images.unsplash.com/photo-1769980084959-6b32a5f1b6ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBiYW5rJTIwYnVpbGRpbmclMjBnbGFzcyUyMGFyY2hpdGVjdHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTkwMDE2N3ww&ixlib=rb-4.1.0&q=80&w=1080"
-      overview="We empower financial institutions to evolve from legacy systems to agile, cloud-native architectures that drive security, scalability, and personalized customer experiences."
-      cloudService={{
-        title: "Resilient Financial Cloud",
-        description: "Migrate critical banking workloads to highly secure, multi-cloud environments with automated compliance and zero-downtime architectures.",
-        features: [
-          "Legacy-to-Cloud Modernization",
-          "Regulatory Compliance Automation",
-          "High-Frequency Transaction Scaling",
-          "Disaster Recovery & Data Residency"
-        ]
-      }}
-      dataService={{
-        title: "Cognitive Data Foundations",
-        description: "Orchestrate complex data ecosystems to gain real-time insights into market trends, customer behavior, and risk profiles.",
-        features: [
-          "Real-time Fraud Detection Systems",
-          "360-degree Customer Profiling",
-          "Automated Regulatory Reporting",
-          "Predictive Credit Scoring Models"
-        ]
-      }}
-      aiService={{
-        title: "Autonomous Banking Intelligence",
-        description: "Deploy Agentic AI to automate wealth management, enhance underwriting precision, and provide 24/7 intelligent advisory services.",
-        features: [
-          "AI-driven Portfolio Optimization",
-          "Autonomous KYC & AML Processing",
-          "Generative AI Financial Advisors",
-          "Algorithmic Risk Management"
-        ]
-      }}
-    />
+    <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
+      {/* ─── Hero Section ─── */}
+      <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
+        {/* Abstract Background Image */}
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+            alt="Modern Financial Architecture"
+            className="w-full h-full object-cover opacity-40 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <Motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="max-w-4xl"
+          >
+            {/* Breadcrumb */}
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+              <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30 font-light">&gt;</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Banking & Financial Services</span>
+            </nav>
+            
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+              Future of <br />
+              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">Trusted Finance</span>
+            </h1>
+            
+            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+              We help financial institutions evolve from legacy-constrained operations to intelligent, secure, and innovation-driven enterprises.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
+                <span>Start Transformation</span>
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </Motion.div>
+        </div>
+      </section>
+
+      {/* ─── The Industry Imperative (Bento Grid Style) ─── */}
+      <section className="py-24 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
+                The Industry <span className="font-bold">Imperative</span>
+              </h2>
+              <div className="h-1 w-20 bg-[#f99d1c]"></div>
+            </div>
+            <p className="text-[#11253e]/70 text-lg max-w-md text-right md:text-left">
+              Financial institutions are navigating a defining decade. Transformation is no longer optional—it is structural.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {challenges.map((item, idx) => (
+              <Motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#f99d1c]/30 transition-all duration-300 group"
+              >
+                <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] group-hover:text-white transition-colors duration-300">
+                  <div className="group-hover:text-white text-[#11253e] transition-colors duration-300">
+                    {/* Clone icon to handle color change if needed, though class logic above handles bg/text context */}
+                    {item.icon} 
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
+                <p className="text-[#11253e]/60 leading-relaxed">{item.text}</p>
+              </Motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Impact Areas (Alternating Layout) ─── */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
+              Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
+            </h2>
+            <p className="text-[#11253e]/60 text-xl max-w-3xl mx-auto">
+              Modernize platforms, strengthen governance, and accelerate digital growth without compromising resilience.
+            </p>
+          </div>
+
+          <div className="space-y-24">
+            {impactAreas.map((area, idx) => (
+              <Motion.div
+                key={area.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
+              >
+                {/* Text Content */}
+                <div className="flex-1 space-y-6">
+                  <div className="flex items-center gap-4 mb-2">
+                    <span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span>
+                    <div className="h-px bg-[#11253e]/10 flex-grow"></div>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
+                  <p className="text-[#11253e]/70 text-lg leading-relaxed">{area.description}</p>
+                  
+                  <ul className="space-y-3 pt-4">
+                    {area.details.map((detail, i) => (
+                      <li key={i} className="flex items-center gap-3 text-[#11253e] font-medium">
+                        <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Visual/Icon Content */}
+                <div className="flex-1 w-full">
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
+                    <div className="absolute inset-0 bg-[#11253e]/5 pattern-grid-lg opacity-20"></div>
+                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
+                      {/* Render icon with large size */}
+                      <div className="transform scale-150">
+                        {area.icon}
+                      </div>
+                    </div>
+                    {/* Decorative Blob */}
+                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
+                  </div>
+                </div>
+              </Motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FinTech Innovation (Dark Mode) ─── */}
+      <section className="py-24 bg-[#11253e] text-white relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#f99d1c]/50 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-5xl font-light">
+                Enabling <br />
+                <span className="font-bold text-[#f99d1c]">FinTech Innovation</span>
+              </h2>
+              <p className="text-white/60 text-lg leading-relaxed max-w-md">
+                We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products.
+              </p>
+              
+              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
+                Partner with us <ArrowRight size={20} />
+              </Link>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {fintechServices.map((service, idx) => (
+                <div key={idx} className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                  <div className="text-[#f99d1c] mb-4">{service.icon}</div>
+                  <h4 className="font-bold text-lg mb-2">{service.title}</h4>
+                  <p className="text-white/50 text-sm">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Outcomes (Metrics Style) ─── */}
+      <section className="py-24 bg-[#f99d1c]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
+            <div className="md:col-span-1">
+              <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
+              <p className="opacity-80">Tangible results for forward-thinking institutions.</p>
+            </div>
+            
+            <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
+              <div className="border-l-2 border-[#11253e]/20 pl-6">
+                <TrendingUp size={32} className="mb-4 opacity-80" />
+                <h3 className="text-xl font-bold mb-2">Faster Launches</h3>
+                <p className="opacity-80 text-sm">Accelerated digital product delivery cycles.</p>
+              </div>
+              <div className="border-l-2 border-[#11253e]/20 pl-6">
+                <Shield size={32} className="mb-4 opacity-80" />
+                <h3 className="text-xl font-bold mb-2">Reduced Risk</h3>
+                <p className="opacity-80 text-sm">Stronger compliance and audit readiness.</p>
+              </div>
+              <div className="border-l-2 border-[#11253e]/20 pl-6">
+                <UserCheck size={32} className="mb-4 opacity-80" />
+                <h3 className="text-xl font-bold mb-2">Customer Trust</h3>
+                <p className="opacity-80 text-sm">Improved retention through secure experiences.</p>
+              </div>
+              <div className="border-l-2 border-[#11253e]/20 pl-6">
+                <Database size={32} className="mb-4 opacity-80" />
+                <h3 className="text-xl font-bold mb-2">Future Ready</h3>
+                <p className="opacity-80 text-sm">Scalable infrastructure for long-term growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

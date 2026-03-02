@@ -1,11 +1,23 @@
 "use client";
-
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
+import Link from "next/link"; // ✅ FIXED
+import Image from "next/image";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ArrowRight, Zap, Layers, Cpu, TrendingUp, Shield, BarChart3, Database } from "lucide-react";
+import automationHeroImg from "../../assets/ai.png";
+import {
+  ArrowRight,
+  Target,
+  MapPin,
+  Brain,
+  Cloud,
+  Shield,
+  Bot,
+  Workflow,
+  FileText,
+  BarChart,
+  Check,
+} from "lucide-react";
 
 export default function IntelligentAutomation() {
   useEffect(() => {
@@ -13,183 +25,374 @@ export default function IntelligentAutomation() {
     window.scrollTo(0, 0);
   }, []);
 
-  const automations = [
+  const approachPoints = [
     {
-      title: "Cognitive RPA",
-      desc: "Upgrading standard robotic process automation with machine learning to handle unstructured data and complex decisions.",
-      icon: <Cpu className="text-[#f99d1c]" size={24} />
+      title: "Strategic Identification",
+      text: "Identifying high impact processes across finance operations HR supply chain and customer service.",
+      icon: <Target className="text-white" size={24} />,
     },
     {
-      title: "Hyperautomation Frameworks",
-      desc: "End-to-end automation across the organization by orchestrating multiple tools, platforms, and AI technologies.",
-      icon: <Layers className="text-[#f99d1c]" size={24} />
+      title: "Workflow Mapping",
+      text: "Mapping end to end workflows to uncover automation opportunities.",
+      icon: <MapPin className="text-white" size={24} />,
     },
     {
-      title: "Process Mining & Discovery",
-      desc: "Using AI to analyze operational logs and discover bottlenecks, inefficiencies, and prime candidates for automation.",
-      icon: <BarChart3 className="text-[#f99d1c]" size={24} />
+      title: "AI Decision Support",
+      text: "Combining rule based automation with AI driven decision support.",
+      icon: <Brain className="text-white" size={24} />,
     },
     {
-      title: "Automated Data Governance",
-      desc: "Implementing self-governing data quality and compliance checks across all automated workflows.",
-      icon: <Database className="text-[#f99d1c]" size={24} />
-    }
+      title: "Scalable Architecture",
+      text: "Designing scalable automation architecture across cloud and hybrid environments.",
+      icon: <Cloud className="text-white" size={24} />,
+    },
+    {
+      title: "Governance & Risk",
+      text: "Embedding governance controls risk mitigation and audit readiness.",
+      icon: <Shield className="text-white" size={24} />,
+    },
+  ];
+
+  const methodology = [
+    {
+      id: "assess",
+      phase: "01",
+      title: "Assess",
+      description: "Process discovery and feasibility analysis.",
+      points: [
+        "Process discovery and task mining",
+        "ROI estimation and prioritization",
+        "Risk and compliance review",
+      ],
+    },
+    {
+      id: "design",
+      phase: "02",
+      title: "Design",
+      description: "Target automation architecture and orchestration.",
+      points: [
+        "Bot and workflow orchestration design",
+        "AI integration for decision making",
+        "Governance and control framework definition",
+      ],
+    },
+    {
+      id: "build",
+      phase: "03",
+      title: "Build & Deploy",
+      description: "Bot development and system integration.",
+      points: [
+        "Integration with enterprise systems and APIs",
+        "Testing for resilience and compliance",
+        "Secure deployment in production environments",
+      ],
+    },
+    {
+      id: "monitor",
+      phase: "04",
+      title: "Monitor & Optimize",
+      description: "Performance monitoring and continuous improvement.",
+      points: [
+        "Performance monitoring and analytics",
+        "Continuous improvement cycles",
+        "Automation scaling across additional processes",
+      ],
+    },
+  ];
+
+  const tools = [
+    {
+      category: "RPA Platforms",
+      items: "UiPath, Automation Anywhere, Blue Prism",
+      icon: <Bot size={20} />,
+    },
+    {
+      category: "Orchestration",
+      items: "Workflow and Orchestration Tools",
+      icon: <Workflow size={20} />,
+    },
+    {
+      category: "Intelligence",
+      items: "AI and Machine Learning Integration",
+      icon: <Brain size={20} />,
+    },
+    {
+      category: "Processing",
+      items: "Document Processing & Intelligent OCR",
+      icon: <FileText size={20} />,
+    },
+    {
+      category: "Analytics",
+      items: "Monitoring Dashboards & Analytics",
+      icon: <BarChart size={20} />,
+    },
+  ];
+
+  const valueProps = [
+    "Reduce operational cost and manual effort",
+    "Improve process accuracy and compliance",
+    "Accelerate transaction cycles and customer response times",
+    "Enhance workforce productivity and engagement",
+    "Increase transparency through real time performance visibility",
+    "Scale automation across global operations",
   ];
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center pt-8 md:pt-12">
-          <div className="absolute inset-0 z-0">
-            <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1716972899074-2d8ace6f700a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdXRvbWF0ZWQlMjBmYWN0b3J5JTIwZGlnaXRhbCUyMHR3aW4lMjBibHVlJTIwb3JhbmdlJTIwY2luZW1hdGljfGVufDF8fHx8MTc3MTkzNzk0OXww&ixlib=rb-4.1.0&q=80&w=2000"
-              alt="Automated Factory Digital Twin"
-              className="w-full h-full object-cover opacity-40 mix-blend-screen"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
-            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-          </div>
-          
-          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <Motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-3xl space-y-8"
-            >
-              <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-                <span>Home</span>
-                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
-                <span className="text-[#f99d1c]">Artificial Intelligence</span>
-              </nav>
-              
-              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Intelligent <br /> 
-                <span className="text-white/40">Automation Edge.</span>
-              </h1>
-              
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Elevating operational efficiency through <span className="text-white font-medium">Cognitive Workflows</span> and hyper-scale automation frameworks.
-              </p>
+      {/* ─── Hero Banner with Sub-navigation ─── */}
+      <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={automationHeroImg}
+            alt="Intelligent Automation"
+            className="w-full h-full object-cover opacity-40 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
 
-              <div className="pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>Explore Hyperautomation</span>
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </Motion.div>
-          </div>
-        </section>
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+          <Motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl space-y-8"
+          >
+            {/* Breadcrumb */}
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+              <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30 font-light">&gt;</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Intelligent Automation</span>
+            </nav>
 
-        {/* Operational Excellence Section */}
-        <section className="py-24 bg-white relative">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="order-2 lg:order-1 relative">
-                 <div className="absolute inset-0 bg-[#f99d1c] opacity-[0.03] scale-110 blur-2xl"></div>
-                 <ImageWithFallback 
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000"
-                    alt="Intelligent Chipset Architecture"
-                    className="w-full aspect-[4/5] object-cover shadow-3xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
-                 />
-              </div>
-              
-              <div className="order-1 lg:order-2 space-y-12">
-                 <div className="space-y-6">
-                    <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">The Hyperautomation <br /><span className="text-[#f99d1c]">Mandate.</span></h2>
-                    <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                       True intelligent automation goes beyond simple task repetition. We integrate AI, Machine Learning, and RPA to create dynamic systems that learn from their own operational data, optimizing performance in real-time.
-                    </p>
-                 </div>
-                 
-                 <div className="grid sm:grid-cols-2 gap-8">
-                    {[
-                       { title: "Scalable Efficiency", desc: "Reduce operational overhead by 60% through enterprise-wide cognitive bot deployment." },
-                       { title: "Error-Free Delivery", desc: "Eliminate human fatigue errors in critical high-volume processing tasks." },
-                       { title: "Real-time Adaptability", desc: "Workflows that adjust to changing input parameters using AI decisioning." },
-                       { title: "24/7 Productivity", desc: "Round-the-clock operation with zero-latency handoffs between automated stages." }
-                    ].map((item, i) => (
-                       <div key={i} className="space-y-4 border-l-[1px] border-[#f99d1c]/20 pl-6">
-                          <h4 className="text-[#11253e] text-sm font-bold uppercase tracking-tight">{item.title}</h4>
-                          <p className="text-[#11253e]/50 text-xs font-light leading-relaxed">{item.desc}</p>
-                       </div>
-                    ))}
-                 </div>
-              </div>
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+              Intelligent <br /> 
+              <span className="text-white/40">Automation Edge.</span>
+            </h1>
+
+            <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+              Elevating operational efficiency through <span className="text-white font-medium">Cognitive Workflows</span> and hyper-scale automation frameworks.
+            </p>
+
+            <div className="pt-8 flex flex-wrap gap-4">
+              <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
+                <span>Explore Hyperautomation</span>
+                <ArrowRight size={14} />
+              </button>
             </div>
-          </div>
-        </section>
+          </Motion.div>
+        </div>
+      </section>
 
-        {/* Automation Pillars Grid */}
-        <section className="py-32 bg-[#eeede9] relative">
-          <div className="absolute right-0 top-0 w-full h-full opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(90deg, #11253e, #11253e 1px, transparent 1px, transparent 40px)' }}></div>
-          
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="max-w-3xl mb-20 space-y-6">
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight uppercase">Strategic Automation Framework</h2>
-              <div className="w-12 h-1 bg-[#f99d1c]"></div>
-              <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
-                Deploying enterprise-grade automation solutions that bridge the gap between legacy systems and modern cloud-native infrastructures.
+      {/* ─── Intro Section ─── */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#f99d1c]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="text-[#11253e] text-3xl md:text-4xl font-light leading-snug">
+              Intelligent Automation <br />
+              <span className="font-semibold text-[#f99d1c]">Transforming Operations Through Intelligent Execution</span>
+            </h2>
+            <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
+            <p className="text-[#11253e]/70 text-lg leading-relaxed max-w-3xl mx-auto">
+              Efficiency is no longer achieved through cost reduction alone. It is achieved through intelligent orchestration of people processes and technology. Intelligent Automation combines robotic process automation, artificial intelligence workflow orchestration and analytics to streamline complex business operations.
+            </p>
+            <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
+              We help enterprises design, build and scale intelligent automation programs that deliver measurable outcomes across functions.
+            </p>
+          </Motion.div>
+        </div>
+      </section>
+
+      {/* ─── Approach Section (Dark) ─── */}
+      <section className="py-24 bg-[#11253e] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#f99d1c 1px, transparent 1px), linear-gradient(to right, #f99d1c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="mb-16 md:flex md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">01 Approach</span>
+              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">Automation with <br/><span className="text-white/50">Strategic Intent</span></h2>
+              <p className="text-white/70 text-lg font-light max-w-xl">
+                Automation initiatives often fail when treated as isolated tools. Sustainable impact requires alignment with business priorities, governance frameworks and long term digital strategy.
               </p>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {automations.map((item, i) => (
-                <Motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white p-12 hover:shadow-xl transition-all border-b-2 border-transparent hover:border-[#f99d1c]"
-                >
-                  <div className="mb-8">{item.icon}</div>
-                  <h3 className="text-[#11253e] text-lg font-bold mb-4 tracking-normal">{item.title}</h3>
-                  <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-                </Motion.div>
-              ))}
+            <div className="hidden md:block">
+               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
             </div>
           </div>
-        </section>
 
-        {/* Diagonal Hatch Pattern Section */}
-        <section className="py-32 bg-[#11253e] relative overflow-hidden">
-           <div 
-              className="absolute inset-0 opacity-[0.07]" 
-              style={{ 
-                backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #ffffff 20px, #ffffff 21px)`,
-                backgroundSize: '100% 100%'
-              }}
-            />
-           
-           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-              <Motion.div 
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="bg-white p-12 lg:p-24 shadow-3xl relative"
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {approachPoints.map((point, i) => (
+              <Motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/[0.03] border border-white/10 p-8 hover:bg-white/[0.06] hover:border-[#f99d1c]/50 transition-all duration-300 group"
               >
-                 <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
-                 <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-[#11253e] text-4xl md:text-6xl font-medium tracking-tight leading-tight">
-                       Build Your <span className="text-[#f99d1c]">Digital Workforce.</span>
-                    </h2>
-                    <p className="text-[#11253e]/70 text-xl font-light">
-                       Unlock human potential by automating the mundane. Let our experts design an automation strategy that scales with your ambition.
-                    </p>
-                    <div className="pt-8">
-                       <button className="bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium hover:bg-[#11253e] transition-all uppercase text-xs tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                          Connect with an Architect
-                       </button>
-                    </div>
+                <div className="w-12 h-12 bg-[#f99d1c] rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  {point.icon}
+                </div>
+                <h3 className="text-white text-xl font-medium mb-3">{point.title}</h3>
+                <p className="text-white/60 font-light leading-relaxed">
+                  {point.text}
+                </p>
+              </Motion.div>
+            ))}
+            <div className="bg-[#f99d1c] p-8 flex flex-col justify-center items-center text-center">
+              <h3 className="text-[#11253e] text-2xl font-bold mb-2">Transformational</h3>
+              <p className="text-[#11253e]/80 text-sm font-medium">We position Intelligent Automation as a transformation lever not a tactical efficiency project.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Methodology Section (Step Process) ─── */}
+      <section className="py-24 bg-[#fdfbf7]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+             <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
+             <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured Automation Lifecycle</h2>
+             <p className="text-[#11253e]/70 text-lg font-light">
+               We apply a disciplined methodology to ensure automation initiatives move from opportunity assessment to enterprise scale deployment.
+             </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {methodology.map((step, idx) => (
+              <Motion.div 
+                key={step.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-8 shadow-md border-t-4 border-[#11253e] hover:border-[#f99d1c] hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
+              >
+                 <div className="flex items-baseline justify-between mb-6">
+                    <span className="text-5xl font-black text-[#f99d1c]/20 group-hover:text-[#f99d1c]/40 transition-colors">{step.phase}</span>
+                    <div className="w-8 h-1 bg-[#11253e]/10 group-hover:bg-[#f99d1c] transition-colors"></div>
+                 </div>
+
+                 <h3 className="text-[#11253e] text-2xl font-bold mb-3">{step.title}</h3>
+                 <p className="text-[#f99d1c] font-medium text-xs uppercase tracking-widest mb-6 min-h-[3rem]">{step.description}</p>
+                 
+                 <div className="flex-grow">
+                   <ul className="space-y-3">
+                     {step.points.map((pt, i) => (
+                       <li key={i} className="flex items-start gap-3 text-[#11253e]/70 text-sm leading-relaxed">
+                         <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full mt-1.5 shrink-0"></div>
+                         <span>{pt}</span>
+                       </li>
+                     ))}
+                   </ul>
                  </div>
               </Motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Tools Section (Tech Stack) ─── */}
+      <section className="py-24 bg-[#11253e] text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+             <Motion.div
+               initial={{ opacity: 0, x: -30 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+             >
+                <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">03 Tools</span>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">Enterprise Automation <br/>Ecosystem</h2>
+                <p className="text-white/60 text-lg font-light mb-8">
+                  We design Intelligent Automation solutions leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
+                </p>
+                <div className="p-6 bg-white/[0.05] border border-white/10 rounded-sm">
+                  <p className="italic text-white/80 font-light">
+                    "Technology selection is driven by scalability, security, integration capability and long term maintainability."
+                  </p>
+                </div>
+             </Motion.div>
+
+             <div className="space-y-4">
+                {tools.map((tool, i) => (
+                  <Motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-white text-[#11253e] p-5 flex items-center gap-5 rounded-sm hover:translate-x-2 transition-transform duration-300"
+                  >
+                    <div className="w-10 h-10 bg-[#11253e]/5 rounded-full flex items-center justify-center text-[#f99d1c] shrink-0">
+                      {tool.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm uppercase tracking-wider text-[#11253e]">{tool.category}</h4>
+                      <p className="text-[#11253e]/70 text-sm font-medium">{tool.items}</p>
+                    </div>
+                  </Motion.div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Value Proposition (Checklist) ─── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="text-center mb-16">
+              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">04 Value Proposition</span>
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">Measurable Efficiency <br/> Sustainable Advantage</h2>
            </div>
-        </section>
+
+           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {valueProps.map((prop, i) => (
+                <Motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-start gap-4 p-6 rounded-lg bg-[#fdfbf7] border border-[#11253e]/5 hover:border-[#f99d1c] hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-6 h-6 mt-1 bg-[#f99d1c] rounded-full flex items-center justify-center shrink-0">
+                    <Check size={14} className="text-white" strokeWidth={3} />
+                  </div>
+                  <p className="text-[#11253e] font-medium leading-relaxed">{prop}</p>
+                </Motion.div>
+              ))}
+           </div>
+
+           <div className="mt-20 bg-[#11253e] rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+             <p className="text-white text-xl md:text-2xl font-light leading-relaxed relative z-10 max-w-4xl mx-auto">
+               Intelligent Automation when strategically engineered becomes a core capability that strengthens resilience, agility and competitive differentiation.
+             </p>
+           </div>
+        </div>
+      </section>
+
+      {/* ─── CTA ─── */}
+      <section className="py-20 relative bg-[#f99d1c] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+           <div className="text-[#11253e]">
+             <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
+             <p className="text-[#11253e]/80 text-lg">Introduce autonomy with control.</p>
+           </div>
+           <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
+             <span>Start Your Journey</span>
+             <ArrowRight size={18} />
+           </button>
+        </div>
+      </section>
     </>
   );
 }

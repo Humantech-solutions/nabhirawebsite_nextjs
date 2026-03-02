@@ -4,34 +4,34 @@ import { useEffect } from "react";
 import Link from "next/link"; // ✅ FIXED
 import Image from "next/image";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, Lock, BarChart3, Search, Users, FileCheck, Database } from "lucide-react";
+import { ArrowRight, BarChart3, Layers, Brain, Cog, Rocket, Shield, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, PieChart, Activity, LineChart, Database, Search } from "lucide-react";
 
-export default function DataGovernance() {
+export default function DataAnalyticsSolution() {
   useEffect(() => {
-    document.title = "Data Governance & Quality | Nabhira Technologies";
+    document.title = "Data Analytics Services | Nabhira Technologies";
     window.scrollTo(0, 0);
-  }, []);
+  }, []); 
 
   const approachPoints = [
     {
-      icon: <Users className="text-[#f99d1c]" size={22} />,
-      text: "Establishing clear data ownership and stewardship models",
-    },
-    {
-      icon: <ShieldCheck className="text-[#f99d1c]" size={22} />,
-      text: "Aligning governance policies with regulatory and industry requirements",
+      icon: <Target className="text-[#f99d1c]" size={22} />,
+      text: "Enterprise KPI alignment across business functions",
     },
     {
       icon: <Eye className="text-[#f99d1c]" size={22} />,
-      text: "Enabling enterprise wide data transparency and lineage",
+      text: "Executive visibility through real time performance intelligence",
     },
     {
-      icon: <Lock className="text-[#f99d1c]" size={22} />,
-      text: "Embedding privacy and security controls into data lifecycle management",
+      icon: <ShieldCheck className="text-[#f99d1c]" size={22} />,
+      text: "Governance, privacy and regulatory discipline by design",
+    },
+    {
+      icon: <GitBranch className="text-[#f99d1c]" size={22} />,
+      text: "Scalable architectures built for long term evolution",
     },
     {
       icon: <Workflow className="text-[#f99d1c]" size={22} />,
-      text: "Balancing compliance discipline with business agility",
+      text: "Embedding analytics into core operational workflows",
     },
   ];
 
@@ -42,10 +42,10 @@ export default function DataGovernance() {
       title: "Discover",
       icon: <Search className="text-[#f99d1c]" size={26} />,
       points: [
-        "Enterprise data maturity assessment",
-        "Regulatory and compliance gap analysis",
-        "Stakeholder alignment across business legal risk and technology",
-        "Identification of critical data domains",
+        "Executive and stakeholder alignment",
+        "Strategic KPI definition and value mapping",
+        "Data maturity and architecture assessment",
+        "Risk and compliance evaluation",
       ],
     },
     {
@@ -54,71 +54,71 @@ export default function DataGovernance() {
       title: "Design",
       icon: <Layers className="text-[#f99d1c]" size={26} />,
       points: [
-        "Target state data governance operating model",
-        "Data ownership stewardship and accountability structure",
-        "Policy framework for data quality privacy and lifecycle management",
-        "Metadata management and lineage strategy",
+        "Target state enterprise analytics architecture",
+        "Data governance and operating model design",
+        "Security, privacy and access control frameworks",
+        "Performance scalability and resilience planning",
       ],
     },
     {
-      id: "implement",
+      id: "develop",
       phase: "03",
-      title: "Implement",
+      title: "Develop",
       icon: <Cog className="text-[#f99d1c]" size={26} />,
       points: [
-        "Data classification and cataloging",
-        "Policy enforcement mechanisms",
-        "Data quality rules and monitoring",
-        "Access controls and audit trails",
+        "Data engineering and integration pipelines",
+        "Advanced analytics models including predictive and scenario analysis",
+        "Executive dashboards and operational intelligence platforms",
+        "Validation, audit readiness and quality assurance",
       ],
     },
     {
-      id: "monitor",
+      id: "enable",
       phase: "04",
-      title: "Monitor & Evolve",
+      title: "Enable & Optimize",
       icon: <Rocket className="text-[#f99d1c]" size={26} />,
       points: [
-        "Continuous compliance and risk monitoring",
-        "Governance performance metrics and reporting",
-        "Periodic policy review and refinement",
-        "Enterprise adoption and change enablement",
+        "Change management and adoption strategy",
+        "Analytics center of excellence enablement",
+        "Continuous model enhancement",
+        "Performance monitoring and value realization tracking",
       ],
     },
   ];
 
   const tools = [
-    { icon: <Database size={18} />, text: "Enterprise data catalog and metadata management platforms" },
-    { icon: <GitBranch size={18} />, text: "Data lineage and impact analysis solutions" },
-    { icon: <FileCheck size={18} />, text: "Data quality monitoring frameworks" },
-    { icon: <Lock size={18} />, text: "Privacy and regulatory compliance controls" },
-    { icon: <Shield size={18} />, text: "Access management and audit readiness systems" },
+    { icon: <Database size={18} />, text: "Cloud native data warehouses and lakehouse platforms" },
+    { icon: <PieChart size={18} />, text: "Enterprise business intelligence and visualization systems" },
+    { icon: <Activity size={18} />, text: "Real time streaming and event driven analytics engines" },
+    { icon: <Brain size={18} />, text: "Advanced statistical modeling and machine learning frameworks" },
+    { icon: <Shield size={18} />, text: "Enterprise grade governance security and compliance controls" },
   ];
 
   const valueProps = [
-    { text: "Establish enterprise wide data accountability", icon: <Users size={16} /> },
-    { text: "Improve data quality accuracy and reliability", icon: <FileCheck size={16} /> },
-    { text: "Strengthen regulatory compliance and audit readiness", icon: <ShieldCheck size={16} /> },
-    { text: "Enhance data privacy security and risk management", icon: <Lock size={16} /> },
-    { text: "Enable consistent trusted reporting across functions", icon: <BarChart3 size={16} /> },
-    { text: "Build a scalable governance foundation for AI and digital transformation", icon: <Brain size={16} /> },
+    { text: "Accelerated executive decision cycles", icon: <TrendingUp size={16} /> },
+    { text: "Improved enterprise wide performance transparency", icon: <Eye size={16} /> },
+    { text: "Enhanced forecasting accuracy and risk resilience", icon: <LineChart size={16} /> },
+    { text: "Strengthened governance and regulatory confidence", icon: <Shield size={16} /> },
+    { text: "Scalable foundation for AI and intelligent automation", icon: <Brain size={16} /> },
+    { text: "Measurable return on data investments", icon: <BarChart3 size={16} /> },
   ];
 
   return (
     <>
-      {/* Hero Banner — KEPT AS-IS */}
+      {/* Hero Banner */}
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1767972464040-8bfee42d7bed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwZ292ZXJuYW5jZSUyMHNlY3VyaXR5JTIwY29tcGxpYW5jZSUyMGRpZ2l0YWwlMjBjb25jZXB0fGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Data Governance Documentation"
-            className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+            src="https://images.unsplash.com/photo-1540370548792-520e6e3b12e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkJTIwYnVzaW5lc3MlMjBpbnRlbGxpZ2VuY2UlMjBkYXJrfGVufDF8fHx8MTc3MjMwMjk5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            alt="Data Analytics Infrastructure"
+            className="w-full h-full object-cover opacity-30 mix-blend-screen"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/90 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
-          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '100px 100px' }}></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
           <Motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -128,22 +128,21 @@ export default function DataGovernance() {
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Data Governance</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Data Analytics</span>
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Governance by <br />
-              <span className="text-white/40">Design.</span>
+              Transform Data into <br />
+              <span className="text-white/40">Strategic Advantage.</span>
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Embedding <span className="text-white font-medium">trust</span> and{" "}
-              <span className="text-[#f99d1c] font-medium">compliance</span> into every layer of your data lifecycle through automated governance.
+              Converting data into foresight through <span className="text-white font-medium">decision intelligence</span> that drives measurable business outcomes.
             </p>
 
-            <div className="pt-8 flex flex-wrap gap-4">
+            <div className="pt-6 flex flex-wrap gap-4">
               <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
-                <span>COMPLIANCE AUDIT</span>
+                <span>START YOUR JOURNEY</span>
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -151,7 +150,7 @@ export default function DataGovernance() {
         </div>
       </section>
 
-      {/* ─── Data Governance Intro Statement ─── */}
+      {/* ─── Data Analytics Intro Statement ─── */}
       <section className="py-20 bg-[#fdfbf7] relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -161,16 +160,13 @@ export default function DataGovernance() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">Data Governance</h2>
+              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">Data Analytics</h2>
               <p className="text-[#11253e] text-xl md:text-2xl font-light leading-relaxed">
-                Trust as the Foundation of{" "}
-                <span className="text-[#f99d1c] font-medium">Digital Enterprise</span>
+                Transform Data into <span className="font-medium">Strategic</span>{" "}
+                <span className="text-[#f99d1c] font-medium">Business Advantage</span>
               </p>
               <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                In a data driven economy trust is not optional. It is foundational. As organizations expand across digital channels, cloud platforms and global markets, data complexity increases. Without strong governance, enterprises face inconsistent reporting, regulatory exposure, security risks and loss of decision confidence.
-              </p>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                Data Governance is not about control alone. It is about enabling reliable, compliant and accountable data usage across the organization.
+                In a world defined by volatility and digital acceleration, competitive advantage belongs to organizations that convert data into foresight. Data Analytics is no longer a reporting function. It is a strategic capability that influences growth, operational resilience, capital allocation, risk mitigation and customer experience.
               </p>
             </Motion.div>
 
@@ -183,7 +179,7 @@ export default function DataGovernance() {
             >
               <div className="border-l-3 border-[#f99d1c] pl-6">
                 <p className="text-[#11253e] text-lg font-medium leading-relaxed italic">
-                  We help enterprises design and institutionalize governance frameworks that ensure data integrity, transparency and regulatory discipline while supporting innovation at scale.
+                  We help enterprises design and operationalize analytics ecosystems that deliver trusted insight at speed and scale. Our focus is not on dashboards alone — it is on decision intelligence that drives measurable business outcomes.
                 </p>
               </div>
               <div className="w-16 h-px bg-[#f99d1c]"></div>
@@ -213,15 +209,15 @@ export default function DataGovernance() {
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
               <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Approach</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Governance by Design Not by Reaction</h3>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Strategy Led Analytics</h3>
               <p className="text-white/60 text-base font-light leading-relaxed max-w-2xl">
-                Effective governance must be embedded into enterprise strategy rather than implemented as a corrective measure. Our approach begins with executive alignment to define accountability, ownership and risk appetite across the organization.
+                Analytics initiatives succeed when they are anchored in enterprise strategy. We begin at the leadership level by aligning analytics priorities with corporate objectives, market dynamics and regulatory requirements.
               </p>
             </Motion.div>
           </div>
 
           {/* Image Left + Points Right */}
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
             {/* Left — Image */}
             <Motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -232,14 +228,14 @@ export default function DataGovernance() {
             >
               <div className="overflow-hidden relative group h-[300px]">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1554936970-e49a373f6967?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwcHJpdmFjeSUyMHByb3RlY3Rpb24lMjBmcmFtZXdvcmslMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzIzMzMxNTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Enterprise Governance Strategy"
+                  src="https://images.unsplash.com/photo-1758630737361-ca7532fb5e7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRlcnByaXNlJTIwc3RyYXRlZ3klMjBkYXRhJTIwdmlzdWFsaXphdGlvbiUyMG1vZGVybiUyMG9mZmljZXxlbnwxfHx8fDE3NzIzMDI5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  alt="Enterprise Analytics Strategy"
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#11253e]/60 via-transparent to-transparent"></div>
                 <div className="absolute inset-0 bg-[#11253e]/20 group-hover:bg-transparent transition-colors duration-700"></div>
               </div>
-              {/* Accent corners */}
+              {/* Accent corner */}
               <div className="absolute -bottom-3 -right-3 w-16 h-16 border-b-2 border-r-2 border-[#f99d1c]/40 hidden lg:block"></div>
               <div className="absolute -top-3 -left-3 w-16 h-16 border-t-2 border-l-2 border-[#f99d1c]/40 hidden lg:block"></div>
             </Motion.div>
@@ -271,7 +267,7 @@ export default function DataGovernance() {
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
             <p className="text-white/50 text-lg font-light italic leading-relaxed">
-              We position governance as a strategic enabler of confidence, not a bureaucratic constraint.
+              We operate as a strategic partner, ensuring analytics becomes a board level capability rather than a siloed initiative.
             </p>
           </Motion.div>
         </div>
@@ -295,9 +291,9 @@ export default function DataGovernance() {
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
               <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Methodology</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Governance Framework for Enterprise Scale</h3>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Delivery. Sustainable Impact.</h3>
               <p className="text-[#11253e]/60 text-base font-light leading-relaxed max-w-2xl">
-                We apply a disciplined framework to operationalize governance across the data ecosystem.
+                We apply a rigorous and repeatable framework to transform analytics ambition into enterprise capability.
               </p>
             </Motion.div>
           </div>
@@ -349,7 +345,7 @@ export default function DataGovernance() {
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
             <p className="text-[#11253e]/50 text-base font-light italic leading-relaxed">
-              This structured approach ensures governance becomes institutionalized rather than project based.
+              This disciplined approach ensures analytics capability matures alongside the enterprise.
             </p>
           </Motion.div>
         </div>
@@ -359,8 +355,8 @@ export default function DataGovernance() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1768839721176-2fa91fdce725?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwZ292ZXJuYW5jZSUyMGNvbXBsaWFuY2UlMjBzZWN1cml0eSUyMGVudGVycHJpc2V8ZW58MXx8fHwxNzcyMzMzMTU0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Governance Infrastructure"
+            src="https://images.unsplash.com/photo-1540370548792-520e6e3b12e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkJTIwYnVzaW5lc3MlMjBpbnRlbGxpZ2VuY2UlMjBkYXJrfGVufDF8fHx8MTc3MjMwMjk5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            alt="Analytics Infrastructure"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#11253e]/92"></div>
@@ -383,9 +379,9 @@ export default function DataGovernance() {
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
               <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Tools & Ecosystem</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Enterprise Grade Governance Ecosystem</h3>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Enterprise Scale Technology Ecosystems</h3>
               <p className="text-white/50 text-base font-light leading-relaxed max-w-2xl">
-                We design governance frameworks leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
+                We architect secure high performance analytics platforms leveraging global cloud ecosystems including Amazon Web Services, Microsoft Azure and Google Cloud.
               </p>
             </Motion.div>
           </div>
@@ -422,7 +418,7 @@ export default function DataGovernance() {
               className="bg-[#f99d1c]/10 p-8 flex items-center"
             >
               <p className="text-white/40 text-[13px] font-light italic leading-relaxed">
-                Technology selection is guided by enterprise scalability, security and regulatory alignment.
+                Technology is selected based on strategic fit, scalability and long term value rather than short term convenience.
               </p>
             </Motion.div>
           </div>
@@ -436,7 +432,7 @@ export default function DataGovernance() {
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
             <p className="text-white/40 text-base font-light italic leading-relaxed">
-              Secure governance platforms built on AWS, Azure and GCP with enterprise-grade compliance controls.
+              Secure analytics platforms built on AWS, Azure and GCP with enterprise-grade governance.
             </p>
           </Motion.div>
         </div>
@@ -459,9 +455,9 @@ export default function DataGovernance() {
                 <div className="h-px w-12 bg-[#f99d1c]"></div>
               </div>
               <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
-              <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Confidence Compliance Competitive Advantage</h3>
+              <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">From Insight to Competitive Advantage</h3>
               <p className="text-[#11253e]/70 text-lg font-light max-w-2xl mx-auto mt-4">
-                Our Data Governance services enable you to:
+                Our Data Analytics services deliver:
               </p>
             </Motion.div>
 
@@ -494,7 +490,7 @@ export default function DataGovernance() {
               <div className="relative z-10 flex items-start space-x-4">
                 <Lightbulb className="text-[#f99d1c] shrink-0 mt-1" size={24} />
                 <p className="text-white/80 text-lg font-light leading-relaxed italic">
-                  Most importantly we help organizations build trust in their data — which strengthens executive confidence, stakeholder transparency and long term enterprise resilience.
+                  Most importantly, we enable organizations to elevate analytics from operational reporting to a strategic engine that shapes long term enterprise performance.
                 </p>
               </div>
             </Motion.div>
@@ -515,18 +511,18 @@ export default function DataGovernance() {
             <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
             <div className="max-w-2xl space-y-6">
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight leading-[1.1]">
-                Secure Your <br />
-                <span className="text-[#f99d1c]">Competitive Edge.</span>
+                Ready to Unlock Your <br />
+                <span className="text-[#f99d1c]">Data Potential?</span>
               </h2>
               <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
+                Engage our analytics experts to evaluate your current capabilities and design a roadmap for enterprise-grade decision intelligence.
               </p>
             </div>
             <button
               className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#11253e] text-white px-12 py-6 rounded-sm transition-all inline-flex items-center space-x-4 uppercase tracking-[0.2em] group"
               style={{ fontSize: "14px", fontWeight: 500 }}
             >
-              <span>START AUDIT</span>
+              <span>START YOUR JOURNEY</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </Motion.div>

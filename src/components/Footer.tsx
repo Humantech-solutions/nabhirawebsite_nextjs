@@ -1,11 +1,11 @@
 "use client";
-
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-const logo = '/assets/footer.png';
+import logo from '../assets/footer.png';
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
-import Link from "next/link";
+import Link from "next/link"; // ✅ FIXED
+import Image from "next/image";
 
 const whyNabhiraQA = [
   {
@@ -17,12 +17,12 @@ const whyNabhiraQA = [
     answer: "Consistently executing complex programs with proven governance, risk control, quality standards and predictable results at scale."
   },
   {
-    "question": "Automation to the core",
-    "answer": "Embedding intelligent automation across processes, delivery, and operations to drive efficiency, consistency, and scalability by design."
+    question: "Automation to the core",
+    answer: "Embedding intelligent automation across processes, delivery, and operations to drive efficiency, consistency, and scalability by design."
   },
   {
-    "question": "Predictable Outcome",
-    "answer": "⁠Leveraging architecture rigor, automation, observability, and data-driven controls to consistently deliver measurable technology and business results."
+    question: "Predictable Outcome",
+    answer: "⁠Leveraging architecture rigor, automation, observability, and data-driven controls to consistently deliver measurable technology and business results."
   }
 ];
 
@@ -110,14 +110,20 @@ export function Footer() {
           <div className="space-y-8">
             <div className="flex items-center">
               <Link href="/">
-                <img src={logo} alt="Nabhira Logo" className="h-10 w-auto" />
+                <Image 
+                  src={logo} 
+                  alt="Nabhira Logo" 
+                  width={150}
+                  height={50}
+                  className="h-10 w-auto" 
+                />
               </Link>
             </div>
             <div className="space-y-4 max-w-xs">
-              <p className="text-white/40 text-xs font-light leading-relaxed tracking-wide">
+              <p className="text-white/40 text-[13px] font-light leading-relaxed tracking-wide">
                 Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI. We empower enterprises across 50+ countries to orchestrate their digital evolution through advanced data ecosystems and autonomous cloud platforms.
               </p>
-              <p className="text-white/30 text-[10px] font-light italic">
+              <p className="text-white/30 text-[12px] font-light italic">
                 Driving innovation through Cloud Advisory, Data Engineering, and Agentic AI solutions for the modern enterprise.
               </p>
             </div>

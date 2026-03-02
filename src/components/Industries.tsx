@@ -1,5 +1,4 @@
 "use client";
-
 import { 
   Building2, 
   ShoppingCart, 
@@ -7,18 +6,15 @@ import {
   HeartPulse, 
   Shield, 
   Film,
-  ChevronRight 
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
-import { motion } from "motion/react";
-import Slider from "react-slick";
-import { useRef } from "react";
-
-// Import slick carousel styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useRef, useEffect } from "react";
 
 export function Industries() {
-  const sliderRef = useRef<Slider>(null);
+  const [startIndex, setStartIndex] = useState(0);
+  const [visibleItems, setVisibleItems] = useState(5);
 
   const industries = [
     { title: "Banking & Financial Services", icon: Building2 },
@@ -29,41 +25,34 @@ export function Industries() {
     { title: "Media & Entertainment", icon: Film }
   ];
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    mobileFirst: true,
-    responsive: [
-      {
-        breakpoint: 639,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 3,
-        }
-      },
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 5,
-        }
-      }
-    ]
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleItems(1);
+      else if (window.innerWidth < 1024) setVisibleItems(3);
+      else setVisibleItems(5);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    setStartIndex((prev) => (prev + 1) % industries.length);
   };
+
+  const prevSlide = () => {
+    setStartIndex((prev) => (prev - 1 + industries.length) % industries.length);
+  };
+
+  // Create a looped array for the slider effect
+  const displayIndustries = [];
+  for (let i = 0; i < visibleItems; i++) {
+    displayIndustries.push(industries[(startIndex + i) % industries.length]);
+  }
 
   return (
     <section className="py-20 md:py-24 relative overflow-hidden bg-[#e6e2d8]">
-      {/* Background Image Removed - Maintaining structural patterns */}
+      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -99,13 +88,13 @@ export function Industries() {
           
           <div className="flex items-center gap-4 pb-2 mx-auto md:mx-0">
             <button 
-              onClick={() => sliderRef.current?.slickPrev()}
+              onClick={prevSlide}
               className="w-12 h-10 flex items-center justify-center bg-[#1d1d1b] text-white rounded-[20px] hover:bg-[#f99d1c] transition-colors cursor-pointer"
             >
-              <ChevronRight className="rotate-180" size={18} />
+              <ChevronLeft size={18} />
             </button>
             <button 
-              onClick={() => sliderRef.current?.slickNext()}
+              onClick={nextSlide}
               className="w-12 h-10 flex items-center justify-center bg-[#1d1d1b] text-white rounded-[20px] hover:bg-[#f99d1c] transition-colors cursor-pointer"
             >
               <ChevronRight size={18} />
@@ -113,17 +102,17 @@ export function Industries() {
           </div>
         </div>
         
-        <div className="industry-slider-container -mx-px">
-          <Slider ref={sliderRef} {...settings}>
-            {industries.map((industry, i) => (
-              <div key={i} className="px-0 sm:px-2">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="group bg-white p-8 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[240px] flex flex-col"
-                >
+        <div className="relative">
+          <div className="flex -mx-2 overflow-hidden">
+            {displayIndustries.map((industry, i) => (
+              <motion.div 
+                key={`${startIndex}-${i}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="px-2 w-full sm:w-1/3 lg:w-1/5 shrink-0"
+              >
+                <div className="group bg-white p-8 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[240px] flex flex-col">
                   <div className="mb-8">
                     <industry.icon className="w-10 h-10 text-[#11253e]" strokeWidth={1} />
                   </div>
@@ -137,32 +126,21 @@ export function Industries() {
                     </div>
                   </div>
                   
-                  {/* Decorative orange diagonal lines like in reference image */}
+                  {/* Decorative orange diagonal lines */}
                   <div className="absolute bottom-0 right-0 w-full h-1/3 opacity-20 pointer-events-none overflow-hidden">
                     <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
-                      <pattern id="diagonal-lines" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+                      <pattern id="diagonal-lines-ind" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
                         <line x1="0" y1="0" x2="0" y2="10" stroke="#f99d1c" strokeWidth="1" />
                       </pattern>
-                      <rect width="100%" height="100%" fill="url(#diagonal-lines)" />
+                      <rect width="100%" height="100%" fill="url(#diagonal-lines-ind)" />
                     </svg>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             ))}
-          </Slider>
+          </div>
         </div>
       </div>
-
-      <style>{`
-        /* 
-           FIX: DO NOT add 'display: flex !important' to .slick-track.
-           Adding flex forces all slides to squeeze into a single row, 
-           breaking the 'slidesToShow: 1' setting on mobile.
-        */
-        .industry-slider-container .slick-slide > div {
-          height: 100%;
-        }
-      `}</style>
     </section>
   );
 }

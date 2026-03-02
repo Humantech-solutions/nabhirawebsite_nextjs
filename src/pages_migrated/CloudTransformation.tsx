@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
@@ -22,7 +21,7 @@ export default function CloudTransformation() {
       />
 
       {/* Feature Grid */}
-      <section className="py-24 lg:py-32 bg-white text-[#11253e]">
+      <section className="py-20 bg-white text-[#11253e]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight mb-8">
@@ -62,12 +61,12 @@ export default function CloudTransformation() {
       </section>
 
       {/* Steps Section */}
-      <section className="py-20 md:py-24 lg:py-32 bg-[#11253e] text-white overflow-hidden">
+      <section className="py-20 bg-[#11253e] text-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {steps.map((step, idx) => (
-              <div key={step.title} className="relative group">
-                <div className="text-[#f99d1c] text-6xl md:text-7xl lg:text-8xl font-black opacity-10 absolute -top-8 -left-4 group-hover:opacity-20 transition-opacity">
+              <div key={step.title} className="relative group p-10">
+                <div className="text-[#f99d1c] text-6xl md:text-7xl lg:text-8xl font-black absolute -top-8 -left-4 transition-opacity">
                   0{idx + 1}
                 </div>
                 <div className="relative z-10 pt-4">
