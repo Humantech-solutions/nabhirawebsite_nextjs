@@ -193,7 +193,7 @@ export default function BankingFinance() {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e]/70 text-lg max-w-md text-right md:text-left">
+            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
               Financial institutions are navigating a defining decade. Transformation is no longer optional—it is structural.
             </p>
           </div>
@@ -210,11 +210,12 @@ export default function BankingFinance() {
               >
                 <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] group-hover:text-white transition-colors duration-300">
                   <div className="group-hover:text-white text-[#11253e] transition-colors duration-300">
+                    {/* Clone icon to handle color change if needed, though class logic above handles bg/text context */}
                     {item.icon} 
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e]/60 leading-relaxed">{item.text}</p>
+                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
               </Motion.div>
             ))}
           </div>
@@ -228,7 +229,7 @@ export default function BankingFinance() {
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
-            <p className="text-[#11253e]/60 text-xl max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
               Modernize platforms, strengthen governance, and accelerate digital growth without compromising resilience.
             </p>
           </div>
@@ -250,7 +251,7 @@ export default function BankingFinance() {
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e]/70 text-lg leading-relaxed">{area.description}</p>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
                   
                   <ul className="space-y-3 pt-4">
                     {area.details.map((detail, i) => (
@@ -267,6 +268,7 @@ export default function BankingFinance() {
                   <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
                     <div className="absolute inset-0 bg-[#11253e]/5 pattern-grid-lg opacity-20"></div>
                     <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
+                      {/* Render icon with large size */}
                       <div className="transform scale-150">
                         {area.icon}
                       </div>
@@ -328,29 +330,29 @@ export default function BankingFinance() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p className="opacity-80">Tangible results for forward-thinking institutions.</p>
+              <p className="">Tangible results for forward-thinking institutions.</p>
             </div>
             
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <TrendingUp size={32} className="mb-4 opacity-80" />
+                <TrendingUp size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Faster Launches</h3>
-                <p className="opacity-80 text-sm">Accelerated digital product delivery cycles.</p>
+                <p className="text-sm">Accelerated digital product delivery cycles.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Shield size={32} className="mb-4 opacity-80" />
+                <Shield size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Reduced Risk</h3>
-                <p className="opacity-80 text-sm">Stronger compliance and audit readiness.</p>
+                <p className="text-sm">Stronger compliance and audit readiness.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <UserCheck size={32} className="mb-4 opacity-80" />
+                <UserCheck size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Customer Trust</h3>
-                <p className="opacity-80 text-sm">Improved retention through secure experiences.</p>
+                <p className="text-sm">Improved retention through secure experiences.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Database size={32} className="mb-4 opacity-80" />
+                <Database size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Future Ready</h3>
-                <p className="opacity-80 text-sm">Scalable infrastructure for long-term growth.</p>
+                <p className="text-sm">Scalable infrastructure for long-term growth.</p>
               </div>
             </div>
           </div>

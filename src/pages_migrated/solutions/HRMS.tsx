@@ -91,8 +91,8 @@ export default function HRMSSolution() {
             <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
               <h2 className="text-[#11253e] text-4xl font-bold tracking-tight uppercase">Strategic Pillars</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto"></div>
-              <p className="text-[#11253e]/60 text-lg font-light">
-                A modular ecosystem built to support every stage of the employee lifecycle.
+              <p className="text-[#11253e] text-lg font-light">
+                A modular ecosystem built to support every stage
               </p>
             </div>
 
@@ -135,7 +135,7 @@ export default function HRMSSolution() {
                   </div>
                   <div className="space-y-4">
                     <h3 className="text-[#11253e] text-lg font-bold tracking-tight uppercase">{item.title}</h3>
-                    <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{item.desc}</p>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -213,7 +213,7 @@ export default function HRMSSolution() {
               <div className="space-y-12">
                 <div className="space-y-6">
                   <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Future of <br />Employee Experience</h2>
-                  <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+                  <p className="text-[#11253e] text-lg font-light leading-relaxed">
                     Employee self-service portals with integrated AI chatbots ensure your workforce gets answers instantly, freeing HR from administrative overhead.
                   </p>
                 </div>
@@ -249,17 +249,17 @@ export default function HRMSSolution() {
               <div className="space-y-6">
                 <ShieldCheck size={32} className="text-[#f99d1c]" />
                 <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-widest">Enterprise Security</h3>
-                <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">SOC2 Type II, ISO 27001, and GDPR compliant architecture with end-to-end data encryption at rest and in transit.</p>
+                <p className="text-[#11253e] text-sm font-light leading-relaxed">SOC2 Type II, ISO 27001, and GDPR compliant architecture with end-to-end data encryption at rest and in transit.</p>
               </div>
               <div className="space-y-6">
                 <Globe size={32} className="text-[#f99d1c]" />
                 <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-widest">Global Scale</h3>
-                <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">Localized for over 50 languages and 120+ tax jurisdictions with automated regulatory updates.</p>
+                <p className="text-[#11253e] text-sm font-light leading-relaxed">Localized for over 50 languages and 120+ tax jurisdictions with automated regulatory updates.</p>
               </div>
               <div className="space-y-6">
                 <Zap size={32} className="text-[#f99d1c]" />
                 <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-widest">API-First Design</h3>
-                <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">Seamlessly connect with Slack, Microsoft Teams, SAP, and WorkbookNow ERP via robust RESTful APIs.</p>
+                <p className="text-[#11253e] text-sm font-light leading-relaxed">Seamlessly connect with Slack, Microsoft Teams, SAP, and WorkbookNow ERP via robust RESTful APIs.</p>
               </div>
             </div>
           </div>
@@ -285,4 +285,3 @@ export default function HRMSSolution() {
     </>
   );
 }
-

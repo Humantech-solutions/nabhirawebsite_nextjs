@@ -1,6 +1,6 @@
 "use client";
 
-import { motion as Motion, useScroll } from "motion/react";
+import { motion as Motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -199,7 +199,7 @@ export default function RetailConsumer() {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e]/70 text-lg max-w-md text-right md:text-left">
+            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
               Retail and CPG leaders today must address shifting customer expectations and operational challenges.
             </p>
           </div>
@@ -220,7 +220,7 @@ export default function RetailConsumer() {
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e]/60 leading-relaxed">{item.text}</p>
+                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
               </Motion.div>
             ))}
           </div>
@@ -234,7 +234,7 @@ export default function RetailConsumer() {
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
-            <p className="text-[#11253e]/60 text-xl max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
               Modernize commerce ecosystems, optimize supply chains, and unlock data-driven growth.
             </p>
           </div>
@@ -256,7 +256,7 @@ export default function RetailConsumer() {
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e]/70 text-lg leading-relaxed">{area.description}</p>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
                   
                   <ul className="space-y-3 pt-4">
                     {area.details.map((detail, i) => (
@@ -335,29 +335,29 @@ export default function RetailConsumer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p className="opacity-80">Tangible results for forward-thinking retailers.</p>
+              <p className="">Tangible results for forward-thinking retailers.</p>
             </div>
             
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <TrendingUp size={32} className="mb-4 opacity-80" />
+                <TrendingUp size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Increased Revenue</h3>
-                <p className="opacity-80 text-sm">Digital revenue and omnichannel growth.</p>
+                <p className="text-sm">Digital revenue and omnichannel growth.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Package size={32} className="mb-4 opacity-80" />
+                <Package size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Better Inventory</h3>
-                <p className="opacity-80 text-sm">Improved turnover and demand accuracy.</p>
+                <p className="text-sm">Improved turnover and demand accuracy.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Users size={32} className="mb-4 opacity-80" />
+                <Users size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Customer Growth</h3>
-                <p className="opacity-80 text-sm">Enhanced customer acquisition and retention.</p>
+                <p className="text-sm">Enhanced customer acquisition and retention.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Settings size={32} className="mb-4 opacity-80" />
+                <Settings size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Lower Costs</h3>
-                <p className="opacity-80 text-sm">Reduced operational cost and inefficiencies.</p>
+                <p className="text-sm">Reduced operational cost and inefficiencies.</p>
               </div>
             </div>
           </div>

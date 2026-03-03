@@ -2,12 +2,12 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { MapPin, Briefcase, Clock, ChevronLeft, Upload, Send } from "lucide-react";
-import { jobs } from "../data/migrated_data";
+import { jobs } from "./Careers";
 
 export default function JobDetails() {
   const { id } = useParams();
@@ -48,7 +48,7 @@ export default function JobDetails() {
     <>
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <Link href="/careers" className="inline-flex items-center gap-2 text-[#11253e]/40 hover:text-[#f99d1c] transition-colors mb-12 text-[12px] font-bold uppercase tracking-widest">
+          <Link href="/careers" className="inline-flex items-center gap-2 text-[#11253e] hover:text-[#f99d1c] transition-colors mb-12 text-[12px] font-bold uppercase tracking-widest">
             <ChevronLeft size={18} /> All Open Roles
           </Link>
 
@@ -62,7 +62,7 @@ export default function JobDetails() {
                 </div>
                 <h1 className="text-[#11253e] text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{job.title}</h1>
                 
-                <div className="flex flex-wrap items-center gap-6 text-sm font-light text-[#11253e]/60 pt-4">
+                <div className="flex flex-wrap items-center gap-6 text-sm font-light text-[#11253e] pt-4">
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <MapPin size={16} className="text-[#f99d1c]" /> {job.location}
                   </div>
@@ -75,7 +75,7 @@ export default function JobDetails() {
                 </div>
               </section>
 
-              <div className="prose prose-slate max-w-none text-[#11253e]/70 font-light space-y-8">
+              <div className="prose prose-slate max-w-none text-[#11253e] font-light space-y-8">
                 <section>
                   <h3 className="text-[#11253e] text-xl font-bold mb-4">About the Role</h3>
                   <p className="leading-relaxed">

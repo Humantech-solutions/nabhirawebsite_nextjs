@@ -71,7 +71,7 @@ export default function DataAnalytics() {
             <h2 className="text-3xl lg:text-5xl font-medium tracking-tight mb-8">
               End-to-End <span className="text-[#f99d1c]">Data Excellence</span>
             </h2>
-            <p className="text-[#11253e]/60 text-lg lg:text-xl leading-relaxed font-light">
+            <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed font-light">
               We provide the full spectrum of data services, ensuring your organization can ingest, store, manage, and analyze information at scale.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function DataAnalytics() {
                   {solution.icon}
                 </div>
                 <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{solution.title}</h3>
-                <p className="text-[#11253e]/60 text-sm leading-relaxed mb-8 font-light">
+                <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {solution.desc}
                 </p>
                 <Link 
@@ -143,7 +143,7 @@ export default function DataAnalytics() {
               </div>
               <div className="absolute -bottom-8 -right-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
                 <p className="text-4xl font-bold tracking-tighter">70%</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Faster Insights</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest">Faster Insights</p>
               </div>
             </div>
           </div>

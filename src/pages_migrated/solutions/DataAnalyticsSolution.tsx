@@ -1,8 +1,8 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ArrowRight, BarChart3, Layers, Brain, Cog, Rocket, Shield, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, PieChart, Activity, LineChart, Database, Search } from "lucide-react";
 
@@ -10,7 +10,7 @@ export default function DataAnalyticsSolution() {
   useEffect(() => {
     document.title = "Data Analytics Services | Nabhira Technologies";
     window.scrollTo(0, 0);
-  }, []); 
+  }, []);
 
   const approachPoints = [
     {
@@ -140,6 +140,7 @@ export default function DataAnalyticsSolution() {
               Converting data into foresight through <span className="text-white font-medium">decision intelligence</span> that drives measurable business outcomes.
             </p>
 
+
             <div className="pt-6 flex flex-wrap gap-4">
               <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
                 <span>START YOUR JOURNEY</span>
@@ -165,7 +166,7 @@ export default function DataAnalyticsSolution() {
                 Transform Data into <span className="font-medium">Strategic</span>{" "}
                 <span className="text-[#f99d1c] font-medium">Business Advantage</span>
               </p>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
                 In a world defined by volatility and digital acceleration, competitive advantage belongs to organizations that convert data into foresight. Data Analytics is no longer a reporting function. It is a strategic capability that influences growth, operational resilience, capital allocation, risk mitigation and customer experience.
               </p>
             </Motion.div>
@@ -182,6 +183,10 @@ export default function DataAnalyticsSolution() {
                   We help enterprises design and operationalize analytics ecosystems that deliver trusted insight at speed and scale. Our focus is not on dashboards alone — it is on decision intelligence that drives measurable business outcomes.
                 </p>
               </div>
+                <p className="text-[#11253e] text-base font-light leading-relaxed">
+                  Our Data Analytics Experts design, integrate, analyze and govern data ecosystems that are scalable, insight-driven and decision-ready.
+                </p>
+              
               <div className="w-16 h-px bg-[#f99d1c]"></div>
             </Motion.div>
           </div>
@@ -228,7 +233,7 @@ export default function DataAnalyticsSolution() {
             >
               <div className="overflow-hidden relative group h-[300px]">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1758630737361-ca7532fb5e7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRlcnByaXNlJTIwc3RyYXRlZ3klMjBkYXRhJTIwdmlzdWFsaXphdGlvbiUyMG1vZGVybiUyMG9mZmljZXxlbnwxfHx8fDE3NzIzMDI5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1758630737361-ca7532fb5e7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRlcnByaXNlJTIwc3RyYXRlZ3klMjBkYXRhJTIwdmlzdWFsaXphdGlvbiUyMG1vZGVybiUyMG9mZmljZXxlbnwxfHx8fDE3NzIzMDI5OTQ4MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Enterprise Analytics Strategy"
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                 />
@@ -292,7 +297,7 @@ export default function DataAnalyticsSolution() {
               </div>
               <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Methodology</h2>
               <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Delivery. Sustainable Impact.</h3>
-              <p className="text-[#11253e]/60 text-base font-light leading-relaxed max-w-2xl">
+              <p className="text-[#11253e] text-base font-light leading-relaxed max-w-2xl">
                 We apply a rigorous and repeatable framework to transform analytics ambition into enterprise capability.
               </p>
             </Motion.div>
@@ -319,15 +324,14 @@ export default function DataAnalyticsSolution() {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-[#11253e] text-xl font-medium mb-1 text-center">{step.title}</h4>
-                  <p className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.25em] mb-6 text-center">Phase {step.phase}</p>
+                  <h4 className="text-[#11253e] text-xl font-medium mb-6 text-center">{step.title}</h4>
 
                   {/* Points */}
                   <div className="space-y-3">
                     {step.points.map((point, i) => (
                       <div key={i} className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c]/40 mt-1.5 shrink-0"></div>
-                        <span className="text-[#11253e]/70 text-[13px] leading-relaxed">{point}</span>
+                        <span className="text-[#11253e] text-[13px] leading-relaxed">{point}</span>
                       </div>
                     ))}
                   </div>
@@ -343,10 +347,7 @@ export default function DataAnalyticsSolution() {
             viewport={{ once: true }}
             className="mt-12 flex items-center space-x-6"
           >
-            <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
-            <p className="text-[#11253e]/50 text-base font-light italic leading-relaxed">
-              This disciplined approach ensures analytics capability matures alongside the enterprise.
-            </p>
+
           </Motion.div>
         </div>
       </section>
@@ -430,10 +431,8 @@ export default function DataAnalyticsSolution() {
             viewport={{ once: true }}
             className="mt-12 flex items-center space-x-6"
           >
-            <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
-            <p className="text-white/40 text-base font-light italic leading-relaxed">
-              Secure analytics platforms built on AWS, Azure and GCP with enterprise-grade governance.
-            </p>
+    
+
           </Motion.div>
         </div>
       </section>
@@ -456,9 +455,6 @@ export default function DataAnalyticsSolution() {
               </div>
               <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
               <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">From Insight to Competitive Advantage</h3>
-              <p className="text-[#11253e]/70 text-lg font-light max-w-2xl mx-auto mt-4">
-                Our Data Analytics services deliver:
-              </p>
             </Motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -514,8 +510,8 @@ export default function DataAnalyticsSolution() {
                 Ready to Unlock Your <br />
                 <span className="text-[#f99d1c]">Data Potential?</span>
               </h2>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                Engage our analytics experts to evaluate your current capabilities and design a roadmap for enterprise-grade decision intelligence.
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                Engage our Data Analytics Experts to evaluate your current capabilities and design a roadmap for enterprise-grade decision intelligence.
               </p>
             </div>
             <button

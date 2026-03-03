@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { Plus, Quote } from "lucide-react";
 
 interface SuccessStoriesProps {
@@ -111,7 +113,7 @@ export function SuccessStories({ data }: SuccessStoriesProps) {
                   <p className="font-black text-xs uppercase tracking-widest text-[#11253e] group-hover:text-[#f99d1c] transition-colors duration-500">
                     {story.author}
                   </p>
-                  <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e]/60 group-hover:text-white/60 transition-colors duration-500">
+                  <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e] group-hover:text-white/60 transition-colors duration-500">
                     {story.role}
                   </p>
                 </div>

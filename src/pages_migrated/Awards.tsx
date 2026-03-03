@@ -3,6 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
+import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Award, Trophy, Star, Medal } from "lucide-react";
@@ -71,8 +72,8 @@ export default function Awards() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Architecturing <br />
-                <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
+                Excellence <br />
+                <span className="text-[#f99d1c]">Recognized</span>
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
@@ -105,7 +106,7 @@ export default function Awards() {
                   className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-gray-100 pb-12"
                 >
                   <div className="md:col-span-2">
-                    <span className="text-5xl font-extralight text-[#11253e]/20 tracking-tighter">{award.year}</span>
+                    <span className="text-5xl font-extralight text-[#11253e] tracking-tighter">{award.year}</span>
                   </div>
                   <div className="md:col-span-7">
                     <div className="flex items-center space-x-3 mb-4">
@@ -113,7 +114,7 @@ export default function Awards() {
                       <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{award.org}</span>
                     </div>
                     <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">{award.title}</h3>
-                    <p className="text-[#11253e]/60 font-light text-sm leading-relaxed max-w-2xl">
+                    <p className="text-[#11253e] font-light text-sm leading-relaxed max-w-2xl">
                       {award.desc}
                     </p>
                   </div>

@@ -206,7 +206,7 @@ export default function HealthcarePharma() {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e]/70 text-lg max-w-md text-right md:text-left">
+            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
               Healthcare and Pharma leaders must balance innovation with compliance, cost pressures, and patient outcomes.
             </p>
           </div>
@@ -227,7 +227,7 @@ export default function HealthcarePharma() {
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e]/60 leading-relaxed">{item.text}</p>
+                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
               </Motion.div>
             ))}
           </div>
@@ -241,7 +241,7 @@ export default function HealthcarePharma() {
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
-            <p className="text-[#11253e]/60 text-xl max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
               Transforming patient journeys, accelerating research, and optimizing care delivery through digital innovation.
             </p>
           </div>
@@ -263,7 +263,7 @@ export default function HealthcarePharma() {
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e]/70 text-lg leading-relaxed">{area.description}</p>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
                   
                   <ul className="space-y-3 pt-4">
                     {area.details.map((detail, i) => (
@@ -342,29 +342,29 @@ export default function HealthcarePharma() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p className="opacity-80">Tangible results for providers, payers, and pharma.</p>
+              <p className="">Tangible results for providers, payers, and pharma.</p>
             </div>
             
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <HeartPulse size={32} className="mb-4 opacity-80" />
+                <HeartPulse size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Better Care</h3>
-                <p className="opacity-80 text-sm">Improved patient outcomes and satisfaction.</p>
+                <p className="text-sm">Improved patient outcomes and satisfaction.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Clock size={32} className="mb-4 opacity-80" />
+                <Clock size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Faster Trials</h3>
-                <p className="opacity-80 text-sm">Accelerated time-to-market for new therapies.</p>
+                <p className="text-sm">Accelerated time-to-market for new therapies.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <TrendingDown size={32} className="mb-4 opacity-80" />
+                <TrendingDown size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Reduced Costs</h3>
-                <p className="opacity-80 text-sm">Operational efficiency across the value chain.</p>
+                <p className="text-sm">Operational efficiency across the value chain.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <CheckCircle size={32} className="mb-4 opacity-80" />
+                <CheckCircle size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Compliance</h3>
-                <p className="opacity-80 text-sm">Robust adherence to regulatory standards.</p>
+                <p className="text-sm">Robust adherence to regulatory standards.</p>
               </div>
             </div>
           </div>

@@ -29,7 +29,8 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
 
   return (
     <>
-      <section className="relative h-[300px] overflow-hidden">
+      {/* Blogs Hero */}
+      <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
@@ -112,8 +113,6 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
             </div>
           </div>
         </section>
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-        <Footer />
     </>
   );
 }

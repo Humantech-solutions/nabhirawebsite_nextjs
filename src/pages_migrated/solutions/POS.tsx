@@ -39,7 +39,7 @@ export default function POSSolution() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center pt-[110px]">
+      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 opacity-10">
             <ImageWithFallback 
               src="https://images.unsplash.com/photo-1556742049-04ff4f476c5b?auto=format&fit=crop&q=80&w=2000"
@@ -85,8 +85,8 @@ export default function POSSolution() {
             <div className="text-center max-w-3xl mx-auto mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight mb-6">Built for Global Scale</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
-              <p className="text-[#11253e]/60 text-lg font-light">
-                Our architecture supports multi-region deployment with zero-latency synchronization, ensuring your business stays agile regardless of geographic footprint.
+              <p className="text-[#11253e] text-lg font-light">
+                Our architecture supports multi-region deployment
               </p>
             </div>
 
@@ -104,7 +104,7 @@ export default function POSSolution() {
                     {feature.icon}
                   </div>
                   <h3 className="text-[#11253e] text-lg font-bold mb-4">{feature.title}</h3>
-                  <p className="text-[#11253e]/60 text-sm leading-relaxed">{feature.description}</p>
+                  <p className="text-[#11253e] text-sm leading-relaxed">{feature.description}</p>
                 </Motion.div>
               ))}
             </div>
@@ -124,7 +124,7 @@ export default function POSSolution() {
               </div>
               <div className="space-y-8">
                 <h2 className="text-[#11253e] text-3xl font-bold tracking-tight">AI-Native Insights <br />That Drive Growth</h2>
-                <p className="text-[#11253e]/70 leading-relaxed">
+                <p className="text-[#11253e] leading-relaxed">
                   Beyond simple reporting, our Policy Engine integration allows you to set automated rules for dynamic pricing, personalized discounting, and intelligent restock alerts.
                 </p>
                 
@@ -139,7 +139,7 @@ export default function POSSolution() {
                       <div className="w-5 h-5 rounded-full bg-[#f99d1c]/10 flex items-center justify-center">
                         <CheckCircle2 size={12} className="text-[#f99d1c]" />
                       </div>
-                      <span className="text-sm font-medium text-[#11253e]/80 uppercase tracking-wide">{text}</span>
+                      <span className="text-sm font-medium text-[#11253e] uppercase tracking-wide">{text}</span>
                     </div>
                   ))}
                 </div>

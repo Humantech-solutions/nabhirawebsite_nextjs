@@ -7,7 +7,33 @@ import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import { caseStudies as cases } from "../data/migrated_data";
+
+const cases = [
+  {
+    id: 1,
+    title: "Global Bank: Cloud Modernization",
+    client: "Tier 1 Investment Bank",
+    impact: "60% Reduction in OPEX",
+    tags: ["Cloud", "Finance"],
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 2,
+    title: "Retail Giant: AI Supply Chain",
+    client: "Fortune 500 Retailer",
+    impact: "40% Inventory Optimization",
+    tags: ["AI", "Retail"],
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 3,
+    title: "Smart Factory: Edge Intelligence",
+    client: "Global Automotive OEM",
+    impact: "Zero Unplanned Downtime",
+    tags: ["IoT", "Manufacturing"],
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+  }
+];
 
 interface CaseStudiesProps {
   wordpressData?: {
@@ -26,7 +52,8 @@ export default function CaseStudies({ wordpressData }: CaseStudiesProps) {
 
   return (
     <>
-      <section className="relative h-[300px] overflow-hidden">
+      {/* Case Studies Hero */}
+      <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwZGlnaXRhbCUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NzE5MDA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080"}
@@ -74,7 +101,7 @@ export default function CaseStudies({ wordpressData }: CaseStudiesProps) {
                   <h3 className="text-[#11253e] text-3xl font-light tracking-tight leading-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[#11253e]/60 font-light text-lg">
+                  <p className="text-[#11253e] font-light text-lg">
                     Client: <span className="text-[#11253e] font-medium">{c.client}</span>
                   </p>
                   <div className="p-6 bg-[#f8f9fa] border-l-4 border-[#f99d1c]">
@@ -91,8 +118,6 @@ export default function CaseStudies({ wordpressData }: CaseStudiesProps) {
             ))}
           </div>
         </section>
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-        <Footer />
     </>
   );
 }

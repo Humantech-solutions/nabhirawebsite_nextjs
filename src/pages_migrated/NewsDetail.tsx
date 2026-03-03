@@ -2,13 +2,66 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowLeft, Share2, Globe, FileText, ChevronRight } from "lucide-react";
-import { newsItems } from "../data/migrated_data";
+
+const newsItems = [
+  {
+    id: 1,
+    date: "Feb 10, 2026",
+    source: "Bloomberg Technology",
+    title: "Nabhira Technologies Announces Expansion into Southeast Asian Markets",
+    image: "https://images.unsplash.com/photo-1542241617-956c329d6404?auto=format&fit=crop&q=80&w=1200",
+    content: `
+      <p className="mb-6 font-bold text-[#11253e] text-lg">SINGAPORE — Nabhira Technologies, the architectural consulting powerhouse, today announced a multi-year expansion plan into the Southeast Asian (SEA) markets, starting with a new regional headquarters in Singapore.</p>
+      
+      <p className="mb-6 text-[#11253e] leading-relaxed">The move comes as SEA experiences a surge in demand for high-end digital architecture and AI-native enterprise transformation. Nabhira’s CEO, Dr. Arvan Nabhira, stated that the region's unique blend of emerging fintech and manufacturing hubs provides the ideal environment for the firm's signature "minimalist" architectural approach.</p>
+      
+      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">Regional Hub Strategy</h2>
+      <p className="mb-6 text-[#11253e] leading-relaxed">"Southeast Asia is no longer just a manufacturing hub; it's a global center for digital innovation," said Dr. Nabhira during the press conference at the Marina Bay Financial Centre. "Our presence here will allow us to partner more closely with local leaders to build the resilient digital infrastructure required for the next decade of growth."</p>
+      
+      <p className="mb-6 text-[#11253e] leading-relaxed">The Singapore office will serve as a center of excellence for Cloud Sovereignty and Agentic AI, employing over 200 senior architects and consultants by the end of 2026.</p>
+    `
+  },
+  {
+    id: 2,
+    date: "Jan 25, 2026",
+    source: "Financial Times",
+    title: "The Architecture of Tomorrow: Why Nabhira is Leading the AI-Native Revolution",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
+    content: `
+      <p className="mb-6 font-bold text-[#11253e] text-lg">LONDON — In the crowded field of enterprise consulting, one firm is standing out for its refusal to use buzzwords. Nabhira Technologies has built its reputation on a rigorous, architectural approach to Artificial Intelligence.</p>
+      
+      <p className="mb-6 text-[#11253e] leading-relaxed">The Financial Times explores how Nabhira's "First Principles Architecture" is helping Fortune 500 companies move past the pilot phase of AI. While others focus on models, Nabhira focuses on the data fabric that feeds them.</p>
+      
+      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">A Different Kind of Consultant</h2>
+      <p className="mb-6 text-[#11253e] leading-relaxed">Industry analysts suggest that Nabhira's success lies in its deep engineering roots. Unlike traditional management consultancies, Nabhira doesn't just provide strategies; they design the digital nervous systems that execute them.</p>
+      
+      <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-6 my-12 italic text-2xl text-[#11253e] bg-gray-50">
+        "Nabhira is the architect that builds the cathedral, not just the contractor that lays the bricks." — Senior Analyst, FT Intelligence.
+      </blockquote>
+    `
+  },
+  {
+    id: 3,
+    date: "Dec 12, 2025",
+    source: "Business Insider",
+    title: "Top 50 Cloud Companies to Watch in 2026",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
+    content: `
+      <p className="mb-6 font-bold text-[#11253e] text-lg">NEW YORK — Business Insider has released its annual list of the 'Top 50 Cloud Companies to Watch', and Nabhira Technologies has claimed a top-five spot for the first time.</p>
+      
+      <p className="mb-6 text-[#11253e] leading-relaxed">The list highlights companies that are fundamentally changing how enterprises utilize cloud computing. Nabhira was praised for its pioneering work in multi-cloud mesh architectures and decentralized data governance.</p>
+      
+      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">The Multi-Cloud Advantage</h2>
+      <p className="mb-6 text-[#11253e] leading-relaxed">The recognition comes after a year of record growth for Nabhira, which saw its global client base expand by 40%. The firm’s proprietary "Nabhira Mesh" framework has become the gold standard for enterprises looking to avoid vendor lock-in while maintaining high performance across disparate cloud providers.</p>
+    `
+  }
+];
 
 export default function NewsDetail() {
   const { id } = useParams();
@@ -38,14 +91,14 @@ export default function NewsDetail() {
         {/* Header Section */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6">
-            <Link href="/resources/news" className="inline-flex items-center gap-2 text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest mb-12 hover:text-[#f99d1c] transition-colors">
+            <Link href="/resources/news" className="inline-flex items-center gap-2 text-[10px] font-bold text-[#11253e] uppercase tracking-widest mb-12 hover:text-[#f99d1c] transition-colors">
               <ArrowLeft size={14} /> Back to Press Room
             </Link>
             
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <span className="bg-[#f99d1c] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Press Release</span>
-                <span className="text-[#11253e]/40 text-[10px] font-bold uppercase tracking-widest">{item.date}</span>
+                <span className="text-[#11253e] text-[10px] font-bold uppercase tracking-widest">{item.date}</span>
               </div>
               
               <h1 className="text-[#11253e] text-3xl md:text-5xl font-bold leading-tight tracking-tight">
@@ -78,19 +131,19 @@ export default function NewsDetail() {
             {/* Main Content */}
             <div className="lg:col-span-12">
               <div 
-                className="prose prose-lg max-w-none text-[#11253e]/70 font-light leading-relaxed news-content"
+                className="prose prose-lg max-w-none text-[#11253e] font-light leading-relaxed news-content"
                 dangerouslySetInnerHTML={{ __html: item.content }}
               />
               
               <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-8">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest">Media Contact</p>
+                  <p className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Media Contact</p>
                   <p className="text-sm font-bold text-[#11253e]">press@nabhira.tech</p>
                 </div>
                 
                 <div className="flex items-center gap-6">
-                  <button className="text-[#11253e]/40 hover:text-[#f99d1c] transition-colors"><Share2 size={18} /></button>
-                  <button className="text-[#11253e]/40 hover:text-[#f99d1c] transition-colors"><FileText size={18} /></button>
+                  <button className="text-[#11253e] hover:text-[#f99d1c] transition-colors"><Share2 size={18} /></button>
+                  <button className="text-[#11253e] hover:text-[#f99d1c] transition-colors"><FileText size={18} /></button>
                 </div>
               </div>
             </div>

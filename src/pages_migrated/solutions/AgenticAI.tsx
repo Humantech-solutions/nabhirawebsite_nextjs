@@ -7,17 +7,24 @@ import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import aiServerImg from "../../assets/ai.png";
 import {
   ArrowRight,
+  Settings,
   Network,
+  Zap,
+  Search,
   Check,
   Layers,
+  Cog,
+  Rocket,
+  Shield,
   Brain,
+  Cpu,
   Workflow,
   Target,
+  GitBranch,
   Database,
   Lock,
   Eye,
-  FileCheck,
-  Server
+  FileCheck
 } from "lucide-react";
 
 export default function AgenticAI() {
@@ -125,9 +132,16 @@ export default function AgenticAI() {
     {
       category: "Infrastructure",
       items: "Kubernetes, Containerization",
-      icon: <Server size={20} />,
+      icon: <ServerIcon size={20} />,
     },
   ];
+
+  // Helper component for icon since Server is already imported as something else potentially or just use lucide directly
+  function ServerIcon({ size, className }: { size?: number, className?: string }) {
+      return (
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+      )
+  }
 
   const valueProps = [
     "Automate complex multi step workflows",
@@ -201,7 +215,7 @@ export default function AgenticAI() {
               <span className="font-semibold text-[#f99d1c]">From Intelligent Models to Autonomous Digital Agents</span>
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
-            <p className="text-[#11253e]/70 text-lg leading-relaxed max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-lg leading-relaxed max-w-3xl mx-auto">
               The next evolution of AI is not just prediction or automation. It is autonomy. Agentic AI systems go beyond static models. They perceive context, reason across multiple steps, make decisions, and take action within defined boundaries.
             </p>
             <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
@@ -223,6 +237,9 @@ export default function AgenticAI() {
               <p className="text-white/70 text-lg font-light max-w-xl">
                 Agentic AI is not about replacing human judgment. It is about augmenting it with intelligent systems that operate within structured guardrails.
               </p>
+            </div>
+            <div className="hidden md:block">
+               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
             </div>
           </div>
 
@@ -247,7 +264,7 @@ export default function AgenticAI() {
             ))}
             <div className="bg-[#f99d1c] p-8 flex flex-col justify-center items-center text-center">
               <h3 className="text-[#11253e] text-2xl font-bold mb-2">Mission Critical</h3>
-              <p className="text-[#11253e]/80 text-sm font-medium">We treat agentic systems as mission critical digital workforce components.</p>
+              <p className="text-[#11253e] text-sm font-medium">We treat agentic systems as mission critical digital workforce components.</p>
             </div>
           </div>
         </div>
@@ -259,7 +276,7 @@ export default function AgenticAI() {
           <div className="text-center max-w-3xl mx-auto mb-20">
              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured Lifecycle for Agentic AI</h2>
-             <p className="text-[#11253e]/70 text-lg font-light">
+             <p className="text-[#11253e] text-lg font-light">
                We apply a disciplined framework to move from concept to production ready autonomous systems.
              </p>
           </div>
@@ -285,7 +302,7 @@ export default function AgenticAI() {
                  <div className="flex-grow">
                    <ul className="space-y-3">
                      {step.points.map((pt, i) => (
-                       <li key={i} className="flex items-start gap-3 text-[#11253e]/70 text-sm leading-relaxed">
+                       <li key={i} className="flex items-start gap-3 text-[#11253e] text-sm leading-relaxed">
                          <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full mt-1.5 shrink-0"></div>
                          <span>{pt}</span>
                        </li>
@@ -334,7 +351,7 @@ export default function AgenticAI() {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm uppercase tracking-wider text-[#11253e]">{tool.category}</h4>
-                      <p className="text-[#11253e]/70 text-sm font-medium">{tool.items}</p>
+                      <p className="text-[#11253e] text-sm font-medium">{tool.items}</p>
                     </div>
                   </Motion.div>
                 ))}
@@ -392,7 +409,7 @@ export default function AgenticAI() {
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
-             <p className="text-[#11253e]/80 text-lg">Introduce autonomy with control.</p>
+             <p className="text-[#11253e] text-lg">Introduce autonomy with control.</p>
            </div>
            <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
              <span>Start Your Journey</span>
