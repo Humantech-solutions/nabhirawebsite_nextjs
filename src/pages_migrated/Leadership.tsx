@@ -3,22 +3,11 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { Footer, LimitlessTogether } from "../components/Footer";
+import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, ChevronRight } from "lucide-react";
 
-interface LeadershipProps {
-  wordpressData?: {
-    title: string;
-    content: string;
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
-
-export default function Leadership({ wordpressData }: LeadershipProps) {
+export default function Leadership() {
   useEffect(() => {
     document.title = "Leadership | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -28,13 +17,13 @@ export default function Leadership({ wordpressData }: LeadershipProps) {
     {
       name: "Aditya Vardhan",
       role: "Chief Executive Officer",
-      bio: "With over 20 years of experience in digital transformation, Aditya leads Nabhira&apos;s vision to architect the future of enterprise intelligence.",
+      bio: "With over 20 years of experience in digital transformation, Aditya leads Nabhira's vision to architect the future of enterprise intelligence.",
       image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc3MTg5OTAyOCww&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
       name: "Meera Krishnan",
       role: "Chief Technology Officer",
-      bio: "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Nabhira&apos;s market-leading solutions.",
+      bio: "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Nabhira's market-leading solutions.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUyMHdvbWFuJTIwc3VpdHxlbnwxfHx8fDE3NzE4OTkwMjl8MA&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
@@ -51,7 +40,7 @@ export default function Leadership({ wordpressData }: LeadershipProps) {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback
-              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1700809888987-cf2b29ecbd2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzE4OTkwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080"}
+              src="https://images.unsplash.com/photo-1700809888987-cf2b29ecbd2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzE4OTkwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Nabhira Leadership"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -74,20 +63,15 @@ export default function Leadership({ wordpressData }: LeadershipProps) {
                 <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
                 <span className="text-[#f99d1c]">Leadership</span>
               </nav>
-
-              <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                    <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                  ) : (
-                    <>
-                      The <span className="text-[#f99d1c]">Visionaries</span> <br />
-                      Behind the Precision
-                    </>
-                  )}
-                </h1>
-                <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world&apos;s most ambitious enterprises."}
+              
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                The <span className="text-[#f99d1c]">Visionaries</span> <br />
+                Behind the Precision
+              </h1>
+              
+              <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
+                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                  Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world's most ambitious enterprises.
                 </p>
               </div>
             </Motion.div>
@@ -142,22 +126,14 @@ export default function Leadership({ wordpressData }: LeadershipProps) {
               Governed by <span className="font-bold">Integrity</span>
             </h2>
             <div className="max-w-3xl mx-auto">
-              {wordpressData?.content ? (
-                <div 
-                  className="prose prose-lg text-[#11253e]/70 font-light leading-relaxed max-w-none text-center"
-                  dangerouslySetInnerHTML={{ __html: wordpressData.content }} 
-                />
-              ) : (
-                <p className="text-[#11253e]/70 font-light leading-relaxed">
-                  Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world&apos;s leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.
-                </p>
-              )}
+              <p className="text-[#11253e]/70 font-light leading-relaxed">
+                Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.
+              </p>
             </div>
           </div>
         </section>
 
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-        <Footer />
+        <LimitlessTogether />
     </>
   );
 }

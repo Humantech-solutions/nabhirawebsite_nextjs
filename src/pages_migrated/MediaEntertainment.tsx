@@ -2,16 +2,7 @@
 
 import { IndustryLayout } from "../components/IndustryLayout";
 
-interface MediaEntertainmentProps {
-  wordpressData?: {
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
-
-export default function MediaEntertainment({ wordpressData }: MediaEntertainmentProps) {
+export default function MediaEntertainment() {
   return (
     <IndustryLayout
       title="Media & Entertainment"
@@ -48,7 +39,6 @@ export default function MediaEntertainment({ wordpressData }: MediaEntertainment
           "Personalized Content Trailers"
         ]
       }}
-      globalSettings={wordpressData?.globalSettings}
     />
   );
 }
