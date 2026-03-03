@@ -1,8 +1,8 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, Lock, BarChart3, Search, Users, FileCheck, Database } from "lucide-react";
 
@@ -166,12 +166,10 @@ export default function DataGovernance() {
                 Trust as the Foundation of{" "}
                 <span className="text-[#f99d1c] font-medium">Digital Enterprise</span>
               </p>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
                 In a data driven economy trust is not optional. It is foundational. As organizations expand across digital channels, cloud platforms and global markets, data complexity increases. Without strong governance, enterprises face inconsistent reporting, regulatory exposure, security risks and loss of decision confidence.
               </p>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
-                Data Governance is not about control alone. It is about enabling reliable, compliant and accountable data usage across the organization.
-              </p>
+
             </Motion.div>
 
             <Motion.div
@@ -186,6 +184,9 @@ export default function DataGovernance() {
                   We help enterprises design and institutionalize governance frameworks that ensure data integrity, transparency and regulatory discipline while supporting innovation at scale.
                 </p>
               </div>
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                Our Data Governance Experts facilitates reliable, compliant and accountable data usage across the organization.
+              </p>
               <div className="w-16 h-px bg-[#f99d1c]"></div>
             </Motion.div>
           </div>
@@ -296,8 +297,8 @@ export default function DataGovernance() {
               </div>
               <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Methodology</h2>
               <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Governance Framework for Enterprise Scale</h3>
-              <p className="text-[#11253e]/60 text-base font-light leading-relaxed max-w-2xl">
-                We apply a disciplined framework to operationalize governance across the data ecosystem.
+              <p className="text-[#11253e] text-base font-light leading-relaxed max-w-2xl">
+                We apply a disciplined framework to operationalize governance.
               </p>
             </Motion.div>
           </div>
@@ -323,15 +324,14 @@ export default function DataGovernance() {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-[#11253e] text-xl font-medium mb-1 text-center">{step.title}</h4>
-                  <p className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.25em] mb-6 text-center">Phase {step.phase}</p>
+                  <h4 className="text-[#11253e] text-xl font-medium mb-6 text-center">{step.title}</h4>
 
                   {/* Points */}
                   <div className="space-y-3">
                     {step.points.map((point, i) => (
                       <div key={i} className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c]/40 mt-1.5 shrink-0"></div>
-                        <span className="text-[#11253e]/70 text-[13px] leading-relaxed">{point}</span>
+                        <span className="text-[#11253e] text-[13px] leading-relaxed">{point}</span>
                       </div>
                     ))}
                   </div>
@@ -347,10 +347,6 @@ export default function DataGovernance() {
             viewport={{ once: true }}
             className="mt-12 flex items-center space-x-6"
           >
-            <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
-            <p className="text-[#11253e]/50 text-base font-light italic leading-relaxed">
-              This structured approach ensures governance becomes institutionalized rather than project based.
-            </p>
           </Motion.div>
         </div>
       </section>
@@ -434,10 +430,7 @@ export default function DataGovernance() {
             viewport={{ once: true }}
             className="mt-12 flex items-center space-x-6"
           >
-            <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
-            <p className="text-white/40 text-base font-light italic leading-relaxed">
-              Secure governance platforms built on AWS, Azure and GCP with enterprise-grade compliance controls.
-            </p>
+
           </Motion.div>
         </div>
       </section>
@@ -460,9 +453,7 @@ export default function DataGovernance() {
               </div>
               <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
               <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Confidence Compliance Competitive Advantage</h3>
-              <p className="text-[#11253e]/70 text-lg font-light max-w-2xl mx-auto mt-4">
-                Our Data Governance services enable you to:
-              </p>
+
             </Motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -518,7 +509,7 @@ export default function DataGovernance() {
                 Secure Your <br />
                 <span className="text-[#f99d1c]">Competitive Edge.</span>
               </h2>
-              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
                 Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
               </p>
             </div>

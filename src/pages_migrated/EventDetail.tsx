@@ -2,7 +2,7 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Navbar } from "../components/Navbar";
@@ -10,7 +10,39 @@ import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, Clock, MapPin, ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
-import { events } from "../data/migrated_data";
+
+const events = [
+  {
+    id: 1,
+    title: "Nabhira Architecture Summit 2026",
+    date: "March 15-16, 2026",
+    time: "09:00 AM - 06:00 PM",
+    location: "Marina Bay Financial Centre, Singapore",
+    type: "Flagship Event",
+    description: "Our annual flagship summit bringing together the brightest minds in digital architecture. Join us for two days of intensive workshops, keynote sessions from industry titans, and networking opportunities that will shape the next decade of enterprise technology.",
+    image: "https://images.unsplash.com/photo-1561489411-c0ce86e994bb?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: 2,
+    title: "Webinar: Architecting Autonomous Enterprises",
+    date: "Feb 28, 2026",
+    time: "03:00 PM - 04:30 PM",
+    location: "Online / Virtual",
+    type: "Webinar",
+    description: "Explore the transition from automated to autonomous enterprises. This webinar dives deep into Agentic AI frameworks and how they integrate into existing legacy architectures to drive unprecedented efficiency.",
+    image: "https://images.unsplash.com/photo-1615852993296-b42d4dbb5555?auto=format&fit=crop&q=80&w=1200"
+  },
+  {
+    id: 3,
+    title: "Cloud & Data Expo 2026",
+    date: "April 05, 2026",
+    time: "10:00 AM - 05:00 PM",
+    location: "ExCeL London, UK",
+    type: "Exhibition",
+    description: "Visit Nabhira Technologies at booth #442. We will be showcasing our latest breakthroughs in multi-cloud mesh architectures and real-time data fabric implementations. Exclusive live demos and consulting sessions available.",
+    image: "https://images.unsplash.com/photo-1598209494655-b8e249540dfc?auto=format&fit=crop&q=80&w=1200"
+  }
+];
 
 type RegistrationForm = {
   firstName: string;
@@ -100,7 +132,7 @@ export default function EventDetail() {
               <div className="space-y-6">
                 <h2 className="text-[#11253e] text-2xl font-bold uppercase tracking-tight">About the Event</h2>
                 <div className="w-12 h-1 bg-[#f99d1c]"></div>
-                <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+                <p className="text-[#11253e] text-lg font-light leading-relaxed">
                   {event.description}
                 </p>
               </div>
@@ -118,7 +150,7 @@ export default function EventDetail() {
                       <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#f99d1c]/10 flex items-center justify-center">
                         <CheckCircle2 size={12} className="text-[#f99d1c]" />
                       </div>
-                      <p className="text-sm text-[#11253e]/60">{item}</p>
+                      <p className="text-sm text-[#11253e]">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -138,7 +170,7 @@ export default function EventDetail() {
                       <CheckCircle2 size={40} />
                     </div>
                     <h3 className="text-[#11253e] text-2xl font-bold">Registration Confirmed</h3>
-                    <p className="text-[#11253e]/60 text-sm font-light">
+                    <p className="text-[#11253e] text-sm font-light">
                       Thank you for registering. A confirmation email with further details has been sent to your inbox.
                     </p>
                     <button 
@@ -152,13 +184,13 @@ export default function EventDetail() {
                   <div className="space-y-8">
                     <div className="space-y-2">
                       <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">Reserve Your Spot</h3>
-                      <p className="text-xs text-[#11253e]/40 uppercase tracking-widest font-bold">Limited capacity available</p>
+                      <p className="text-xs text-[#11253e] uppercase tracking-widest font-bold">Limited capacity available</p>
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-[#11253e]/60 uppercase tracking-widest">First Name</label>
+                          <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">First Name</label>
                           <input 
                             {...register("firstName", { required: true })}
                             className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors"
@@ -167,7 +199,7 @@ export default function EventDetail() {
                           {errors.firstName && <span className="text-[9px] text-red-500 uppercase font-bold tracking-tighter flex items-center gap-1 mt-1"><AlertCircle size={10} /> Required</span>}
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-[#11253e]/60 uppercase tracking-widest">Last Name</label>
+                          <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Last Name</label>
                           <input 
                             {...register("lastName", { required: true })}
                             className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors"
@@ -178,7 +210,7 @@ export default function EventDetail() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-[#11253e]/60 uppercase tracking-widest">Corporate Email</label>
+                        <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Corporate Email</label>
                         <input 
                           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                           className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors"
@@ -188,7 +220,7 @@ export default function EventDetail() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-[#11253e]/60 uppercase tracking-widest">Company</label>
+                        <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Company</label>
                         <input 
                           {...register("company", { required: true })}
                           className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors"
@@ -197,7 +229,7 @@ export default function EventDetail() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-[#11253e]/60 uppercase tracking-widest">Areas of Interest</label>
+                        <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Areas of Interest</label>
                         <select 
                           {...register("interests")}
                           className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors appearance-none"

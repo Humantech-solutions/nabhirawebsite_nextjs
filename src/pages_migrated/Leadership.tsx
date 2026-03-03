@@ -18,13 +18,13 @@ export default function Leadership() {
       name: "Aditya Vardhan",
       role: "Chief Executive Officer",
       bio: "With over 20 years of experience in digital transformation, Aditya leads Nabhira's vision to architect the future of enterprise intelligence.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc3MTg5OTAyOCww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc3MTg5OTAyOHww&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
       name: "Meera Krishnan",
       role: "Chief Technology Officer",
       bio: "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Nabhira's market-leading solutions.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUyMHdvbWFuJTIwc3VpdHxlbnwxfHx8fDE3NzE4OTkwMjl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjB3b21hbiUyMHN1aXR8ZW58MXx8fHwxNzcxODk5MDI5fDA&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
       name: "Vikram Sethi",
@@ -109,7 +109,7 @@ export default function Leadership() {
                       <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{leader.role}</span>
                     </div>
                     <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">{leader.name}</h3>
-                    <p className="text-[#11253e]/60 font-light text-sm leading-relaxed">
+                    <p className="text-[#11253e] font-light text-sm leading-relaxed">
                       {leader.bio}
                     </p>
                   </div>
@@ -126,7 +126,7 @@ export default function Leadership() {
               Governed by <span className="font-bold">Integrity</span>
             </h2>
             <div className="max-w-3xl mx-auto">
-              <p className="text-[#11253e]/70 font-light leading-relaxed">
+              <p className="text-[#11253e] font-light leading-relaxed">
                 Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.
               </p>
             </div>

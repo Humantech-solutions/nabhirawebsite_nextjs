@@ -202,7 +202,7 @@ export default function ManufacturingAutomotive() {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e]/70 text-lg max-w-md text-right md:text-left">
+            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
               Manufacturing and Automotive leaders must address supply chain volatility and the shift toward software-defined vehicles.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function ManufacturingAutomotive() {
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e]/60 leading-relaxed">{item.text}</p>
+                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
               </Motion.div>
             ))}
           </div>
@@ -237,7 +237,7 @@ export default function ManufacturingAutomotive() {
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
-            <p className="text-[#11253e]/60 text-xl max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
               Modernize production environments, enable Industry 4.0 transformation, and accelerate digital innovation at scale.
             </p>
           </div>
@@ -259,7 +259,7 @@ export default function ManufacturingAutomotive() {
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e]/70 text-lg leading-relaxed">{area.description}</p>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
                   
                   <ul className="space-y-3 pt-4">
                     {area.details.map((detail, i) => (
@@ -338,29 +338,29 @@ export default function ManufacturingAutomotive() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p className="opacity-80">Tangible results for forward-thinking manufacturers.</p>
+              <p className="">Tangible results for forward-thinking manufacturers.</p>
             </div>
             
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Clock size={32} className="mb-4 opacity-80" />
+                <Clock size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Efficiency</h3>
-                <p className="opacity-80 text-sm">Increased production efficiency and reduced downtime.</p>
+                <p className="text-sm">Increased production efficiency and reduced downtime.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <CheckCircle size={32} className="mb-4 opacity-80" />
+                <CheckCircle size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Quality</h3>
-                <p className="opacity-80 text-sm">Improved quality control and traceability.</p>
+                <p className="text-sm">Improved quality control and traceability.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <BarChart size={32} className="mb-4 opacity-80" />
+                <BarChart size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Resilience</h3>
-                <p className="opacity-80 text-sm">Greater supply chain resilience and visibility.</p>
+                <p className="text-sm">Greater supply chain resilience and visibility.</p>
               </div>
               <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Repeat size={32} className="mb-4 opacity-80" />
+                <Repeat size={32} className="mb-4" />
                 <h3 className="text-xl font-bold mb-2">Innovation</h3>
-                <p className="opacity-80 text-sm">Faster innovation cycles in product development.</p>
+                <p className="text-sm">Faster innovation cycles in product development.</p>
               </div>
             </div>
           </div>

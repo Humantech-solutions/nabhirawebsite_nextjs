@@ -7,17 +7,23 @@ import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import heroImg from "../../assets/heroImg.png";
 import {
   ArrowRight,
+  CheckCircle2,
   Brain,
   Crosshair,
   Layers,
+  Cog,
+  Rocket,
+  Sparkles,
+  Server,
   Shield,
+  Lightbulb,
   Database,
+  BarChart3,
   Cpu,
   Workflow,
+  Check,
   Code2,
   GitBranch,
-  Server,
-  Check
 } from "lucide-react";
 
 export default function AIEngineering() {
@@ -204,7 +210,7 @@ export default function AIEngineering() {
               It is becoming the <span className="font-semibold text-[#f99d1c]">operating layer of modern enterprises</span>.
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
-            <p className="text-[#11253e]/70 text-lg leading-relaxed max-w-3xl mx-auto">
+            <p className="text-[#11253e] text-lg leading-relaxed max-w-3xl mx-auto">
               However, scaling AI beyond pilots requires disciplined engineering, responsible governance, and production-grade infrastructure. Many organizations struggle to move from proof of concept to measurable enterprise value.
             </p>
             <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
@@ -226,6 +232,9 @@ export default function AIEngineering() {
               <p className="text-white/70 text-lg font-light max-w-xl">
                 AI success is not about models alone. It is about architecture integration, governance, and business alignment.
               </p>
+            </div>
+            <div className="hidden md:block">
+               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
             </div>
           </div>
 
@@ -250,7 +259,7 @@ export default function AIEngineering() {
             ))}
             <div className="bg-[#f99d1c] p-8 flex flex-col justify-center items-center text-center">
               <h3 className="text-[#11253e] text-2xl font-bold mb-2">Long Term Capability</h3>
-              <p className="text-[#11253e]/80 text-sm font-medium">We treat AI as a long term capability not a one time experiment.</p>
+              <p className="text-[#11253e] text-sm font-medium">We treat AI as a long term capability not a one time experiment.</p>
             </div>
           </div>
         </div>
@@ -262,7 +271,7 @@ export default function AIEngineering() {
           <div className="text-center max-w-3xl mx-auto mb-20">
              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured AI Engineering Lifecycle</h2>
-             <p className="text-[#11253e]/70 text-lg font-light">
+             <p className="text-[#11253e] text-lg font-light">
                We apply a disciplined engineering framework to move AI from experimentation to enterprise scale.
              </p>
           </div>
@@ -288,7 +297,7 @@ export default function AIEngineering() {
                  <div className="flex-grow">
                    <ul className="space-y-3">
                      {step.points.map((pt, i) => (
-                       <li key={i} className="flex items-start gap-3 text-[#11253e]/70 text-sm leading-relaxed">
+                       <li key={i} className="flex items-start gap-3 text-[#11253e] text-sm leading-relaxed">
                          <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full mt-1.5 shrink-0"></div>
                          <span>{pt}</span>
                        </li>
@@ -337,7 +346,7 @@ export default function AIEngineering() {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm uppercase tracking-wider text-[#11253e]">{tool.category}</h4>
-                      <p className="text-[#11253e]/70 text-sm font-medium">{tool.items}</p>
+                      <p className="text-[#11253e] text-sm font-medium">{tool.items}</p>
                     </div>
                   </Motion.div>
                 ))}
@@ -375,7 +384,7 @@ export default function AIEngineering() {
            <div className="mt-20 bg-[#11253e] rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
              <p className="text-white text-xl md:text-2xl font-light leading-relaxed relative z-10 max-w-4xl mx-auto">
-               Most importantly we help organizations institutionalize AI as a strategic capability ensuring it delivers measurable impact rather than isolated experimentation.
+               We help organizations institutionalize AI as a strategic capability ensuring it delivers measurable impact rather than isolated experimentation.
              </p>
            </div>
         </div>
@@ -395,7 +404,7 @@ export default function AIEngineering() {
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
-             <p className="text-[#11253e]/80 text-lg">Transform from experimentation to production-grade intelligence.</p>
+             <p className="text-[#11253e] text-lg">Transform from experimentation to production-grade intelligence.</p>
            </div>
            <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
              <span>Start Your Journey</span>

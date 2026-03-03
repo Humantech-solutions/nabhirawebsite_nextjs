@@ -1,8 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import { 
   Cloud, 
   Database, 
@@ -222,7 +222,7 @@ export function Capabilities({ data }: CapabilitiesProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-4 md:mt-6 text-[#11253e]/60 max-w-2xl text-base md:text-lg font-light leading-relaxed"
+            className="mt-4 md:mt-6 text-[#11253e] max-w-2xl text-base md:text-lg font-light leading-relaxed"
           >
             {sectionDesc}
           </motion.p>
@@ -235,7 +235,7 @@ export function Capabilities({ data }: CapabilitiesProps) {
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
               className={`pb-4 px-2 text-[13px] md:text-sm font-medium tracking-normal transition-all duration-300 relative whitespace-nowrap ${
-                activeTab === cat.id ? "text-[#11253e]" : "text-[#11253e]/40 hover:text-[#11253e]/70"
+                activeTab === cat.id ? "text-[#11253e]" : "text-[#11253e] hover:text-[#11253e]"
               }`}
             >
               <span className="flex items-center gap-2 md:gap-3">
@@ -329,13 +329,14 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
         <h3 className="text-[#11253e] text-xl font-semibold mb-4 tracking-tight group-hover:text-[#f99d1c] transition-colors duration-300">
           {service.title}
         </h3>
-        <p className="text-[#11253e]/70 text-sm font-light leading-relaxed mb-8">
+        <p className="text-[#11253e] text-sm font-light leading-relaxed mb-8">
           {service.desc}
         </p>
       </div>
 
       <div className="relative z-10 mt-auto pt-6 border-t border-[#11253e]/5">
-        <Link href={routeMap[service.title] || "#"}
+        <Link 
+          href={routeMap[service.title] || "#"}
           className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300"
         >
           Explore More

@@ -103,12 +103,12 @@ export function IndustryLayout({
                 </div>
                 <h3 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[12px]">Cloud Transformation</h3>
                 <h4 className="text-[#11253e] text-lg font-medium mb-4">{cloudService.title}</h4>
-                <p className="text-[#11253e]/60 font-light text-sm leading-relaxed mb-8">
+                <p className="text-[#11253e] font-light text-sm leading-relaxed mb-8">
                   {cloudService.description}
                 </p>
                 <ul className="space-y-3 mb-8">
                   {cloudService.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]/80">
+                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]">
                       <div className="w-1 h-1 bg-[#f99d1c] rounded-full mt-1.5 shrink-0" />
                       {f}
                     </li>
@@ -129,12 +129,12 @@ export function IndustryLayout({
                 </div>
                 <h3 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[12px]">Data & Analytics</h3>
                 <h4 className="text-[#11253e] text-lg font-medium mb-4">{dataService.title}</h4>
-                <p className="text-[#11253e]/60 font-light text-sm leading-relaxed mb-8">
+                <p className="text-[#11253e] font-light text-sm leading-relaxed mb-8">
                   {dataService.description}
                 </p>
                 <ul className="space-y-3 mb-8">
                   {dataService.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]/80">
+                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]">
                       <div className="w-1 h-1 bg-[#f99d1c] rounded-full mt-1.5 shrink-0" />
                       {f}
                     </li>
@@ -155,12 +155,12 @@ export function IndustryLayout({
                 </div>
                 <h3 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[12px]">Agentic AI</h3>
                 <h4 className="text-[#11253e] text-lg font-medium mb-4">{aiService.title}</h4>
-                <p className="text-[#11253e]/60 font-light text-sm leading-relaxed mb-8">
+                <p className="text-[#11253e] font-light text-sm leading-relaxed mb-8">
                   {aiService.description}
                 </p>
                 <ul className="space-y-3 mb-8">
                   {aiService.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]/80">
+                    <li key={i} className="flex items-start gap-3 text-xs text-[#11253e]">
                       <div className="w-1 h-1 bg-[#f99d1c] rounded-full mt-1.5 shrink-0" />
                       {f}
                     </li>

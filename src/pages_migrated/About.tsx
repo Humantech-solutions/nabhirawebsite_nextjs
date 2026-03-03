@@ -7,6 +7,7 @@ import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
 import logo from '../assets/logo.png';
+import Image from "next/image";
 
 interface AboutProps {
   wordpressData?: {
@@ -137,7 +138,7 @@ export default function About({ wordpressData }: AboutProps) {
               <div className="relative">
                 <div className="aspect-[4/5] bg-gray-100 rounded-sm overflow-hidden border border-gray-100 shadow-2xl relative z-10">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1573166364839-1bfe9196c23e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG1lZXRpbmclMjBib2FyZCUyMHJvb218ZW58MXx8fHwxNzcxODk3MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="https://images.unsplash.com/photo-1573166364839-1bfe9196c23e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG1eXRpbmclMjBib2FyZCUyMHJvb218ZW58MXx8fHwxNzcxODk3MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                     alt="Corporate Leadership"
                     className="w-full h-full object-cover"
                   />
@@ -209,7 +210,12 @@ export default function About({ wordpressData }: AboutProps) {
         <section className="py-24 bg-gray-50 relative overflow-hidden">
           {/* Subtle logo watermark */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
-            <ImageWithFallback src={logo} alt="" className="w-full grayscale" />
+            <Image
+  src={logo}
+  alt="Nabhira Logo"
+  className="w-full grayscale"
+  priority
+/>
           </div>
           
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
@@ -237,7 +243,7 @@ export default function About({ wordpressData }: AboutProps) {
                   <h4 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[14px]">
                     {v.title}
                   </h4>
-                  <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">
+                  <p className="text-[#11253e] text-sm font-light leading-relaxed">
                     {v.desc}
                   </p>
                 </Motion.div>

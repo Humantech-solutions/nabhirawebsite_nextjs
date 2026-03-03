@@ -55,7 +55,8 @@ export default function Events({ wordpressData }: EventsProps) {
 
   return (
     <>
-      <section className="relative h-[300px] overflow-hidden">
+      {/* Events Hero */}
+      <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1670420421505-804c23232098?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29uZmVyZW5jZSUyMHN0YWdlJTIwYmx1ZSUyMGxpZ2h0aW5nJTIwZnV0dXJpc3RpY3xlbnwxfHx8fDE3NzE5MDA3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080"}
@@ -107,13 +108,13 @@ export default function Events({ wordpressData }: EventsProps) {
                       </h3>
                     </Link>
                     <div className="space-y-3 mt-auto">
-                      <div className="flex items-center gap-3 text-xs text-[#11253e]/60">
+                      <div className="flex items-center gap-3 text-xs text-[#11253e]">
                         <Calendar size={14} className="text-[#f99d1c]" /> {event.date}
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-[#11253e]/60">
+                      <div className="flex items-center gap-3 text-xs text-[#11253e]">
                         <Clock size={14} className="text-[#f99d1c]" /> {event.time}
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-[#11253e]/60">
+                      <div className="flex items-center gap-3 text-xs text-[#11253e]">
                         <MapPin size={14} className="text-[#f99d1c]" /> {event.location}
                       </div>
                     </div>
@@ -129,8 +130,6 @@ export default function Events({ wordpressData }: EventsProps) {
             </div>
           </div>
         </section>
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-        <Footer />
     </>
   );
 }

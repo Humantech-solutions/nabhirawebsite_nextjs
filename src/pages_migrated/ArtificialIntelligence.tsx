@@ -4,7 +4,9 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { Cpu, Brain, Sparkles, Workflow, ArrowRight, Zap, Target, Lightbulb } from "lucide-react";
 import Link from "next/link";
-const aiServerImg = "/assets/ai.png";
+import aiServerImg from "../assets/ai.png";
+import Image from "next/image";
+
 
 export default function ArtificialIntelligence() {
   const solutions = [
@@ -62,7 +64,7 @@ export default function ArtificialIntelligence() {
           </>
         }
         description="We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."
-        image={aiServerImg}
+       image={aiServerImg.src}
       />
 
       {/* Solutions Grid */}
@@ -72,7 +74,7 @@ export default function ArtificialIntelligence() {
             <h2 className="text-3xl lg:text-5xl font-medium tracking-tight mb-8">
               The Next Era of <span className="text-[#f99d1c]">Enterprise AI</span>
             </h2>
-            <p className="text-[#11253e]/60 text-lg lg:text-xl leading-relaxed font-light">
+            <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed font-light">
               We help you transition from experimentation to production, embedding intelligence into every facet of your organization.
             </p>
           </div>
@@ -91,7 +93,7 @@ export default function ArtificialIntelligence() {
                   {solution.icon}
                 </div>
                 <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{solution.title}</h3>
-                <p className="text-[#11253e]/60 text-sm leading-relaxed mb-8 font-light">
+                <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {solution.desc}
                 </p>
                 <Link 
@@ -144,7 +146,7 @@ export default function ArtificialIntelligence() {
               </div>
               <div className="absolute -top-8 -left-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
                 <p className="text-4xl font-bold tracking-tighter">AI-First</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Architectural Paradigm</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest">Architectural Paradigm</p>
               </div>
             </div>
           </div>

@@ -93,7 +93,7 @@ export default function CloudInfraSolution() {
                 <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Modern Deployment <br />Lifecycle</h2>
                 <div className="w-12 h-1 bg-[#f99d1c]"></div>
               </div>
-              <p className="text-[#11253e]/40 text-sm uppercase tracking-widest font-bold max-w-sm">
+              <p className="text-[#11253e] text-sm uppercase tracking-widest font-bold max-w-sm">
                 From Terraform orchestration to Prometheus observability, our stack is enterprise-ready.
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function CloudInfraSolution() {
                   </div>
                   <div className="space-y-6">
                     <h3 className="text-[#11253e] text-xl font-bold tracking-tight uppercase">{item.title}</h3>
-                    <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{item.desc}</p>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
                   </div>
                   <button className="text-[10px] font-bold text-[#11253e] uppercase tracking-[0.3em] flex items-center gap-3 group">
                     View Spec <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -140,7 +140,7 @@ export default function CloudInfraSolution() {
               <div className="space-y-12">
                 <div className="space-y-6">
                   <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Unified Data Plane</h2>
-                  <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+                  <p className="text-[#11253e] text-lg font-light leading-relaxed">
                     Nabhira provides a single pane of glass for your entire hybrid cloud estate. Whether it's AWS, Azure, GCP, or On-premise bare metal, your monitoring and deployment remain consistent.
                   </p>
                 </div>
@@ -182,7 +182,7 @@ export default function CloudInfraSolution() {
         <section className="py-32 bg-white">
           <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 className="text-[#11253e] text-5xl font-bold tracking-tighter">Build Your Digital Fortress.</h2>
-            <p className="text-[#11253e]/60 text-xl font-light">
+            <p className="text-[#11253e] text-xl font-light">
               Stop fighting with infrastructure. Let Nabhira architect a cloud environment that scales with your ambition.
             </p>
             <div className="pt-6">
@@ -195,4 +195,3 @@ export default function CloudInfraSolution() {
     </>
   );
 }
-

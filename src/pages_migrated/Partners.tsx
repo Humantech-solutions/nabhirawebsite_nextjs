@@ -3,6 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
+import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
@@ -88,7 +89,7 @@ export default function Partners() {
                 An Ecosystem of <span className="font-bold">Innovation</span>
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
-              <p className="max-w-2xl mx-auto text-[#11253e]/70 font-light leading-relaxed">
+              <p className="max-w-2xl mx-auto text-[#11253e] font-light leading-relaxed">
                 We don't just work with partners; we co-create value. Our alliances are deep, technical, and focused on delivering architectural superiority.
               </p>
             </div>
@@ -107,7 +108,7 @@ export default function Partners() {
                     {type.icon}
                   </div>
                   <h4 className="text-[#11253e] text-lg font-bold mb-4 tracking-tight uppercase text-[12px]">{type.title}</h4>
-                  <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">
+                  <p className="text-[#11253e] text-sm font-light leading-relaxed">
                     {type.desc}
                   </p>
                 </Motion.div>

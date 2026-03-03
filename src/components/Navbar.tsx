@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import Link from "next/link"; // ✅ FIXED
-import Image from "next/image";
+import Link from "next/link";
 import logo from '../assets/logo.png';
+import Image from 'next/image';
 
 export function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -108,14 +108,15 @@ export function Navbar() {
   ];
 
   return (
-   <nav 
-  className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 border-b ${
-    scrolled 
-      ? 'bg-white shadow-lg border-gray-200' 
-      : 'bg-white shadow-sm border-gray-100'
-  }`}
-  onMouseLeave={() => setActiveMenu(null)}
->
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrolled 
+          ? 'backdrop-blur-xl border-gray-200 shadow-lg' 
+          : 'bg-white border-gray-100 shadow-sm'
+      }`}
+      style={scrolled ? { backgroundColor: 'color-mix(in oklab, var(--color-white) 90%, transparent)' } : {}}
+      onMouseLeave={() => setActiveMenu(null)}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center shrink-0">
@@ -145,7 +146,7 @@ export function Navbar() {
                     {link.label}
                   </span>
                   {menuData[link.key] && (
-                    <ChevronDown size={12} className={`transition-transform duration-200 text-[#11253e]/60 group-hover:text-[#f99d1c] ${activeMenu === link.key ? 'rotate-180 text-[#f99d1c]' : ''}`} />
+                    <ChevronDown size={12} className={`transition-transform duration-200 text-[#11253e] group-hover:text-[#f99d1c] ${activeMenu === link.key ? 'rotate-180 text-[#f99d1c]' : ''}`} />
                   )}
                 </div>
               );
@@ -184,8 +185,8 @@ export function Navbar() {
                         transition={{ duration: 0.2, ease: "easeOut" }}
                         className={`absolute ${scrolled ? 'top-16' : 'top-20'} ${
                           link.key === 'SERVICES' || menuData[link.key]?.type === 'mega' 
-                            ? 'fixed left-4 right-4 md:left-auto md:right-auto md:w-[540px] lg:w-[660px] md:left-1/2 md:-translate-x-1/2' 
-                            : (link.key === 'RESOURCES' || link.key === 'ABOUT US') ? 'left-0 w-44' : (link.key === 'INDUSTRIES' || link.key === 'SOLUTIONS') ? 'left-0 w-64' : 'left-0 w-72'
+                            ? 'fixed left-4 right-4 md:left-auto md:right-auto md:w-[594px] lg:w-[726px] md:left-1/2 md:-translate-x-1/2' 
+                            : link.key === 'RESOURCES' ? 'left-0 w-44' : (link.key === 'ABOUT US' || link.key === 'INDUSTRIES' || link.key === 'SOLUTIONS') ? 'left-0 w-64' : 'left-0 w-72'
                         } backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] rounded-b-2xl overflow-hidden pt-10 pb-10 px-6 z-50 pointer-events-auto border-t border-gray-100/50`}
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
                       >
@@ -207,7 +208,7 @@ export function Navbar() {
                                   return (
                                     <Link 
                                       href={categoryRoutes[col.title] || "#"} 
-                                      className="text-[10px] font-bold text-[#11253e]/40 tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
+                                      className="text-[11px] font-bold text-[#11253e] tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
                                       onClick={() => setActiveMenu(null)}
                                     >
                                       {col.title}
@@ -378,7 +379,7 @@ export function Navbar() {
                         </span>
                       )}
                       {menuData[link.key] && (
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${expandedMobileMenu === link.key ? 'bg-[#f99d1c]/10 text-[#f99d1c]' : 'bg-gray-50 text-[#11253e]/40'}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${expandedMobileMenu === link.key ? 'bg-[#f99d1c]/10 text-[#f99d1c]' : 'bg-gray-50 text-[#11253e]'}`}>
                           <ChevronDown 
                             size={18} 
                             className={`transition-transform duration-300 ${expandedMobileMenu === link.key ? 'rotate-180' : ''}`} 
