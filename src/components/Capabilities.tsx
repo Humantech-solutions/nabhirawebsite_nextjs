@@ -19,7 +19,8 @@ import {
   Bot, 
   Activity,
   Settings,
-  ChevronRight
+  ChevronRight,
+  LayoutGrid
 } from "lucide-react";
 
 type Service = {
@@ -119,10 +120,76 @@ const capabilitiesData: Category[] = [
   }
 ];
 
-export function Capabilities() {
-  const [activeTab, setActiveTab] = useState(capabilitiesData[0].id);
+interface CapabilitiesProps {
+  data?: {
+    cTitle?: string;
+    cDesc?: string;
+    cC1Label?: string;
+    cC1Icon?: string;
+    cC1IconImg?: { node: { sourceUrl: string } };
+    cC2Label?: string;
+    cC2Icon?: string;
+    cC2IconImg?: { node: { sourceUrl: string } };
+    cC3Label?: string;
+    cC3Icon?: string;
+    cC3IconImg?: { node: { sourceUrl: string } };
+  };
+}
 
-  const activeCategory = capabilitiesData.find(cat => cat.id === activeTab) || capabilitiesData[0];
+export function Capabilities({ data }: CapabilitiesProps) {
+  const iconMap: Record<string, any> = {
+    Cloud, Database, BrainCircuit, Compass, MoveRight, Zap, Cpu, Settings, BarChart3, GitBranch, PieChart, ShieldCheck, Lightbulb, Bot, Activity, LayoutGrid
+  };
+
+  const dynamicCategories = [];
+  
+  if (data?.cC1Label) {
+    const label = data.cC1Label;
+    const iconName = data.cC1Icon || "";
+    const iconImg = (data.cC1IconImg as any)?.node?.sourceUrl || (data.cC1IconImg as any)?.sourceUrl || null;
+    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[0];
+    dynamicCategories.push({
+      id: label.toLowerCase().replace(/\s+/g, '-'),
+      label: label,
+      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
+      services: fallbackCat.services
+    });
+  }
+  
+  if (data?.cC2Label) {
+    const label = data.cC2Label;
+    const iconName = data.cC2Icon || "";
+    const iconImg = (data.cC2IconImg as any)?.node?.sourceUrl || (data.cC2IconImg as any)?.sourceUrl || null;
+    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[1];
+    dynamicCategories.push({
+      id: label.toLowerCase().replace(/\s+/g, '-'),
+      label: label,
+      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
+      services: fallbackCat.services
+    });
+  }
+
+  if (data?.cC3Label) {
+    const label = data.cC3Label;
+    const iconName = data.cC3Icon || "";
+    const iconImg = (data.cC3IconImg as any)?.node?.sourceUrl || (data.cC3IconImg as any)?.sourceUrl || null;
+    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[2];
+    dynamicCategories.push({
+      id: label.toLowerCase().replace(/\s+/g, '-'),
+      label: label,
+      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
+      services: fallbackCat.services
+    });
+  }
+
+  const capabilities = dynamicCategories.length > 0 ? dynamicCategories : capabilitiesData;
+
+  const sectionTitle = data?.cTitle || "Our capabilities";
+  const sectionDesc = data?.cDesc || "Stay Ahead of Curve with Cloud Solutions";
+
+  const [activeTab, setActiveTab] = useState(capabilities[0]?.id);
+
+  const activeCategory = capabilities.find(cat => cat.id === activeTab) || capabilities[0];
 
   return (
     <section className="bg-[#f8f9fa] py-20 md:py-24 px-6 sm:px-12 lg:px-20 relative overflow-hidden">
@@ -147,7 +214,7 @@ export function Capabilities() {
             viewport={{ once: true }}
             className="text-[#11253e] text-[14px] md:text-[16px] font-medium tracking-normal flex items-center"
           >
-            Our capabilities
+            {sectionTitle}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </motion.h2>
           <motion.p 
@@ -157,13 +224,13 @@ export function Capabilities() {
             transition={{ delay: 0.2 }}
             className="mt-4 md:mt-6 text-[#11253e]/60 max-w-2xl text-base md:text-lg font-light leading-relaxed"
           >
-            Stay Ahead of Curve with Cloud Solutions
+            {sectionDesc}
           </motion.p>
         </div>
 
         {/* Category Navigation */}
         <div className="flex overflow-x-auto no-scrollbar gap-6 md:gap-10 mb-10 md:mb-12 border-b border-[#11253e]/10 -mx-6 px-6 md:mx-0 md:px-0">
-          {capabilitiesData.map((cat) => (
+          {capabilities.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
@@ -172,7 +239,13 @@ export function Capabilities() {
               }`}
             >
               <span className="flex items-center gap-2 md:gap-3">
-                <cat.icon size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
+                {typeof cat.icon !== 'string' ? (
+                  <cat.icon size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
+                ) : typeof cat.icon === 'string' ? (
+                  <img src={cat.icon} alt={cat.label} className="w-4 h-4 object-contain" />
+                ) : (
+                  <LayoutGrid size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
+                )}
                 {cat.label}
               </span>
               {activeTab === cat.id && (
