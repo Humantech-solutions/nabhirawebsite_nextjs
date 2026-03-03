@@ -8,44 +8,7 @@ import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "The Rise of Agentic AI: Beyond Simple Automation",
-    excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-    author: "Dr. Arvan Nabhira",
-    date: "Feb 20, 2026",
-    category: "Artificial Intelligence",
-    image: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 2,
-    title: "Cloud Sovereignty: Navigating Data Residency in 2026",
-    excerpt: "Why global enterprises are shifting towards localized cloud architectures to meet emerging regulatory demands.",
-    author: "Sarah Chen",
-    date: "Feb 15, 2026",
-    category: "Cloud Strategy",
-    image: "https://images.unsplash.com/photo-1586448911122-f74aa8e3e4b6?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 3,
-    title: "Data Fabrics vs. Data Meshes: Choosing Your Architecture",
-    excerpt: "A deep dive into the architectural paradigms shaping the next generation of data-driven enterprises.",
-    author: "Marcus Thorne",
-    date: "Feb 10, 2026",
-    category: "Data Engineering",
-    image: "https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 4,
-    title: "Modernization Is Now a Survival Strategy",
-    excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-    author: "Dr. Arvan Nabhira",
-    date: "Mar 01, 2026",
-    category: "AI Modernization",
-    image: "https://images.unsplash.com/photo-1744640326166-433469d102f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbW9kZXJuaXphdGlvbiUyMGNvcnBvcmF0ZSUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNDU1NTA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-  }
-];
+import { blogPosts } from "../data/migrated_data";
 
 export default function Blogs() {
   useEffect(() => {
