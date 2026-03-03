@@ -1,16 +1,26 @@
 // Use 127.0.0.1 instead of localhost to avoid IPv6 resolution issues on Windows
 const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace('localhost', '127.0.0.1');
 
+// Set this to true to temporarily stop all WordPress API calls and only use static data
+const FORCE_STATIC_FALLBACK = true;
+
 import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
 
 export async function fetchGraphQL(query: string, variables = {}) {
-  if (!WORDPRESS_API_URL) {
-    throw new Error('WORDPRESS_API_URL environment variable is missing');
+  if (!WORDPRESS_API_URL || FORCE_STATIC_FALLBACK) {
+    return { 
+      data: null, 
+      errors: [{ message: FORCE_STATIC_FALLBACK ? "Bypassing fetch as FORCE_STATIC_FALLBACK is enabled" : "WORDPRESS_API_URL missing" }] 
+    };
   }
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
   
   try {
+    // We wrapped this in a short timeout or just a normal catch
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+
     const res = await fetch(WORDPRESS_API_URL, {
       method: 'POST',
       headers,
@@ -18,8 +28,11 @@ export async function fetchGraphQL(query: string, variables = {}) {
         query,
         variables,
       }),
-      cache: 'no-store', // Disable caching to ensure we see fresh updates from local WordPress during local dev/testing
+      cache: 'no-store',
+      signal: controller.signal
     });
+
+    clearTimeout(id);
 
     if (!res.ok) {
       const errorText = await res.text();
@@ -36,9 +49,18 @@ export async function fetchGraphQL(query: string, variables = {}) {
 
     return json;
   } catch (error: any) {
-    console.error(`[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL}`, error.message || error);
+    // Log once but don't blow up
+    if (error.name === 'AbortError') {
+      console.error(`[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 3s`);
+    } else {
+      console.error(`[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL} - ${error.message || 'Fetch failed'}`);
+    }
+    
     // Return a structured error so it doesn't crash the caller
-    return { errors: [{ message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Is your local WordPress server running?` }] };
+    return { 
+      data: null,
+      errors: [{ message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Falling back to static data.` }] 
+    };
   }
 }
 
