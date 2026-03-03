@@ -167,8 +167,8 @@ export default function IntelligentAutomation() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Intelligent <br /> 
-              <span className="text-white/40">Automation Edge.</span>
+              Intelligent Automation <br /> 
+              <span className="text-white/40">AI at Edge.</span>
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
@@ -200,8 +200,8 @@ export default function IntelligentAutomation() {
               <span className="font-semibold text-[#f99d1c]">Transforming Operations Through Intelligent Execution</span>
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
-            <p className="text-[#11253e]/70 text-lg leading-relaxed max-w-3xl mx-auto">
-              Efficiency is no longer achieved through cost reduction alone. It is achieved through intelligent orchestration of people processes and technology. Intelligent Automation combines robotic process automation, artificial intelligence workflow orchestration and analytics to streamline complex business operations.
+            <p className="text-[#11253e] text-lg leading-relaxed max-w-3xl mx-auto">
+              Efficiency is no longer achieved through cost reduction alone.
             </p>
             <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
               We help enterprises design, build and scale intelligent automation programs that deliver measurable outcomes across functions.
@@ -222,6 +222,9 @@ export default function IntelligentAutomation() {
               <p className="text-white/70 text-lg font-light max-w-xl">
                 Automation initiatives often fail when treated as isolated tools. Sustainable impact requires alignment with business priorities, governance frameworks and long term digital strategy.
               </p>
+            </div>
+            <div className="hidden md:block">
+               <ArrowRight className="text-[#f99d1c] w-12 h-12 -rotate-45" />
             </div>
           </div>
 
@@ -246,7 +249,7 @@ export default function IntelligentAutomation() {
             ))}
             <div className="bg-[#f99d1c] p-8 flex flex-col justify-center items-center text-center">
               <h3 className="text-[#11253e] text-2xl font-bold mb-2">Transformational</h3>
-              <p className="text-[#11253e]/80 text-sm font-medium">We position Intelligent Automation as a transformation lever not a tactical efficiency project.</p>
+              <p className="text-[#11253e] text-sm font-medium">We position Intelligent Automation as a transformation lever not a tactical efficiency project.</p>
             </div>
           </div>
         </div>
@@ -258,8 +261,8 @@ export default function IntelligentAutomation() {
           <div className="text-center max-w-3xl mx-auto mb-20">
              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured Automation Lifecycle</h2>
-             <p className="text-[#11253e]/70 text-lg font-light">
-               We apply a disciplined methodology to ensure automation initiatives move from opportunity assessment to enterprise scale deployment.
+             <p className="text-[#11253e] text-lg font-light">
+               We apply a disciplined methodology to ensure automation initiatives
              </p>
           </div>
 
@@ -284,7 +287,7 @@ export default function IntelligentAutomation() {
                  <div className="flex-grow">
                    <ul className="space-y-3">
                      {step.points.map((pt, i) => (
-                       <li key={i} className="flex items-start gap-3 text-[#11253e]/70 text-sm leading-relaxed">
+                       <li key={i} className="flex items-start gap-3 text-[#11253e] text-sm leading-relaxed">
                          <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full mt-1.5 shrink-0"></div>
                          <span>{pt}</span>
                        </li>
@@ -333,7 +336,7 @@ export default function IntelligentAutomation() {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm uppercase tracking-wider text-[#11253e]">{tool.category}</h4>
-                      <p className="text-[#11253e]/70 text-sm font-medium">{tool.items}</p>
+                      <p className="text-[#11253e] text-sm font-medium">{tool.items}</p>
                     </div>
                   </Motion.div>
                 ))}
@@ -371,7 +374,7 @@ export default function IntelligentAutomation() {
            <div className="mt-20 bg-[#11253e] rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
              <p className="text-white text-xl md:text-2xl font-light leading-relaxed relative z-10 max-w-4xl mx-auto">
-               Intelligent Automation when strategically engineered becomes a core capability that strengthens resilience, agility and competitive differentiation.
+              Our Intelligent automation services help your business become more resilient, move faster, and stay ahead of the competition.
              </p>
            </div>
         </div>
@@ -391,7 +394,7 @@ export default function IntelligentAutomation() {
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
            <div className="text-[#11253e]">
              <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
-             <p className="text-[#11253e]/80 text-lg">Introduce autonomy with control.</p>
+             <p className="text-[#11253e] text-lg">Introduce autonomy with control.</p>
            </div>
            <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
              <span>Start Your Journey</span>

@@ -66,7 +66,7 @@ export default function Solutions() {
             <h2 className="text-3xl lg:text-5xl font-medium tracking-tight mb-8">
               Modular <span className="text-[#f99d1c]">Architectures</span>
             </h2>
-            <p className="text-[#11253e]/60 text-lg lg:text-xl leading-relaxed font-light">
+            <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed font-light">
               We build solutions that aren't just software, but strategic assets that scale with your organization's ambition.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function Solutions() {
                   {product.icon}
                 </div>
                 <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{product.title}</h3>
-                <p className="text-[#11253e]/60 text-sm leading-relaxed mb-8 font-light">
+                <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {product.desc}
                 </p>
                 <Link 

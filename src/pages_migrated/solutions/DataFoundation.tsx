@@ -39,10 +39,10 @@ export default function DataFoundation() {
   return (
     <>
       {/* Hero Banner */}
-      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center pt-8 md:pt-12">
+      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000"
+              src="https://images.unsplash.com/photo-1636347172071-6d17b1139816?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGF0YSUyMGZvdW5kYXRpb24lMjBhcmNoaXRlY3R1cmUlMjBzdG9yYWdlfGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
               alt="Data Foundation Global View"
               className="w-full h-full object-cover opacity-30 mix-blend-screen"
             />
@@ -88,7 +88,7 @@ export default function DataFoundation() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
               <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">The Pillars of <span className="text-[#f99d1c]">Scalability</span></h2>
-              <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
                 A house is only as strong as its foundation. We ensure your data estate is built on rock-solid principles of integrity and accessibility.
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function DataFoundation() {
                   </div>
                   <div className="space-y-4">
                     <h3 className="text-[#11253e] text-lg font-bold tracking-normal uppercase">{pillar.title}</h3>
-                    <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{pillar.desc}</p>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{pillar.desc}</p>
                   </div>
                 </Motion.div>
               ))}
@@ -172,7 +172,7 @@ export default function DataFoundation() {
                 <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight">
                   Design Your <span className="text-[#f99d1c]">Data Legacy.</span>
                 </h2>
-                <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+                <p className="text-[#11253e] text-lg font-light leading-relaxed">
                   Start with a baseline assessment of your storage architecture. Our experts will design a foundation that supports your 10-year growth plan.
                 </p>
               </div>

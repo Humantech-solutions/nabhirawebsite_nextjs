@@ -7,7 +7,30 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ExternalLink, ArrowRight } from "lucide-react";
-import { newsItems } from "../data/migrated_data";
+
+const newsItems = [
+  {
+    id: 1,
+    date: "Feb 10, 2026",
+    source: "Bloomberg Technology",
+    title: "Nabhira Technologies Announces Expansion into Southeast Asian Markets",
+    link: "/resources/news/1"
+  },
+  {
+    id: 2,
+    date: "Jan 25, 2026",
+    source: "Financial Times",
+    title: "The Architecture of Tomorrow: Why Nabhira is Leading the AI-Native Revolution",
+    link: "/resources/news/2"
+  },
+  {
+    id: 3,
+    date: "Dec 12, 2025",
+    source: "Business Insider",
+    title: "Top 50 Cloud Companies to Watch in 2026",
+    link: "/resources/news/3"
+  }
+];
 
 export default function News() {
   useEffect(() => {
@@ -17,7 +40,8 @@ export default function News() {
 
   return (
     <>
-      <section className="relative h-[300px] overflow-hidden">
+      {/* News Hero */}
+      <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1754671675183-1acad2302f95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBuZXdzJTIwcm9vbSUyMGRpZ2l0YWwlMjBtZWRpYSUyMGRpc3BsYXl8ZW58MXx8fHwxNzcxOTAwNDk1fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -60,7 +84,7 @@ export default function News() {
                         {item.title}
                       </h3>
                     </Link>
-                    <Link href={item.link} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#11253e]/40 hover:text-[#f99d1c] transition-colors group">
+                    <Link href={item.link} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors group">
                       View Article <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>

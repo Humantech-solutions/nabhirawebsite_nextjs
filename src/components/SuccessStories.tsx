@@ -1,3 +1,5 @@
+"use client";
+
 import { Plus, Quote } from "lucide-react";
 
 export function SuccessStories() {
@@ -32,7 +34,7 @@ export function SuccessStories() {
             Success stories
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </h2>
-          <p className="text-[#11253e]/60 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+          <p className="text-[#11253e] text-base md:text-lg font-light max-w-2xl leading-relaxed">
             Read how we partner with global enterprises to tackle challenges, accelerate transformation, and deliver measured business value.
           </p>
         </div>
@@ -56,7 +58,7 @@ export function SuccessStories() {
                   <p className="font-black text-xs uppercase tracking-widest text-[#11253e] group-hover:text-[#f99d1c] transition-colors duration-500">
                     {story.author}
                   </p>
-                  <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e]/60 group-hover:text-white/60 transition-colors duration-500">
+                  <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e] group-hover:text-white/60 transition-colors duration-500">
                     {story.role}
                   </p>
                 </div>

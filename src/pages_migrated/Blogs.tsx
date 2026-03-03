@@ -7,7 +7,45 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
-import { blogPosts } from "../data/migrated_data";
+
+const blogPosts = [
+  {
+    id: 1,
+    title: "The Rise of Agentic AI: Beyond Simple Automation",
+    excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
+    author: "Dr. Arvan Nabhira",
+    date: "Feb 20, 2026",
+    category: "Artificial Intelligence",
+    image: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 2,
+    title: "Cloud Sovereignty: Navigating Data Residency in 2026",
+    excerpt: "Why global enterprises are shifting towards localized cloud architectures to meet emerging regulatory demands.",
+    author: "Sarah Chen",
+    date: "Feb 15, 2026",
+    category: "Cloud Strategy",
+    image: "https://images.unsplash.com/photo-1586448911122-f74aa8e3e4b6?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 3,
+    title: "Data Fabrics vs. Data Meshes: Choosing Your Architecture",
+    excerpt: "A deep dive into the architectural paradigms shaping the next generation of data-driven enterprises.",
+    author: "Marcus Thorne",
+    date: "Feb 10, 2026",
+    category: "Data Engineering",
+    image: "https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 4,
+    title: "Modernization Is Now a Survival Strategy",
+    excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
+    author: "Dr. Arvan Nabhira",
+    date: "Mar 01, 2026",
+    category: "AI Modernization",
+    image: "https://images.unsplash.com/photo-1744640326166-433469d102f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbW9kZXJuaXphdGlvbiUyMGNvcnBvcmF0ZSUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNDU1NTA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+  }
+];
 
 export default function Blogs() {
   useEffect(() => {
@@ -17,7 +55,8 @@ export default function Blogs() {
 
   return (
     <>
-      <section className="relative h-[300px] overflow-hidden">
+      {/* Blogs Hero */}
+      <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"
@@ -67,11 +106,11 @@ export default function Blogs() {
                         {post.title}
                       </h3>
                     </Link>
-                    <p className="text-[#11253e]/60 font-light text-sm line-clamp-3">
+                    <p className="text-[#11253e] font-light text-sm line-clamp-3">
                       {post.excerpt}
                     </p>
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2 text-xs font-medium text-[#11253e]/40">
+                      <div className="flex items-center gap-2 text-xs font-medium text-[#11253e]">
                         <User size={14} /> {post.author}
                       </div>
                       <Link href={`/resources/blogs/${post.id}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">

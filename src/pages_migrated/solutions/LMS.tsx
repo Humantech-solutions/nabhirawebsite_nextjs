@@ -39,7 +39,7 @@ export default function LMSSolution() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center pt-[110px]">
+      <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-10"></div>
           
           <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
@@ -83,7 +83,7 @@ export default function LMSSolution() {
                     {pillar.icon}
                   </div>
                   <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">{pillar.title}</h3>
-                  <p className="text-[#11253e]/60 text-sm leading-relaxed">{pillar.description}</p>
+                  <p className="text-[#11253e] text-sm leading-relaxed">{pillar.description}</p>
                 </div>
               ))}
             </div>
@@ -107,7 +107,7 @@ export default function LMSSolution() {
                   <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">The Architecture of <br />Intelligent Upskilling</h2>
                   <div className="w-16 h-1 bg-[#f99d1c]"></div>
                 </div>
-                <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+                <p className="text-[#11253e] text-lg font-light leading-relaxed">
                   Our system utilizes a decentralized data mesh to ensure that learning data is secure yet accessible for cross-departmental analytics. From micro-learning modules to comprehensive certification tracks, every interaction is measured and mapped.
                 </p>
                 
@@ -121,7 +121,7 @@ export default function LMSSolution() {
                       <div className="w-1 bg-[#f99d1c]/20 group-hover:bg-[#f99d1c] transition-colors"></div>
                       <div>
                         <h4 className="text-[#11253e] text-sm font-bold uppercase tracking-widest mb-1">{feat.label}</h4>
-                        <p className="text-[#11253e]/50 text-xs uppercase tracking-wider">{feat.desc}</p>
+                        <p className="text-[#11253e] text-xs uppercase tracking-wider">{feat.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -145,7 +145,7 @@ export default function LMSSolution() {
                 </ul>
               </div>
               <div className="bg-gray-50 p-12">
-                <h3 className="text-[#11253e]/40 text-xl font-bold mb-8 uppercase tracking-widest">Traditional LMS</h3>
+                <h3 className="text-[#11253e] text-xl font-bold mb-8 uppercase tracking-widest">Traditional LMS</h3>
                 <ul className="space-y-6">
                   <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> Linear, one-size-fits-all approach</li>
                   <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> Manual reporting and gap analysis</li>

@@ -66,7 +66,7 @@ export default function ERPSolution() {
                         ].map((stat, i) => (
                           <div key={i} className="p-6 bg-gray-50 border border-gray-100 rounded-sm space-y-2">
                             <p className={`${stat.color} text-3xl font-bold tracking-tight`}>{stat.val}</p>
-                            <p className="text-[#11253e]/40 text-[9px] font-bold uppercase tracking-widest">{stat.label}</p>
+                            <p className="text-[#11253e] text-[9px] font-bold uppercase tracking-widest">{stat.label}</p>
                           </div>
                         ))}
                       </div>
@@ -84,7 +84,7 @@ export default function ERPSolution() {
             <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight uppercase">Modular Excellence</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto"></div>
-              <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
                 WorkbookNow is designed to grow with you. Activate only the modules you need today, and scale seamlessly as your business complexity evolves.
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function ERPSolution() {
                 <div key={i} className="bg-white p-12 border border-gray-100 group hover:border-[#f99d1c]/40 transition-all">
                   <div className="w-12 h-12 mb-8 group-hover:scale-110 transition-transform">{item.icon}</div>
                   <h3 className="text-[#11253e] text-lg font-bold mb-4 uppercase tracking-widest">{item.title}</h3>
-                  <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{item.desc}</p>
+                  <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -146,7 +146,7 @@ export default function ERPSolution() {
               <div className="space-y-12">
                 <div className="space-y-6">
                   <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Architecture of Efficiency</h2>
-                  <p className="text-[#11253e]/60 text-lg font-light leading-relaxed">
+                  <p className="text-[#11253e] text-lg font-light leading-relaxed">
                     WorkbookNow isn't just software; it's a reflection of best-in-class business processes. We bake international standards into every module.
                   </p>
                 </div>
@@ -195,5 +195,3 @@ export default function ERPSolution() {
     </>
   );
 }
-
-

@@ -2,11 +2,64 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ArrowLeft, CheckCircle2, Quote, ArrowRight, Zap, Target, TrendingUp } from "lucide-react";
-import { caseStudies } from "../data/migrated_data";
+
+const caseStudies = [
+  {
+    id: 1,
+    title: "Global Bank: Cloud Modernization",
+    client: "Tier 1 Investment Bank",
+    industry: "Banking & Financial Services",
+    impact: "60% Reduction in OPEX",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600",
+    challenge: "The client was struggling with fragmented legacy infrastructure across 12 countries, leading to significant operational overhead and slow deployment cycles for new financial products.",
+    solution: "We implemented a multi-region cloud-native architecture using Kubernetes and a unified data fabric. This allowed for centralized governance while maintaining localized data residency compliance.",
+    results: [
+      "Migrated 400+ applications to the new architecture with zero downtime.",
+      "Achieved a 60% reduction in annual infrastructure maintenance costs.",
+      "Reduced time-to-market for new digital features from 4 months to 2 weeks."
+    ],
+    quote: "Nabhira didn't just move us to the cloud; they re-architected how we do business. Their precision and engineering depth were critical to our success.",
+    quoteAuthor: "Chief Technology Officer, Tier 1 Investment Bank"
+  },
+  {
+    id: 2,
+    title: "Retail Giant: AI Supply Chain",
+    client: "Fortune 500 Retailer",
+    industry: "Retail & Consumer Goods",
+    impact: "40% Inventory Optimization",
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=1600",
+    challenge: "Inaccurate demand forecasting was leading to overstocking in some regions and stockouts in others, resulting in millions in lost revenue and excessive warehouse costs.",
+    solution: "We deployed an Agentic AI solution that integrated real-time sales data, weather patterns, and social sentiment to provide hyper-local demand predictions and automated inventory rebalancing.",
+    results: [
+      "40% reduction in average inventory holding costs.",
+      "15% increase in on-shelf availability during peak seasons.",
+      "Automated 80% of routine procurement decisions."
+    ],
+    quote: "The intelligence Nabhira built into our supply chain has transformed our bottom line and allowed our teams to focus on strategic growth rather than manual firefighting.",
+    quoteAuthor: "VP of Operations, Global Retail Group"
+  },
+  {
+    id: 3,
+    title: "Smart Factory: Edge Intelligence",
+    client: "Global Automotive OEM",
+    industry: "Manufacturing & Automotive",
+    impact: "Zero Unplanned Downtime",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1600",
+    challenge: "Frequent unplanned downtime in the assembly line was costing the client approximately $50,000 per hour. Existing preventative maintenance was reactive and inefficient.",
+    solution: "We implemented an Edge AI monitoring system that processes vibration and thermal data directly at the source. Machine learning models predict component failures before they occur.",
+    results: [
+      "Achieved zero unplanned downtime over a 12-month period.",
+      "Extended the lifecycle of critical machinery by an average of 30%.",
+      "Reduced maintenance labor costs by 25% through predictive scheduling."
+    ],
+    quote: "Nabhira's edge intelligence solution has made our factory truly smart. The predictive capabilities have become the backbone of our operational excellence.",
+    quoteAuthor: "Director of Manufacturing Engineering, Automotive OEM"
+  }
+];
 
 export default function CaseStudyDetail() {
   const { id } = useParams();
@@ -76,7 +129,7 @@ export default function CaseStudyDetail() {
                 <h2 className="text-[#11253e] text-3xl font-medium tracking-tight uppercase text-[12px] flex items-center gap-4">
                   <span className="w-8 h-px bg-[#f99d1c]"></span> The Challenge
                 </h2>
-                <p className="text-[#11253e]/70 text-xl font-light leading-relaxed">
+                <p className="text-[#11253e] text-xl font-light leading-relaxed">
                   {study.challenge}
                 </p>
               </div>
@@ -85,7 +138,7 @@ export default function CaseStudyDetail() {
                 <h2 className="text-[#11253e] text-3xl font-medium tracking-tight uppercase text-[12px] flex items-center gap-4">
                   <span className="w-8 h-px bg-[#f99d1c]"></span> Our Solution
                 </h2>
-                <p className="text-[#11253e]/70 text-xl font-light leading-relaxed">
+                <p className="text-[#11253e] text-xl font-light leading-relaxed">
                   {study.solution}
                 </p>
               </div>
@@ -127,7 +180,7 @@ export default function CaseStudyDetail() {
           </h2>
           <div className="space-y-1">
             <p className="text-[#11253e] font-bold uppercase tracking-widest text-sm">{study.quoteAuthor}</p>
-            <p className="text-[#11253e]/40 text-xs uppercase tracking-widest">Nabhira Transformation Partner</p>
+            <p className="text-[#11253e] text-xs uppercase tracking-widest">Nabhira Transformation Partner</p>
           </div>
         </div>
       </section>
@@ -140,7 +193,7 @@ export default function CaseStudyDetail() {
               <h2 className="text-[#11253e] text-3xl font-medium tracking-tight uppercase text-[12px] flex items-center justify-center md:justify-start gap-4">
                 <span className="w-8 h-px bg-[#f99d1c]"></span> Ready for your transformation?
               </h2>
-              <p className="text-[#11253e]/60 text-lg font-light">
+              <p className="text-[#11253e] text-lg font-light">
                 Every enterprise has unique challenges. Our architects are ready to design your specific roadmap to success.
               </p>
             </div>

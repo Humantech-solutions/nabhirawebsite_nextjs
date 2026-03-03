@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
@@ -27,7 +28,7 @@ export default function CloudTransformation() {
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight mb-8">
               Why Move to the Cloud with Nabhira?
             </h2>
-            <p className="text-[#11253e]/60 text-lg lg:text-xl leading-relaxed">
+            <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed">
               Cloud is more than just someone else's server. It's an opportunity to rebuild your business for agility, resilience, and speed.
             </p>
           </div>
@@ -53,7 +54,7 @@ export default function CloudTransformation() {
                   {f.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{f.title}</h3>
-                <p className="text-[#11253e]/60 text-sm leading-relaxed">{f.desc}</p>
+                <p className="text-[#11253e] text-sm leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
           </div>

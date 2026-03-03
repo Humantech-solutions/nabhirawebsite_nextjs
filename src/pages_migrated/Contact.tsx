@@ -56,7 +56,7 @@ export default function Contact() {
   return (
     <>
       {/* Contact Hero */}
-      <section className="relative h-[520px] overflow-hidden pt-8 md:pt-12">
+      <section className="relative h-[520px] overflow-hidden flex items-center">
         <div className="absolute inset-0">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1769146109206-e87b458649a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTk4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -105,7 +105,7 @@ export default function Contact() {
                   <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-6 tracking-tight">
                     Get in <span className="font-bold">Touch</span>
                   </h2>
-                  <p className="text-[#11253e]/60 font-light leading-relaxed">
+                  <p className="text-[#11253e] font-light leading-relaxed">
                     Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist.
                   </p>
                 </div>
@@ -129,7 +129,7 @@ export default function Contact() {
                         </h4>
                         <div className="space-y-1">
                           {item.details.map((detail, i) => (
-                            <p key={i} className="text-[#11253e]/60 font-light text-[15px]">
+                            <p key={i} className="text-[#11253e] font-light text-[15px]">
                               {detail}
                             </p>
                           ))}
@@ -144,11 +144,11 @@ export default function Contact() {
                   <div className="grid grid-cols-2 gap-8">
                     <div>
                       <h5 className="text-[#11253e] font-bold text-sm mb-2">Middle East</h5>
-                      <p className="text-[#11253e]/60 font-light text-xs">Business Bay, Dubai, UAE</p>
+                      <p className="text-[#11253e] font-light text-xs">Business Bay, Dubai, UAE</p>
                     </div>
                     <div>
                       <h5 className="text-[#11253e] font-bold text-sm mb-2">South East Asia</h5>
-                      <p className="text-[#11253e]/60 font-light text-xs">Marina Bay Financial Centre, Singapore</p>
+                      <p className="text-[#11253e] font-light text-xs">Marina Bay Financial Centre, Singapore</p>
                     </div>
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest">Full Name</label>
+                      <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Full Name</label>
                       <input 
                         required
                         type="text" 
@@ -175,7 +175,7 @@ export default function Contact() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest">Email Address</label>
+                      <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Email Address</label>
                       <input 
                         required
                         type="email" 
@@ -188,7 +188,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest">Subject</label>
+                    <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Subject</label>
                     <input 
                       required
                       type="text" 
@@ -200,7 +200,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-[#11253e]/40 uppercase tracking-widest">Message</label>
+                    <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Message</label>
                     <textarea 
                       required
                       rows={6}
