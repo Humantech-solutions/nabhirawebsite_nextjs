@@ -5,11 +5,22 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { ChevronRight, Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
+import { Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
 import logo from '../assets/logo.png';
 import Image from "next/image";
 
-export default function About() {
+interface AboutProps {
+  wordpressData?: {
+    title: string;
+    content: string;
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function About({ wordpressData }: AboutProps) {
   useEffect(() => {
     document.title = "About Nabhira Technologies | Digital Pioneer";
     window.scrollTo(0, 0);
@@ -44,7 +55,7 @@ export default function About() {
       <section className="relative h-[400px] md:h-[520px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmUlMjBnbGFzcyUyMGJ1aWxkaW5nJTIwc3Vuc2V0fGVufDF8fHx8MTc3MTg5NzM2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="About Nabhira"
               className="w-full h-full object-cover"
             />
@@ -77,14 +88,21 @@ export default function About() {
                 <span className="text-[#f99d1c]">About Us</span>
               </nav>
 
-              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Architecting <br />
-                <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
-              </h1>
-              
-              <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
+              <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
+                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
+                  {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                    <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                  ) : wordpressData?.title ? (
+                    <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
+                  ) : (
+                    <>
+                      Architecting <br />
+                      <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
+                    </>
+                  )}
+                </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering.
+                  {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
                 </p>
               </div>
             </Motion.div>
@@ -99,13 +117,22 @@ export default function About() {
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-8 tracking-tight">
                   Our Story: From Vision to <span className="font-bold">Global Impact</span>
                 </h2>
-                <div className="space-y-6 text-[#11253e] font-light leading-relaxed">
-                  <p>
-                    Founded on the principles of architectural precision and digital excellence, Nabhira has grown from a specialized consultancy into a global powerhouse of innovation. We specialize in navigating the complexities of modern technology, enabling enterprises to outpace change with agility.
-                  </p>
-                  <p>
-                    Our journey is defined by a relentless pursuit of excellence and a commitment to transforming business landscapes through Cloud transformation, AI consulting, and Data engineering. Today, we stand as a trusted partner to Fortune 500 companies, driving measurable impact across diverse industries.
-                  </p>
+                <div className="space-y-6 text-[#11253e]/70 font-light leading-relaxed">
+                  {wordpressData?.content ? (
+                    <div 
+                      className="prose prose-lg text-[#11253e]/70 font-light leading-relaxed max-w-none"
+                      dangerouslySetInnerHTML={{ __html: wordpressData.content }} 
+                    />
+                  ) : (
+                    <>
+                      <p>
+                        Founded on the principles of architectural precision and digital excellence, Nabhira has grown from a specialized consultancy into a global powerhouse of innovation. We specialize in navigating the complexities of modern technology, enabling enterprises to outpace change with agility.
+                      </p>
+                      <p>
+                        Our journey is defined by a relentless pursuit of excellence and a commitment to transforming business landscapes through Cloud transformation, AI consulting, and Data engineering. Today, we stand as a trusted partner to Fortune 500 companies, driving measurable impact across diverse industries.
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="relative">
@@ -152,7 +179,7 @@ export default function About() {
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
                     <p className="text-white/60 font-light leading-relaxed">
-                      To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
+                      To be the foundational architecture upon which the world&apos;s most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
                     </p>
                   </div>
                 </div>
@@ -249,7 +276,7 @@ export default function About() {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }

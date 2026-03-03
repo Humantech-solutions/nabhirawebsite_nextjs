@@ -4,8 +4,20 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { ShoppingCart, GraduationCap, FileText, Server, Briefcase, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { LimitlessTogether, Footer } from "../components/Footer";
 
-export default function Solutions() {
+interface SolutionsProps {
+  wordpressData?: {
+    title: string;
+    content: string;
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
+
+export default function Solutions({ wordpressData }: SolutionsProps) {
   const products = [
     {
       title: "AI Powered Point of Sales",
@@ -48,15 +60,19 @@ export default function Solutions() {
   return (
     <div className="flex flex-col">
       <ServiceHero
-        subtitle="Enterprise Solutions"
+        subtitle={wordpressData?.globalSettings?.heroSlides?.heroS1Desc?.substring(0, 50) + "..." || "Enterprise Solutions"}
         title={
-          <>
-            Precision Engineered <br />
-            <span className="text-white/40 font-light italic">Digital Products.</span>
-          </>
+          wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+            <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+          ) : (
+            <>
+              Precision Engineered <br />
+              <span className="text-white/40 font-light italic">Digital Products.</span>
+            </>
+          )
         }
-        description="Our suite of enterprise-grade software solutions is designed to solve the most complex business challenges with architectural elegance and AI-native intelligence."
-        image="https://images.unsplash.com/photo-1605245763221-e89db37d59f7?auto=format&fit=crop&q=80&w=2000"
+        description={wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Our suite of enterprise-grade software solutions is designed to solve the most complex business challenges with architectural elegance and AI-native intelligence."}
+        image={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1605245763221-e89db37d59f7?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Products Grid */}
@@ -120,6 +136,9 @@ export default function Solutions() {
           </div>
         </div>
       </section>
+
+      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 const patternImage = '/assets/gridsection.png';
 
@@ -42,8 +44,26 @@ function Card({ category, title, image, className, dark }: CardProps) {
   );
 }
 
-export function LatestThinking() {
-  const items = [
+interface LatestThinkingProps {
+  data?: {
+    thinkingPosts?: Array<{
+      title: string;
+      categories: { nodes: Array<{ name: string }> };
+      featuredImage: { node: { sourceUrl: string } };
+    }>;
+    header?: {
+      ltHeaderTitle?: string;
+      ltHeaderDesc?: string;
+    };
+  };
+}
+
+export function LatestThinking({ data }: LatestThinkingProps) {
+  const items = (data?.thinkingPosts && data.thinkingPosts.length > 0) ? data.thinkingPosts.map(post => ({
+    category: post.categories?.nodes[0]?.name || "Thinking",
+    title: post.title,
+    image: post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1770316320266-ba445bbd7890?q=80&w=1080"
+  })) : [
     {
       category: "Strategy & Lean",
       title: "Building the IT Operations of Tomorrow",
@@ -76,16 +96,19 @@ export function LatestThinking() {
     }
   ];
 
+  const sectionTitle = data?.header?.ltHeaderTitle || "Latest Thinking";
+  const sectionDesc = data?.header?.ltHeaderDesc || "Read our latest thinking, research that provides fresh new perspectives that challenge business-as-usual and help you succeed tomorrow.";
+
   return (
     <section className="bg-white py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 border-b border-gray-100 pb-8">
           <div className="flex flex-col space-y-2">
             <span className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">THOUGHT LEADERSHIP</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#11253e] tracking-tight">Latest Thinking</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#11253e] tracking-tight">{sectionTitle}</h2>
           </div>
           <p className="max-w-xl text-[#7d8597] text-base md:text-[18px] font-normal text-left leading-relaxed mt-6 md:mt-0">
-            Read our latest thinking, research that provides fresh new perspectives that challenge business-as-usual and help you succeed tomorrow.
+            {sectionDesc}
           </p>
         </div>
         
@@ -99,8 +122,31 @@ export function LatestThinking() {
   );
 }
 
-export function WhatsNew() {
-  const news = [
+interface WhatsNewProps {
+  data?: {
+    newsPosts?: Array<{
+      title: string;
+      date: string;
+      featuredImage: { node: { sourceUrl: string } };
+    }>;
+    settings?: {
+      wnTitle?: string;
+      wnSubtitle?: string;
+    };
+  };
+}
+
+export function WhatsNew({ data }: WhatsNewProps) {
+  const news = (data?.newsPosts && data.newsPosts.length > 0) ? data.newsPosts.map(post => {
+    const date = new Date(post.date);
+    const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+    
+    return {
+      title: post.title,
+      image: post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?q=80&w=1080",
+      date: formattedDate
+    };
+  }) : [
     {
       title: "Nabhira & NVIDIA Partner to Advance AI-Native 5G Cloud Network Solutions",
       image: "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbG93aW5nJTIwYmx1ZSUyMHRlY2hub2xvZ3klMjBnbGFzc3xlbnwxfHx8fDE3NzE3Nzc0ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -123,8 +169,8 @@ export function WhatsNew() {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 md:mb-12 space-y-6 sm:space-y-0">
           <div className="space-y-3 md:space-y-4">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900">What's New</h2>
-            <p className="text-sm text-gray-500 font-light">The current and future news from Nabhira and around the world.</p>
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900">{data?.settings?.wnTitle || "What's New"}</h2>
+            <p className="text-sm text-gray-500 font-light">{data?.settings?.wnSubtitle || "The current and future news from Nabhira and around the world."}</p>
           </div>
           <div className="flex space-x-2">
             <button className="p-3 md:p-2 border border-gray-200 bg-white hover:bg-gray-50 transition-colors rounded-sm">&larr;</button>

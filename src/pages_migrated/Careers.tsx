@@ -7,56 +7,20 @@ import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { MapPin, Briefcase, Clock, ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
+import { jobs } from "../data/migrated_data";
 
-export const jobs = [
-  {
-    id: "sr-architect-001",
-    title: "Senior AI Solutions Architect",
-    department: "Engineering",
-    location: "Mumbai, India",
-    type: "Full-time",
-    salary: "Competitive",
-    posted: "2 days ago"
-  },
-  {
-    id: "digital-strat-002",
-    title: "Principal Digital Strategist",
-    department: "Consulting",
-    location: "Dubai, UAE",
-    type: "Full-time",
-    salary: "Competitive",
-    posted: "5 days ago"
-  },
-  {
-    id: "cloud-eng-003",
-    title: "Cloud Infrastructure Engineer",
-    department: "Engineering",
-    location: "Remote / Bengaluru",
-    type: "Full-time",
-    salary: "Competitive",
-    posted: "1 week ago"
-  },
-  {
-    id: "ux-designer-004",
-    title: "Senior Product Designer (UX/UI)",
-    department: "Design",
-    location: "Singapore",
-    type: "Full-time",
-    salary: "Competitive",
-    posted: "3 days ago"
-  },
-  {
-    id: "data-sci-005",
-    title: "Machine Learning Engineer",
-    department: "Engineering",
-    location: "London, UK",
-    type: "Full-time",
-    salary: "Competitive",
-    posted: "1 day ago"
-  }
-];
+interface CareersProps {
+  wordpressData?: {
+    title: string;
+    content: string;
+    globalSettings?: {
+      heroSlides: any;
+      limitlessTogether: any;
+    };
+  };
+}
 
-export default function Careers() {
+export default function Careers({ wordpressData }: CareersProps) {
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -79,7 +43,7 @@ export default function Careers() {
       <section className="relative h-[520px] overflow-hidden flex items-center">
         <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1718066236074-13f8cf7ae93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTkyODd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1718066236074-13f8cf7ae93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTkyODd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Nabhira Careers"
               className="w-full h-full object-cover"
             />
@@ -102,11 +66,17 @@ export default function Careers() {
 
                 <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                    Architect Your <br />
-                    <span className="text-[#f99d1c]">Legacy</span>
+                      {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                        <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                      ) : (
+                        <>
+                        Architect Your <br />
+                        <span className="text-[#f99d1c]">Legacy</span>
+                        </>
+                      )}
                   </h1>
                   <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                    Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology.
+                    {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology."}
                   </p>
                 </div>
               </Motion.div>
@@ -180,58 +150,57 @@ export default function Careers() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              {filteredJobs.length > 0 ? (
-                filteredJobs.map((job, i) => (
-                  <Motion.div
-                    key={job.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                    className="group"
-                  >
-                    <Link href={`/careers/${job.id}`}>
-                      <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
-                        <div className="space-y-2">
-                          <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
-                            <span>{job.department}</span>
-                            <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                            <span className="text-gray-400">{job.posted}</span>
+              <div className="space-y-4">
+                {filteredJobs.length > 0 ? (
+                  filteredJobs.map((job, i) => (
+                    <Motion.div
+                      key={job.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      viewport={{ once: true }}
+                      className="group"
+                    >
+                      <Link href={`/careers/${job.id}`}>
+                        <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
+                          <div className="space-y-2">
+                            <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
+                              <span>{job.department}</span>
+                              <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                              <span className="text-gray-400">{job.posted}</span>
+                            </div>
+                            <h3 className="text-[#11253e] text-xl font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors">{job.title}</h3>
+                            <div className="flex flex-wrap items-center gap-4 text-xs font-light text-[#11253e]/60">
+                              <div className="flex items-center gap-1.5">
+                                <MapPin size={14} /> {job.location}
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <Briefcase size={14} /> {job.type}
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <Clock size={14} /> {job.salary}
+                              </div>
+                            </div>
                           </div>
-                          <h3 className="text-[#11253e] text-xl font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors">{job.title}</h3>
-                          <div className="flex flex-wrap items-center gap-4 text-xs font-light text-[#11253e]">
-                            <div className="flex items-center gap-1.5">
-                              <MapPin size={14} /> {job.location}
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                              <Briefcase size={14} /> {job.type}
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                              <Clock size={14} /> {job.salary}
+                          <div className="flex items-center gap-4">
+                            <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
+                            <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
+                              <ChevronRight size={20} />
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
-                          <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
-                            <ChevronRight size={20} />
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </Motion.div>
-                ))
-              ) : (
-                <div className="py-20 text-center bg-white border border-dashed border-gray-200 rounded-sm">
-                  <p className="text-[#11253e] font-light">No open roles match your current filters.</p>
-                </div>
-              )}
+                      </Link>
+                    </Motion.div>
+                  ))
+                ) : (
+                  <div className="py-20 text-center bg-white border border-dashed border-gray-200 rounded-sm">
+                    <p className="text-[#11253e]/40 font-light">No open roles match your current filters.</p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </section>
-
-        <LimitlessTogether />
+          </section>
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }
