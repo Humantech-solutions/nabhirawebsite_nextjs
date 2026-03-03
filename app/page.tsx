@@ -21,10 +21,6 @@ export default async function Home() {
       <Hero data={heroData} />
       <WithNabhira data={wnData} />
       <Capabilities data={fields?.capabilities} />
-      <LatestThinking data={{ 
-        thinkingPosts: homeData?.thinkingPosts,
-        header: fields?.gridHeaders 
-      }} />
       <Industries data={fields?.industries} />
       <BigThinkers data={fields?.bigThinkers} />
       <WhatsNew data={{ 
