@@ -67,44 +67,44 @@ export async function fetchGraphQL(query: string, variables = {}) {
 export const GLOBAL_SETTINGS_FRAGMENT = `
   fragment GlobalSettingsFields on Page {
     id
-    # globalSettings {
-    #   heroSlides {
-    #     heroS1Title
-    #     heroS1Desc
-    #     heroS1Image { node { sourceUrl } }
-    #     heroS1ImageUrl
-    #     heroS1VideoUrl
-    #     heroS1Button { url title }
-    #     heroS2Title
-    #     heroS2Desc
-    #     heroS2Image { node { sourceUrl } }
-    #     heroS2ImageUrl
-    #     heroS2VideoUrl
-    #     heroS2Button { url title }
-    #     heroS3Title
-    #     heroS3Desc
-    #     heroS3Image { node { sourceUrl } }
-    #     heroS3ImageUrl
-    #     heroS3VideoUrl
-    #     heroS3Button { url title }
-    #   }
-    #   limitlessTogether {
-    #     ltTitle
-    #     ltImage { node { sourceUrl } }
-    #     ltImageUrl
-    #     ltP1
-    #     ltP2
-    #     ltP3
-    #     ltQ1
-    #     ltA1
-    #     ltQ2
-    #     ltA2
-    #     ltQ3
-    #     ltA3
-    #     ltQ4
-    #     ltA4
-    #   }
-    # }
+    globalSettings {
+      heroSlides {
+        heroS1Title
+        heroS1Desc
+        heroS1Image { node { sourceUrl } }
+        heroS1ImageUrl
+        heroS1VideoUrl
+        heroS1Button { url title }
+        heroS2Title
+        heroS2Desc
+        heroS2Image { node { sourceUrl } }
+        heroS2ImageUrl
+        heroS2VideoUrl
+        heroS2Button { url title }
+        heroS3Title
+        heroS3Desc
+        heroS3Image { node { sourceUrl } }
+        heroS3ImageUrl
+        heroS3VideoUrl
+        heroS3Button { url title }
+      }
+      limitlessTogether {
+        ltTitle
+        ltImage { node { sourceUrl } }
+        ltImageUrl
+        ltP1
+        ltP2
+        ltP3
+        ltQ1
+        ltA1
+        ltQ2
+        ltA2
+        ltQ3
+        ltA3
+        ltQ4
+        ltA4
+      }
+    }
   }
 `;
 
@@ -112,7 +112,7 @@ export async function getGlobalSettings() {
   const query = `
     ${GLOBAL_SETTINGS_FRAGMENT}
     query GetGlobalSettings {
-      page(id: "/", idType: URI) {
+      page(id: "/contact/", idType: URI) {
         ...GlobalSettingsFields
       }
     }
@@ -347,44 +347,44 @@ export async function getHomePage() {
         ltHeaderDesc
       }
     }
-    # globalSettings {
-    #   heroSlides {
-    #     heroS1Title
-    #     heroS1Desc
-    #     heroS1Image { node { sourceUrl } }
-    #     heroS1ImageUrl
-    #     heroS1VideoUrl
-    #     heroS1Button { url title }
-    #     heroS2Title
-    #     heroS2Desc
-    #     heroS2Image { node { sourceUrl } }
-    #     heroS2ImageUrl
-    #     heroS2VideoUrl
-    #     heroS2Button { url title }
-    #     heroS3Title
-    #     heroS3Desc
-    #     heroS3Image { node { sourceUrl } }
-    #     heroS3ImageUrl
-    #     heroS3VideoUrl
-    #     heroS3Button { url title }
-    #   }
-    #   limitlessTogether {
-    #     ltTitle
-    #     ltImage { node { sourceUrl } }
-    #     ltImageUrl
-    #     ltP1
-    #     ltP2
-    #     ltP3
-    #     ltQ1
-    #     ltA1
-    #     ltQ2
-    #     ltA2
-    #     ltQ3
-    #     ltA3
-    #     ltQ4
-    #     ltA4
-    #   }
-    # }
+    globalSettings {
+      heroSlides {
+        heroS1Title
+        heroS1Desc
+        heroS1Image { node { sourceUrl } }
+        heroS1ImageUrl
+        heroS1VideoUrl
+        heroS1Button { url title }
+        heroS2Title
+        heroS2Desc
+        heroS2Image { node { sourceUrl } }
+        heroS2ImageUrl
+        heroS2VideoUrl
+        heroS2Button { url title }
+        heroS3Title
+        heroS3Desc
+        heroS3Image { node { sourceUrl } }
+        heroS3ImageUrl
+        heroS3VideoUrl
+        heroS3Button { url title }
+      }
+      limitlessTogether {
+        ltTitle
+        ltImage { node { sourceUrl } }
+        ltImageUrl
+        ltP1
+        ltP2
+        ltP3
+        ltQ1
+        ltA1
+        ltQ2
+        ltA2
+        ltQ3
+        ltA3
+        ltQ4
+        ltA4
+      }
+    }
   `;
 
   const queryByUri = (uri: string) => `

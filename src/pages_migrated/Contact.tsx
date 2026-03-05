@@ -165,7 +165,18 @@ export default function Contact({ wordpressData }: any) {
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 {(() => {
                   const acfTitle = acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title;
-                  if (acfTitle && typeof acfTitle === 'string' && acfTitle.includes('|')) {
+                  if (acfTitle) {
+                    // Force 2rd line shift for the default text to match original UI when no custom pipe logic is used
+                    if (typeof acfTitle === 'string' && 
+                        !acfTitle.includes('|') && 
+                        !acfTitle.includes('\\\\') && 
+                        acfTitle.trim() === 'Start the Conversation') {
+                      return (
+                        <>
+                          Start the <br />Conversation
+                        </>
+                      );
+                    }
                     return renderHeroTitle(acfTitle);
                   }
                   return (

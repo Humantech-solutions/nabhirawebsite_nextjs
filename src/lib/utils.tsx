@@ -4,7 +4,11 @@ import React from 'react';
 export const renderHeroTitle = (title: string | React.ReactNode) => {
   if (typeof title !== 'string') return title;
   
-  if (title.includes('|')) {
+  // Handle break without color change (using \\ or \n)
+  const hasPipe = title.includes('|');
+  const hasDoubleBackslash = title.includes('\\\\');
+  
+  if (hasPipe) {
     const parts = title.split('|');
     return (
       <>
@@ -20,5 +24,30 @@ export const renderHeroTitle = (title: string | React.ReactNode) => {
       </>
     );
   }
+
+  if (hasDoubleBackslash) {
+    const parts = title.split('\\\\');
+    return (
+      <>
+        {parts[0].trim()} <br />
+        {parts.slice(1).join(' ')}
+      </>
+    );
+  }
+  
+  // Handle newlines as breaks
+  if (title.includes('\n')) {
+    return (
+      <>
+        {title.split('\n').map((line, i) => (
+          <React.Fragment key={i}>
+            {line}
+            {i < title.split('\n').length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </>
+    );
+  }
+
   return <span dangerouslySetInnerHTML={{ __html: title }} />;
 };
