@@ -38,7 +38,8 @@ export default function Partners() {
   ];
 
   return (
-    <>
+    <div className="bg-white selection:bg-[#f99d1c] selection:text-white">
+      <Navbar />
       {/* Partners Hero */}
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
@@ -123,16 +124,17 @@ export default function Partners() {
             <h2 className="text-3xl md:text-4xl font-light mb-8 tracking-tight">
               Ready to architect <span className="text-[#f99d1c] font-bold">together</span>?
             </h2>
-            <p className="text-white/60 font-light max-w-xl mb-12 leading-relaxed">
+            <p className="text-white/80 font-light max-w-xl mb-12 leading-relaxed">
               We are always looking for partners who share our commitment to precision engineering and digital excellence. Join our ecosystem and help us shape the future.
             </p>
-            <button className="bg-[#f99d1c] text-white px-10 py-4 font-bold text-[12px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors">
+            <Link href="/contact" className="bg-[#f99d1c] text-white px-10 py-4 font-bold text-[12px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors">
               BECOME A PARTNER
-            </button>
+            </Link>
           </div>
         </section>
 
         <LimitlessTogether />
-    </>
+        <Footer />
+    </div>
   );
 }

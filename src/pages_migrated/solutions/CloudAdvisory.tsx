@@ -1,6 +1,8 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
+import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { 
   ArrowRight, 
@@ -95,7 +97,7 @@ export default function CloudAdvisory() {
               className="max-w-3xl space-y-8"
             >
               <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-                <span className="hover:text-white cursor-pointer transition-colors">Home</span>
+                <Link href="/" className="hover:text-white cursor-pointer transition-colors">Home</Link>
                 <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
                 <span className="text-[#f99d1c]">Capabilities</span>
               </nav>
@@ -111,10 +113,10 @@ export default function CloudAdvisory() {
               </div>
 
               <div className="pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
+                <Link href="/contact" className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
                   <span>START YOUR JOURNEY</span>
                   <ArrowRight size={14} />
-                </button>
+                </Link>
               </div>
             </Motion.div>
           </div>
@@ -233,7 +235,7 @@ export default function CloudAdvisory() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-5 border-b-4 border-[#11253e]/10 hover:border-[#f99d1c] transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col items-center text-center"
+                className="bg-white p-5 border-b-4 pb-10 border-[#11253e]/10 hover:border-[#f99d1c] transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col items-center text-center"
               >
                 <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto">
                   {step.icon}
@@ -244,7 +246,7 @@ export default function CloudAdvisory() {
                   {step.points.map((point, i) => (
                     <div key={i} className="flex items-start space-x-3">
                       <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
-                      <span className="text-[#11253e] text-[14px] leading-relaxed font-normal">{point}</span>
+                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{point}</span>
                     </div>
                   ))}
                 </div>
@@ -320,53 +322,41 @@ export default function CloudAdvisory() {
       </section>
 
       {/* Final CTA - Patterned Section */}
-      <section className="py-20 relative bg-[#11253e] overflow-hidden">
-        {/* Diagonal Hatch Pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.07]" 
-          style={{ 
-            backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #ffffff 20px, #ffffff 21px)`,
-            backgroundSize: '100% 100%'
-          }}
-        />
-        <div 
-          className="absolute inset-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: `repeating-linear-gradient(20deg, transparent, transparent 40px, #ffffff 40px, #ffffff 41px)`,
-            backgroundSize: '100% 100%'
-          }}
-        />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-[#fdfbf7] p-10 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden"
-          >
-            {/* Decorative Accent */}
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
-            
-            <div className="max-w-2xl space-y-6 text-left">
-              <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight leading-[1.1]">
-                Ready to architect <br className="hidden md:block" />
-                <span className="text-[#f99d1c]">the future?</span>
-              </h2>
-              <p className="text-[#11253e] text-lg md:text-xl font-light leading-relaxed">
-                Let our experts design a cloud strategy that scales with your ambition and delivers measurable business value.
-              </p>
-            </div>
-            
-            <div className="flex-shrink-0 w-full md:w-auto">
-              <button className="w-full md:w-auto bg-[#f99d1c] hover:bg-[#11253e] text-white px-12 py-6 rounded-sm font-medium transition-all inline-flex items-center justify-center space-x-4 uppercase text-[14px] tracking-[0.2em] shadow-xl shadow-[#f99d1c]/20 group">
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <Motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-[#fdfbf7] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 relative"
+            >
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
+              <div className="max-w-xl space-y-4">
+                <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
+                 Ready to architect <br />
+                  <span className="text-[#f99d1c]">the future?</span>
+                </h2>
+                <p className="text-[#11253e] text-base font-light leading-relaxed">
+                  Let our experts design a cloud strategy that scales with your ambition and delivers measurable business value.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                style={{ fontSize: "13px", fontWeight: 600 }}
+              >
                 <span>START YOUR JOURNEY</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </Motion.div>
-        </div>
-      </section>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Motion.div>
+          </div>
+        </section>
     </>
   );
 }

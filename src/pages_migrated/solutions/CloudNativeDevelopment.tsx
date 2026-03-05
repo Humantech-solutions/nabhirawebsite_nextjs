@@ -1,4 +1,5 @@
 "use client";
+
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
@@ -196,7 +197,7 @@ export default function CloudNativeDevelopment() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-5 border-b-4 border-[#11253e]/10 hover:border-[#f99d1c] transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col items-center text-center group"
+                className="bg-white p-5 border-b-4 pb-10 border-[#11253e]/10 hover:border-[#f99d1c] transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col items-center text-center group"
               >
                 <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto group-hover:bg-[#f99d1c]/10 transition-colors">
                   {step.icon}
@@ -206,7 +207,7 @@ export default function CloudNativeDevelopment() {
                   {step.points.map((point, i) => (
                     <div key={i} className="flex items-start space-x-3">
                       <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
-                      <span className="text-[#11253e] text-[14px] leading-relaxed font-normal">{point}</span>
+                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{point}</span>
                     </div>
                   ))}
                 </div>

@@ -88,23 +88,21 @@ export default function About({ wordpressData }: AboutProps) {
                 <span className="text-[#f99d1c]">About Us</span>
               </nav>
 
-              <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                    <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                  ) : wordpressData?.title ? (
-                    <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
-                  ) : (
-                    <>
-                      Architecting <br />
-                      <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
-                    </>
-                  )}
-                </h1>
-                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
-                </p>
-              </div>
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
+                  <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
+                ) : wordpressData?.title ? (
+                  <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
+                ) : (
+                  <>
+                    Architecting <br />
+                    <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
+                  </>
+                )}
+              </h1>
+              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
+              </p>
             </Motion.div>
           </div>
         </section>
@@ -117,10 +115,10 @@ export default function About({ wordpressData }: AboutProps) {
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-8 tracking-tight">
                   Our Story: From Vision to <span className="font-bold">Global Impact</span>
                 </h2>
-                <div className="space-y-6 text-[#11253e]/70 font-light leading-relaxed">
+                <div className="space-y-6 text-[#11253e] font-light leading-relaxed">
                   {wordpressData?.content ? (
                     <div 
-                      className="prose prose-lg text-[#11253e]/70 font-light leading-relaxed max-w-none"
+                      className="prose prose-lg text-[#11253e] font-light leading-relaxed max-w-none"
                       dangerouslySetInnerHTML={{ __html: wordpressData.content }} 
                     />
                   ) : (
@@ -178,7 +176,7 @@ export default function About({ wordpressData }: AboutProps) {
                   </div>
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
-                    <p className="text-white/60 font-light leading-relaxed">
+                    <p className="text-white/80 font-light leading-relaxed">
                       To be the foundational architecture upon which the world&apos;s most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
                     </p>
                   </div>
@@ -196,7 +194,7 @@ export default function About({ wordpressData }: AboutProps) {
                   </div>
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Mission</h3>
-                    <p className="text-white/60 font-light leading-relaxed">
+                    <p className="text-white/80 font-light leading-relaxed">
                       To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.
                     </p>
                   </div>

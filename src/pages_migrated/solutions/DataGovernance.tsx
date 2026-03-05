@@ -125,7 +125,7 @@ export default function DataGovernance() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-3xl space-y-8"
           >
-            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[15px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
               <span className="text-[#f99d1c] uppercase tracking-widest">Data Governance</span>
@@ -271,7 +271,7 @@ export default function DataGovernance() {
             className="mt-10 flex items-center space-x-6"
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
-            <p className="text-white/50 text-lg font-light italic leading-relaxed">
+            <p className="text-white/80 text-lg font-light italic leading-relaxed">
               We position governance as a strategic enabler of confidence, not a bureaucratic constraint.
             </p>
           </Motion.div>
@@ -314,7 +314,7 @@ export default function DataGovernance() {
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 className="relative"
               >
-                <div className="h-full px-[10px] py-[5px] border border-[#11253e]/[0.06] cursor-default">
+                <div className="h-full px-[15px] py-[5px] pb-10 border border-[#11253e]/[0.06] cursor-default">
                   {/* Top accent line */}
                   <div className="w-full h-0.5 bg-[#f99d1c] mb-8"></div>
 
@@ -324,14 +324,14 @@ export default function DataGovernance() {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-[#11253e] text-xl font-medium mb-6 text-center">{step.title}</h4>
+                  <h4 className="text-[#11253e] text-xl font-semibold mb-6 text-center">{step.title}</h4>
 
                   {/* Points */}
                   <div className="space-y-3">
                     {step.points.map((point, i) => (
                       <div key={i} className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c]/40 mt-1.5 shrink-0"></div>
-                        <span className="text-[#11253e] text-[13px] leading-relaxed">{point}</span>
+                        <span className="text-[#11253e] text-[15px] leading-relaxed">{point}</span>
                       </div>
                     ))}
                   </div>
@@ -380,7 +380,7 @@ export default function DataGovernance() {
               </div>
               <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Tools & Ecosystem</h2>
               <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Enterprise Grade Governance Ecosystem</h3>
-              <p className="text-white/50 text-base font-light leading-relaxed max-w-2xl">
+              <p className="text-white/80 text-base font-light leading-relaxed max-w-2xl">
                 We design governance frameworks leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
               </p>
             </Motion.div>
@@ -494,35 +494,40 @@ export default function DataGovernance() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative bg-[#11253e] overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #ffffff 20px, #ffffff 21px)` }} />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#fdfbf7] p-10 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
-            <div className="max-w-2xl space-y-6">
-              <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight leading-[1.1]">
-                Secure Your <br />
-                <span className="text-[#f99d1c]">Competitive Edge.</span>
-              </h2>
-              <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
-              </p>
-            </div>
-            <button
-              className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#11253e] text-white px-12 py-6 rounded-sm transition-all inline-flex items-center space-x-4 uppercase tracking-[0.2em] group"
-              style={{ fontSize: "14px", fontWeight: 500 }}
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <Motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-[#fdfbf7] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 relative"
             >
-              <span>START AUDIT</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </Motion.div>
-        </div>
-      </section>
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
+              <div className="max-w-xl space-y-4">
+                <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
+                 Secure Your <br />
+                  <span className="text-[#f99d1c]">Competitive Edge.</span>
+                </h2>
+                <p className="text-[#11253e] text-base font-light leading-relaxed">
+                  Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
+                </p>
+              </div>
+              <button
+                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                style={{ fontSize: "13px", fontWeight: 600 }}
+              >
+                <span>START AUDIT</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Motion.div>
+          </div>
+        </section>
     </>
   );
 }

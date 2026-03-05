@@ -176,15 +176,9 @@ export default function RetailConsumer() {
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              Enabling Intelligent Commerce in a <span className="text-white font-medium">Digital First World</span>.
+              Enabling Intelligent Commerce in a Digital First World.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
-                <span>Start Transformation</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </Motion.div>
         </div>
       </section>

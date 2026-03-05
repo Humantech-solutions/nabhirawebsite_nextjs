@@ -23,7 +23,7 @@ import {
   LayoutTemplate
 } from "lucide-react";
 
-export default function BankingFinance() {
+export default function BankingFinance({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Banking & Financial Services | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -72,7 +72,7 @@ export default function BankingFinance() {
     {
       id: "infrastructure",
       title: "Modern Core & Cloud Infrastructure",
-      description: "Transitioning from monolithic legacy environments to secure cloud-enabled and API-driven architectures.",
+      description: "Transitioning from monolithic legacy Banking & Finance applications to secure cloud-enabled and API-driven architectures.",
       details: ["Legacy-to-Cloud Migration", "API-First Architecture", "Scalability & Resilience"],
       icon: <Cloud size={40} />
     },
@@ -86,14 +86,14 @@ export default function BankingFinance() {
     {
       id: "risk",
       title: "Risk Intelligence & Fraud Prevention",
-      description: "AI-driven systems for credit risk modeling, fraud detection, transaction monitoring, and regulatory reporting.",
+      description: "AI-driven systems for credit risk modeling, fraud detection, transaction monitoring and regulatory reporting.",
       details: ["AI Risk Modeling", "Fraud Detection", "Transaction Monitoring"],
       icon: <Shield size={40} />
     },
     {
       id: "governance",
       title: "Data Governance & Regulatory Alignment",
-      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency, and audit readiness.",
+      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency and audit readiness for financial institutions.",
       details: ["Data Governance", "Audit Readiness", "Reporting Accuracy"],
       icon: <LayoutTemplate size={40} />
     },
@@ -170,15 +170,8 @@ export default function BankingFinance() {
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              We help financial institutions evolve from legacy-constrained operations to intelligent, secure, and innovation-driven enterprises.
+              We help financial institutions evolve from legacy-constrained operations to intelligent, secure and innovation-driven enterprises.
             </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
-                <span>Start Transformation</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </Motion.div>
         </div>
       </section>
@@ -230,7 +223,7 @@ export default function BankingFinance() {
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              Modernize platforms, strengthen governance, and accelerate digital growth without compromising resilience.
+              Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.
             </p>
           </div>
 

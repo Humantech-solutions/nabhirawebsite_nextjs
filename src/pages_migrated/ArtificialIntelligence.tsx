@@ -8,7 +8,7 @@ import aiServerImg from "../assets/ai.png";
 import Image from "next/image";
 
 
-export default function ArtificialIntelligence() {
+export default function ArtificialIntelligence({ wordpressData }: any) {
   const solutions = [
     {
       title: "AI Consulting",

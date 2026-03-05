@@ -7,7 +7,7 @@ import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Linkedin, Mail, ChevronRight } from "lucide-react";
 
-export default function Leadership() {
+export default function Leadership({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Leadership | Nabhira Technologies";
     window.scrollTo(0, 0);

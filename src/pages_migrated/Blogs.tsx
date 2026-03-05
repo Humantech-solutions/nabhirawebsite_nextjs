@@ -10,7 +10,7 @@ import { Calendar, User, ArrowRight } from "lucide-react";
 
 import { blogPosts } from "../data/migrated_data";
 
-export default function Blogs() {
+export default function Blogs({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Insights & Perspectives | Nabhira Technologies";
     window.scrollTo(0, 0);

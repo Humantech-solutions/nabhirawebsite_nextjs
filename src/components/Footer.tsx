@@ -4,7 +4,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import logo from '../assets/footer.png';
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
-import Link from "next/link"; // ✅ FIXED
+import Link from "next/link";
 import Image from "next/image";
 
 const whyNabhiraQA = [
@@ -123,8 +123,7 @@ export function LimitlessTogether({ data }: LimitlessTogetherProps) {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-4 text-white/50 font-light leading-relaxed text-sm">
-                        {item.answer}
+                      <p className="mt-4 text-white/90 font-light leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: item.answer }}>
                       </p>
                     </motion.div>
                   )}
@@ -158,10 +157,10 @@ export function Footer() {
               </Link>
             </div>
             <div className="space-y-4 max-w-xs">
-              <p className="text-white/40 text-[13px] font-light leading-relaxed tracking-wide">
+              <p className="text-white/70 text-[13px] font-light leading-relaxed tracking-wide">
                 Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI. We empower enterprises across 50+ countries to orchestrate their digital evolution through advanced data ecosystems and autonomous cloud platforms.
               </p>
-              <p className="text-white/30 text-[12px] font-light italic">
+              <p className="text-white/70 text-[12px] font-light italic">
                 Driving innovation through Cloud Advisory, Data Engineering, and Agentic AI solutions for the modern enterprise.
               </p>
             </div>

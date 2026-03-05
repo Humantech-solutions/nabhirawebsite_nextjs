@@ -25,7 +25,7 @@ import {
   Film
 } from "lucide-react";
 
-export default function MediaEntertainment() {
+export default function MediaEntertainment({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -40,22 +40,22 @@ export default function MediaEntertainment() {
   const approachItems = [
     {
       title: "Audience-Centric Strategy",
-      text: "Every platform and data model is designed around viewer experience, engagement, and monetization goals.",
+      text: "Every platform and data model is designed around viewer experience, engagement and monetization goals.",
       icon: <Users className="text-[#f99d1c]" size={32} />,
     },
     {
       title: "Scalable Cloud Infrastructure",
-      text: "Flexible ecosystems that handle traffic spikes, live streaming demands, and global distribution.",
+      text: "Flexible ecosystems that handle traffic spikes, live streaming demands and global distribution.",
       icon: <Cloud className="text-[#f99d1c]" size={32} />,
     },
     {
       title: "Security & Content Protection",
-      text: "Strong data security, DRM strategies, and compliance frameworks to safeguard IP and subscriber data.",
+      text: "Strong data security, DRM strategies and compliance frameworks to safeguard IP and subscriber data.",
       icon: <Lock className="text-[#f99d1c]" size={32} />,
     },
     {
       title: "Continuous Innovation",
-      text: "Agile delivery models for faster feature releases, experimentation, and rapid adaptation to trends.",
+      text: "Agile delivery models for faster feature releases, experimentation and rapid adaptation to trends.",
       icon: <Zap className="text-[#f99d1c]" size={32} />,
     },
   ];
@@ -71,7 +71,7 @@ export default function MediaEntertainment() {
     {
       id: "app-dev",
       title: "Application Development",
-      description: "We build modern Video-on-demand (VOD) platforms, mobile and smart TV applications, and robust content management systems.",
+      description: "We build modern Video-on-demand (VOD) platforms, mobile and smart TV applications and robust content management systems.",
       details: ["VOD Platforms", "Smart TV Apps", "Personalization Engines"],
       icon: <Tv size={40} />
     },
@@ -85,7 +85,7 @@ export default function MediaEntertainment() {
     {
       id: "security",
       title: "Cybersecurity & Compliance",
-      description: "We ensure platform integrity with Digital Rights Management (DRM) support, secure payment integrations, and data privacy compliance.",
+      description: "We ensure platform integrity with Digital Rights Management (DRM) support, secure payment integrations and data privacy compliance.",
       details: ["DRM Support", "Secure Payments", "Threat Monitoring"],
       icon: <ShieldCheck size={40} />
     },
@@ -141,9 +141,8 @@ export default function MediaEntertainment() {
 
   return (
     <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
-      {/* ─── Hero Section ─── */}
+      {/* Hero Section */}
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1731567387449-ca62ad06831f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpYSUyMHN0dWRpbyUyMG1vZGVybiUyMGFyY2hpdGVjdHVyZSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MTkwMDE2N3ww&ixlib=rb-4.1.0&q=80&w=1080"
@@ -162,7 +161,6 @@ export default function MediaEntertainment() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            {/* Breadcrumb */}
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
@@ -173,24 +171,17 @@ export default function MediaEntertainment() {
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Media & <br />
-              <span className="text-white/40">Entertainment</span>
+              <span className="text-white/100">Entertainment</span>
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              Powering <span className="text-white font-medium">Digital Experiences</span> That Captivate Audiences.
+              Powering Digital Experiences That Captivate Audiences.
             </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
-                <span>Start Transformation</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </Motion.div>
         </div>
       </section>
 
-      {/* ─── Our Approach (Bento Grid Style) ─── */}
+      {/* Approach Section */}
       <section className="py-24 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -228,7 +219,7 @@ export default function MediaEntertainment() {
         </div>
       </section>
 
-      {/* ─── Key Services (Alternating Layout) ─── */}
+      {/* Key Services Section */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -250,7 +241,6 @@ export default function MediaEntertainment() {
                 transition={{ duration: 0.8 }}
                 className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
               >
-                {/* Text Content */}
                 <div className="flex-1 space-y-6">
                   <div className="flex items-center gap-4 mb-2">
                     <span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span>
@@ -269,12 +259,10 @@ export default function MediaEntertainment() {
                   </ul>
                 </div>
 
-                {/* Visual/Icon Content */}
                 <div className="flex-1 w-full">
                   <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
                     <div className="absolute inset-0 bg-[#11253e]/5 opacity-20" style={{ backgroundImage: 'radial-gradient(#11253e 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                     <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      {/* Render icon with large size */}
                       <div className="transform scale-150">
                         {area.icon}
                       </div>
@@ -287,7 +275,7 @@ export default function MediaEntertainment() {
         </div>
       </section>
 
-      {/* ─── Technology Enablement (Dark Mode) ─── */}
+      {/* Tech Enablement Section */}
       <section className="py-24 bg-[#11253e] text-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#f99d1c]/50 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
@@ -300,10 +288,6 @@ export default function MediaEntertainment() {
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
                 We leverage secure, compliant cloud environments and advanced digital platforms to support global distribution and engagement.
               </p>
-              
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Partner with us <ArrowRight size={20} />
-              </Link>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -319,9 +303,8 @@ export default function MediaEntertainment() {
         </div>
       </section>
 
-      {/* ─── Outcomes (Metrics Style) ─── */}
+      {/* Outcomes Section */}
       <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
-        {/* Vertical Lines Background */}
         <div 
           className="absolute inset-0 opacity-10 pointer-events-none" 
           style={{ 

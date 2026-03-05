@@ -136,7 +136,7 @@ export default function Awards() {
               Impact Beyond <span className="text-[#f99d1c] font-bold">Awards</span>
             </h2>
             <div className="max-w-3xl mx-auto">
-              <p className="text-white/60 font-light leading-relaxed mb-12">
+              <p className="text-white/80 font-light leading-relaxed mb-12">
                 While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.
               </p>
             </div>

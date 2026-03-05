@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
 
-export default function CloudTransformation() {
+export default function CloudTransformation({ wordpressData }: any) {
   const steps = [
     { title: "Strategic Readiness", desc: "Assessing legacy infrastructure and defining a tailored migration roadmap." },
     { title: "Architecture Design", desc: "Building resilient, multi-cloud and hybrid environments for peak performance." },

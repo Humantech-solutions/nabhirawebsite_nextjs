@@ -5,7 +5,7 @@ import { ServiceHero } from "../components/ServiceHero";
 import { Database, BarChart3, ShieldCheck, Zap, ArrowRight, Layers, FileSpreadsheet, Network } from "lucide-react";
 import Link from "next/link";
 
-export default function DataAnalytics() {
+export default function DataAnalytics({ wordpressData }: any) {
   const solutions = [
     {
       title: "Data Engineering",

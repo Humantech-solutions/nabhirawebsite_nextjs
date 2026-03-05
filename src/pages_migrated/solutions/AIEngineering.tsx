@@ -183,13 +183,14 @@ export default function AIEngineering() {
             </p>
 
             <div className="pt-6 flex flex-wrap gap-4">
-              <button
+              <Link
+                href="/contact"
                 className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group"
                 style={{ fontSize: "14px", fontWeight: 500 }}
               >
                 <span>START YOUR JOURNEY</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
             </div>
           </Motion.div>
         </div>
@@ -229,7 +230,7 @@ export default function AIEngineering() {
             <div className="max-w-2xl">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">01 Approach</span>
               <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">From AI Ambition to <br/><span className="text-white/50">Enterprise Grade Execution</span></h2>
-              <p className="text-white/70 text-lg font-light max-w-xl">
+              <p className="text-white/80 text-lg font-light max-w-xl">
                 AI success is not about models alone. It is about architecture integration, governance, and business alignment.
               </p>
             </div>
@@ -321,7 +322,7 @@ export default function AIEngineering() {
              >
                 <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">03 Tools</span>
                 <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">Enterprise AI and <br/>ML Ecosystem</h2>
-                <p className="text-white/60 text-lg font-light mb-8">
+                <p className="text-white/80 text-lg font-light mb-8">
                   We design AI engineering solutions leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
                 </p>
                 <div className="p-6 bg-white/[0.05] border border-white/10 rounded-sm">
@@ -390,28 +391,42 @@ export default function AIEngineering() {
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="py-20 relative bg-[#f99d1c] overflow-hidden">
-        {/* Vertical Lines Background */}
-        <div 
-          className="absolute inset-0 opacity-10 pointer-events-none" 
-          style={{ 
-            backgroundImage: 'linear-gradient(to right, #11253e 1px, transparent 1px)', 
-            backgroundSize: '40px 100%' 
-          }}
-        ></div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-           <div className="text-[#11253e]">
-             <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to engineer intelligence?</h2>
-             <p className="text-[#11253e] text-lg">Transform from experimentation to production-grade intelligence.</p>
-           </div>
-           <button className="bg-[#11253e] text-white px-8 py-4 rounded-sm font-medium tracking-wider uppercase flex items-center gap-3 hover:bg-white hover:text-[#11253e] transition-colors shadow-xl">
-             <span>Start Your Journey</span>
-             <ArrowRight size={18} />
-           </button>
-        </div>
-      </section>
+
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <Motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-[#fdfbf7] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 relative"
+            >
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
+              <div className="max-w-xl space-y-4">
+                <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
+                 Ready to engineer  <br />
+                  <span className="text-[#f99d1c]">intelligence?</span>
+                </h2>
+                <p className="text-[#11253e] text-base font-light leading-relaxed">
+                  Transform from experimentation to production-grade intelligence.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                style={{ fontSize: "13px", fontWeight: 600 }}
+              >
+                <span>START YOUR JOURNEY</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Motion.div>
+          </div>
+        </section>
     </>
   );
 }
