@@ -6,12 +6,16 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShieldAlert, Fingerprint, Lock, Activity, Layers, Code, ArrowRight, CheckCircle2 } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function PolicyEngineSolution() {
+export default function PolicyEngineSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Policy Engine System | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   return (
     <>
@@ -35,11 +39,12 @@ export default function PolicyEngineSolution() {
                     <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Advanced Governance</span>
                   </div>
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                    Decentralized <br />
-                    <span className="text-[#f99d1c]">Policy Intelligence</span>
+                    {renderHeroTitle(heroData?.heroS1Title || (
+                      <>Decentralized <br /> <span className="text-[#f99d1c]">Policy Intelligence</span></>
+                    ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    Nabhira’s Policy Engine System is a high-performance, programmable governance layer that enforces complex business rules across distributed architectures with microsecond latency.
+                    {heroData?.heroS1Desc || "Nabhira’s Policy Engine System is a high-performance, programmable governance layer that enforces complex business rules across distributed architectures with microsecond latency."}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

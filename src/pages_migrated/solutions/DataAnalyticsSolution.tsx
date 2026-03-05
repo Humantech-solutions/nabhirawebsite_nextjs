@@ -4,13 +4,17 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { ArrowRight, BarChart3, Layers, Brain, Cog, Rocket, Shield, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, PieChart, Activity, LineChart, Database, Search } from "lucide-react";
 
-export default function DataAnalyticsSolution() {
+export default function DataAnalyticsSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Data Analytics Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -109,7 +113,7 @@ export default function DataAnalyticsSolution() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1540370548792-520e6e3b12e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkJTIwYnVzaW5lc3MlMjBpbnRlbGxpZ2VuY2UlMjBkYXJrfGVufDF8fHx8MTc3MjMwMjk5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1540370548792-520e6e3b12e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkJTIwYnVzaW5lc3MlMjBpbnRlbGxpZ2VuY2UlMjBkYXJrfGVufDF8fHx8MTc3MjMwMjk5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
             alt="Data Analytics Infrastructure"
             className="w-full h-full object-cover opacity-30 mix-blend-screen"
           />
@@ -132,12 +136,15 @@ export default function DataAnalyticsSolution() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Transform Data into <br />
-              <span className="text-white/40">Strategic Advantage.</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Transform Data into <br /> <span className="text-white/40">Strategic Advantage.</span></>
+              ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Converting data into foresight through <span className="text-white font-medium">decision intelligence</span> that drives measurable business outcomes.
+              {heroData?.heroS1Desc || (
+                <>Converting data into foresight through <span className="text-white font-medium">decision intelligence</span> that drives measurable business outcomes.</>
+              )}
             </p>
 
 

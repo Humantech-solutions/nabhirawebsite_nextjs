@@ -5,13 +5,17 @@ import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { ArrowRight, Box, Layout, ShieldCheck, Database, HardDrive, Share2 } from "lucide-react";
 
-export default function DataFoundation() {
+export default function DataFoundation({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Data Foundation & Storage | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const pillars = [
     {
@@ -42,7 +46,7 @@ export default function DataFoundation() {
       <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1636347172071-6d17b1139816?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGF0YSUyMGZvdW5kYXRpb24lMjBhcmNoaXRlY3R1cmUlMjBzdG9yYWdlfGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1636347172071-6d17b1139816?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGF0YSUyMGZvdW5kYXRpb24lMjBhcmNoaXRlY3R1cmUlMjBzdG9yYWdlfGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
               alt="Data Foundation Global View"
               className="w-full h-full object-cover opacity-30 mix-blend-screen"
             />
@@ -65,12 +69,15 @@ export default function DataFoundation() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Solid Data <br /> 
-                <span className="text-white/40">Foundations.</span>
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>Solid Data <br /> <span className="text-white/40">Foundations.</span></>
+                ))}
               </h1>
               
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Building the structural integrity required for <span className="text-white font-medium">Enterprise AI</span> through robust storage and master data frameworks.
+                {heroData?.heroS1Desc || (
+                  <>Building the structural integrity required for <span className="text-white font-medium">Enterprise AI</span> through robust storage and master data frameworks.</>
+                )}
               </p>
 
               <div className="pt-8 flex flex-wrap gap-4">

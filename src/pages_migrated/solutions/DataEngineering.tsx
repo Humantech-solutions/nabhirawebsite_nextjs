@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import ctaPatternBg from "figma:asset/cbeefd763cefbda8203e7be9a6c037607e216183.png";
 import {
   ArrowRight,
@@ -28,11 +29,14 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-export default function DataEngineering() {
+export default function DataEngineering({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Data Engineering Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -126,7 +130,7 @@ export default function DataEngineering() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXRhJTIwZW5naW5lZXJpbmclMjBpbmZyYXN0cnVjdHVyZSUyMHNlcnZlciUyMHJvb218ZW58MXx8fHwxNzcyMDcyMjk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXRhJTIwZW5naW5lZXJpbmclMjBpbmZyYXN0cnVjdHVyZSUyMHNlcnZlciUyMHJvb218ZW58MXx8fHwxNzcyMDcyMjk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
               alt="Data Engineering Infrastructure"
               className="w-full h-full object-cover opacity-30 mix-blend-screen"
             />
@@ -149,12 +153,13 @@ export default function DataEngineering() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Engineered for <br /> 
-                <span className="text-white/40">Performance.</span>
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>Engineered for <br /> <span className="text-white/40">Performance.</span></>
+                ))}
               </h1>
               
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Transforming raw data into strategic assets through high-performance pipeline architectures and automated processing.
+                {heroData?.heroS1Desc || "Transforming raw data into strategic assets through high-performance pipeline architectures and automated processing."}
               </p>
 
               <div className="pt-6 flex flex-wrap gap-4">

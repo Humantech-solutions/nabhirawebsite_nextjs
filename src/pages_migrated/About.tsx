@@ -8,6 +8,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Target, Eye, ShieldCheck, Users, Globe } from "lucide-react";
 import logo from '../assets/logo.png';
 import Image from "next/image";
+import { renderHeroTitle } from "../lib/utils";
 
 interface AboutProps {
   wordpressData?: {
@@ -90,15 +91,14 @@ export default function About({ wordpressData }: AboutProps) {
 
               <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                    <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                  ) : wordpressData?.title ? (
-                    <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
-                  ) : (
-                    <>
-                      Architecting <br />
-                      <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
-                    </>
+                  {renderHeroTitle(
+                    wordpressData?.globalSettings?.heroSlides?.heroS1Title || 
+                    wordpressData?.title || (
+                      <>
+                        Architecting <br />
+                        <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
+                      </>
+                    )
                   )}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">

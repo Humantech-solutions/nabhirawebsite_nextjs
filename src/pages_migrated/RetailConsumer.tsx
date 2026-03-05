@@ -4,6 +4,7 @@ import { motion as Motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../lib/utils";
 import heroBg from "../assets/a1b2c08a9b0265fe1051599a4012e2e8b726b430.png";
 import {
   ArrowRight,
@@ -24,11 +25,14 @@ import {
   Smartphone
 } from "lucide-react";
 
-export default function RetailConsumer() {
+export default function RetailConsumer({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Retail & Consumer Goods | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -147,7 +151,7 @@ export default function RetailConsumer() {
         {/* Abstract Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroBg}
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || heroBg}
             alt="Retail & Consumer Goods"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -171,12 +175,15 @@ export default function RetailConsumer() {
             </nav>
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Retail & <br />
-              <span className="text-white/40">Consumer Goods</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Retail & <br /> <span className="text-white/40">Consumer Goods</span></>
+              ))}
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              Enabling Intelligent Commerce in a <span className="text-white font-medium">Digital First World</span>.
+              {heroData?.heroS1Desc || (
+                <>Enabling Intelligent Commerce in a <span className="text-white font-medium">Digital First World</span>.</>
+              )}
             </p>
 
             <div className="flex flex-wrap gap-4">

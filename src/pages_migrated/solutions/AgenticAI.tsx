@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import aiServerImg from "../../assets/ai.png";
 import {
   ArrowRight,
@@ -27,11 +28,14 @@ import {
   FileCheck
 } from "lucide-react";
 
-export default function AgenticAI() {
+export default function AgenticAI({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Agentic AI | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -158,7 +162,7 @@ export default function AgenticAI() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={aiServerImg}
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || aiServerImg}
             alt="Agentic AI Autonomous Robots"
             className="w-full h-full object-cover opacity-50 mix-blend-screen"
           />
@@ -182,12 +186,15 @@ export default function AgenticAI() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Autonomous <br /> 
-              <span className="text-white/40">Agentic Core.</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Autonomous <br /> <span className="text-white/40">Agentic Core.</span></>
+              ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Building the next generation of <span className="text-white font-medium">Goal-Oriented AI</span> that acts as a proactive partner in your enterprise operations.
+              {heroData?.heroS1Desc || (
+                <>Building the next generation of <span className="text-white font-medium">Goal-Oriented AI</span> that acts as a proactive partner in your enterprise operations.</>
+              )}
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">

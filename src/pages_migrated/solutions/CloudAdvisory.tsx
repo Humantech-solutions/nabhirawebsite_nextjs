@@ -2,6 +2,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -14,12 +15,16 @@ import {
   BarChart3, 
   Target 
 } from "lucide-react";
+import { Hero } from "../../components/Hero";
 
-export default function CloudAdvisory() {
+export default function CloudAdvisory({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Advisory Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -78,7 +83,7 @@ export default function CloudAdvisory() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1660058550844-02d4eaa79667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzRCUyMGFic3RyYWN0JTIwZGlnaXRhbCUyMGRhdGElMjBmbG93JTIwYmx1ZSUyMG9yYW5nZSUyMGNpbmVtYXRpY3xlbnwxfHx8fDE3NzE5MzIyNzl8MA&ixlib=rb-4.1.0&q=80&w=1920"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1660058550844-02d4eaa79667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzRCUyMGFic3RyYWN0JTIwZGlnaXRhbCUyMGRhdGElMjBmbG93JTIwYmx1ZSUyMG9yYW5nZSUyMGNpbmVtYXRpY3xlbnwxfHx8fDE3NzE5MzIyNzl8MA&ixlib=rb-4.1.0&q=80&w=1920"}
               alt="Cloud Data Flow Background"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -101,18 +106,25 @@ export default function CloudAdvisory() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Cloud Advisory
+                {renderHeroTitle(heroData?.heroS1Title || "Cloud Advisory")}
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  From <span className="text-white font-medium">Cloud Ambition</span> to <span className="text-[#f99d1c] font-medium">Real Business Outcomes</span> through strategic foresight.
+                  {heroData?.heroS1Desc || (
+                    <>
+                      From <span className="text-white font-medium">Cloud Ambition</span> to <span className="text-[#f99d1c] font-medium">Real Business Outcomes</span> through strategic foresight.
+                    </>
+                  )}
                 </p>
               </div>
 
               <div className="pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>START YOUR JOURNEY</span>
+                <button 
+                  onClick={() => heroData?.heroS1Button?.url && (window.location.href = heroData.heroS1Button.url)}
+                  className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20"
+                >
+                  <span>{heroData?.heroS1Button?.title || "START YOUR JOURNEY"}</span>
                   <ArrowRight size={14} />
                 </button>
               </div>

@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import automationHeroImg from "../../assets/ai.png";
 import {
   ArrowRight,
@@ -19,11 +20,14 @@ import {
   Check,
 } from "lucide-react";
 
-export default function IntelligentAutomation() {
+export default function IntelligentAutomation({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Intelligent Automation | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -167,12 +171,15 @@ export default function IntelligentAutomation() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Intelligent Automation <br /> 
-              <span className="text-white/40">AI at Edge.</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Intelligent Automation <br /> <span className="text-white/40">AI at Edge.</span></>
+              ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Elevating operational efficiency through <span className="text-white font-medium">Cognitive Workflows</span> and hyper-scale automation frameworks.
+              {heroData?.heroS1Desc || (
+                <>Elevating operational efficiency through <span className="text-white font-medium">Cognitive Workflows</span> and hyper-scale automation frameworks.</>
+              )}
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">

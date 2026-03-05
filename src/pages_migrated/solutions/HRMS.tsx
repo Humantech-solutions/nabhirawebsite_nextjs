@@ -6,19 +6,23 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Users, Banknote, CalendarCheck, Briefcase, Heart, UserPlus, ArrowRight, CheckCircle2, BarChart3, ShieldCheck, Globe, Zap } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function HRMSSolution() {
+export default function HRMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "HRMS & Payroll Solutions | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   return (
     <>
       {/* Cinematic Hero */}
       <section className="relative min-h-[80vh] flex items-center bg-[#11253e] overflow-hidden">
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-5 grayscale"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-5 grayscale" style={{ backgroundImage: `url('${heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2000"}')` }}></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#f99d1c1a_0%,transparent_70%)]"></div>
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           </div>
@@ -36,11 +40,12 @@ export default function HRMSSolution() {
                     <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Culture First Architecture</span>
                   </div>
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                    Human <br />
-                    <span className="text-[#f99d1c]">Capital</span> Intelligence.
+                    {renderHeroTitle(heroData?.heroS1Title || (
+                      <>Human <br /> <span className="text-[#f99d1c]">Capital</span> Intelligence.</>
+                    ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    Go beyond simple payroll. Nabhira’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance.
+                    {heroData?.heroS1Desc || "Go beyond simple payroll. Nabhira’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance."}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

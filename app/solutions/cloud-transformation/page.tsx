@@ -1,7 +1,7 @@
-"use client";
-
 import CloudTransformation from "../../../src/pages_migrated/CloudTransformation";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <CloudTransformation />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('cloud-transformation');
+  return <CloudTransformation wordpressData={wordpressData} />;
 }

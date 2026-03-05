@@ -7,8 +7,12 @@ import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
+import { renderHeroTitle } from "../lib/utils";
 
-export default function Partners() {
+export default function Partners({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   useEffect(() => {
     document.title = "Partners Ecosystem | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -43,7 +47,7 @@ export default function Partners() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1758518731814-77fa04b3c67d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBwYXJ0bmVyc2hpcCUyMGhhbmRzaGFrZSUyMGdsYXNzJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcxODk5MDI0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1758518731814-77fa04b3c67d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBwYXJ0bmVyc2hpcCUyMGhhbmRzaGFrZSUyMGdsYXNzJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcxODk5MDI0fDA&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Partners Ecosystem"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -68,13 +72,14 @@ export default function Partners() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Orchestrating <br />
-                <span className="text-[#f99d1c]">Global</span> Synergy
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>Orchestrating <br /><span className="text-[#f99d1c]">Global</span> Synergy</>
+                ))}
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  Our ecosystem is built on the principle of collaborative excellence. We partner with the world's leading technology pioneers to deliver integrated, future-proof solutions.
+                  {heroData?.heroS1Desc || "Our ecosystem is built on the principle of collaborative excellence. We partner with the world's leading technology pioneers to deliver integrated, future-proof solutions."}
                 </p>
               </div>
             </Motion.div>

@@ -3,8 +3,11 @@
 import { motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
+import { renderHeroTitle } from "../lib/utils";
 
-export default function CloudTransformation() {
+export default function CloudTransformation({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
   const steps = [
     { title: "Strategic Readiness", desc: "Assessing legacy infrastructure and defining a tailored migration roadmap." },
     { title: "Architecture Design", desc: "Building resilient, multi-cloud and hybrid environments for peak performance." },
@@ -16,9 +19,9 @@ export default function CloudTransformation() {
     <div className="flex flex-col">
       <ServiceHero
         subtitle="Cloud Transformation"
-        title="Scalable Infrastructure for the Future"
-        description="Migrate, modernize, and manage your enterprise workloads with our world-class cloud architectural expertise. We specialize in AWS, Azure, and Google Cloud."
-        image="https://images.unsplash.com/photo-1721444127971-b7d0023bbef2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBjbG91ZCUyMHNlcnZlciUyMGJsdWV8ZW58MXx8fHwxNzcxOTU1MTE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+        title={renderHeroTitle(heroData?.heroS1Title || "Scalable Infrastructure for the Future")}
+        description={heroData?.heroS1Desc || "Migrate, modernize, and manage your enterprise workloads with our world-class cloud architectural expertise. We specialize in AWS, Azure, and Google Cloud."}
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1721444127971-b7d0023bbef2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBjbG91ZCUyMHNlcnZlciUyMGJsdWV8ZW58MXx8fHwxNzcxOTU1MTE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
       />
 
       {/* Feature Grid */}

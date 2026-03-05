@@ -3,6 +3,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -18,11 +19,14 @@ import {
   Target 
 } from "lucide-react";
 
-export default function CloudMigration() {
+export default function CloudMigration({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Migration Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -74,11 +78,11 @@ export default function CloudMigration() {
   return (
     <>
       <ServiceHero 
-        title={<>Seamless <span className="text-[#f99d1c]">Transition.</span></>}
-        description="Move your mission-critical workloads to the cloud with surgical precision. Our automated migration pipelines minimize risk and maximize ROI from day one."
+        title={renderHeroTitle(heroData?.heroS1Title || <>Seamless <span className="text-[#f99d1c]">Transition.</span></>)}
+        description={heroData?.heroS1Desc || "Move your mission-critical workloads to the cloud with surgical precision. Our automated migration pipelines minimize risk and maximize ROI from day one."}
         subtitle="Cloud Migration"
         category="Cloud Migration"
-        image="https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Intro Section */}

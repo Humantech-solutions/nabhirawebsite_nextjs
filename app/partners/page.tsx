@@ -1,7 +1,7 @@
-"use client";
-
 import Partners from "@/src/pages_migrated/Partners";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <Partners />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('partners');
+  return <Partners wordpressData={wordpressData} />;
 }

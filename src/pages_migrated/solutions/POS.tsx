@@ -6,12 +6,16 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShoppingCart, Zap, BarChart3, Users, ShieldCheck, Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function POSSolution() {
+export default function POSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "AI-Powered Point of Sale | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const features = [
     {
@@ -42,7 +46,7 @@ export default function POSSolution() {
       <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 opacity-10">
             <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1556742049-04ff4f476c5b?auto=format&fit=crop&q=80&w=2000"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1556742049-04ff4f476c5b?auto=format&fit=crop&q=80&w=2000"}
               alt="Background"
               className="w-full h-full object-cover"
             />
@@ -60,11 +64,12 @@ export default function POSSolution() {
                   <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-widest">Retail Revolution</span>
                 </div>
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                  The Future of <br />
-                  <span className="text-[#f99d1c]">Intelligent Retail</span>
+                  {renderHeroTitle(heroData?.heroS1Title || (
+                    <>The Future of <br /> <span className="text-[#f99d1c]">Intelligent Retail</span></>
+                  ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity.
+                  {heroData?.heroS1Desc || "Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity."}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">

@@ -1,7 +1,7 @@
-"use client";
-
 import AgenticAI from "@/src/pages_migrated/solutions/AgenticAI";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <AgenticAI />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('agentic-ai');
+  return <AgenticAI wordpressData={wordpressData} />;
 }

@@ -4,6 +4,7 @@ import { motion as Motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../lib/utils";
 import {
   ArrowRight,
   Tv,
@@ -25,11 +26,14 @@ import {
   Film
 } from "lucide-react";
 
-export default function MediaEntertainment() {
+export default function MediaEntertainment({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -146,7 +150,7 @@ export default function MediaEntertainment() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1731567387449-ca62ad06831f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpYSUyMHN0dWRpbyUyMG1vZGVybiUyMGFyY2hpdGVjdHVyZSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MTkwMDE2N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1731567387449-ca62ad06831f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpYSUyMHN0dWRpbyUyMG1vZGVybiUyMGFyY2hpdGVjdHVyZSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MTkwMDE2N3ww&ixlib=rb-4.1.0&q=80&w=1080"}
             alt="Media & Entertainment"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -172,12 +176,15 @@ export default function MediaEntertainment() {
             </nav>
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Media & <br />
-              <span className="text-white/40">Entertainment</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Media & <br /> <span className="text-white/40">Entertainment</span></>
+              ))}
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              Powering <span className="text-white font-medium">Digital Experiences</span> That Captivate Audiences.
+              {heroData?.heroS1Desc || (
+                <>Powering <span className="text-white font-medium">Digital Experiences</span> That Captivate Audiences.</>
+              )}
             </p>
 
             <div className="flex flex-wrap gap-4">

@@ -7,6 +7,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ExternalLink, ArrowRight } from "lucide-react";
+import { renderHeroTitle } from "../lib/utils";
 
 const newsItems = [
   {
@@ -62,11 +63,9 @@ export default function News({ wordpressData }: NewsProps) {
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                  <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                ) : (
+                {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
                   <>In the <span className="text-[#f99d1c]">News</span></>
-                )}
+                ))}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
                 {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Global recognition and press mentions for our architectural contributions."}

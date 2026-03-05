@@ -8,6 +8,7 @@ import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
+import { renderHeroTitle } from "../lib/utils";
 
 interface ContactProps {
   wordpressData?: {
@@ -93,15 +94,14 @@ export default function Contact({ wordpressData }: ContactProps) {
  
                   <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                     <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                      {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                        <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                      ) : wordpressData?.title ? (
-                        <span dangerouslySetInnerHTML={{ __html: wordpressData.title }} />
-                      ) : (
-                        <>
-                          Start Your <br />
-                          <span className="text-[#f99d1c]">Evolution</span>
-                        </>
+                      {renderHeroTitle(
+                        wordpressData?.globalSettings?.heroSlides?.heroS1Title || 
+                        wordpressData?.title || (
+                          <>
+                            Start Your <br />
+                            <span className="text-[#f99d1c]">Evolution</span>
+                          </>
+                        )
                       )}
                     </h1>
                     <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">

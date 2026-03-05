@@ -5,9 +5,13 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../lib/utils";
 import { Linkedin, Mail, ChevronRight } from "lucide-react";
 
-export default function Leadership() {
+export default function Leadership({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   useEffect(() => {
     document.title = "Leadership | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -40,7 +44,7 @@ export default function Leadership() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1700809888987-cf2b29ecbd2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzE4OTkwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1700809888987-cf2b29ecbd2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzE4OTkwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Nabhira Leadership"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -64,14 +68,15 @@ export default function Leadership() {
                 <span className="text-[#f99d1c]">Leadership</span>
               </nav>
               
-              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                The <span className="text-[#f99d1c]">Visionaries</span> <br />
-                Behind the Precision
-              </h1>
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <><span className="text-[#f99d1c]">Visionaries</span> <br />Behind the Precision</>
+              ))}
+            </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world's most ambitious enterprises.
+                  {heroData?.heroS1Desc || "Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world's most ambitious enterprises."}
                 </p>
               </div>
             </Motion.div>

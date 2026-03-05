@@ -1,7 +1,7 @@
-"use client";
-
 import CloudFinancialManagement from "@/src/pages_migrated/solutions/CloudFinancialManagement";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <CloudFinancialManagement />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('cloud-financial-management');
+  return <CloudFinancialManagement wordpressData={wordpressData} />;
 }
