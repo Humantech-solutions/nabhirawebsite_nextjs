@@ -20,7 +20,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export default function GovernmentPSU() {
+export default function GovernmentPSU({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Government & PSUs | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -400,7 +400,7 @@ export default function GovernmentPSU() {
       </section>
 
       {/* Outcomes That Matter */}
-      <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
+      <section className="py-24 bg-[#F8F3E8] relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{

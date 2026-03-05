@@ -1,6 +1,6 @@
 "use client";
 
-import CloudFinancialManagement from "@/src/pages_migrated/solutions/CloudFinancialManagement";
+import CloudFinancialManagement from "@/src/pages_migrated/services/cloud/CloudFinancialManagement";
 
 export default function Page() {
   return <CloudFinancialManagement />;

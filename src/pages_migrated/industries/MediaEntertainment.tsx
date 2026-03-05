@@ -24,7 +24,7 @@ import {
   Cpu
 } from "lucide-react";
 
-export default function MediaEntertainment() {
+export default function MediaEntertainment({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -154,7 +154,7 @@ export default function MediaEntertainment() {
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Media & <br />
-              <span className="text-[#f99d1c]">Entertainment</span>
+              <span className="text-[#ffffff]">Entertainment</span>
             </h1>
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
@@ -165,10 +165,7 @@ export default function MediaEntertainment() {
             
             <div className="pt-4 flex flex-wrap gap-4">
               <Link href="/contact">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>START TRANSFORMATION</span>
-                  <ArrowRight size={14} />
-                </button>
+               
               </Link>
             </div>
           </Motion.div>
@@ -302,7 +299,7 @@ export default function MediaEntertainment() {
       </section>
 
       {/* Outcomes We Enable */}
-      <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
+      <section className="py-24 bg-[#e5dfd3] relative overflow-hidden">
         <div 
           className="absolute inset-0 opacity-10 pointer-events-none" 
           style={{ 

@@ -1,4 +1,4 @@
-import ManufacturingAutomotive from "../../../src/pages_migrated/ManufacturingAutomotive";
+import ManufacturingAutomotive from "../../../src/pages_migrated/industries/ManufacturingAutomotive";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

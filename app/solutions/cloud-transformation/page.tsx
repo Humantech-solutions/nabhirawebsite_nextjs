@@ -1,6 +1,6 @@
 "use client";
 
-import CloudTransformation from "../../../src/pages_migrated/CloudTransformation";
+import CloudTransformation from "../../../src/pages_migrated/services/cloud/CloudTransformation";
 
 export default function Page() {
   return <CloudTransformation />;

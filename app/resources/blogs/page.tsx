@@ -1,4 +1,4 @@
-import Blogs from "@/src/pages_migrated/Blogs";
+import Blogs from "@/src/pages_migrated/resources/Blogs";
 import { getAllPosts } from "@/src/lib/wordpress";
 
 export default async function Page() {

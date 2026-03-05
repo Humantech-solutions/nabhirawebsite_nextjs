@@ -1,4 +1,4 @@
-import BlogDetail from "@/src/pages_migrated/BlogDetail";
+import BlogDetail from "@/src/pages_migrated/resources/BlogDetail";
 import { blogPosts } from "@/src/data/migrated_data";
 
 export function generateStaticParams() {

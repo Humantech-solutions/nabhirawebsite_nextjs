@@ -1,4 +1,4 @@
-import CaseStudies from "@/src/pages_migrated/CaseStudies";
+import CaseStudies from "@/src/pages_migrated/resources/CaseStudies";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

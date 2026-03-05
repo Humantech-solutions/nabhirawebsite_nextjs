@@ -1,4 +1,4 @@
-import About from "@/src/pages_migrated/About";
+import About from "@/src/pages_migrated/about/About";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {
