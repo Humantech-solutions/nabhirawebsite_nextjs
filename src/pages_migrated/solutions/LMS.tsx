@@ -6,12 +6,16 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { GraduationCap, BrainCircuit, BarChart, Laptop, Globe, UserCheck, ArrowRight, CheckCircle2 } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function LMSSolution() {
+export default function LMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "AI-Powered LMS | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const pillars = [
     {
@@ -40,7 +44,7 @@ export default function LMSSolution() {
     <>
       {/* Hero Section */}
       <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-10"></div>
+          <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url('${heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000"}')` }}></div>
           
           <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
             <div className="max-w-4xl">
@@ -54,11 +58,12 @@ export default function LMSSolution() {
                   <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-widest">Next-Gen Education</span>
                 </div>
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                  Empower Your Workforce with <br />
-                  <span className="text-[#f99d1c]">Cognitive Learning</span>
+                  {renderHeroTitle(heroData?.heroS1Title || (
+                    <>Empower Your Workforce with <br /> <span className="text-[#f99d1c]">Cognitive Learning</span></>
+                  ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.
+                  {heroData?.heroS1Desc || "Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention."}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">

@@ -3,11 +3,11 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { Navbar } from "../components/Navbar";
-import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { blogPosts } from "../data/migrated_data";
+import { Hero } from "../components/Hero";
+import { renderHeroTitle } from "../lib/utils";
 
 interface BlogPageProps {
   posts?: any[];
@@ -27,13 +27,16 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
 
   const displayPosts = posts && posts.length > 0 ? posts : blogPosts;
 
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   return (
     <>
       {/* Blogs Hero */}
       <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Nabhira Blogs"
               className="w-full h-full object-cover"
             />
@@ -42,14 +45,12 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                  <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                ) : (
+                {renderHeroTitle(heroData?.heroS1Title || (
                   <>Insights & <span className="text-[#f99d1c]">Perspectives</span></>
-                )}
+                ))}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Expert analysis on the architectural trends shaping the digital frontier."}
+                {heroData?.heroS1Desc || "Expert analysis on the architectural trends shaping the digital frontier."}
               </p>
             </div>
           </div>

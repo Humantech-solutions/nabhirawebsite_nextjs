@@ -1,7 +1,7 @@
-"use client";
-
 import CloudSecurityGovernance from "@/src/pages_migrated/solutions/CloudSecurityGovernance";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <CloudSecurityGovernance />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('cloud-security-governance');
+  return <CloudSecurityGovernance wordpressData={wordpressData} />;
 }

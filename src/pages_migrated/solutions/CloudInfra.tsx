@@ -6,12 +6,16 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Cloud, Server, BarChart3, ShieldCheck, Terminal, Database, ArrowRight, CheckCircle2 } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function CloudInfraSolution() {
+export default function CloudInfraSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Infra Deployment & Monitoring | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   return (
     <>
@@ -35,11 +39,12 @@ export default function CloudInfraSolution() {
                     <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Infrastructure as Code</span>
                   </div>
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                    Architecting <br />
-                    <span className="text-[#f99d1c]">Resilience.</span>
+                    {renderHeroTitle(heroData?.heroS1Title || (
+                      <>Architecting <br /> <span className="text-[#f99d1c]">Resilience.</span></>
+                    ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail.
+                    {heroData?.heroS1Desc || "Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail."}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

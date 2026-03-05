@@ -4,13 +4,17 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, Lock, BarChart3, Search, Users, FileCheck, Database } from "lucide-react";
 
-export default function DataGovernance() {
+export default function DataGovernance({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Data Governance & Quality | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -109,7 +113,7 @@ export default function DataGovernance() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1767972464040-8bfee42d7bed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwZ292ZXJuYW5jZSUyMHNlY3VyaXR5JTIwY29tcGxpYW5jZSUyMGRpZ2l0YWwlMjBjb25jZXB0fGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1767972464040-8bfee42d7bed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwZ292ZXJuYW5jZSUyMHNlY3VyaXR5JTIwY29tcGxpYW5jZSUyMGRpZ2l0YWwlMjBjb25jZXB0fGVufDF8fHx8MTc3MjA3MjI5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
             alt="Data Governance Documentation"
             className="w-full h-full object-cover opacity-20 mix-blend-overlay"
           />
@@ -132,13 +136,15 @@ export default function DataGovernance() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Governance by <br />
-              <span className="text-white/40">Design.</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Governance by <br /> <span className="text-white/40">Design.</span></>
+              ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Embedding <span className="text-white font-medium">trust</span> and{" "}
-              <span className="text-[#f99d1c] font-medium">compliance</span> into every layer of your data lifecycle through automated governance.
+              {heroData?.heroS1Desc || (
+                <>Embedding <span className="text-white font-medium">trust</span> and <span className="text-[#f99d1c] font-medium">compliance</span> into every layer of your data lifecycle through automated governance.</>
+              )}
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">

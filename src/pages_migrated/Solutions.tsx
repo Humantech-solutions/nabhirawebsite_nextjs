@@ -4,7 +4,9 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { ShoppingCart, GraduationCap, FileText, Server, Briefcase, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
+
 import { LimitlessTogether, Footer } from "../components/Footer";
+import { renderHeroTitle } from "../lib/utils";
 
 interface SolutionsProps {
   wordpressData?: {
@@ -61,16 +63,12 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
     <div className="flex flex-col">
       <ServiceHero
         subtitle={wordpressData?.globalSettings?.heroSlides?.heroS1Desc?.substring(0, 50) + "..." || "Enterprise Solutions"}
-        title={
-          wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-            <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-          ) : (
-            <>
-              Precision Engineered <br />
-              <span className="text-white/40 font-light italic">Digital Products.</span>
-            </>
-          )
-        }
+        title={renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
+          <>
+            Precision Engineered <br />
+            <span className="text-white/40 font-light italic">Digital Products.</span>
+          </>
+        ))}
         description={wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Our suite of enterprise-grade software solutions is designed to solve the most complex business challenges with architectural elegance and AI-native intelligence."}
         image={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1605245763221-e89db37d59f7?auto=format&fit=crop&q=80&w=2000"}
       />

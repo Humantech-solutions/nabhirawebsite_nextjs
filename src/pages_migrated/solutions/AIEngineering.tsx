@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import heroImg from "../../assets/heroImg.png";
 import {
   ArrowRight,
@@ -26,11 +27,14 @@ import {
   GitBranch,
 } from "lucide-react";
 
-export default function AIEngineering() {
+export default function AIEngineering({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "AI Engineering | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const approachPoints = [
     {
@@ -150,7 +154,7 @@ export default function AIEngineering() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroImg}
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || heroImg}
             alt="AI Machine Learning Technology"
             className="w-full h-full object-cover opacity-30 mix-blend-screen"
           />
@@ -174,12 +178,13 @@ export default function AIEngineering() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              AI Engineering
+              {renderHeroTitle(heroData?.heroS1Title || (<>AI Engineering</>))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              Engineering <span className="text-white font-medium">Intelligence</span> into the{" "}
-              <span className="text-[#f99d1c] font-medium">Core of Your Enterprise</span>
+              {heroData?.heroS1Desc || (
+                <>Engineering <span className="text-white font-medium">Intelligence</span> into the <span className="text-[#f99d1c] font-medium">Core of Your Enterprise</span></>
+              )}
             </p>
 
             <div className="pt-6 flex flex-wrap gap-4">

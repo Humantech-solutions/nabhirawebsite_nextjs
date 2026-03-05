@@ -8,6 +8,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { MapPin, Briefcase, Clock, ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
 import { jobs } from "../data/migrated_data";
+import { renderHeroTitle } from "../lib/utils";
 
 interface CareersProps {
   wordpressData?: {
@@ -65,16 +66,14 @@ export default function Careers({ wordpressData }: CareersProps) {
                 </nav>
 
                 <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                      {wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-                        <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-                      ) : (
-                        <>
-                        Architect Your <br />
-                        <span className="text-[#f99d1c]">Legacy</span>
-                        </>
-                      )}
-                  </h1>
+                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
+                        {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
+                          <>
+                          Architect Your <br />
+                          <span className="text-[#f99d1c]">Legacy</span>
+                          </>
+                        ))}
+                    </h1>
                   <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                     {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology."}
                   </p>

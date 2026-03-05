@@ -1,7 +1,7 @@
-"use client";
+import CloudInfraSolution from "@/src/pages_migrated/solutions/CloudInfra";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-import CloudInfra from "@/src/pages_migrated/solutions/CloudInfra";
-
-export default function Page() {
-  return <CloudInfra />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('cloud-infra');
+  return <CloudInfraSolution wordpressData={wordpressData} />;
 }

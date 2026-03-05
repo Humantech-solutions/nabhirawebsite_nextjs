@@ -3,6 +3,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -20,11 +21,14 @@ import {
   Layout
 } from "lucide-react";
 
-export default function CloudSecurityGovernance() {
+export default function CloudSecurityGovernance({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Security & Governance | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -76,11 +80,11 @@ export default function CloudSecurityGovernance() {
   return (
     <>
       <ServiceHero 
-        title={<>Fortify Your <span className="text-[#f99d1c]">Digital Estate.</span></>}
-        description="Comprehensive security governance and automated compliance for the most regulated industries. Secure every byte, across every cloud."
+        title={renderHeroTitle(heroData?.heroS1Title || <>Fortify Your <span className="text-[#f99d1c]">Digital Estate.</span></>)}
+        description={heroData?.heroS1Desc || "Comprehensive security governance and automated compliance for the most regulated industries. Secure every byte, across every cloud."}
         subtitle="Cloud Security & Governance"
         category="Cloud Security & Governance"
-        image="https://images.unsplash.com/photo-1586036308218-5ed6553c98b6?auto=format&fit=crop&q=80&w=2000"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1586036308218-5ed6553c98b6?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Intro Section */}

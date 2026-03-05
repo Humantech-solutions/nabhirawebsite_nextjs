@@ -3,6 +3,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -20,11 +21,14 @@ import {
   Workflow
 } from "lucide-react";
 
-export default function CloudNativeDevelopment() {
+export default function CloudNativeDevelopment({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Native Development | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -76,11 +80,11 @@ export default function CloudNativeDevelopment() {
   return (
     <>
       <ServiceHero 
-        title={<>Build at the <span className="text-[#f99d1c]">Speed of Cloud.</span></>}
-        description="We design and build ultra-scalable, resilient applications using serverless, containerization and microservices. Empower your digital products to scale with your ambition."
+        title={renderHeroTitle(heroData?.heroS1Title || <>Build at the <span className="text-[#f99d1c]">Speed of Cloud.</span></>)}
+        description={heroData?.heroS1Desc || "We design and build ultra-scalable, resilient applications using serverless, containerization and microservices. Empower your digital products to scale with your ambition."}
         subtitle="Cloud Native Development"
         category="Cloud Native Development"
-        image="https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Intro Section */}

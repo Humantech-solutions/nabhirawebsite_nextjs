@@ -3,6 +3,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   BarChart3, 
   TrendingDown, 
@@ -22,11 +23,14 @@ import {
   Target
 } from "lucide-react";
 
-export default function CloudFinancialManagement() {
+export default function CloudFinancialManagement({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Financial Management (FinOps) | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -78,11 +82,11 @@ export default function CloudFinancialManagement() {
   return (
     <>
       <ServiceHero 
-        title={<>Cloud <span className="text-[#f99d1c]">Economics.</span></>}
-        description="Maximize the business value of every cloud dollar. Our FinOps services provide deep visibility, automated optimization and cultural change to drive unit-economic efficiency at scale."
+        title={renderHeroTitle(heroData?.heroS1Title || <>Cloud <span className="text-[#f99d1c]">Economics.</span></>)}
+        description={heroData?.heroS1Desc || "Maximize the business value of every cloud dollar. Our FinOps services provide deep visibility, automated optimization and cultural change to drive unit-economic efficiency at scale."}
         subtitle="Cloud Financial Management"
         category="Cloud Financial Management"
-        image="https://images.unsplash.com/photo-1632055186471-64814edeaab4?auto=format&fit=crop&q=80&w=2000"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1632055186471-64814edeaab4?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Intro Section */}

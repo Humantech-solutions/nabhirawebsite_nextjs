@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import {
   ArrowRight,
   ShieldCheck,
@@ -20,11 +21,14 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-export default function GovernmentPSU() {
+export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Government & PSUs | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const challenges = [
     {
@@ -150,7 +154,7 @@ export default function GovernmentPSU() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=2070&auto=format&fit=crop"
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=2070&auto=format&fit=crop"}
             alt="Government & Public Sector"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -175,13 +179,14 @@ export default function GovernmentPSU() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Government <br />
-              <span className="text-[#f99d1c]">& PSUs</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Government <br /> <span className="text-[#f99d1c]">& PSUs</span></>
+              ))}
             </h1>
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                Enabling Citizen-Centric, Transparent and Resilient Public Services. We partner with agencies to modernize infrastructure and strengthen public trust.
+                {heroData?.heroS1Desc || "Enabling Citizen-Centric, Transparent and Resilient Public Services. We partner with agencies to modernize infrastructure and strengthen public trust."}
               </p>
             </div>
             

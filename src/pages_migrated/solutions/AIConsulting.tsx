@@ -5,14 +5,18 @@ import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import aiServerImg from "../../assets/ai.png";
 import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
-export default function AIConsulting() {
+export default function AIConsulting({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "AI Consulting | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const strategies = [
     {
@@ -43,7 +47,7 @@ export default function AIConsulting() {
       <section className="relative min-h-[450px] md:h-[650px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
             <ImageWithFallback 
-              src={aiServerImg}
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || aiServerImg}
               alt="AI Intelligence Brain"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -66,12 +70,15 @@ export default function AIConsulting() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                Strategic <br /> 
-                <span className="text-white/40">AI Advantage.</span>
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>Strategic <br /> <span className="text-white/40">AI Advantage.</span></>
+                ))}
               </h1>
               
               <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                Navigating the complex landscape of <span className="text-white font-medium">Artificial Intelligence</span> to drive business transformation and operational excellence.
+                {heroData?.heroS1Desc || (
+                  <>Navigating the complex landscape of <span className="text-white font-medium">Artificial Intelligence</span> to drive business transformation and operational excellence.</>
+                )}
               </p>
 
               <div className="pt-4 md:pt-8 flex flex-wrap gap-4">

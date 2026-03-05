@@ -6,12 +6,16 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Briefcase, BarChart3, PieChart, Truck, Users2, Workflow, ArrowRight, CheckCircle2 } from "lucide-react";
+import { renderHeroTitle } from "../../lib/utils";
 
-export default function ERPSolution() {
+export default function ERPSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "WorkbookNow ERP | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   return (
     <>
@@ -35,11 +39,12 @@ export default function ERPSolution() {
                     <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">Integrated Intelligence</span>
                   </div>
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                    WorkbookNow <br />
-                    <span className="text-[#f99d1c]">Enterprise ERP</span>
+                    {renderHeroTitle(heroData?.heroS1Title || (
+                      <>WorkbookNow <br /> <span className="text-[#f99d1c]">Enterprise ERP</span></>
+                    ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform.
+                    {heroData?.heroS1Desc || "One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform."}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

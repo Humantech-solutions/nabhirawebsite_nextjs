@@ -4,8 +4,12 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { Database, BarChart3, ShieldCheck, Zap, ArrowRight, Layers, FileSpreadsheet, Network } from "lucide-react";
 import Link from "next/link";
+import { renderHeroTitle } from "../lib/utils";
 
-export default function DataAnalytics() {
+export default function DataAnalytics({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   const solutions = [
     {
       title: "Data Engineering",
@@ -54,14 +58,14 @@ export default function DataAnalytics() {
     <div className="flex flex-col">
       <ServiceHero
         subtitle="Data & Analytics"
-        title={
+        title={renderHeroTitle(heroData?.heroS1Title || (
           <>
             Turn Data into <br />
             <span className="text-white/40 font-light italic">Strategic Capital.</span>
           </>
-        }
-        description="From foundation to foresight, we build the architectures that empower data-driven enterprises. Our solutions turn raw complexity into clear competitive advantage."
-        image="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?auto=format&fit=crop&q=80&w=2000"
+        ))}
+        description={heroData?.heroS1Desc || "From foundation to foresight, we build the architectures that empower data-driven enterprises. Our solutions turn raw complexity into clear competitive advantage."}
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1686061593213-98dad7c599b9?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Solutions Grid */}

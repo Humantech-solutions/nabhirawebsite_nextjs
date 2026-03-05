@@ -3,6 +3,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../components/ServiceHero";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -19,11 +20,14 @@ import {
   Workflow
 } from "lucide-react";
 
-export default function CloudModernization() {
+export default function CloudModernization({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Cloud Modernization Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const methodology = [
     {
@@ -75,11 +79,11 @@ export default function CloudModernization() {
   return (
     <>
       <ServiceHero 
-        title={<>Evolve Your <span className="text-[#f99d1c]">Core Architecture.</span></>}
-        description="Dismantle legacy monoliths and build the agile, cloud-native foundation your future demands. Modernization is not just an update, it is a strategic business evolution."
+        title={renderHeroTitle(heroData?.heroS1Title || <>Evolve Your <span className="text-[#f99d1c]">Core Architecture.</span></>)}
+        description={heroData?.heroS1Desc || "Dismantle legacy monoliths and build the agile, cloud-native foundation your future demands. Modernization is not just an update, it is a strategic business evolution."}
         subtitle="Cloud Modernization"
         category="Cloud Modernization"
-        image="https://images.unsplash.com/photo-1763128516808-785e80c1dd68?auto=format&fit=crop&q=80&w=2000"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1763128516808-785e80c1dd68?auto=format&fit=crop&q=80&w=2000"}
       />
 
       {/* Intro Section */}

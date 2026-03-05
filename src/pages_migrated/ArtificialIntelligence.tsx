@@ -6,9 +6,13 @@ import { Cpu, Brain, Sparkles, Workflow, ArrowRight, Zap, Target, Lightbulb } fr
 import Link from "next/link";
 import aiServerImg from "../assets/ai.png";
 import Image from "next/image";
+import { renderHeroTitle } from "../lib/utils";
 
 
-export default function ArtificialIntelligence() {
+export default function ArtificialIntelligence({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   const solutions = [
     {
       title: "AI Consulting",
@@ -57,14 +61,14 @@ export default function ArtificialIntelligence() {
     <div className="flex flex-col">
       <ServiceHero
         subtitle="Artificial Intelligence"
-        title={
+        title={renderHeroTitle(heroData?.heroS1Title || (
           <>
             Orchestrating <br />
             <span className="text-white/40 font-light italic">Intelligent Outcomes.</span>
           </>
-        }
-        description="We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."
-       image={aiServerImg.src}
+        ))}
+        description={heroData?.heroS1Desc || "We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."}
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || aiServerImg.src}
       />
 
       {/* Solutions Grid */}

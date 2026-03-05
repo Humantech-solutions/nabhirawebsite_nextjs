@@ -8,28 +8,10 @@ import banner2Img from "../assets/bigthinkers.png";
 import aiServerImg from "../assets/ai.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { renderHeroTitle as renderTitle } from "../lib/utils";
 
 interface HeroProps {
-  data?: {
-    heroS1Title?: string;
-    heroS1Desc?: string;
-    heroS1Image?: { node: { sourceUrl: string } };
-    heroS1ImageUrl?: string;
-    heroS1VideoUrl?: string;
-    heroS1Button?: { url: string; title: string };
-    heroS2Title?: string;
-    heroS2Desc?: string;
-    heroS2Image?: { node: { sourceUrl: string } };
-    heroS2ImageUrl?: string;
-    heroS2VideoUrl?: string;
-    heroS2Button?: { url: string; title: string };
-    heroS3Title?: string;
-    heroS3Desc?: string;
-    heroS3Image?: { node: { sourceUrl: string } };
-    heroS3ImageUrl?: string;
-    heroS3VideoUrl?: string;
-    heroS3Button?: { url: string; title: string };
-  };
+  data?: any;
 }
 
 export function Hero({ data }: HeroProps) {
@@ -86,57 +68,46 @@ export function Hero({ data }: HeroProps) {
     },
   ];
 
-  const renderTitle = (title: string | React.ReactNode) => {
-    if (typeof title !== 'string') return title;
-    
-    if (title.includes('|')) {
-      const parts = title.split('|');
-      return (
-        <>
-          {parts[0].trim()} <br />
-          <span className="text-[#f99d1c]">{parts.slice(1).join('|').trim()}</span>
-        </>
-      );
-    }
-    return <span dangerouslySetInnerHTML={{ __html: title }} />;
-  };
+
+
+  const heroData = data?.heroSlides || data;
 
   // Map dynamic data if available
-  const banners = data ? [
+  const banners = heroData ? [
     {
-      type: (data.heroS1VideoUrl ? "video" : "image") as "video" | "image",
-      videoSrc: data.heroS1VideoUrl || "",
-      title: renderTitle(data.heroS1Title || ""),
-      description: data.heroS1Desc || "",
-      image: data.heroS1ImageUrl || data.heroS1Image?.node?.sourceUrl || banner1Img,
+      type: (heroData.heroS1VideoUrl ? "video" : "image") as "video" | "image",
+      videoSrc: heroData.heroS1VideoUrl || "",
+      title: renderTitle(heroData.heroS1Title || ""),
+      description: heroData.heroS1Desc || "",
+      image: heroData.heroS1ImageUrl || heroData.heroS1Image?.node?.sourceUrl || banner1Img,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: data.heroS1Button?.title || "SEE HOW",
-      buttonUrl: data.heroS1Button?.url || ""
+      buttonText: heroData.heroS1Button?.title || "SEE HOW",
+      buttonUrl: heroData.heroS1Button?.url || ""
     },
     {
-      type: (data.heroS2VideoUrl ? "video" : "image") as "video" | "image",
-      videoSrc: data.heroS2VideoUrl || "",
-      title: renderTitle(data.heroS2Title || ""),
-      description: data.heroS2Desc || "",
-      image: data.heroS2ImageUrl || data.heroS2Image?.node?.sourceUrl || banner2Img,
+      type: (heroData.heroS2VideoUrl ? "video" : "image") as "video" | "image",
+      videoSrc: heroData.heroS2VideoUrl || "",
+      title: renderTitle(heroData.heroS2Title || ""),
+      description: heroData.heroS2Desc || "",
+      image: heroData.heroS2ImageUrl || heroData.heroS2Image?.node?.sourceUrl || banner2Img,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: data.heroS2Button?.title || "SEE HOW",
-      buttonUrl: data.heroS2Button?.url || ""
+      buttonText: heroData.heroS2Button?.title || "SEE HOW",
+      buttonUrl: heroData.heroS2Button?.url || ""
     },
     {
-      type: (data.heroS3VideoUrl ? "video" : "image") as "video" | "image",
-      videoSrc: data.heroS3VideoUrl || "",
-      title: renderTitle(data.heroS3Title || ""),
-      description: data.heroS3Desc || "",
-      image: data.heroS3ImageUrl || data.heroS3Image?.node?.sourceUrl || aiServerImg,
+      type: (heroData.heroS3VideoUrl ? "video" : "image") as "video" | "image",
+      videoSrc: heroData.heroS3VideoUrl || "",
+      title: renderTitle(heroData.heroS3Title || ""),
+      description: heroData.heroS3Desc || "",
+      image: heroData.heroS3ImageUrl || heroData.heroS3Image?.node?.sourceUrl || aiServerImg,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: data.heroS3Button?.title || "SEE HOW",
-      buttonUrl: data.heroS3Button?.url || ""
+      buttonText: heroData.heroS3Button?.title || "SEE HOW",
+      buttonUrl: heroData.heroS3Button?.url || ""
     }
   ].filter((_, i) => {
-    const s = i === 0 ? data.heroS1Title : i === 1 ? data.heroS2Title : data.heroS3Title;
-    const d = i === 0 ? data.heroS1Desc : i === 1 ? data.heroS2Desc : data.heroS3Desc;
-    const v = i === 0 ? data.heroS1VideoUrl : i === 1 ? data.heroS2VideoUrl : data.heroS3VideoUrl;
+    const s = i === 0 ? heroData.heroS1Title : i === 1 ? heroData.heroS2Title : heroData.heroS3Title;
+    const d = i === 0 ? heroData.heroS1Desc : i === 1 ? heroData.heroS2Desc : heroData.heroS3Desc;
+    const v = i === 0 ? heroData.heroS1VideoUrl : i === 1 ? heroData.heroS2VideoUrl : heroData.heroS3VideoUrl;
     return s || d || v;
   }) : defaultBanners;
 

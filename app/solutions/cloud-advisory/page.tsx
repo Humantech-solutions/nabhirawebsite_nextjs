@@ -1,7 +1,9 @@
-"use client";
+
 
 import CloudAdvisory from "@/src/pages_migrated/solutions/CloudAdvisory";
+import { getPageBySlug } from "@/src/lib/wordpress";
 
-export default function Page() {
-  return <CloudAdvisory />;
+export default async function Page() {
+  const wordpressData = await getPageBySlug('cloud-advisory');
+  return <CloudAdvisory wordpressData={wordpressData} />;
 }

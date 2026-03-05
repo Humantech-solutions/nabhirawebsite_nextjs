@@ -4,6 +4,7 @@ import { motion as Motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { renderHeroTitle } from "../lib/utils";
 import heroBg from "../assets/eeb3297df6ce0c8adf9882c1fc6fd03cea6c6d51.png";
 import {
   ArrowRight,
@@ -31,11 +32,14 @@ import {
   HeartPulse
 } from "lucide-react";
 
-export default function HealthcarePharma() {
+export default function HealthcarePharma({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Healthcare & Pharma | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -154,7 +158,7 @@ export default function HealthcarePharma() {
         {/* Abstract Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroBg}
+            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || heroBg}
             alt="Healthcare & Pharma"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -178,12 +182,15 @@ export default function HealthcarePharma() {
             </nav>
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Healthcare & <br />
-              <span className="text-white/40">Pharma</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Healthcare & <br /> <span className="text-white/40">Pharma</span></>
+              ))}
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              Empowering the <span className="text-white font-medium">Future of Connected Care</span>.
+              {heroData?.heroS1Desc || (
+                <>Empowering the <span className="text-white font-medium">Future of Connected Care</span>.</>
+              )}
             </p>
 
             <div className="flex flex-wrap gap-4">

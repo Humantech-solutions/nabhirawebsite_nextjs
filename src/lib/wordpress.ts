@@ -7,28 +7,93 @@ export async function fetchGraphQL(query: string, variables = {}) {
   }
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  const res = await fetch(WORDPRESS_API_URL, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-    cache: 'no-store', // Disable caching to ensure we see fresh updates from local WordPress during local dev/testing
-  });
+  try {
+    const res = await fetch(WORDPRESS_API_URL, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+      cache: 'no-store',
+    });
 
-  const json = await res.json();
-  
-  if (json.errors) {
-    console.error('[WPGraphQL ERROR]:', JSON.stringify(json.errors, null, 2));
-    return json;
+    const json = await res.json();
+    
+    // Ensure data exists even if null
+    return {
+      data: json.data || null,
+      errors: json.errors || null
+    };
+  } catch (error) {
+    console.error('[fetchGraphQL Exception]:', error);
+    return { data: null, errors: [error] };
   }
+}
 
-  return json;
+export const GLOBAL_SETTINGS_FRAGMENT = `
+  fragment GlobalSettingsFields on Page {
+    globalSettings {
+      heroSlides {
+        heroS1Title
+        heroS1Desc
+        heroS1Image { node { sourceUrl } }
+        heroS1ImageUrl
+        heroS1VideoUrl
+        heroS1Button { url title }
+        heroS2Title
+        heroS2Desc
+        heroS2Image { node { sourceUrl } }
+        heroS2ImageUrl
+        heroS2VideoUrl
+        heroS2Button { url title }
+        heroS3Title
+        heroS3Desc
+        heroS3Image { node { sourceUrl } }
+        heroS3ImageUrl
+        heroS3VideoUrl
+        heroS3Button { url title }
+      }
+      limitlessTogether {
+        ltTitle
+        ltImage { node { sourceUrl } }
+        ltImageUrl
+        ltP1
+        ltP2
+        ltP3
+        ltQ1
+        ltA1
+        ltQ2
+        ltA2
+        ltQ3
+        ltA3
+        ltQ4
+        ltA4
+      }
+    }
+  }
+`;
+
+export async function getGlobalSettings() {
+  const query = `
+    ${GLOBAL_SETTINGS_FRAGMENT}
+    query GetGlobalSettings {
+      page(id: "/", idType: URI) {
+        ...GlobalSettingsFields
+      }
+    }
+  `;
+  const response = await fetchGraphQL(query);
+  return response?.data?.page?.globalSettings || null;
 }
 
 export async function getPageBySlug(slug: string) {
+  // Ensure slug is properly formatted as a URI
+  const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
+  const finalSlug = formattedSlug.endsWith('/') ? formattedSlug : `${formattedSlug}/`;
+
   const query = `
+    ${GLOBAL_SETTINGS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
       page(id: $id, idType: $idType) {
         id
@@ -37,54 +102,25 @@ export async function getPageBySlug(slug: string) {
         slug
         uri
         date
-        globalSettings {
-          heroSlides {
-            heroS1Title
-            heroS1Desc
-            heroS1Image { node { sourceUrl } }
-            heroS1ImageUrl
-            heroS1VideoUrl
-            heroS1Button { url title }
-            heroS2Title
-            heroS2Desc
-            heroS2Image { node { sourceUrl } }
-            heroS2ImageUrl
-            heroS2VideoUrl
-            heroS2Button { url title }
-            heroS3Title
-            heroS3Desc
-            heroS3Image { node { sourceUrl } }
-            heroS3ImageUrl
-            heroS3VideoUrl
-            heroS3Button { url title }
-          }
-          limitlessTogether {
-            ltTitle
-            ltImage { node { sourceUrl } }
-            ltImageUrl
-            ltP1
-            ltP2
-            ltP3
-            ltQ1
-            ltA1
-            ltQ2
-            ltA2
-            ltQ3
-            ltA3
-            ltQ4
-            ltA4
-          }
-        }
+        ...GlobalSettingsFields
       }
     }
   `;
 
   const variables = {
-    id: slug,
+    id: finalSlug,
     idType: 'URI',
   };
 
   const response = await fetchGraphQL(query, variables);
+  
+  // Try fallback without trailing slash if primary fails
+  if (!response?.data?.page) {
+    const fallbackVariables = { id: formattedSlug, idType: 'URI' };
+    const fallbackResponse = await fetchGraphQL(query, fallbackVariables);
+    if (fallbackResponse?.data?.page) return fallbackResponse.data.page;
+  }
+
   return response?.data?.page;
 }
 
@@ -99,7 +135,6 @@ export async function getHomePage() {
     homePageFields {
       withNabhira {
         wnTitle
-        wn_title: wnTitle
         wnI1Cat
         wnI1Title
         wnI1Desc
@@ -268,11 +303,12 @@ export async function getHomePage() {
   `;
 
   try {
+    let page = null;
+    let thinkingPosts = [];
+
     // Try root URI first
     let response = await fetchGraphQL(queryByUri("/"));
     
-    // If there's an error in the main query (likely an unknown field in whatSNewSettings1), 
-    // try again WITHOUT the problematic fields to ensure the rest of the page loads.
     if (response?.errors) {
       console.warn('DEBUG [getHomePage]: Primary query failed, retrying without optional sections...');
       const fallbackSafeQuery = `
@@ -283,8 +319,8 @@ export async function getHomePage() {
       response = await fetchGraphQL(fallbackSafeQuery);
     }
 
-    let page = response?.data?.page;
-    let thinkingPosts = response?.data?.thinkingPosts?.nodes;
+    page = response?.data?.page;
+    thinkingPosts = response?.data?.thinkingPosts?.nodes || [];
 
     // Fallback URI lookups if needed
     if (!page) {
@@ -293,7 +329,10 @@ export async function getHomePage() {
       thinkingPosts = response?.data?.thinkingPosts?.nodes || thinkingPosts;
     }
 
-    if (!page) return null;
+    if (!page) {
+      console.error('[getHomePage ERROR]: No page data found for "/" or "/home/"');
+      return null;
+    }
 
     // Process What's New settings
     const rawSettings = page?.whatSNewSettings1;
@@ -309,26 +348,26 @@ export async function getHomePage() {
     // Fetch News Posts
     const filterBy = whatsNewSettings.wnFilterBy;
     const postsCount = Math.max(whatsNewSettings.wnPostsCount || 0, 12);
-    // Extract filter values from taxonomy connection (handles multiple checkboxes)
-    let filterSlugs: string[] = [];
+    // Extract filter values (handles multiple checkboxes/selections)
+    let filterValues: string[] = [];
     if (filterBy === 'tag') {
-      filterSlugs = whatsNewSettings.wnTag?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
+      filterValues = whatsNewSettings.wnTag?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
     } else {
-      filterSlugs = whatsNewSettings.wnCategory?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
-    }
-
-    let filterValue = filterSlugs.join(',');
-
-    if (!filterValue) {
-      filterValue = filterBy === 'tag' ? 'Featured' : 'News';
+      filterValues = whatsNewSettings.wnCategory?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
     }
 
     const postsQuery = `
       query GetWhatsNewPosts {
-        posts(where: {${filterBy === 'tag' ? "tag" : "categoryName"}: "${filterValue}"}, first: ${postsCount}) {
+        posts(where: {
+          ${filterValues.length > 0 
+            ? (filterBy === 'tag' ? `tagIn: ${JSON.stringify(filterValues)}` : `categoryIn: ${JSON.stringify(filterValues)}`)
+            : (filterBy === 'tag' ? 'tag: "Featured"' : 'categoryName: "News"')
+          }
+        }, first: ${postsCount}) {
           nodes {
             title
             date
+            slug
             featuredImage { node { sourceUrl } }
             uri
           }
@@ -380,7 +419,11 @@ export async function getAllPosts() {
           categories {
             nodes {
               name
+              slug
             }
+          }
+          blogPostSettings {
+            authorRole
           }
         }
       }
@@ -394,4 +437,87 @@ export async function getAllPosts() {
     console.error('Error fetching all posts:', error);
     return [];
   }
+}
+
+export async function getPostBySlug(slug: string) {
+  console.log(`[getPostBySlug] Attempting to find post with slug: "${slug}"`);
+  
+  // Strategy 1: Find in the list of all posts (more reliable for matching)
+  try {
+    const allPosts = await getAllPosts();
+    console.log(`[getPostBySlug] allPosts count: ${allPosts.length}`);
+    const foundPost = allPosts.find((p: any) => p.slug === slug || p.slug === slug.toLowerCase());
+    
+    if (foundPost) {
+      console.log(`[getPostBySlug] Post found in allPosts list for: ${slug}. Fetching full content...`);
+      // Re-fetch by ID to get the full "content" field since getAllPosts might be trimmed
+      return await getPostById(foundPost.id);
+    }
+  } catch (err) {
+    console.error('[getPostBySlug] Error searching in allPosts:', err);
+  }
+
+  // Strategy 2: Direct GraphQL query by slug (fallback)
+  const query = `
+    query GetPostBySlug($id: ID!, $idType: PostIdType!) {
+      post(id: $id, idType: $idType) {
+        id
+        databaseId
+        title
+        content
+        date
+        slug
+        excerpt
+        featuredImage { node { sourceUrl } }
+        author { node { name } }
+        categories { nodes { name slug } }
+        blogPostSettings {
+          authorRole
+        }
+      }
+    }
+  `;
+
+  try {
+    const variables = { id: slug, idType: 'SLUG' };
+    const response = await fetchGraphQL(query, variables);
+    
+    if (response?.data?.post) {
+      console.log(`[getPostBySlug] Post found via direct SLUG query for: ${slug}`);
+      return response.data.post;
+    }
+
+    // Strategy 3: Try URI as last resort - try to find it first from all posts
+    console.log(`[getPostBySlug] Trying URI/DatabaseId fallback for: ${slug}`);
+  } catch (error) {
+    console.error(`[getPostBySlug] Exception for ${slug}:`, error);
+  }
+
+  console.log(`[getPostBySlug] No post found for slug: ${slug}`);
+  return null;
+}
+
+// Helper to fetch full post data by ID
+async function getPostById(id: string) {
+  const query = `
+    query GetPostById($id: ID!) {
+      post(id: $id, idType: ID) {
+        id
+        databaseId
+        title
+        content
+        date
+        slug
+        excerpt
+        featuredImage { node { sourceUrl } }
+        author { node { name } }
+        categories { nodes { name slug } }
+        blogPostSettings {
+          authorRole
+        }
+      }
+    }
+  `;
+  const response = await fetchGraphQL(query, { id });
+  return response?.data?.post || null;
 }

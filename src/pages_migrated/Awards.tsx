@@ -7,8 +7,12 @@ import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Award, Trophy, Star, Medal } from "lucide-react";
+import { renderHeroTitle } from "../lib/utils";
 
-export default function Awards() {
+export default function Awards({ wordpressData }: { wordpressData?: any }) {
+  const gs = wordpressData?.globalSettings;
+  const heroData = gs?.heroSlides;
+
   useEffect(() => {
     document.title = "Awards & Recognition | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -47,7 +51,7 @@ export default function Awards() {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1681022407484-1ff39a10ba62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhd2FyZCUyMHRyb3BoeSUyMGdsYXNzJTIwb2ZmaWNlJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc3MTg5OTAyNnww&ixlib=rb-4.1.0&q=80&w=1080"
+              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1681022407484-1ff39a10ba62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhd2FyZCUyMHRyb3BoeSUyMGdsYXNzJTIwb2ZmaWNlJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc3MTg5OTAyNnww&ixlib=rb-4.1.0&q=80&w=1080"}
               alt="Awards & Recognition"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
@@ -72,13 +76,14 @@ export default function Awards() {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Excellence <br />
-                <span className="text-[#f99d1c]">Recognized</span>
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>Excellence <br /><span className="text-[#f99d1c]">Recognized</span></>
+                ))}
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.
+                  {heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations."}
                 </p>
               </div>
             </Motion.div>

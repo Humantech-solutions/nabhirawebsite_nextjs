@@ -2,145 +2,44 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowLeft, Share2, MessageCircle, Twitter, Linkedin } from "lucide-react";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "The Rise of Agentic AI: Beyond Simple Automation",
-    excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-    author: "Dr. Arvan Nabhira",
-    date: "Feb 20, 2026",
-    category: "Artificial Intelligence",
-    image: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6">The landscape of Artificial Intelligence is undergoing a seismic shift. We are moving beyond the era of passive chatbots and simple automation into the age of Agentic AI—systems capable of autonomous reasoning, goal-setting, and execution within complex, real-world environments.</p>
-      
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Understanding Agency</h2>
-      <p className="mb-6">Unlike traditional AI that requires constant prompting, agentic systems are designed with 'agency'—the ability to decompose high-level objectives into actionable steps. For Nabhira Technologies, this represents the ultimate architectural challenge: building the digital nervous systems that allow these agents to interact securely with legacy enterprise data.</p>
-      
-      <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-4 my-12 italic text-xl text-[#11253e] bg-[#f99d1c]/5">
-        "The true power of AI isn't in its ability to predict the next word, but in its potential to navigate the next business crisis autonomously."
-      </blockquote>
+interface BlogPost {
+  id: string | number;
+  title: string;
+  content: string;
+  excerpt?: string;
+  date: string;
+  slug: string;
+  image?: string;
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+  author?: {
+    node: {
+      name: string;
+    };
+  } | string;
+  categories?: {
+    nodes: Array<{
+      name: string;
+      slug: string;
+    }>;
+  };
+  blogPostSettings?: {
+    authorRole?: string;
+  };
+}
 
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">The Architectural Imperative</h2>
-      <p className="mb-6">To support agentic workflows, enterprises must rethink their data fabrics. Data can no longer be static; it must be 'agent-ready'. This involves creating semantic layers that agents can traverse without human intervention, ensuring that every decision made by the AI is grounded in verifiable corporate truth.</p>
-      
-      <p className="mb-6">As we look toward 2027, the firms that will lead are those that have built the architectural foundation today for the autonomous agents of tomorrow.</p>
-    `
-  },
-  {
-    id: 2,
-    title: "Cloud Sovereignty: Navigating Data Residency in 2026",
-    excerpt: "Why global enterprises are shifting towards localized cloud architectures to meet emerging regulatory demands.",
-    author: "Sarah Chen",
-    date: "Feb 15, 2026",
-    category: "Cloud Strategy",
-    image: "https://images.unsplash.com/photo-1586448911122-f74aa8e3e4b6?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6">In 2026, the 'cloud' is no longer a monolithic global entity. It has become a fragmented landscape of sovereign regions, each governed by its own set of data residency laws and security requirements. For the modern CTO, navigating this complexity is the primary hurdle to global expansion.</p>
-      
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">The New Geography of Data</h2>
-      <p className="mb-6">National borders have returned to the digital realm. Governments are increasingly demanding that data generated within their territory stays within their territory. This has led to the rise of 'Cloud Sovereignty'—a strategy where infrastructure is localized but managed through a unified global control plane.</p>
-      
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Strategic Implementation</h2>
-      <p className="mb-6">At Nabhira Technologies, we advocate for a 'Sovereign-by-Design' approach. This means architecting applications from day one to be location-aware, with automated data routing that ensures compliance without sacrificing performance or developer velocity.</p>
-      
-      <p className="mb-6">The transition to sovereign cloud architectures is not just a compliance checkbox; it is a competitive advantage for enterprises that want to build deep trust in the markets they serve.</p>
-    `
-  },
-  {
-    id: 3,
-    title: "Data Fabrics vs. Data Meshes: Choosing Your Architecture",
-    excerpt: "A deep dive into the architectural paradigms shaping the next generation of data-driven enterprises.",
-    author: "Marcus Thorne",
-    date: "Feb 10, 2026",
-    category: "Data Engineering",
-    image: "https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6">The debate between Data Fabrics and Data Meshes is not just technical—it's philosophical. One prioritizes centralized intelligence through a unified metadata layer, while the other prioritizes decentralized ownership through domain-driven design. Which one is right for your organization?</p>
-      
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">The Data Fabric: Centralized Connectivity</h2>
-      <p className="mb-6">A Data Fabric uses AI-driven metadata to create a virtualized layer over disparate data sources. It's ideal for organizations that need a single source of truth but have data scattered across multiple clouds and on-premise systems.</p>
-      
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">The Data Mesh: Decentralized Empowerment</h2>
-      <p className="mb-6">In contrast, a Data Mesh treats data as a product. Ownership is pushed to the business units that create the data. This model is best for large, complex organizations where centralized teams have become a bottleneck to innovation.</p>
-      
-      <p className="mb-6">Conclusion: Most successful enterprises are moving toward a hybrid 'Fabric-Mesh' approach, utilizing the connectivity of the fabric with the governance and ownership of the mesh.</p>
-    `
-  },
-  {
-    id: 4,
-    title: "Modernization Is Now a Survival Strategy",
-    excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-    author: "Dr. Arvan Nabhira",
-    date: "Mar 01, 2026",
-    category: "AI Modernization",
-    image: "https://images.unsplash.com/photo-1744640326166-433469d102f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbW9kZXJuaXphdGlvbiUyMGNvcnBvcmF0ZSUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNDU1NTA0fDA&ixlib=rb-4.1.0&q=80&w=1200",
-    content: `
-      <p className="mb-6 font-medium text-xl">Artificial Intelligence is not just another technology wave. It is fundamentally different from previous shifts like the internet, cloud, or smartphones. It is fundamentally reshaping how organizations operate, moving from rigid systems to intelligent, adaptive workflows.</p>
+interface BlogDetailProps {
+  post: BlogPost;
+}
 
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">1. AI Is Being Adopted at Unprecedented Speed</h2>
-      <p className="mb-6">AI adoption is happening faster than any previous technology revolution. The internet took years to reach mass adoption. Smartphones took nearly a decade to become universal. AI tools have reached billions of users in just a few months. Why? Because the infrastructure is already in place: Internet, Smartphones, and Mature Cloud Ecosystems.</p>
-      <div className="my-8 rounded-xl overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwYWRvcHRpb24lMjBzcGVlZCUyMGRpZ2l0YWwlMjB0cmFuc2Zvcm1hdGlvbnxlbnwxfHx8fDE3NzI0NTU3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rapid AI Adoption" className="w-full object-cover" />
-      </div>
-      <p className="mb-6">Unlike earlier transitions that required building foundational infrastructure, AI is riding on top of an already connected world. So now businesses do not have 10-15 years to adapt. They may have 2-3 years.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">2. AI Demands Fundamental Business Redesign</h2>
-      <p className="mb-6">Past technology transitions were additive (Mainframe to client-server, On-premise to cloud). AI is different. It challenges the very structure of how organizations operate: Customer journeys, Employee roles, Decision-making processes, and Operating models. Traditional enterprise systems are deterministic. AI is non-deterministic; it produces probabilistic outcomes. This forces a shift in mindset from rigid control to managed intelligence.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">3. Legacy Systems: The Cleanup Is Mandatory</h2>
-      <p className="mb-6">Most large enterprises run on decades-old legacy systems that are expensive to maintain, contain undocumented code, and create cybersecurity risks. For years, modernization was postponed due to cost and complexity. Now AI changes the equation.</p>
-      <div className="my-8 rounded-xl overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1503252947848-7338d3f92f31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMG1vZGVybml6YXRpb24lMjBjb2RlJTIwY29tcGxleGl0eXxlbnwxfHx8fDE3NzI0NTU4MDd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Legacy Code Complexity" className="w-full object-cover" />
-      </div>
-      <p className="mb-6">AI tools can analyze legacy code, assist in refactoring, and accelerate migration. The “house in order” approach is mandatory now. Enterprises cannot build intelligent systems on top of chaotic foundations.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">4. The Shift from “Buy” to “Build”</h2>
-      <p className="mb-6">Historically, enterprises preferred buying enterprise software. But AI changes development economics. With AI-assisted coding, development becomes faster and customization cheaper. This shifts the balance from “buy” to “build.” Companies will increasingly create tailored applications aligned with their exact workflows rather than adapting their processes to generic software.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">5. The Rise of Agentic Interfaces</h2>
-      <p className="mb-6">We are moving toward a model where core enterprise platforms become “systems of record” and on top of them sit intelligent, agentic interfaces. Complexity is hidden, AI agents orchestrate workflows, and users interact through conversational interfaces.</p>
-      <div className="my-8 rounded-xl overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1764549906172-0153db0825bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGFnZW50JTIwaW50ZXJmYWNlJTIwZnV0dXJpc3RpYyUyMGh1bWFuJTIwY29tcHV0ZXIlMjBpbnRlcmFjdGlvbnxlbnwxfHx8fDE3NzI0NTU3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="AI Agent Interface" className="w-full object-cover" />
-      </div>
-      <p className="mb-6">Instead of navigating multiple dashboards and forms, users may simply instruct AI agents to execute tasks. This is a profound simplification of enterprise experience.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">6. The Real Problem: The Deployment Gap</h2>
-      <p className="mb-6">While AI models are advancing rapidly, enterprises struggle with implementation. This creates a deployment gap. The gap is not technological; it is organizational. Challenges include resistance to change, lack of retrained talent, and weak governance. AI models may be powerful, but without transformation in workflows and culture, they remain unused.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">7. Talent Transformation Is Massive</h2>
-      <p className="mb-6">AI does not simply eliminate jobs; it transforms them. We will see the rise of AI engineers, auditors, and governance specialists. At the same time, existing roles will evolve. This demands large-scale reskilling and continuous learning models. The workforce transition may be one of the largest retraining efforts in corporate history.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">8. Brownfield vs. Greenfield Productivity</h2>
-      <p className="mb-6">Much of today’s AI productivity discussion focuses on “greenfield” scenarios. But most enterprises are brownfield: legacy applications, complex integrations, and technical debt. True AI productivity gains will come from modernizing and optimizing these existing environments.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">9. Avoiding “Fake Productivity”</h2>
-      <p className="mb-6">AI tools can create the illusion of productivity: faster content creation and code generation. But speed alone does not equal value. Real productivity requires quality controls, explainability, governance, and measurable business impact.</p>
-
-      <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">10. What Actually Matters for AI Success</h2>
-      <p className="mb-6">For AI to truly deliver value, enterprises must focus on First-Principle Thinking (redesign processes), AI understanding business-specific data, and Agnostic Architecture (avoid lock-in).</p>
-
-      <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-4 my-12 italic text-xl text-[#11253e] bg-[#f99d1c]/5">
-        "Enterprises that treat AI as a side project will struggle. Those that treat it as a full-scale transformation with speed, clarity and discipline will lead."
-      </blockquote>
-      
-      <p className="mb-6 font-bold text-lg">AI is already reshaping business. The only real question is: Is Your Organization Ready to Adapt and Execute Fast Enough in this AI-Led Modernization Era?</p>
-    `
-  }
-];
-
-export default function BlogDetail() {
-  const { id } = useParams();
-  const router = useRouter();
-  const post = blogPosts.find(p => p.id === Number(id));
-
+export default function BlogDetail({ post }: BlogDetailProps) {
   useEffect(() => {
     if (post) {
       document.title = `${post.title} | Nabhira Technologies`;
@@ -150,16 +49,22 @@ export default function BlogDetail() {
 
   if (!post) {
     return (
-      <div className="flex items-center justify-center bg-white py-24">
+      <div className="flex items-center justify-center bg-white py-24 min-h-[60vh]">
         <div className="text-center space-y-6">
           <h2 className="text-3xl font-bold text-[#11253e]">Article Not Found</h2>
-          <Link href="/resources/blogs" className="text-[#f99d1c] font-bold uppercase tracking-widest text-sm inline-flex items-center gap-2">
+          <p className="text-gray-500 text-sm">We couldn't find the article you were looking for.</p>
+          <Link href="/resources/blogs" className="text-[#f99d1c] font-bold uppercase tracking-widest text-sm inline-flex items-center gap-2 hover:gap-3 transition-all">
             <ArrowLeft size={16} /> Back to Blogs
           </Link>
         </div>
       </div>
     );
   }
+
+  const postImage = post.featuredImage?.node?.sourceUrl || post.image || "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=1200";
+  const postAuthor = typeof post.author === 'string' ? post.author : post.author?.node?.name || "Nabhira Team";
+  const postDate = post.date ? new Date(post.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase() : "";
+  const postCategory = post.categories?.nodes?.[0]?.name || "Artificial Intelligence";
 
   return (
     <>
@@ -172,7 +77,7 @@ export default function BlogDetail() {
             className="absolute inset-0"
           >
             <ImageWithFallback
-              src={post.image}
+              src={postImage}
               alt={post.title}
               className="w-full h-full object-cover"
             />
@@ -188,7 +93,7 @@ export default function BlogDetail() {
               className="space-y-6"
             >
               <span className="inline-block bg-[#f99d1c] text-white text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1">
-                {post.category}
+                {postCategory}
               </span>
               <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight tracking-tight">
                 {post.title}
@@ -196,11 +101,11 @@ export default function BlogDetail() {
               <div className="flex flex-wrap items-center gap-6 text-white/80 text-sm font-medium">
                 <div className="flex items-center gap-2">
                   <User size={16} className="text-[#f99d1c]" />
-                  {post.author}
+                  {postAuthor}
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar size={16} className="text-[#f99d1c]" />
-                  {post.date}
+                  {postDate}
                 </div>
               </div>
             </Motion.div>
@@ -242,11 +147,11 @@ export default function BlogDetail() {
               <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-[#11253e] flex items-center justify-center text-white font-bold">
-                    {post.author.charAt(0)}
+                    {postAuthor.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="text-[#11253e] font-bold uppercase tracking-tight text-sm">Written by {post.author}</h4>
-                    <p className="text-xs text-gray-400">Senior Architecture Consultant @ Nabhira</p>
+                    <h4 className="text-[#11253e] font-bold uppercase tracking-tight text-sm">Written by {postAuthor}</h4>
+                    <p className="text-xs text-gray-400">{post.blogPostSettings?.authorRole || "Senior Architecture Consultant @ Nabhira"}</p>
                   </div>
                 </div>
                 <Link href="/resources/blogs" className="group inline-flex items-center gap-3 text-[#11253e] font-bold text-sm uppercase tracking-widest hover:text-[#f99d1c] transition-colors">
