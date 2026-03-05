@@ -1,4 +1,4 @@
-import CloudModernization from "@/src/pages_migrated/solutions/CloudModernization";
+import CloudModernization from "@/src/pages_migrated/services/cloud/CloudModernization";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

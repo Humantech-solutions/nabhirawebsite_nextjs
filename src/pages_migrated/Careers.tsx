@@ -1,27 +1,66 @@
 "use client";
 
+import campusImg from "../assets/faded7f84bd74e71e0d0a7be48ed1d73e033a5e5.png";
+import heroImg from "../assets/a9db745e4986b39cfe7910eba6620e5d7ea22e47.png";
 import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { MapPin, Briefcase, Clock, ChevronRight, Search } from "lucide-react";
+import { MapPin, Briefcase, Clock, ChevronRight, Search, GraduationCap, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { jobs } from "../data/migrated_data";
 import { renderHeroTitle } from "../lib/utils";
 
-interface CareersProps {
-  wordpressData?: {
-    title: string;
-    content: string;
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
 
-export default function Careers({ wordpressData }: CareersProps) {
+export const jobs = [
+  {
+    id: "sr-architect-001",
+    title: "Senior AI Solutions Architect",
+    department: "Engineering",
+    location: "Mumbai, India",
+    type: "Full-time",
+
+    posted: "2 days ago"
+  },
+  {
+    id: "digital-strat-002",
+    title: "Principal Digital Strategist",
+    department: "Consulting",
+    location: "Dubai, UAE",
+    type: "Full-time",
+ 
+    posted: "5 days ago"
+  },
+  {
+    id: "cloud-eng-003",
+    title: "Cloud Infrastructure Engineer",
+    department: "Engineering",
+    location: "Remote / Bengaluru",
+    type: "Full-time",
+
+    posted: "1 week ago"
+  },
+  {
+    id: "ux-designer-004",
+    title: "Senior Product Designer (UX/UI)",
+    department: "Design",
+    location: "Singapore",
+    type: "Full-time",
+
+    posted: "3 days ago"
+  },
+  {
+    id: "data-sci-005",
+    title: "Machine Learning Engineer",
+    department: "Engineering",
+    location: "London, UK",
+    type: "Full-time",
+
+    posted: "1 day ago"
+  }
+];
+
+export default function Careers({ wordpressData }: any) {
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -41,47 +80,44 @@ export default function Careers({ wordpressData }: CareersProps) {
   return (
     <>
       {/* Careers Hero */}
-      <section className="relative h-[520px] overflow-hidden flex items-center">
-        <div className="absolute inset-0">
-            <ImageWithFallback
-              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1718066236074-13f8cf7ae93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTkyODd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
-              alt="Nabhira Careers"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/60 to-transparent"></div>
-          </div>
-          
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <div className="max-w-3xl space-y-8">
-              <Motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                {/* Breadcrumb */}
-                <nav className="flex items-center space-x-3 text-[13px] font-medium tracking-[-0.02em] mb-8">
-                  <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-                  <span className="text-white/30 font-light">&gt;</span>
-                  <span className="text-[#f99d1c]">Careers</span>
-                </nav>
+      <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={heroImg}
+            alt="Nabhira Careers"
+            className="w-full h-full object-cover opacity-40 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
 
-                <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                        {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
-                          <>
-                          Architect Your <br />
-                          <span className="text-[#f99d1c]">Legacy</span>
-                          </>
-                        ))}
-                    </h1>
-                  <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                    {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of visionaries, engineers, and strategists dedicated to redefining the architectural boundaries of enterprise technology."}
-                  </p>
-                </div>
-              </Motion.div>
-            </div>
-          </div>
-        </section>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <Motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="max-w-4xl"
+          >
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+              <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30 font-light">&gt;</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Careers</span>
+            </nav>
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
+                  <>
+                  Build <br />What is<span className="text-[#f99d1c]"> Next</span>
+                  </>
+                ))}
+              </h1>
+              <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+                {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of Engineers, Architects and Consultants redefining enterprise technology."}
+              </p>
+          </Motion.div>
+        </div>
+      </section>
+
 
         {/* Culture / Why Join Section */}
         <section className="py-24 bg-white">
@@ -118,7 +154,7 @@ export default function Careers({ wordpressData }: CareersProps) {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
               <div className="max-w-xl">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                  Open <span className="font-bold">Architectures</span>
+                  Open <span className="font-bold">Positions</span>
                 </h2>
                 <p className="text-[#11253e] font-light">
                   Find your next challenge within our specialized engineering and strategy teams.
@@ -149,57 +185,222 @@ export default function Careers({ wordpressData }: CareersProps) {
               </div>
             </div>
 
-              <div className="space-y-4">
-                {filteredJobs.length > 0 ? (
-                  filteredJobs.map((job, i) => (
-                    <Motion.div
-                      key={job.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      viewport={{ once: true }}
-                      className="group"
-                    >
-                      <Link href={`/careers/${job.id}`}>
-                        <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
-                          <div className="space-y-2">
-                            <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
-                              <span>{job.department}</span>
-                              <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                              <span className="text-gray-400">{job.posted}</span>
-                            </div>
-                            <h3 className="text-[#11253e] text-xl font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors">{job.title}</h3>
-                            <div className="flex flex-wrap items-center gap-4 text-xs font-light text-[#11253e]/60">
-                              <div className="flex items-center gap-1.5">
-                                <MapPin size={14} /> {job.location}
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <Briefcase size={14} /> {job.type}
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <Clock size={14} /> {job.salary}
-                              </div>
-                            </div>
+            <div className="space-y-4">
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job, i) => (
+                  <Motion.div
+                    key={job.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    viewport={{ once: true }}
+                    className="group"
+                  >
+                    <Link href={`/careers/${job.id}`}>
+                      <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
+                        <div className="space-y-2">
+                          <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
+                            <span>{job.department}</span>
+                            <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                            <span className="text-gray-400">{job.posted}</span>
                           </div>
-                          <div className="flex items-center gap-4">
-                            <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
-                            <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
-                              <ChevronRight size={20} />
+                          <h3 className="text-[#11253e] text-xl font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors">{job.title}</h3>
+                          <div className="flex flex-wrap items-center gap-4 text-xs font-light text-[#11253e]">
+                            <div className="flex items-center gap-1.5">
+                              <MapPin size={14} /> {job.location}
                             </div>
+                            <div className="flex items-center gap-1.5">
+                              <Briefcase size={14} /> {job.type}
+                            </div>
+
                           </div>
                         </div>
-                      </Link>
-                    </Motion.div>
-                  ))
-                ) : (
-                  <div className="py-20 text-center bg-white border border-dashed border-gray-200 rounded-sm">
-                    <p className="text-[#11253e]/40 font-light">No open roles match your current filters.</p>
-                  </div>
-                )}
-              </div>
+                        <div className="flex items-center gap-4">
+                          <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
+                          <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
+                            <ChevronRight size={20} />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Motion.div>
+                ))
+              ) : (
+                <div className="py-20 text-center bg-white border border-dashed border-gray-200 rounded-sm">
+                  <p className="text-[#11253e] font-light">No open roles match your current filters.</p>
+                </div>
+              )}
             </div>
-          </section>
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
+          </div>
+        </section>
+
+        {/* ── INTERNSHIP SECTION ── */}
+        <section className="py-24 bg-white border-t border-gray-100 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+              {/* Left — Image */}
+              <Motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="relative rounded-sm overflow-hidden aspect-[4/3]">
+                  <ImageWithFallback
+                    src={campusImg}
+                    alt="Nabhira Internship Programme"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#11253e]/60 via-transparent to-transparent"></div>
+                </div>
+                {/* Floating badge */}
+                <div className="absolute -bottom-6 -right-6 bg-[#f99d1c] text-[#11253e] px-6 py-4 rounded-sm shadow-xl">
+                  <p className="text-[10px] font-bold uppercase tracking-widest">Applications Open</p>
+                  <p className="text-xl font-bold">2026 Cohort</p>
+                </div>
+              </Motion.div>
+
+              {/* Right — Content */}
+              <Motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <GraduationCap className="text-[#f99d1c]" size={22} />
+                    <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">Internship Programme</span>
+                  </div>
+                  <h2 className="text-[#11253e] text-3xl md:text-4xl font-light tracking-tight mb-4">
+                    Launch Your Career <br /><span className="font-bold">at Nabhira</span>
+                  </h2>
+                  <div className="h-[2px] w-16 bg-[#f99d1c] mb-6"></div>
+                  <p className="text-[#11253e] font-light leading-relaxed">
+                    The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects.
+                  </p>
+                </div>
+
+                {/* Internship tracks */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { icon: <Zap size={16} />, track: "AI & Data Engineering", duration: "12 Weeks" },
+                    { icon: <Globe2 size={16} />, track: "Cloud Architecture", duration: "12 Weeks" },
+                    { icon: <Lightbulb size={16} />, track: "Digital Strategy", duration: "10 Weeks" },
+                    { icon: <BookOpen size={16} />, track: "Product & UX Design", duration: "10 Weeks" },
+                  ].map((item, idx) => (
+                    <Motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-start gap-3 bg-[#f8f9fa] border border-gray-100 p-4 rounded-sm hover:border-[#f99d1c]/40 transition-colors"
+                    >
+                      <div className="mt-0.5 text-[#f99d1c]">{item.icon}</div>
+                      <div>
+                        <p className="text-[#11253e] text-sm font-bold">{item.track}</p>
+                        <p className="text-[#11253e]/50 text-xs font-light">{item.duration}</p>
+                      </div>
+                    </Motion.div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <a
+                    href="mailto:careers@nabhira.com"
+                    className="inline-flex items-center gap-2 bg-[#11253e] hover:bg-[#1a3a60] text-white px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all group"
+                  >
+                    Apply Now
+                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-2 border border-[#11253e]/20 hover:border-[#f99d1c] text-[#11253e] px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all"
+                  >
+                    Download Brochure
+                  </a>
+                </div>
+              </Motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ── CAREER ADVANTAGE SECTION ── */}
+        <section className="py-24 bg-[#f8f9fa] overflow-hidden relative border-t border-gray-100">
+
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+
+            {/* Header */}
+            <Motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-14"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-[2px] w-10 bg-[#f99d1c]"></div>
+                <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">Career Advantage</span>
+              </div>
+              <h2 className="text-[#11253e] text-3xl md:text-[48px] font-light tracking-tight leading-tight">
+                Why Nabhira is <span className="font-bold">Different</span>
+              </h2>
+            </Motion.div>
+
+            {/* Advantage points — two-column list */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+              {[
+                { icon: <Globe2 size={18} />, title: "Global Exposure", num: "01" },
+                { icon: <TrendingUp size={18} />, title: "Accelerated Growth", num: "02" },
+                { icon: <Users size={18} />, title: "World-Class Mentorship", num: "03" },
+                { icon: <Award size={18} />, title: "Certified Excellence", num: "04" },
+                { icon: <HeartHandshake size={18} />, title: "Inclusive Culture", num: "05" },
+                { icon: <Lightbulb size={18} />, title: "Innovation Time", num: "06" },
+              ].map((item, idx) => (
+                <Motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.07, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-5 py-5 border-b border-gray-200 group cursor-default"
+                >
+                  <span className="text-[10px] font-bold text-[#f99d1c] tracking-widest w-6 shrink-0">{item.num}</span>
+                  <div className="w-8 h-8 rounded-sm bg-[#11253e] flex items-center justify-center text-white shrink-0 group-hover:bg-[#f99d1c] group-hover:text-[#11253e] transition-all duration-300">
+                    {item.icon}
+                  </div>
+                  <span className="text-[#11253e] font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors duration-300">{item.title}</span>
+                  <ChevronRight size={14} className="ml-auto text-[#11253e]/20 group-hover:text-[#f99d1c] group-hover:translate-x-1 transition-all duration-300" />
+                </Motion.div>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <Motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mt-12"
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-[#11253e] hover:bg-[#1a3a60] text-white px-10 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all group"
+              >
+                Talk to Our Talent Team
+                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Motion.div>
+
+          </div>
+        </section>
+
+        <LimitlessTogether />
     </>
   );
 }

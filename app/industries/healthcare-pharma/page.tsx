@@ -1,4 +1,4 @@
-import HealthcarePharma from "../../../src/pages_migrated/HealthcarePharma";
+import HealthcarePharma from "../../../src/pages_migrated/industries/HealthcarePharma";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

@@ -5,7 +5,7 @@ import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import logo from '../assets/logo.png';
-import Image from 'next/image';
+import Image from "next/image";
 
 export function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -157,7 +157,7 @@ export function Navbar() {
                   className={`relative transition-all duration-300 flex items-center group px-4 ${scrolled ? 'h-16' : 'h-20'}`}
                   onMouseEnter={() => setActiveMenu(link.key)}
                 >
-                  <div className="relative cursor-pointer py-2">
+                  <div className="relative cursor-pointer py-2 text-[#11253e]">
                     {isDirectLink && routeMap[link.key] ? (
                       <Link href={routeMap[link.key]}>
                         {LabelContent}
@@ -202,13 +202,13 @@ export function Navbar() {
                                 {(() => {
                                   const categoryRoutes: Record<string, string> = {
                                     "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                    "DATA & ANALYTICS": "/solutions/data-analytics",
-                                    "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                    "DATA FOUNDATION": "/solutions/data-foundation",
+                                    "AI ACCELERATION": "/solutions/artificial-intelligence"
                                   };
                                   return (
                                     <Link 
                                       href={categoryRoutes[col.title] || "#"} 
-                                      className="text-[11px] font-bold text-[#11253e] tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
+                                      className="text-[12px] font-bold text-[#11253e] tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
                                       onClick={() => setActiveMenu(null)}
                                     >
                                       {col.title}
@@ -240,7 +240,7 @@ export function Navbar() {
                                       return (
                                         <Link 
                                           href={solutionRoutes[item]} 
-                                          className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
                                           onClick={() => setActiveMenu(null)}
                                         >
                                           {children}
@@ -248,7 +248,7 @@ export function Navbar() {
                                       );
                                     }
                                     return (
-                                      <a href="#" className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
+                                      <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
                                         {children}
                                       </a>
                                     );
@@ -298,7 +298,7 @@ export function Navbar() {
                                 return (
                                   <Link 
                                     href={routes[item]} 
-                                    className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
                                     onClick={() => setActiveMenu(null)}
                                   >
                                     {children}
@@ -306,7 +306,7 @@ export function Navbar() {
                                 );
                               }
                               return (
-                                <a href="#" className="text-[13px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
+                                <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
                                   {children}
                                 </a>
                               );
@@ -400,13 +400,13 @@ export function Navbar() {
                             {(() => {
                               const categoryRoutes: Record<string, string> = {
                                 "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                "DATA & ANALYTICS": "/solutions/data-analytics",
-                                "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                "DATA FOUNDATION": "/solutions/data-foundation",
+                                "AI ACCELERATION": "/solutions/artificial-intelligence"
                               };
                               return (
                                 <Link 
                                   href={categoryRoutes[col.title] || "#"} 
-                                  className="text-[11px] font-bold text-[#f99d1c] tracking-widest uppercase block"
+                                  className="text-[12px] font-bold text-[#f99d1c] tracking-widest uppercase block"
                                   onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                   {col.title}
@@ -437,7 +437,7 @@ export function Navbar() {
                                     <Link 
                                       key={j} 
                                       href={solutionRoutes[item]} 
-                                      className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
+                                      className="block text-[14px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {item}
@@ -445,7 +445,7 @@ export function Navbar() {
                                   );
                                 }
                                 return (
-                                  <a key={j} href="#" className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c]">
+                                  <a key={j} href="#" className="block text-[14px] font-light text-[#475567] hover:text-[#f99d1c]">
                                     {item}
                                   </a>
                                 );
@@ -484,7 +484,7 @@ export function Navbar() {
                                 <Link 
                                   key={i} 
                                   href={routes[item]} 
-                                  className="block text-[15px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
+                                  className="block text-[14px] font-light text-[#475567] hover:text-[#f99d1c] active:text-[#f99d1c]"
                                   onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                   {item}

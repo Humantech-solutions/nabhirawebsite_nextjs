@@ -1,4 +1,4 @@
-import DataEngineering from "@/src/pages_migrated/solutions/DataEngineering";
+import DataEngineering from "@/src/pages_migrated/services/data/DataEngineering";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

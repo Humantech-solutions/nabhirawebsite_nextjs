@@ -1,4 +1,4 @@
-import AIEngineering from "@/src/pages_migrated/solutions/AIEngineering";
+import AIEngineering from "@/src/pages_migrated/services/ai/AIEngineering";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

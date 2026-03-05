@@ -4,24 +4,13 @@ import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
-import { Footer, LimitlessTogether } from "../components/Footer";
+import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 import { renderHeroTitle } from "../lib/utils";
 
-interface ContactProps {
-  wordpressData?: {
-    title: string;
-    content: string;
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
-
-export default function Contact({ wordpressData }: ContactProps) {
+export default function Contact({ wordpressData }: any) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,71 +36,152 @@ export default function Contact({ wordpressData }: ContactProps) {
     }, 1500);
   };
 
-  const contactDetails = [
-    {
-      icon: <MapPin className="text-[#f99d1c]" size={24} />,
+  const getIcon = (iconName: string, iconImg?: any, size = 24, className = "text-[#f99d1c]") => {
+    if (iconImg?.node?.sourceUrl) {
+      return (
+        <img 
+          src={iconImg.node.sourceUrl} 
+          alt={iconName} 
+          width={size} 
+          height={size} 
+          className="object-contain" 
+        />
+      );
+    }
+    const icons: Record<string, any> = {
+      MapPin: MapPin,
+      Mail: Mail,
+      Phone: Phone,
+      MessageSquare: MessageSquare,
+      Globe: Globe,
+      Send: Send
+    };
+    const IconComponent = icons[iconName] || MessageSquare;
+    return <IconComponent className={className} size={size} />;
+  };
+
+  const acfBody = wordpressData?.contactPageFields;
+  const acfHero = acfBody?.heroSection;
+  const acfContactGroup = acfBody?.contactInformationSection;
+  const acfRegionalGroup = acfBody?.regionalPresenceSection;
+  const acfGlobalGroup = acfBody?.globalPresenceSection;
+
+  // Global Headquarters
+  const hqData = acfContactGroup?.hqSection || {
+      icon: "MapPin",
       title: "Global Headquarters",
-      details: ["12th Floor, One World Centre", "Senapati Bapat Marg, Lower Parel", "Mumbai, Maharashtra 400013, India"],
-    },
-    {
-      icon: <Mail className="text-[#f99d1c]" size={24} />,
+      line1: "12th Floor, One World Centre",
+      line2: "Senapati Bapat Marg, Lower Parel",
+      line3: "Mumbai, Maharashtra 400013, India",
+      mapUrl: "https://maps.google.com"
+  };
+
+  // Email Us
+  const emailData = acfContactGroup?.emailSection || {
+      icon: "Mail",
       title: "Email Us",
-      details: ["connect@nabhira.com", "careers@nabhira.com"],
+      email1: "connect@nabhira.com",
+      email2: "careers@nabhira.com"
+  };
+
+  // Call Us
+  const phoneData = acfContactGroup?.phoneSection || {
+      icon: "Phone",
+      title: "Call Us",
+      phone1: "+91 (22) 6123-4567",
+      phone2: "+91 (22) 6123-4568"
+  };
+
+  const finalContactDetails = [
+    {
+      icon: getIcon(hqData.icon, hqData.iconImg),
+      title: hqData.title,
+      details: [
+          { text: hqData.line1 },
+          { text: hqData.line2 },
+          { text: hqData.line3 }
+      ],
+      link: hqData.mapUrl
     },
     {
-      icon: <Phone className="text-[#f99d1c]" size={24} />,
-      title: "Call Us",
-      details: ["+91 (22) 6123-4567", "+91 (22) 6123-4568"],
+      icon: getIcon(emailData.icon, emailData.iconImg),
+      title: emailData.title,
+      details: [
+          { text: emailData.email1, link: `mailto:${emailData.email1}` },
+          { text: emailData.email2, link: `mailto:${emailData.email2}` }
+      ]
+    },
+    {
+      icon: getIcon(phoneData.icon, phoneData.iconImg),
+      title: phoneData.title,
+      details: [
+          { text: phoneData.phone1, link: `tel:${phoneData.phone1?.replace(/\s+/g, '')}` },
+          { text: phoneData.phone2, link: `tel:${phoneData.phone2?.replace(/\s+/g, '')}` }
+      ]
     }
   ];
+
+  // Process Regional Presence from fixed fields
+  const regionalRegions = [];
+  const r1 = acfRegionalGroup?.region1;
+  const r2 = acfRegionalGroup?.region2;
+
+  if (r1?.name) {
+      regionalRegions.push({ name: r1.name, address: r1.address });
+  }
+  if (r2?.name) {
+      regionalRegions.push({ name: r2.name, address: r2.address });
+  }
 
   return (
     <>
       {/* Contact Hero */}
-      <section className="relative h-[520px] overflow-hidden flex items-center">
-        <div className="absolute inset-0">
-              <ImageWithFallback
-                src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1769146109206-e87b458649a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTk4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
-                alt="Nabhira Contact"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/60 to-transparent"></div>
-            </div>
-            
-            <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-              <div className="max-w-3xl space-y-8">
-                <Motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {/* Breadcrumb */}
-                  <nav className="flex items-center space-x-3 text-[13px] font-medium tracking-[-0.02em] mb-8">
-                    <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-                    <span className="text-white/30 font-light">&gt;</span>
-                    <span className="text-[#f99d1c]">Contact Us</span>
-                  </nav>
- 
-                  <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
-                      {renderHeroTitle(
-                        wordpressData?.globalSettings?.heroSlides?.heroS1Title || 
-                        wordpressData?.title || (
-                          <>
-                            Start Your <br />
-                            <span className="text-[#f99d1c]">Evolution</span>
-                          </>
-                        )
-                      )}
-                    </h1>
-                    <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                      {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Connect with our strategy team to architect your organization's digital future."}
-                    </p>
-                  </div>
-              </Motion.div>
-            </div>
+      <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={acfHero?.heroImage?.node?.sourceUrl || acfHero?.heroImage || wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1769146109206-e87b458649a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTk4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
+            alt="Nabhira Contact"
+            className="w-full h-full object-cover opacity-40 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 z-10 w-full">
+          <div className="max-w-4xl space-y-8">
+            <Motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {/* Breadcrumb */}
+              <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+                <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+                <span className="text-white/30 font-light">&gt;</span>
+                <span className="text-[#f99d1c] uppercase tracking-[0.2em]">CONTACT US</span>
+              </nav>
+
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                {(() => {
+                  const acfTitle = acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title;
+                  if (acfTitle && typeof acfTitle === 'string' && acfTitle.includes('|')) {
+                    return renderHeroTitle(acfTitle);
+                  }
+                  return (
+                    <>
+                      Start the <br />Conversation
+                    </>
+                  );
+                })()}
+              </h1>
+              <p className="text-white text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+                {acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you."}
+              </p>
+            </Motion.div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Contact Content */}
         <section className="py-24 bg-white">
@@ -122,22 +192,25 @@ export default function Contact({ wordpressData }: ContactProps) {
               <div>
                 <div className="mb-12">
                   <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-6 tracking-tight">
-                    Get in <span className="font-bold">Touch</span>
+                    {(() => {
+                        const title = acfContactGroup?.ciTitle || "Get in Touch";
+                        if (title.includes(' ')) {
+                            const words = title.split(' ');
+                            const lastWord = words.pop();
+                            return <>{words.join(' ')} <span className="font-bold">{lastWord}</span></>;
+                        }
+                        return title;
+                    })()}
                   </h2>
-                  {wordpressData?.content ? (
-                    <div 
-                      className="prose prose-lg text-[#11253e]/60 font-light leading-relaxed max-w-none"
-                      dangerouslySetInnerHTML={{ __html: wordpressData.content }} 
-                    />
-                  ) : (
-                    <p className="text-[#11253e]/60 font-light leading-relaxed">
-                      Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist.
-                    </p>
-                  )}
+                  <p className="text-[#11253e] font-light leading-relaxed">
+                    {acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist."}
+                  </p>
                 </div>
 
+
+
                 <div className="space-y-12">
-                  {contactDetails.map((item, idx) => (
+                  {finalContactDetails.map((item: any, idx: number) => (
                     <Motion.div 
                       key={idx}
                       initial={{ opacity: 0, y: 20 }}
@@ -151,12 +224,20 @@ export default function Contact({ wordpressData }: ContactProps) {
                       </div>
                       <div>
                         <h4 className="text-[12px] font-bold text-[#11253e] uppercase tracking-[0.2em] mb-3">
-                          {item.title}
+                          {item.link ? (
+                              <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:text-[#f99d1c] transition-colors">
+                                  {item.title}
+                              </a>
+                          ) : item.title}
                         </h4>
                         <div className="space-y-1">
-                          {item.details.map((detail, i) => (
+                          {item.details.map((detail: any, i: number) => (
                             <p key={i} className="text-[#11253e] font-light text-[15px]">
-                              {detail}
+                              {detail.link ? (
+                                  <a href={detail.link} className="hover:text-[#f99d1c] transition-colors">{detail.text}</a>
+                              ) : (
+                                  detail.text
+                              )}
                             </p>
                           ))}
                         </div>
@@ -165,19 +246,36 @@ export default function Contact({ wordpressData }: ContactProps) {
                   ))}
                 </div>
 
+
+
+
                 <div className="mt-16 pt-16 border-t border-gray-100">
-                  <h4 className="text-[12px] font-bold text-[#11253e] uppercase tracking-[0.2em] mb-6">Connect Regionally</h4>
+                  <h4 className="text-[12px] font-bold text-[#11253e] uppercase tracking-[0.2em] mb-6">
+                    {acfRegionalGroup?.rpTitle || "Connect Regionally"}
+                  </h4>
                   <div className="grid grid-cols-2 gap-8">
-                    <div>
-                      <h5 className="text-[#11253e] font-bold text-sm mb-2">Middle East</h5>
-                      <p className="text-[#11253e] font-light text-xs">Business Bay, Dubai, UAE</p>
-                    </div>
-                    <div>
-                      <h5 className="text-[#11253e] font-bold text-sm mb-2">South East Asia</h5>
-                      <p className="text-[#11253e] font-light text-xs">Marina Bay Financial Centre, Singapore</p>
-                    </div>
+
+                    {regionalRegions.length > 0 ? regionalRegions.map((region: any, i: number) => (
+                      <div key={i}>
+                        <h5 className="text-[#11253e] font-bold text-sm mb-2">{region.name}</h5>
+                        <p className="text-[#11253e] font-light text-xs">{region.address}</p>
+                      </div>
+                    )) : (
+                      <>
+                        <div>
+                          <h5 className="text-[#11253e] font-bold text-sm mb-2">Middle East</h5>
+                          <p className="text-[#11253e] font-light text-xs">Business Bay, Dubai, UAE</p>
+                        </div>
+                        <div>
+                          <h5 className="text-[#11253e] font-bold text-sm mb-2">South East Asia</h5>
+                          <p className="text-[#11253e] font-light text-xs">Marina Bay Financial Centre, Singapore</p>
+                        </div>
+                      </>
+                    )}
                   </div>
+
                 </div>
+
               </div>
 
               {/* Contact Form */}
@@ -262,11 +360,19 @@ export default function Contact({ wordpressData }: ContactProps) {
             <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#f99d1c] rounded-full animate-ping delay-75"></div>
             <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-[#f99d1c] rounded-full animate-ping delay-150"></div>
           </div>
-          <div className="relative text-center z-10">
-            <Globe className="text-[#f99d1c] w-12 h-12 mx-auto mb-6 opacity-80" />
-            <h3 className="text-white text-2xl font-light tracking-tight">Global Presence, <span className="font-bold">Architectural Precision</span></h3>
-            <p className="text-white/40 text-sm mt-2">Serving clients across 15+ countries through our specialized delivery centers.</p>
+          <div className="relative text-center z-10 w-full px-6">
+            {getIcon(acfGlobalGroup?.gpIcon || "Globe", acfGlobalGroup?.gpIconImg, 48, "text-[#f99d1c] mx-auto mb-6 opacity-80")}
+            <h3 className="text-white text-2xl font-light tracking-tight">
+                {acfGlobalGroup?.gpTitle ? renderHeroTitle(acfGlobalGroup.gpTitle) : (
+                    <>Global Presence, <span className="font-bold">Impact at Scale</span></>
+                )}
+            </h3>
+            <p className="text-white/40 text-sm mt-2">
+                {acfGlobalGroup?.gpSubtitle || "Serving clients across 5+ countries through our specialized delivery centers."}
+            </p>
           </div>
+
+
         </section>
     </>
   );

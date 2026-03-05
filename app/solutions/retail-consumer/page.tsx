@@ -1,4 +1,4 @@
-import RetailConsumer from "@/src/pages_migrated/RetailConsumer";
+import RetailConsumer from "@/src/pages_migrated/industries/RetailConsumer";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

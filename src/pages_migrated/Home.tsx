@@ -12,7 +12,7 @@ import { SuccessStories } from "../components/SuccessStories";
 import { Clients } from "../components/Clients";
 import { LimitlessTogether, Footer } from "../components/Footer";
 
-export default function Home() {
+export default function Home({ wordpressData }: any) {
   useEffect(() => {
     document.title = "Nabhira Technologies | Digital Transformation & AI Solutions";
   }, []);

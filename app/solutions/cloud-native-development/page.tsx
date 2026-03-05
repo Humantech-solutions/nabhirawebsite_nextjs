@@ -1,4 +1,4 @@
-import CloudNativeDevelopment from "@/src/pages_migrated/solutions/CloudNativeDevelopment";
+import CloudNativeDevelopment from "@/src/pages_migrated/services/cloud/CloudNativeDevelopment";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

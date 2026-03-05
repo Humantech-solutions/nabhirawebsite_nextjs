@@ -1,4 +1,4 @@
-import AgenticAI from "@/src/pages_migrated/solutions/AgenticAI";
+import AgenticAI from "@/src/pages_migrated/services/ai/AgenticAI";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

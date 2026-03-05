@@ -1,4 +1,4 @@
-import CloudFinancialManagement from "@/src/pages_migrated/solutions/CloudFinancialManagement";
+import CloudFinancialManagement from "@/src/pages_migrated/services/cloud/CloudFinancialManagement";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

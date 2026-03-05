@@ -1,4 +1,4 @@
-import ArtificialIntelligence from "../../../src/pages_migrated/ArtificialIntelligence";
+import ArtificialIntelligence from "../../../src/pages_migrated/services/ai/ArtificialIntelligence";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

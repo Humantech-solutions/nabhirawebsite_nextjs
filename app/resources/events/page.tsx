@@ -1,4 +1,4 @@
-import Events from "@/src/pages_migrated/Events";
+import Events from "@/src/pages_migrated/resources/Events";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer, LimitlessTogether } from "../components/Footer";
 import { MapPin, Briefcase, Clock, ChevronLeft, Upload, Send } from "lucide-react";
-import { jobs } from "./Careers";
+import { jobs } from "../data/migrated_data";
 
 export default function JobDetails() {
   const { id } = useParams();

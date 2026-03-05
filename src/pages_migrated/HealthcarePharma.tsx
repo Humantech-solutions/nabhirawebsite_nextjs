@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { renderHeroTitle } from "../lib/utils";
 import heroBg from "../assets/eeb3297df6ce0c8adf9882c1fc6fd03cea6c6d51.png";
+
 import {
   ArrowRight,
   Stethoscope,
@@ -33,8 +34,9 @@ import {
 } from "lucide-react";
 
 export default function HealthcarePharma({ wordpressData }: { wordpressData?: any }) {
+
   useEffect(() => {
-    document.title = "Healthcare & Pharma | Nabhira Technologies";
+    document.title = "Healthcare & Life Sciences | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -55,7 +57,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
     },
     {
       title: "Regulatory Compliance",
-      text: "Navigating complex HIPAA, GDPR, and GxP requirements.",
+      text: "Navigating complex HIPAA, GDPR and GxP requirements.",
       icon: <FileCheck className="text-[#f99d1c]" size={32} />,
     },
     {
@@ -84,35 +86,35 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
     {
       id: "digital-health",
       title: "Digital Health Platforms",
-      description: "We architect secure, scalable platforms for telehealth, remote patient monitoring, and virtual care delivery, extending reach beyond hospital walls.",
+      description: "We architect secure, scalable platforms for telehealth, remote patient monitoring and virtual care delivery, extending reach beyond hospital walls.",
       details: ["Telehealth Solutions", "Remote Monitoring", "Virtual Care"],
       icon: <Stethoscope size={40} />
     },
     {
       id: "clinical-data",
       title: "Clinical Data Intelligence",
-      description: "We leverage AI and advanced analytics to unlock insights from EHRs, genomic data, and real-world evidence, accelerating research and personalized medicine.",
+      description: "We leverage AI and advanced analytics to unlock insights from EHRs, genomic data and real-world evidence, accelerating research and personalized medicine.",
       details: ["Real-World Evidence", "Genomic Analytics", "Personalized Medicine"],
       icon: <Dna size={40} />
     },
     {
       id: "smart-hospitals",
       title: "Smart Hospitals & IoT",
-      description: "We integrate IoMT devices and hospital information systems to optimize workflows, asset tracking, and patient safety in real-time.",
+      description: "We integrate IoMT devices and hospital information systems to optimize workflows, asset tracking and patient safety in real-time.",
       details: ["Asset Tracking", "Workflow Optimization", "Patient Safety"],
       icon: <Wifi size={40} />
     },
     {
       id: "pharma-supply",
       title: "Pharma Supply Chain Visibility",
-      description: "We build end-to-end traceability solutions using blockchain and IoT to ensure drug safety, compliance, and efficient distribution.",
+      description: "We build end-to-end traceability solutions using blockchain and IoT to ensure drug safety, compliance and efficient distribution.",
       details: ["End-to-End Traceability", "Cold Chain Monitoring", "Anti-Counterfeiting"],
       icon: <Pill size={40} />
     },
     {
       id: "patient-engagement",
       title: "Patient Engagement & Support",
-      description: "We design intuitive mobile apps and portals that empower patients to manage their health, access records, and communicate with providers.",
+      description: "We design intuitive mobile apps and portals that empower patients to manage their health, access records and communicate with providers.",
       details: ["Patient Portals", "Health Management Apps", "Provider Communication"],
       icon: <Heart size={40} />
     },
@@ -153,12 +155,12 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
 
   return (
     <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
-      {/* ─── Hero Section ─── */}
+      {/* Hero Section */}
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
-        {/* Abstract Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || heroBg}
+
             alt="Healthcare & Pharma"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -174,11 +176,10 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            {/* Breadcrumb */}
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Pharma</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Life Sciences</span>
             </nav>
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
@@ -193,17 +194,11 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
               )}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
-                <span>Start Transformation</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </Motion.div>
         </div>
       </section>
 
-      {/* ─── The Industry Challenge (Bento Grid Style) ─── */}
+      {/* Challenges Section */}
       <section className="py-24 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -214,7 +209,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
             <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
-              Healthcare and Pharma leaders must balance innovation with compliance, cost pressures, and patient outcomes.
+              Healthcare and Pharma leaders must balance innovation with compliance, cost pressures and patient outcomes.
             </p>
           </div>
 
@@ -241,7 +236,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
         </div>
       </section>
 
-      {/* ─── Impact Areas (Alternating Layout) ─── */}
+      {/* Impact Areas Section */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -249,7 +244,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              Transforming patient journeys, accelerating research, and optimizing care delivery through digital innovation.
+              Transforming patient journeys, accelerating research and optimizing care delivery through digital innovation.
             </p>
           </div>
 
@@ -302,7 +297,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
         </div>
       </section>
 
-      {/* ─── Technology Enablement (Dark Mode) ─── */}
+      {/* Tech Enablement Section */}
       <section className="py-24 bg-[#11253e] text-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#f99d1c]/50 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
@@ -315,10 +310,6 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
                 We leverage secure, compliant cloud platforms and advanced AI to power modern healthcare and life sciences ecosystems.
               </p>
-              
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Partner with us <ArrowRight size={20} />
-              </Link>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -334,7 +325,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
         </div>
       </section>
 
-      {/* ─── Outcomes (Metrics Style) ─── */}
+      {/* Outcomes Section */}
       <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
         {/* Vertical Lines Background */}
         <div 
@@ -349,7 +340,7 @@ export default function HealthcarePharma({ wordpressData }: { wordpressData?: an
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
               <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p className="">Tangible results for providers, payers, and pharma.</p>
+              <p className="">Tangible results for providers, payers and pharma.</p>
             </div>
             
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">

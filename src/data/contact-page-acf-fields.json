@@ -1,0 +1,346 @@
+[
+    {
+        "key": "group_69a9fbded28fd",
+        "title": "Contact Page Fields",
+        "fields": [
+            {
+                "key": "field_cp_hero_group",
+                "label": "Hero Section",
+                "name": "heroSection",
+                "type": "group",
+                "show_in_graphql": 1,
+                "graphql_field_name": "heroSection",
+                "sub_fields": [
+                    {
+                        "key": "field_cp_hero_title",
+                        "label": "Hero Title",
+                        "name": "heroTitle",
+                        "type": "text",
+                        "default_value": "Start the | Conversation"
+                    },
+                    {
+                        "key": "field_cp_hero_desc",
+                        "label": "Hero Description",
+                        "name": "heroDescription",
+                        "type": "textarea",
+                        "default_value": "We would love to hear from you."
+                    },
+                    {
+                        "key": "field_cp_hero_img",
+                        "label": "Hero Image",
+                        "name": "heroImage",
+                        "type": "image",
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all"
+                    }
+                ]
+            },
+            {
+                "key": "field_69a9fbdfb00bf",
+                "label": "Contact Information Section",
+                "name": "contact_information_section",
+                "type": "group",
+                "show_in_graphql": 1,
+                "graphql_field_name": "contactInformationSection",
+                "sub_fields": [
+                    {
+                        "key": "field_cp_ci_title",
+                        "label": "Section Title",
+                        "name": "ciTitle",
+                        "type": "text",
+                        "default_value": "Get in Touch"
+                    },
+                    {
+                        "key": "field_cp_ci_desc",
+                        "label": "Section Description",
+                        "name": "ciDescription",
+                        "type": "textarea",
+                        "default_value": "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist."
+                    },
+                    {
+                        "key": "field_cp_hq_group",
+                        "label": "Headquarters Detail",
+                        "name": "hqSection",
+                        "type": "group",
+                        "sub_fields": [
+                            {
+                                "key": "field_cp_hq_icon",
+                                "label": "Icon (Lucide)",
+                                "name": "icon",
+                                "type": "text",
+                                "default_value": "MapPin"
+                            },
+                            {
+                                "key": "field_cp_hq_icon_img",
+                                "label": "Icon (Media Library)",
+                                "name": "iconImg",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "thumbnail",
+                                "library": "all"
+                            },
+                            {
+                                "key": "field_cp_hq_title",
+                                "label": "Title",
+                                "name": "title",
+                                "type": "text",
+                                "default_value": "Global Headquarters"
+                            },
+                            {
+                                "key": "field_cp_hq_l1",
+                                "label": "Address Line 1",
+                                "name": "line1",
+                                "type": "text",
+                                "default_value": "12th Floor, One World Centre"
+                            },
+                            {
+                                "key": "field_cp_hq_l2",
+                                "label": "Address Line 2",
+                                "name": "line2",
+                                "type": "text",
+                                "default_value": "Senapati Bapat Marg, Lower Parel"
+                            },
+                            {
+                                "key": "field_cp_hq_l3",
+                                "label": "Address Line 3",
+                                "name": "line3",
+                                "type": "text",
+                                "default_value": "Mumbai, Maharashtra 400013, India"
+                            },
+                            {
+                                "key": "field_cp_hq_url",
+                                "label": "Map URL",
+                                "name": "mapUrl",
+                                "type": "url"
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_cp_email_group",
+                        "label": "Email Detail",
+                        "name": "emailSection",
+                        "type": "group",
+                        "sub_fields": [
+                            {
+                                "key": "field_cp_email_icon",
+                                "label": "Icon (Lucide)",
+                                "name": "icon",
+                                "type": "text",
+                                "default_value": "Mail"
+                            },
+                            {
+                                "key": "field_cp_email_icon_img",
+                                "label": "Icon (Media Library)",
+                                "name": "iconImg",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "thumbnail",
+                                "library": "all"
+                            },
+                            {
+                                "key": "field_cp_email_title",
+                                "label": "Title",
+                                "name": "title",
+                                "type": "text",
+                                "default_value": "Email Us"
+                            },
+                            {
+                                "key": "field_cp_email_1",
+                                "label": "Email 1",
+                                "name": "email1",
+                                "type": "email",
+                                "default_value": "connect@nabhira.com"
+                            },
+                            {
+                                "key": "field_cp_email_2",
+                                "label": "Email 2",
+                                "name": "email2",
+                                "type": "email",
+                                "default_value": "careers@nabhira.com"
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_cp_phone_group",
+                        "label": "Phone Detail",
+                        "name": "phoneSection",
+                        "type": "group",
+                        "sub_fields": [
+                            {
+                                "key": "field_cp_phone_icon",
+                                "label": "Icon (Lucide)",
+                                "name": "icon",
+                                "type": "text",
+                                "default_value": "Phone"
+                            },
+                            {
+                                "key": "field_cp_phone_icon_img",
+                                "label": "Icon (Media Library)",
+                                "name": "iconImg",
+                                "type": "image",
+                                "return_format": "array",
+                                "preview_size": "thumbnail",
+                                "library": "all"
+                            },
+                            {
+                                "key": "field_cp_phone_title",
+                                "label": "Title",
+                                "name": "title",
+                                "type": "text",
+                                "default_value": "Call Us"
+                            },
+                            {
+                                "key": "field_cp_phone_1",
+                                "label": "Phone 1",
+                                "name": "phone1",
+                                "type": "text",
+                                "default_value": "+91 (22) 6123-4567"
+                            },
+                            {
+                                "key": "field_cp_phone_2",
+                                "label": "Phone 2",
+                                "name": "phone2",
+                                "type": "text",
+                                "default_value": "+91 (22) 6123-4568"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "key": "field_cp_regional_group",
+                "label": "Regional Presence Section",
+                "name": "regional_presence_section",
+                "type": "group",
+                "show_in_graphql": 1,
+                "graphql_field_name": "regionalPresenceSection",
+                "sub_fields": [
+                    {
+                        "key": "field_cp_rp_title",
+                        "label": "Section Title",
+                        "name": "rpTitle",
+                        "type": "text",
+                        "default_value": "Connect Regionally"
+                    },
+                    {
+                        "key": "field_cp_rp1_group",
+                        "label": "Region 1",
+                        "name": "region1",
+                        "type": "group",
+                        "sub_fields": [
+                            {
+                                "key": "field_cp_rp1_name",
+                                "label": "Region Name",
+                                "name": "name",
+                                "type": "text",
+                                "default_value": "Middle East"
+                            },
+                            {
+                                "key": "field_cp_rp1_addr",
+                                "label": "Region Address",
+                                "name": "address",
+                                "type": "text",
+                                "default_value": "Business Bay, Dubai, UAE"
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_cp_rp2_group",
+                        "label": "Region 2",
+                        "name": "region2",
+                        "type": "group",
+                        "sub_fields": [
+                            {
+                                "key": "field_cp_rp2_name",
+                                "label": "Region Name",
+                                "name": "name",
+                                "type": "text",
+                                "default_value": "South East Asia"
+                            },
+                            {
+                                "key": "field_cp_rp2_addr",
+                                "label": "Region Address",
+                                "name": "address",
+                                "type": "text",
+                                "default_value": "Marina Bay Financial Centre, Singapore"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "key": "field_cp_global_group",
+                "label": "Global Presence Section",
+                "name": "global_presence_section",
+                "type": "group",
+                "show_in_graphql": 1,
+                "graphql_field_name": "globalPresenceSection",
+                "sub_fields": [
+                    {
+                        "key": "field_cp_gp_title",
+                        "label": "Section Title",
+                        "name": "gpTitle",
+                        "type": "text",
+                        "default_value": "Global Presence, Impact at Scale"
+                    },
+                    {
+                        "key": "field_cp_gp_subtitle",
+                        "label": "Section Subtitle",
+                        "name": "gpSubtitle",
+                        "type": "text",
+                        "default_value": "Serving clients across 5+ countries through our specialized delivery centers."
+                    },
+                    {
+                        "key": "field_cp_gp_icon",
+                        "label": "Icon Name (Lucide)",
+                        "name": "gpIcon",
+                        "type": "text",
+                        "default_value": "Globe"
+                    },
+                    {
+                        "key": "field_cp_gp_icon_img",
+                        "label": "Icon (Media Library)",
+                        "name": "gpIconImg",
+                        "type": "image",
+                        "return_format": "array",
+                        "preview_size": "thumbnail",
+                        "library": "all"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "contact"
+                }
+            ],
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "default"
+                },
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "contact"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 1,
+        "show_in_graphql": 1,
+        "graphql_field_name": "contactPageFields"
+    }
+]
