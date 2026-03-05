@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Calendar, User, ArrowLeft, Share2, Twitter, Linkedin } from "lucide-react";
 
+
 const blogPosts = [
   {
     id: 1,
