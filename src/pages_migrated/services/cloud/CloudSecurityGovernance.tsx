@@ -21,7 +21,7 @@ import {
   Layout
 } from "lucide-react";
 
-export default function CloudSecurityGovernance({ wordpressData }: any) {
+export default function CloudSecurityGovernance() {
   useEffect(() => {
     document.title = "Cloud Security & Governance | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -318,25 +318,47 @@ export default function CloudSecurityGovernance({ wordpressData }: any) {
             ))}
           </div>
 
-          <div className="mt-20 p-12 bg-[#fdfbf7] shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="max-w-2xl">
-                <h2 className="text-[#11253e] text-3xl font-medium tracking-tight mb-4">
-                  Ready to secure your cloud journey?
+          
+        </div>
+        
+      </section>
+
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <Motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-[#fdfbf7] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 relative"
+            >
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
+              <div className="max-w-xl space-y-4">
+                <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
+                 Ready to secure your  <br />
+                  <span className="text-[#f99d1c]">cloud journey?</span>
                 </h2>
-                <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                  Let our experts design a security and governance framework that proactively neutralizes threats while supporting your growth.
+                <p className="text-[#11253e] text-base font-light leading-relaxed">
+                  Engage Let our experts design a security and governance framework that proactively neutralizes threats while supporting your growth.
                 </p>
               </div>
-              <button className="bg-[#f99d1c] hover:bg-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-xl shadow-[#f99d1c]/20 group">
+              <button
+                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                style={{ fontSize: "13px", fontWeight: 600 }}
+              >
                 <span>START YOUR JOURNEY</span>
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
-            </div>
+            </Motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      
     </>
   );
 }
+
