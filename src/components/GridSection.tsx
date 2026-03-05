@@ -122,6 +122,12 @@ export function LatestThinking({ data }: LatestThinkingProps) {
   );
 }
 
+import { useRef } from "react";
+import Slider from "react-slick";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 interface WhatsNewProps {
   data?: {
     newsPosts?: Array<{
@@ -137,6 +143,8 @@ interface WhatsNewProps {
 }
 
 export function WhatsNew({ data }: WhatsNewProps) {
+  const sliderRef = useRef<Slider>(null);
+
   const news = (data?.newsPosts && data.newsPosts.length > 0) ? data.newsPosts.map(post => {
     const date = new Date(post.date);
     const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
@@ -164,8 +172,53 @@ export function WhatsNew({ data }: WhatsNewProps) {
     }
   ];
 
+  const shouldShowCarousel = news.length > 3;
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
+
+  const renderItem = (item: any, i: number) => (
+    <div key={i} className={`group cursor-pointer ${shouldShowCarousel ? 'px-4' : ''}`}>
+      <div className="relative aspect-[4/3] overflow-hidden mb-6">
+        <ImageWithFallback
+          src={item.image}
+          alt={item.title}
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+        />
+        <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
+          {item.date}
+        </div>
+      </div>
+      <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
+        {item.title}
+      </h3>
+    </div>
+  );
+
   return (
-    <section className="bg-[#fefaf4] py-20 md:py-24">
+    <section className="bg-[#fefaf4] py-20 md:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 md:mb-12 space-y-6 sm:space-y-0">
           <div className="space-y-3 md:space-y-4">
@@ -173,31 +226,34 @@ export function WhatsNew({ data }: WhatsNewProps) {
             <p className="text-sm text-gray-500 font-light">{data?.settings?.wnSubtitle || "The current and future news from Nabhira and around the world."}</p>
           </div>
           <div className="flex space-x-2">
-            <button className="p-3 md:p-2 border border-gray-200 bg-white hover:bg-gray-50 transition-colors rounded-sm">&larr;</button>
-            <button className="p-3 md:p-2 border border-gray-200 bg-white hover:bg-gray-50 transition-colors rounded-sm">&rarr;</button>
+            <button 
+              onClick={() => shouldShowCarousel && sliderRef.current?.slickPrev()}
+              className="p-3 md:p-2 border border-gray-200 bg-white hover:bg-gray-50 transition-colors rounded-sm cursor-pointer"
+            >
+              ←
+            </button>
+            <button 
+              onClick={() => shouldShowCarousel && sliderRef.current?.slickNext()}
+              className="p-3 md:p-2 border border-gray-200 bg-white hover:bg-gray-50 transition-colors rounded-sm cursor-pointer"
+            >
+              →
+            </button>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {news.map((item, i) => (
-            <div key={i} className="group cursor-pointer">
-              <div className="relative aspect-[4/3] overflow-hidden mb-6">
-                <ImageWithFallback
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
-                  {item.date}
-                </div>
-              </div>
-              <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
-                {item.title}
-              </h3>
-            </div>
-          ))}
-        </div>
+        {shouldShowCarousel ? (
+          <div className="-mx-4">
+            <Slider ref={sliderRef} {...sliderSettings}>
+              {news.map((item, i) => renderItem(item, i))}
+            </Slider>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {news.map((item, i) => renderItem(item, i))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
+

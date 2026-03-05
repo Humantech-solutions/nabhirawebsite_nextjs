@@ -25,7 +25,7 @@ export default async function Home() {
       <BigThinkers data={fields?.bigThinkers} />
       <WhatsNew data={{ 
         newsPosts: homeData?.newsPosts,
-        settings: homeData?.whatsNewSettings
+        settings: homeData?.settings
       }} />
       <Clients data={fields?.clients} />
       <SuccessStories data={fields?.successStories} />
