@@ -240,30 +240,21 @@ export async function getHomePage() {
         ltA4
       }
     }
-    whatsNewSettings {
-      wnSecTitle
-      wnSecSubtitle
-      wnSecFilterBy
-      wnSecCategory {
-        nodes {
-          name
-          slug
-        }
-      }
-      wnSecTag {
-        nodes {
-          name
-          slug
-        }
-      }
-      wnSecPostsCount
-    }
   `;
 
   const queryByUri = (uri: string) => `
     query GetHomePageByUri {
       page(id: "${uri}", idType: URI) {
         ${pageFieldsFragment}
+        # Fetch What's New settings separately to avoid killing the whole query if fields are missing
+        whatSNewSettings1 {
+          sectionTitle
+          sectionSubtitle
+          filterBy
+          filterCategory { nodes { slug name } }
+          filterTag { nodes { slug name } }
+          postsCount
+        }
       }
       thinkingPosts: posts(where: {categoryName: "Thinking"}, first: 6) {
         nodes {
@@ -279,63 +270,62 @@ export async function getHomePage() {
   try {
     // Try root URI first
     let response = await fetchGraphQL(queryByUri("/"));
+    
+    // If there's an error in the main query (likely an unknown field in whatSNewSettings1), 
+    // try again WITHOUT the problematic fields to ensure the rest of the page loads.
+    if (response?.errors) {
+      console.warn('DEBUG [getHomePage]: Primary query failed, retrying without optional sections...');
+      const fallbackSafeQuery = `
+        query GetHomePageSafe {
+          page(id: "/", idType: URI) { ${pageFieldsFragment} }
+        }
+      `;
+      response = await fetchGraphQL(fallbackSafeQuery);
+    }
+
     let page = response?.data?.page;
     let thinkingPosts = response?.data?.thinkingPosts?.nodes;
 
-    // Fallback lookups
+    // Fallback URI lookups if needed
     if (!page) {
-      console.warn('DEBUG [getHomePage]: No page data found for URI "/". Trying URI "/home/"...');
       response = await fetchGraphQL(queryByUri("/home/"));
       page = response?.data?.page;
       thinkingPosts = response?.data?.thinkingPosts?.nodes || thinkingPosts;
     }
 
-    if (!page) {
-      console.error('DEBUG [getHomePage]: Failed to find home page by URI "/" and "/home/".');
-      return null;
-    }
+    if (!page) return null;
 
-    console.log('DEBUG [getHomePage]: Found page with slug:', page.slug, 'URI:', page.uri);
-
-    // Get What's New settings from ACF
-    const rawSettings = page?.whatsNewSettings;
-    
-    // Map new unique names back to the expected properties
+    // Process What's New settings
+    const rawSettings = page?.whatSNewSettings1;
     const whatsNewSettings = {
-      wnTitle: rawSettings?.wnSecTitle || "What's New",
-      wnSubtitle: rawSettings?.wnSecSubtitle || "The current and future news from Nabhira and around the world.",
-      wnFilterBy: rawSettings?.wnSecFilterBy || 'category',
-      wnCategory: rawSettings?.wnSecCategory || { nodes: [] },
-      wnTag: rawSettings?.wnSecTag || { nodes: [] },
-      wnPostsCount: rawSettings?.wnSecPostsCount || 3,
+      wnTitle: rawSettings?.sectionTitle || "What's New",
+      wnSubtitle: rawSettings?.sectionSubtitle || "The current and future news from Nabhira and around the world.",
+      wnFilterBy: rawSettings?.filterBy || 'category',
+      wnCategory: rawSettings?.filterCategory || { nodes: [] },
+      wnTag: rawSettings?.filterTag || { nodes: [] },
+      wnPostsCount: rawSettings?.postsCount || 10,
     };
     
+    // Fetch News Posts
     const filterBy = whatsNewSettings.wnFilterBy;
-    const postsCount = whatsNewSettings.wnPostsCount;
-    
-    // Extract filter value from taxonomy connection (handles checkboxes)
-    let filterValue = '';
+    const postsCount = Math.max(whatsNewSettings.wnPostsCount || 0, 12);
+    // Extract filter values from taxonomy connection (handles multiple checkboxes)
+    let filterSlugs: string[] = [];
     if (filterBy === 'tag') {
-      const tagNode = whatsNewSettings.wnTag?.nodes?.[0];
-      filterValue = tagNode?.slug || tagNode?.name || '';
+      filterSlugs = whatsNewSettings.wnTag?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
     } else {
-      const catNode = whatsNewSettings.wnCategory?.nodes?.[0];
-      filterValue = catNode?.slug || catNode?.name || '';
+      filterSlugs = whatsNewSettings.wnCategory?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
     }
 
-    // fallback if no category/tag is selected
+    let filterValue = filterSlugs.join(',');
+
     if (!filterValue) {
       filterValue = filterBy === 'tag' ? 'Featured' : 'News';
     }
 
-    // Build dynamic posts query based on filter settings
-    const whereClause = filterBy === 'tag'
-      ? `tag: "${filterValue}"`
-      : `categoryName: "${filterValue}"`;
-
     const postsQuery = `
       query GetWhatsNewPosts {
-        posts(where: {${whereClause}}, first: ${postsCount}) {
+        posts(where: {${filterBy === 'tag' ? "tag" : "categoryName"}: "${filterValue}"}, first: ${postsCount}) {
           nodes {
             title
             date
@@ -349,34 +339,23 @@ export async function getHomePage() {
     const postsResponse = await fetchGraphQL(postsQuery);
     let newsPosts = postsResponse?.data?.posts?.nodes || [];
 
-    // Fallback: If no posts found with filter, fetch latest posts
     if (newsPosts.length === 0) {
-      const fallbackQuery = `
-        query GetLatestPosts {
-          posts(first: ${postsCount}) {
-            nodes {
-              title
-              date
-              featuredImage { node { sourceUrl } }
-              uri
-            }
-          }
-        }
-      `;
-      const fallbackResponse = await fetchGraphQL(fallbackQuery);
-      newsPosts = fallbackResponse?.data?.posts?.nodes || [];
+      const fallbackPostsResponse = await fetchGraphQL(`query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } } uri } } }`);
+      newsPosts = fallbackPostsResponse?.data?.posts?.nodes || [];
     }
 
     return {
       ...page,
       newsPosts,
-      thinkingPosts
+      thinkingPosts,
+      settings: whatsNewSettings
     };
   } catch (error) {
-    console.error('[WPGraphQL FETCH ERROR]:', error);
+    console.error('[getHomePage ERROR]:', error);
     return null;
   }
 }
+
 
 export async function getAllPosts() {
   const query = `
