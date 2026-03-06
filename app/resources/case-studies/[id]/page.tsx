@@ -1,4 +1,4 @@
-import CaseStudyDetail from "@/src/pages_migrated/CaseStudyDetail";
+import CaseStudyDetail from "@/src/pages_migrated/resources/CaseStudyDetail";
 import { caseStudies } from "@/src/data/migrated_data";
 
 export function generateStaticParams() {

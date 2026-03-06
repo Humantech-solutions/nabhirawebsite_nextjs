@@ -1,6 +1,5 @@
 
-
-import CloudAdvisory from "@/src/pages_migrated/solutions/CloudAdvisory";
+import CloudAdvisory from "@/src/pages_migrated/services/cloud/CloudAdvisory";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

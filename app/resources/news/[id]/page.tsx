@@ -1,4 +1,4 @@
-import NewsDetail from "@/src/pages_migrated/NewsDetail";
+import NewsDetail from "@/src/pages_migrated/resources/NewsDetail";
 import { newsItems } from "@/src/data/migrated_data";
 
 export function generateStaticParams() {

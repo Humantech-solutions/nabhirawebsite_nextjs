@@ -1,4 +1,4 @@
-import CloudSecurityGovernance from "@/src/pages_migrated/solutions/CloudSecurityGovernance";
+import CloudSecurityGovernance from "@/src/pages_migrated/services/cloud/CloudSecurityGovernance";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

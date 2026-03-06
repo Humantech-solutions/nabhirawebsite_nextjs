@@ -1,4 +1,4 @@
-import BlogDetail from "@/src/pages_migrated/BlogDetail";
+import BlogDetail from "@/src/pages_migrated/resources/BlogDetail";
 import { getPostBySlug, getAllPosts } from "@/src/lib/wordpress";
 import { notFound } from "next/navigation";
 

@@ -1,0 +1,273 @@
+[
+    {
+        "key": "group_nabhira_global_settings",
+        "title": "Global Settings (Hero & Footer)",
+        "fields": [
+            {
+                "key": "field_group_hero_global",
+                "label": "Hero Slides",
+                "name": "hero_slides",
+                "type": "group",
+                "show_in_graphql": 1,
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "f_h_s1_title_g",
+                        "label": "hero_s1_title",
+                        "name": "hero_s1_title",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s1_desc_g",
+                        "label": "hero_s1_desc",
+                        "name": "hero_s1_desc",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s1_image_g",
+                        "label": "hero_s1_image (Media Library)",
+                        "name": "hero_s1_image",
+                        "type": "image",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s1_image_url_g",
+                        "label": "hero_s1_image_url (External)",
+                        "name": "hero_s1_image_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s1_video_url_g",
+                        "label": "hero_s1_video_url",
+                        "name": "hero_s1_video_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s1_button_g",
+                        "label": "hero_s1_button",
+                        "name": "hero_s1_button",
+                        "type": "link",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_title_g",
+                        "label": "hero_s2_title",
+                        "name": "hero_s2_title",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_desc_g",
+                        "label": "hero_s2_desc",
+                        "name": "hero_s2_desc",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_image_g",
+                        "label": "hero_s2_image (Media Library)",
+                        "name": "hero_s2_image",
+                        "type": "image",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_image_url_g",
+                        "label": "hero_s2_image_url (External)",
+                        "name": "hero_s2_image_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_video_url_g",
+                        "label": "hero_s2_video_url",
+                        "name": "hero_s2_video_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s2_button_g",
+                        "label": "hero_s2_button",
+                        "name": "hero_s2_button",
+                        "type": "link",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_title_g",
+                        "label": "hero_s3_title",
+                        "name": "hero_s3_title",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_desc_g",
+                        "label": "hero_s3_desc",
+                        "name": "hero_s3_desc",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_image_g",
+                        "label": "hero_s3_image (Media Library)",
+                        "name": "hero_s3_image",
+                        "type": "image",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_image_url_g",
+                        "label": "hero_s3_image_url (External)",
+                        "name": "hero_s3_image_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_video_url_g",
+                        "label": "hero_s3_video_url",
+                        "name": "hero_s3_video_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_h_s3_button_g",
+                        "label": "hero_s3_button",
+                        "name": "hero_s3_button",
+                        "type": "link",
+                        "show_in_graphql": 1
+                    }
+                ]
+            },
+            {
+                "key": "field_group_lt_global",
+                "label": "Limitless Together (Why Nabhira)",
+                "name": "limitless_together",
+                "type": "group",
+                "show_in_graphql": 1,
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "f_lt_title_g",
+                        "label": "Section Title",
+                        "name": "lt_title",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_image_g",
+                        "label": "Background Image (Media Library)",
+                        "name": "lt_image",
+                        "type": "image",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_image_url_g",
+                        "label": "Background Image URL (External)",
+                        "name": "lt_image_url",
+                        "type": "url",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_p1_g",
+                        "label": "Paragraph 1",
+                        "name": "lt_p1",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_p2_g",
+                        "label": "Paragraph 2",
+                        "name": "lt_p2",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_p3_g",
+                        "label": "Paragraph 3",
+                        "name": "lt_p3",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_q1_g",
+                        "label": "Q1: Question",
+                        "name": "lt_q1",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_a1_g",
+                        "label": "Q1: Answer",
+                        "name": "lt_a1",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_q2_g",
+                        "label": "Q2: Question",
+                        "name": "lt_q2",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_a2_g",
+                        "label": "Q2: Answer",
+                        "name": "lt_a2",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_q3_g",
+                        "label": "Q3: Question",
+                        "name": "lt_q3",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_a3_g",
+                        "label": "Q3: Answer",
+                        "name": "lt_a3",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_q4_g",
+                        "label": "Q4: Question",
+                        "name": "lt_q4",
+                        "type": "text",
+                        "show_in_graphql": 1
+                    },
+                    {
+                        "key": "f_lt_a4_g",
+                        "label": "Q4: Answer",
+                        "name": "lt_a4",
+                        "type": "textarea",
+                        "show_in_graphql": 1
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "page"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Global fields for Hero and Footer sections",
+        "show_in_graphql": 1,
+        "graphql_field_name": "globalSettings",
+        "map_graphql_types_from_location_rules": 1,
+        "graphql_types": []
+    }
+]

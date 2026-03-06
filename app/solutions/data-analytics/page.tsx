@@ -1,4 +1,4 @@
-import DataAnalytics from "@/src/pages_migrated/DataAnalytics";
+import DataAnalytics from "@/src/pages_migrated/services/data/DataAnalytics";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

@@ -1,4 +1,4 @@
-import MediaEntertainment from "@/src/pages_migrated/MediaEntertainment";
+import MediaEntertainment from "@/src/pages_migrated/industries/MediaEntertainment";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

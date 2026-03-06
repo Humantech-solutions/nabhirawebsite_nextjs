@@ -1,4 +1,4 @@
-import CloudTransformation from "../../../src/pages_migrated/CloudTransformation";
+import CloudTransformation from "../../../src/pages_migrated/services/cloud/CloudTransformation";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

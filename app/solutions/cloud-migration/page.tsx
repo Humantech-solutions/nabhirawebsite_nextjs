@@ -1,4 +1,4 @@
-import CloudMigration from "@/src/pages_migrated/solutions/CloudMigration";
+import CloudMigration from "@/src/pages_migrated/services/cloud/CloudMigration";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {

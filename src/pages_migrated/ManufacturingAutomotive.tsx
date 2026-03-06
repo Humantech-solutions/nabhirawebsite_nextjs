@@ -55,12 +55,12 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
       icon: <Bot className="text-[#f99d1c]" size={32} />,
     },
     {
-      title: "Zero Downtime",
-      text: "Demand for predictive maintenance and reliability.",
+      title: "Predictive Maintenance",
+      text: "Zero downtime for reliability.",
       icon: <Activity className="text-[#f99d1c]" size={32} />,
     },
     {
-      title: "Electrification",
+      title: "Connected Vehicles",
       text: "Transitioning to electric and connected vehicles.",
       icon: <Zap className="text-[#f99d1c]" size={32} />,
     },
@@ -80,35 +80,35 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
     {
       id: "smart-factory",
       title: "Smart Factory & Industry 4.0 Enablement",
-      description: "We design connected manufacturing ecosystems integrating IoT devices, production systems, and real-time analytics to improve visibility, efficiency, and quality control.",
+      description: "We design connected manufacturing ecosystems integrating IoT devices, production systems, and real-time analytics to improve visibility, efficiency and quality control.",
       details: ["IoT Integration", "Real-time Analytics", "Quality Control"],
       icon: <Factory size={40} />
     },
     {
       id: "predictive-maintenance",
       title: "Predictive Maintenance & Asset Intelligence",
-      description: "We implement AI-driven monitoring systems that reduce unplanned downtime, extend asset life, and optimize maintenance scheduling.",
+      description: "We implement AI-driven monitoring systems that reduce unplanned downtime, extend asset life and optimize maintenance scheduling.",
       details: ["AI Monitoring", "Asset Optimization", "Downtime Reduction"],
       icon: <Activity size={40} />
     },
     {
       id: "supply-chain",
       title: "Supply Chain Digitization",
-      description: "We enable end-to-end supply chain visibility across procurement, production, warehousing, and distribution, improving forecasting accuracy and risk mitigation.",
+      description: "We enable end-to-end supply chain visibility across procurement, production, warehousing and distribution, improving forecasting accuracy and risk mitigation.",
       details: ["End-to-End Visibility", "Forecasting Accuracy", "Risk Mitigation"],
       icon: <Globe size={40} />
     },
     {
       id: "automotive-digital",
       title: "Automotive Digital Platforms",
-      description: "We support connected vehicle ecosystems, telematics platforms, software integration, and data architectures that power modern mobility solutions.",
+      description: "We support connected vehicle ecosystems, telematics platforms, software integration and data architectures that power modern mobility solutions.",
       details: ["Connected Vehicles", "Telematics Platforms", "Mobility Solutions"],
       icon: <Cpu size={40} />
     },
     {
       id: "engineering-plm",
       title: "Engineering & Product Lifecycle Management",
-      description: "We modernize engineering systems enabling collaboration, digital twins, simulation, and lifecycle traceability across global teams.",
+      description: "We modernize engineering systems enabling collaboration, digital twins, simulation and lifecycle traceability across global teams.",
       details: ["Digital Twins", "Lifecycle Traceability", "Global Collaboration"],
       icon: <Settings size={40} />
     },
@@ -149,9 +149,8 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
 
   return (
     <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
-      {/* ─── Hero Section ─── */}
+      {/* Hero Section */}
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
-        {/* Abstract Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || heroBg}
@@ -170,7 +169,6 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            {/* Breadcrumb */}
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
@@ -188,18 +186,11 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
                 <>Engineering the <span className="text-white font-medium">Intelligent Connected Factory</span>.</>
               )}
             </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group bg-white text-[#11253e] px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:bg-[#f99d1c] hover:text-white transition-all duration-300">
-                <span>Start Transformation</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </Motion.div>
         </div>
       </section>
 
-      {/* ─── The Industry Transformation (Bento Grid Style) ─── */}
+      {/* Industry Transformation Section */}
       <section className="py-24 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -237,7 +228,7 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
         </div>
       </section>
 
-      {/* ─── Impact Areas (Alternating Layout) ─── */}
+      {/* Impact Areas Section */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -245,7 +236,7 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
               Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              Modernize production environments, enable Industry 4.0 transformation, and accelerate digital innovation at scale.
+              Modernize production environments, enable Industry 4.0 transformation and accelerate digital innovation at scale.
             </p>
           </div>
 
@@ -259,7 +250,6 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
                 transition={{ duration: 0.8 }}
                 className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
               >
-                {/* Text Content */}
                 <div className="flex-1 space-y-6">
                   <div className="flex items-center gap-4 mb-2">
                     <span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span>
@@ -278,17 +268,14 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
                   </ul>
                 </div>
 
-                {/* Visual/Icon Content */}
                 <div className="flex-1 w-full">
                   <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
                     <div className="absolute inset-0 bg-[#11253e]/5 pattern-grid-lg opacity-20"></div>
                     <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      {/* Render icon with large size */}
                       <div className="transform scale-150">
                         {area.icon}
                       </div>
                     </div>
-                    {/* Decorative Blob */}
                     <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
                   </div>
                 </div>
@@ -298,7 +285,7 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
         </div>
       </section>
 
-      {/* ─── Technology Enablement (Dark Mode) ─── */}
+      {/* Tech Enablement Section */}
       <section className="py-24 bg-[#11253e] text-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#f99d1c]/50 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
@@ -309,12 +296,8 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
                 <span className="font-bold text-[#f99d1c]">Enablement</span>
               </h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                We leverage secure and scalable cloud platforms such as Amazon Web Services, Microsoft Azure, and Google Cloud to support industrial-scale workloads.
+                We leverage secure and scalable cloud platforms such as Amazon Web Services, Microsoft Azure and Google Cloud to support industrial-scale workloads.
               </p>
-              
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Partner with us <ArrowRight size={20} />
-              </Link>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -330,9 +313,8 @@ export default function ManufacturingAutomotive({ wordpressData }: { wordpressDa
         </div>
       </section>
 
-      {/* ─── Outcomes (Metrics Style) ─── */}
+      {/* Outcomes Section */}
       <section className="py-24 bg-[#f99d1c] relative overflow-hidden">
-        {/* Vertical Lines Background */}
         <div 
           className="absolute inset-0 opacity-10 pointer-events-none" 
           style={{ 

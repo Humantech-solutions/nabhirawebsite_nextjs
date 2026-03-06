@@ -1,4 +1,4 @@
-import DataGovernance from "@/src/pages_migrated/solutions/DataGovernance";
+import DataGovernance from "@/src/pages_migrated/services/data/DataGovernance";
 import { getPageBySlug } from "@/src/lib/wordpress";
 
 export default async function Page() {
