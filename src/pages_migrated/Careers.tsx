@@ -231,20 +231,21 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                     <Link href={`/careers/${job.id}`}>
                       <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
                         <div className="space-y-2">
-                          <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
-                            <span>{job.department}</span>
-                            <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                            <span className="text-gray-400">{job.posted}</span>
+                          <div className="flex items-center space-x-2 text-[11px] font-bold text-[#f99d1c] uppercase tracking-widest mb-2">
+                            {job.department && <span>{job.department}</span>}
+                            {job.department && job.posted && <span className="w-1 h-1 bg-gray-300 rounded-full"></span>}
+                            {job.posted && <span className="text-gray-400 font-medium">{job.posted}</span>}
                           </div>
                           <h3 className="text-[#11253e] text-xl font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors">{job.title}</h3>
-                          <div className="flex flex-wrap items-center gap-4 text-xs font-light text-[#11253e]">
-                            <div className="flex items-center gap-1.5">
-                              <MapPin size={14} /> {job.location}
+                          <div className="flex flex-wrap items-center gap-6 text-[13px] font-medium text-[#11253e]">
+                            {job.location && (
+                              <div className="flex items-center gap-2">
+                                <MapPin size={15} className="text-[#11253e]/70" /> {job.location}
+                              </div>
+                            )}
+                            <div className="flex items-center gap-2">
+                              <Briefcase size={15} className="text-[#11253e]/70" /> {job.type}
                             </div>
-                            <div className="flex items-center gap-1.5">
-                              <Briefcase size={14} /> {job.type}
-                            </div>
-
                           </div>
                         </div>
                         <div className="flex items-center gap-4">

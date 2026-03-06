@@ -1,12 +1,18 @@
 import JobDetails from "@/src/pages_migrated/JobDetails";
-import { jobs } from "@/src/data/migrated_data";
+import { getCareerPosts, getCareerPostBySlug } from "@/src/lib/wordpress";
 
-export function generateStaticParams() {
-  return jobs.map((job) => ({
-    id: job.id,
+export async function generateStaticParams() {
+  const wpJobs = await getCareerPosts();
+  if (!wpJobs) return [];
+  
+  return wpJobs.map((job: any) => ({
+    id: job.slug,
   }));
 }
 
-export default function Page() {
-  return <JobDetails />;
+export default async function Page({ params }: { params: { id: string } }) {
+  const { id } = await params;
+  const wpJob = await getCareerPostBySlug(id);
+  
+  return <JobDetails wpJob={wpJob} />;
 }
