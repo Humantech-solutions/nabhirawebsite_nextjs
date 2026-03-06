@@ -63,7 +63,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                 </div>
                 <h1 className="text-[#11253e] text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{job.title}</h1>
                 
-                <div className="flex flex-wrap items-center gap-6 text-sm font-light text-[#11253e] pt-4">
+                <div className="flex flex-wrap items-center gap-6 text-sm font-medium text-[#11253e] pt-4">
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <MapPin size={16} className="text-[#f99d1c]" /> {job.location}
                   </div>

@@ -758,6 +758,40 @@ export async function getPostBySlug(slug: string) {
   return null;
 }
 
+// ─── DATE HELPERS ─────────────────────────────────────────────────────────────
+
+/**
+ * Formats a date string (ISO or WP format) into a human-readable "X days ago" string.
+ */
+function formatDateToDaysAgo(dateString: string) {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now.getTime() - date.getTime());
+  
+  const diffHrs = Math.floor(diffTime / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffHrs < 1) return 'Just now';
+  if (diffHrs < 24) return `${diffHrs} ${diffHrs === 1 ? 'hr' : 'hrs'} ago`;
+  
+  if (diffDays === 1) return '1 day ago';
+  if (diffDays < 7) return `${diffDays} days ago`;
+  
+  if (diffDays < 30) {
+    const weeks = Math.floor(diffDays / 7);
+    return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+  }
+  
+  const months = Math.floor(diffDays / 30);
+  if (months < 12) {
+    return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+  }
+  
+  const years = Math.floor(months / 12);
+  return `${years} ${years === 1 ? 'year' : 'years'} ago`;
+}
+
 // ─── CAREERS CPT ─────────────────────────────────────────────────────────────
 
 /**
@@ -773,7 +807,7 @@ export async function getCareerPosts() {
           slug
           title
           date
-          careerDetails {
+          careerJobOpeningDetails {
             careerDepartment
             careerLocation
             careerType
@@ -799,12 +833,12 @@ export async function getCareerPosts() {
       id: node.slug,           // use slug as id so /careers/[id] routes work
       slug: node.slug,
       title: node.title,
-      department: node.careerDetails?.careerDepartment || '',
-      location: node.careerDetails?.careerLocation || '',
-      type: node.careerDetails?.careerType || 'Full-time',
-      posted: node.careerDetails?.careerPosted || '',
+      department: node.careerJobOpeningDetails?.careerDepartment || '',
+      location: node.careerJobOpeningDetails?.careerLocation || '',
+      type: node.careerJobOpeningDetails?.careerType || 'Full-time',
+      posted: formatDateToDaysAgo(node.date), // Use published date
       salary: 'Competitive',   // kept for backward compat with JobDetails
-      description: node.careerDetails?.careerDescription || '',
+      description: node.careerJobOpeningDetails?.careerDescription || '',
     }));
   } catch (error) {
     console.error('[getCareerPosts] Error:', error);
@@ -824,7 +858,7 @@ export async function getCareerPostBySlug(slug: string) {
         slug
         title
         date
-        careerDetails {
+        careerJobOpeningDetails {
           careerDepartment
           careerLocation
           careerType
@@ -848,12 +882,12 @@ export async function getCareerPostBySlug(slug: string) {
       id: node.slug,
       slug: node.slug,
       title: node.title,
-      department: node.careerDetails?.careerDepartment || '',
-      location: node.careerDetails?.careerLocation || '',
-      type: node.careerDetails?.careerType || 'Full-time',
-      posted: node.careerDetails?.careerPosted || '',
+      department: node.careerJobOpeningDetails?.careerDepartment || '',
+      location: node.careerJobOpeningDetails?.careerLocation || '',
+      type: node.careerJobOpeningDetails?.careerType || 'Full-time',
+      posted: formatDateToDaysAgo(node.date), // Use published date
       salary: 'Competitive',
-      description: node.careerDetails?.careerDescription || '',
+      description: node.careerJobOpeningDetails?.careerDescription || '',
     };
   } catch (error) {
     console.error(`[getCareerPostBySlug] Error for slug "${slug}":`, error);
