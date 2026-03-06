@@ -60,22 +60,52 @@ export const jobs = [
   }
 ];
 
-export default function Careers({ wordpressData }: any) {
+export default function Careers({ wordpressData, wpJobs }: any) {
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+
+  const pageFields = wordpressData?.careersPageSettings;
+  const displayJobs = wpJobs && wpJobs.length > 0 ? wpJobs : jobs;
 
   useEffect(() => {
     document.title = "Careers | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
-  const departments = ["All", ...new Set(jobs.map(j => j.department))];
+  const departments = ["All", ...new Set(displayJobs.map((j: any) => String(j.department)))];
   
-  const filteredJobs = jobs.filter(job => {
+  const filteredJobs = displayJobs.filter((job: any) => {
     const matchesFilter = filter === "All" || job.department === filter;
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
+
+  const renderDynamicIcon = (iconType: string, lucideName: string, imageObj: any, size: number = 16) => {
+    // Normalise: ACF may return the key ("image") or the label ("Upload Image")
+    const isImageType = String(iconType || "").toLowerCase().includes("image");
+    const imageUrl = typeof imageObj === "string"
+      ? imageObj
+      : (imageObj?.mediaItemUrl || imageObj?.sourceUrl || imageObj?.node?.mediaItemUrl || imageObj?.node?.sourceUrl || imageObj?.url);
+    if (isImageType && imageUrl) {
+      return <img src={imageUrl} alt="icon" className="object-contain" style={{ width: size, height: size }} />;
+    }
+    const name = (lucideName || "").toLowerCase();
+    if (name.includes("globe")) return <Globe2 size={size} />;
+    if (name.includes("light") || name.includes("bulb")) return <Lightbulb size={size} />;
+    if (name.includes("book")) return <BookOpen size={size} />;
+    if (name.includes("grad") || name.includes("cap")) return <GraduationCap size={size} />;
+    if (name.includes("trend")) return <TrendingUp size={size} />;
+    if (name.includes("user")) return <Users size={size} />;
+    if (name.includes("award")) return <Award size={size} />;
+    if (name.includes("heart") || name.includes("shake")) return <HeartHandshake size={size} />;
+    return <Zap size={size} />; // Fallback
+  };
+
+  const formatQuotesToBold = (text: string) => {
+    if (!text) return text;
+    const parts = text.split(/"(.*?)"/g);
+    return parts.map((part, i) => i % 2 === 1 ? <span key={i} className="font-bold">{part}</span> : part);
+  };
 
   return (
     <>
@@ -83,7 +113,7 @@ export default function Careers({ wordpressData }: any) {
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroImg}
+            src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || heroImg}
             alt="Nabhira Careers"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
@@ -125,23 +155,23 @@ export default function Careers({ wordpressData }: any) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
               <div>
                 <div className="w-12 h-[1px] bg-[#f99d1c] mb-6"></div>
-                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">Excellence by Design</h3>
+                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">{formatQuotesToBold(pageFields?.culture1Title || "Excellence by Design")}</h3>
                 <p className="text-[#11253e] font-light leading-relaxed text-sm">
-                  We don't just build solutions; we architect systems with precision and integrity, ensuring every line of code serves a higher purpose.
+                  {formatQuotesToBold(pageFields?.culture1Desc || "We don't just build solutions; we architect systems with precision and integrity, ensuring every line of code serves a higher purpose.")}
                 </p>
               </div>
               <div>
                 <div className="w-12 h-[1px] bg-[#f99d1c] mb-6"></div>
-                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">Global Influence</h3>
+                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">{formatQuotesToBold(pageFields?.culture2Title || "Global Influence")}</h3>
                 <p className="text-[#11253e] font-light leading-relaxed text-sm">
-                  Working at Nabhira means impacting Fortune 500 enterprises across continents, shaping the digital backbone of the global economy.
+                  {formatQuotesToBold(pageFields?.culture2Desc || "Working at Nabhira means impacting Fortune 500 enterprises across continents, shaping the digital backbone of the global economy.")}
                 </p>
               </div>
               <div>
                 <div className="w-12 h-[1px] bg-[#f99d1c] mb-6"></div>
-                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">Limitless Growth</h3>
+                <h3 className="text-[#11253e] text-xl font-bold mb-4 tracking-tight uppercase text-[12px] tracking-[0.2em]">{formatQuotesToBold(pageFields?.culture3Title || "Limitless Growth")}</h3>
                 <p className="text-[#11253e] font-light leading-relaxed text-sm">
-                  Our culture is one of continuous evolution. We invest in our people through specialized academies and mentorship from industry icons.
+                  {formatQuotesToBold(pageFields?.culture3Desc || "Our culture is one of continuous evolution. We invest in our people through specialized academies and mentorship from industry icons.")}
                 </p>
               </div>
             </div>
@@ -153,11 +183,13 @@ export default function Careers({ wordpressData }: any) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
               <div className="max-w-xl">
-                <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                  Open <span className="font-bold">Positions</span>
+                <h2 
+                  className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight"
+                >
+                  {formatQuotesToBold(pageFields?.openPositionsTitle || 'Open "Positions"')}
                 </h2>
                 <p className="text-[#11253e] font-light">
-                  Find your next challenge within our specialized engineering and strategy teams.
+                  {pageFields?.openPositionsDesc || "Find your next challenge within our specialized engineering and strategy teams."}
                 </p>
               </div>
               
@@ -178,8 +210,8 @@ export default function Careers({ wordpressData }: any) {
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                 >
-                  {departments.map(dept => (
-                    <option key={dept} value={dept}>{dept}</option>
+                  {departments.map((dept: any) => (
+                    <option key={dept as string} value={dept as string}>{dept as string}</option>
                   ))}
                 </select>
               </div>
@@ -187,9 +219,9 @@ export default function Careers({ wordpressData }: any) {
 
             <div className="space-y-4">
               {filteredJobs.length > 0 ? (
-                filteredJobs.map((job, i) => (
+                filteredJobs.map((job: any, i: number) => (
                   <Motion.div
-                    key={job.id}
+                    key={String(job.id || i)}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
@@ -249,7 +281,7 @@ export default function Careers({ wordpressData }: any) {
               >
                 <div className="relative rounded-sm overflow-hidden aspect-[4/3]">
                   <ImageWithFallback
-                    src={campusImg}
+                    src={pageFields?.internshipImage?.node?.sourceUrl || campusImg}
                     alt="Nabhira Internship Programme"
                     className="w-full h-full object-cover"
                   />
@@ -257,8 +289,8 @@ export default function Careers({ wordpressData }: any) {
                 </div>
                 {/* Floating badge */}
                 <div className="absolute -bottom-6 -right-6 bg-[#f99d1c] text-[#11253e] px-6 py-4 rounded-sm shadow-xl">
-                  <p className="text-[10px] font-bold uppercase tracking-widest">Applications Open</p>
-                  <p className="text-xl font-bold">2026 Cohort</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest">{pageFields?.internshipBadgeTop || "Applications Open"}</p>
+                  <p className="text-xl font-bold">{pageFields?.internshipBadgeBottom || "2026 Cohort"}</p>
                 </div>
               </Motion.div>
 
@@ -272,57 +304,111 @@ export default function Careers({ wordpressData }: any) {
               >
                 <div>
                   <div className="flex items-center gap-3 mb-4">
-                    <GraduationCap className="text-[#f99d1c]" size={22} />
-                    <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">Internship Programme</span>
+                    <span className="text-[#f99d1c]">
+                      {renderDynamicIcon(
+                        pageFields?.internshipProgrammeIconType || "lucide",
+                        pageFields?.internshipProgrammeLucide || "GraduationCap",
+                        pageFields?.internshipProgrammeImage?.node,
+                        22
+                      )}
+                    </span>
+                    <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">{pageFields?.internshipProgrammeLabel || "Internship Programme"}</span>
                   </div>
-                  <h2 className="text-[#11253e] text-3xl md:text-4xl font-light tracking-tight mb-4">
-                    Launch Your Career <br /><span className="font-bold">at Nabhira</span>
+                  <h2 
+                    className="text-[#11253e] text-3xl md:text-4xl font-light tracking-tight mb-4"
+                  >
+                    {formatQuotesToBold(pageFields?.internshipTitle || 'Launch Your Career \n"at Nabhira"')}
                   </h2>
                   <div className="h-[2px] w-16 bg-[#f99d1c] mb-6"></div>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects.
+                    {pageFields?.internshipDesc || "The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects."}
                   </p>
                 </div>
 
                 {/* Internship tracks */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { icon: <Zap size={16} />, track: "AI & Data Engineering", duration: "12 Weeks" },
-                    { icon: <Globe2 size={16} />, track: "Cloud Architecture", duration: "12 Weeks" },
-                    { icon: <Lightbulb size={16} />, track: "Digital Strategy", duration: "10 Weeks" },
-                    { icon: <BookOpen size={16} />, track: "Product & UX Design", duration: "10 Weeks" },
-                  ].map((item, idx) => (
-                    <Motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-3 bg-[#f8f9fa] border border-gray-100 p-4 rounded-sm hover:border-[#f99d1c]/40 transition-colors"
-                    >
-                      <div className="mt-0.5 text-[#f99d1c]">{item.icon}</div>
-                      <div>
-                        <p className="text-[#11253e] text-sm font-bold">{item.track}</p>
-                        <p className="text-[#11253e]/50 text-xs font-light">{item.duration}</p>
-                      </div>
-                    </Motion.div>
-                  ))}
+                    { 
+                      iconType: pageFields?.internshipTrack1IconType || "lucide",
+                      lucide: pageFields?.internshipTrack1Lucide || "Zap",
+                      image: pageFields?.internshipTrack1Image?.node,
+                      track: pageFields?.internshipTrack1Name || "AI & Data Engineering", 
+                      duration: pageFields?.internshipTrack1Duration || "12 Weeks" 
+                    },
+                    { 
+                      iconType: pageFields?.internshipTrack2IconType || "lucide",
+                      lucide: pageFields?.internshipTrack2Lucide || "Globe2",
+                      image: pageFields?.internshipTrack2Image?.node,
+                      track: pageFields?.internshipTrack2Name || "Cloud Architecture", 
+                      duration: pageFields?.internshipTrack2Duration || "12 Weeks" 
+                    },
+                    { 
+                      iconType: pageFields?.internshipTrack3IconType || "lucide",
+                      lucide: pageFields?.internshipTrack3Lucide || "Lightbulb",
+                      image: pageFields?.internshipTrack3Image?.node,
+                      track: pageFields?.internshipTrack3Name || "Digital Strategy", 
+                      duration: pageFields?.internshipTrack3Duration || "10 Weeks" 
+                    },
+                    { 
+                      iconType: pageFields?.internshipTrack4IconType || "lucide",
+                      lucide: pageFields?.internshipTrack4Lucide || "BookOpen",
+                      image: pageFields?.internshipTrack4Image?.node,
+                      track: pageFields?.internshipTrack4Name || "Product & UX Design", 
+                      duration: pageFields?.internshipTrack4Duration || "10 Weeks" 
+                    },
+                  ].map((item, idx) => {
+                    return (
+                      <Motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 * idx }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="flex items-start gap-3 bg-[#f8f9fa] border border-gray-100 p-4 rounded-sm hover:border-[#f99d1c]/40 transition-colors">
+                          <div className="mt-0.5 text-[#f99d1c]">
+                            {renderDynamicIcon(item.iconType, item.lucide, item.image, 16)}
+                          </div>
+                          <div>
+                            <p className="text-[#11253e] text-sm font-bold">{formatQuotesToBold(item.track)}</p>
+                            <p className="text-[#11253e]/50 text-xs font-light">{formatQuotesToBold(item.duration)}</p>
+                          </div>
+                        </div>
+                      </Motion.div>
+                    );
+                  })}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                  <a
-                    href="mailto:careers@nabhira.com"
+                  <Link
+                    href={
+                      pageFields?.applyNowLinkType === "external"
+                        ? pageFields?.applyNowExternalLink || "mailto:careers@nabhira.com"
+                        : pageFields?.applyNowInternalLink?.nodes?.[0]?.uri || "mailto:careers@nabhira.com"
+                    }
                     className="inline-flex items-center gap-2 bg-[#11253e] hover:bg-[#1a3a60] text-white px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all group"
                   >
-                    Apply Now
+                    {pageFields?.applyNowBtnText || "Apply Now"}
                     <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 border border-[#11253e]/20 hover:border-[#f99d1c] text-[#11253e] px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all"
-                  >
-                    Download Brochure
-                  </a>
+                  </Link>
+                  {pageFields?.downloadBrochureFile?.node?.mediaItemUrl || pageFields?.downloadBrochureFile?.url ? (
+                    <a
+                      href={pageFields.downloadBrochureFile.node?.mediaItemUrl || pageFields.downloadBrochureFile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="inline-flex items-center gap-2 justify-center border border-[#11253e]/20 hover:border-[#f99d1c] text-[#11253e] px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all"
+                    >
+                      {pageFields?.downloadBrochureBtnText || "Download Brochure"}
+                    </a>
+                  ) : (
+                    <a
+                      href="#"
+                      className="inline-flex items-center gap-2 justify-center border border-[#11253e]/20 hover:border-[#f99d1c] text-[#11253e] px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all"
+                    >
+                      {pageFields?.downloadBrochureBtnText || "Download Brochure"}
+                    </a>
+                  )}
                 </div>
               </Motion.div>
 
@@ -345,22 +431,42 @@ export default function Careers({ wordpressData }: any) {
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-[2px] w-10 bg-[#f99d1c]"></div>
-                <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">Career Advantage</span>
+                <span className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest">{pageFields?.careerAdvantageLabel || "Career Advantage"}</span>
               </div>
-              <h2 className="text-[#11253e] text-3xl md:text-[48px] font-light tracking-tight leading-tight">
-                Why Nabhira is <span className="font-bold">Different</span>
+              <h2 
+                className="text-[#11253e] text-3xl md:text-[48px] font-light tracking-tight leading-tight"
+              >
+                {formatQuotesToBold(pageFields?.advantageTitle || 'Why Nabhira is "Different"')}
               </h2>
             </Motion.div>
 
             {/* Advantage points — two-column list */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
               {[
-                { icon: <Globe2 size={18} />, title: "Global Exposure", num: "01" },
-                { icon: <TrendingUp size={18} />, title: "Accelerated Growth", num: "02" },
-                { icon: <Users size={18} />, title: "World-Class Mentorship", num: "03" },
-                { icon: <Award size={18} />, title: "Certified Excellence", num: "04" },
-                { icon: <HeartHandshake size={18} />, title: "Inclusive Culture", num: "05" },
-                { icon: <Lightbulb size={18} />, title: "Innovation Time", num: "06" },
+                { 
+                  iconType: pageFields?.advantage1IconType || "lucide", lucide: pageFields?.advantage1Lucide || "Globe2", image: pageFields?.advantage1Image?.node, 
+                  title: pageFields?.advantage1 || "Global Exposure", num: "01" 
+                },
+                { 
+                  iconType: pageFields?.advantage2IconType || "lucide", lucide: pageFields?.advantage2Lucide || "TrendingUp", image: pageFields?.advantage2Image?.node,
+                  title: pageFields?.advantage2 || "Accelerated Growth", num: "02" 
+                },
+                { 
+                  iconType: pageFields?.advantage3IconType || "lucide", lucide: pageFields?.advantage3Lucide || "Users", image: pageFields?.advantage3Image?.node,
+                  title: pageFields?.advantage3 || "World-Class Mentorship", num: "03" 
+                },
+                { 
+                  iconType: pageFields?.advantage4IconType || "lucide", lucide: pageFields?.advantage4Lucide || "Award", image: pageFields?.advantage4Image?.node,
+                  title: pageFields?.advantage4 || "Certified Excellence", num: "04" 
+                },
+                { 
+                  iconType: pageFields?.advantage5IconType || "lucide", lucide: pageFields?.advantage5Lucide || "HeartHandshake", image: pageFields?.advantage5Image?.node,
+                  title: pageFields?.advantage5 || "Inclusive Culture", num: "05" 
+                },
+                { 
+                  iconType: pageFields?.advantage6IconType || "lucide", lucide: pageFields?.advantage6Lucide || "Lightbulb", image: pageFields?.advantage6Image?.node,
+                  title: pageFields?.advantage6 || "Innovation Time", num: "06" 
+                },
               ].map((item, idx) => (
                 <Motion.div
                   key={idx}
@@ -372,9 +478,9 @@ export default function Careers({ wordpressData }: any) {
                 >
                   <span className="text-[10px] font-bold text-[#f99d1c] tracking-widest w-6 shrink-0">{item.num}</span>
                   <div className="w-8 h-8 rounded-sm bg-[#11253e] flex items-center justify-center text-white shrink-0 group-hover:bg-[#f99d1c] group-hover:text-[#11253e] transition-all duration-300">
-                    {item.icon}
+                    {renderDynamicIcon(item.iconType, item.lucide, item.image, 18)}
                   </div>
-                  <span className="text-[#11253e] font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors duration-300">{item.title}</span>
+                  <span className="text-[#11253e] font-bold tracking-tight group-hover:text-[#f99d1c] transition-colors duration-300">{formatQuotesToBold(item.title)}</span>
                   <ChevronRight size={14} className="ml-auto text-[#11253e]/20 group-hover:text-[#f99d1c] group-hover:translate-x-1 transition-all duration-300" />
                 </Motion.div>
               ))}
@@ -389,10 +495,14 @@ export default function Careers({ wordpressData }: any) {
               className="mt-12"
             >
               <Link
-                href="/contact"
+                href={
+                  pageFields?.talkToTalentLinkType === "external"
+                    ? pageFields?.talkToTalentExternalLink || "/contact"
+                    : pageFields?.talkToTalentInternalLink?.nodes?.[0]?.uri || "/contact"
+                }
                 className="inline-flex items-center gap-2 bg-[#11253e] hover:bg-[#1a3a60] text-white px-10 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all group"
               >
-                Talk to Our Talent Team
+                {pageFields?.talkToTalentBtnText || "Talk to Our Talent Team"}
                 <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </Motion.div>

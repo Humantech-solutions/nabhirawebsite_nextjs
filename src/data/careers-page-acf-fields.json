@@ -1,0 +1,1003 @@
+[
+    {
+        "key": "group_69aa9398decc7",
+        "title": "Careers Page Settings",
+        "fields": [
+            {
+                "key": "field_tab_culture",
+                "label": "Culture Section",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "graphql_field_name": "",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_69a_c1t",
+                "label": "Culture 1 Title",
+                "name": "culture_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture1Title"
+            },
+            {
+                "key": "field_69a_c1d",
+                "label": "Culture 1 Description",
+                "name": "culture_1_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture1Desc"
+            },
+            {
+                "key": "field_69a_c2t",
+                "label": "Culture 2 Title",
+                "name": "culture_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture2Title"
+            },
+            {
+                "key": "field_69a_c2d",
+                "label": "Culture 2 Description",
+                "name": "culture_2_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture2Desc"
+            },
+            {
+                "key": "field_69a_c3t",
+                "label": "Culture 3 Title",
+                "name": "culture_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture3Title"
+            },
+            {
+                "key": "field_69a_c3d",
+                "label": "Culture 3 Description",
+                "name": "culture_3_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "culture3Desc"
+            },
+            {
+                "key": "field_tab_internship",
+                "label": "Internship Section",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "graphql_field_name": "",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_69a_iplbl",
+                "label": "Internship Programme Label",
+                "name": "internship_programme_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipProgrammeLabel",
+                "default_value": "Internship Programme"
+            },
+            {
+                "key": "field_69a_ip_icon_itype",
+                "label": "Internship Programme Icon Type",
+                "name": "internship_programme_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipProgrammeIconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_ip_icon_l",
+                "label": "Internship Programme Lucide Icon",
+                "name": "internship_programme_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipProgrammeLucide",
+                "default_value": "GraduationCap",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_ip_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_ip_icon_img",
+                "label": "Internship Programme Icon Image",
+                "name": "internship_programme_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipProgrammeImage",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_ip_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_ii",
+                "label": "Internship Image",
+                "name": "internship_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipImage",
+                "return_format": "array"
+            },
+            {
+                "key": "field_69a_ibt",
+                "label": "Internship Badge Top",
+                "name": "internship_badge_top",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipBadgeTop"
+            },
+            {
+                "key": "field_69a_ibb",
+                "label": "Internship Badge Bottom",
+                "name": "internship_badge_bottom",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipBadgeBottom"
+            },
+            {
+                "key": "field_69a_it",
+                "label": "Internship Title",
+                "name": "internship_title",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTitle"
+            },
+            {
+                "key": "field_69a_id",
+                "label": "Internship Description",
+                "name": "internship_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipDesc"
+            },
+            {
+                "key": "field_69a_it1_n",
+                "label": "Internship Track 1 Name",
+                "name": "internship_track_1_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack1Name"
+            },
+            {
+                "key": "field_69a_it1_d",
+                "label": "Internship Track 1 Duration",
+                "name": "internship_track_1_duration",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack1Duration"
+            },
+            {
+                "key": "field_69a_it1_icon_itype",
+                "label": "Track 1 Icon Type",
+                "name": "internship_track_1_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack1IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_it1_icon_l",
+                "label": "Track 1 Lucide Icon",
+                "name": "internship_track_1_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack1Lucide",
+                "default_value": "Zap",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it1_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it1_icon_img",
+                "label": "Track 1 Icon Image",
+                "name": "internship_track_1_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack1Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it1_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it2_n",
+                "label": "Internship Track 2 Name",
+                "name": "internship_track_2_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack2Name"
+            },
+            {
+                "key": "field_69a_it2_d",
+                "label": "Internship Track 2 Duration",
+                "name": "internship_track_2_duration",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack2Duration"
+            },
+            {
+                "key": "field_69a_it2_icon_itype",
+                "label": "Track 2 Icon Type",
+                "name": "internship_track_2_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack2IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_it2_icon_l",
+                "label": "Track 2 Lucide Icon",
+                "name": "internship_track_2_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack2Lucide",
+                "default_value": "Globe2",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it2_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it2_icon_img",
+                "label": "Track 2 Icon Image",
+                "name": "internship_track_2_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack2Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it2_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it3_n",
+                "label": "Internship Track 3 Name",
+                "name": "internship_track_3_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack3Name"
+            },
+            {
+                "key": "field_69a_it3_d",
+                "label": "Internship Track 3 Duration",
+                "name": "internship_track_3_duration",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack3Duration"
+            },
+            {
+                "key": "field_69a_it3_icon_itype",
+                "label": "Track 3 Icon Type",
+                "name": "internship_track_3_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack3IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_it3_icon_l",
+                "label": "Track 3 Lucide Icon",
+                "name": "internship_track_3_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack3Lucide",
+                "default_value": "Lightbulb",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it3_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it3_icon_img",
+                "label": "Track 3 Icon Image",
+                "name": "internship_track_3_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack3Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it3_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it4_n",
+                "label": "Internship Track 4 Name",
+                "name": "internship_track_4_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack4Name"
+            },
+            {
+                "key": "field_69a_it4_d",
+                "label": "Internship Track 4 Duration",
+                "name": "internship_track_4_duration",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack4Duration"
+            },
+            {
+                "key": "field_69a_it4_icon_itype",
+                "label": "Track 4 Icon Type",
+                "name": "internship_track_4_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack4IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_it4_icon_l",
+                "label": "Track 4 Lucide Icon",
+                "name": "internship_track_4_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack4Lucide",
+                "default_value": "BookOpen",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it4_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_it4_icon_img",
+                "label": "Track 4 Icon Image",
+                "name": "internship_track_4_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "internshipTrack4Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_it4_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_tab_advantages",
+                "label": "Advantages Section",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "graphql_field_name": "",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_69a_cal",
+                "label": "Career Advantage Label",
+                "name": "career_advantage_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "careerAdvantageLabel",
+                "default_value": "Career Advantage"
+            },
+            {
+                "key": "field_69a_at",
+                "label": "Advantage Title",
+                "name": "advantage_title",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantageTitle"
+            },
+            {
+                "key": "field_69a_a1",
+                "label": "Advantage 1 Text",
+                "name": "advantage_1",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage1"
+            },
+            {
+                "key": "field_69a_a1_icon_itype",
+                "label": "Advantage 1 Icon Type",
+                "name": "advantage_1_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage1IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a1_icon_l",
+                "label": "Advantage 1 Lucide Icon",
+                "name": "advantage_1_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage1Lucide",
+                "default_value": "Globe2",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a1_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a1_icon_img",
+                "label": "Advantage 1 Icon Image",
+                "name": "advantage_1_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage1Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a1_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a2",
+                "label": "Advantage 2 Text",
+                "name": "advantage_2",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage2"
+            },
+            {
+                "key": "field_69a_a2_icon_itype",
+                "label": "Advantage 2 Icon Type",
+                "name": "advantage_2_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage2IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a2_icon_l",
+                "label": "Advantage 2 Lucide Icon",
+                "name": "advantage_2_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage2Lucide",
+                "default_value": "TrendingUp",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a2_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a2_icon_img",
+                "label": "Advantage 2 Icon Image",
+                "name": "advantage_2_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage2Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a2_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a3",
+                "label": "Advantage 3 Text",
+                "name": "advantage_3",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage3"
+            },
+            {
+                "key": "field_69a_a3_icon_itype",
+                "label": "Advantage 3 Icon Type",
+                "name": "advantage_3_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage3IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a3_icon_l",
+                "label": "Advantage 3 Lucide Icon",
+                "name": "advantage_3_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage3Lucide",
+                "default_value": "Users",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a3_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a3_icon_img",
+                "label": "Advantage 3 Icon Image",
+                "name": "advantage_3_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage3Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a3_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a4",
+                "label": "Advantage 4 Text",
+                "name": "advantage_4",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage4"
+            },
+            {
+                "key": "field_69a_a4_icon_itype",
+                "label": "Advantage 4 Icon Type",
+                "name": "advantage_4_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage4IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a4_icon_l",
+                "label": "Advantage 4 Lucide Icon",
+                "name": "advantage_4_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage4Lucide",
+                "default_value": "Award",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a4_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a4_icon_img",
+                "label": "Advantage 4 Icon Image",
+                "name": "advantage_4_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage4Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a4_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a5",
+                "label": "Advantage 5 Text",
+                "name": "advantage_5",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage5"
+            },
+            {
+                "key": "field_69a_a5_icon_itype",
+                "label": "Advantage 5 Icon Type",
+                "name": "advantage_5_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage5IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a5_icon_l",
+                "label": "Advantage 5 Lucide Icon",
+                "name": "advantage_5_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage5Lucide",
+                "default_value": "HeartHandshake",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a5_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a5_icon_img",
+                "label": "Advantage 5 Icon Image",
+                "name": "advantage_5_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage5Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a5_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a6",
+                "label": "Advantage 6 Text",
+                "name": "advantage_6",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage6"
+            },
+            {
+                "key": "field_69a_a6_icon_itype",
+                "label": "Advantage 6 Icon Type",
+                "name": "advantage_6_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage6IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_69a_a6_icon_l",
+                "label": "Advantage 6 Lucide Icon",
+                "name": "advantage_6_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage6Lucide",
+                "default_value": "Lightbulb",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a6_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_a6_icon_img",
+                "label": "Advantage 6 Icon Image",
+                "name": "advantage_6_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "advantage6Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_a6_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_tab_jobs",
+                "label": "Open Positions",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "graphql_field_name": "",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_69a_opt",
+                "label": "Open Positions Title",
+                "name": "open_positions_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "openPositionsTitle",
+                "default_value": "Open Positions"
+            },
+            {
+                "key": "field_69a_opd",
+                "label": "Open Positions Description",
+                "name": "open_positions_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "openPositionsDesc",
+                "default_value": "Find your next challenge within our specialized engineering and strategy teams."
+            },
+            {
+                "key": "field_tab_buttons",
+                "label": "Buttons",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "graphql_field_name": "",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_69a_abnt",
+                "label": "Apply Now Button Text",
+                "name": "apply_now_btn_text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "applyNowBtnText"
+            },
+            {
+                "key": "field_69a_anlt",
+                "label": "Apply Now Link Type",
+                "name": "apply_now_link_type",
+                "type": "radio",
+                "show_in_graphql": 1,
+                "graphql_field_name": "applyNowLinkType",
+                "choices": {
+                    "internal": "Page / Post",
+                    "external": "External URL"
+                },
+                "default_value": "internal"
+            },
+            {
+                "key": "field_69a_ani",
+                "label": "Apply Now Internal Link",
+                "name": "apply_now_internal_link",
+                "type": "page_link",
+                "show_in_graphql": 1,
+                "graphql_field_name": "applyNowInternalLink",
+                "post_type": "",
+                "taxonomy": "",
+                "allow_null": 0,
+                "allow_archives": 1,
+                "multiple": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_anlt",
+                            "operator": "==",
+                            "value": "internal"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_ane",
+                "label": "Apply Now External Link",
+                "name": "apply_now_external_link",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "applyNowExternalLink",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_anlt",
+                            "operator": "==",
+                            "value": "external"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_dbt",
+                "label": "Download Brochure Button Text",
+                "name": "download_brochure_btn_text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "downloadBrochureBtnText"
+            },
+            {
+                "key": "field_69a_dbf",
+                "label": "Download Brochure File",
+                "name": "download_brochure_file",
+                "type": "file",
+                "show_in_graphql": 1,
+                "graphql_field_name": "downloadBrochureFile",
+                "return_format": "array"
+            },
+            {
+                "key": "field_69a_ttbt",
+                "label": "Talk to Talent Button Text",
+                "name": "talk_to_talent_btn_text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "talkToTalentBtnText",
+                "default_value": "Talk to Our Talent Team"
+            },
+            {
+                "key": "field_69a_ttlt",
+                "label": "Talk to Talent Link Type",
+                "name": "talk_to_talent_link_type",
+                "type": "radio",
+                "show_in_graphql": 1,
+                "graphql_field_name": "talkToTalentLinkType",
+                "choices": {
+                    "internal": "Page / Post",
+                    "external": "External URL"
+                },
+                "default_value": "internal"
+            },
+            {
+                "key": "field_69a_tti",
+                "label": "Talk to Talent Internal Link",
+                "name": "talk_to_talent_internal_link",
+                "type": "page_link",
+                "show_in_graphql": 1,
+                "graphql_field_name": "talkToTalentInternalLink",
+                "post_type": "",
+                "taxonomy": "",
+                "allow_null": 0,
+                "allow_archives": 1,
+                "multiple": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_ttlt",
+                            "operator": "==",
+                            "value": "internal"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_69a_tte",
+                "label": "Talk to Talent External Link",
+                "name": "talk_to_talent_external_link",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "talkToTalentExternalLink",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_69a_ttlt",
+                            "operator": "==",
+                            "value": "external"
+                        }
+                    ]
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "563"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "display_title": "",
+        "show_in_graphql": 1,
+        "graphql_field_name": "careersPageSettings",
+        "map_graphql_types_from_location_rules": 0,
+        "graphql_types": ""
+    }
+]
