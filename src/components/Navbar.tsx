@@ -93,7 +93,7 @@ export function Navbar() {
     },
     "ABOUT US": {
       type: "simple",
-      items: ["About Nabhira", "Leadership", "Partners Ecosystem", "Awards"]
+      items: ["About Nabhira", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
     }
   };
 
@@ -274,6 +274,7 @@ export function Navbar() {
                               "About Nabhira": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
+                              "Our Clients": "/clients",
                               "Awards": "/awards",
                               "AI Powered Point of Sales App": "/solutions/pos",
                               "AI based LMS system": "/solutions/lms",
@@ -460,6 +461,7 @@ export function Navbar() {
                               "About Nabhira": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
+                              "Our Clients": "/clients",
                               "Awards": "/awards",
                               "AI Powered Point of Sales App": "/solutions/pos",
                               "AI based LMS system": "/solutions/lms",
