@@ -186,6 +186,7 @@ export async function getPageBySlug(slug: string) {
   const finalSlug = formattedSlug.endsWith('/') ? formattedSlug : `${formattedSlug}/`;
 
   const query = `
+    ${GLOBAL_SETTINGS_FRAGMENT}
     ${CONTACT_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
@@ -196,6 +197,7 @@ export async function getPageBySlug(slug: string) {
         slug
         uri
         date
+        ...GlobalSettingsFields
         ...ContactPageFields
       }
     }
