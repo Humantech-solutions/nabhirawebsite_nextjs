@@ -1,0 +1,80 @@
+[
+    {
+        "key": "group_nabhira_career_details",
+        "title": "Career / Job Opening Details",
+        "fields": [
+            {
+                "key": "f_career_department",
+                "label": "Department",
+                "name": "career_department",
+                "type": "text",
+                "instructions": "e.g. Engineering, Consulting, Design",
+                "required": 1,
+                "show_in_graphql": 1
+            },
+            {
+                "key": "f_career_location",
+                "label": "Location",
+                "name": "career_location",
+                "type": "text",
+                "instructions": "e.g. Mumbai, India · Remote / Bengaluru · Dubai, UAE",
+                "required": 1,
+                "show_in_graphql": 1
+            },
+            {
+                "key": "f_career_type",
+                "label": "Employment Type",
+                "name": "career_type",
+                "type": "text",
+                "instructions": "e.g. Full-time, Part-time, Contract",
+                "required": 1,
+                "default_value": "Full-time",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "f_career_posted",
+                "label": "Posted (display label)",
+                "name": "career_posted",
+                "type": "text",
+                "instructions": "Human-readable date e.g. '2 days ago', '1 week ago', 'Mar 2026'",
+                "required": 0,
+                "show_in_graphql": 1
+            },
+            {
+                "key": "f_career_description",
+                "label": "Job Description (HTML supported)",
+                "name": "career_description",
+                "type": "wysiwyg",
+                "instructions": "Full job description. Include About the Role, Responsibilities and Requirements sections. Supports HTML.",
+                "required": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "show_in_graphql": 1
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "careers"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "ACF fields for individual job openings in the Careers CPT",
+        "show_in_graphql": 1,
+        "graphql_field_name": "careerDetails",
+        "map_graphql_types_from_location_rules": 1,
+        "graphql_types": [
+            "Career"
+        ]
+    }
+]

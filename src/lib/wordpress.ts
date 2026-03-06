@@ -177,6 +177,103 @@ export const CONTACT_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const CAREERS_PAGE_FIELDS_FRAGMENT = `
+  fragment CareersPageFields on Page {
+    careersPageSettings {
+      culture1Title
+      culture1Desc
+      culture2Title
+      culture2Desc
+      culture3Title
+      culture3Desc
+      internshipProgrammeLabel
+      internshipProgrammeIconType
+      internshipProgrammeLucide
+      internshipProgrammeImage { node { sourceUrl mediaItemUrl } }
+      internshipImage { node { sourceUrl mediaItemUrl } }
+      internshipBadgeTop
+      internshipBadgeBottom
+      internshipTitle
+      internshipDesc
+      internshipTrack1IconType
+      internshipTrack1Lucide
+      internshipTrack1Image { node { sourceUrl mediaItemUrl } }
+      internshipTrack1Name
+      internshipTrack1Duration
+      internshipTrack2IconType
+      internshipTrack2Lucide
+      internshipTrack2Image { node { sourceUrl mediaItemUrl } }
+      internshipTrack2Name
+      internshipTrack2Duration
+      internshipTrack3IconType
+      internshipTrack3Lucide
+      internshipTrack3Image { node { sourceUrl mediaItemUrl } }
+      internshipTrack3Name
+      internshipTrack3Duration
+      internshipTrack4IconType
+      internshipTrack4Lucide
+      internshipTrack4Image { node { sourceUrl mediaItemUrl } }
+      internshipTrack4Name
+      internshipTrack4Duration
+      careerAdvantageLabel
+      advantageTitle
+      advantage1
+      advantage1IconType
+      advantage1Lucide
+      advantage1Image { node { sourceUrl mediaItemUrl } }
+      advantage2
+      advantage2IconType
+      advantage2Lucide
+      advantage2Image { node { sourceUrl mediaItemUrl } }
+      advantage3
+      advantage3IconType
+      advantage3Lucide
+      advantage3Image { node { sourceUrl mediaItemUrl } }
+      advantage4
+      advantage4IconType
+      advantage4Lucide
+      advantage4Image { node { sourceUrl mediaItemUrl } }
+      advantage5
+      advantage5IconType
+      advantage5Lucide
+      advantage5Image { node { sourceUrl mediaItemUrl } }
+      advantage6
+      advantage6IconType
+      advantage6Lucide
+      advantage6Image { node { sourceUrl mediaItemUrl } }
+      openPositionsTitle
+      openPositionsDesc
+      applyNowBtnText
+      applyNowLinkType
+      applyNowInternalLink {
+        nodes {
+          ... on Page {
+            uri
+          }
+          ... on Post {
+            uri
+          }
+        }
+      }
+      applyNowExternalLink
+      downloadBrochureBtnText
+      downloadBrochureFile { node { mediaItemUrl } }
+      talkToTalentBtnText
+      talkToTalentLinkType
+      talkToTalentInternalLink {
+        nodes {
+          ... on Page {
+            uri
+          }
+          ... on Post {
+            uri
+          }
+        }
+      }
+      talkToTalentExternalLink
+    }
+  }
+`;
 
 
 
@@ -188,6 +285,7 @@ export async function getPageBySlug(slug: string) {
   const query = `
     ${GLOBAL_SETTINGS_FRAGMENT}
     ${CONTACT_PAGE_FIELDS_FRAGMENT}
+    ${CAREERS_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -199,6 +297,7 @@ export async function getPageBySlug(slug: string) {
         date
         ...GlobalSettingsFields
         ...ContactPageFields
+        ...CareersPageFields
       }
     }
 
@@ -657,6 +756,109 @@ export async function getPostBySlug(slug: string) {
 
   console.log(`[getPostBySlug] No post found for slug: ${slug}`);
   return null;
+}
+
+// ─── CAREERS CPT ─────────────────────────────────────────────────────────────
+
+/**
+ * Fetches all published job openings from the WordPress Careers CPT.
+ * Falls back to the static jobs array from migrated_data.ts if WP is unavailable.
+ */
+export async function getCareerPosts() {
+  const query = `
+    query GetCareerPosts {
+      careers(first: 100, where: { status: PUBLISH }) {
+        nodes {
+          id
+          slug
+          title
+          date
+          careerDetails {
+            careerDepartment
+            careerLocation
+            careerType
+            careerPosted
+            careerDescription
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    const nodes = response?.data?.careers?.nodes;
+
+    if (!nodes || nodes.length === 0) {
+      console.warn('[getCareerPosts]: No careers found or fetch failed. Using static fallback.');
+      return null; // caller will use static fallback
+    }
+
+    // Normalize to the same shape the UI expects
+    return nodes.map((node: any) => ({
+      id: node.slug,           // use slug as id so /careers/[id] routes work
+      slug: node.slug,
+      title: node.title,
+      department: node.careerDetails?.careerDepartment || '',
+      location: node.careerDetails?.careerLocation || '',
+      type: node.careerDetails?.careerType || 'Full-time',
+      posted: node.careerDetails?.careerPosted || '',
+      salary: 'Competitive',   // kept for backward compat with JobDetails
+      description: node.careerDetails?.careerDescription || '',
+    }));
+  } catch (error) {
+    console.error('[getCareerPosts] Error:', error);
+    return null;
+  }
+}
+
+/**
+ * Fetches a single job opening by slug from the WordPress Careers CPT.
+ * Returns null if not found (caller should fall back to static data).
+ */
+export async function getCareerPostBySlug(slug: string) {
+  const query = `
+    query GetCareerBySlug($id: ID!) {
+      career(id: $id, idType: SLUG) {
+        id
+        slug
+        title
+        date
+        careerDetails {
+          careerDepartment
+          careerLocation
+          careerType
+          careerPosted
+          careerDescription
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, { id: slug });
+    const node = response?.data?.career;
+
+    if (!node) {
+      console.warn(`[getCareerPostBySlug]: No career found for slug "${slug}".`);
+      return null;
+    }
+
+    return {
+      id: node.slug,
+      slug: node.slug,
+      title: node.title,
+      department: node.careerDetails?.careerDepartment || '',
+      location: node.careerDetails?.careerLocation || '',
+      type: node.careerDetails?.careerType || 'Full-time',
+      posted: node.careerDetails?.careerPosted || '',
+      salary: 'Competitive',
+      description: node.careerDetails?.careerDescription || '',
+    };
+  } catch (error) {
+    console.error(`[getCareerPostBySlug] Error for slug "${slug}":`, error);
+    return null;
+  }
 }
 
 // Helper to fetch full post data by ID

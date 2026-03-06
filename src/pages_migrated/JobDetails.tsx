@@ -9,12 +9,13 @@ import { Footer, LimitlessTogether } from "../components/Footer";
 import { MapPin, Briefcase, Clock, ChevronLeft, Upload, Send } from "lucide-react";
 import { jobs } from "../data/migrated_data";
 
-export default function JobDetails() {
+export default function JobDetails({ wpJob }: { wpJob?: any }) {
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  const job = jobs.find(j => j.id === id);
+  // Use wpJob if available, else fallback to static data
+  const job = wpJob || jobs.find(j => j.id === id);
 
   useEffect(() => {
     if (job) {
@@ -69,41 +70,49 @@ export default function JobDetails() {
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <Briefcase size={16} className="text-[#f99d1c]" /> {job.type}
                   </div>
-                  <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
-                    <Clock size={16} className="text-[#f99d1c]" /> {job.salary}
-                  </div>
+                  {job.salary && (
+                    <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
+                      <Clock size={16} className="text-[#f99d1c]" /> {job.salary}
+                    </div>
+                  )}
                 </div>
               </section>
 
-              <div className="prose prose-slate max-w-none text-[#11253e] font-light space-y-8">
-                <section>
-                  <h3 className="text-[#11253e] text-xl font-bold mb-4">About the Role</h3>
-                  <p className="leading-relaxed">
-                    Nabhira Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
-                  </p>
-                </section>
+              <div className="prose prose-slate max-w-none text-[#11253e] font-light space-y-8 wp-job-content">
+                {wpJob && wpJob.description ? (
+                   <div dangerouslySetInnerHTML={{ __html: wpJob.description }} />
+                ) : (
+                  <>
+                    <section>
+                      <h3 className="text-[#11253e] text-xl font-bold mb-4">About the Role</h3>
+                      <p className="leading-relaxed">
+                        Nabhira Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
+                      </p>
+                    </section>
 
-                <section>
-                  <h3 className="text-[#11253e] text-xl font-bold mb-4">Key Responsibilities</h3>
-                  <ul className="list-disc pl-5 space-y-2">
-                    <li>Design and implement scalable, high-performance architectures aligned with Nabhira's core principles.</li>
-                    <li>Collaborate with cross-functional teams to translate complex business requirements into technical solutions.</li>
-                    <li>Ensure all deliverables maintain the highest standards of architectural integrity and performance.</li>
-                    <li>Mentor junior team members and contribute to the evolution of our engineering practices.</li>
-                    <li>Stay abreast of emerging technologies and industry trends to keep our platform at the cutting edge.</li>
-                  </ul>
-                </section>
+                    <section>
+                      <h3 className="text-[#11253e] text-xl font-bold mb-4">Key Responsibilities</h3>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>Design and implement scalable, high-performance architectures aligned with Nabhira's core principles.</li>
+                        <li>Collaborate with cross-functional teams to translate complex business requirements into technical solutions.</li>
+                        <li>Ensure all deliverables maintain the highest standards of architectural integrity and performance.</li>
+                        <li>Mentor junior team members and contribute to the evolution of our engineering practices.</li>
+                        <li>Stay abreast of emerging technologies and industry trends to keep our platform at the cutting edge.</li>
+                      </ul>
+                    </section>
 
-                <section>
-                  <h3 className="text-[#11253e] text-xl font-bold mb-4">Core Requirements</h3>
-                  <ul className="list-disc pl-5 space-y-2">
-                    <li>Proven track record of success in {job.department.toLowerCase()} roles within high-growth technology environments.</li>
-                    <li>Deep expertise in modern development frameworks and cloud-native architectures.</li>
-                    <li>Exceptional problem-solving skills and a meticulous attention to detail.</li>
-                    <li>Strong communication skills with the ability to articulate complex technical concepts to non-technical stakeholders.</li>
-                    <li>A passion for building high-quality, architecturally sound digital products.</li>
-                  </ul>
-                </section>
+                    <section>
+                      <h3 className="text-[#11253e] text-xl font-bold mb-4">Core Requirements</h3>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>Proven track record of success in {job.department.toLowerCase()} roles within high-growth technology environments.</li>
+                        <li>Deep expertise in modern development frameworks and cloud-native architectures.</li>
+                        <li>Exceptional problem-solving skills and a meticulous attention to detail.</li>
+                        <li>Strong communication skills with the ability to articulate complex technical concepts to non-technical stakeholders.</li>
+                        <li>A passion for building high-quality, architecturally sound digital products.</li>
+                      </ul>
+                    </section>
+                  </>
+                )}
               </div>
             </div>
 
