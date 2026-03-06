@@ -6,7 +6,7 @@ import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+
 
 export default function Partners({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -72,9 +72,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Orchestrating <br /><span className="text-[#f99d1c]">Global</span> Synergy</>
-                ))}
+                Orchestrating <br /><span className="text-[#f99d1c]">Global</span> Synergy
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
