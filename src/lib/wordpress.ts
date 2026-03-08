@@ -337,6 +337,123 @@ export const ABOUT_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const LEADERSHIP_PAGE_FIELDS_FRAGMENT = `
+  fragment LeadershipPageFields on Page {
+    leadershipPage {
+      leader1Name
+      leader1Role
+      leader1Bio
+      leader1Image { node { sourceUrl mediaItemUrl } }
+      leader1LinkedinUrl
+      leader1LinkedinIconType
+      leader1LinkedinLucide
+      leader1LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader1MailUrl
+      leader1MailIconType
+      leader1MailLucide
+      leader1MailImage { node { sourceUrl mediaItemUrl } }
+      leader2Name
+      leader2Role
+      leader2Bio
+      leader2Image { node { sourceUrl mediaItemUrl } }
+      leader2LinkedinUrl
+      leader2LinkedinIconType
+      leader2LinkedinLucide
+      leader2LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader2MailUrl
+      leader2MailIconType
+      leader2MailLucide
+      leader2MailImage { node { sourceUrl mediaItemUrl } }
+      leader3Name
+      leader3Role
+      leader3Bio
+      leader3Image { node { sourceUrl mediaItemUrl } }
+      leader3LinkedinUrl
+      leader3LinkedinIconType
+      leader3LinkedinLucide
+      leader3LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader3MailUrl
+      leader3MailIconType
+      leader3MailLucide
+      leader3MailImage { node { sourceUrl mediaItemUrl } }
+      leader4Name
+      leader4Role
+      leader4Bio
+      leader4Image { node { sourceUrl mediaItemUrl } }
+      leader4LinkedinUrl
+      leader4LinkedinIconType
+      leader4LinkedinLucide
+      leader4LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader4MailUrl
+      leader4MailIconType
+      leader4MailLucide
+      leader4MailImage { node { sourceUrl mediaItemUrl } }
+      leader5Name
+      leader5Role
+      leader5Bio
+      leader5Image { node { sourceUrl mediaItemUrl } }
+      leader5LinkedinUrl
+      leader5LinkedinIconType
+      leader5LinkedinLucide
+      leader5LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader5MailUrl
+      leader5MailIconType
+      leader5MailLucide
+      leader5MailImage { node { sourceUrl mediaItemUrl } }
+      leader6Name
+      leader6Role
+      leader6Bio
+      leader6Image { node { sourceUrl mediaItemUrl } }
+      leader6LinkedinUrl
+      leader6LinkedinIconType
+      leader6LinkedinLucide
+      leader6LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader6MailUrl
+      leader6MailIconType
+      leader6MailLucide
+      leader6MailImage { node { sourceUrl mediaItemUrl } }
+      leader7Name
+      leader7Role
+      leader7Bio
+      leader7Image { node { sourceUrl mediaItemUrl } }
+      leader7LinkedinUrl
+      leader7LinkedinIconType
+      leader7LinkedinLucide
+      leader7LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader7MailUrl
+      leader7MailIconType
+      leader7MailLucide
+      leader7MailImage { node { sourceUrl mediaItemUrl } }
+      leader8Name
+      leader8Role
+      leader8Bio
+      leader8Image { node { sourceUrl mediaItemUrl } }
+      leader8LinkedinUrl
+      leader8LinkedinIconType
+      leader8LinkedinLucide
+      leader8LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader8MailUrl
+      leader8MailIconType
+      leader8MailLucide
+      leader8MailImage { node { sourceUrl mediaItemUrl } }
+      leader9Name
+      leader9Role
+      leader9Bio
+      leader9Image { node { sourceUrl mediaItemUrl } }
+      leader9LinkedinUrl
+      leader9LinkedinIconType
+      leader9LinkedinLucide
+      leader9LinkedinImage { node { sourceUrl mediaItemUrl } }
+      leader9MailUrl
+      leader9MailIconType
+      leader9MailLucide
+      leader9MailImage { node { sourceUrl mediaItemUrl } }
+      advisorsTitle
+      advisorsDescription
+    }
+  }
+`;
+
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
   const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
@@ -347,6 +464,7 @@ export async function getPageBySlug(slug: string) {
     ${CONTACT_PAGE_FIELDS_FRAGMENT}
     ${CAREERS_PAGE_FIELDS_FRAGMENT}
     ${ABOUT_PAGE_FIELDS_FRAGMENT}
+    ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -360,6 +478,7 @@ export async function getPageBySlug(slug: string) {
         ...ContactPageFields
         ...CareersPageFields
         ...AboutPageFields
+        ...LeadershipPageFields
       }
     }
 
