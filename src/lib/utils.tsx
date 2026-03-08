@@ -1,17 +1,19 @@
-
 import React from 'react';
+import * as LucideIcons from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 export const renderHeroTitle = (title: string | React.ReactNode) => {
   if (typeof title !== 'string') return title;
   
-  // Unified parser for |, \\, and \n
+  // Unified parser for |, \\, \n, and ^
   // Rules:
-  // 1. Any of these separators cause a line break (<br />)
-  // 2. | toggles the accent color (orange)
+  // 1. |, \\, \n cause a line break (<br />)
+  // 2. | and ^ toggle the accent color (orange)
   // 3. \\ and \n maintain the current color but still break the line
+  // 4. ^ toggles the accent color WITHOUT breaking the line
   
   // Use regex to split by any of the separators while keeping them in the result
-  const parts = title.split(/(\||\n|\\\\)/);
+  const parts = title.split(/(\||\n|\\\\|\^)/);
   
   let isAccent = false;
   const renderedContent: React.ReactNode[] = [];
@@ -31,6 +33,17 @@ export const renderHeroTitle = (title: string | React.ReactNode) => {
         );
       }
       renderedContent.push(<br key={`br-${i}`} />);
+      isAccent = !isAccent;
+      currentText = "";
+    } else if (part === '^') {
+      // Toggle accent WITHOUT break
+      if (currentText.trim()) {
+        renderedContent.push(
+          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : "text-white"}>
+            {currentText}
+          </span>
+        );
+      }
       isAccent = !isAccent;
       currentText = "";
     } else if (part === '\\\\' || part === '\n') {
@@ -64,4 +77,24 @@ export const renderHeroTitle = (title: string | React.ReactNode) => {
   }
 
   return <>{renderedContent}</>;
+};
+
+export const renderDynamicIcon = (iconType: string, lucideName: string, imageObj: any, size: number = 32) => {
+  const isImageType = String(iconType || "").toLowerCase().includes("image");
+  const imageUrl = typeof imageObj === "string"
+    ? imageObj
+    : (imageObj?.mediaItemUrl || imageObj?.sourceUrl || imageObj?.node?.mediaItemUrl || imageObj?.node?.sourceUrl || imageObj?.url);
+
+  if (isImageType && imageUrl) {
+    return <img src={imageUrl} alt="icon" className="object-contain" style={{ width: size, height: size }} />;
+  }
+
+  const IconComponent = (LucideIcons as any)[lucideName] || Zap;
+  return <IconComponent size={size} />;
+};
+
+export const formatQuotesToBold = (text: string) => {
+  if (!text) return text;
+  const parts = text.split(/"(.*?)"/g);
+  return parts.map((part, i) => i % 2 === 1 ? <span key={i} className="font-bold">{part}</span> : part);
 };

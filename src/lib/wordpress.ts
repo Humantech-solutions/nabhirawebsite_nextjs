@@ -270,12 +270,72 @@ export const CAREERS_PAGE_FIELDS_FRAGMENT = `
           }
         }
       }
-      talkToTalentExternalLink
+        talkToTalentExternalLink
     }
   }
 `;
 
-
+export const ABOUT_PAGE_FIELDS_FRAGMENT = `
+  fragment AboutPageFields on Page {
+    aboutUs {
+      storyTitle
+      storyContentP1
+      storyContentP2
+      storyImage { node { sourceUrl mediaItemUrl } }
+      visionLabel
+      visionTitle
+      visionDescription
+      visionIconType
+      visionLucide
+      visionImage { node { sourceUrl mediaItemUrl } }
+      missionLabel
+      missionTitle
+      missionDescription
+      missionIconType
+      missionLucide
+      missionImage { node { sourceUrl mediaItemUrl } }
+      valuesSectionTitle
+      v1Title
+      v1Desc
+      v1IconType
+      v1Lucide
+      v1Image { node { sourceUrl mediaItemUrl } }
+      v2Title
+      v2Desc
+      v2IconType
+      v2Lucide
+      v2Image { node { sourceUrl mediaItemUrl } }
+      v3Title
+      v3Desc
+      v3IconType
+      v3Lucide
+      v3Image { node { sourceUrl mediaItemUrl } }
+      v4Title
+      v4Desc
+      v4IconType
+      v4Lucide
+      v4Image { node { sourceUrl mediaItemUrl } }
+      v5Title
+      v5Desc
+      v5IconType
+      v5Lucide
+      v5Image { node { sourceUrl mediaItemUrl } }
+      v6Title
+      v6Desc
+      v6IconType
+      v6Lucide
+      v6Image { node { sourceUrl mediaItemUrl } }
+      stat1Value
+      stat1Label
+      stat2Value
+      stat2Label
+      stat3Value
+      stat3Label
+      stat4Value
+      stat4Label
+    }
+  }
+`;
 
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
@@ -286,6 +346,7 @@ export async function getPageBySlug(slug: string) {
     ${GLOBAL_SETTINGS_FRAGMENT}
     ${CONTACT_PAGE_FIELDS_FRAGMENT}
     ${CAREERS_PAGE_FIELDS_FRAGMENT}
+    ${ABOUT_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -298,6 +359,7 @@ export async function getPageBySlug(slug: string) {
         ...GlobalSettingsFields
         ...ContactPageFields
         ...CareersPageFields
+        ...AboutPageFields
       }
     }
 
