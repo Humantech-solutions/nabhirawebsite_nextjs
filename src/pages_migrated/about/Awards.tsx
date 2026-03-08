@@ -151,7 +151,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }

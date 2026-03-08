@@ -27,7 +27,7 @@ export default function Home({ wordpressData }: any) {
       <WhatsNew />
       <Clients />
       <SuccessStories />
-      <LimitlessTogether />
+      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </div>
   );
 }

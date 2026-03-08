@@ -21,6 +21,7 @@ interface IndustryLayoutProps {
   cloudService: ServiceBlock;
   dataService: ServiceBlock;
   aiService: ServiceBlock;
+  limitlessTogetherData?: any;
 }
 
 export function IndustryLayout({
@@ -30,7 +31,8 @@ export function IndustryLayout({
   overview,
   cloudService,
   dataService,
-  aiService
+  aiService,
+  limitlessTogetherData
 }: IndustryLayoutProps) {
   useEffect(() => {
     document.title = `${title} | Nabhira Technologies`;
@@ -214,7 +216,7 @@ export function IndustryLayout({
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={limitlessTogetherData} />
     </>
   );
 }

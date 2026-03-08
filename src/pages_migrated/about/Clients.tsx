@@ -426,7 +426,7 @@ export default function Clients() {
         </div>
       </section>
 
-      <LimitlessTogether />
+      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }

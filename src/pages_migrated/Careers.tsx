@@ -511,7 +511,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }
