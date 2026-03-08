@@ -739,7 +739,7 @@ export async function getHomePage() {
     
     // Fetch News Posts
     const filterBy = whatsNewSettings.wnFilterBy;
-    const postsCount = Math.max(whatsNewSettings.wnPostsCount || 0, 12);
+    const postsCount = Math.min(Math.max(whatsNewSettings.wnPostsCount || 3, 1), 12);
     // Extract filter values (handles multiple checkboxes/selections)
     let filterValues: string[] = [];
     if (filterBy === 'tag') {
@@ -748,14 +748,27 @@ export async function getHomePage() {
       filterValues = whatsNewSettings.wnCategory?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
     }
 
+    // Build where clause using slug-compatible args:
+    // - categoryName accepts a comma-separated list of slugs (WPGraphQL)
+    // - tag accepts a single slug; for multiple tags join with comma
+    // (categoryIn / tagIn expect integer term IDs — not slugs — so they are avoided)
+    let whereClause: string;
+    if (filterValues.length > 0) {
+      if (filterBy === 'tag') {
+        // WPGraphQL `tag` arg accepts a single slug string
+        whereClause = `tag: ${JSON.stringify(filterValues[0])}`;
+      } else {
+        // WPGraphQL `categoryName` accepts a comma-separated slug string for OR filtering
+        whereClause = `categoryName: ${JSON.stringify(filterValues.join(','))}`;
+      }
+    } else {
+      // No filter configured — default fallback labels
+      whereClause = filterBy === 'tag' ? 'tag: "featured"' : 'categoryName: "news"';
+    }
+
     const postsQuery = `
       query GetWhatsNewPosts {
-        posts(where: {
-          ${filterValues.length > 0 
-            ? (filterBy === 'tag' ? `tagIn: ${JSON.stringify(filterValues)}` : `categoryIn: ${JSON.stringify(filterValues)}`)
-            : (filterBy === 'tag' ? 'tag: "Featured"' : 'categoryName: "News"')
-          }
-        }, first: ${postsCount}) {
+        posts(where: { ${whereClause} }, first: ${postsCount}) {
           nodes {
             title
             date
@@ -770,7 +783,8 @@ export async function getHomePage() {
     const postsResponse = await fetchGraphQL(postsQuery);
     let newsPosts = postsResponse?.data?.posts?.nodes || [];
 
-    if (newsPosts.length === 0) {
+    // Only use the no-filter fallback when NO category/tag was configured at all
+    if (newsPosts.length === 0 && filterValues.length === 0) {
       const fallbackPostsResponse = await fetchGraphQL(`query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } } uri } } }`);
       newsPosts = fallbackPostsResponse?.data?.posts?.nodes || [];
     }
@@ -779,7 +793,10 @@ export async function getHomePage() {
       ...page,
       newsPosts,
       thinkingPosts,
-      settings: whatsNewSettings
+      settings: {
+        ...whatsNewSettings,
+        wnPostsCount: whatsNewSettings.wnPostsCount
+      }
     };
   } catch (error) {
     console.error('[WPGraphQL FETCH ERROR]:', error);
