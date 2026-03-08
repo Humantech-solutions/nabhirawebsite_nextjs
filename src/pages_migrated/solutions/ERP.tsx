@@ -6,7 +6,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Briefcase, BarChart3, PieChart, Truck, Users2, Workflow, ArrowRight, CheckCircle2 } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function ERPSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {heroData?.heroS1Desc || "One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform."}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -87,10 +87,10 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
         <section className="py-32 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
-              <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight uppercase">Modular Excellence</h2>
+              <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight uppercase">{formatQuotesToBold("Modular Excellence")}</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto"></div>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                WorkbookNow is designed to grow with you. Activate only the modules you need today, and scale seamlessly as your business complexity evolves.
+                {formatQuotesToBold("WorkbookNow is designed to grow with you. Activate only the modules you need today, and scale seamlessly as your business complexity evolves.")}
               </p>
             </div>
 
@@ -129,8 +129,8 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
               ].map((item, i) => (
                 <div key={i} className="bg-white p-12 border border-gray-100 group hover:border-[#f99d1c]/40 transition-all">
                   <div className="w-12 h-12 mb-8 group-hover:scale-110 transition-transform">{item.icon}</div>
-                  <h3 className="text-[#11253e] text-lg font-bold mb-4 uppercase tracking-widest">{item.title}</h3>
-                  <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
+                  <h3 className="text-[#11253e] text-lg font-bold mb-4 uppercase tracking-widest">{formatQuotesToBold(item.title)}</h3>
+                  <p className="text-[#11253e] text-sm font-light leading-relaxed">{formatQuotesToBold(item.desc)}</p>
                 </div>
               ))}
             </div>
@@ -150,9 +150,9 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
               </div>
               <div className="space-y-12">
                 <div className="space-y-6">
-                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Architecture of Efficiency</h2>
+                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">{formatQuotesToBold("The Architecture of Efficiency")}</h2>
                   <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                    WorkbookNow isn't just software; it's a reflection of best-in-class business processes. We bake international standards into every module.
+                    {formatQuotesToBold("WorkbookNow isn't just software; it's a reflection of best-in-class business processes. We bake international standards into every module.")}
                   </p>
                 </div>
                 
@@ -183,9 +183,9 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
         {/* Global CTA */}
         <section className="py-32 bg-[#11253e] text-center">
           <div className="max-w-4xl mx-auto px-6 space-y-12">
-            <h2 className="text-white text-4xl lg:text-5xl font-bold tracking-tight uppercase">Scale Without Limits.</h2>
+            <h2 className="text-white text-4xl lg:text-5xl font-bold tracking-tight uppercase">{renderHeroTitle("Scale Without |Limits|.")}</h2>
             <p className="text-white/40 text-xl font-light">
-              Transform your enterprise with a platform built for the complexities of tomorrow.
+              {formatQuotesToBold("Transform your enterprise with a platform built for the complexities of tomorrow.")}
             </p>
             <div className="pt-8 flex flex-wrap justify-center gap-8">
               <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
 import ctaPatternBg from "figma:asset/cbeefd763cefbda8203e7be9a6c037607e216183.png";
 import {
@@ -161,7 +161,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
               </h1>
               
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                {heroData?.heroS1Desc || "Transforming raw data into strategic assets through high-performance pipeline architectures and automated processing."}
+                {formatQuotesToBold(heroData?.heroS1Desc || "Transforming raw data into strategic assets through high-performance pipeline architectures and automated processing.") as any}
               </p>
 
               <div className="pt-6 flex flex-wrap gap-4">
@@ -184,13 +184,12 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                 viewport={{ once: true }}
                 className="space-y-6"
               >
-                <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">Data Engineering</h2>
+                <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">{formatQuotesToBold("Data 'Engineering'")}</h2>
                 <p className="text-[#11253e] text-xl md:text-2xl font-light leading-relaxed">
-                  Turn Raw Data into{" "}
-                  <span className="text-[#f99d1c] font-medium">Reliable Business Intelligence</span>
+                  {formatQuotesToBold("Turn Raw Data into \n^Reliable Business Intelligence^")}
                 </p>
                 <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                  Data has the power to transform decisions — but only when it is accurate, accessible and trusted.
+                  {formatQuotesToBold("Data has the power to transform decisions — but only when it is accurate, accessible and trusted.")}
                 </p>
               </Motion.div>
 
@@ -203,11 +202,11 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
               >
                 <div className="border-l-3 border-[#f99d1c] pl-6">
                   <p className="text-[#11253e] text-lg font-medium leading-relaxed italic">
-                    Many organizations struggle with scattered data sources, inconsistent reporting, slow dashboards and unreliable pipelines. The problem is not lack of data — rather it is lack of structure.
+                    {formatQuotesToBold("'Many organizations struggle with scattered data sources, inconsistent reporting, slow dashboards and unreliable pipelines. The problem is not lack of data — rather it is lack of structure.'")}
                   </p>
                 </div>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Our Data Engineering services help you build a strong, scalable data foundation so your teams can move from fragmented data to confident, real-time insights.
+                  {formatQuotesToBold("Our Data Engineering services help you build a strong, scalable data foundation so your teams can move from fragmented data to confident, real-time insights.")}
                 </p>
                 <div className="w-16 h-px bg-[#f99d1c]"></div>
               </Motion.div>
@@ -235,10 +234,10 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                   <span className="text-[#f99d1c] font-black text-5xl leading-none">01</span>
                   <div className="h-px w-16 bg-[#f99d1c]/40"></div>
                 </div>
-                <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Our Approach</h2>
-                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Build the Foundation Before Scaling the Intelligence</h3>
+                <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Build the Foundation Before Scaling the Intelligence")}</h3>
                 <p className="text-white/80 text-base font-normal leading-relaxed max-w-2xl">
-                  Advanced analytics, AI and dashboards only work when the underlying data is clean, connected and governed. Our approach focuses on:
+                  {formatQuotesToBold("Advanced analytics, AI and dashboards only work when the underlying data is clean, connected and governed. Our approach focuses on:")}
                 </p>
               </Motion.div>
             </div>
@@ -279,7 +278,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                     className="group flex items-center space-x-4"
                   >
                     <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                    <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{point.text}</span>
+                    <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{formatQuotesToBold(point.text)}</span>
                   </Motion.div>
                 ))}
               </div>
@@ -294,7 +293,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
             >
               <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
               <p className="text-white/80 text-lg font-normal italic leading-relaxed">
-                We do not just build pipelines — we build trust in your data.
+                {formatQuotesToBold("We do not just build pipelines — we build trust in your data.")}
               </p>
             </Motion.div>
           </div>
@@ -318,10 +317,10 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                   <span className="text-[#f99d1c] font-black text-5xl leading-none">02</span>
                   <div className="h-px w-16 bg-[#f99d1c]/40"></div>
                 </div>
-                <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Our Methodology</h2>
-                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured, Scalable, and Built for Growth</h3>
+                <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Structured, Scalable, and Built for Growth")}</h3>
                 <p className="text-[#11253e]/90 text-base font-normal leading-relaxed max-w-2xl">
-                  We follow a phased framework to ensure your data ecosystem is reliable and future-ready.
+                  {formatQuotesToBold("We follow a phased framework to ensure your data ecosystem is reliable and future-ready.")}
                 </p>
               </Motion.div>
             </div>
@@ -352,7 +351,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                     </div>
 
                     {/* Title */}
-                    <h4 className="text-[#11253e] text-[22px] font-semibold mb-5 leading-snug">{step.title}</h4>
+                    <h4 className="text-[#11253e] text-[22px] font-semibold mb-5 leading-snug">{formatQuotesToBold(step.title)}</h4>
 
                     {/* Divider */}
                     <div className="w-8 h-px bg-[#f99d1c] mb-5"></div>
@@ -362,7 +361,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                       {step.points.map((point, i) => (
                         <div key={i} className="flex items-start space-x-3">
                           <div className="w-2 h-2 rounded-full bg-[#f99d1c] mt-[7px] shrink-0"></div>
-                          <span className="text-[#11253e] text-[15px] leading-relaxed">{point}</span>
+                          <span className="text-[#11253e] text-[15px] leading-relaxed">{formatQuotesToBold(point)}</span>
                         </div>
                       ))}
                     </div>
@@ -417,10 +416,10 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                   <span className="text-[#f99d1c] font-black text-5xl leading-none">03</span>
                   <div className="h-px w-16 bg-[#f99d1c]/40"></div>
                 </div>
-                <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Tools & Platforms</h2>
-                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Modern Data Stack. Cloud-Ready. Scalable.</h3>
+                <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Tools & 'Platforms'")}</h2>
+                <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Modern Data Stack. Cloud-Ready. Scalable.")}</h3>
                 <p className="text-white/[0.80] text-base font-normal leading-relaxed max-w-2xl">
-                  We leverage leading cloud platforms such as Amazon Web Services, Microsoft Azure and Google Cloud to build resilient and scalable data architectures.
+                  {formatQuotesToBold("We leverage leading cloud platforms such as ^Amazon Web Services, Microsoft Azure and Google Cloud^ to build resilient and scalable data architectures.")}
                 </p>
               </Motion.div>
             </div>
@@ -442,7 +441,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                       <div className="text-[#f99d1c]">{tool.icon}</div>
                     </div>
                     <div>
-                      <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{tool.text}</span>
+                      <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{formatQuotesToBold(tool.text)}</span>
                     </div>
                   </div>
                 </Motion.div>
@@ -477,8 +476,8 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                   <span className="text-[#f99d1c] font-black text-6xl">04</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Trusted Data. Faster Decisions. Competitive Advantage.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Value 'Proposition'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Trusted Data. Faster Decisions. Competitive Advantage.")}</h3>
 
               </Motion.div>
 
@@ -495,7 +494,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
                     <div className="w-9 h-9 bg-[#f99d1c]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[#f99d1c]/20 transition-colors">
                       <div className="text-[#f99d1c]">{item.icon}</div>
                     </div>
-                    <span className="text-[#11253e] text-base font-light leading-relaxed">{item.text}</span>
+                    <span className="text-[#11253e] text-base font-light leading-relaxed">{formatQuotesToBold(item.text)}</span>
                   </Motion.div>
                 ))}
               </div>
@@ -508,12 +507,12 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
               >
                 <div className="absolute -right-12 -top-12 w-48 h-48 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
                 <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-                <div className="relative z-10 flex items-start space-x-4">
-                  <Lightbulb className="text-[#f99d1c] shrink-0 mt-1" size={24} />
-                  <p className="text-white/80 text-lg font-light leading-relaxed italic">
-                    Most importantly, we help your organization move from reactive reporting to proactive, data-driven strategy.
-                  </p>
-                </div>
+                  <div className="relative z-10 flex items-start space-x-4">
+                    <Lightbulb className="text-[#f99d1c] shrink-0 mt-1" size={24} />
+                    <p className="text-white/80 text-lg font-light leading-relaxed italic">
+                      {formatQuotesToBold("Most importantly, we help your organization move from reactive reporting to proactive, data-driven strategy.")}
+                    </p>
+                  </div>
               </Motion.div>
             </div>
           </div>
@@ -593,11 +592,10 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                  Ready to Build Your <br />
-                  <span className="text-[#f99d1c]">Data Backbone?</span>
+                  {formatQuotesToBold("Ready to Build Your \n^Data Backbone?^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Engage our Data Engineers to evaluate your current architecture and design a roadmap for scalable, future-proof data operations.
+                  {formatQuotesToBold("Engage our Data Engineers to evaluate your current architecture and design a roadmap for scalable, future-proof data operations.")}
                 </p>
               </div>
               <button

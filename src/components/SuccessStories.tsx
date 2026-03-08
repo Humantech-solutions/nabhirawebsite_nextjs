@@ -3,6 +3,7 @@
 "use client";
 
 import { Plus, Quote } from "lucide-react";
+import { formatQuotesToBold } from "../lib/utils";
 
 interface SuccessStoriesProps {
   data?: {
@@ -86,11 +87,11 @@ export function SuccessStories({ data }: SuccessStoriesProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="mb-12 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
           <h2 className="text-[#11253e] text-[14px] md:text-[16px] font-black tracking-[0.1em] flex items-center mb-4 md:mb-6">
-            {sectionTitle}
+            {formatQuotesToBold(sectionTitle)}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </h2>
           <p className="text-[#11253e]/60 text-base md:text-lg font-light max-w-2xl leading-relaxed">
-            {sectionDesc}
+            {formatQuotesToBold(sectionDesc)}
           </p>
         </div>
         
@@ -106,15 +107,15 @@ export function SuccessStories({ data }: SuccessStoriesProps) {
 
               <div className="flex-grow flex flex-col justify-between">
                 <p className="text-lg font-light leading-relaxed mb-8 text-[#11253e] group-hover:text-white transition-colors duration-500">
-                  "{story.title}"
+                  {formatQuotesToBold(`"${story.title}"`)}
                 </p>
                 
                 <div className="space-y-2 border-t pt-6 border-[#11253e]/10 group-hover:border-white/10 transition-colors duration-500">
                   <p className="font-black text-xs uppercase tracking-widest text-[#11253e] group-hover:text-[#f99d1c] transition-colors duration-500">
-                    {story.author}
+                    {formatQuotesToBold(story.author)}
                   </p>
                   <p className="text-[10px] font-medium uppercase tracking-wider text-[#11253e] group-hover:text-white/60 transition-colors duration-500">
-                    {story.role}
+                    {formatQuotesToBold(story.role)}
                   </p>
                 </div>
               </div>

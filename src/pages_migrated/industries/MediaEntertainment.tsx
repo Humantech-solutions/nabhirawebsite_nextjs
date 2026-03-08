@@ -4,6 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import {
   ArrowRight,
   MonitorPlay,
@@ -153,13 +154,12 @@ export default function MediaEntertainment({ wordpressData }: any) {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Media & <br />
-              <span className="text-[#ffffff]">Entertainment</span>
+              {renderHeroTitle("Media & \n'Entertainment'")}
             </h1>
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                Powering Digital Experiences That Captivate Audiences. We help media companies modernize their technology backbone to deliver unforgettable experiences.
+                {formatQuotesToBold("Powering Digital Experiences That Captivate Audiences. We help media companies modernize their technology backbone to deliver unforgettable experiences.")}
               </p>
             </div>
             
@@ -178,7 +178,7 @@ export default function MediaEntertainment({ wordpressData }: any) {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
-                Our <span className="font-bold">Approach</span>
+                {formatQuotesToBold("Our 'Approach'")}
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
@@ -202,8 +202,8 @@ export default function MediaEntertainment({ wordpressData }: any) {
                     {item.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
+                <h3 className="text-xl font-bold text-[#11253e] mb-3">{formatQuotesToBold(item.title)}</h3>
+                <p className="text-[#11253e] leading-relaxed">{formatQuotesToBold(item.text)}</p>
               </Motion.div>
             ))}
           </div>
@@ -215,7 +215,7 @@ export default function MediaEntertainment({ wordpressData }: any) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
-              Key Services for <span className="italic font-serif text-[#f99d1c]">Media & Entertainment</span>
+              {formatQuotesToBold("Key Services for 'Media & Entertainment'")}
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
               Modernize, innovate, and captivate with our comprehensive suite of digital services.
@@ -237,8 +237,8 @@ export default function MediaEntertainment({ wordpressData }: any) {
                     <span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span>
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{service.title}</h3>
-                  <p className="text-[#11253e] text-lg leading-relaxed">{service.description}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{formatQuotesToBold(service.title)}</h3>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{formatQuotesToBold(service.description)}</p>
                   
                   <ul className="space-y-3 pt-4">
                     {service.details.map((detail, i) => (
@@ -273,11 +273,10 @@ export default function MediaEntertainment({ wordpressData }: any) {
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">
-                Why Partner <br />
-                <span className="font-bold text-[#f99d1c]">With Us</span>
+                {formatQuotesToBold("Why Partner \n'With Us'")}
               </h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                We bring deep expertise in building scalable digital platforms, strong understanding of high-availability streaming environments, and a security-first architecture.
+                {formatQuotesToBold("We bring deep expertise in building scalable digital platforms, strong understanding of high-availability streaming environments, and a security-first architecture.")}
               </p>
               
               <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
@@ -289,8 +288,8 @@ export default function MediaEntertainment({ wordpressData }: any) {
               {partnerReasons.map((reason, idx) => (
                 <div key={idx} className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                   <div className="text-[#f99d1c] mb-4">{reason.icon}</div>
-                  <h4 className="font-bold text-lg mb-2">{reason.title}</h4>
-                  <p className="text-white/50 text-sm">{reason.desc}</p>
+                  <h4 className="font-bold text-lg mb-2">{formatQuotesToBold(reason.title)}</h4>
+                  <p className="text-white/50 text-sm">{formatQuotesToBold(reason.desc)}</p>
                 </div>
               ))}
             </div>

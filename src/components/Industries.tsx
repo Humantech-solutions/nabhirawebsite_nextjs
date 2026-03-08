@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useRef } from "react";
+import { formatQuotesToBold } from "../lib/utils";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -153,7 +154,7 @@ export function Industries({ data }: IndustriesProps) {
               viewport={{ once: true }}
               className="text-[#11253e] text-3xl sm:text-4xl md:text-[40px] font-medium tracking-normal leading-tight mb-4"
             >
-              {sectionTitle}
+              {formatQuotesToBold(sectionTitle)}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
@@ -162,7 +163,7 @@ export function Industries({ data }: IndustriesProps) {
               transition={{ delay: 0.2 }}
               className="text-[#11253e] text-sm md:text-base font-light max-w-3xl leading-relaxed mx-auto md:mx-0"
             >
-              {sectionDesc}
+              {formatQuotesToBold(sectionDesc)}
             </motion.p>
           </div>
           
@@ -197,7 +198,7 @@ export function Industries({ data }: IndustriesProps) {
 
                   <div className="mt-auto flex justify-between items-end">
                     <h3 className="text-[#11253e] text-[12px] md:text-[13px] font-medium uppercase tracking-normal leading-tight group-hover:text-[#f99d1c] transition-colors duration-300 max-w-[140px]">
-                      {industry.title}
+                      {formatQuotesToBold(industry.title)}
                     </h3>
                     <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#f99d1c] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 shrink-0">
                       <ChevronRight size={18} className="md:w-5 md:h-5" />

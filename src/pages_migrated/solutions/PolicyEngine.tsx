@@ -6,7 +6,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShieldAlert, Fingerprint, Lock, Activity, Layers, Code, ArrowRight, CheckCircle2 } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function PolicyEngineSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {heroData?.heroS1Desc || "Nabhira’s Policy Engine System is a high-performance, programmable governance layer that enforces complex business rules across distributed architectures with microsecond latency."}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira’s Policy Engine System is a high-performance, programmable governance layer that enforces complex business rules across distributed architectures with microsecond latency.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -102,8 +102,8 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                     <div className="text-[#11253e] opacity-40 group-hover:opacity-100 transition-opacity">
                       {item.icon}
                     </div>
-                    <h3 className="text-[#11253e] text-lg font-bold uppercase tracking-widest">{item.title}</h3>
-                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
+                    <h3 className="text-[#11253e] text-lg font-bold uppercase tracking-widest">{formatQuotesToBold(item.title)}</h3>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{formatQuotesToBold(item.desc)}</p>
                   </div>
                 </div>
               ))}
@@ -124,10 +124,10 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
               </div>
               <div className="space-y-12">
                 <div className="space-y-6">
-                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight leading-tight">Decouple Logic from <br />Legacy Codebases</h2>
+                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight leading-tight">{renderHeroTitle("Decouple Logic from \nLegacy Codebases")}</h2>
                   <div className="w-16 h-1 bg-[#f99d1c]"></div>
                   <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                    Nabhira's Policy Engine allows business analysts to update rules in real-time without requiring code redeployments or engineering sprints.
+                    {formatQuotesToBold("Nabhira's Policy Engine allows business analysts to update rules in real-time without requiring code redeployments or engineering sprints.")}
                   </p>
                 </div>
                 
@@ -158,7 +158,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
         {/* Global Clients */}
         <section className="py-32 border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-[#11253e] text-[10px] font-bold uppercase tracking-[0.5em] mb-20">Securing Global Enterprises</h2>
+            <h2 className="text-[#11253e] text-[10px] font-bold uppercase tracking-[0.5em] mb-20">{formatQuotesToBold("Securing Global Enterprises")}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 opacity-50 grayscale hover:grayscale-0 transition-all">
               {/* Placeholders for partner logos */}
               <div className="h-12 flex items-center justify-center font-bold text-[#11253e] text-2xl">FINTECH_CORE</div>

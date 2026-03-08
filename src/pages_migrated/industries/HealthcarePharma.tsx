@@ -4,6 +4,7 @@ import { motion as Motion, useScroll } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import heroBg from "../../assets/eeb3297df6ce0c8adf9882c1fc6fd03cea6c6d51.png";
 import {
   ArrowRight, Stethoscope, Pill, Activity, Heart, Dna, Microscope, ShieldCheck, Globe,
@@ -65,7 +66,9 @@ export default function HealthcarePharma({ wordpressData }: any) {
             <h1 className="text-white/80 text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Healthcare & <br /><span className="text-white/80">Life Sciences</span>
             </h1>
-            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">Empowering the Future of Connected Care.</p>
+              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                {formatQuotesToBold(wordpressData?.heroS1Desc || "Empowering the future of healthcare through intelligent platforms and secure data foundations.")}
+              </p>
           </Motion.div>
         </div>
       </section>
@@ -74,7 +77,9 @@ export default function HealthcarePharma({ wordpressData }: any) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">The Industry <span className="font-bold">Challenge</span></h2>
+              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
+                {formatQuotesToBold("The Industry \"Challenge\"")}
+              </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
             <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">Healthcare and Pharma leaders must balance innovation with compliance, cost pressures and patient outcomes.</p>
@@ -83,8 +88,8 @@ export default function HealthcarePharma({ wordpressData }: any) {
             {challenges.map((item, idx) => (
               <Motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#f99d1c]/30 transition-all duration-300 group">
                 <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] transition-colors duration-300">{item.icon}</div>
-                <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
+                <h3 className="text-xl font-bold text-[#11253e] mb-3">{formatQuotesToBold(item.title)}</h3>
+                <p className="text-[#11253e] leading-relaxed">{formatQuotesToBold(item.text)}</p>
               </Motion.div>
             ))}
           </div>
@@ -94,7 +99,9 @@ export default function HealthcarePharma({ wordpressData }: any) {
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span></h2>
+            <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
+              {formatQuotesToBold("Where We Create 'Impact'")}
+            </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">Transforming patient journeys, accelerating research and optimizing care delivery through digital innovation.</p>
           </div>
           <div className="space-y-24">
@@ -102,8 +109,8 @@ export default function HealthcarePharma({ wordpressData }: any) {
               <Motion.div key={area.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }} className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}>
                 <div className="flex-1 space-y-6">
                   <div className="flex items-center gap-4 mb-2"><span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span><div className="h-px bg-[#11253e]/10 flex-grow"></div></div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{formatQuotesToBold(area.title)}</h3>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{formatQuotesToBold(area.description)}</p>
                   <ul className="space-y-3 pt-4">{area.details.map((detail, i) => (<li key={i} className="flex items-center gap-3 text-[#11253e] font-medium"><div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>{detail}</li>))}</ul>
                 </div>
                 <div className="flex-1 w-full">
