@@ -1,0 +1,1499 @@
+[
+    {
+        "key": "group_leadership_page",
+        "title": "Leadership Page",
+        "fields": [
+            {
+                "key": "tab_leadership_team",
+                "label": "Leadership Team",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_leader_1_name",
+                "label": "Leader 1 Name",
+                "name": "leader_1_name",
+                "type": "text",
+                "default_value": "Aditya Vardhan",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_role",
+                "label": "Leader 1 Role",
+                "name": "leader_1_role",
+                "type": "text",
+                "default_value": "Chief Executive Officer",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_bio",
+                "label": "Leader 1 Bio",
+                "name": "leader_1_bio",
+                "type": "textarea",
+                "default_value": "With over 20 years of experience in digital transformation, Aditya leads Nabhira's vision to architect the future of enterprise intelligence.",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_image",
+                "label": "Leader 1 Image",
+                "name": "leader_1_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_linkedin_url",
+                "label": "Leader 1 LinkedIn URL",
+                "name": "leader_1_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_linkedin_icon_type",
+                "label": "Leader 1 LinkedIn Icon Type",
+                "name": "leader_1_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_1_linkedin_lucide",
+                "label": "Leader 1 LinkedIn Lucide Icon",
+                "name": "leader_1_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_1_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_1_linkedin_image",
+                "label": "Leader 1 LinkedIn Custom Image",
+                "name": "leader_1_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_1_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_1_mail_url",
+                "label": "Leader 1 Email URL",
+                "name": "leader_1_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_mail_icon_type",
+                "label": "Leader 1 Mail Icon Type",
+                "name": "leader_1_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_1_mail_lucide",
+                "label": "Leader 1 Mail Lucide Icon",
+                "name": "leader_1_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_1_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_1_mail_image",
+                "label": "Leader 1 Mail Custom Image",
+                "name": "leader_1_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_1_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_1_linkedin",
+                "label": "Leader 1 LinkedIn URL",
+                "name": "leader_1_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_1_mail",
+                "label": "Leader 1 Email Address",
+                "name": "leader_1_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_name",
+                "label": "Leader 2 Name",
+                "name": "leader_2_name",
+                "type": "text",
+                "default_value": "Meera Krishnan",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_role",
+                "label": "Leader 2 Role",
+                "name": "leader_2_role",
+                "type": "text",
+                "default_value": "Chief Technology Officer",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_bio",
+                "label": "Leader 2 Bio",
+                "name": "leader_2_bio",
+                "type": "textarea",
+                "default_value": "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Nabhira's market-leading solutions.",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_image",
+                "label": "Leader 2 Image",
+                "name": "leader_2_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_linkedin_url",
+                "label": "Leader 2 LinkedIn URL",
+                "name": "leader_2_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_linkedin_icon_type",
+                "label": "Leader 2 LinkedIn Icon Type",
+                "name": "leader_2_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_2_linkedin_lucide",
+                "label": "Leader 2 LinkedIn Lucide Icon",
+                "name": "leader_2_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_2_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_2_linkedin_image",
+                "label": "Leader 2 LinkedIn Custom Image",
+                "name": "leader_2_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_2_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_2_mail_url",
+                "label": "Leader 2 Email URL",
+                "name": "leader_2_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_mail_icon_type",
+                "label": "Leader 2 Mail Icon Type",
+                "name": "leader_2_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_2_mail_lucide",
+                "label": "Leader 2 Mail Lucide Icon",
+                "name": "leader_2_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_2_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_2_mail_image",
+                "label": "Leader 2 Mail Custom Image",
+                "name": "leader_2_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_2_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_2_linkedin",
+                "label": "Leader 2 LinkedIn URL",
+                "name": "leader_2_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_2_mail",
+                "label": "Leader 2 Email Address",
+                "name": "leader_2_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_name",
+                "label": "Leader 3 Name",
+                "name": "leader_3_name",
+                "type": "text",
+                "default_value": "Vikram Sethi",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_role",
+                "label": "Leader 3 Role",
+                "name": "leader_3_role",
+                "type": "text",
+                "default_value": "Head of AI & Data Engineering",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_bio",
+                "label": "Leader 3 Bio",
+                "name": "leader_3_bio",
+                "type": "textarea",
+                "default_value": "Vikram oversees our most complex data initiatives, specializing in building high-performance, autonomous data ecosystems for global majors.",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_image",
+                "label": "Leader 3 Image",
+                "name": "leader_3_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_linkedin_url",
+                "label": "Leader 3 LinkedIn URL",
+                "name": "leader_3_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_linkedin_icon_type",
+                "label": "Leader 3 LinkedIn Icon Type",
+                "name": "leader_3_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_3_linkedin_lucide",
+                "label": "Leader 3 LinkedIn Lucide Icon",
+                "name": "leader_3_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_3_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_3_linkedin_image",
+                "label": "Leader 3 LinkedIn Custom Image",
+                "name": "leader_3_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_3_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_3_mail_url",
+                "label": "Leader 3 Email URL",
+                "name": "leader_3_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_mail_icon_type",
+                "label": "Leader 3 Mail Icon Type",
+                "name": "leader_3_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_3_mail_lucide",
+                "label": "Leader 3 Mail Lucide Icon",
+                "name": "leader_3_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_3_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_3_mail_image",
+                "label": "Leader 3 Mail Custom Image",
+                "name": "leader_3_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_3_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_3_linkedin",
+                "label": "Leader 3 LinkedIn URL",
+                "name": "leader_3_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_3_mail",
+                "label": "Leader 3 Email Address",
+                "name": "leader_3_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_name",
+                "label": "Leader 4 Name",
+                "name": "leader_4_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_role",
+                "label": "Leader 4 Role",
+                "name": "leader_4_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_bio",
+                "label": "Leader 4 Bio",
+                "name": "leader_4_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_image",
+                "label": "Leader 4 Image",
+                "name": "leader_4_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_linkedin_url",
+                "label": "Leader 4 LinkedIn URL",
+                "name": "leader_4_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_linkedin_icon_type",
+                "label": "Leader 4 LinkedIn Icon Type",
+                "name": "leader_4_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_4_linkedin_lucide",
+                "label": "Leader 4 LinkedIn Lucide Icon",
+                "name": "leader_4_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_4_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_4_linkedin_image",
+                "label": "Leader 4 LinkedIn Custom Image",
+                "name": "leader_4_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_4_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_4_mail_url",
+                "label": "Leader 4 Email URL",
+                "name": "leader_4_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_mail_icon_type",
+                "label": "Leader 4 Mail Icon Type",
+                "name": "leader_4_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_4_mail_lucide",
+                "label": "Leader 4 Mail Lucide Icon",
+                "name": "leader_4_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_4_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_4_mail_image",
+                "label": "Leader 4 Mail Custom Image",
+                "name": "leader_4_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_4_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_4_linkedin",
+                "label": "Leader 4 LinkedIn URL",
+                "name": "leader_4_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_4_mail",
+                "label": "Leader 4 Email Address",
+                "name": "leader_4_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_name",
+                "label": "Leader 5 Name",
+                "name": "leader_5_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_role",
+                "label": "Leader 5 Role",
+                "name": "leader_5_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_bio",
+                "label": "Leader 5 Bio",
+                "name": "leader_5_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_image",
+                "label": "Leader 5 Image",
+                "name": "leader_5_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_linkedin_url",
+                "label": "Leader 5 LinkedIn URL",
+                "name": "leader_5_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_linkedin_icon_type",
+                "label": "Leader 5 LinkedIn Icon Type",
+                "name": "leader_5_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_5_linkedin_lucide",
+                "label": "Leader 5 LinkedIn Lucide Icon",
+                "name": "leader_5_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_5_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_5_linkedin_image",
+                "label": "Leader 5 LinkedIn Custom Image",
+                "name": "leader_5_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_5_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_5_mail_url",
+                "label": "Leader 5 Email URL",
+                "name": "leader_5_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_mail_icon_type",
+                "label": "Leader 5 Mail Icon Type",
+                "name": "leader_5_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_5_mail_lucide",
+                "label": "Leader 5 Mail Lucide Icon",
+                "name": "leader_5_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_5_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_5_mail_image",
+                "label": "Leader 5 Mail Custom Image",
+                "name": "leader_5_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_5_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_5_linkedin",
+                "label": "Leader 5 LinkedIn URL",
+                "name": "leader_5_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_5_mail",
+                "label": "Leader 5 Email Address",
+                "name": "leader_5_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_name",
+                "label": "Leader 6 Name",
+                "name": "leader_6_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_role",
+                "label": "Leader 6 Role",
+                "name": "leader_6_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_bio",
+                "label": "Leader 6 Bio",
+                "name": "leader_6_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_image",
+                "label": "Leader 6 Image",
+                "name": "leader_6_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_linkedin_url",
+                "label": "Leader 6 LinkedIn URL",
+                "name": "leader_6_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_linkedin_icon_type",
+                "label": "Leader 6 LinkedIn Icon Type",
+                "name": "leader_6_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_6_linkedin_lucide",
+                "label": "Leader 6 LinkedIn Lucide Icon",
+                "name": "leader_6_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_6_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_6_linkedin_image",
+                "label": "Leader 6 LinkedIn Custom Image",
+                "name": "leader_6_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_6_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_6_mail_url",
+                "label": "Leader 6 Email URL",
+                "name": "leader_6_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_mail_icon_type",
+                "label": "Leader 6 Mail Icon Type",
+                "name": "leader_6_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_6_mail_lucide",
+                "label": "Leader 6 Mail Lucide Icon",
+                "name": "leader_6_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_6_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_6_mail_image",
+                "label": "Leader 6 Mail Custom Image",
+                "name": "leader_6_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_6_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_6_linkedin",
+                "label": "Leader 6 LinkedIn URL",
+                "name": "leader_6_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_6_mail",
+                "label": "Leader 6 Email Address",
+                "name": "leader_6_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_name",
+                "label": "Leader 7 Name",
+                "name": "leader_7_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_role",
+                "label": "Leader 7 Role",
+                "name": "leader_7_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_bio",
+                "label": "Leader 7 Bio",
+                "name": "leader_7_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_image",
+                "label": "Leader 7 Image",
+                "name": "leader_7_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_linkedin_url",
+                "label": "Leader 7 LinkedIn URL",
+                "name": "leader_7_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_linkedin_icon_type",
+                "label": "Leader 7 LinkedIn Icon Type",
+                "name": "leader_7_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_7_linkedin_lucide",
+                "label": "Leader 7 LinkedIn Lucide Icon",
+                "name": "leader_7_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_7_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_7_linkedin_image",
+                "label": "Leader 7 LinkedIn Custom Image",
+                "name": "leader_7_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_7_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_7_mail_url",
+                "label": "Leader 7 Email URL",
+                "name": "leader_7_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_mail_icon_type",
+                "label": "Leader 7 Mail Icon Type",
+                "name": "leader_7_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_7_mail_lucide",
+                "label": "Leader 7 Mail Lucide Icon",
+                "name": "leader_7_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_7_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_7_mail_image",
+                "label": "Leader 7 Mail Custom Image",
+                "name": "leader_7_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_7_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_7_linkedin",
+                "label": "Leader 7 LinkedIn URL",
+                "name": "leader_7_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_7_mail",
+                "label": "Leader 7 Email Address",
+                "name": "leader_7_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_name",
+                "label": "Leader 8 Name",
+                "name": "leader_8_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_role",
+                "label": "Leader 8 Role",
+                "name": "leader_8_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_bio",
+                "label": "Leader 8 Bio",
+                "name": "leader_8_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_image",
+                "label": "Leader 8 Image",
+                "name": "leader_8_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_linkedin_url",
+                "label": "Leader 8 LinkedIn URL",
+                "name": "leader_8_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_linkedin_icon_type",
+                "label": "Leader 8 LinkedIn Icon Type",
+                "name": "leader_8_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_8_linkedin_lucide",
+                "label": "Leader 8 LinkedIn Lucide Icon",
+                "name": "leader_8_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_8_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_8_linkedin_image",
+                "label": "Leader 8 LinkedIn Custom Image",
+                "name": "leader_8_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_8_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_8_mail_url",
+                "label": "Leader 8 Email URL",
+                "name": "leader_8_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_mail_icon_type",
+                "label": "Leader 8 Mail Icon Type",
+                "name": "leader_8_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_8_mail_lucide",
+                "label": "Leader 8 Mail Lucide Icon",
+                "name": "leader_8_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_8_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_8_mail_image",
+                "label": "Leader 8 Mail Custom Image",
+                "name": "leader_8_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_8_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_8_linkedin",
+                "label": "Leader 8 LinkedIn URL",
+                "name": "leader_8_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_8_mail",
+                "label": "Leader 8 Email Address",
+                "name": "leader_8_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_name",
+                "label": "Leader 9 Name",
+                "name": "leader_9_name",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_role",
+                "label": "Leader 9 Role",
+                "name": "leader_9_role",
+                "type": "text",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_bio",
+                "label": "Leader 9 Bio",
+                "name": "leader_9_bio",
+                "type": "textarea",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_image",
+                "label": "Leader 9 Image",
+                "name": "leader_9_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_linkedin_url",
+                "label": "Leader 9 LinkedIn URL",
+                "name": "leader_9_linkedin_url",
+                "type": "url",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_linkedin_icon_type",
+                "label": "Leader 9 LinkedIn Icon Type",
+                "name": "leader_9_linkedin_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_9_linkedin_lucide",
+                "label": "Leader 9 LinkedIn Lucide Icon",
+                "name": "leader_9_linkedin_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Linkedin",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_9_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_9_linkedin_image",
+                "label": "Leader 9 LinkedIn Custom Image",
+                "name": "leader_9_linkedin_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_9_linkedin_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_9_mail_url",
+                "label": "Leader 9 Email URL",
+                "name": "leader_9_mail_url",
+                "type": "email",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_mail_icon_type",
+                "label": "Leader 9 Mail Icon Type",
+                "name": "leader_9_mail_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_leader_9_mail_lucide",
+                "label": "Leader 9 Mail Lucide Icon",
+                "name": "leader_9_mail_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "default_value": "Mail",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_9_mail_icon_type",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_9_mail_image",
+                "label": "Leader 9 Mail Custom Image",
+                "name": "leader_9_mail_image",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "show_in_graphql": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_leader_9_mail_icon_type",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_leader_9_linkedin",
+                "label": "Leader 9 LinkedIn URL",
+                "name": "leader_9_linkedin",
+                "type": "url",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_leader_9_mail",
+                "label": "Leader 9 Email Address",
+                "name": "leader_9_mail",
+                "type": "email",
+                "default_value": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "tab_board_advisors",
+                "label": "Board & Advisors",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_advisors_title",
+                "label": "Section Title",
+                "name": "advisors_title",
+                "type": "text",
+                "default_value": "Governed by Integrity",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_advisors_description",
+                "label": "Section Description",
+                "name": "advisors_description",
+                "type": "textarea",
+                "default_value": "Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.",
+                "show_in_graphql": 1
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "139"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_graphql": 1,
+        "graphql_field_name": "leadershipPage"
+    }
+]
