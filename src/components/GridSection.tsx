@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 const patternImage = '/assets/gridsection.png';
 
@@ -133,11 +134,14 @@ interface WhatsNewProps {
     newsPosts?: Array<{
       title: string;
       date: string;
+      slug?: string;
+      uri?: string;
       featuredImage: { node: { sourceUrl: string } };
     }>;
     settings?: {
       wnTitle?: string;
       wnSubtitle?: string;
+      wnPostsCount?: number;
     };
   };
 }
@@ -145,14 +149,20 @@ interface WhatsNewProps {
 export function WhatsNew({ data }: WhatsNewProps) {
   const sliderRef = useRef<Slider>(null);
 
-  const news = (data?.newsPosts && data.newsPosts.length > 0) ? data.newsPosts.map(post => {
+  // Respect the ACF posts count setting for display
+  const displayCount = data?.settings?.wnPostsCount;
+  const rawPosts = data?.newsPosts ?? [];
+  const slicedPosts = displayCount && displayCount > 0 ? rawPosts.slice(0, displayCount) : rawPosts;
+
+  const news = (slicedPosts.length > 0) ? slicedPosts.map(post => {
     const date = new Date(post.date);
     const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
     
     return {
       title: post.title,
       image: post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?q=80&w=1080",
-      date: formattedDate
+      date: formattedDate,
+      href: post.slug ? `/resources/blogs/${post.slug}` : (post.uri || '#')
     };
   }) : [
     {
@@ -176,12 +186,12 @@ export function WhatsNew({ data }: WhatsNewProps) {
 
   const sliderSettings = {
     dots: false,
-    infinite: true,
+    infinite: shouldShowCarousel,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: shouldShowCarousel,
     autoplaySpeed: 4000,
     responsive: [
       {
@@ -200,20 +210,22 @@ export function WhatsNew({ data }: WhatsNewProps) {
   };
 
   const renderItem = (item: any, i: number) => (
-    <div key={i} className={`group cursor-pointer ${shouldShowCarousel ? 'px-4' : ''}`}>
-      <div className="relative aspect-[4/3] overflow-hidden mb-6">
-        <ImageWithFallback
-          src={item.image}
-          alt={item.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-        />
-        <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
-          {item.date}
+    <div key={i} className={`${shouldShowCarousel ? 'px-4' : ''}`}>
+      <Link href={item.href || '#'} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden mb-6">
+          <ImageWithFallback
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          />
+          <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
+            {item.date}
+          </div>
         </div>
-      </div>
-      <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
-        {item.title}
-      </h3>
+        <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
+          {item.title}
+        </h3>
+      </Link>
     </div>
   );
 

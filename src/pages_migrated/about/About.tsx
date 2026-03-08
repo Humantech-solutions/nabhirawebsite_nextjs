@@ -268,7 +268,7 @@ export default function About({ wordpressData }: any) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }

@@ -425,7 +425,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }
