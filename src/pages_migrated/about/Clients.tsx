@@ -7,6 +7,15 @@ import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote } from "lucide-react";
 
+import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
+import H2HLogo from "../../imports/Group79";
+import Two2FootLogo from "../../imports/Group78-509-300";
+import anelessLogo from "../../assets/b28fa9224fa312c9fffd357b7c52958ba5cccece.png";
+import dreamixLogo from "../../assets/6355df8f352ac21ac85efd4673b0087b98b39b83.png";
+import helionLogo from "../../assets/bc9968f5cbe35f8837559e9f31871e02de629df6.png";
+import intwayLogo from "../../assets/53a59feaee1d46abc83f87eb629a51975d9c5ee7.png";
+import vitmarkLogo from "../../assets/328e0509dd589bd5013f84e17bf754af3b15999a.png";
+
 /* ─── Client data ─────────────────────────────────────────── */
 const clients = [
   {
@@ -16,22 +25,8 @@ const clients = [
     industry: "Technology",
     hoverColor: "#0057A8",
     logo: (
-      <div className="flex items-center gap-2.5">
-        {/* HU monogram mark */}
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #0057A8 0%, #003f7e 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(0,87,168,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <path d="M4 4v18M22 4v18M4 13h18" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#0057A8", fontWeight: 800, fontSize: 18, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.3px" }}>HUTECH</span>
-          <span style={{ color: "#555", fontWeight: 400, fontSize: 11, fontFamily: "Arial, sans-serif", letterSpacing: "0.05em" }}>SOLUTIONS</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={hutechLogo.src} alt="Hutech Solutions" style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -42,27 +37,8 @@ const clients = [
     industry: "Agriculture",
     hoverColor: "#2E8B3B",
     logo: (
-      <div className="flex items-center gap-2.5">
-        {/* Leaf mark */}
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #2E8B3B 0%, #1a5c25 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(46,139,59,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <path d="M13 22 C13 22 5 16 5 9 C5 5.7 8 3 11 3 C12.2 3 13.4 3.5 14.2 4.3 C15 3.5 16.2 3 17.5 3 C20.5 3 23 5.7 23 9 C23 16 13 22 13 22Z" fill="white" fillOpacity="0.9"/>
-            <path d="M13 22 L13 10" stroke="#1a5c25" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <div style={{ display: "flex", alignItems: "baseline", gap: 1 }}>
-            <span style={{ color: "#2E8B3B", fontWeight: 900, fontSize: 20, fontFamily: "Arial Black, Arial, sans-serif" }}>H</span>
-            <span style={{ color: "#f99d1c", fontWeight: 900, fontSize: 14, fontFamily: "Arial Black, Arial, sans-serif" }}>2</span>
-            <span style={{ color: "#2E8B3B", fontWeight: 900, fontSize: 20, fontFamily: "Arial Black, Arial, sans-serif" }}>H</span>
-          </div>
-          <span style={{ color: "#555", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>AGROTECH</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56, width: 160 }}>
+        <H2HLogo />
       </div>
     ),
   },
@@ -73,22 +49,9 @@ const clients = [
     industry: "Retail",
     hoverColor: "#E05C1A",
     logo: (
-      <div className="flex items-center gap-2.5">
-        {/* Globe step mark */}
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #E05C1A 0%, #a83e0c 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(224,92,26,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <circle cx="13" cy="13" r="9" stroke="white" strokeWidth="2" fill="none"/>
-            <path d="M4 13h18M13 4 C10 8 10 18 13 22M13 4 C16 8 16 18 13 22" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#E05C1A", fontWeight: 800, fontSize: 17, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.3px" }}>Two2Foot</span>
-          <span style={{ color: "#555", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>GLOBAL</span>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <div style={{ position: "relative", width: 152, height: 32, flexShrink: 0 }}>
+          <Two2FootLogo />
         </div>
       </div>
     ),
@@ -100,24 +63,8 @@ const clients = [
     industry: "Manufacturing",
     hoverColor: "#344054",
     logo: (
-      <div className="flex items-center gap-2.5">
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #344054 0%, #1d2939 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(52,64,84,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <rect x="4" y="14" width="5" height="8" rx="1" fill="white" fillOpacity="0.9"/>
-            <rect x="11" y="10" width="5" height="12" rx="1" fill="white"/>
-            <rect x="18" y="6" width="5" height="16" rx="1" fill="white" fillOpacity="0.7"/>
-            <path d="M3 22h21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#344054", fontWeight: 800, fontSize: 17, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.2px" }}>NexCore</span>
-          <span style={{ color: "#888", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>INDUSTRIES</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={anelessLogo.src} alt="Aneles" style={{ maxHeight: 40, maxWidth: 150, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -128,22 +75,8 @@ const clients = [
     industry: "Fintech",
     hoverColor: "#5B21B6",
     logo: (
-      <div className="flex items-center gap-2.5">
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #5B21B6 0%, #3b0e8c 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(91,33,182,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <path d="M5 18 L10 11 L15 15 L21 7" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M18 7h3v3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#5B21B6", fontWeight: 800, fontSize: 17, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.2px" }}>Meridian</span>
-          <span style={{ color: "#888", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>FINTECH</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={dreamixLogo.src} alt="Dreamix" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -154,24 +87,8 @@ const clients = [
     industry: "Logistics",
     hoverColor: "#0891B2",
     logo: (
-      <div className="flex items-center gap-2.5">
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #0891B2 0%, #065674 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(8,145,178,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <path d="M3 16 L9 8 L14 13 L18 8 L23 14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <rect x="3" y="18" width="20" height="2" rx="1" fill="white" fillOpacity="0.7"/>
-            <circle cx="7" cy="21" r="1.5" fill="white"/>
-            <circle cx="19" cy="21" r="1.5" fill="white"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#0891B2", fontWeight: 800, fontSize: 17, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.2px" }}>Skyline</span>
-          <span style={{ color: "#888", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>LOGISTICS</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={helionLogo.src} alt="Helion" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -182,24 +99,8 @@ const clients = [
     industry: "Analytics",
     hoverColor: "#0D9488",
     logo: (
-      <div className="flex items-center gap-2.5">
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #0D9488 0%, #076b62 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(13,148,136,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <circle cx="13" cy="13" r="8" stroke="white" strokeWidth="1.8" fill="none"/>
-            <circle cx="13" cy="13" r="4" stroke="white" strokeWidth="1.5" fill="none"/>
-            <circle cx="13" cy="13" r="1.5" fill="white"/>
-            <path d="M13 5 L13 9M13 17 L13 21M5 13 L9 13M17 13 L21 13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#0D9488", fontWeight: 800, fontSize: 15.5, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.2px" }}>PrimeEdge</span>
-          <span style={{ color: "#888", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>ANALYTICS</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={intwayLogo.src} alt="Intway" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -210,22 +111,8 @@ const clients = [
     industry: "Retail",
     hoverColor: "#1D4ED8",
     logo: (
-      <div className="flex items-center gap-2.5">
-        <div style={{
-          width: 46, height: 46, borderRadius: 10,
-          background: "linear-gradient(135deg, #1D4ED8 0%, #1038a8 100%)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(29,78,216,0.25)"
-        }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <path d="M4 20 L13 6 L22 20 Z" stroke="white" strokeWidth="2" fill="none" strokeLinejoin="round"/>
-            <path d="M8.5 20 L13 12 L17.5 20" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span style={{ color: "#1D4ED8", fontWeight: 800, fontSize: 16, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.2px" }}>BluePeak</span>
-          <span style={{ color: "#888", fontWeight: 400, fontSize: 10.5, fontFamily: "Arial, sans-serif", letterSpacing: "0.06em" }}>RETAIL</span>
-        </div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <img src={vitmarkLogo.src} alt="Vitmark" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
       </div>
     ),
   },
@@ -321,10 +208,10 @@ export default function Clients() {
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-7">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { icon: <Users size={20} />, value: "45+", label: "Enterprise Clients" },
-              { icon: <Globe size={20} />, value: "14", label: "Countries Served" },
+              { icon: <Users size={20} />, value: "30+", label: "Enterprise Clients" },
+              { icon: <Globe size={20} />, value: "5+", label: "Countries Served" },
               { icon: <TrendingUp size={20} />, value: "98%", label: "Client Retention" },
-              { icon: <Award size={20} />, value: "200+", label: "Projects Delivered" },
+              { icon: <Award size={20} />, value: "50+", label: "Projects Delivered" },
             ].map((s, i) => (
               <Motion.div
                 key={i}
@@ -372,7 +259,7 @@ export default function Clients() {
                   {client.logo}
                 </div>
                 <span
-                  className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 transition-colors text-center"
+                  className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 transition-colors text-center group-hover:text-[var(--hover-color)]"
                   style={{ "--hover-color": client.hoverColor } as React.CSSProperties}
                 >
                   {client.industry}

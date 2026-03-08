@@ -7,6 +7,14 @@ import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
 
+import awsLogo from "../../assets/ea968b74fff705800a15a9dcb40b38e7a1dafe03.png";
+import azureLogo from "../../assets/acad6f6c0c4fe301453542c28672d7b86bd38c70.png";
+import gcpLogo from "../../assets/d1262fcb47dec58df7ef32995607ef721a7ad5fb.png";
+import serviceNowLogo from "../../assets/7ad3e2b8e0d3a0223019a17cc80a66c38aa61012.png";
+import salesforceLogo from "../../assets/b13c4c100e4cb0ee511f80c66e134500635067e2.png";
+import zohoLogo from "../../assets/a6fec1352116809105f3fa70afd94fcb58e73b87.png";
+import erpnextLogo from "../../assets/dd535cd89e27dabcb4fee78b3ad285a386d91bee.png";
+
 
 export default function Partners({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -108,14 +116,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <div style={{ background: "#232F3E", borderRadius: 8, padding: "6px 18px" }}>
-                    <span style={{ color: "white", fontWeight: 900, fontSize: 28, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-1px", lineHeight: 1.15 }}>aws</span>
-                  </div>
-                  <svg width="72" height="14" viewBox="0 0 72 14" fill="none">
-                    <path d="M2 7 C16 13 56 13 70 7" stroke="#FF9900" strokeWidth="3" strokeLinecap="round"/>
-                    <path d="M65 3.5 L72 7 L65 10.5 Z" fill="#FF9900"/>
-                  </svg>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={awsLogo.src} alt="Amazon Web Services" style={{ maxHeight: 44, maxWidth: 100, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#FF9900] transition-colors text-center">Amazon Web Services</span>
               </Motion.div>
@@ -128,24 +130,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex items-center gap-3">
-                  {/* Azure 'a' geometric mark */}
-                  <svg width="44" height="44" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="az1" x1="0.661" y1="0.25" x2="0.5" y2="0.936" gradientUnits="objectBoundingBox">
-                        <stop offset="0" stopColor="#114A8B"/>
-                        <stop offset="1" stopColor="#0669BC"/>
-                      </linearGradient>
-                      <linearGradient id="az2" x1="0.661" y1="0.25" x2="0.5" y2="0.936" gradientUnits="objectBoundingBox">
-                        <stop offset="0" stopColor="#3ccbf4" stopOpacity="0"/>
-                        <stop offset="1" stopColor="#198AB3"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M6.53 1.1H10.8l-4.62 13.6H1.9z" fill="url(#az1)"/>
-                    <path d="M11.56 1.1l-3.1 9.2 3.8 4.24 4.84-13.44z" fill="url(#az2)"/>
-                    <path d="M6.3 14.7H16.1l-1.32-1.7H9.47z" fill="#0078D4"/>
-                  </svg>
-                  <span style={{ color: "#0078D4", fontWeight: 600, fontSize: 22, fontFamily: "Segoe UI, Arial, sans-serif" }}>Azure</span>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={azureLogo.src} alt="Microsoft Azure" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0078D4] transition-colors text-center">Microsoft Azure</span>
               </Motion.div>
@@ -158,26 +144,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex flex-col items-center gap-1.5">
-                  {/* Google Cloud icon — stylized cloud with G colors */}
-                  <svg width="52" height="36" viewBox="0 0 64 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M40 8a16 16 0 0 0-15.4 11.7A10 10 0 0 0 24 38h30a10 10 0 0 0 2.6-19.7A16 16 0 0 0 40 8z" fill="#4285F4"/>
-                    <path d="M16 16a10 10 0 0 0-2 19.8V36H24v-.2A10 10 0 0 0 16 16z" fill="#EA4335"/>
-                    <rect x="28" y="28" width="4" height="10" rx="1" fill="white"/>
-                    <rect x="36" y="28" width="4" height="10" rx="1" fill="white"/>
-                    <rect x="44" y="28" width="4" height="10" rx="1" fill="white"/>
-                  </svg>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
-                    <span style={{ fontWeight: 700, fontSize: 16, fontFamily: "Arial, sans-serif" }}>
-                      <span style={{ color: "#4285F4" }}>G</span>
-                      <span style={{ color: "#EA4335" }}>o</span>
-                      <span style={{ color: "#FBBC05" }}>o</span>
-                      <span style={{ color: "#4285F4" }}>g</span>
-                      <span style={{ color: "#34A853" }}>l</span>
-                      <span style={{ color: "#EA4335" }}>e</span>
-                    </span>
-                    <span style={{ color: "#5F6368", fontWeight: 400, fontSize: 16, fontFamily: "Arial, sans-serif" }}>Cloud</span>
-                  </div>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={gcpLogo.src} alt="Google Cloud" style={{ maxHeight: 44, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#4285F4] transition-colors text-center">Google Cloud Platform</span>
               </Motion.div>
@@ -190,14 +158,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex items-center gap-3">
-                  {/* ServiceNow icon: green rounded square + white ring-arrow */}
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="9" fill="#62D84E"/>
-                    <path d="M20 10a10 10 0 1 1-7.07 2.93" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                    <path d="M10 10 L13 17 L17 11 Z" fill="white"/>
-                  </svg>
-                  <span style={{ color: "#293E40", fontWeight: 700, fontSize: 18, fontFamily: "Arial, sans-serif" }}>ServiceNow</span>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={serviceNowLogo.src} alt="ServiceNow" style={{ maxHeight: 40, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#62D84E] transition-colors text-center">ServiceNow</span>
               </Motion.div>
@@ -210,12 +172,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex flex-col items-center gap-1.5">
-                  {/* Salesforce cloud icon */}
-                  <svg width="72" height="40" viewBox="0 0 100 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M41 12c3.9-4.1 9.3-6.6 15.3-6.6 8.2 0 15.3 4.6 19.1 11.4 3.3-1.5 7-2.3 10.9-2.3C99 14.5 108 23.7 108 35c0 11.3-9 20.5-20.7 20.5H20C10.1 55.5 2 47.3 2 37.3c0-9.3 6.7-17 15.6-19 .2-8 6.5-14.4 14.4-14.4 3.5 0 6.7 1.2 9 3.1z" fill="#00A1E0" transform="scale(0.85) translate(4,0)"/>
-                    <text x="14" y="38" style={{ fontFamily: "Arial, sans-serif", fontWeight: 700, fontSize: 20, fill: "white" }}>Salesforce</text>
-                  </svg>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={salesforceLogo.src} alt="Salesforce" style={{ maxHeight: 48, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#00A1E0] transition-colors text-center">Salesforce</span>
               </Motion.div>
@@ -228,12 +186,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex items-center gap-2">
-                  {/* Zoho Z badge */}
-                  <div style={{ background: "#E42527", borderRadius: 6, width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ color: "white", fontWeight: 900, fontSize: 26, fontFamily: "Arial Black, Arial, sans-serif", lineHeight: 1 }}>Z</span>
-                  </div>
-                  <span style={{ color: "#E42527", fontWeight: 700, fontSize: 26, fontFamily: "Arial, sans-serif", letterSpacing: "-0.5px" }}>oho</span>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={zohoLogo.src} alt="Zoho" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#E42527] transition-colors text-center">Zoho</span>
               </Motion.div>
@@ -246,16 +200,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer col-span-2 sm:col-span-1"
                 style={{ minHeight: 110 }}
               >
-                <div className="flex items-center gap-2">
-                  {/* ERPNext icon */}
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="8" fill="#0089FF"/>
-                    <path d="M10 10h20v5H16v5h12v5H16v5h14v5H10z" fill="white"/>
-                  </svg>
-                  <div>
-                    <span style={{ color: "#0089FF", fontWeight: 800, fontSize: 20, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.5px" }}>ERP</span>
-                    <span style={{ color: "#293E40", fontWeight: 400, fontSize: 20, fontFamily: "Arial, sans-serif" }}>Next</span>
-                  </div>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <img src={erpnextLogo.src} alt="ERPNext" style={{ maxHeight: 36, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0089FF] transition-colors text-center">ERPNext</span>
               </Motion.div>
@@ -483,4 +429,3 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
     </>
   );
 }
-
