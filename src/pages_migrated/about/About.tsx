@@ -9,46 +9,46 @@ import { Target, Eye, ShieldCheck, Lightbulb, HeartHandshake, BookOpen, Award } 
 import logo from '../../assets/logo.png';
 import storyImg from '../../assets/81ed9d35393b4048d395b1d256aa4c9d085a37b4.png';
 import Image from "next/image";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../lib/utils";
 
 export default function About({ wordpressData }: any) {
-  useEffect(() => {
-    document.title = "About Nabhira Technologies | Digital Pioneer";
-    window.scrollTo(0, 0);
-  }, []);
+  const aboutFields = wordpressData?.aboutUs;
 
-  const values = [
+  const displayValues = [
     {
-      icon: <Lightbulb className="text-[#f99d1c]" size={32} />,
-      title: "Innovation with Purpose",
-      desc: "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
+      icon: renderDynamicIcon(aboutFields?.v1IconType, aboutFields?.v1Lucide, aboutFields?.v1Image?.node),
+      title: aboutFields?.v1Title || "Innovation with Purpose",
+      desc: aboutFields?.v1Desc || "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
     },
     {
-      icon: <HeartHandshake className="text-[#f99d1c]" size={32} />,
-      title: "Customer-Centric Thinking",
-      desc: "Our clients' success defines our success. We partner closely to understand their challenges and deliver solutions that create lasting value."
+      icon: renderDynamicIcon(aboutFields?.v2IconType, aboutFields?.v2Lucide, aboutFields?.v2Image?.node),
+      title: aboutFields?.v2Title || "Customer-Centric Thinking",
+      desc: aboutFields?.v2Desc || "Our clients' success defines our success. We partner closely to understand their challenges and deliver solutions that create lasting value."
     },
     {
-      icon: <Award className="text-[#f99d1c]" size={32} />,
-      title: "Engineering Excellence",
-      desc: "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
+      icon: renderDynamicIcon(aboutFields?.v3IconType, aboutFields?.v3Lucide, aboutFields?.v3Image?.node),
+      title: aboutFields?.v3Title || "Engineering Excellence",
+      desc: aboutFields?.v3Desc || "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
     },
     {
-      icon: <ShieldCheck className="text-[#f99d1c]" size={32} />,
-      title: "Integrity and Trust",
-      desc: "We operate with transparency, accountability, and ethical responsibility in every engagement."
+      icon: renderDynamicIcon(aboutFields?.v4IconType, aboutFields?.v4Lucide, aboutFields?.v4Image?.node),
+      title: aboutFields?.v4Title || "Integrity and Trust",
+      desc: aboutFields?.v4Desc || "We operate with transparency, accountability, and ethical responsibility in every engagement."
     },
     {
-      icon: <BookOpen className="text-[#f99d1c]" size={32} />,
-      title: "Continuous Learning",
-      desc: "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
+      icon: renderDynamicIcon(aboutFields?.v5IconType, aboutFields?.v5Lucide, aboutFields?.v5Image?.node),
+      title: aboutFields?.v5Title || "Continuous Learning",
+      desc: aboutFields?.v5Desc || "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
     },
     {
-      icon: <Target className="text-[#f99d1c]" size={32} />,
-      title: "Ownership and Accountability",
-      desc: "We take full ownership of outcomes, delivering predictable results through disciplined execution and strong commitment."
+      icon: renderDynamicIcon(aboutFields?.v6IconType, aboutFields?.v6Lucide, aboutFields?.v6Image?.node),
+      title: aboutFields?.v6Title || "Ownership and Accountability",
+      desc: aboutFields?.v6Desc || "We take full ownership of outcomes, delivering predictable results through disciplined execution and strong commitment."
     },
   ];
+
+  const storyContent1 = aboutFields?.storyContentP1 || "Rooted in its name - Nabhira, inspired by “Nabha,” the limitless sky and “Vira,” the spirit of leadership, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.";
+  const storyContent2 = aboutFields?.storyContentP2 || "Nabhira partners with organizations across industries to reimagine what is possible, accelerating transformation through advanced AI, cloud-first intelligence and data-driven engineering. What started as a bold vision has grown into a commitment to deliver innovation at scale and impact across borders, empowering businesses to evolve, adapt and lead in a world of limitless potential";
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function About({ wordpressData }: any) {
       <section className="relative h-[400px] md:h-[520px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmUlMjBnbGFzcyUyMGJ1aWxkaW5nJTIwc3Vuc2V0fGVufDF8fHx8MTc3MTg5NzM2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmUlMjBnbGFzcyUyMGJ1aWxkaW5nJTIwc3Vuc2V0fGVufDF8fHx8MTc3MTg5NzM2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
               alt="About Nabhira"
               className="w-full h-full object-cover"
             />
@@ -88,10 +88,12 @@ export default function About({ wordpressData }: any) {
                 <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
                 <span className="text-[#f99d1c]">About Us</span>
               </nav>
-
+              
               <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
-                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
+                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                   {renderHeroTitle(
+                    wordpressData?.globalSettings?.heroSlides?.heroS1Title?.includes('|') ? 
+                    wordpressData?.globalSettings?.heroSlides?.heroS1Title.replace('|', '\n^').replace('|', '^') :
                     wordpressData?.globalSettings?.heroSlides?.heroS1Title || 
                     wordpressData?.title || (
                       <>
@@ -103,7 +105,6 @@ export default function About({ wordpressData }: any) {
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                   {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
-
                 </p>
               </div>
             </Motion.div>
@@ -116,21 +117,17 @@ export default function About({ wordpressData }: any) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div>
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-8 tracking-tight">
-                  <span className="font-bold">Our Story:</span> <span>From Vision to Global Impact</span>
+                  {formatQuotesToBold(aboutFields?.storyTitle || "Our Story: From Vision to Global Impact")}
                 </h2>
                 <div className="space-y-6 text-[#11253e] font-light leading-relaxed">
-                  <p>
-                    Rooted in its name - <span className="font-bold"><i>Nabhira</i></span>, inspired by <span className="font-bold">“Nabha,” the limitless sky and “Vira,” the spirit of leadership </span>, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.
-                  </p>
-                  <p>
-                    Nabhira partners with organizations across industries to <span className="font-bold">reimagine what is possible,</span> accelerating transformation through <span className="font-bold">advanced AI, cloud-first intelligence and data-driven engineering</span>. What started as a bold vision has grown into a commitment to deliver <span className="font-bold">innovation at scale and impact across borders</span>, empowering businesses to evolve, adapt and lead in a world of limitless potential
-                  </p>
+                  <p>{formatQuotesToBold(storyContent1)}</p>
+                  <p>{formatQuotesToBold(storyContent2)}</p>
                 </div>
               </div>
               <div className="relative">
                 <div className="aspect-[4/5] bg-gray-100 rounded-sm overflow-hidden border border-gray-100 shadow-2xl relative z-10">
                   <ImageWithFallback
-                    src={storyImg}
+                    src={aboutFields?.storyImage?.node?.sourceUrl || aboutFields?.storyImage?.sourceUrl || storyImg}
                     alt="Corporate Leadership"
                     className="w-full h-full object-cover"
                   />
@@ -161,16 +158,18 @@ export default function About({ wordpressData }: any) {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 mb-8">
                   <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">Purpose</span>
+                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.visionLabel || "Purpose"}</span>
                 </div>
                 <div className="flex items-start space-x-6">
                   <div className="p-4 bg-white/5 rounded-full border border-white/10">
-                    <Eye className="text-[#f99d1c]" size={32} />
+                    <span className="text-[#f99d1c]">
+                      {renderDynamicIcon(aboutFields?.visionIconType, aboutFields?.visionLucide || "Eye", aboutFields?.visionImage?.node, 32)}
+                    </span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
+                    <h3 className="text-3xl font-light mb-4 tracking-tight">{aboutFields?.visionTitle || "Our Vision"}</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
+                      {aboutFields?.visionDescription || "To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence."}
                     </p>
                   </div>
                 </div>
@@ -179,16 +178,18 @@ export default function About({ wordpressData }: any) {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 mb-8">
                   <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">Commitment</span>
+                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.missionLabel || "Commitment"}</span>
                 </div>
                 <div className="flex items-start space-x-6">
                   <div className="p-4 bg-white/5 rounded-full border border-white/10">
-                    <Target className="text-[#f99d1c]" size={32} />
+                    <span className="text-[#f99d1c]">
+                      {renderDynamicIcon(aboutFields?.missionIconType, aboutFields?.missionLucide || "Target", aboutFields?.missionImage?.node, 32)}
+                    </span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">Our Mission</h3>
+                    <h3 className="text-3xl font-light mb-4 tracking-tight">{aboutFields?.missionTitle || "Our Mission"}</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.
+                      {aboutFields?.missionDescription || "To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision."}
                     </p>
                   </div>
                 </div>
@@ -200,8 +201,6 @@ export default function About({ wordpressData }: any) {
         {/* Core Values Section */}
         <section className="py-24 bg-gray-50 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
-
-            {/* <img src={logo} alt="" className="w-full grayscale" /> */}
             <Image
               src={logo}
               alt="Nabhira Logo"
@@ -214,13 +213,13 @@ export default function About({ wordpressData }: any) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-light mb-4 tracking-tight">
-                Our Core <span className="font-medium">Values</span>
+                {aboutFields?.valuesSectionTitle || "Our Core Values"}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {values.map((v, i) => (
+              {displayValues.map((v, i) => (
                 <Motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -230,7 +229,7 @@ export default function About({ wordpressData }: any) {
                   whileHover={{ y: -10 }}
                   className="bg-white p-10 border border-gray-100 shadow-sm transition-all duration-300 group hover:shadow-xl rounded-sm"
                 >
-                  <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="mb-6 group-hover:scale-110 transition-transform duration-300 text-[#f99d1c]">
                     {v.icon}
                   </div>
                   <h4 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[14px]">
@@ -250,20 +249,20 @@ export default function About({ wordpressData }: any) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">5+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Countries</div>
+                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat1Value || "5+"}</div>
+                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat1Label || "Countries"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">25+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Customers</div>
+                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat2Value || "25+"}</div>
+                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat2Label || "Customers"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">10+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Industries</div>
+                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat3Value || "10+"}</div>
+                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat3Label || "Industries"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">98%</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Retention</div>
+                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat4Value || "98%"}</div>
+                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat4Label || "Retention"}</div>
               </div>
             </div>
           </div>
