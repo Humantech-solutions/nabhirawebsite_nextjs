@@ -6,7 +6,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShoppingCart, Zap, BarChart3, Users, ShieldCheck, Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function POSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  {heroData?.heroS1Desc || "Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity."}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity.")}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
@@ -88,10 +88,10 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight mb-6">Built for Global Scale</h2>
+              <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight mb-6">{formatQuotesToBold("Built for Global Scale")}</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
               <p className="text-[#11253e] text-lg font-light">
-                Our architecture supports multi-region deployment
+                {formatQuotesToBold("Our architecture supports multi-region deployment")}
               </p>
             </div>
 
@@ -108,8 +108,8 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
                   <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow-sm mb-8 group-hover:scale-110 transition-transform">
                     {feature.icon}
                   </div>
-                  <h3 className="text-[#11253e] text-lg font-bold mb-4">{feature.title}</h3>
-                  <p className="text-[#11253e] text-sm leading-relaxed">{feature.description}</p>
+                  <h3 className="text-[#11253e] text-lg font-bold mb-4">{formatQuotesToBold(feature.title)}</h3>
+                  <p className="text-[#11253e] text-sm leading-relaxed">{formatQuotesToBold(feature.description)}</p>
                 </Motion.div>
               ))}
             </div>
@@ -128,9 +128,9 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
                 />
               </div>
               <div className="space-y-8">
-                <h2 className="text-[#11253e] text-3xl font-bold tracking-tight">AI-Native Insights <br />That Drive Growth</h2>
+                <h2 className="text-[#11253e] text-3xl font-bold tracking-tight">{renderHeroTitle("AI-Native Insights \nThat |Drive Growth|")}</h2>
                 <p className="text-[#11253e] leading-relaxed">
-                  Beyond simple reporting, our Policy Engine integration allows you to set automated rules for dynamic pricing, personalized discounting, and intelligent restock alerts.
+                  {formatQuotesToBold("Beyond simple reporting, our Policy Engine integration allows you to set automated rules for dynamic pricing, personalized discounting, and intelligent restock alerts.")}
                 </p>
                 
                 <div className="space-y-4">
@@ -161,9 +161,9 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
         <section className="py-24 bg-[#11253e] relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-[#f99d1c]/10 -skew-x-12 translate-x-20"></div>
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-white text-4xl font-bold mb-8">Ready to Transform Your Retail Experience?</h2>
+            <h2 className="text-white text-4xl font-bold mb-8">{formatQuotesToBold("Ready to Transform Your Retail Experience?")}</h2>
             <p className="text-white/60 text-lg font-light max-w-2xl mx-auto mb-12">
-              Join leading global brands that trust Nabhira for their mission-critical retail infrastructure.
+              {formatQuotesToBold("Join leading global brands that trust Nabhira for their mission-critical retail infrastructure.")}
             </p>
             <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
               Schedule a Consultation

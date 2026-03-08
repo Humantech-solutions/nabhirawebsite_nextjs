@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { formatQuotesToBold } from "../lib/utils";
 
 interface WithNabhiraProps {
   data?: {
@@ -91,7 +92,7 @@ export function WithNabhira({ data }: WithNabhiraProps) {
             viewport={{ once: true }}
             className="text-[#11253e] text-[14px] md:text-[16px] font-black tracking-[0.1em] flex items-center"
           >
-            {sectionTitle}
+            {formatQuotesToBold(sectionTitle)}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </motion.h2>
         </div>
@@ -128,14 +129,14 @@ export function WithNabhira({ data }: WithNabhiraProps) {
                   {/* Title - Always visible, slides up on hover */}
                   <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-1">
                     <h3 className="text-white text-lg font-semibold leading-tight tracking-tight mb-2">
-                      {item.title}
+                      {formatQuotesToBold(item.title)}
                     </h3>
                   </div>
 
                   {/* Description - Slides up and fades in */}
                   <div className="max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-500 ease-out">
                     <p className="text-[color-mix(in_oklab,var(--color-white)_85%,transparent)] text-xs font-light leading-relaxed mb-4">
-                      {item.desc}
+                      {formatQuotesToBold(item.desc)}
                     </p>
                   </div>
 

@@ -4,7 +4,7 @@ import { motion as Motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 import {
   ArrowRight,
@@ -175,8 +175,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-              {heroData?.heroS1Desc || "We help financial institutions evolve from legacy-constrained operations to intelligent, secure and innovation-driven enterprises."}
-
+              {formatQuotesToBold(heroData?.heroS1Desc || "We help financial institutions evolve from legacy-constrained operations to intelligent, secure and innovation-driven enterprises.")}
             </p>
           </Motion.div>
         </div>
@@ -188,7 +187,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
-                The Industry <span className="font-bold">Imperative</span>
+                {formatQuotesToBold("The Industry \"Imperative\"")}
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
@@ -212,8 +211,8 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
                     {item.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
+                <h3 className="text-xl font-bold text-[#11253e] mb-3">{formatQuotesToBold(item.title)}</h3>
+                <p className="text-[#11253e] leading-relaxed">{formatQuotesToBold(item.text)}</p>
               </Motion.div>
             ))}
           </div>
@@ -225,10 +224,10 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
-              Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span>
+              {formatQuotesToBold("Where We Create 'Impact'")}
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.
+              {formatQuotesToBold("Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.")}
             </p>
           </div>
 
@@ -247,8 +246,8 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
                     <span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span>
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{formatQuotesToBold(area.title)}</h3>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{formatQuotesToBold(area.description)}</p>
                   <ul className="space-y-3 pt-4">
                     {area.details.map((detail, i) => (
                       <li key={i} className="flex items-center gap-3 text-[#11253e] font-medium">
@@ -281,11 +280,10 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">
-                Enabling <br />
-                <span className="font-bold text-[#f99d1c]">FinTech Innovation</span>
+                {formatQuotesToBold("Enabling \n'FinTech Innovation'")}
               </h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products.
+                {formatQuotesToBold("We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products.")}
               </p>
               <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
                 Partner with us <ArrowRight size={20} />
@@ -296,8 +294,8 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
               {fintechServices.map((service, idx) => (
                 <div key={idx} className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                   <div className="text-[#f99d1c] mb-4">{service.icon}</div>
-                  <h4 className="font-bold text-lg mb-2">{service.title}</h4>
-                  <p className="text-white/50 text-sm">{service.desc}</p>
+                  <h4 className="font-bold text-lg mb-2">{formatQuotesToBold(service.title)}</h4>
+                  <p className="text-white/50 text-sm">{formatQuotesToBold(service.desc)}</p>
                 </div>
               ))}
             </div>

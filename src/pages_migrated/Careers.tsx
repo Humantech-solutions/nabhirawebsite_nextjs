@@ -9,7 +9,7 @@ import { Footer, LimitlessTogether } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { MapPin, Briefcase, Clock, ChevronRight, Search, GraduationCap, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { renderHeroTitle } from "../lib/utils";
+import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../lib/utils";
 
 
 export const jobs = [
@@ -80,32 +80,6 @@ export default function Careers({ wordpressData, wpJobs }: any) {
     return matchesFilter && matchesSearch;
   });
 
-  const renderDynamicIcon = (iconType: string, lucideName: string, imageObj: any, size: number = 16) => {
-    // Normalise: ACF may return the key ("image") or the label ("Upload Image")
-    const isImageType = String(iconType || "").toLowerCase().includes("image");
-    const imageUrl = typeof imageObj === "string"
-      ? imageObj
-      : (imageObj?.mediaItemUrl || imageObj?.sourceUrl || imageObj?.node?.mediaItemUrl || imageObj?.node?.sourceUrl || imageObj?.url);
-    if (isImageType && imageUrl) {
-      return <img src={imageUrl} alt="icon" className="object-contain" style={{ width: size, height: size }} />;
-    }
-    const name = (lucideName || "").toLowerCase();
-    if (name.includes("globe")) return <Globe2 size={size} />;
-    if (name.includes("light") || name.includes("bulb")) return <Lightbulb size={size} />;
-    if (name.includes("book")) return <BookOpen size={size} />;
-    if (name.includes("grad") || name.includes("cap")) return <GraduationCap size={size} />;
-    if (name.includes("trend")) return <TrendingUp size={size} />;
-    if (name.includes("user")) return <Users size={size} />;
-    if (name.includes("award")) return <Award size={size} />;
-    if (name.includes("heart") || name.includes("shake")) return <HeartHandshake size={size} />;
-    return <Zap size={size} />; // Fallback
-  };
-
-  const formatQuotesToBold = (text: string) => {
-    if (!text) return text;
-    const parts = text.split(/"(.*?)"/g);
-    return parts.map((part, i) => i % 2 === 1 ? <span key={i} className="font-bold">{part}</span> : part);
-  };
 
   return (
     <>
@@ -142,7 +116,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                 ))}
               </h1>
               <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-                {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of Engineers, Architects and Consultants redefining enterprise technology."}
+                {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Join a community of Engineers, Architects and Consultants redefining enterprise technology.")}
               </p>
           </Motion.div>
         </div>
@@ -189,7 +163,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                   {formatQuotesToBold(pageFields?.openPositionsTitle || 'Open "Positions"')}
                 </h2>
                 <p className="text-[#11253e] font-light">
-                  {pageFields?.openPositionsDesc || "Find your next challenge within our specialized engineering and strategy teams."}
+                  {formatQuotesToBold(pageFields?.openPositionsDesc || "Find your next challenge within our specialized engineering and strategy teams.")}
                 </p>
               </div>
               
@@ -322,7 +296,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                   </h2>
                   <div className="h-[2px] w-16 bg-[#f99d1c] mb-6"></div>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    {pageFields?.internshipDesc || "The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects."}
+                    {formatQuotesToBold(pageFields?.internshipDesc || "The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects.")}
                   </p>
                 </div>
 

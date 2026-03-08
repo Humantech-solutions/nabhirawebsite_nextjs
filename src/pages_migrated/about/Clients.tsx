@@ -6,6 +6,7 @@ import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote } from "lucide-react";
+import { formatQuotesToBold, renderHeroTitle } from "../../lib/utils";
 
 import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
 import H2HLogo from "../../imports/Group79";
@@ -151,7 +152,7 @@ const industryStats = [
 ];
 
 /* ─── Component ────────────────────────────────────────────── */
-export default function Clients() {
+export default function Clients({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
     document.title = "Our Clients | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -188,15 +189,14 @@ export default function Clients() {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm">
-              Trusted By<br />
-              <span className="text-[#f99d1c]">Industry</span> Leaders
+              {renderHeroTitle("Trusted By |Industry| Leaders")}
             </h1>
 
             {/* Orange left-border tagline */}
             <div className="flex items-start gap-4 pt-2">
               <div className="w-1 h-12 bg-[#f99d1c] rounded-full flex-shrink-0 mt-1" />
               <p className="text-white/80 text-base sm:text-lg md:text-[20px] font-light leading-relaxed max-w-xl">
-                From agri-tech startups to global retail enterprises — we engineer transformation for organisations that demand precision, speed, and lasting impact.
+                {formatQuotesToBold("From agri-tech startups to global retail enterprises — we engineer transformation for organisations that demand precision, speed, and lasting impact.")}
               </p>
             </div>
           </Motion.div>
@@ -235,11 +235,11 @@ export default function Clients() {
           <div className="text-center mb-14">
             <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Our Clientele</p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              Companies That <span className="font-bold">Trust Nabhira</span>
+              {formatQuotesToBold("Companies That Trust Nabhira")}
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-6" />
             <p className="max-w-xl mx-auto text-[#11253e] font-light text-sm leading-relaxed" style={{ opacity: 0.65 }}>
-              We are privileged to serve a diverse portfolio of clients across industries — each partnership a testament to our commitment to engineering excellence.
+              {formatQuotesToBold("We are privileged to serve a diverse portfolio of clients across industries — each partnership a testament to our commitment to engineering excellence.")}
             </p>
           </div>
 
@@ -282,7 +282,7 @@ export default function Clients() {
           <div className="text-center mb-14">
             <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Sector Reach</p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              Industries We <span className="font-bold">Transform</span>
+              {formatQuotesToBold("Industries We Transform")}
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto" />
           </div>
@@ -328,7 +328,7 @@ export default function Clients() {
           <div className="text-center mb-14">
             <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Client Voices</p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              What Our <span className="font-bold">Clients Say</span>
+              {formatQuotesToBold("What Our Clients Say")}
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto" />
           </div>
@@ -349,7 +349,7 @@ export default function Clients() {
                 <Quote size={28} style={{ color: t.color, opacity: 0.35 }} />
 
                 <p className="text-[#11253e] text-sm font-light leading-relaxed flex-1" style={{ opacity: 0.85 }}>
-                  "{t.quote}"
+                  {formatQuotesToBold(t.quote)}
                 </p>
 
                 <div className="flex items-center gap-3 pt-2 border-t border-gray-200">
@@ -395,12 +395,11 @@ export default function Clients() {
             </div>
 
             <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight leading-tight">
-              Ready to become our<br />
-              <span className="text-[#f99d1c] font-bold">next success story</span>?
+              {renderHeroTitle("Ready to become our \n^next success story^?")}
             </h2>
 
             <p className="text-white/65 font-light max-w-lg leading-relaxed">
-              Whether you are a startup scaling fast or an enterprise modernising your core — our engineering teams are built to deliver transformation at every stage.
+              {formatQuotesToBold("Whether you are a startup scaling fast or an enterprise modernising your core — our engineering teams are built to deliver transformation at every stage.")}
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">

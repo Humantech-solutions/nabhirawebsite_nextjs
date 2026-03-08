@@ -22,6 +22,7 @@ import {
   ChevronRight,
   LayoutGrid
 } from "lucide-react";
+import { formatQuotesToBold, renderHeroTitle } from "../lib/utils";
 
 type Service = {
   title: string;
@@ -214,7 +215,7 @@ export function Capabilities({ data }: CapabilitiesProps) {
             viewport={{ once: true }}
             className="text-[#11253e] text-[14px] md:text-[16px] font-medium tracking-normal flex items-center"
           >
-            {sectionTitle}
+            {formatQuotesToBold(sectionTitle)}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </motion.h2>
           <motion.p 
@@ -224,7 +225,7 @@ export function Capabilities({ data }: CapabilitiesProps) {
             transition={{ delay: 0.2 }}
             className="mt-4 md:mt-6 text-[#11253e] max-w-2xl text-base md:text-lg font-light leading-relaxed"
           >
-            {sectionDesc}
+            {formatQuotesToBold(sectionDesc)}
           </motion.p>
         </div>
 
@@ -327,10 +328,10 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
 
       <div className="relative z-10 flex-grow">
         <h3 className="text-[#11253e] text-xl font-semibold mb-4 tracking-tight group-hover:text-[#f99d1c] transition-colors duration-300">
-          {service.title}
+          {formatQuotesToBold(service.title)}
         </h3>
         <p className="text-[#11253e] text-sm font-light leading-relaxed mb-8">
-          {service.desc}
+          {formatQuotesToBold(service.desc)}
         </p>
       </div>
 

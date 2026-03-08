@@ -6,7 +6,7 @@ import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Trophy, Star, Medal } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function Awards({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -83,7 +83,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations."}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.")}
                 </p>
               </div>
             </Motion.div>
@@ -95,7 +95,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                A Journey of <span className="font-bold">Distinction</span>
+                {formatQuotesToBold("A Journey of Distinction")}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
             </div>
@@ -118,9 +118,9 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
                       <div className="w-8 h-[1px] bg-[#f99d1c]"></div>
                       <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{award.org}</span>
                     </div>
-                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">{award.title}</h3>
+                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">{formatQuotesToBold(award.title)}</h3>
                     <p className="text-[#11253e] font-light text-sm leading-relaxed max-w-2xl">
-                      {award.desc}
+                      {formatQuotesToBold(award.desc)}
                     </p>
                   </div>
                   <div className="md:col-span-3 flex justify-end">
@@ -138,11 +138,11 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
         <section className="py-24 bg-[#11253e] text-white overflow-hidden relative">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center relative z-10">
             <h2 className="text-3xl font-light mb-12 tracking-tight">
-              Impact Beyond <span className="text-[#f99d1c] font-bold">Awards</span>
+              {formatQuotesToBold("Impact Beyond Awards")}
             </h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-white/80 font-light leading-relaxed mb-12">
-                While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.
+                {formatQuotesToBold("While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.")}
               </p>
             </div>
           </div>

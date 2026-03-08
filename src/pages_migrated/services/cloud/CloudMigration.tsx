@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -80,7 +80,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
     <>
       <ServiceHero 
         title={renderHeroTitle(heroData?.heroS1Title || <>Seamless <span className="text-[#f99d1c]">Transition.</span></>)}
-        description={heroData?.heroS1Desc || "Move your mission-critical workloads to the cloud with surgical precision. Our automated migration pipelines minimize risk and maximize ROI from day one."}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "Move your mission-critical workloads to the cloud with surgical precision. Our automated migration pipelines minimize risk and maximize ROI from day one.") as any}
         subtitle="Cloud Migration"
         category="Cloud Migration"
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"}
@@ -97,8 +97,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               className="space-y-8"
             >
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight leading-tight">
-                Move to the Cloud — <br />
-                <span className="text-[#f99d1c]">Smoothly, Securely and with Confidence</span>
+                {formatQuotesToBold("Move to the Cloud — \n^Smoothly, Securely and with Confidence^")}
               </h2>
               <p className="text-[#11253e] text-lg md:text-xl font-light leading-relaxed">
                 Cloud migration isn't just about moving servers. It's about moving your business forward without disruption, without surprises and without losing control.
@@ -113,7 +112,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               className="space-y-6"
             >
               <p className="text-[#11253e] text-lg leading-relaxed font-light">
-                We help you migrate to the cloud in a structured, secure and cost-conscious way ensuring your systems perform better, scale faster and support long-term growth.
+                {formatQuotesToBold("We help you migrate to the cloud in a structured, secure and cost-conscious way ensuring your systems perform better, scale faster and support long-term growth.")}
               </p>
               <div className="w-20 h-px bg-[#f99d1c]"></div>
             </Motion.div>
@@ -140,8 +139,8 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                   <span className="text-[#f99d1c] font-black text-6xl">01</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Approach</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Practical. Phased. Business-Aligned.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Practical. Phased. Business-Aligned.")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -158,7 +157,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{item}</span>
+                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -179,10 +178,10 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               <span className="text-[#f99d1c] font-black text-6xl">02</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Methodology</h2>
-            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">Disciplined Execution Driven by Defined Processes and Clear Outcomes</h3>
+            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">{formatQuotesToBold("Disciplined Execution Driven by Defined Processes and Clear Outcomes")}</h3>
             <p className="text-[#11253e] text-lg font-light max-w-2xl mx-auto">
-              Our framework-driven, step-by-step migration approach ensures seamless transition with minimal disruption, controlled risk and predictable performance
+              {formatQuotesToBold("Our framework-driven, step-by-step migration approach ensures seamless transition with minimal disruption, controlled risk and predictable performance")}
             </p>
           </div>
 
@@ -199,12 +198,12 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                 <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto group-hover:bg-[#f99d1c]/10 transition-colors">
                   {step.icon}
                 </div>
-                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{step.title}</h4>
+                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{formatQuotesToBold(step.title)}</h4>
                 <div className="space-y-4 flex-grow text-left w-full">
                   {step.points.map((point, i) => (
                     <div key={i} className="flex items-start space-x-3">
                       <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
-                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{point}</span>
+                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{formatQuotesToBold(point)}</span>
                     </div>
                   ))}
                 </div>
@@ -224,8 +223,8 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                   <span className="text-[#f99d1c] font-black text-6xl">03</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">Tools & Accelerators</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">Automation-Driven. Insight-Led.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">{formatQuotesToBold("Tools & 'Accelerators'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">{formatQuotesToBold("Automation-Driven. Insight-Led.")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -258,7 +257,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               </div>
               <div className="absolute -bottom-6 -left-6 bg-[#f99d1c] p-8 text-[#11253e] max-w-xs shadow-xl hidden md:block">
                 <p className="text-sm font-medium italic">
-                  "Our accelerators are designed to shorten migration timelines and reduce human error while maintaining complete visibility."
+                  {formatQuotesToBold("'Our accelerators are designed to shorten migration timelines and reduce human error while maintaining complete visibility.'")}
                 </p>
               </div>
             </div>
@@ -276,8 +275,8 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               <span className="text-[#f99d1c] font-black text-6xl">04</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
-            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Less Risk. Better Performance. Real Business Impact.</h3>
+            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Value 'Proposition'")}</h2>
+            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Less Risk. Better Performance. Real Business Impact.")}</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -301,10 +300,10 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                   <div className="w-8 h-8 rounded-full bg-[#f99d1c] flex items-center justify-center text-[#11253e]">
                     <CheckCircle2 size={16} />
                   </div>
-                  <h4 className="text-white text-lg font-medium tracking-tight">{item.title}</h4>
+                  <h4 className="text-white text-lg font-medium tracking-tight">{formatQuotesToBold(item.title)}</h4>
                 </div>
                 <p className="text-white/60 text-sm font-light leading-relaxed">
-                  {item.desc}
+                  {formatQuotesToBold(item.desc)}
                 </p>
               </Motion.div>
             ))}
@@ -331,8 +330,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Ready to architect  <br />
-                  <span className="text-[#f99d1c]">the future?</span>
+                  {formatQuotesToBold("Ready to architect \n^the future?^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
                   Let our experts design a migration strategy that scales with your ambition and delivers measurable business value.

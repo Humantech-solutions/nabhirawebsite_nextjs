@@ -6,7 +6,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Cloud, Server, BarChart3, ShieldCheck, Terminal, Database, ArrowRight, CheckCircle2 } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function CloudInfraSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {heroData?.heroS1Desc || "Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail."}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -66,9 +66,9 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                       <div className="space-y-8 relative z-10">
                         <div className="w-12 h-1 bg-[#f99d1c]"></div>
                         <div className="space-y-4">
-                          <h3 className="text-white text-3xl font-bold tracking-tight">Cloud Sovereignty <br />First Principles</h3>
+                          <h3 className="text-white text-3xl font-bold tracking-tight">{formatQuotesToBold("Cloud Sovereignty \nFirst Principles")}</h3>
                           <p className="text-white/30 text-sm font-light leading-relaxed">
-                            Every deployment is designed with data residency and sovereignty at its core. We don't just deploy to the cloud; we own the architectural integrity of your digital estate.
+                            {formatQuotesToBold("Every deployment is designed with data residency and sovereignty at its core. We don't just deploy to the cloud; we own the architectural integrity of your digital estate.")}
                           </p>
                         </div>
                         <div className="grid grid-cols-2 gap-8 pt-12">
@@ -95,7 +95,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end gap-12 mb-24">
               <div className="max-w-2xl space-y-6">
-                <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Modern Deployment <br />Lifecycle</h2>
+                <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">{formatQuotesToBold("The Modern Deployment \nLifecycle")}</h2>
                 <div className="w-12 h-1 bg-[#f99d1c]"></div>
               </div>
               <p className="text-[#11253e] text-sm uppercase tracking-widest font-bold max-w-sm">
@@ -126,8 +126,8 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                     {item.icon}
                   </div>
                   <div className="space-y-6">
-                    <h3 className="text-[#11253e] text-xl font-bold tracking-tight uppercase">{item.title}</h3>
-                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
+                    <h3 className="text-[#11253e] text-xl font-bold tracking-tight uppercase">{formatQuotesToBold(item.title)}</h3>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{formatQuotesToBold(item.desc)}</p>
                   </div>
                   <button className="text-[10px] font-bold text-[#11253e] uppercase tracking-[0.3em] flex items-center gap-3 group">
                     View Spec <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -144,9 +144,9 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
             <div className="grid lg:grid-cols-2 gap-24 items-center">
               <div className="space-y-12">
                 <div className="space-y-6">
-                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Unified Data Plane</h2>
+                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">{formatQuotesToBold("The Unified Data Plane")}</h2>
                   <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                    Nabhira provides a single pane of glass for your entire hybrid cloud estate. Whether it's AWS, Azure, GCP, or On-premise bare metal, your monitoring and deployment remain consistent.
+                    {formatQuotesToBold("Nabhira provides a single pane of glass for your entire hybrid cloud estate. Whether it's AWS, Azure, GCP, or On-premise bare metal, your monitoring and deployment remain consistent.")}
                   </p>
                 </div>
                 
@@ -172,10 +172,10 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                   className="rounded-sm grayscale hover:grayscale-0 transition-all duration-700 shadow-3xl"
                 />
                 <div className="absolute -bottom-10 -right-10 bg-[#f99d1c] p-10 hidden md:block">
-                  <p className="text-white text-sm font-bold uppercase tracking-[0.2em] mb-4">Live Status</p>
+                  <p className="text-white text-sm font-bold uppercase tracking-[0.2em] mb-4">{formatQuotesToBold("Live Status")}</p>
                   <div className="flex items-center gap-3 text-white/90">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span className="text-xs font-mono">ALL SYSTEMS OPERATIONAL</span>
+                    <span className="text-xs font-mono">{formatQuotesToBold("ALL SYSTEMS OPERATIONAL")}</span>
                   </div>
                 </div>
               </div>
@@ -186,9 +186,9 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
         {/* Infrastructure CTA */}
         <section className="py-32 bg-white">
           <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 className="text-[#11253e] text-5xl font-bold tracking-tighter">Build Your Digital Fortress.</h2>
+            <h2 className="text-[#11253e] text-5xl font-bold tracking-tighter">{formatQuotesToBold("Build Your Digital Fortress.")}</h2>
             <p className="text-[#11253e] text-xl font-light">
-              Stop fighting with infrastructure. Let Nabhira architect a cloud environment that scales with your ambition.
+              {formatQuotesToBold("Stop fighting with infrastructure. Let Nabhira architect a cloud environment that scales with your ambition.")}
             </p>
             <div className="pt-6">
               <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">

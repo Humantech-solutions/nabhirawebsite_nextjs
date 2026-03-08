@@ -104,7 +104,7 @@ export default function About({ wordpressData }: any) {
                   )}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering."}
+                  {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering.")}
                 </p>
               </div>
             </Motion.div>
@@ -167,9 +167,9 @@ export default function About({ wordpressData }: any) {
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">{aboutFields?.visionTitle || "Our Vision"}</h3>
+                    <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(aboutFields?.visionTitle || "Our Vision")}</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      {aboutFields?.visionDescription || "To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence."}
+                      {formatQuotesToBold(aboutFields?.visionDescription || "To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.")}
                     </p>
                   </div>
                 </div>
@@ -187,9 +187,9 @@ export default function About({ wordpressData }: any) {
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">{aboutFields?.missionTitle || "Our Mission"}</h3>
+                    <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(aboutFields?.missionTitle || "Our Mission")}</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      {aboutFields?.missionDescription || "To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision."}
+                      {formatQuotesToBold(aboutFields?.missionDescription || "To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.")}
                     </p>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export default function About({ wordpressData }: any) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-light mb-4 tracking-tight">
-                {aboutFields?.valuesSectionTitle || "Our Core Values"}
+                {formatQuotesToBold(aboutFields?.valuesSectionTitle || "Our Core Values")}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto"></div>
             </div>
@@ -233,10 +233,10 @@ export default function About({ wordpressData }: any) {
                     {v.icon}
                   </div>
                   <h4 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[14px]">
-                    {v.title}
+                    {formatQuotesToBold(v.title)}
                   </h4>
                   <p className="text-[#11253e] text-sm font-light leading-relaxed">
-                    {v.desc}
+                    {formatQuotesToBold(v.desc)}
                   </p>
                 </Motion.div>
               ))}

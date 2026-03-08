@@ -19,7 +19,7 @@ export async function fetchGraphQL(query: string, variables = {}) {
   try {
     // We wrapped this in a short timeout or just a normal catch
     const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+    const id = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     const res = await fetch(WORDPRESS_API_URL, {
       method: 'POST',
@@ -454,6 +454,79 @@ export const LEADERSHIP_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const PARTNERS_PAGE_FIELDS_FRAGMENT = `
+  fragment PartnersPageFields on Page {
+    partnersPageFields {
+      partner_ta_subtitle
+      partner_ta_title
+      partner_ta_desc
+      partner_ta_1_name
+      partner_ta_1_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_2_name
+      partner_ta_2_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_3_name
+      partner_ta_3_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_4_name
+      partner_ta_4_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_5_name
+      partner_ta_5_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_6_name
+      partner_ta_6_logo { node { sourceUrl mediaItemUrl } }
+      partner_ta_7_name
+      partner_ta_7_logo { node { sourceUrl mediaItemUrl } }
+      partner_ev_title
+      partner_ev_desc
+      partner_ev_1_title
+      partner_ev_1_desc
+      partner_ev_1IconType
+      partner_ev_1Lucide
+      partner_ev_1Image { node { sourceUrl mediaItemUrl } }
+      partner_ev_2_title
+      partner_ev_2_desc
+      partner_ev_2IconType
+      partner_ev_2Lucide
+      partner_ev_2Image { node { sourceUrl mediaItemUrl } }
+      partner_ev_3_title
+      partner_ev_3_desc
+      partner_ev_3IconType
+      partner_ev_3Lucide
+      partner_ev_3Image { node { sourceUrl mediaItemUrl } }
+      partner_ev_4_title
+      partner_ev_4_desc
+      partner_ev_4IconType
+      partner_ev_4Lucide
+      partner_ev_4Image { node { sourceUrl mediaItemUrl } }
+      partner_cta_subtitle
+      partner_cta_title
+      partner_cta_desc
+      partner_cta_s1_val
+      partner_cta_s1_label
+      partner_cta_s2_val
+      partner_cta_s2_label
+      partner_cta_s3_val
+      partner_cta_s3_label
+      partner_cta_centerIconType
+      partner_cta_centerLucide
+      partner_cta_centerImage { node { sourceUrl mediaItemUrl } }
+      partner_cta_center_label
+      partner_cta_o1_label
+      partner_cta_o1_color
+      partner_cta_o2_label
+      partner_cta_o2_color
+      partner_cta_o3_label
+      partner_cta_o3_color
+      partner_cta_o4_label
+      partner_cta_o4_color
+      partner_cta_o5_label
+      partner_cta_o5_color
+      partner_cta_o6_label
+      partner_cta_o6_color
+      partner_cta_o7_label
+      partner_cta_o7_color
+    }
+  }
+`;
+
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
   const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
@@ -465,6 +538,7 @@ export async function getPageBySlug(slug: string) {
     ${CAREERS_PAGE_FIELDS_FRAGMENT}
     ${ABOUT_PAGE_FIELDS_FRAGMENT}
     ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
+    ${PARTNERS_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -479,6 +553,7 @@ export async function getPageBySlug(slug: string) {
         ...CareersPageFields
         ...AboutPageFields
         ...LeadershipPageFields
+        ...PartnersPageFields
       }
     }
 

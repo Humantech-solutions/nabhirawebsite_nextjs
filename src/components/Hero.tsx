@@ -8,7 +8,7 @@ import banner2Img from "../assets/bigthinkers.png";
 import aiServerImg from "../assets/ai.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { renderHeroTitle as renderTitle } from "../lib/utils";
+import { renderHeroTitle as renderTitle, formatQuotesToBold } from "../lib/utils";
 
 interface HeroProps {
   data?: any;
@@ -191,7 +191,7 @@ export function Hero({ data }: HeroProps) {
                 {banner.title}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] mb-8 md:mb-12 max-w-2xl font-light leading-relaxed drop-shadow-sm">
-                {banner.description}
+                {formatQuotesToBold(banner.description)}
               </p>
               <button 
                 onClick={() => banner.buttonUrl && (window.location.href = banner.buttonUrl)}

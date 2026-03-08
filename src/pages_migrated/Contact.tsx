@@ -8,7 +8,7 @@ import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
-import { renderHeroTitle } from "../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../lib/utils";
 
 export default function Contact({ wordpressData }: any) {
   const [formData, setFormData] = useState({
@@ -187,7 +187,7 @@ export default function Contact({ wordpressData }: any) {
                 })()}
               </h1>
               <p className="text-white text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-                {acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you."}
+                {formatQuotesToBold(acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you.")}
               </p>
             </Motion.div>
           </div>
@@ -214,7 +214,7 @@ export default function Contact({ wordpressData }: any) {
                     })()}
                   </h2>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    {acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist."}
+                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist.")}
                   </p>
                 </div>
 
@@ -379,7 +379,7 @@ export default function Contact({ wordpressData }: any) {
                 )}
             </h3>
             <p className="text-white/40 text-sm mt-2">
-                {acfGlobalGroup?.gpSubtitle || "Serving clients across 5+ countries through our specialized delivery centers."}
+                {formatQuotesToBold(acfGlobalGroup?.gpSubtitle || "Serving clients across 5+ countries through our specialized delivery centers.")}
             </p>
           </div>
 

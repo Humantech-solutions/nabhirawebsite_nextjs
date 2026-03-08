@@ -1,6 +1,7 @@
 "use client";
 
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { formatQuotesToBold } from "../lib/utils";
 const sundarImg = "/assets/logo2.png";
 
 interface BigThinkersProps {
@@ -38,7 +39,7 @@ export function BigThinkers({ data }: BigThinkersProps) {
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extralight leading-tight mb-4 max-w-xl mx-auto md:mx-0">
-            {content}
+            {formatQuotesToBold(content)}
           </h2>
           <div className="text-[#f99d1c] text-lg md:text-xl font-light italic mb-8 md:mb-10">
             — {author}

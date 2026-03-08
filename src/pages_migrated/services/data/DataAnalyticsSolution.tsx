@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import { ArrowRight, BarChart3, Layers, Brain, Cog, Rocket, Shield, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, PieChart, Activity, LineChart, Database, Search } from "lucide-react";
 
 export default function DataAnalyticsSolution({ wordpressData }: { wordpressData?: any }) {
@@ -143,9 +143,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              {heroData?.heroS1Desc || (
-                <>Converting data into foresight through <span className="text-white font-medium">decision intelligence</span> that drives measurable business outcomes.</>
-              )}
+              {formatQuotesToBold(heroData?.heroS1Desc || "Converting data into foresight through ^decision intelligence^ that drives measurable business outcomes.") as any}
             </p>
 
 
@@ -169,13 +167,12 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">Data Analytics</h2>
+              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">{formatQuotesToBold("Data 'Analytics'")}</h2>
               <p className="text-[#11253e] text-xl md:text-2xl font-light leading-relaxed">
-                Transform Data into <span className="font-medium">Strategic</span>{" "}
-                <span className="text-[#f99d1c] font-medium">Business Advantage</span>
+                {formatQuotesToBold("Transform Data into Strategic \n^Business Advantage^")}
               </p>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                In a world defined by volatility and digital acceleration, competitive advantage belongs to organizations that convert data into foresight. Data Analytics is no longer a reporting function. It is a strategic capability that influences growth, operational resilience, capital allocation, risk mitigation and customer experience.
+                {formatQuotesToBold("In a world defined by volatility and digital acceleration, competitive advantage belongs to organizations that convert data into foresight. Data Analytics is no longer a reporting function. It is a strategic capability that influences growth, operational resilience, capital allocation, risk mitigation and customer experience.")}
               </p>
             </Motion.div>
 
@@ -188,11 +185,11 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
             >
               <div className="border-l-3 border-[#f99d1c] pl-6">
                 <p className="text-[#11253e] text-lg font-medium leading-relaxed italic">
-                  We help enterprises design and operationalize analytics ecosystems that deliver trusted insight at speed and scale. Our focus is not on dashboards alone — it is on decision intelligence that drives measurable business outcomes.
+                  {formatQuotesToBold("'We help enterprises design and operationalize analytics ecosystems that deliver trusted insight at speed and scale. Our focus is not on dashboards alone — it is on decision intelligence that drives measurable business outcomes.'")}
                 </p>
               </div>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Our Data Analytics Experts design, integrate, analyze and govern data ecosystems that are scalable, insight-driven and decision-ready.
+                  {formatQuotesToBold("Our Data Analytics Experts design, integrate, analyze and govern data ecosystems that are scalable, insight-driven and decision-ready.")}
                 </p>
               
               <div className="w-16 h-px bg-[#f99d1c]"></div>
@@ -221,10 +218,10 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">01</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Approach</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Strategy Led Analytics</h3>
+              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Strategy Led Analytics")}</h3>
               <p className="text-white/80 text-base font-light leading-relaxed max-w-2xl">
-                Analytics initiatives succeed when they are anchored in enterprise strategy. We begin at the leadership level by aligning analytics priorities with corporate objectives, market dynamics and regulatory requirements.
+                {formatQuotesToBold("Analytics initiatives succeed when they are anchored in enterprise strategy. We begin at the leadership level by aligning analytics priorities with corporate objectives, market dynamics and regulatory requirements.")}
               </p>
             </Motion.div>
           </div>
@@ -265,7 +262,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                   className="group flex items-center space-x-4"
                 >
                   <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                  <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{point.text}</span>
+                  <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{formatQuotesToBold(point.text)}</span>
                 </Motion.div>
               ))}
             </div>
@@ -280,7 +277,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
             <p className="text-white/80 text-lg font-light italic leading-relaxed">
-              We operate as a strategic partner, ensuring analytics becomes a board level capability rather than a siloed initiative.
+              {formatQuotesToBold("'We operate as a strategic partner, ensuring analytics becomes a board level capability rather than a siloed initiative.'")}
             </p>
           </Motion.div>
         </div>
@@ -303,10 +300,10 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">02</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Methodology</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Delivery. Sustainable Impact.</h3>
+              <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Structured Delivery. Sustainable Impact.")}</h3>
               <p className="text-[#11253e] text-base font-light leading-relaxed max-w-2xl">
-                We apply a rigorous and repeatable framework to transform analytics ambition into enterprise capability.
+                {formatQuotesToBold("We apply a rigorous and repeatable framework to transform analytics ambition into enterprise capability.")}
               </p>
             </Motion.div>
           </div>
@@ -332,14 +329,14 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-[#11253e] text-xl font-semibold mb-6 text-center">{step.title}</h4>
+                  <h4 className="text-[#11253e] text-xl font-semibold mb-6 text-center">{formatQuotesToBold(step.title)}</h4>
 
                   {/* Points */}
                   <div className="space-y-3">
                     {step.points.map((point, i) => (
                       <div key={i} className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c]/40 mt-1.5 shrink-0"></div>
-                        <span className="text-[#11253e] text-[15px] leading-relaxed">{point}</span>
+                        <span className="text-[#11253e] text-[15px] leading-relaxed">{formatQuotesToBold(point)}</span>
                       </div>
                     ))}
                   </div>
@@ -387,10 +384,10 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">03</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Tools & Ecosystem</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Enterprise Scale Technology Ecosystems</h3>
+              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Tools & 'Ecosystem'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Enterprise Scale Technology Ecosystems")}</h3>
               <p className="text-white/80 text-base font-light leading-relaxed max-w-2xl">
-                We architect secure high performance analytics platforms leveraging global cloud ecosystems including Amazon Web Services, Microsoft Azure and Google Cloud.
+                {formatQuotesToBold("We architect secure high performance analytics platforms leveraging global cloud ecosystems including ^Amazon Web Services, Microsoft Azure and Google Cloud.^")}
               </p>
             </Motion.div>
           </div>
@@ -412,7 +409,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                     <div className="text-[#f99d1c]">{tool.icon}</div>
                   </div>
                   <div>
-                    <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{tool.text}</span>
+                    <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{formatQuotesToBold(tool.text)}</span>
                   </div>
                 </div>
               </Motion.div>
@@ -427,7 +424,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
               className="bg-[#f99d1c]/10 p-8 flex items-center"
             >
               <p className="text-white/40 text-[13px] font-light italic leading-relaxed">
-                Technology is selected based on strategic fit, scalability and long term value rather than short term convenience.
+                {formatQuotesToBold("'Technology is selected based on strategic fit, scalability and long term value rather than short term convenience.'")}
               </p>
             </Motion.div>
           </div>
@@ -478,7 +475,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
                   <div className="w-9 h-9 bg-[#f99d1c]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[#f99d1c]/20 transition-colors">
                     <div className="text-[#f99d1c]">{item.icon}</div>
                   </div>
-                  <span className="text-[#11253e] text-[15px] font-light leading-relaxed">{item.text}</span>
+                  <span className="text-[#11253e] text-[15px] font-light leading-relaxed">{formatQuotesToBold(item.text)}</span>
                 </Motion.div>
               ))}
             </div>
@@ -494,7 +491,7 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
               <div className="relative z-10 flex items-start space-x-4">
                 <Lightbulb className="text-[#f99d1c] shrink-0 mt-1" size={24} />
                 <p className="text-white/80 text-lg font-light leading-relaxed italic">
-                  Most importantly, we enable organizations to elevate analytics from operational reporting to a strategic engine that shapes long term enterprise performance.
+                  {formatQuotesToBold("'Most importantly, we enable organizations to elevate analytics from operational reporting to a strategic engine that shapes long term enterprise performance.'")}
                 </p>
               </div>
             </Motion.div>
@@ -521,11 +518,10 @@ export default function DataAnalyticsSolution({ wordpressData }: { wordpressData
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Ready to Unlock Your <br />
-                  <span className="text-[#f99d1c]">Data Potential?</span>
+                  {formatQuotesToBold("Ready to Unlock Your \n^Data Potential?^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Engage our Data Analytics Experts to evaluate your current capabilities and design a roadmap for enterprise-grade decision intelligence.
+                  {formatQuotesToBold("Engage our Data Analytics Experts to evaluate your current capabilities and design a roadmap for enterprise-grade decision intelligence.")}
                 </p>
               </div>
               <button

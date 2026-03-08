@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import aiServerImg from "../../assets/ai.png";
 import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
@@ -76,9 +76,7 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
               </h1>
               
               <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                {heroData?.heroS1Desc || (
-                  <>Navigating the complex landscape of <span className="text-white font-medium">Artificial Intelligence</span> to drive business transformation and operational excellence.</>
-                )}
+                {formatQuotesToBold(heroData?.heroS1Desc || "Navigating the complex landscape of Artificial Intelligence to drive business transformation and operational excellence.")}
               </p>
 
               <div className="pt-4 md:pt-8 flex flex-wrap gap-4">
@@ -96,12 +94,12 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-24 items-center">
               <div className="space-y-8">
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">The AI-First Enterprise</h2>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("The AI-First Enterprise")}</h2>
                 <p className="text-[#11253e] text-lg leading-relaxed font-light">
-                  Moving beyond experimentation to industrial-scale implementation.
+                  {formatQuotesToBold("Moving beyond experimentation to industrial-scale implementation.")}
                 </p>
                 <p className="text-[#11253e] text-lg leading-relaxed font-light">
-                  We specialize in identifying high-impact use cases where machine learning and generative AI can deliver immediate value, while building a foundation for long-term innovation.
+                  {formatQuotesToBold("We specialize in identifying high-impact use cases where machine learning and generative AI can deliver immediate value, while building a foundation for long-term innovation.")}
                 </p>
                 <div className="flex flex-col space-y-4 pt-4">
                   {[
@@ -135,10 +133,10 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
         <section className="py-32 bg-[#eeede9]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight uppercase">Consulting Pillars</h2>
+              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight uppercase">{formatQuotesToBold("Consulting Pillars")}</h2>
               <div className="w-12 h-1 bg-[#f99d1c] mx-auto"></div>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                A comprehensive suite of services designed to take you from initial assessment to full-scale deployment.
+                {formatQuotesToBold("A comprehensive suite of services designed to take you from initial assessment to full-scale deployment.")}
               </p>
             </div>
 
@@ -153,9 +151,9 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
                   className="bg-white p-10 hover:shadow-xl transition-all group border border-transparent hover:border-[#f99d1c]/20"
                 >
                   <div className="mb-8">{item.icon}</div>
-                  <h3 className="text-[#11253e] text-lg font-bold mb-4 tracking-normal">{item.title}</h3>
+                  <h3 className="text-[#11253e] text-lg font-bold mb-4 tracking-normal">{formatQuotesToBold(item.title)}</h3>
                   <p className="text-[#11253e] text-sm font-light leading-relaxed">
-                    {item.desc}
+                    {formatQuotesToBold(item.desc)}
                   </p>
                 </Motion.div>
               ))}
@@ -181,10 +179,10 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
               className="max-w-4xl mx-auto space-y-12"
             >
               <h2 className="text-white text-4xl md:text-6xl font-medium tracking-tight leading-tight">
-                Accelerate Your <span className="text-[#f99d1c]">Intelligence.</span>
+                {renderHeroTitle("Accelerate Your |Intelligence|.")}
               </h2>
               <p className="text-white/50 text-xl font-light">
-                Our AI architects are ready to help you define and execute your next breakthrough.
+                {formatQuotesToBold("Our AI architects are ready to help you define and execute your next breakthrough.")}
               </p>
               <div className="flex flex-wrap justify-center gap-6">
                 <button className="bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-xs tracking-widest shadow-xl">

@@ -2,33 +2,26 @@ import React from 'react';
 import * as LucideIcons from 'lucide-react';
 import { Zap } from 'lucide-react';
 
-export const renderHeroTitle = (title: string | React.ReactNode) => {
+export const renderHeroTitle = (title: string | React.ReactNode, baseColor: string = "text-white") => {
   if (typeof title !== 'string') return title;
   
-  // Unified parser for |, \\, \n, and ^
-  // Rules:
-  // 1. |, \\, \n cause a line break (<br />)
-  // 2. | and ^ toggle the accent color (orange)
-  // 3. \\ and \n maintain the current color but still break the line
-  // 4. ^ toggles the accent color WITHOUT breaking the line
-  
-  // Use regex to split by any of the separators while keeping them in the result
-  const parts = title.split(/(\||\n|\\\\|\^)/);
+  // Unified parser for |, \\, \n, literal \n, and ^
+  // We use a more flexible regex for \n transitions to handle potential spaces
+  const parts = title.split(/(\||\n|\\\\|\\n|\^)/);
   
   let isAccent = false;
   const renderedContent: React.ReactNode[] = [];
-  
   let currentText = "";
   
   for (let i = 0; i < parts.length; i++) {
     const part = parts[i];
     
+    // Check if part is a separator
     if (part === '|') {
-      // Toggle accent and force break
-      if (currentText.trim()) {
+      if (currentText) {
         renderedContent.push(
-          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : "text-white"}>
-            {currentText}
+          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
+            {formatQuotesToBold(currentText)}
           </span>
         );
       }
@@ -36,22 +29,20 @@ export const renderHeroTitle = (title: string | React.ReactNode) => {
       isAccent = !isAccent;
       currentText = "";
     } else if (part === '^') {
-      // Toggle accent WITHOUT break
-      if (currentText.trim()) {
+      if (currentText) {
         renderedContent.push(
-          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : "text-white"}>
-            {currentText}
+          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
+            {formatQuotesToBold(currentText)}
           </span>
         );
       }
       isAccent = !isAccent;
       currentText = "";
-    } else if (part === '\\\\' || part === '\n') {
-      // Maintain accent and force break
-      if (currentText.trim()) {
+    } else if (part === '\\\\' || part === '\n' || part === '\\n') {
+      if (currentText) {
         renderedContent.push(
-          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : "text-white"}>
-            {currentText}
+          <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
+            {formatQuotesToBold(currentText)}
           </span>
         );
       }
@@ -62,18 +53,16 @@ export const renderHeroTitle = (title: string | React.ReactNode) => {
     }
   }
   
-  // Push remaining text
-  if (currentText.trim()) {
+  if (currentText) {
     renderedContent.push(
-      <span key="text-final" className={isAccent ? "text-[#f99d1c]" : "text-white"}>
-        {currentText}
+      <span key="text-final" className={isAccent ? "text-[#f99d1c]" : baseColor}>
+        {formatQuotesToBold(currentText)}
       </span>
     );
   }
 
-  // If no separators were found, fallback to dangerouslySetInnerHTML for backwards compatibility with raw HTML
   if (renderedContent.length === 0) {
-    return <span dangerouslySetInnerHTML={{ __html: title }} />;
+    return formatQuotesToBold(title);
   }
 
   return <>{renderedContent}</>;
@@ -95,6 +84,15 @@ export const renderDynamicIcon = (iconType: string, lucideName: string, imageObj
 
 export const formatQuotesToBold = (text: string) => {
   if (!text) return text;
-  const parts = text.split(/"(.*?)"/g);
-  return parts.map((part, i) => i % 2 === 1 ? <span key={i} className="font-bold">{part}</span> : part);
+  // Support straight quotes, smart quotes, and single quotes
+  // We split by quotes but now REMOVE them when bolding
+  const parts = text.split(/(["“'‘].*?["”'’])/g);
+  return parts.map((part, i) => {
+    if (i % 2 === 1) {
+      // Remove first and last characters (the quotes)
+      const content = part.slice(1, -1);
+      return <span key={i} className="font-bold">{content}</span>;
+    }
+    return part;
+  });
 };

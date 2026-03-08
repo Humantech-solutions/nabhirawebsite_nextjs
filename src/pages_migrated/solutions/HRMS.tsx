@@ -6,7 +6,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Users, Banknote, CalendarCheck, Briefcase, Heart, UserPlus, ArrowRight, CheckCircle2, BarChart3, ShieldCheck, Globe, Zap } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function HRMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {heroData?.heroS1Desc || "Go beyond simple payroll. Nabhira’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance."}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Go beyond simple payroll. Nabhira’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -66,9 +66,9 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                       <div className="space-y-8">
                         <div className="w-12 h-1 bg-[#f99d1c]"></div>
                         <div className="space-y-4">
-                          <h3 className="text-white text-3xl font-bold tracking-tight">Global Payroll, <br />Simplified.</h3>
+                          <h3 className="text-white text-3xl font-bold tracking-tight">{formatQuotesToBold("Global Payroll, \nSimplified.")}</h3>
                           <p className="text-white/30 text-sm font-light leading-relaxed">
-                            Automated tax calculations, multi-country compliance, and seamless bank integration in over 120 jurisdictions.
+                            {formatQuotesToBold("Automated tax calculations, multi-country compliance, and seamless bank integration in over 120 jurisdictions.")}
                           </p>
                         </div>
                         <div className="grid grid-cols-2 gap-8 pt-12">
@@ -94,10 +94,10 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
         <section className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
-              <h2 className="text-[#11253e] text-4xl font-bold tracking-tight uppercase">Strategic Pillars</h2>
+              <h2 className="text-[#11253e] text-4xl font-bold tracking-tight uppercase">{formatQuotesToBold("Strategic Pillars")}</h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto"></div>
               <p className="text-[#11253e] text-lg font-light">
-                A modular ecosystem built to support every stage
+                {formatQuotesToBold("A modular ecosystem built to support every stage")}
               </p>
             </div>
 
@@ -139,8 +139,8 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                     {item.icon}
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-[#11253e] text-lg font-bold tracking-tight uppercase">{item.title}</h3>
-                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{item.desc}</p>
+                    <h3 className="text-[#11253e] text-lg font-bold tracking-tight uppercase">{formatQuotesToBold(item.title)}</h3>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{formatQuotesToBold(item.desc)}</p>
                   </div>
                 </div>
               ))}
@@ -163,22 +163,22 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                     <div className="flex gap-6 items-start">
                       <Zap className="text-[#f99d1c] shrink-0" size={24} />
                       <div className="space-y-2">
-                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">Predictive Retention</h4>
-                        <p className="text-white/40 text-sm font-light leading-relaxed">Early warning system identifies flight risks by analyzing engagement patterns and performance data.</p>
+                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">{formatQuotesToBold("Predictive Retention")}</h4>
+                        <p className="text-white/40 text-sm font-light leading-relaxed">{formatQuotesToBold("Early warning system identifies flight risks by analyzing engagement patterns and performance data.")}</p>
                       </div>
                     </div>
                     <div className="flex gap-6 items-start">
                       <Users className="text-[#f99d1c] shrink-0" size={24} />
                       <div className="space-y-2">
-                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">Skill Mesh Analysis</h4>
-                        <p className="text-white/40 text-sm font-light leading-relaxed">Automatically maps organizational skill gaps and suggests personalized learning pathways.</p>
+                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">{formatQuotesToBold("Skill Mesh Analysis")}</h4>
+                        <p className="text-white/40 text-sm font-light leading-relaxed">{formatQuotesToBold("Automatically maps organizational skill gaps and suggests personalized learning pathways.")}</p>
                       </div>
                     </div>
                     <div className="flex gap-6 items-start">
                       <BarChart3 className="text-[#f99d1c] shrink-0" size={24} />
                       <div className="space-y-2">
-                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">Bias-Free Calibration</h4>
-                        <p className="text-white/40 text-sm font-light leading-relaxed">AI-driven performance reviews that normalize ratings and flag potential conscious or unconscious biases.</p>
+                        <h4 className="text-white text-lg font-bold uppercase tracking-widest">{formatQuotesToBold("Bias-Free Calibration")}</h4>
+                        <p className="text-white/40 text-sm font-light leading-relaxed">{formatQuotesToBold("AI-driven performance reviews that normalize ratings and flag potential conscious or unconscious biases.")}</p>
                       </div>
                     </div>
                   </div>
@@ -187,12 +187,11 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
               
               <div className="order-1 lg:order-2 space-y-8">
                 <h2 className="text-white text-4xl lg:text-5xl font-bold tracking-tight uppercase leading-tight">
-                  Intelligent <br />
-                  <span className="text-[#f99d1c]">Workforce</span> Insights
+                  {renderHeroTitle("Intelligent \n|Workforce| Insights")}
                 </h2>
                 <div className="w-16 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/60 text-lg font-light leading-relaxed">
-                  We don't just store employee data; we turn it into a competitive advantage. Our Agentic AI layers proactively suggest optimizations for team structures and leadership succession.
+                  {formatQuotesToBold("We don't just store employee data; we turn it into a competitive advantage. Our Agentic AI layers proactively suggest optimizations for team structures and leadership succession.")}
                 </p>
                 <div className="pt-4">
                   <button className="text-[#f99d1c] text-[12px] font-bold uppercase tracking-[0.3em] flex items-center gap-4 group">
@@ -217,9 +216,9 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
               </div>
               <div className="space-y-12">
                 <div className="space-y-6">
-                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">The Future of <br />Employee Experience</h2>
+                  <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">{formatQuotesToBold("The Future of \nEmployee Experience")}</h2>
                   <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                    Employee self-service portals with integrated AI chatbots ensure your workforce gets answers instantly, freeing HR from administrative overhead.
+                    {formatQuotesToBold("Employee self-service portals with integrated AI chatbots ensure your workforce gets answers instantly, freeing HR from administrative overhead.")}
                   </p>
                 </div>
                 
@@ -273,9 +272,9 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
         {/* HRMS CTA */}
         <section className="py-32 bg-[#11253e] text-center">
           <div className="max-w-4xl mx-auto px-6 space-y-12">
-            <h2 className="text-white text-4xl lg:text-6xl font-bold tracking-tighter uppercase">Empower Your People.</h2>
+            <h2 className="text-white text-4xl lg:text-6xl font-bold tracking-tighter uppercase">{formatQuotesToBold("Empower Your People.")}</h2>
             <p className="text-white/40 text-xl font-light">
-              Transform your HR from a cost center to a strategic powerhouse.
+              {formatQuotesToBold("Transform your HR from a cost center to a strategic powerhouse.")}
             </p>
             <div className="pt-8 flex flex-wrap justify-center gap-8">
               <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">

@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import automationHeroImg from "../../assets/ai.png";
 import {
   ArrowRight,
@@ -177,9 +177,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              {heroData?.heroS1Desc || (
-                <>Elevating operational efficiency through <span className="text-white font-medium">Cognitive Workflows</span> and hyper-scale automation frameworks.</>
-              )}
+              {formatQuotesToBold(heroData?.heroS1Desc || "Elevating operational efficiency through Cognitive Workflows and hyper-scale automation frameworks.")}
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">
@@ -203,15 +201,14 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
             className="space-y-8"
           >
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light leading-snug">
-              Intelligent Automation <br />
-              <span className="font-semibold text-[#f99d1c]">Transforming Operations Through Intelligent Execution</span>
+              {renderHeroTitle("Intelligent Automation \n|Transforming Operations Through Intelligent Execution|")}
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
             <p className="text-[#11253e] text-lg leading-relaxed max-w-3xl mx-auto">
-              Efficiency is no longer achieved through cost reduction alone.
+              {formatQuotesToBold("Efficiency is no longer achieved through cost reduction alone.")}
             </p>
             <p className="text-[#11253e] text-xl font-medium max-w-3xl mx-auto">
-              We help enterprises design, build and scale intelligent automation programs that deliver measurable outcomes across functions.
+              {formatQuotesToBold("We help enterprises design, build and scale intelligent automation programs that deliver measurable outcomes across functions.")}
             </p>
           </Motion.div>
         </div>
@@ -225,9 +222,9 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
           <div className="mb-16 md:flex md:items-end md:justify-between">
             <div className="max-w-2xl">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">01 Approach</span>
-              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">Automation with <br/><span className="text-white/50">Strategic Intent</span></h2>
+              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">{renderHeroTitle("Automation with \n|Strategic Intent|")}</h2>
               <p className="text-white/70 text-lg font-light max-w-xl">
-                Automation initiatives often fail when treated as isolated tools. Sustainable impact requires alignment with business priorities, governance frameworks and long term digital strategy.
+                {formatQuotesToBold("Automation initiatives often fail when treated as isolated tools. Sustainable impact requires alignment with business priorities, governance frameworks and long term digital strategy.")}
               </p>
             </div>
             <div className="hidden md:block">
@@ -248,9 +245,9 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
                 <div className="w-12 h-12 bg-[#f99d1c] rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   {point.icon}
                 </div>
-                <h3 className="text-white text-xl font-medium mb-3">{point.title}</h3>
+                <h3 className="text-white text-xl font-medium mb-3">{formatQuotesToBold(point.title)}</h3>
                 <p className="text-white/60 font-light leading-relaxed">
-                  {point.text}
+                  {formatQuotesToBold(point.text)}
                 </p>
               </Motion.div>
             ))}
@@ -267,9 +264,9 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-20">
              <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">02 Methodology</span>
-             <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">Structured Automation Lifecycle</h2>
+             <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight mb-6">{formatQuotesToBold("Structured Automation Lifecycle")}</h2>
              <p className="text-[#11253e] text-lg font-light">
-               We apply a disciplined methodology to ensure automation initiatives
+               {formatQuotesToBold("We apply a disciplined methodology to ensure automation initiatives")}
              </p>
           </div>
 
@@ -296,7 +293,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
                      {step.points.map((pt, i) => (
                        <li key={i} className="flex items-start gap-3 text-[#11253e] text-sm leading-relaxed">
                          <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full mt-1.5 shrink-0"></div>
-                         <span>{pt}</span>
+                         <span>{formatQuotesToBold(pt)}</span>
                        </li>
                      ))}
                    </ul>
@@ -317,9 +314,9 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
                viewport={{ once: true }}
              >
                 <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">03 Tools</span>
-                <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">Enterprise Automation <br/>Ecosystem</h2>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-8">{renderHeroTitle("Enterprise Automation \nEcosystem")}</h2>
                 <p className="text-white/60 text-lg font-light mb-8">
-                  We design Intelligent Automation solutions leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
+                  {formatQuotesToBold("We design Intelligent Automation solutions leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.")}
                 </p>
                 <div className="p-6 bg-white/[0.05] border border-white/10 rounded-sm">
                   <p className="italic text-white/80 font-light">
@@ -357,7 +354,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
         <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-16">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">04 Value Proposition</span>
-              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">Measurable Efficiency <br/> Sustainable Advantage</h2>
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">{renderHeroTitle("Measurable Efficiency \n|Sustainable Advantage|")}</h2>
            </div>
 
            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -373,7 +370,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
                   <div className="w-6 h-6 mt-1 bg-[#f99d1c] rounded-full flex items-center justify-center shrink-0">
                     <Check size={14} className="text-white" strokeWidth={3} />
                   </div>
-                  <p className="text-[#11253e] font-medium leading-relaxed">{prop}</p>
+                  <p className="text-[#11253e] font-medium leading-relaxed">{formatQuotesToBold(prop)}</p>
                 </Motion.div>
               ))}
            </div>
@@ -381,7 +378,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
            <div className="mt-20 bg-[#11253e] rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
              <p className="text-white text-xl md:text-2xl font-light leading-relaxed relative z-10 max-w-4xl mx-auto">
-              Our Intelligent automation services help your business become more resilient, move faster, and stay ahead of the competition.
+              {formatQuotesToBold("Our Intelligent automation services help your business become more resilient, move faster, and stay ahead of the competition.")}
              </p>
            </div>
         </div>
@@ -405,11 +402,10 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Ready to engineer  <br />
-                  <span className="text-[#f99d1c]">intelligence?</span>
+                  {renderHeroTitle("Ready to engineer \n|intelligence|?")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Introduce autonomy with control.
+                  {formatQuotesToBold("Introduce autonomy with control.")}
                 </p>
               </div>
               <button

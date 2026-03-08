@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle, renderDynamicIcon } from "../../lib/utils";
+import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../lib/utils";
 import { Linkedin, Mail, ChevronRight } from "lucide-react";
 
 export default function Leadership({ wordpressData }: { wordpressData?: any }) {
@@ -190,7 +190,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {heroData?.heroS1Desc || "Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world's most ambitious enterprises."}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Guided by a commitment to excellence and architectural integrity, our leadership team orchestrates digital evolution for the world's most ambitious enterprises.")}
                 </p>
               </div>
             </Motion.div>
@@ -233,7 +233,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
                     </div>
                     <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">{leader.name}</h3>
                     <p className="text-[#11253e] font-light text-sm leading-relaxed">
-                      {leader.bio}
+                      {formatQuotesToBold(leader.bio)}
                     </p>
                   </div>
                 </Motion.div>
@@ -246,13 +246,11 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
         <section className="py-24 bg-[#f8f9fa] border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center">
             <h2 className="text-[#11253e] text-3xl font-light mb-12 tracking-tight">
-              {lp?.advisorsTitle || (
-                <>Governed by <span className="font-bold">Integrity</span></>
-              )}
+              {formatQuotesToBold(lp?.advisorsTitle || "Governed by Integrity")}
             </h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-[#11253e] font-light leading-relaxed">
-                {lp?.advisorsDescription || "Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation."}
+                {formatQuotesToBold(lp?.advisorsDescription || "Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.")}
               </p>
             </div>
           </div>
