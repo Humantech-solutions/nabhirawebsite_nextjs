@@ -5,12 +5,13 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { Award, Trophy, Star, Medal } from "lucide-react";
-import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
+import { Award, Trophy, Star, Medal, Zap } from "lucide-react";
+import { renderHeroTitle, formatQuotesToBold, renderDynamicIcon } from "../../lib/utils";
 
 export default function Awards({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
+  const fields = wordpressData?.awardsPageFields;
 
 
   useEffect(() => {
@@ -18,30 +19,63 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
     window.scrollTo(0, 0);
   }, []);
 
-  const awards = [
+  const awards = fields?.award1Year ? [
+    {
+      year: fields.award1Year,
+      title: fields.award1Title,
+      org: fields.award1Org,
+      desc: fields.award1Desc,
+      icon: renderDynamicIcon(fields.award1IconType, fields.award1Lucide, fields.award1Image, 24)
+    },
+    {
+      year: fields.award2Year,
+      title: fields.award2Title,
+      org: fields.award2Org,
+      desc: fields.award2Desc,
+      icon: renderDynamicIcon(fields.award2IconType, fields.award2Lucide, fields.award2Image, 24)
+    },
+    {
+      year: fields.award3Year,
+      title: fields.award3Title,
+      org: fields.award3Org,
+      desc: fields.award3Desc,
+      icon: renderDynamicIcon(fields.award3IconType, fields.award3Lucide, fields.award3Image, 24)
+    },
+    {
+      year: fields.award4Year,
+      title: fields.award4Title,
+      org: fields.award4Org,
+      desc: fields.award4Desc,
+      icon: renderDynamicIcon(fields.award4IconType, fields.award4Lucide, fields.award4Image, 24)
+    }
+  ].filter(a => a.year) : [
     {
       year: "2025",
       title: "Global AI Innovator of the Year",
       org: "Tech Leadership Summit",
-      desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises."
+      desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
+      icon: <Trophy size={24} />
     },
     {
       year: "2024",
       title: "Cloud Transformation Partner",
       org: "Enterprise Global Cloud Council",
-      desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures."
+      desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures.",
+      icon: <Award size={24} />
     },
     {
       year: "2024",
       title: "Top 50 Most Innovative Firms",
       org: "Digital Innovation Review",
-      desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting."
+      desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting.",
+      icon: <Star size={24} />
     },
     {
       year: "2023",
       title: "Sustainability Architecture Award",
       org: "Green Tech Collective",
-      desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts."
+      desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts.",
+      icon: <Medal size={24} />
     }
   ];
 
@@ -85,7 +119,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {formatQuotesToBold(heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.")}
+                  {renderHeroTitle(heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.")}
                 </p>
               </div>
             </Motion.div>
@@ -97,7 +131,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                {formatQuotesToBold("A Journey of Distinction")}
+                {renderHeroTitle(fields?.awardTimelineTitle || "A Journey of Distinction", "text-[#11253e]")}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
             </div>
@@ -120,14 +154,16 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
                       <div className="w-8 h-[1px] bg-[#f99d1c]"></div>
                       <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{award.org}</span>
                     </div>
-                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">{formatQuotesToBold(award.title)}</h3>
+                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">
+                      {renderHeroTitle(award.title, "text-[#11253e]")}
+                    </h3>
                     <p className="text-[#11253e] font-light text-sm leading-relaxed max-w-2xl">
-                      {formatQuotesToBold(award.desc)}
+                      {renderHeroTitle(award.desc, "text-[#11253e]")}
                     </p>
                   </div>
                   <div className="md:col-span-3 flex justify-end">
                     <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-[#f99d1c] border border-gray-100">
-                      {i % 4 === 0 ? <Trophy size={24} /> : i % 4 === 1 ? <Award size={24} /> : i % 4 === 2 ? <Star size={24} /> : <Medal size={24} />}
+                      {award.icon}
                     </div>
                   </div>
                 </Motion.div>
@@ -140,11 +176,11 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
         <section className="py-24 bg-[#11253e] text-white overflow-hidden relative">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center relative z-10">
             <h2 className="text-3xl font-light mb-12 tracking-tight">
-              {formatQuotesToBold("Impact Beyond Awards")}
+              {renderHeroTitle(fields?.impactTitle || "Impact Beyond Awards")}
             </h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-white/80 font-light leading-relaxed mb-12">
-                {formatQuotesToBold("While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.")}
+                {renderHeroTitle(fields?.impactDesc || "While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.")}
               </p>
             </div>
           </div>
@@ -153,7 +189,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           </div>
         </section>
 
-        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
+        <LimitlessTogether data={gs?.limitlessTogether} />
     </>
   );
 }

@@ -630,6 +630,44 @@ export const CLIENTS_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const AWARDS_PAGE_FIELDS_FRAGMENT = `
+  fragment AwardsPageFields on Page {
+    awardsPageFields {
+      awardTimelineTitle
+      award1Year
+      award1Org
+      award1Title
+      award1Desc
+      award1IconType
+      award1Lucide
+      award1Image { node { sourceUrl mediaItemUrl } }
+      award2Year
+      award2Org
+      award2Title
+      award2Desc
+      award2IconType
+      award2Lucide
+      award2Image { node { sourceUrl mediaItemUrl } }
+      award3Year
+      award3Org
+      award3Title
+      award3Desc
+      award3IconType
+      award3Lucide
+      award3Image { node { sourceUrl mediaItemUrl } }
+      award4Year
+      award4Org
+      award4Title
+      award4Desc
+      award4IconType
+      award4Lucide
+      award4Image { node { sourceUrl mediaItemUrl } }
+      impactTitle
+      impactDesc
+    }
+  }
+`;
+
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
   const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
@@ -643,6 +681,7 @@ export async function getPageBySlug(slug: string) {
     ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
     ${PARTNERS_PAGE_FIELDS_FRAGMENT}
     ${CLIENTS_PAGE_FIELDS_FRAGMENT}
+    ${AWARDS_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -659,6 +698,7 @@ export async function getPageBySlug(slug: string) {
         ...LeadershipPageFields
         ...PartnersPageFields
         ...ClientsPageFields
+        ...AwardsPageFields
       }
     }
 
