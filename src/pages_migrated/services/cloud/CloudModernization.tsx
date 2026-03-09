@@ -80,7 +80,9 @@ export default function CloudModernization({ wordpressData }: { wordpressData?: 
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Evolve Your <span className="text-[#f99d1c]">Core Architecture.</span></>)}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Evolve Your <br /><span className="text-[#f99d1c]">Core Architecture.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "Dismantle legacy monoliths and build the agile, cloud-native foundation your future demands. 'Modernization' is not just an update, it is a ^strategic business evolution.^") as any}
         subtitle="Cloud Modernization"
         category="Cloud Modernization"

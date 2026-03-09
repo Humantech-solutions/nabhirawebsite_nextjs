@@ -62,7 +62,7 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
         title={renderHeroTitle(heroData?.heroS1Title || (
           <>
             Turn Data into <br />
-            <span className="text-white/40 font-light italic">Strategic Capital.</span>
+            <span className="text-[#f99d1c]">Strategic Capital.</span>
           </>
         ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "From foundation to foresight, we build the architectures that empower data-driven enterprises. Our solutions turn raw complexity into clear ^competitive advantage.^") as any}

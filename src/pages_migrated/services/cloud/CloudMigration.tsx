@@ -79,7 +79,9 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Seamless <span className="text-[#f99d1c]">Transition.</span></>)}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Seamless <br /><span className="text-[#f99d1c]">Transition.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "Move your mission-critical workloads to the cloud with surgical precision. Our automated migration pipelines minimize risk and maximize ROI from day one.") as any}
         subtitle="Cloud Migration"
         category="Cloud Migration"

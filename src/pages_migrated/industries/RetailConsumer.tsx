@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 
 export default function RetailConsumer({ wordpressData }: any) {
+  const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
     document.title = "Retail & Consumer Goods | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -80,7 +81,11 @@ export default function RetailConsumer({ wordpressData }: any) {
               <span className="text-[#f99d1c] uppercase tracking-widest">Retail & Consumer Goods</span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle("Retail & \n'Consumer Goods'")}
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  Retail & <br /><span className="text-[#f99d1c]">Consumer Goods</span>
+                </>
+              ))}
             </h1>
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
               {formatQuotesToBold(wordpressData?.heroS1Desc || "Enabling Intelligent Commerce in a Digital First World.")}

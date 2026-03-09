@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 export default function HealthcarePharma({ wordpressData }: any) {
+  const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
     document.title = "Healthcare & Pharma | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -63,8 +64,12 @@ export default function HealthcarePharma({ wordpressData }: any) {
               <span className="text-white/30 font-light">&gt;</span>
               <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Life Sciences</span>
             </nav>
-            <h1 className="text-white/80 text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Healthcare & <br /><span className="text-white/80">Life Sciences</span>
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  Healthcare & <br /><span className="text-[#f99d1c]">Life Sciences</span>
+                </>
+              ))}
             </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                 {formatQuotesToBold(wordpressData?.heroS1Desc || "Empowering the future of healthcare through intelligent platforms and secure data foundations.")}
