@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShieldAlert, Fingerprint, Lock, Activity, Layers, Code, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function PolicyEngineSolution() {
+export default function PolicyEngine({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Policy Engine System | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

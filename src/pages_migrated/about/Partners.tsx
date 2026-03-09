@@ -3,7 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/Footer";
+import { LimitlessTogether } from "../../components/LimitlessTogether";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
 
@@ -17,7 +17,6 @@ import erpnextLogo from "../../assets/dd535cd89e27dabcb4fee78b3ad285a386d91bee.p
 
 export default function Partners({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Partners Ecosystem | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

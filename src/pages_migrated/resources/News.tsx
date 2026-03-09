@@ -32,7 +32,6 @@ const newsItems = [
 
 export default function News({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "In the News | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -19,7 +19,7 @@ export function BigThinkers({ data }: BigThinkersProps) {
   const secTitle = data?.bSecTitle || "THE VISIONARY MINDS";
   const content = data?.bTitle || "AI is the most profound shift of our lifetimes, bigger than the move to personal computing or mobile";
   const author = data?.bAuthor || "Sundar Pichai (CEO, Google)";
-  const buttonText = data?.bBtnText || "READ MORE";
+  // const buttonText = data?.bBtnText || "READ MORE";
   const buttonUrl = data?.bBtnUrl || "#";
   const image = data?.bImageUrl || (data?.bImage as any)?.node?.sourceUrl || (data?.bImage as any)?.sourceUrl || sundarImg;
 
@@ -44,9 +44,9 @@ export function BigThinkers({ data }: BigThinkersProps) {
             — {author}
           </div>
           
-          <button className="bg-[#f99d1c] text-white px-8 md:px-10 py-4 text-[10px] md:text-xs font-black tracking-[0.2em] hover:bg-white hover:text-[#f99d1c] transition-all uppercase rounded-sm">
+          {/* <button className="bg-[#f99d1c] text-white px-8 md:px-10 py-4 text-[10px] md:text-xs font-black tracking-[0.2em] hover:bg-white hover:text-[#f99d1c] transition-all uppercase rounded-sm">
             {buttonText}
-          </button>
+          </button> */}
         </div>
         
         <div className="relative mt-8 md:mt-0">

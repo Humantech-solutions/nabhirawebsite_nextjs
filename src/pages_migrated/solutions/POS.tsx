@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShoppingCart, Zap, BarChart3, Users, ShieldCheck, Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function POSSolution() {
+export default function POS({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "AI-Powered Point of Sale | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

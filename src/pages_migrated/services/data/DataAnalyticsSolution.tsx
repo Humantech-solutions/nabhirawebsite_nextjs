@@ -8,7 +8,6 @@ import { ArrowRight, BarChart3, Layers, Brain, Cog, Rocket, Shield, Lightbulb, T
 
 export default function DataAnalyticsSolution({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Data Analytics Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

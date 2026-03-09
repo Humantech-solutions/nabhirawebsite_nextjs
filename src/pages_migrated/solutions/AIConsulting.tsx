@@ -8,9 +8,8 @@ import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import aiServerImg from "../../assets/ai.png";
 import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
-export default function AIConsulting() {
+export default function AIConsulting({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "AI Consulting | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -35,7 +35,6 @@ const cases = [
 
 export default function CaseStudies({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Case Studies | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

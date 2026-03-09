@@ -8,7 +8,6 @@ import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitB
 
 export default function DataGovernance({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Data Governance & Quality | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

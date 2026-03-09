@@ -10,11 +10,12 @@ import { Industries } from "../components/Industries";
 import { WithNabhira } from "../components/WithNabhira";
 import { SuccessStories } from "../components/SuccessStories";
 import { Clients } from "../components/Clients";
-import { LimitlessTogether, Footer } from "../components/Footer";
+import { Footer } from "../components/Footer";
+import { LimitlessTogether } from "../components/LimitlessTogether";
 
 export default function Home({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Nabhira Technologies | Digital Transformation & AI Solutions";
+    window.scrollTo(0, 0);
   }, []);
 
   return (

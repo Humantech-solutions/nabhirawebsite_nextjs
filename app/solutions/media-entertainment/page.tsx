@@ -1,4 +1,3 @@
-"use client";
 
 import MediaEntertainment from "@/src/pages_migrated/industries/MediaEntertainment";
 

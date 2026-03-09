@@ -21,7 +21,6 @@ import {
 
 export default function CloudMigration({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Migration Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

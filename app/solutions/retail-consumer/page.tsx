@@ -1,4 +1,3 @@
-"use client";
 
 import RetailConsumer from "@/src/pages_migrated/industries/RetailConsumer";
 

@@ -3,13 +3,12 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/Footer";
+import { LimitlessTogether } from "../../components/LimitlessTogether";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Trophy, Star, Medal } from "lucide-react";
 
 export default function Awards({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Awards & Recognition | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

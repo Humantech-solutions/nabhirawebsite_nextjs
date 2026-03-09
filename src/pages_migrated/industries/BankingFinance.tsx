@@ -25,7 +25,6 @@ import {
 
 export default function BankingFinance({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Banking & Financial Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

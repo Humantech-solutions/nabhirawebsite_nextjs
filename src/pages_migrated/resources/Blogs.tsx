@@ -47,7 +47,6 @@ const blogPosts = [
 
 export default function Blogs({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Insights & Perspectives | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

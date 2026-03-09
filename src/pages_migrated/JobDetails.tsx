@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
-import { Footer, LimitlessTogether } from "../components/Footer";
+import { Footer } from "../components/Footer";
+import { LimitlessTogether } from "../components/LimitlessTogether";
 import { MapPin, Briefcase, Clock, ChevronLeft, Upload, Send } from "lucide-react";
 import { jobs } from "../data/migrated_data";
 
@@ -18,9 +19,8 @@ export default function JobDetails() {
 
   useEffect(() => {
     if (job) {
-      document.title = `${job.title} | Nabhira Technologies Careers`;
+      window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
   }, [job]);
 
   if (!job) {

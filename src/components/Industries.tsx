@@ -199,8 +199,8 @@ export function Industries({ data }: IndustriesProps) {
                     <h3 className="text-[#11253e] text-[12px] md:text-[13px] font-medium uppercase tracking-normal leading-tight group-hover:text-[#f99d1c] transition-colors duration-300 max-w-[140px]">
                       {industry.title}
                     </h3>
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#f99d1c] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 shrink-0">
-                      <ChevronRight size={18} className="md:w-5 md:h-5" />
+                    <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-[#f99d1c] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 shrink-0">
+                      <ChevronRight size={10} className="md:w-4 md:h-4" />
                     </div>
                   </div>
                   

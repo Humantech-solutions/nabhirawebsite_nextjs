@@ -3,16 +3,15 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/Footer";
+import { LimitlessTogether } from "../../components/LimitlessTogether";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Target, Eye, ShieldCheck, Lightbulb, HeartHandshake, BookOpen, Award } from "lucide-react";
 import logo from '../../assets/logo.png';
 import storyImg from '../../assets/81ed9d35393b4048d395b1d256aa4c9d085a37b4.png';
 import Image from "next/image";
 
-export default function About({ wordpressData }: any) {
+export default function About({ wordpressData: _wordpressData }: { wordpressData?: unknown }) {
   useEffect(() => {
-    document.title = "About Nabhira Technologies | Digital Pioneer";
     window.scrollTo(0, 0);
   }, []);
 
@@ -90,7 +89,7 @@ export default function About({ wordpressData }: any) {
 
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 Architecting <br />
-                <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
+                <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
@@ -162,7 +161,7 @@ export default function About({ wordpressData }: any) {
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
+                      To be the foundational architecture upon which the world&apos;s most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
                     </p>
                   </div>
                 </div>

@@ -4,7 +4,8 @@ import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { ShoppingCart, GraduationCap, FileText, Server, Briefcase, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { LimitlessTogether, Footer } from "../components/Footer";
+import { Footer } from "../components/Footer";
+import { LimitlessTogether } from "../components/LimitlessTogether";
 
 interface SolutionsProps {
   wordpressData?: {

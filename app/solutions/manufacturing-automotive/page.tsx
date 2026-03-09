@@ -1,4 +1,3 @@
-"use client";
 
 import ManufacturingAutomotive from "@/src/pages_migrated/ManufacturingAutomotive";
 

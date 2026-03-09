@@ -12,7 +12,6 @@ import {
 
 export default function ManufacturingAutomotive({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Manufacturing & Automotive | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

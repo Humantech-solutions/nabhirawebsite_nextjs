@@ -1,26 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "../src/styles/theme.css";
 import "../src/styles/fonts.css";
 import "../src/styles/tailwind.css";
 import { Navbar } from "../src/components/Navbar";
 import { Footer } from "../src/components/Footer";
+import { siteConfig } from "../src/config/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { constructMetadata, getOrganizationSchema, getWebsiteSchema } from "../src/lib/seo";
+import { Schema } from "../src/components/SEO/Schema";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Nabhira Technologies | Digital Transformation & AI Solutions",
-  description: "Digital Transformation & AI Solutions",
+export const viewport: Viewport = {
+  themeColor: "#11253e",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
+
+export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,
@@ -28,13 +25,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-white flex flex-col font-sans overflow-x-hidden antialiased`}
+        className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden antialiased"
       >
-        <Navbar />
-        <main className="flex-grow pt-[80px] md:pt-[80px]">{children}</main>
-        <Footer />
+        <Schema jsonLd={getOrganizationSchema()} />
+        <Schema jsonLd={getWebsiteSchema()} />
+        <header>
+          <Navbar />
+        </header>
+        <main id="main-content" className="flex-grow pt-[80px] md:pt-[80px]">
+          {children}
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );

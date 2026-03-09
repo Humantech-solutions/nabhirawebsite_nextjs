@@ -3,7 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "./Footer";
+import { LimitlessTogether } from "./LimitlessTogether";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Cloud, Database, Cpu, ChevronRight, ArrowRight } from "lucide-react";
 

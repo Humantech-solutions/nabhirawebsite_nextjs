@@ -38,7 +38,6 @@ const events = [
 
 export default function Events({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Events | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

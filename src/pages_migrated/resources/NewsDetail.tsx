@@ -58,7 +58,6 @@ export default function NewsDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (item) {
-      document.title = `${item.title} | Nabhira Press`;
       window.scrollTo(0, 0);
     }
   }, [item]);

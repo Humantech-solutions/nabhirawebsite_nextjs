@@ -1,4 +1,3 @@
-"use client";
 
 import HealthcarePharma from "@/src/pages_migrated/HealthcarePharma";
 

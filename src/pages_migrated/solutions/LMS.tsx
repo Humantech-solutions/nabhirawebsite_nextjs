@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { GraduationCap, BrainCircuit, BarChart, Laptop, Globe, UserCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function LMSSolution() {
+export default function LMS({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "AI-Powered LMS | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

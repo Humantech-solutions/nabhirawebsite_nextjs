@@ -26,7 +26,6 @@ import {
 
 export default function RetailConsumer({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Retail & Consumer Goods | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

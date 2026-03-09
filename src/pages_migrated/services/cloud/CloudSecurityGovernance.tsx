@@ -21,9 +21,8 @@ import {
   Layout
 } from "lucide-react";
 
-export default function CloudSecurityGovernance() {
+export default function CloudSecurityGovernance({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Security & Governance | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

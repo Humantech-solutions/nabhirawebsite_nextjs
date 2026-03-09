@@ -29,7 +29,6 @@ import {
 
 export default function AgenticAI({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Agentic AI | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

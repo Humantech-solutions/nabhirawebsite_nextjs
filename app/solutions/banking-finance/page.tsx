@@ -1,4 +1,3 @@
-"use client";
 
 import BankingFinance from "@/src/pages_migrated/industries/BankingFinance";
 

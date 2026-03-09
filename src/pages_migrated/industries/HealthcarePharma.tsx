@@ -13,7 +13,6 @@ import {
 
 export default function HealthcarePharma({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Healthcare & Pharma | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

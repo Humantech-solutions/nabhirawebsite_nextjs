@@ -6,8 +6,19 @@ import { Industries } from "../src/components/Industries";
 import { WithNabhira } from "../src/components/WithNabhira";
 import { SuccessStories } from "../src/components/SuccessStories";
 import { Clients } from "../src/components/Clients";
-import { LimitlessTogether } from "../src/components/Footer";
+import { LimitlessTogether } from "../src/components/LimitlessTogether";
 import { getHomePage } from "@/src/lib/wordpress";
+import { constructMetadata } from "@/src/lib/seo";
+import { Schema } from "@/src/components/SEO/Schema";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const homeData = await getHomePage();
+  return constructMetadata({
+    title: homeData?.title || "Digital Transformation & AI Consulting",
+    description: homeData?.homePageFields?.capabilities?.cDesc || "Global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI solutions.",
+  });
+}
 
 export default async function Home() {
   const homeData = await getHomePage();

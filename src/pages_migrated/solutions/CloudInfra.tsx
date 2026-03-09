@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Cloud, Server, BarChart3, ShieldCheck, Terminal, Database, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function CloudInfraSolution() {
+export default function CloudInfraSolution({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Infra Deployment & Monitoring | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

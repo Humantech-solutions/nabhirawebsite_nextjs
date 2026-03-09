@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ArrowRight, Box, Layout, ShieldCheck, Database, HardDrive, Share2 } from "lucide-react";
 
-export default function DataFoundation() {
+export default function DataFoundation({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Data Foundation & Storage | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

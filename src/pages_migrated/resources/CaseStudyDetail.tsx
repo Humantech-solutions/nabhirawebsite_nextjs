@@ -67,7 +67,6 @@ export default function CaseStudyDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (study) {
-      document.title = `${study.title} | Nabhira Case Studies`;
       window.scrollTo(0, 0);
     }
   }, [study]);

@@ -23,9 +23,8 @@ import {
   Target
 } from "lucide-react";
 
-export default function CloudFinancialManagement() {
+export default function CloudFinancialManagement({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Financial Management (FinOps) | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

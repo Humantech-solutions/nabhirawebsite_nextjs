@@ -22,7 +22,6 @@ import {
 
 export default function GovernmentPSU({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Government & PSUs | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

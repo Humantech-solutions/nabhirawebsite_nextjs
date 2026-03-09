@@ -23,7 +23,6 @@ import {
 
 export default function CloudNativeDevelopment({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Native Development | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

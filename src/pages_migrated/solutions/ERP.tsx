@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Briefcase, BarChart3, PieChart, Truck, Users2, Workflow, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function ERPSolution() {
+export default function ERP({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "WorkbookNow ERP | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

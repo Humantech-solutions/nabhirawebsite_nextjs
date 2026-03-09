@@ -18,7 +18,6 @@ import {
 
 export default function CloudAdvisory({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Advisory Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

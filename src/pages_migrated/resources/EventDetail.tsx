@@ -60,7 +60,6 @@ export default function EventDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (event) {
-      document.title = `${event.title} | Registration | Nabhira`;
       window.scrollTo(0, 0);
     }
   }, [event]);
@@ -85,7 +84,7 @@ export default function EventDetail({ wordpressData }: any) {
 
   return (
     <>
-      <main className="pt-20">
+      <main className="">
         {/* Header Section */}
         <section className="relative h-[400px] overflow-hidden">
           <div className="absolute inset-0">

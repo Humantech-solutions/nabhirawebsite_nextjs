@@ -5,7 +5,8 @@ import heroImg from "../assets/a9db745e4986b39cfe7910eba6620e5d7ea22e47.png";
 import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
-import { Footer, LimitlessTogether } from "../components/Footer";
+import { Footer } from "../components/Footer";
+import { LimitlessTogether } from "../components/LimitlessTogether";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { MapPin, Briefcase, Clock, ChevronRight, Search, GraduationCap, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen } from "lucide-react";
 import Link from "next/link";
@@ -63,7 +64,6 @@ export default function Careers({ wordpressData }: any) {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    document.title = "Careers | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

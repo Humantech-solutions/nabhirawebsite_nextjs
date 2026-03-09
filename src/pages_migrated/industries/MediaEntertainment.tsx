@@ -26,7 +26,6 @@ import {
 
 export default function MediaEntertainment({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

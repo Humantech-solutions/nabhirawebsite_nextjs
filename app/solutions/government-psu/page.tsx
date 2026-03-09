@@ -1,4 +1,3 @@
-"use client";
 
 import GovernmentPSU from "../../../src/pages_migrated/industries/GovernmentPSU";
 

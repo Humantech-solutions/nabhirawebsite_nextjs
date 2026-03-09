@@ -22,7 +22,6 @@ import {
 
 export default function CloudModernization({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Cloud Modernization Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

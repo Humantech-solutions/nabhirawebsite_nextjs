@@ -91,7 +91,6 @@ export default function BlogDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} | Nabhira Technologies`;
       window.scrollTo(0, 0);
     }
   }, [post]);

@@ -28,7 +28,6 @@ import {
 
 export default function AIEngineering({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "AI Engineering | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

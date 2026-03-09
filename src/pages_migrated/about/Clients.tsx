@@ -3,7 +3,7 @@
 import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/Footer";
+import { LimitlessTogether } from "../../components/LimitlessTogether";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote } from "lucide-react";
 
@@ -151,9 +151,8 @@ const industryStats = [
 ];
 
 /* ─── Component ────────────────────────────────────────────── */
-export default function Clients() {
+export default function Clients({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Our Clients | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -271,8 +270,8 @@ export default function Clients() {
       </section>
 
       {/* ── Industries We Serve ──────────────────────────────── */}
-      <section className="py-20 bg-[#f8f9fb] relative overflow-hidden">
-        {/* Subtle background pattern */}
+      {/* <section className="py-20 bg-[#f8f9fb] relative overflow-hidden">
+     
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: "radial-gradient(rgba(17,37,62,0.04) 1px, transparent 1px)",
           backgroundSize: "32px 32px"
@@ -297,13 +296,13 @@ export default function Clients() {
                 viewport={{ once: true }}
                 className="bg-white rounded-sm border border-gray-100 p-6 flex items-center gap-5 hover:shadow-lg transition-all duration-300 group"
               >
-                {/* Color bar */}
+             
                 <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{ background: ind.color }} />
                 <div className="flex-1">
                   <p className="text-[#11253e] font-bold text-sm tracking-tight">{ind.label}</p>
                   <p className="text-gray-400 text-[10px] font-bold tracking-[0.15em] uppercase mt-0.5">{ind.count} Clients</p>
                 </div>
-                {/* Bar */}
+               
                 <div className="flex-1 hidden sm:block">
                   <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
                     <Motion.div
@@ -320,7 +319,7 @@ export default function Clients() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── Testimonials ─────────────────────────────────────── */}
       <section className="py-24 bg-white">

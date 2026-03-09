@@ -19,7 +19,6 @@ export default function Contact({ wordpressData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact Us | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

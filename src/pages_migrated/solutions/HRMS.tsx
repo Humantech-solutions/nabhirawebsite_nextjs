@@ -7,9 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Users, Banknote, CalendarCheck, Briefcase, Heart, UserPlus, ArrowRight, CheckCircle2, BarChart3, ShieldCheck, Globe, Zap } from "lucide-react";
 
-export default function HRMSSolution() {
+export default function HRMS({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "HRMS & Payroll Solutions | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

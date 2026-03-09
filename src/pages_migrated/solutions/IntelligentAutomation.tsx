@@ -19,9 +19,8 @@ import {
   Check,
 } from "lucide-react";
 
-export default function IntelligentAutomation() {
+export default function IntelligentAutomation({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Intelligent Automation | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
