@@ -527,6 +527,109 @@ export const PARTNERS_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const CLIENTS_PAGE_FIELDS_FRAGMENT = `
+  fragment ClientsPageFields on Page {
+    clientsPageFields {
+      stat1Value
+      stat1Label
+      stat1IconType
+      stat1Lucide
+      stat1Image { node { sourceUrl mediaItemUrl } }
+      stat2Value
+      stat2Label
+      stat2IconType
+      stat2Lucide
+      stat2Image { node { sourceUrl mediaItemUrl } }
+      stat3Value
+      stat3Label
+      stat3IconType
+      stat3Lucide
+      stat3Image { node { sourceUrl mediaItemUrl } }
+      stat4Value
+      stat4Label
+      stat4IconType
+      stat4Lucide
+      stat4Image { node { sourceUrl mediaItemUrl } }
+      clientGridSubtitle
+      clientGridTitle
+      clientGridDesc
+      client1Logo { node { sourceUrl mediaItemUrl } }
+      client1Industry
+      client1HoverColor
+      client1Url
+      client2Logo { node { sourceUrl mediaItemUrl } }
+      client2Industry
+      client2HoverColor
+      client2Url
+      client3Logo { node { sourceUrl mediaItemUrl } }
+      client3Industry
+      client3HoverColor
+      client3Url
+      client4Logo { node { sourceUrl mediaItemUrl } }
+      client4Industry
+      client4HoverColor
+      client4Url
+      client5Logo { node { sourceUrl mediaItemUrl } }
+      client5Industry
+      client5HoverColor
+      client5Url
+      client6Logo { node { sourceUrl mediaItemUrl } }
+      client6Industry
+      client6HoverColor
+      client6Url
+      client7Logo { node { sourceUrl mediaItemUrl } }
+      client7Industry
+      client7HoverColor
+      client7Url
+      client8Logo { node { sourceUrl mediaItemUrl } }
+      client8Industry
+      client8HoverColor
+      client8Url
+      industrySubtitle
+      industryTitle
+      ind1Label
+      ind1Count
+      ind1Color
+      ind2Label
+      ind2Count
+      ind2Color
+      ind3Label
+      ind3Count
+      ind3Color
+      ind4Label
+      ind4Count
+      ind4Color
+      ind5Label
+      ind5Count
+      ind5Color
+      ind6Label
+      ind6Count
+      ind6Color
+      testimonialSubtitle
+      testimonialTitle
+      test1Quote
+      test1Author
+      test1Company
+      test1Color
+      test2Quote
+      test2Author
+      test2Company
+      test2Color
+      test3Quote
+      test3Author
+      test3Company
+      test3Color
+      ctaSubtitle
+      ctaTitle
+      ctaDesc
+      ctaBtn1Text
+      ctaBtn1Url
+      ctaBtn2Text
+      ctaBtn2Url
+    }
+  }
+`;
+
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
   const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
@@ -539,6 +642,7 @@ export async function getPageBySlug(slug: string) {
     ${ABOUT_PAGE_FIELDS_FRAGMENT}
     ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
     ${PARTNERS_PAGE_FIELDS_FRAGMENT}
+    ${CLIENTS_PAGE_FIELDS_FRAGMENT}
     query GetPageBySlug($id: ID!, $idType: PageIdType!) {
 
       page(id: $id, idType: $idType) {
@@ -554,6 +658,7 @@ export async function getPageBySlug(slug: string) {
         ...AboutPageFields
         ...LeadershipPageFields
         ...PartnersPageFields
+        ...ClientsPageFields
       }
     }
 
