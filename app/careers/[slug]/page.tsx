@@ -1,35 +1,35 @@
 import JobDetails from "@/src/pages_migrated/JobDetails";
-import { jobs } from "@/src/data/migrated_data";
+import { jobs, slugify } from "@/src/data/migrated_data";
 import { constructMetadata, getBreadcrumbSchema } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
 import { siteConfig } from "@/src/config/site";
 import { Metadata } from 'next';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
   return jobs.map((job) => ({
-    id: job.id,
+    slug: job.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const job = jobs.find((j) => j.id === id);
+  const { slug } = await params;
+  const job = jobs.find((j) => j.slug === slug);
 
   if (!job) return constructMetadata({ title: "Job Not Found" });
 
   return constructMetadata({
-    title: job.title,
-    description: `${job.title} in ${job.location} - ${job.department} Department.`,
+    title: `${job.title} — ${job.location}`,
+    description: `${job.title} (${job.id}) in ${job.location}. ${job.type} position in ${job.department} at Nabhira Technologies.`,
   });
 }
 
 export default async function Page({ params }: PageProps) {
-  const { id } = await params;
-  const job = jobs.find((j) => j.id === id);
+  const { slug } = await params;
+  const job = jobs.find((j) => j.slug === slug);
 
   if (!job) return null;
 
@@ -39,9 +39,10 @@ export default async function Page({ params }: PageProps) {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "JobPosting",
+          identifier: job.id,
           title: job.title,
-          description: job.title, // Standardizing on title for description if no excerpt
-          datePosted: "2026-03-01", // Placeholder
+          description: `${job.title} - ${job.department} at Nabhira Technologies`,
+          datePosted: "2026-03-01",
           employmentType: job.type,
           hiringOrganization: {
             "@type": "Organization",
@@ -61,7 +62,7 @@ export default async function Page({ params }: PageProps) {
         jsonLd={getBreadcrumbSchema([
           { name: "Home", item: "/" },
           { name: "Careers", item: "/careers" },
-          { name: job.title, item: `/careers/${id}` },
+          { name: job.title, item: `/careers/${slug}` },
         ])}
       />
       <JobDetails />

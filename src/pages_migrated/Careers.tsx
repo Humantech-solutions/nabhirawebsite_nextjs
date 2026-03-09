@@ -8,56 +8,118 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LimitlessTogether } from "../components/LimitlessTogether";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { MapPin, Briefcase, Clock, ChevronRight, Search, GraduationCap, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen } from "lucide-react";
+import { MapPin, Briefcase, GraduationCap, ChevronRight, Search, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen, Share2, Copy, Check } from "lucide-react";
 import Link from "next/link";
+
+/** Converts a job title + location string into a URL-safe slug.
+ *  "Principal Digital Strategist" + "Dubai, UAE" → "principal-digital-strategist-dubai"
+ *  Multiple cities: "London, UK / Dubai, UAE" → "london-dubai"
+ */
+function slugify(title: string, location: string): string {
+  // Extract city names only (first word of each city segment)
+  const citySlug = location
+    .split(/[,\/]/)
+    .map(part => part.trim().split(/\s+/)[0].toLowerCase())
+    .filter(Boolean)
+    .join("-");
+
+  const titleSlug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+
+  return `${titleSlug}-${citySlug}`;
+}
 
 export const jobs = [
   {
-    id: "sr-architect-001",
+    id: "NBR-001",
     title: "Senior AI Solutions Architect",
     department: "Engineering",
     location: "Mumbai, India",
     type: "Full-time",
-
+    experience: "8+ yrs",
     posted: "2 days ago"
   },
   {
-    id: "digital-strat-002",
+    id: "NBR-002",
     title: "Principal Digital Strategist",
     department: "Consulting",
     location: "Dubai, UAE",
     type: "Full-time",
- 
+    experience: "6-8 yrs",
     posted: "5 days ago"
   },
   {
-    id: "cloud-eng-003",
+    id: "NBR-003",
     title: "Cloud Infrastructure Engineer",
     department: "Engineering",
     location: "Remote / Bengaluru",
     type: "Full-time",
-
+    experience: "4-6 yrs",
     posted: "1 week ago"
   },
   {
-    id: "ux-designer-004",
+    id: "NBR-004",
     title: "Senior Product Designer (UX/UI)",
     department: "Design",
     location: "Singapore",
     type: "Full-time",
-
+    experience: "5-7 yrs",
     posted: "3 days ago"
   },
   {
-    id: "data-sci-005",
+    id: "NBR-005",
     title: "Machine Learning Engineer",
     department: "Engineering",
     location: "London, UK",
     type: "Full-time",
-
+    experience: "4-6 yrs",
     posted: "1 day ago"
   }
 ];
+
+function CopyLinkButton({ url }: { url: string }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <button
+      onClick={handleCopy}
+      title="Copy link"
+      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-[#f99d1c] hover:text-[#f99d1c] transition-all bg-white z-10"
+    >
+      {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+    </button>
+  );
+}
+
+function ShareButton({ title, url }: { title: string; url: string }) {
+  const handleShare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (navigator.share) {
+      navigator.share({ title, url });
+    } else {
+      navigator.clipboard.writeText(url);
+    }
+  };
+  return (
+    <button
+      onClick={handleShare}
+      title="Share"
+      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-[#f99d1c] hover:text-[#f99d1c] transition-all bg-white z-10"
+    >
+      <Share2 size={14} />
+    </button>
+  );
+}
 
 export default function Careers({ wordpressData }: any) {
   const [filter, setFilter] = useState("All");
@@ -74,6 +136,11 @@ export default function Careers({ wordpressData }: any) {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
+
+  const getJobUrl = (job: typeof jobs[number]) => {
+    const slug = slugify(job.title, job.location);
+    return `/careers/${slug}`;
+  };
 
   return (
     <>
@@ -180,20 +247,24 @@ export default function Careers({ wordpressData }: any) {
 
             <div className="space-y-4">
               {filteredJobs.length > 0 ? (
-                filteredJobs.map((job, i) => (
-                  <Motion.div
-                    key={job.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                    className="group"
-                  >
-                    <Link href={`/careers/${job.id}`}>
+                filteredJobs.map((job, i) => {
+                  const jobUrl = typeof window !== 'undefined'
+                    ? `${window.location.origin}${getJobUrl(job)}`
+                    : getJobUrl(job);
+
+                  return (
+                    <Motion.div
+                      key={job.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      viewport={{ once: true }}
+                      className="group"
+                    >
                       <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
-                        <div className="space-y-2">
+                        <Link href={getJobUrl(job)} className="flex-1 space-y-2">
                           <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
-                            <span>{job.department}</span>
+                            <span className="font-mono text-[#11253e] bg-gray-100 px-2 py-0.5 rounded text-[9px]">{job.id}</span>
                             <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
                             <span className="text-gray-400">{job.posted}</span>
                           </div>
@@ -205,19 +276,25 @@ export default function Careers({ wordpressData }: any) {
                             <div className="flex items-center gap-1.5">
                               <Briefcase size={14} /> {job.type}
                             </div>
-
+                            <div className="flex items-center gap-1.5">
+                              <GraduationCap size={14} /> {job.experience}
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-                          <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
-                          <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
-                            <ChevronRight size={20} />
-                          </div>
+                        </Link>
+                        <div className="flex items-center gap-3">
+                          <CopyLinkButton url={typeof window !== 'undefined' ? `${window.location.origin}${getJobUrl(job)}` : getJobUrl(job)} />
+                          <ShareButton title={job.title} url={typeof window !== 'undefined' ? `${window.location.origin}${getJobUrl(job)}` : getJobUrl(job)} />
+                          <Link href={getJobUrl(job)} className="flex items-center gap-4">
+                            <span className="text-[12px] font-bold text-[#11253e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">View Role</span>
+                            <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#f99d1c] group-hover:border-[#f99d1c] group-hover:text-white transition-all">
+                              <ChevronRight size={20} />
+                            </div>
+                          </Link>
                         </div>
                       </div>
-                    </Link>
-                  </Motion.div>
-                ))
+                    </Motion.div>
+                  );
+                })
               ) : (
                 <div className="py-20 text-center bg-white border border-dashed border-gray-200 rounded-sm">
                   <p className="text-[#11253e] font-light">No open roles match your current filters.</p>

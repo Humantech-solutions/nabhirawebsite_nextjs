@@ -1,52 +1,67 @@
 // Consolidated data for dynamic routes
 
+export function slugify(title: string, location: string): string {
+  const citySlug = location
+    .split(/[,\/]/)
+    .map(part => part.trim().split(/\s+/)[0].toLowerCase())
+    .filter(Boolean)
+    .join("-");
+  const titleSlug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+  return `${titleSlug}-${citySlug}`;
+}
+
 export const jobs = [
   {
-    id: "sr-architect-001",
+    id: "NBR-001",
     title: "Senior AI Solutions Architect",
     department: "Engineering",
     location: "Mumbai, India",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "8+ yrs",
     posted: "2 days ago"
   },
   {
-    id: "digital-strat-002",
+    id: "NBR-002",
     title: "Principal Digital Strategist",
     department: "Consulting",
     location: "Dubai, UAE",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "6-8 yrs",
     posted: "5 days ago"
   },
   {
-    id: "cloud-eng-003",
+    id: "NBR-003",
     title: "Cloud Infrastructure Engineer",
     department: "Engineering",
     location: "Remote / Bengaluru",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "4-6 yrs",
     posted: "1 week ago"
   },
   {
-    id: "ux-designer-004",
-    title: "Senior UX Designer",
+    id: "NBR-004",
+    title: "Senior Product Designer (UX/UI)",
     department: "Design",
-    location: "Mumbai, India",
+    location: "Singapore",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "5-7 yrs",
     posted: "3 days ago"
   },
   {
-    id: "data-sci-005",
-    title: "Lead Data Scientist",
-    department: "Data & AI",
-    location: "Bengaluru, India",
+    id: "NBR-005",
+    title: "Machine Learning Engineer",
+    department: "Engineering",
+    location: "London, UK",
     type: "Full-time",
-    salary: "Competitive",
-    posted: "1 week ago"
+    experience: "4-6 yrs",
+    posted: "1 day ago"
   }
-];
+].map(job => ({ ...job, slug: slugify(job.title, job.location) }));
+
 
 export const events = [
   {
