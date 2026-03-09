@@ -65,7 +65,11 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
               <span className="text-[#f99d1c] uppercase tracking-widest">Manufacturing & Automotive</span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Manufacturing & <br /><span className="text-white/100">Automotive</span>
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  Manufacturing & <br /><span className="text-[#f99d1c]">Automotive</span>
+                </>
+              ))}
             </h1>
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
               {formatQuotesToBold(heroData?.heroS1Desc || "We help manufacturers transition from rigid production to intelligent, resilient and innovation-driven enterprises.")}

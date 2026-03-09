@@ -189,7 +189,7 @@ export default function AgenticAI({ wordpressData }: { wordpressData?: any }) {
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
-                <>Autonomous <br /> <span className="text-white/40">Agentic Core.</span></>
+                <>Autonomous <br /><span className="text-[#f99d1c]">Agentic Core.</span></>
               ))}
             </h1>
 

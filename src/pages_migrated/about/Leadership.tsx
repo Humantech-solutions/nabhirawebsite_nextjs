@@ -179,13 +179,11 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
               </nav>
               
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle(
-                heroData?.heroS1Title?.includes('|') ? 
-                heroData?.heroS1Title.replace('|', '^').replace('|', '\n^') :
-                heroData?.heroS1Title || (
-                  <>The <span className="text-[#f99d1c]">Visionaries</span> <br />Behind the Precision</>
-                )
-              )}
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  The <span className="text-[#f99d1c]">Visionaries</span> <br />Behind the Precision
+                </>
+              ))}
             </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">

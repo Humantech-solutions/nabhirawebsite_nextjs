@@ -163,28 +163,11 @@ export default function Contact({ wordpressData }: any) {
               </nav>
 
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {(() => {
-                  const acfTitle = acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title;
-                  if (acfTitle) {
-                    // Force 2rd line shift for the default text to match original UI when no custom pipe logic is used
-                    if (typeof acfTitle === 'string' && 
-                        !acfTitle.includes('|') && 
-                        !acfTitle.includes('\\\\') && 
-                        acfTitle.trim() === 'Start the Conversation') {
-                      return (
-                        <>
-                          Start the <br />Conversation
-                        </>
-                      );
-                    }
-                    return renderHeroTitle(acfTitle);
-                  }
-                  return (
-                    <>
-                      Start the <br />Conversation
-                    </>
-                  );
-                })()}
+                {renderHeroTitle(acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
+                  <>
+                    Start the <br />Conversation
+                  </>
+                ))}
               </h1>
               <p className="text-white text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
                 {formatQuotesToBold(acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you.")}

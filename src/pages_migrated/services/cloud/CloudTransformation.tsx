@@ -19,7 +19,9 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
     <div className="flex flex-col">
       <ServiceHero
         subtitle="Cloud Transformation"
-        title={renderHeroTitle(heroData?.heroS1Title || "Scalable Infrastructure for the Future")}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Scalable <br /><span className="text-[#f99d1c]">Infrastructure.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "Migrate, modernize, and manage your enterprise workloads with our world-class cloud architectural expertise. We specialize in 'AWS', 'Azure', and 'Google Cloud'.") as any}
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1721444127971-b7d0023bbef2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBjbG91ZCUyMHNlcnZlciUyMGJsdWV8ZW58MXx8fHwxNzcxOTU1MTE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
       />

@@ -58,7 +58,12 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                   <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-widest">Next-Gen Education</span>
                 </div>
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                  {renderHeroTitle(heroData?.heroS1Title || "Empower Your Workforce with \n|Cognitive Learning|")}
+                  {renderHeroTitle(heroData?.heroS1Title || (
+                    <>
+                      Empower Your Workforce with <br />
+                      |Cognitive Learning|
+                    </>
+                  ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
                   {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}

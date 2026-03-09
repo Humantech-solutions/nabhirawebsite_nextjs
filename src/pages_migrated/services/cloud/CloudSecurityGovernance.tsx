@@ -81,7 +81,9 @@ export default function CloudSecurityGovernance({ wordpressData }: { wordpressDa
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Fortify Your <span className="text-[#f99d1c]">Digital Estate.</span></>)}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Fortify Your <br /><span className="text-[#f99d1c]">Digital Estate.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "Comprehensive security governance and automated compliance for the most regulated industries. Secure every byte, across every cloud.") as any}
         subtitle="Cloud Security & Governance"
         category="Cloud Security & Governance"

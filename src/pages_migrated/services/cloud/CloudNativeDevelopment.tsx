@@ -81,7 +81,9 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Build at the <span className="text-[#f99d1c]">Speed of Cloud.</span></>)}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Build at the <br /><span className="text-[#f99d1c]">Speed of Cloud.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "We design and build ultra-scalable, resilient applications using 'serverless', 'containerization' and 'microservices'. Empower your digital products to scale with your ambition.") as any}
         subtitle="Cloud Native Development"
         category="Cloud Native Development"

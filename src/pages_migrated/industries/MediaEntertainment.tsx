@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import {
   ArrowRight,
   MonitorPlay,
@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 
 export default function MediaEntertainment({ wordpressData }: any) {
+  const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
     document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -154,7 +155,11 @@ export default function MediaEntertainment({ wordpressData }: any) {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle("Media & \n'Entertainment'")}
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  Media & <br /><span className="text-[#f99d1c]">Entertainment</span>
+                </>
+              ))}
             </h1>
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">

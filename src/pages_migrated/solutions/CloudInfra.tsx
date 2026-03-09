@@ -40,7 +40,9 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                   </div>
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                     {renderHeroTitle(heroData?.heroS1Title || (
-                      <>Architecting <br /> <span className="text-[#f99d1c]">Resilience.</span></>
+                      <>
+                        Architecting <br /> <span className="text-[#f99d1c]">Resilience.</span>
+                      </>
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">

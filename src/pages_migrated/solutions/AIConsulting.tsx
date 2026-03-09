@@ -71,7 +71,9 @@ export default function AIConsulting({ wordpressData }: { wordpressData?: any })
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
                 {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Strategic <br /> <span className="text-white/40">AI Advantage.</span></>
+                  <>
+                    Strategic <br /> <span className="text-white/40">AI Advantage.</span>
+                  </>
                 ))}
               </h1>
               

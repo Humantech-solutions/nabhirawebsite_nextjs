@@ -153,6 +153,7 @@ const industryStats = [
 
 /* ─── Component ────────────────────────────────────────────── */
 export default function Clients({ wordpressData }: { wordpressData?: any }) {
+  const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
     document.title = "Our Clients | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -189,7 +190,11 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm">
-              {renderHeroTitle("Trusted By |Industry| Leaders")}
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>
+                  Trusted By <br /><span className="text-[#f99d1c]">Industry</span> Leaders
+                </>
+              ))}
             </h1>
 
             {/* Orange left-border tagline */}

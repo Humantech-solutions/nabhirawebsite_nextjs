@@ -61,10 +61,7 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
       <ServiceHero
         subtitle="Artificial Intelligence"
         title={renderHeroTitle(heroData?.heroS1Title || (
-          <>
-            Orchestrating <br />
-            <span className="text-white/40 font-light italic">Intelligent Outcomes.</span>
-          </>
+          <>Orchestrating <br /><span className="text-[#f99d1c]">Intelligent Outcomes.</span></>
         ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance.") as any}
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || aiServerImg.src}

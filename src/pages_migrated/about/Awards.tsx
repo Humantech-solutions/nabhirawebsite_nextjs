@@ -77,7 +77,9 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Excellence <br /><span className="text-[#f99d1c]">Recognized</span></>
+                  <>
+                    Excellence <br /><span className="text-[#f99d1c]">Recognized</span>
+                  </>
                 ))}
               </h1>
               

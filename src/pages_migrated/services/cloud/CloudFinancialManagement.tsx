@@ -83,7 +83,9 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Cloud <span className="text-[#f99d1c]">Economics.</span></>)}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Cloud <br /><span className="text-[#f99d1c]">Economics.</span></>
+        ))}
         description={formatQuotesToBold(heroData?.heroS1Desc || "Maximize the business value of every cloud dollar. Our FinOps services provide deep visibility, automated optimization and cultural change to drive unit-economic efficiency at scale.") as any}
         subtitle="Cloud Financial Management"
         category="Cloud Financial Management"
