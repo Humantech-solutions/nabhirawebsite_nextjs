@@ -264,7 +264,9 @@ export default function Careers({ wordpressData }: any) {
                       <div className="bg-white border border-gray-100 p-8 rounded-sm hover:border-[#f99d1c]/50 hover:shadow-lg transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 group">
                         <Link href={getJobUrl(job)} className="flex-1 space-y-2">
                           <div className="flex items-center space-x-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-1">
-                            <span className="font-mono text-[#11253e] bg-gray-100 px-2 py-0.5 rounded text-[9px]">{job.id}</span>
+                          <span className="font-mono text-[#11253e] bg-gray-100 px-2 py-0.5 rounded text-[9px] group-hover:text-[#f99d1c] group-hover:bg-transparent transition-all duration-300">
+  {job.id}
+</span>
                             <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
                             <span className="text-gray-400">{job.posted}</span>
                           </div>

@@ -20,10 +20,9 @@ function CopyLinkButton() {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-sm text-gray-600 hover:border-[#f99d1c] hover:text-[#f99d1c] transition-all bg-white"
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-400 hover:text-[#f99d1c] hover:bg-[#f99d1c]/10 transition-all"
     >
-      {copied ? <Check size={15} className="text-green-500" /> : <Copy size={15} />}
-      {copied ? "Copied!" : "Copy Link"}
+      {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} />}
     </button>
   );
 }
@@ -41,10 +40,9 @@ function ShareJobButton({ title }: { title: string }) {
   return (
     <button
       onClick={handleShare}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-sm text-gray-600 hover:border-[#f99d1c] hover:text-[#f99d1c] transition-all bg-white"
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-400 hover:text-[#f99d1c] hover:bg-[#f99d1c]/10 transition-all"
     >
-      <Share2 size={15} />
-      Share Role
+      <Share2 size={16} />
     </button>
   );
 }
@@ -92,10 +90,10 @@ export default function JobDetails() {
               <ChevronLeft size={18} /> All Open Roles
             </Link>
             {/* Share/Copy buttons at the top */}
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <CopyLinkButton />
               <ShareJobButton title={job.title} />
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -109,7 +107,7 @@ export default function JobDetails() {
                 </div>
                 <h1 className="text-[#11253e] text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{job.title}</h1>
                 
-                <div className="flex flex-wrap items-center gap-6 text-sm font-light text-[#11253e] pt-4">
+                <div className="flex flex-wrap items-center gap-3 text-sm font-light text-[#11253e] pt-4">
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <MapPin size={16} className="text-[#f99d1c]" /> {job.location}
                   </div>
@@ -119,12 +117,11 @@ export default function JobDetails() {
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <GraduationCap size={16} className="text-[#f99d1c]" /> {job.experience}
                   </div>
-                </div>
-
-                {/* Share/Copy buttons inline with job metadata */}
-                <div className="flex items-center gap-3 pt-2">
-                  <CopyLinkButton />
-                  <ShareJobButton title={job.title} />
+                  {/* Copy & Share — pushed to flex-end */}
+                  <div className="ml-auto flex items-center gap-1">
+                    <CopyLinkButton />
+                    <ShareJobButton title={job.title} />
+                  </div>
                 </div>
               </section>
 
