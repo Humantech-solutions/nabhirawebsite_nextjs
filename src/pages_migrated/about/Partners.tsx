@@ -116,11 +116,11 @@ export default function Partners({ wordpressData }: any) {
               >
               <div className="flex items-center justify-center" style={{ height: 48 }}>
   <Image
-    src={azureLogo}
-    alt="Microsoft Azure"
-    width={110}
+    src={awsLogo}
+    alt="Amazon Web Services"
+    width={100}
     height={44}
-    style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }}
+    style={{ maxHeight: 44, maxWidth: 100, objectFit: "contain" }}
   />
 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#FF9900] transition-colors text-center">Amazon Web Services</span>
