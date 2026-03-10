@@ -6,9 +6,7 @@ import "../src/styles/tailwind.css";
 import { Navbar } from "../src/components/Navbar";
 import { Footer } from "../src/components/Footer";
 import { siteConfig } from "../src/config/site";
-
-import { constructMetadata, getOrganizationSchema, getWebsiteSchema } from "../src/lib/seo";
-import { Schema } from "../src/components/SEO/Schema";
+import { constructMetadata, getSiteSchema } from "../src/lib/seo";
 
 export const viewport: Viewport = {
   themeColor: "#11253e",
@@ -24,13 +22,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteSchema = getSiteSchema();
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
+      </head>
       <body
         className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden antialiased"
       >
-        <Schema jsonLd={getOrganizationSchema()} />
-        <Schema jsonLd={getWebsiteSchema()} />
         <header>
           <Navbar />
         </header>

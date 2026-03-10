@@ -10,8 +10,9 @@ import logo from '../../assets/logo.png';
 import storyImg from '../../assets/81ed9d35393b4048d395b1d256aa4c9d085a37b4.png';
 import Image from "next/image";
 
-export default function About({ wordpressData: _wordpressData }: { wordpressData?: unknown }) {
+export default function About({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -19,7 +20,7 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
     {
       icon: <Lightbulb className="text-[#f99d1c]" size={32} />,
       title: "Innovation with Purpose",
-      desc: "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
+      desc: "We harness emerging technologies like AI, cloud and data engineering to solve real-world problems and create meaningful business impact."
     },
     {
       icon: <HeartHandshake className="text-[#f99d1c]" size={32} />,
@@ -29,17 +30,17 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
     {
       icon: <Award className="text-[#f99d1c]" size={32} />,
       title: "Engineering Excellence",
-      desc: "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
+      desc: "We uphold the highest standards in architecture, design and delivery—building solutions that are scalable, resilient and future-ready."
     },
     {
       icon: <ShieldCheck className="text-[#f99d1c]" size={32} />,
       title: "Integrity and Trust",
-      desc: "We operate with transparency, accountability, and ethical responsibility in every engagement."
+      desc: "We operate with transparency, accountability and ethical responsibility in every engagement."
     },
     {
       icon: <BookOpen className="text-[#f99d1c]" size={32} />,
       title: "Continuous Learning",
-      desc: "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
+      desc: "Technology evolves rapidly and so do we. We foster a culture of curiosity, learning and constant improvement."
     },
     {
       icon: <Target className="text-[#f99d1c]" size={32} />,
@@ -89,12 +90,12 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
 
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 Architecting <br />
-                <span className="text-[#f99d1c]">Tomorrow&apos;s</span> Enterprise
+                <span className="text-[#f99d1c]">Tomorrow's</span> Enterprise
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-                  Nabhira accelerates digital transformation through advanced AI, cloud-first intelligence, and data-driven engineering.
+                  Nabhira accelerates digital transformation through advanced AI, cloud-first intelligence and data-driven engineering.
                 </p>
               </div>
             </Motion.div>
@@ -111,7 +112,7 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
                 </h2>
                 <div className="space-y-6 text-[#11253e] font-light leading-relaxed">
                   <p>
-                    Rooted in its name - <span className="font-bold"><i>Nabhira</i></span>, inspired by <span className="font-bold">“Nabha,” the limitless sky and “Vira,” the spirit of leadership </span>, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.
+                    Rooted in its name - <span className="font-bold"><i>Nabhira</i></span>, inspired by <span className="font-bold">“Nabha,” the limitless sky and “Vira,” the spirit of leadership </span>, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence and purpose.
                   </p>
                   <p>
                     Nabhira partners with organizations across industries to <span className="font-bold">reimagine what is possible,</span> accelerating transformation through <span className="font-bold">advanced AI, cloud-first intelligence and data-driven engineering</span>. What started as a bold vision has grown into a commitment to deliver <span className="font-bold">innovation at scale and impact across borders</span>, empowering businesses to evolve, adapt and lead in a world of limitless potential
@@ -161,7 +162,7 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Vision</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      To be the foundational architecture upon which the world&apos;s most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
+                      To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.
                     </p>
                   </div>
                 </div>
@@ -179,7 +180,7 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
                   <div>
                     <h3 className="text-3xl font-light mb-4 tracking-tight">Our Mission</h3>
                     <p className="text-white/80 font-light leading-relaxed">
-                      To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.
+                      To empower organizations through high-performance engineering, data sovereignty and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.
                     </p>
                   </div>
                 </div>
@@ -190,17 +191,9 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
 
         {/* Core Values Section */}
         <section className="py-24 bg-gray-50 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
-
-            {/* <img src={logo} alt="" className="w-full grayscale" /> */}
-            <Image
-              src={logo}
-              alt="Nabhira Logo"
-              width={150}
-              height={50}
-              className="h-10 w-auto"
-            />
-          </div>
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
+  <Image src={logo} alt="" className="w-full grayscale" />
+</div>
           
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
             <div className="text-center mb-20">
@@ -224,10 +217,10 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
                   <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
                     {v.icon}
                   </div>
-                  <h4 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[14px]">
+                  <h4 className="text-[#11253e] text-xl font-bold mb-4 tracking-normal uppercase text-[14px]">
                     {v.title}
                   </h4>
-                  <p className="text-[#11253e] text-sm font-light leading-relaxed">
+                  <p className="text-[#11253e] text-md font-light leading-relaxed">
                     {v.desc}
                   </p>
                 </Motion.div>
@@ -241,20 +234,20 @@ export default function About({ wordpressData: _wordpressData }: { wordpressData
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">5+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Countries</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">5+</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">Countries</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">25+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Customers</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">25+</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">Customers</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">10+</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Industries</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">10+</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">Industries</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">98%</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">Retention</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">98%</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">Retention</div>
               </div>
             </div>
           </div>

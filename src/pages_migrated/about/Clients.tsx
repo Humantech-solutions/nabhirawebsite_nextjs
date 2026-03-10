@@ -6,7 +6,6 @@ import Link from "next/link";
 import { LimitlessTogether } from "../../components/LimitlessTogether";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote } from "lucide-react";
-
 import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
 import H2HLogo from "../../imports/Group79";
 import Two2FootLogo from "../../imports/Group78-509-300";
@@ -15,6 +14,7 @@ import dreamixLogo from "../../assets/6355df8f352ac21ac85efd4673b0087b98b39b83.p
 import helionLogo from "../../assets/bc9968f5cbe35f8837559e9f31871e02de629df6.png";
 import intwayLogo from "../../assets/53a59feaee1d46abc83f87eb629a51975d9c5ee7.png";
 import vitmarkLogo from "../../assets/328e0509dd589bd5013f84e17bf754af3b15999a.png";
+import Image from "next/image";
 
 /* ─── Client data ─────────────────────────────────────────── */
 const clients = [
@@ -25,9 +25,13 @@ const clients = [
     industry: "Technology",
     hoverColor: "#0057A8",
     logo: (
-      <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={hutechLogo.src} alt="Hutech Solutions" style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }} />
-      </div>
+    <div className="flex items-center justify-center" style={{ height: 56 }}>
+  <Image
+    src={hutechLogo}
+    alt="Hutech Solutions"
+    style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }}
+  />
+</div>
     ),
   },
   {
@@ -63,9 +67,13 @@ const clients = [
     industry: "Manufacturing",
     hoverColor: "#344054",
     logo: (
-      <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={anelessLogo.src} alt="Aneles" style={{ maxHeight: 40, maxWidth: 150, objectFit: "contain" }} />
-      </div>
+   <div className="flex items-center justify-center" style={{ height: 56 }}>
+  <Image
+    src={anelessLogo}
+    alt="Aneles"
+    style={{ maxHeight: 40, maxWidth: 150, objectFit: "contain" }}
+  />
+</div>
     ),
   },
   {
@@ -75,9 +83,13 @@ const clients = [
     industry: "Fintech",
     hoverColor: "#5B21B6",
     logo: (
-      <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={dreamixLogo.src} alt="Dreamix" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
-      </div>
+     <div className="flex items-center justify-center" style={{ height: 56 }}>
+  <Image
+    src={dreamixLogo}
+    alt="Dreamix"
+    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
+  />
+</div>
     ),
   },
   {
@@ -87,9 +99,13 @@ const clients = [
     industry: "Logistics",
     hoverColor: "#0891B2",
     logo: (
-      <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={helionLogo.src} alt="Helion" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
-      </div>
+     <div className="flex items-center justify-center" style={{ height: 56 }}>
+  <Image
+    src={helionLogo}
+    alt="Helion"
+    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
+  />
+</div>
     ),
   },
   {
@@ -99,9 +115,13 @@ const clients = [
     industry: "Analytics",
     hoverColor: "#0D9488",
     logo: (
-      <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={intwayLogo.src} alt="Intway" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
-      </div>
+     <div className="flex items-center justify-center" style={{ height: 56 }}>
+  <Image
+    src={intwayLogo}
+    alt="Intway"
+    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
+  />
+</div>
     ),
   },
   {
@@ -112,8 +132,12 @@ const clients = [
     hoverColor: "#1D4ED8",
     logo: (
       <div className="flex items-center justify-center" style={{ height: 56 }}>
-        <img src={vitmarkLogo.src} alt="Vitmark" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
-      </div>
+  <Image
+    src={vitmarkLogo}
+    alt="Vitmark"
+    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
+  />
+</div>
     ),
   },
 ];
@@ -140,19 +164,10 @@ const testimonials = [
   },
 ];
 
-/* ─── Industry stats ───────────────────────────────────────── */
-const industryStats = [
-  { label: "Technology", count: 12, color: "#0057A8" },
-  { label: "Agriculture", count: 6, color: "#2E8B3B" },
-  { label: "Retail & Commerce", count: 9, color: "#E05C1A" },
-  { label: "Manufacturing", count: 7, color: "#344054" },
-  { label: "Fintech", count: 5, color: "#5B21B6" },
-  { label: "Logistics", count: 4, color: "#0891B2" },
-];
-
 /* ─── Component ────────────────────────────────────────────── */
 export default function Clients({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -234,10 +249,10 @@ export default function Clients({ wordpressData }: any) {
           <div className="text-center mb-14">
             <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Our Clientele</p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              Companies That <span className="font-bold">Trust Nabhira</span>
+              Organizations That <span className="font-bold">Trust Nabhira</span>
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-6" />
-            <p className="max-w-xl mx-auto text-[#11253e] font-light text-sm leading-relaxed" style={{ opacity: 0.65 }}>
+            <p className="max-w-xl mx-auto text-[#11253e] font-light text-md leading-relaxed" style={{ opacity: 0.65 }}>
               We are privileged to serve a diverse portfolio of clients across industries — each partnership a testament to our commitment to engineering excellence.
             </p>
           </div>
@@ -258,7 +273,7 @@ export default function Clients({ wordpressData }: any) {
                   {client.logo}
                 </div>
                 <span
-                  className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 transition-colors text-center group-hover:text-[var(--hover-color)]"
+                  className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 transition-colors text-center"
                   style={{ "--hover-color": client.hoverColor } as React.CSSProperties}
                 >
                   {client.industry}
@@ -268,58 +283,6 @@ export default function Clients({ wordpressData }: any) {
           </div>
         </div>
       </section>
-
-      {/* ── Industries We Serve ──────────────────────────────── */}
-      {/* <section className="py-20 bg-[#f8f9fb] relative overflow-hidden">
-     
-        <div className="absolute inset-0 pointer-events-none" style={{
-          backgroundImage: "radial-gradient(rgba(17,37,62,0.04) 1px, transparent 1px)",
-          backgroundSize: "32px 32px"
-        }} />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-12">
-          <div className="text-center mb-14">
-            <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Sector Reach</p>
-            <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              Industries We <span className="font-bold">Transform</span>
-            </h2>
-            <div className="w-16 h-1 bg-[#f99d1c] mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {industryStats.map((ind, i) => (
-              <Motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.08 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-sm border border-gray-100 p-6 flex items-center gap-5 hover:shadow-lg transition-all duration-300 group"
-              >
-             
-                <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{ background: ind.color }} />
-                <div className="flex-1">
-                  <p className="text-[#11253e] font-bold text-sm tracking-tight">{ind.label}</p>
-                  <p className="text-gray-400 text-[10px] font-bold tracking-[0.15em] uppercase mt-0.5">{ind.count} Clients</p>
-                </div>
-               
-                <div className="flex-1 hidden sm:block">
-                  <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
-                    <Motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${(ind.count / 12) * 100}%` }}
-                      transition={{ delay: i * 0.08 + 0.2, duration: 0.7, ease: "easeOut" }}
-                      viewport={{ once: true }}
-                      className="h-full rounded-full"
-                      style={{ background: ind.color }}
-                    />
-                  </div>
-                </div>
-              </Motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* ── Testimonials ─────────────────────────────────────── */}
       <section className="py-24 bg-white">
@@ -342,17 +305,12 @@ export default function Clients({ wordpressData }: any) {
                 viewport={{ once: true }}
                 className="bg-[#f8f9fb] rounded-sm p-8 flex flex-col gap-5 relative group hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                {/* Top accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 rounded-t-sm" style={{ background: t.color }} />
-
                 <Quote size={28} style={{ color: t.color, opacity: 0.35 }} />
-
                 <p className="text-[#11253e] text-sm font-light leading-relaxed flex-1" style={{ opacity: 0.85 }}>
                   "{t.quote}"
                 </p>
-
                 <div className="flex items-center gap-3 pt-2 border-t border-gray-200">
-                  {/* Avatar initial */}
                   <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
                     style={{ background: t.color }}>
                     {t.author[0]}
@@ -370,7 +328,6 @@ export default function Clients({ wordpressData }: any) {
 
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="relative py-24 bg-[#11253e] overflow-hidden">
-        {/* Decorative background */}
         <div className="absolute inset-0 pointer-events-none">
           <div style={{ position: "absolute", top: -120, right: -80, width: 480, height: 480, borderRadius: "50%", background: "radial-gradient(circle, rgba(249,157,28,0.18) 0%, transparent 70%)" }} />
           <div style={{ position: "absolute", bottom: -80, left: -60, width: 360, height: 360, borderRadius: "50%", background: "radial-gradient(circle, rgba(249,157,28,0.10) 0%, transparent 70%)" }} />

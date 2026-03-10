@@ -8,6 +8,7 @@ import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitB
 
 export default function DataGovernance({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -132,7 +133,7 @@ export default function DataGovernance({ wordpressData }: any) {
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Governance by <br />
-              <span className="text-white/40">Design.</span>
+              <span className="text-[#f99d1c]">Design.</span>
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">

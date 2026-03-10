@@ -60,6 +60,7 @@ export default function EventDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (event) {
+      
       window.scrollTo(0, 0);
     }
   }, [event]);

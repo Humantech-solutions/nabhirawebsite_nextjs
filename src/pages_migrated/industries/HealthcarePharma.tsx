@@ -13,6 +13,7 @@ import {
 
 export default function HealthcarePharma({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -62,7 +63,7 @@ export default function HealthcarePharma({ wordpressData }: any) {
               <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Life Sciences</span>
             </nav>
             <h1 className="text-white/80 text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Healthcare & <br /><span className="text-white/80">Life Sciences</span>
+              Healthcare & <br /><span className="text-[#f99d1c]">Life Sciences</span>
             </h1>
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">Empowering the Future of Connected Care.</p>
           </Motion.div>

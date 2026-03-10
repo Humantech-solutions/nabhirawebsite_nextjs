@@ -26,6 +26,7 @@ import {
 
 export default function MediaEntertainment({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -153,7 +154,7 @@ export default function MediaEntertainment({ wordpressData }: any) {
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Media & <br />
-              <span className="text-[#ffffff]">Entertainment</span>
+              <span className="text-[#f99d1c]">Entertainment</span>
             </h1>
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">

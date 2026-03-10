@@ -26,6 +26,7 @@ import {
 
 export default function RetailConsumer({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -75,10 +76,10 @@ export default function RetailConsumer({ wordpressData }: any) {
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Retail & Consumer Goods</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Retail & <span className="text-[#f99d1c]">Transition.</span></span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Retail & <br /><span className="text-white/100">Consumer Goods</span>
+              Retail & <br /><span className="text-[#f99d1c]">Consumer Goods</span>
             </h1>
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
               Enabling Intelligent Commerce in a Digital First World.

@@ -25,6 +25,7 @@ import {
 
 export default function BankingFinance({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -163,7 +164,7 @@ export default function BankingFinance({ wordpressData }: any) {
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Future of <br />
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">Trusted Finance</span>
+              <span className="text-[#f99d1c]">Trusted Finance</span>
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">

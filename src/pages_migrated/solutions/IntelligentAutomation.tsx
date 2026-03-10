@@ -21,6 +21,7 @@ import {
 
 export default function IntelligentAutomation({ wordpressData }: any) {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -159,7 +160,7 @@ export default function IntelligentAutomation({ wordpressData }: any) {
             className="max-w-3xl space-y-8"
           >
             {/* Breadcrumb */}
-            <nav className="flex items-center space-x-3 text-[11px] md:text-[15px] font-medium tracking-[-0.02em] mb-4">
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
               <span className="text-[#f99d1c] uppercase tracking-widest">Intelligent Automation</span>
@@ -167,7 +168,7 @@ export default function IntelligentAutomation({ wordpressData }: any) {
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               Intelligent Automation <br /> 
-              <span className="text-white/40">AI at Edge.</span>
+              <span className="text-[#f99d1c]">AI at Edge.</span>
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
@@ -379,7 +380,7 @@ export default function IntelligentAutomation({ wordpressData }: any) {
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
+
       <section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
           {/* Diagonal stripe texture */}
           <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
@@ -414,6 +415,9 @@ export default function IntelligentAutomation({ wordpressData }: any) {
             </Motion.div>
           </div>
         </section>
+
+      {/* ─── CTA ─── */}
+      
     </>
   );
 }

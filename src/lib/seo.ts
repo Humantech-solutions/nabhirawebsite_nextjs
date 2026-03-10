@@ -48,41 +48,46 @@ export function constructMetadata({
   };
 }
 
-export function getOrganizationSchema() {
+export function getSiteSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.png`,
-    sameAs: [
-      siteConfig.links.twitter,
-      siteConfig.links.linkedin,
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        logo: `${siteConfig.url}/logo.png`,
+        sameAs: [
+          siteConfig.links.twitter,
+          siteConfig.links.linkedin,
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+91-XXXXXXXXXX",
+          contactType: "customer service",
+        },
+      },
+      {
+        "@type": "WebSite",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
     ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+91-XXXXXXXXXX", // Replace with actual
-      contactType: "customer service",
-    },
   };
 }
 
-export function getWebsiteSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
-  };
-}
+/** @deprecated Use getSiteSchema() instead */
+export function getOrganizationSchema() { return getSiteSchema(); }
+/** @deprecated Use getSiteSchema() instead */
+export function getWebsiteSchema() { return getSiteSchema(); }
 
 export function getArticleSchema({
   title,
