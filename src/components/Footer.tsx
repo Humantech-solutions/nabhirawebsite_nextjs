@@ -138,10 +138,10 @@ export function Footer() {
           {/* Column 2 — Our Services */}
           <div>
             <MobileSection id="services" title="Our Services">
-              <ul className="space-y-3 text-sm font-light text-white/60">
+              <ul className="space-y-3 text-sm font-light text-white">
                 {footerLinks.services.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                    <Link href={link.href} className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">{link.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -151,18 +151,18 @@ export function Footer() {
           {/* Column 3 — Industries + Solutions */}
           <div>
             <MobileSection id="industries_solutions" title="Industries">
-              <ul className="space-y-3 text-sm font-light text-white/60">
+              <ul className="space-y-3 text-sm font-light text-white">
                 {footerLinks.industries.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                    <Link href={link.href} className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">{link.label}</Link>
                   </li>
                 ))}
               </ul>
               <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Solutions</h4>
-              <ul className="space-y-3 text-sm font-light text-white/60">
+              <ul className="space-y-3 text-sm font-light text-white">
                 {footerLinks.solutions.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                    <Link href={link.href} className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">{link.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -172,19 +172,19 @@ export function Footer() {
           {/* Column 4 — Resources + Topics */}
           <div>
             <MobileSection id="resources_topics" title="Resources">
-              <ul className="space-y-3 text-sm font-light text-white/60">
+              <ul className="space-y-3 text-sm font-light text-white">
                 {footerLinks.resources.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                    <Link href={link.href} className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">{link.label}</Link>
                   </li>
                 ))}
               </ul>
               <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Topics</h4>
-              <ul className="space-y-3 text-sm font-light text-white/60">
-                <li><a href="#" className="hover:text-white transition-colors">AI &amp; ML</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cybersecurity</a></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+              <ul className="space-y-3 text-sm font-light text-white">
+                <li><a href="#" className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">AI &amp; ML</a></li>
+                <li><a href="#" className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">Sustainability</a></li>
+                <li><a href="#" className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">Cybersecurity</a></li>
+                <li><Link href="/careers" className="hover:underline hover:scale-105 transition-all inline-block origin-left whitespace-nowrap">Careers</Link></li>
               </ul>
             </MobileSection>
           </div>
@@ -195,10 +195,10 @@ export function Footer() {
         <div className="pt-6 md:pt-8 border-t border-white/5 flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0 text-[10px] font-light text-white/40 uppercase tracking-widest">
           <p className="text-center md:text-left">© 2026 NABHIRA TECHNOLOGIES PRIVATE LIMITED</p>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Terms of Use</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Cookie Policy</a>
-            <Link href="/contact" className="hover:text-[#08b2ff] transition-colors">Contact Us</Link>
+            <a href="#" className="text-[#08b2ff] hover:underline hover:scale-110 transition-all inline-block">Privacy Policy</a>
+            <a href="#" className="text-[#08b2ff] hover:underline hover:scale-110 transition-all inline-block">Terms of Use</a>
+            <a href="#" className="text-[#08b2ff] hover:underline hover:scale-110 transition-all inline-block">Cookie Policy</a>
+            <Link href="/contact" className="text-[#08b2ff] hover:underline hover:scale-110 transition-all inline-block">Contact Us</Link>
           </div>
         </div>
 
