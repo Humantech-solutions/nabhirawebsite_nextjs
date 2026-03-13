@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import ctaPatternBg from "figma:asset/cbeefd763cefbda8203e7be9a6c037607e216183.png";
 import {
@@ -30,7 +32,7 @@ import {
 
 export default function DataEngineering({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Data Engineering Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

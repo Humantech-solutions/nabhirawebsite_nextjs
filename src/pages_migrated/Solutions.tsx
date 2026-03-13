@@ -1,28 +1,16 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { ShoppingCart, GraduationCap, FileText, Server, Briefcase, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Footer } from "../components/Footer";
-import { LimitlessTogether } from "../components/LimitlessTogether";
 
-interface SolutionsProps {
-  wordpressData?: {
-    title: string;
-    content: string;
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
-
-export default function Solutions({ wordpressData }: SolutionsProps) {
+export default function Solutions({ wordpressData }: any) {
   const products = [
     {
       title: "AI Powered Point of Sales",
-      path: "/solutions/pos",
+      path: "/solutions/enterprise-pos",
       desc: "Revolutionizing retail with intelligent checkout, inventory prediction, and personalized customer loyalty.",
       icon: <ShoppingCart className="text-[#f99d1c]" size={24} />
     },
@@ -61,19 +49,15 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
   return (
     <div className="flex flex-col">
       <ServiceHero
-        subtitle={wordpressData?.globalSettings?.heroSlides?.heroS1Desc?.substring(0, 50) + "..." || "Enterprise Solutions"}
+        subtitle="Enterprise Solutions"
         title={
-          wordpressData?.globalSettings?.heroSlides?.heroS1Title ? (
-            <span dangerouslySetInnerHTML={{ __html: wordpressData.globalSettings.heroSlides.heroS1Title }} />
-          ) : (
-            <>
-              Precision Engineered <br />
-              <span className="text-white/40 font-light italic">Digital Products.</span>
-            </>
-          )
+          <>
+            Precision Engineered <br />
+            <span className="text-white/40 font-light italic">Digital Products.</span>
+          </>
         }
-        description={wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Our suite of enterprise-grade software solutions is designed to solve the most complex business challenges with architectural elegance and AI-native intelligence."}
-        image={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1605245763221-e89db37d59f7?auto=format&fit=crop&q=80&w=2000"}
+        description="Our suite of enterprise-grade software solutions is designed to solve the most complex business challenges with architectural elegance and AI-native intelligence."
+        image="https://images.unsplash.com/photo-1605245763221-e89db37d59f7?auto=format&fit=crop&q=80&w=2000"
       />
 
       {/* Products Grid */}
@@ -105,8 +89,7 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {product.desc}
                 </p>
-                <Link 
-                  href={product.path}
+                <Link href={product.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>View Product</span>
@@ -137,9 +120,6 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
           </div>
         </div>
       </section>
-
-      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-      <Footer />
     </div>
   );
 }

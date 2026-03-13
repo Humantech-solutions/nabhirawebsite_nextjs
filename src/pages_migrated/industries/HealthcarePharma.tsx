@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import heroBg from "../../assets/eeb3297df6ce0c8adf9882c1fc6fd03cea6c6d51.png";
@@ -13,7 +14,7 @@ import {
 
 export default function HealthcarePharma({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Healthcare & Pharma | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -342,8 +342,23 @@ export async function getHomePage() {
     }
 
     if (!page) {
-      console.error('DEBUG [getHomePage]: Failed to find home page by URI "/" and "/home/".');
-      return null;
+      console.warn('DEBUG [getHomePage]: Failed to find home page by URI "/" and "/home/". Falling back to static data.');
+      // Return a structured static object instead of null to allow the page to render
+      return {
+        homePageFields: {},
+        globalSettings: {},
+        newsPosts: blogPosts.slice(0, 3).map(post => ({
+          title: post.title,
+          date: post.date,
+          featuredImage: { node: { sourceUrl: post.image } },
+          uri: `/resources/blogs/${post.id}`
+        })),
+        thinkingPosts: blogPosts.slice(0, 6).map(post => ({
+          title: post.title,
+          featuredImage: { node: { sourceUrl: post.image } },
+          uri: `/resources/blogs/${post.id}`
+        }))
+      };
     }
 
     console.log('DEBUG [getHomePage]: Found page with slug:', page.slug, 'URI:', page.uri);

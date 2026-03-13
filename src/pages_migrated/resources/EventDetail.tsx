@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -60,7 +61,7 @@ export default function EventDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (event) {
-      
+      document.title = `${event.title} | Registration | Nabhira`;
       window.scrollTo(0, 0);
     }
   }, [event]);

@@ -1,17 +1,7 @@
 import GovernmentPSU from "../../../src/pages_migrated/industries/GovernmentPSU";
-import { getPageBySlug } from "@/src/lib/wordpress";
-import { constructMetadata } from "@/src/lib/seo";
-import { Metadata } from "next";
+import { getPageBySlug } from "../../../src/lib/wordpress";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug('government-psu');
-  return constructMetadata({
-    title: page?.title || "Government & PSU",
-    description: "Modernizing public sector infrastructure with secure AI and Cloud solutions.",
-  });
-}
-
-export default async function Page() {
-  const wordpressData = await getPageBySlug('government-psu');
+export default async function GovernmentPSUPage() {
+  const wordpressData = await getPageBySlug("government-psus");
   return <GovernmentPSU wordpressData={wordpressData} />;
 }

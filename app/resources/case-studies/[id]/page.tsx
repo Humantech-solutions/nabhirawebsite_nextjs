@@ -11,13 +11,13 @@ interface PageProps {
 
 export async function generateStaticParams() {
   return caseStudies.map((study) => ({
-    id: study.id.toString(),
+    id: study.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const study = caseStudies.find((s) => s.id.toString() === id);
+  const study = caseStudies.find((s) => s.slug === id);
 
   if (!study) return constructMetadata({ title: "Case Study Not Found" });
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
-  const study = caseStudies.find((s) => s.id.toString() === id);
+  const study = caseStudies.find((s) => s.slug === id);
 
   if (!study) return null;
 

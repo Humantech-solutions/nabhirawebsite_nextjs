@@ -1,9 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { LimitlessTogether } from "./LimitlessTogether";
+import { LimitlessTogether } from "./Footer";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Cloud, Database, Cpu, ChevronRight, ArrowRight } from "lucide-react";
 

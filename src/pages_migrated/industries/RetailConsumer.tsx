@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import heroBg from "../../assets/a1b2c08a9b0265fe1051599a4012e2e8b726b430.png";
@@ -26,7 +27,7 @@ import {
 
 export default function RetailConsumer({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Retail & Consumer Goods | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

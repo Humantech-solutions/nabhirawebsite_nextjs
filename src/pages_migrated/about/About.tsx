@@ -1,18 +1,18 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/LimitlessTogether";
+import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Target, Eye, ShieldCheck, Lightbulb, HeartHandshake, BookOpen, Award } from "lucide-react";
 import logo from '../../assets/logo.png';
 import storyImg from '../../assets/81ed9d35393b4048d395b1d256aa4c9d085a37b4.png';
-import Image from "next/image";
 
 export default function About({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "About Nabhira Technologies | Digital Pioneer";
     window.scrollTo(0, 0);
   }, []);
 
@@ -191,9 +191,9 @@ export default function About({ wordpressData }: any) {
 
         {/* Core Values Section */}
         <section className="py-24 bg-gray-50 relative overflow-hidden">
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
-  <Image src={logo} alt="" className="w-full grayscale" />
-</div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
+            <Image src={logo} alt="" className="w-full grayscale" />
+          </div>
           
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
             <div className="text-center mb-20">

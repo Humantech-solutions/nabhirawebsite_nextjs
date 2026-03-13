@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import heroImg from "../../../assets/heroImg.png";
 import {
@@ -28,7 +30,7 @@ import {
 
 export default function AIEngineering({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "AI Engineering | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -150,7 +152,7 @@ export default function AIEngineering({ wordpressData }: any) {
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroImg}
+            src={heroImg.src}
             alt="AI Machine Learning Technology"
             className="w-full h-full object-cover opacity-30 mix-blend-screen"
           />

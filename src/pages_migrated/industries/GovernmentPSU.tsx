@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import {
@@ -22,7 +23,7 @@ import {
 
 export default function GovernmentPSU({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Government & PSUs | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -196,8 +197,7 @@ export default function GovernmentPSU({ wordpressData }: any) {
             className="max-w-3xl space-y-8"
           >
             <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-              <Link
-                href="/"
+              <Link href="/"
                 className="hover:text-white cursor-pointer transition-colors"
               >
                 Home
@@ -369,8 +369,7 @@ export default function GovernmentPSU({ wordpressData }: any) {
                 compliance.
               </p>
 
-              <Link
-                href="/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all"
               >
                 Start your journey <ArrowRight size={20} />

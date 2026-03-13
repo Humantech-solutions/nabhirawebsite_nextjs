@@ -1,14 +1,16 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, Lock, BarChart3, Search, Users, FileCheck, Database } from "lucide-react";
 
 export default function DataGovernance({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Data Governance & Quality | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

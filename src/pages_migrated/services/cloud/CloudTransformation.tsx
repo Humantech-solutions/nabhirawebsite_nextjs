@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import React from "react";
+import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
 
@@ -42,7 +43,7 @@ export default function CloudTransformation({ wordpressData }: any) {
               { icon: <Shield />, title: "Zero Trust Security", desc: "Enterprise-grade security built into the very fabric of your network." },
               { icon: <CheckCircle2 />, title: "99.99% Availability", desc: "Architected for high availability and disaster recovery." },
             ].map((f, idx) => (
-              <motion.div
+              <Motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +56,7 @@ export default function CloudTransformation({ wordpressData }: any) {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{f.title}</h3>
                 <p className="text-[#11253e] text-sm leading-relaxed">{f.desc}</p>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>

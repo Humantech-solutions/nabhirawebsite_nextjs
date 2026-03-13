@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { MapPin, Calendar, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Calendar, Clock } from "lucide-react";
 
 const events = [
   {
@@ -38,6 +39,7 @@ const events = [
 
 export default function Events({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Events | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -78,8 +80,14 @@ export default function Events({ wordpressData }: any) {
                   className="group flex flex-col bg-[#f8f9fa] border border-gray-100 overflow-hidden rounded-sm"
                 >
                   <div className="h-48 overflow-hidden">
-                    <Link href={`/resources/events/${event.id}`}>
-                      <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <Link href={`/resources/events/${event.id}`} className="block relative w-full h-full">
+                      <Image 
+                        src={event.image} 
+                        alt={event.title} 
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
                     </Link>
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
@@ -102,8 +110,7 @@ export default function Events({ wordpressData }: any) {
                         <MapPin size={14} className="text-[#f99d1c]" /> {event.location}
                       </div>
                     </div>
-                    <Link 
-                      href={`/resources/events/${event.id}`}
+                    <Link href={`/resources/events/${event.id}`}
                       className="w-full mt-8 border border-[#11253e]/10 py-3 text-[10px] font-bold uppercase tracking-widest text-[#11253e] hover:bg-[#f99d1c] hover:border-[#f99d1c] hover:text-white transition-all text-center"
                     >
                       Register Now

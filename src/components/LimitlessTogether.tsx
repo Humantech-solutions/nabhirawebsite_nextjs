@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { motion, AnimatePresence } from "motion/react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 
 const whyNabhiraQA = [
@@ -24,7 +24,7 @@ const whyNabhiraQA = [
   }
 ];
 
-export function LimitlessTogether({ data }: { data?: any }) {
+export function LimitlessTogether({ data }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -76,17 +76,17 @@ export function LimitlessTogether({ data }: { data?: any }) {
                 </button>
                 <AnimatePresence>
                   {openIndex === index && (
-                    <motion.div
+                    <Motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-4 text-white/90 font-light leading-relaxed text-sm">
+                      <p className="mt-4 text-white/90 font-light leading-relaxed text-md">
                         {item.answer}
                       </p>
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
               </div>

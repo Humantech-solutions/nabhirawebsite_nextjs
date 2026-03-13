@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import automationHeroImg from "../../assets/ai.png";
@@ -21,7 +22,7 @@ import {
 
 export default function IntelligentAutomation({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Intelligent Automation | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -145,6 +146,7 @@ export default function IntelligentAutomation({ wordpressData }: any) {
           <ImageWithFallback
             src={automationHeroImg}
             alt="Intelligent Automation"
+            fill
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>

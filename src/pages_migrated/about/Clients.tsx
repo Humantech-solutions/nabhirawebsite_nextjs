@@ -1,9 +1,10 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/LimitlessTogether";
+import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote } from "lucide-react";
 import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
@@ -14,7 +15,6 @@ import dreamixLogo from "../../assets/6355df8f352ac21ac85efd4673b0087b98b39b83.p
 import helionLogo from "../../assets/bc9968f5cbe35f8837559e9f31871e02de629df6.png";
 import intwayLogo from "../../assets/53a59feaee1d46abc83f87eb629a51975d9c5ee7.png";
 import vitmarkLogo from "../../assets/328e0509dd589bd5013f84e17bf754af3b15999a.png";
-import Image from "next/image";
 
 /* ─── Client data ─────────────────────────────────────────── */
 const clients = [
@@ -25,13 +25,9 @@ const clients = [
     industry: "Technology",
     hoverColor: "#0057A8",
     logo: (
-    <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={hutechLogo}
-    alt="Hutech Solutions"
-    style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }}
-  />
-</div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <Image src={hutechLogo} alt="Hutech Solutions" style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }} />
+      </div>
     ),
   },
   {
@@ -67,13 +63,9 @@ const clients = [
     industry: "Manufacturing",
     hoverColor: "#344054",
     logo: (
-   <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={anelessLogo}
-    alt="Aneles"
-    style={{ maxHeight: 40, maxWidth: 150, objectFit: "contain" }}
-  />
-</div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <Image src={anelessLogo} alt="Aneles" style={{ maxHeight: 40, maxWidth: 150, objectFit: "contain" }} />
+      </div>
     ),
   },
   {
@@ -83,13 +75,9 @@ const clients = [
     industry: "Fintech",
     hoverColor: "#5B21B6",
     logo: (
-     <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={dreamixLogo}
-    alt="Dreamix"
-    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
-  />
-</div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <Image src={dreamixLogo} alt="Dreamix" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
+      </div>
     ),
   },
   {
@@ -99,13 +87,9 @@ const clients = [
     industry: "Logistics",
     hoverColor: "#0891B2",
     logo: (
-     <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={helionLogo}
-    alt="Helion"
-    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
-  />
-</div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <Image src={helionLogo} alt="Helion" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
+      </div>
     ),
   },
   {
@@ -115,13 +99,9 @@ const clients = [
     industry: "Analytics",
     hoverColor: "#0D9488",
     logo: (
-     <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={intwayLogo}
-    alt="Intway"
-    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
-  />
-</div>
+      <div className="flex items-center justify-center" style={{ height: 56 }}>
+        <Image src={intwayLogo} alt="Intway" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
+      </div>
     ),
   },
   {
@@ -132,12 +112,8 @@ const clients = [
     hoverColor: "#1D4ED8",
     logo: (
       <div className="flex items-center justify-center" style={{ height: 56 }}>
-  <Image
-    src={vitmarkLogo}
-    alt="Vitmark"
-    style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }}
-  />
-</div>
+        <Image src={vitmarkLogo} alt="Vitmark" style={{ maxHeight: 44, maxWidth: 150, objectFit: "contain" }} />
+      </div>
     ),
   },
 ];
@@ -167,7 +143,7 @@ const testimonials = [
 /* ─── Component ────────────────────────────────────────────── */
 export default function Clients({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Our Clients | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -361,8 +337,7 @@ export default function Clients({ wordpressData }: any) {
 
             <div className="flex flex-wrap gap-4 justify-center">
               <Motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/contact"
+                <Link href="/contact"
                   className="block bg-[#f99d1c] text-white px-10 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors"
                   style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
                 >
@@ -370,8 +345,7 @@ export default function Clients({ wordpressData }: any) {
                 </Link>
               </Motion.div>
               <Motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/resources/case-studies"
+                <Link href="/resources/case-studies"
                   className="block border border-white/25 text-white px-10 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:border-[#f99d1c] hover:text-[#f99d1c] transition-colors"
                 >
                   View Case Studies

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Navbar } from "../components/Navbar";
 import { Hero } from "../components/Hero";
 import { BigThinkers } from "../components/BigThinkers";
@@ -10,12 +10,11 @@ import { Industries } from "../components/Industries";
 import { WithNabhira } from "../components/WithNabhira";
 import { SuccessStories } from "../components/SuccessStories";
 import { Clients } from "../components/Clients";
-import { Footer } from "../components/Footer";
-import { LimitlessTogether } from "../components/LimitlessTogether";
+import { LimitlessTogether, Footer } from "../components/Footer";
 
 export default function Home({ wordpressData }: any) {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    document.title = "Nabhira Technologies | Digital Transformation & AI Solutions";
   }, []);
 
   return (

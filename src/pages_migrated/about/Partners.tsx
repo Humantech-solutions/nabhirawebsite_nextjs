@@ -1,9 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/LimitlessTogether";
+import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
 import awsLogo from "../../assets/ea968b74fff705800a15a9dcb40b38e7a1dafe03.png";
@@ -13,13 +14,51 @@ import serviceNowLogo from "../../assets/7ad3e2b8e0d3a0223019a17cc80a66c38aa6101
 import salesforceLogo from "../../assets/b13c4c100e4cb0ee511f80c66e134500635067e2.png";
 import zohoLogo from "../../assets/a6fec1352116809105f3fa70afd94fcb58e73b87.png";
 import oracleLogo from "../../assets/28c3e17412501b71ed55305c831d4873b30e8129.png";
+import oracleLogoRed from "../../assets/9fcacc9a598db3516da218cb0e4e6c23822c9077.png";
+import awsLogoNew from "../../assets/e8db84a0f02155e9712916e3b3f246e97af59ea6.png";
+import azureLogoNew from "../../assets/6815eb4c7e3fdf7615e2d88a4bc90f9d4f5f65e8.png";
+import serviceNowLogoNew from "../../assets/479c5e7ee7cc184f2a8f2f72295d6fc29ff8cf16.png";
+import serviceNowLogoText from "../../assets/80225d6957c2683205c179076212d35a3bc670de.png";
+import oracleSvgPaths from "../../imports/svg-qvm2dmjxvx";
+import awsSvgPaths from "../../imports/svg-6r1cut85br";
+import ZohoLogo from "../../imports/ZohoLogo";
+import MicrosoftAzureLogo from "../../imports/MicrosoftAzureLogo";
+import Group from "../../imports/Group";
 const ibmLogo = "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg";
-import Image from "next/image";
 
+// Inline Oracle SVG logo (from Figma import)
+function OracleSvgLogo({ style }: { style?: React.CSSProperties }) {
+  return (
+    <svg
+      viewBox="0 0 231.075 30.0345"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={style}
+    >
+      <path d={oracleSvgPaths.p1eaaa600} fill="#E43118" />
+    </svg>
+  );
+}
+
+// Inline AWS SVG logo (from Figma import)
+function AwsSvgLogo({ style }: { style?: React.CSSProperties }) {
+  return (
+    <svg
+      viewBox="0 0 300.671 179.8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={style}
+    >
+      <path d={awsSvgPaths.p1387fa00} fill="white" />
+      <path clipRule="evenodd" d={awsSvgPaths.p1c293b80} fill="#FF9900" fillRule="evenodd" />
+      <path clipRule="evenodd" d={awsSvgPaths.p2d627700} fill="#FF9900" fillRule="evenodd" />
+    </svg>
+  );
+}
 
 export default function Partners({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Partners Ecosystem | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -114,15 +153,9 @@ export default function Partners({ wordpressData }: any) {
                 className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
                 style={{ minHeight: 110 }}
               >
-              <div className="flex items-center justify-center" style={{ height: 48 }}>
-  <Image
-    src={awsLogo}
-    alt="Amazon Web Services"
-    width={100}
-    height={44}
-    style={{ maxHeight: 44, maxWidth: 100, objectFit: "contain" }}
-  />
-</div>
+                <div className="flex items-center justify-center" style={{ height: 48 }}>
+                  <Image src={awsLogoNew} alt="AWS" style={{ maxHeight: 44, maxWidth: 100, objectFit: "contain" }} />
+                </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#FF9900] transition-colors text-center">Amazon Web Services</span>
               </Motion.div>
 
@@ -135,7 +168,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={azureLogo.src} alt="Microsoft Azure" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
+                  <Image src={azureLogoNew} alt="Microsoft Azure" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0078D4] transition-colors text-center">Microsoft Azure</span>
               </Motion.div>
@@ -149,7 +182,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={gcpLogo.src} alt="Google Cloud" style={{ maxHeight: 44, maxWidth: 130, objectFit: "contain" }} />
+                  <Image src={gcpLogo} alt="Google Cloud" style={{ maxHeight: 44, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#4285F4] transition-colors text-center">Google Cloud Platform</span>
               </Motion.div>
@@ -163,7 +196,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={serviceNowLogo.src} alt="ServiceNow" style={{ maxHeight: 40, maxWidth: 130, objectFit: "contain" }} />
+                  <Image src={serviceNowLogoText} alt="ServiceNow" style={{ maxHeight: 40, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#62D84E] transition-colors text-center">ServiceNow</span>
               </Motion.div>
@@ -177,7 +210,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={salesforceLogo.src} alt="Salesforce" style={{ maxHeight: 48, maxWidth: 130, objectFit: "contain" }} />
+                  <Image src={salesforceLogo} alt="Salesforce" style={{ maxHeight: 48, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#00A1E0] transition-colors text-center">Salesforce</span>
               </Motion.div>
@@ -191,7 +224,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={zohoLogo.src} alt="Zoho" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
+                  <Image src={zohoLogo} alt="Zoho" style={{ maxHeight: 44, maxWidth: 110, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#E42527] transition-colors text-center">Zoho</span>
               </Motion.div>
@@ -205,7 +238,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={ibmLogo} alt="IBM" style={{ maxHeight: 44, maxWidth: 130, objectFit: "contain" }} />
+                  <Image src={ibmLogo} alt="IBM" width={130} height={44} style={{ objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0530AD] transition-colors text-center">IBM</span>
               </Motion.div>
@@ -219,7 +252,7 @@ export default function Partners({ wordpressData }: any) {
                 style={{ minHeight: 110 }}
               >
                 <div className="flex items-center justify-center" style={{ height: 48 }}>
-                  <img src={oracleLogo.src} alt="Oracle" style={{ maxHeight: 44, maxWidth: 130, objectFit: "contain" }} />
+                  <Image src={oracleLogoRed} alt="Oracle" style={{ maxHeight: 36, maxWidth: 130, objectFit: "contain" }} />
                 </div>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#F80000] transition-colors text-center">Oracle</span>
               </Motion.div>
@@ -417,7 +450,33 @@ export default function Partners({ wordpressData }: any) {
                         }}
                       >
                         <div className="p-2 flex items-center justify-center w-full h-full">
-                          <img src={typeof node.logo === 'string' ? node.logo : node.logo.src} alt={node.label} className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all brightness-[1.5] hover:brightness-100" />
+                          {node.label === "Oracle" ? (
+                            <OracleSvgLogo style={{ width: "100%", height: "auto", filter: "brightness(1.5)" }} />
+                          ) : node.label === "AWS" ? (
+                            <AwsSvgLogo style={{ width: "100%", height: "auto" }} />
+                          ) : node.label === "SFDC" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <Group />
+                            </div>
+                          ) : node.label === "SN" ? (
+                            <Image src={serviceNowLogoNew} alt="ServiceNow" className="max-w-full max-h-full object-contain" />
+                          ) : node.label === "Zoho" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <ZohoLogo />
+                            </div>
+                          ) : node.label === "Azure" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <MicrosoftAzureLogo />
+                            </div>
+                          ) : (
+<div className="relative w-[120px] h-[60px]">
+  <Image
+    src={node.logo}
+    alt={node.label}
+    fill
+    className="object-contain filter grayscale hover:grayscale-0 transition-all brightness-[1.5] hover:brightness-100"
+  />
+</div>                          )}
                         </div>
                       </Motion.div>
                     );

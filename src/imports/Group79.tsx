@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import svgPaths from "./svg-d0axdcnrsy";
 
 function Group1() {
@@ -71,7 +74,7 @@ function Group3() {
 
 function Group4() {
   return (
-    <div className="absolute contents left-0 top-0">
+    <div className="absolute left-0 top-0 w-full h-full">
       <Group1 />
       <div className="absolute flex h-[70.864px] items-center justify-center left-[9.17px] top-0 w-[71.144px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
         <div className="flex-none rotate-[29.26deg]">
@@ -89,7 +92,7 @@ function Group4() {
 
 function Group5() {
   return (
-    <div className="absolute contents left-0 top-0">
+    <div className="absolute left-0 top-0 w-full h-full">
       <Group4 />
     </div>
   );
@@ -97,7 +100,7 @@ function Group5() {
 
 function Heel2Hill() {
   return (
-    <div className="absolute h-[15.064px] left-[75px] top-[15.1px] w-[84.947px]" data-name="Heel2Hill">
+    <div className="absolute h-[15.064px] left-[75px] top-[15.1px] w-[84.947px]">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 84.947 15.0643">
         <g id="Heel2Hill">
           <path d={svgPaths.p34c19b00} fill="var(--fill-0, #096217)" id="Vector" />
@@ -117,7 +120,7 @@ function Heel2Hill() {
 
 function Group6() {
   return (
-    <div className="absolute contents left-[75px] top-[15.1px]">
+    <div className="absolute left-[75px] top-[15.1px] w-[84.947px] h-[15.064px]">
       <Heel2Hill />
     </div>
   );
@@ -125,7 +128,7 @@ function Group6() {
 
 function Agrotech() {
   return (
-    <div className="absolute h-[17.63px] left-[84px] top-[36.71px] w-[75.522px]" data-name="Agrotech">
+    <div className="absolute h-[17.63px] left-[84px] top-[36.71px] w-[75.522px]">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 75.5217 17.6301">
         <g id="Agrotech">
           <path d={svgPaths.p38a4d400} fill="var(--fill-0, #8B5E34)" id="Vector" />
@@ -144,13 +147,13 @@ function Agrotech() {
 
 function Group() {
   return (
-    <div className="absolute contents left-[84px] top-[36.71px]">
+    <div className="absolute left-[84px] top-[36.71px] w-[75.522px] h-[17.63px]">
       <Agrotech />
     </div>
   );
 }
 
-export default function Group7() {
+export default function Group7({ wordpressData }: any) {
   return (
     <div className="relative size-full">
       <Group5 />

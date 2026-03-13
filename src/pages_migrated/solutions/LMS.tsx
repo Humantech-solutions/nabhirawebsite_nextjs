@@ -1,14 +1,16 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { GraduationCap, BrainCircuit, BarChart, Laptop, Globe, UserCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function LMS({ wordpressData }: any) {
+export default function LMSSolution({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "AI-Powered LMS | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -98,7 +100,7 @@ export default function LMS({ wordpressData }: any) {
                 <ImageWithFallback 
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
                   alt="Learning Team"
-                  className="relative rounded-sm shadow-2xl"
+                  className="relative rounded-sm shadow-2xl aspect-video"
                 />
               </div>
               <div className="order-1 lg:order-2 space-y-10">

@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
@@ -9,6 +10,7 @@ import { Cloud, Server, BarChart3, ShieldCheck, Terminal, Database, ArrowRight, 
 
 export default function CloudInfraSolution({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Cloud Infra Deployment & Monitoring | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -163,7 +165,7 @@ export default function CloudInfraSolution({ wordpressData }: any) {
                 <ImageWithFallback 
                   src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1200"
                   alt="DevOps Center"
-                  className="rounded-sm grayscale hover:grayscale-0 transition-all duration-700 shadow-3xl"
+                  className="rounded-sm grayscale hover:grayscale-0 transition-all duration-700 shadow-3xl aspect-video"
                 />
                 <div className="absolute -bottom-10 -right-10 bg-[#f99d1c] p-10 hidden md:block">
                   <p className="text-white text-sm font-bold uppercase tracking-[0.2em] mb-4">Live Status</p>

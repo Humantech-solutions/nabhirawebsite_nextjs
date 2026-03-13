@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import heroBg from "../../assets/a5b4a7e7bbf8a581496fc155ece5264832a5dd71.png";
@@ -12,7 +13,7 @@ import {
 
 export default function ManufacturingAutomotive({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Manufacturing & Automotive | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

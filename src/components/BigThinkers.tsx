@@ -1,28 +1,11 @@
 "use client";
+import Image from "next/image";
 
+import React from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-const sundarImg = "/assets/logo2.png";
+import sundarImg from "../assets/logo2.png";
 
-interface BigThinkersProps {
-  data?: {
-    bSecTitle?: string;
-    bTitle?: string;
-    bAuthor?: string;
-    bBtnText?: string;
-    bBtnUrl?: string;
-    bImage?: { node: { sourceUrl: string } };
-    bImageUrl?: string;
-  };
-}
-
-export function BigThinkers({ data }: BigThinkersProps) {
-  const secTitle = data?.bSecTitle || "THE VISIONARY MINDS";
-  const content = data?.bTitle || "AI is the most profound shift of our lifetimes, bigger than the move to personal computing or mobile";
-  const author = data?.bAuthor || "Sundar Pichai (CEO, Google)";
-  // const buttonText = data?.bBtnText || "READ MORE";
-  const buttonUrl = data?.bBtnUrl || "#";
-  const image = data?.bImageUrl || (data?.bImage as any)?.node?.sourceUrl || (data?.bImage as any)?.sourceUrl || sundarImg;
-
+export function BigThinkers({ data }: any) {
   return (
     <section className="bg-[#0b1b3d] text-white py-24 relative overflow-hidden">
       {/* Background Graphic */}
@@ -32,28 +15,26 @@ export function BigThinkers({ data }: BigThinkersProps) {
         <div className="space-y-8 md:space-y-10 z-10 text-center md:text-left">
           <div className="flex flex-col space-y-1 items-center md:items-start">
             <h3 className="text-[#f99d1c] text-[10px] md:text-xs font-black tracking-[0.4em] uppercase">
-              {secTitle}
+              THE VISIONARY MINDS
             </h3>
             <div className="h-[2px] w-12 bg-[#f99d1c]"></div>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extralight leading-tight mb-4 max-w-xl mx-auto md:mx-0">
-            {content}
+            AI is the most profound shift of our lifetimes, bigger than the move to personal computing or mobile
           </h2>
           <div className="text-[#f99d1c] text-lg md:text-xl font-light italic mb-8 md:mb-10">
-            — {author}
+            — Sundar Pichai (CEO, Google)
           </div>
           
-          {/* <button className="bg-[#f99d1c] text-white px-8 md:px-10 py-4 text-[10px] md:text-xs font-black tracking-[0.2em] hover:bg-white hover:text-[#f99d1c] transition-all uppercase rounded-sm">
-            {buttonText}
-          </button> */}
+         
         </div>
         
         <div className="relative mt-8 md:mt-0">
           <div className="absolute -inset-10 bg-[#f99d1c]/10 blur-3xl rounded-full"></div>
           <ImageWithFallback
-            src={image}
-            alt={author}
+            src={sundarImg}
+            alt="Sundar Pichai"
             className="w-full max-w-2xl mx-auto relative z-10 grayscale hover:grayscale-0 transition-all duration-700 rounded-sm shadow-2xl"
           />
         </div>

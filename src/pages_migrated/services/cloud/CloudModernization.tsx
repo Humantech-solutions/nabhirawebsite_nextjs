@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { 
@@ -22,6 +23,7 @@ import {
 
 export default function CloudModernization({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Cloud Modernization Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

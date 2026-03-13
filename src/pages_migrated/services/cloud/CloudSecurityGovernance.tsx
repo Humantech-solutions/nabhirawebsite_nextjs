@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { 
@@ -23,6 +24,7 @@ import {
 
 export default function CloudSecurityGovernance({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Cloud Security & Governance | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -360,4 +362,3 @@ export default function CloudSecurityGovernance({ wordpressData }: any) {
     </>
   );
 }
-

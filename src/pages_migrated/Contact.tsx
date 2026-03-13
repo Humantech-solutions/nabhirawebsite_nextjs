@@ -1,7 +1,8 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -19,7 +20,7 @@ export default function Contact({ wordpressData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    
+    document.title = "Contact Us | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -102,7 +103,7 @@ export default function Contact({ wordpressData }: any) {
                     Get in <span className="font-bold">Touch</span>
                   </h2>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist.
+                   For growing your business with Nabhira, please drop us a line – our experts will contact you soon.
                   </p>
                 </div>
 

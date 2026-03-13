@@ -1,11 +1,13 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
+import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { Cpu, Brain, Sparkles, Workflow, ArrowRight, Zap, Target, Lightbulb } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import aiServerImg from "../../../assets/ai.png";
-import Image from "next/image";
 
 export default function ArtificialIntelligence({ wordpressData }: any) {
   const solutions = [
@@ -63,8 +65,7 @@ export default function ArtificialIntelligence({ wordpressData }: any) {
           </>
         }
         description="We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."
-       image={aiServerImg.src}
-
+        image={aiServerImg.src}
       />
 
       {/* Solutions Grid */}
@@ -96,8 +97,7 @@ export default function ArtificialIntelligence({ wordpressData }: any) {
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {solution.desc}
                 </p>
-                <Link 
-                  href={solution.path}
+                <Link href={solution.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>Explore Solution</span>
@@ -138,11 +138,9 @@ export default function ArtificialIntelligence({ wordpressData }: any) {
 
             <div className="relative">
               <div className="aspect-[4/5] bg-white/5 backdrop-blur-3xl border border-white/10 p-1 rounded-sm overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" 
+                <Image src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" 
                   alt="AI Neural Network" 
-                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
+                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700" />
               </div>
               <div className="absolute -top-8 -left-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
                 <p className="text-4xl font-bold tracking-tighter">AI-First</p>

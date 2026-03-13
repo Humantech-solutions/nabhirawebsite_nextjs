@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const studyPages = caseStudies.map((study) => ({
-    url: `${baseUrl}/resources/case-studies/${study.id}`,
+    url: `${baseUrl}/resources/case-studies/${study.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,

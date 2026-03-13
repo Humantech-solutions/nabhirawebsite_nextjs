@@ -1,14 +1,16 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Briefcase, BarChart3, PieChart, Truck, Users2, Workflow, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function ERP({ wordpressData }: any) {
+export default function ERPSolution({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "WorkbookNow ERP | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const newsItems = [
   {
@@ -32,6 +33,7 @@ const newsItems = [
 
 export default function News({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "In the News | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

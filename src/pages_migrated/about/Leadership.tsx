@@ -1,14 +1,16 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { LimitlessTogether } from "../../components/LimitlessTogether";
+import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Linkedin, Mail } from "lucide-react";
 
 export default function Leadership({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Leadership | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

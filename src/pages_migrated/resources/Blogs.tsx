@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { User, ArrowRight } from "lucide-react";
 
 const blogPosts = [
   {
@@ -47,6 +48,7 @@ const blogPosts = [
 
 export default function Blogs({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "Insights & Perspectives | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -88,7 +90,13 @@ export default function Blogs({ wordpressData }: any) {
                 >
                   <Link href={`/resources/blogs/${post.id}`} className="block">
                     <div className="aspect-[16/9] overflow-hidden mb-6 rounded-sm relative">
-                      <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <Image 
+                        src={post.image} 
+                        alt={post.title} 
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                      />
                       <div className="absolute inset-0 bg-[#11253e]/0 group-hover:bg-[#11253e]/10 transition-colors duration-500"></div>
                     </div>
                   </Link>

@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import {
@@ -25,7 +26,7 @@ import {
 
 export default function BankingFinance({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Banking & Financial Services | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

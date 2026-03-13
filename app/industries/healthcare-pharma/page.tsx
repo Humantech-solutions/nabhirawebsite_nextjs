@@ -1,17 +1,7 @@
 import HealthcarePharma from "../../../src/pages_migrated/industries/HealthcarePharma";
-import { getPageBySlug } from "@/src/lib/wordpress";
-import { constructMetadata } from "@/src/lib/seo";
-import { Metadata } from "next";
+import { getPageBySlug } from "../../../src/lib/wordpress";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug('healthcare-pharma');
-  return constructMetadata({
-    title: page?.title || "Healthcare & Pharma",
-    description: "Advanced data analytics and AI for healthcare providers and pharmaceutical companies.",
-  });
-}
-
-export default async function Page() {
-  const wordpressData = await getPageBySlug('healthcare-pharma');
+export default async function HealthcarePharmaPage() {
+  const wordpressData = await getPageBySlug("healthcare-pharma");
   return <HealthcarePharma wordpressData={wordpressData} />;
 }

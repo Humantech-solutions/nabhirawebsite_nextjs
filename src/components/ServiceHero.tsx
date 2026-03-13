@@ -1,6 +1,9 @@
+"use client";
+
+import React, { ReactNode } from "react";
 import { motion as Motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 interface ServiceHeroProps {
@@ -13,7 +16,7 @@ interface ServiceHeroProps {
 
 export function ServiceHero({ title, subtitle, category = "Services", image, description }: ServiceHeroProps) {
   return (
-    <section className="relative h-[400px] md:h-[520px] w-full overflow-hidden flex items-center pt-[110px]">
+    <section className="relative h-[400px] md:h-[520px] w-full overflow-hidden flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <ImageWithFallback 
@@ -60,3 +63,4 @@ export function ServiceHero({ title, subtitle, category = "Services", image, des
     </section>
   );
 }
+

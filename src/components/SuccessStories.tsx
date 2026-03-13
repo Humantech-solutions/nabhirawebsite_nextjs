@@ -1,61 +1,10 @@
 "use client";
 
-"use client";
-
+import React from "react";
 import { Plus, Quote } from "lucide-react";
 
-interface SuccessStoriesProps {
-  data?: {
-    sTitle?: string;
-    sDesc?: string;
-    sI1Title?: string;
-    sI1Author?: string;
-    sI1Role?: string;
-    sI2Title?: string;
-    sI2Author?: string;
-    sI2Role?: string;
-    sI3Title?: string;
-    sI3Author?: string;
-    sI3Role?: string;
-    sI4Title?: string;
-    sI4Author?: string;
-    sI4Role?: string;
-  };
-}
-
-export function SuccessStories({ data }: SuccessStoriesProps) {
-  const dynamicStories = [];
-  
-  if (data?.sI1Title) {
-    dynamicStories.push({
-      title: data.sI1Title,
-      author: data.sI1Author || "",
-      role: data.sI1Role || "",
-    });
-  }
-  if (data?.sI2Title) {
-    dynamicStories.push({
-      title: data.sI2Title,
-      author: data.sI2Author || "",
-      role: data.sI2Role || "",
-    });
-  }
-  if (data?.sI3Title) {
-    dynamicStories.push({
-      title: data.sI3Title,
-      author: data.sI3Author || "",
-      role: data.sI3Role || "",
-    });
-  }
-  if (data?.sI4Title) {
-    dynamicStories.push({
-      title: data.sI4Title,
-      author: data.sI4Author || "",
-      role: data.sI4Role || "",
-    });
-  }
-
-  const stories = dynamicStories.length > 0 ? dynamicStories : [
+export function SuccessStories({ data }: any) {
+  const stories = [
     {
       title: "How Nabhira is helping a leading US beverage retailer in its digital supply chain transformation.",
       author: "James Jay",
@@ -78,19 +27,16 @@ export function SuccessStories({ data }: SuccessStoriesProps) {
     }
   ];
 
-  const sectionTitle = data?.sTitle || "Success stories";
-  const sectionDesc = data?.sDesc || "Read how we partner with global enterprises to tackle challenges, accelerate transformation, and deliver measured business value.";
-
   return (
     <section className="bg-white py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="mb-12 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
           <h2 className="text-[#11253e] text-[14px] md:text-[16px] font-black tracking-[0.1em] flex items-center mb-4 md:mb-6">
-            {sectionTitle}
+            Success stories
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
           </h2>
-          <p className="text-[#11253e]/60 text-base md:text-lg font-light max-w-2xl leading-relaxed">
-            {sectionDesc}
+          <p className="text-[#11253e] text-base md:text-lg font-light max-w-2xl leading-relaxed">
+            We partner with global enterprises to tackle challenges, accelerate transformation and deliver measured business value.
           </p>
         </div>
         

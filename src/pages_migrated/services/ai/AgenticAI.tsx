@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import aiServerImg from "../../../assets/3a56e25cff12103ad9abb93b6283a6e3ef903f82.png";
 import {
@@ -29,7 +31,7 @@ import {
 
 export default function AgenticAI({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Agentic AI | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -157,11 +159,11 @@ export default function AgenticAI({ wordpressData }: any) {
       {/* ─── Hero Banner with Sub-navigation ─── */}
       <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
-          <ImageWithFallback
-            src={aiServerImg}
-            alt="Agentic AI Autonomous Robots"
-            className="w-full h-full object-cover opacity-50 mix-blend-screen"
-          />
+            <ImageWithFallback
+              src={aiServerImg.src}
+              alt="AI Machine Learning Technology"
+              className="w-full h-full object-cover opacity-30 mix-blend-screen"
+            />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
           <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>

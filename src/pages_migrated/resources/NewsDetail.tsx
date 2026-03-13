@@ -1,7 +1,7 @@
 "use client";
 
-import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
@@ -58,6 +58,7 @@ export default function NewsDetail({ wordpressData }: any) {
 
   useEffect(() => {
     if (item) {
+      document.title = `${item.title} | Nabhira Press`;
       window.scrollTo(0, 0);
     }
   }, [item]);

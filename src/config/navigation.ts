@@ -47,7 +47,7 @@ export const navigationConfig = {
     "SOLUTIONS": {
       type: "simple" as const,
       items: [
-        { label: "AI Powered Point of Sales App", href: "/solutions/pos" },
+        { label: "AI Powered Point of Sales App", href: "/solutions/enterprise-pos" },
         { label: "AI based LMS system", href: "/solutions/lms" },
         { label: "Policy Engine System", href: "/solutions/policy-engine" },
         { label: "Cloud Infra Deployment and Monitoring", href: "/solutions/cloud-infra" },
@@ -110,7 +110,7 @@ export const navigationConfig = {
       { label: "Government & PSUs", href: "/industries/government-psu" }
     ],
     solutions: [
-      { label: "AI Powered Point of Sales App", href: "/solutions/pos" },
+      { label: "AI Powered Point of Sales App", href: "/solutions/enterprise-pos" },
       { label: "AI based LMS System", href: "/solutions/lms" },
       { label: "Policy Engine System", href: "/solutions/policy-engine" },
       { label: "Cloud Infra Deployment and Monitoring", href: "/solutions/cloud-infra" },
@@ -130,9 +130,10 @@ export const navigationConfig = {
   },
   socialLinks: [
     { name: "LinkedIn", href: "#", platform: "linkedin" },
-    { name: "X", href: "#", platform: "x" },
-    { name: "YouTube", href: "#", platform: "youtube" },
-    { name: "Instagram", href: "#", platform: "instagram" },
+    { name: "X", href: "https://x.com/NabhiraTech", platform: "x" },
+    { name: "YouTube", href: "https://www.youtube.com/@NabhiraTechnologies", platform: "youtube" },
+    { name: "Instagram", href: "https://www.instagram.com/nabhira_technologies/", platform: "instagram" },
     { name: "Facebook", href: "#", platform: "facebook" }
   ]
 };
+

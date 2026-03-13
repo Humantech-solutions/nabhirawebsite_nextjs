@@ -1,14 +1,16 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Users, Banknote, CalendarCheck, Briefcase, Heart, UserPlus, ArrowRight, CheckCircle2, BarChart3, ShieldCheck, Globe, Zap } from "lucide-react";
 
-export default function HRMS({ wordpressData }: any) {
+export default function HRMSSolution({ wordpressData }: any) {
   useEffect(() => {
+    document.title = "HRMS & Payroll Solutions | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

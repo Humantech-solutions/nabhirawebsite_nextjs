@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import {
@@ -26,7 +27,7 @@ import {
 
 export default function MediaEntertainment({ wordpressData }: any) {
   useEffect(() => {
-    
+    document.title = "Media & Entertainment | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
