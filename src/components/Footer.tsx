@@ -175,7 +175,7 @@ const industryLinks = [
 
 const solutionLinks = [
   { label: "AI Powered Point of Sales App", to: "/solutions/enterprise-pos" },
-  { label: "AI based LMS System", to: "/solutions/lms" },
+  { label: "AI based LMS System", to: "/solutions/ailms" },
   { label: "Policy Engine System", to: "/solutions/policy-engine" },
 ];
 

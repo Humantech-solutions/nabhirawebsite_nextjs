@@ -16,7 +16,7 @@ export default function Solutions({ wordpressData }: any) {
     },
     {
       title: "AI Based LMS System",
-      path: "/solutions/lms",
+      path: "/solutions/ailms",
       desc: "A cognitive learning platform that adapts to individual progress and organizational knowledge gaps.",
       icon: <GraduationCap className="text-[#f99d1c]" size={24} />
     },

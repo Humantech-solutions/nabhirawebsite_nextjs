@@ -45,6 +45,7 @@ import LMSSolution from "../pages_migrated/solutions/LMS";
 import PolicyEngineSolution from "../pages_migrated/solutions/PolicyEngine";
 import EnterprisePOSSolution from "../pages_migrated/solutions/EnterprisePOS";
 import CloudInfraSolution from "../pages_migrated/solutions/CloudInfra";
+import AILMSSolution from "../pages_migrated/solutions/AILMS";
 import ERPSolution from "../pages_migrated/solutions/ERP";
 import HRMSSolution from "../pages_migrated/solutions/HRMS";
 import DataFoundation from "../pages_migrated/solutions/DataFoundation";
@@ -128,6 +129,7 @@ export const router = createBrowserRouter([
           { path: "policy-engine", Component: PolicyEngineSolution },
           { path: "enterprise-pos", Component: EnterprisePOSSolution },
           { path: "cloud-infra", Component: CloudInfraSolution },
+          { path: "ailms", Component: AILMSSolution },
           { path: "erp", Component: ERPSolution },
           { path: "hrms", Component: HRMSSolution },
           { path: "cloud-advisory", Component: CloudAdvisory },

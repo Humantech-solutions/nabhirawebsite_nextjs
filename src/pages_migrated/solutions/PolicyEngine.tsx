@@ -267,7 +267,7 @@ export default function PolicyEngineSolution({ wordpressData }: any) {
                 <ImageWithFallback 
                   src="https://images.unsplash.com/photo-1704969724221-8b7361b61f75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21wbGlhbmNlJTIwYXV0b21hdGlvbiUyMGJ1c2luZXNzJTIwZG9jdW1lbnRzfGVufDF8fHx8MTc3MzMwODQ4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Policy Automation System"
-                  className="rounded-sm shadow-2xl aspect-video"
+                  className="rounded-sm shadow-2xl"
                 />
               </Motion.div>
             </div>

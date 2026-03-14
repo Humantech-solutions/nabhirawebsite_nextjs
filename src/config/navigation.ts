@@ -48,7 +48,7 @@ export const navigationConfig = {
       type: "simple" as const,
       items: [
         { label: "AI Powered Point of Sales App", href: "/solutions/enterprise-pos" },
-        { label: "AI based LMS system", href: "/solutions/lms" },
+        { label: "AI based LMS system", href: "/solutions/ailms" },
         { label: "Policy Engine System", href: "/solutions/policy-engine" },
         { label: "Cloud Infra Deployment and Monitoring", href: "/solutions/cloud-infra" },
         { label: "WorkbookNow ERP", href: "/solutions/erp" },
@@ -111,7 +111,7 @@ export const navigationConfig = {
     ],
     solutions: [
       { label: "AI Powered Point of Sales App", href: "/solutions/enterprise-pos" },
-      { label: "AI based LMS System", href: "/solutions/lms" },
+      { label: "AI based LMS System", href: "/solutions/ailms" },
       { label: "Policy Engine System", href: "/solutions/policy-engine" },
       { label: "Cloud Infra Deployment and Monitoring", href: "/solutions/cloud-infra" },
       { label: "WorkbookNow ERP", href: "/solutions/erp" },
