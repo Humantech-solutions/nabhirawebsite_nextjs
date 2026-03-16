@@ -125,6 +125,7 @@ export default function About({ wordpressData }: any) {
                     src={storyImg}
                     alt="Corporate Leadership"
                     className="w-full h-full object-cover"
+                    fill
                   />
                 </div>
                 {/* Decorative Elements */}
