@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../components/ServiceHero";
 import { ShoppingCart, GraduationCap, FileText, Server, Briefcase, Users, ArrowRight } from "lucide-react";
@@ -8,28 +9,17 @@ import Link from "next/link";
 import { LimitlessTogether, Footer } from "../components/Footer";
 import { renderHeroTitle, formatQuotesToBold } from "../lib/utils";
 
-interface SolutionsProps {
-  wordpressData?: {
-    title: string;
-    content: string;
-    globalSettings?: {
-      heroSlides: any;
-      limitlessTogether: any;
-    };
-  };
-}
-
-export default function Solutions({ wordpressData }: SolutionsProps) {
+export default function Solutions({ wordpressData }: any) {
   const products = [
     {
       title: "AI Powered Point of Sales",
-      path: "/solutions/pos",
+      path: "/solutions/enterprise-pos",
       desc: "Revolutionizing retail with intelligent checkout, inventory prediction, and personalized customer loyalty.",
       icon: <ShoppingCart className="text-[#f99d1c]" size={24} />
     },
     {
       title: "AI Based LMS System",
-      path: "/solutions/lms",
+      path: "/solutions/ailms",
       desc: "A cognitive learning platform that adapts to individual progress and organizational knowledge gaps.",
       icon: <GraduationCap className="text-[#f99d1c]" size={24} />
     },
@@ -102,8 +92,7 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {formatQuotesToBold(product.desc)}
                 </p>
-                <Link 
-                  href={product.path}
+                <Link href={product.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>View Product</span>
@@ -134,9 +123,6 @@ export default function Solutions({ wordpressData }: SolutionsProps) {
           </div>
         </div>
       </section>
-
-      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
-      <Footer />
     </div>
   );
 }

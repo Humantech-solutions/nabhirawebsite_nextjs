@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/format-html.mjs",
+    "build:raw": "next build",
+    "format-html": "node scripts/format-html.mjs",
     "start": "next start",
     "lint": "eslint"
   },
@@ -77,6 +79,7 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

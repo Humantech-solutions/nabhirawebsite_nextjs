@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useState } from "react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { 
   Cloud, 
@@ -19,21 +19,20 @@ import {
   Bot, 
   Activity,
   Settings,
-  ChevronRight,
-  LayoutGrid
+  ChevronRight
 } from "lucide-react";
 import { formatQuotesToBold, renderHeroTitle } from "../lib/utils";
 
 type Service = {
   title: string;
   desc: string;
-  icon: any;
+  icon: React.ElementType;
 };
 
 type Category = {
   id: string;
   label: string;
-  icon: any;
+  icon: React.ElementType;
   services: Service[];
 };
 
@@ -45,7 +44,7 @@ const capabilitiesData: Category[] = [
     services: [
       {
         title: "Cloud Advisory",
-        desc: "Assess readiness, define strategy, build roadmap, optimize architecture, governance, security, and cost efficiency",
+        desc: "Assess readiness, define strategy, build roadmap, optimize architecture, governance, security and cost efficiency",
         icon: Compass
       },
       {
@@ -121,76 +120,13 @@ const capabilitiesData: Category[] = [
   }
 ];
 
-interface CapabilitiesProps {
-  data?: {
-    cTitle?: string;
-    cDesc?: string;
-    cC1Label?: string;
-    cC1Icon?: string;
-    cC1IconImg?: { node: { sourceUrl: string } };
-    cC2Label?: string;
-    cC2Icon?: string;
-    cC2IconImg?: { node: { sourceUrl: string } };
-    cC3Label?: string;
-    cC3Icon?: string;
-    cC3IconImg?: { node: { sourceUrl: string } };
-  };
-}
+export function Capabilities({ data }: any) {
+  const [activeTab, setActiveTab] = useState(capabilitiesData[0].id);
 
-export function Capabilities({ data }: CapabilitiesProps) {
-  const iconMap: Record<string, any> = {
-    Cloud, Database, BrainCircuit, Compass, MoveRight, Zap, Cpu, Settings, BarChart3, GitBranch, PieChart, ShieldCheck, Lightbulb, Bot, Activity, LayoutGrid
-  };
-
-  const dynamicCategories = [];
-  
-  if (data?.cC1Label) {
-    const label = data.cC1Label;
-    const iconName = data.cC1Icon || "";
-    const iconImg = (data.cC1IconImg as any)?.node?.sourceUrl || (data.cC1IconImg as any)?.sourceUrl || null;
-    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[0];
-    dynamicCategories.push({
-      id: label.toLowerCase().replace(/\s+/g, '-'),
-      label: label,
-      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
-      services: fallbackCat.services
-    });
-  }
-  
-  if (data?.cC2Label) {
-    const label = data.cC2Label;
-    const iconName = data.cC2Icon || "";
-    const iconImg = (data.cC2IconImg as any)?.node?.sourceUrl || (data.cC2IconImg as any)?.sourceUrl || null;
-    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[1];
-    dynamicCategories.push({
-      id: label.toLowerCase().replace(/\s+/g, '-'),
-      label: label,
-      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
-      services: fallbackCat.services
-    });
-  }
-
-  if (data?.cC3Label) {
-    const label = data.cC3Label;
-    const iconName = data.cC3Icon || "";
-    const iconImg = (data.cC3IconImg as any)?.node?.sourceUrl || (data.cC3IconImg as any)?.sourceUrl || null;
-    const fallbackCat = capabilitiesData.find(c => c.label.toLowerCase().includes(label.toLowerCase())) || capabilitiesData[2];
-    dynamicCategories.push({
-      id: label.toLowerCase().replace(/\s+/g, '-'),
-      label: label,
-      icon: iconImg || iconMap[iconName] || fallbackCat.icon || LayoutGrid,
-      services: fallbackCat.services
-    });
-  }
-
-  const capabilities = dynamicCategories.length > 0 ? dynamicCategories : capabilitiesData;
+  const activeCategory = capabilitiesData.find(cat => cat.id === activeTab) || capabilitiesData[0];
 
   const sectionTitle = data?.cTitle || "Our capabilities";
   const sectionDesc = data?.cDesc || "Stay Ahead of Curve with Cloud Solutions";
-
-  const [activeTab, setActiveTab] = useState(capabilities[0]?.id);
-
-  const activeCategory = capabilities.find(cat => cat.id === activeTab) || capabilities[0];
 
   return (
     <section className="bg-[#f8f9fa] py-20 md:py-24 px-6 sm:px-12 lg:px-20 relative overflow-hidden">
@@ -198,18 +134,18 @@ export function Capabilities({ data }: CapabilitiesProps) {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+            <pattern id="grid-capabilities" width="100" height="100" patternUnits="userSpaceOnUse">
               <path d="M 100 0 L 0 0 0 100" fill="none" stroke="black" strokeWidth="1"/>
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          <rect width="100%" height="100%" fill="url(#grid-capabilities)" />
         </svg>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="mb-10 md:mb-12 text-center md:text-left flex flex-col items-center md:items-start">
-          <motion.h2 
+          <Motion.h2 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -217,52 +153,49 @@ export function Capabilities({ data }: CapabilitiesProps) {
           >
             {formatQuotesToBold(sectionTitle)}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
-          </motion.h2>
-          <motion.p 
+          </Motion.h2>
+          <Motion.p 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-4 md:mt-6 text-[#11253e] max-w-2xl text-base md:text-lg font-light leading-relaxed"
+            className="mt-4 md:mt-6 text-[#11253e] max-w-2xl md:text-[40px] text-base md:text-lg font-medium leading-tight"
           >
             {formatQuotesToBold(sectionDesc)}
-          </motion.p>
+          </Motion.p>
         </div>
 
         {/* Category Navigation */}
         <div className="flex overflow-x-auto no-scrollbar gap-6 md:gap-10 mb-10 md:mb-12 border-b border-[#11253e]/10 -mx-6 px-6 md:mx-0 md:px-0">
-          {capabilities.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveTab(cat.id)}
-              className={`pb-4 px-2 text-[13px] md:text-sm font-medium tracking-normal transition-all duration-300 relative whitespace-nowrap ${
-                activeTab === cat.id ? "text-[#11253e]" : "text-[#11253e] hover:text-[#11253e]"
-              }`}
-            >
-              <span className="flex items-center gap-2 md:gap-3">
-                {typeof cat.icon !== 'string' ? (
-                  <cat.icon size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
-                ) : typeof cat.icon === 'string' ? (
-                  <img src={cat.icon} alt={cat.label} className="w-4 h-4 object-contain" />
-                ) : (
-                  <LayoutGrid size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
+          {capabilitiesData.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveTab(cat.id)}
+                className={`pb-4 px-2 text-[13px] md:text-sm font-medium tracking-normal transition-all duration-300 relative whitespace-nowrap cursor-pointer ${
+                  activeTab === cat.id ? "text-[#11253e]" : "text-[#11253e] hover:text-[#11253e]"
+                }`}
+              >
+                <span className="flex items-center gap-2 md:gap-3">
+                  <Icon size={16} className={activeTab === cat.id ? "text-[#f99d1c]" : "text-current"} />
+                  {cat.label}
+                </span>
+                {activeTab === cat.id && (
+                  <Motion.div 
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 w-full h-[3px] bg-[#f99d1c]"
+                  />
                 )}
-                {cat.label}
-              </span>
-              {activeTab === cat.id && (
-                <motion.div 
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 w-full h-[3px] bg-[#f99d1c]"
-                />
-              )}
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
 
         {/* Services Grid */}
         <div className="min-h-[500px]">
           <AnimatePresence mode="wait">
-            <motion.div
+            <Motion.div
               key={activeTab}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -273,7 +206,7 @@ export function Capabilities({ data }: CapabilitiesProps) {
               {activeCategory.services.map((service, idx) => (
                 <ServiceCard key={service.title} service={service} index={idx} />
               ))}
-            </motion.div>
+            </Motion.div>
           </AnimatePresence>
         </div>
       </div>
@@ -309,13 +242,13 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
   };
 
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05 }}
       whileHover={{ y: -5 }}
-      className="group bg-white p-8 rounded-sm border border-transparent hover:border-[#f99d1c]/30 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col h-full relative overflow-hidden"
+      className="group bg-white p-8 rounded-sm border border-transparent hover:border-[#f99d1c]/30 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col h-full relative overflow-hidden cursor-default"
     >
       {/* Hover Background Pattern Reveal */}
       <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#f99d1c]/5 rounded-full blur-3xl group-hover:bg-[#f99d1c]/10 transition-colors duration-500" />
@@ -336,9 +269,8 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
       </div>
 
       <div className="relative z-10 mt-auto pt-6 border-t border-[#11253e]/5">
-        <Link 
-          href={routeMap[service.title] || "#"}
-          className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300"
+        <Link href={routeMap[service.title] || "#"}
+          className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300 cursor-pointer"
         >
           Explore More
           <ChevronRight size={14} />
@@ -347,6 +279,6 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
 
       {/* Decorative side accent */}
       <div className="absolute top-0 left-0 w-[2px] h-0 bg-[#f99d1c] group-hover:h-full transition-all duration-500" />
-    </motion.div>
+    </Motion.div>
   );
 }

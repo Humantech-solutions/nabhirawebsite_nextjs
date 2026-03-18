@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import svgPaths from "./svg-a6swn7rl5u";
 
 function Group() {
@@ -14,7 +17,7 @@ function Group() {
 
 function TotwofootGlobal() {
   return (
-    <div className="absolute h-[25.994px] left-[52.49px] top-[3.14px] w-[98.997px]" data-name="TOTWOFOOT Global">
+    <div className="absolute h-[25.994px] left-[52.49px] top-[3.14px] w-[98.997px]">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 98.9971 25.9944">
         <g id="TOTWOFOOT Global">
           <path d={svgPaths.pf213a00} fill="var(--fill-0, black)" id="Vector" />
@@ -38,7 +41,7 @@ function TotwofootGlobal() {
   );
 }
 
-export default function Group1() {
+export default function Group1({ wordpressData }: any) {
   return (
     <div className="relative size-full">
       <Group />

@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import logo from '../assets/footer.png';
-import { motion, AnimatePresence } from "motion/react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const whyNabhiraQA = [
   {
@@ -91,17 +91,17 @@ export function LimitlessTogether({ data }: { data?: any }) {
                 </button>
                 <AnimatePresence>
                   {openIndex === index && (
-                    <motion.div
+                    <Motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-4 text-white/90 font-light leading-relaxed text-sm">
+                      <p className="mt-4 text-white/90 font-light leading-relaxed text-md">
                         {item.answer}
                       </p>
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -125,7 +125,7 @@ const socialIcons = [
   },
   {
     name: "X",
-    href: "#",
+    href: "https://x.com/NabhiraTech",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -134,7 +134,7 @@ const socialIcons = [
   },
   {
     name: "YouTube",
-    href: "#",
+    href: "https://www.youtube.com/@NabhiraTechnologies",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -143,7 +143,7 @@ const socialIcons = [
   },
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/nabhira_technologies/",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -186,12 +186,9 @@ const industryLinks = [
 ];
 
 const solutionLinks = [
-  { label: "AI Powered Point of Sales App", to: "/solutions/pos" },
-  { label: "AI based LMS System", to: "/solutions/lms" },
+  { label: "AI Powered Point of Sales App", to: "/solutions/enterprise-pos" },
+  { label: "AI based LMS System", to: "/solutions/ailms" },
   { label: "Policy Engine System", to: "/solutions/policy-engine" },
-  { label: "Cloud Infra Deployment and Monitoring", to: "/solutions/cloud-infra" },
-  { label: "WorkbookNow ERP", to: "/solutions/erp" },
-  { label: "HRMS and Payroll Solutions", to: "/solutions/hrms" },
 ];
 
 const resourceLinks = [
@@ -205,36 +202,44 @@ const resourceLinks = [
   { label: "Events", to: "/resources/events" },
 ];
 
+interface MobileSectionProps {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+  openSection: string | null;
+  toggle: (key: string) => void;
+}
+
+const MobileSection = ({
+  id, title, children, openSection, toggle
+}: MobileSectionProps) => (
+  <div className="border-b border-white/10 lg:border-none">
+    {/* Mobile toggle header */}
+    <button
+      className="w-full flex items-center justify-between py-4 lg:hidden"
+      onClick={() => toggle(id)}
+      aria-expanded={openSection === id}
+    >
+      <span className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">{title}</span>
+      <span className={`text-white/40 transition-transform duration-300 ${openSection === id ? "rotate-180" : ""}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </span>
+    </button>
+    {/* Desktop heading always visible */}
+    <h4 className="hidden lg:block text-xs font-medium uppercase tracking-normal text-[#f99d1c] mb-5">{title}</h4>
+    {/* Content: always visible on lg+, animated on mobile */}
+    <div className={`overflow-hidden transition-all duration-300 ease-in-out lg:!max-h-none lg:opacity-100 ${openSection === id ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
+      {children}
+    </div>
+  </div>
+);
+
 export function Footer() {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const toggle = (key: string) => setOpenSection(prev => prev === key ? null : key);
-
-  const MobileSection = ({
-    id, title, children
-  }: { id: string; title: string; children: React.ReactNode }) => (
-    <div className="border-b border-white/10 lg:border-none">
-      {/* Mobile toggle header */}
-      <button
-        className="w-full flex items-center justify-between py-4 lg:hidden"
-        onClick={() => toggle(id)}
-        aria-expanded={openSection === id}
-      >
-        <span className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">{title}</span>
-        <span className={`text-white/40 transition-transform duration-300 ${openSection === id ? "rotate-180" : ""}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-            <path d="M19 9l-7 7-7-7" />
-          </svg>
-        </span>
-      </button>
-      {/* Desktop heading always visible */}
-      <h4 className="hidden lg:block text-xs font-medium uppercase tracking-normal text-[#f99d1c] mb-5">{title}</h4>
-      {/* Content: always visible on lg+, animated on mobile */}
-      <div className={`overflow-hidden transition-all duration-300 ease-in-out lg:!max-h-none lg:opacity-100 ${openSection === id ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
-        {children}
-      </div>
-    </div>
-  );
 
   return (
     <footer className="bg-[#0b1b3d] text-white pt-12 md:pt-16 lg:pt-24 pb-8 md:pb-12 overflow-hidden relative">
@@ -246,16 +251,10 @@ export function Footer() {
         <div className="mb-8 md:mb-0">
           <div className="lg:hidden flex items-center mb-5">
             <Link href="/">
-                <Image 
-                  src={logo} 
-                  alt="Nabhira Logo" 
-                  width={150}
-                  height={50}
-                  className="h-10 w-auto" 
-                />
-              </Link>
+              <Image src={logo} alt="Nabhira Logo" className="h-9 w-auto" />
+            </Link>
           </div>
-          <p className="lg:hidden text-white/60 text-[13px] font-light leading-relaxed mb-5">
+          <p className="lg:hidden text-white/60 text-[14px] font-light leading-relaxed mb-5">
             Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI — empowering enterprises across 50+ countries.
           </p>
           {/* Social icons always visible on mobile */}
@@ -278,18 +277,10 @@ export function Footer() {
           {/* Column 1 — Brand (desktop only) */}
           <div className="hidden lg:flex flex-col space-y-5">
             <div className="flex items-center">
-               <Link href="/">
-                <Image 
-                  src={logo} 
-                  alt="Nabhira Logo" 
-                  width={150}
-                  height={50}
-                  className="h-10 w-auto" 
-                />
-              </Link>
+              <Link href="/"><Image src={logo} alt="Nabhira Logo" className="h-10 w-auto" /></Link>
             </div>
             <div className="space-y-4">
-              <p className="text-white/70 text-[13px] font-light leading-relaxed tracking-wide">
+              <p className="text-white/70 text-[14px] font-light leading-relaxed tracking-wide">
                 Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering and Agentic AI. We empower enterprises across 50+ countries to orchestrate their digital evolution through advanced data ecosystems and autonomous cloud platforms.
               </p>
               <p className="text-white/70 text-[12px] font-light italic">
@@ -311,7 +302,7 @@ export function Footer() {
 
           {/* Column 2 — Our Services */}
           <div>
-            <MobileSection id="services" title="Our Services">
+            <MobileSection id="services" title="Our Services" openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
                 {serviceLinks.map((link) => (
                   <li key={link.to}>
@@ -324,7 +315,7 @@ export function Footer() {
 
           {/* Column 3 — Industries + Solutions */}
           <div>
-            <MobileSection id="industries" title="Industries">
+            <MobileSection id="industries" title="Industries" openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
                 {industryLinks.map((link) => (
                   <li key={link.to}>
@@ -345,7 +336,7 @@ export function Footer() {
 
           {/* Column 4 — Resources + Topics */}
           <div>
-            <MobileSection id="resources" title="Resources">
+            <MobileSection id="resources" title="Resources" openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
                 {resourceLinks.map((link) => (
                   <li key={link.to}>

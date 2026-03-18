@@ -1,7 +1,9 @@
 "use client";
+import Image from "next/image";
+
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import banner1Img from "../assets/log03.png";
 import banner2Img from "../assets/bigthinkers.png";
@@ -19,7 +21,6 @@ export function Hero({ data }: HeroProps) {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Default banners in case data is missing
   const defaultBanners = [
     {
       type: "video" as const,
@@ -38,7 +39,6 @@ export function Hero({ data }: HeroProps) {
     },
     {
       type: "image" as const,
-      videoSrc: "",
       title: (
         <>
           Unlock the Power <br />
@@ -53,7 +53,6 @@ export function Hero({ data }: HeroProps) {
     },
     {
       type: "image" as const,
-      videoSrc: "",
       title: (
         <>
           Elevate with <br />
@@ -67,8 +66,6 @@ export function Hero({ data }: HeroProps) {
       buttonUrl: "#"
     },
   ];
-
-
 
   const heroData = data?.heroSlides || data;
 
@@ -136,7 +133,7 @@ export function Hero({ data }: HeroProps) {
   return (
     <section className="relative h-[500px] md:h-[620px] overflow-hidden group bg-[#11253e]">
       <AnimatePresence mode="wait">
-        <motion.div
+        <Motion.div
           key={currentSlide}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -146,14 +143,14 @@ export function Hero({ data }: HeroProps) {
         >
           {/* Background Image / Video */}
           <div className="absolute inset-0">
-            {banner.type === "video" && banner.videoSrc ? (
+            {banner.type === "video" ? (
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
                 className="w-full h-full object-cover"
-                poster={typeof banner.image === 'string' ? banner.image : (banner.image as any).src}
+                poster={typeof banner.image === 'string' ? banner.image : banner.image.src}
               >
                 <source src={banner.videoSrc} type="video/mp4" />
               </video>
@@ -181,7 +178,7 @@ export function Hero({ data }: HeroProps) {
 
           {/* Content */}
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
-            <motion.div 
+            <Motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -193,17 +190,14 @@ export function Hero({ data }: HeroProps) {
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] mb-8 md:mb-12 max-w-2xl font-light leading-relaxed drop-shadow-sm">
                 {formatQuotesToBold(banner.description)}
               </p>
-              <button 
-                onClick={() => banner.buttonUrl && (window.location.href = banner.buttonUrl)}
-                className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none"
-              >
+              <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none">
                 <span>{banner.buttonText || "SEE HOW"}</span>
                 <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
                 <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
               </button>
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
+        </Motion.div>
       </AnimatePresence>
 
       {/* Navigation Controls */}

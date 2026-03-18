@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
@@ -324,15 +325,17 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               </Motion.div>
             ))}
           </div>
+
+         
         </div>
       </section>
 
-      <section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
-        {/* Diagonal stripe texture */}
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
-        {/* Corner glow blobs */}
-        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
-        <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <Motion.div
@@ -360,6 +363,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
           </Motion.div>
         </div>
       </section>
+      
     </>
   );
 }

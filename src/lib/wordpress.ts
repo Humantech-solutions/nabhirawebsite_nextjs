@@ -942,8 +942,23 @@ export async function getHomePage() {
     }
 
     if (!page) {
-      console.error('[getHomePage ERROR]: No page data found for "/" or "/home/"');
-      return null;
+      console.error('[getHomePage ERROR]: No page data found for "/" or "/home/". Falling back to static data.');
+      // Return a structured static object instead of null to allow the page to render
+      return {
+        homePageFields: {},
+        globalSettings: {},
+        newsPosts: blogPosts.slice(0, 3).map(post => ({
+          title: post.title,
+          date: post.date,
+          featuredImage: { node: { sourceUrl: post.image } },
+          uri: `/resources/blogs/${post.id}`
+        })),
+        thinkingPosts: blogPosts.slice(0, 6).map(post => ({
+          title: post.title,
+          featuredImage: { node: { sourceUrl: post.image } },
+          uri: `/resources/blogs/${post.id}`
+        }))
+      };
     }
 
     // Process What's New settings
@@ -1297,13 +1312,14 @@ export async function getCareerPostBySlug(slug: string) {
     }
 
     return {
-      id: node.slug,
+      id: node.id || node.slug,
       slug: node.slug,
       title: node.title,
-      department: node.careerJobOpeningDetails?.careerDepartment || '',
-      location: node.careerJobOpeningDetails?.careerLocation || '',
+      date: node.date,
+      department: node.careerJobOpeningDetails?.careerDepartment || 'Engineering',
+      location: node.careerJobOpeningDetails?.careerLocation || 'Nabhira Technologies',
       type: node.careerJobOpeningDetails?.careerType || 'Full-time',
-      posted: formatDateToDaysAgo(node.date), // Use published date
+      posted: formatDateToDaysAgo(node.date),
       salary: 'Competitive',
       description: node.careerJobOpeningDetails?.careerDescription || '',
     };

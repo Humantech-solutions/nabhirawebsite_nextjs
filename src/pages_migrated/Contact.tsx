@@ -1,7 +1,8 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -153,32 +154,31 @@ export default function Contact({ wordpressData }: any) {
             <Motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
-              {/* Breadcrumb */}
               <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
                 <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
                 <span className="text-white/30 font-light">&gt;</span>
-                <span className="text-[#f99d1c] uppercase tracking-[0.2em]">CONTACT US</span>
+                <span className="text-[#f99d1c] uppercase tracking-widest">Contact Us</span>
               </nav>
 
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
+                {renderHeroTitle(acfHero?.heroTitle || (
                   <>
-                    Start the <br />Conversation
+                    Start the <br /><span className="text-[#f99d1c]">Conversation</span>
                   </>
                 ))}
               </h1>
               <p className="text-white text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-                {formatQuotesToBold(acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you.")}
+                {formatQuotesToBold(acfHero?.heroDescription || "We would love to hear from you.")}
               </p>
             </Motion.div>
           </div>
         </div>
       </section>
 
-        {/* Contact Content */}
-        <section className="py-24 bg-white">
+      {/* Contact Content */}
+      <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
               
@@ -197,7 +197,7 @@ export default function Contact({ wordpressData }: any) {
                     })()}
                   </h2>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist.")}
+                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist. For growing your business with Nabhira, please drop us a line – our experts will contact you soon.")}
                   </p>
                 </div>
 

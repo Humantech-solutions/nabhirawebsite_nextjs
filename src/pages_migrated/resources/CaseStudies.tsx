@@ -1,38 +1,13 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { renderHeroTitle } from "../../lib/utils";
-
-const cases = [
-  {
-    id: 1,
-    title: "Global Bank: Cloud Modernization",
-    client: "Tier 1 Investment Bank",
-    impact: "60% Reduction in OPEX",
-    tags: ["Cloud", "Finance"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 2,
-    title: "Retail Giant: AI Supply Chain",
-    client: "Fortune 500 Retailer",
-    impact: "40% Inventory Optimization",
-    tags: ["AI", "Retail"],
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 3,
-    title: "Smart Factory: Edge Intelligence",
-    client: "Global Automotive OEM",
-    impact: "Zero Unplanned Downtime",
-    tags: ["IoT", "Manufacturing"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
-  }
-];
+import { caseStudies } from "@/src/data/migrated_data";
 
 export default function CaseStudies({ wordpressData }: any) {
   useEffect(() => {
@@ -68,7 +43,7 @@ export default function CaseStudies({ wordpressData }: any) {
 
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 space-y-20">
-            {cases.map((c, idx) => (
+            {caseStudies.map((c: any, idx: number) => (
               <Motion.div 
                 key={idx}
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
@@ -77,12 +52,18 @@ export default function CaseStudies({ wordpressData }: any) {
                 viewport={{ once: true }}
                 className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
               >
-                <div className="w-full lg:w-1/2 aspect-video overflow-hidden rounded-sm">
-                  <img src={c.image} alt={c.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <div className="w-full lg:w-1/2 aspect-video overflow-hidden rounded-sm relative">
+                  <Image 
+                    src={c.image} 
+                    alt={c.title} 
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover hover:scale-105 transition-transform duration-700" 
+                  />
                 </div>
                 <div className="w-full lg:w-1/2 space-y-6">
-                  <div className="flex gap-2">
-                    {c.tags.map(tag => (
+                  <div className="flex gap-2 font-bold flex-wrap">
+                    {c.tags.map((tag: string) => (
                       <span key={tag} className="px-3 py-1 bg-[#11253e]/5 text-[#11253e] text-[10px] font-bold uppercase tracking-widest rounded-full">{tag}</span>
                     ))}
                   </div>
@@ -98,7 +79,7 @@ export default function CaseStudies({ wordpressData }: any) {
                       {c.impact}
                     </div>
                   </div>
-                  <Link href={`/resources/case-studies/${c.id}`} className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#11253e] group">
+                  <Link href={`/resources/case-studies/${c.slug}`} className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#11253e] group">
                     Read Full Case Study <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>

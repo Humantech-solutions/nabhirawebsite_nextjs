@@ -1,0 +1,6 @@
+﻿C:\Users\Dell\nabhirawebsite_nextjs\app\careers\[slug]\page.tsx
+C:\Users\Dell\nabhirawebsite_nextjs\app\resources\blogs\[id]\page.tsx
+C:\Users\Dell\nabhirawebsite_nextjs\app\resources\blogs\[slug]\page.tsx
+C:\Users\Dell\nabhirawebsite_nextjs\app\resources\case-studies\[id]\page.tsx
+C:\Users\Dell\nabhirawebsite_nextjs\app\resources\events\[id]\page.tsx
+C:\Users\Dell\nabhirawebsite_nextjs\app\resources\news\[id]\page.tsx

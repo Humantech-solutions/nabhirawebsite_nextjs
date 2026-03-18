@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
@@ -149,6 +150,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
           <ImageWithFallback
             src={automationHeroImg}
             alt="Intelligent Automation"
+            fill
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -164,7 +166,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
             className="max-w-3xl space-y-8"
           >
             {/* Breadcrumb */}
-            <nav className="flex items-center space-x-3 text-[11px] md:text-[15px] font-medium tracking-[-0.02em] mb-4">
+            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
               <span className="text-[#f99d1c] uppercase tracking-widest">Intelligent Automation</span>
@@ -173,7 +175,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
                 <>
-                  Intelligent Automation <br /> <span className="text-white/40">AI at Edge.</span>
+                  Intelligent Automation <br /> <span className="text-[#f99d1c]">AI at Edge.</span>
                 </>
               ))}
             </h1>
@@ -386,7 +388,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
+
       <section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
           {/* Diagonal stripe texture */}
           <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
@@ -420,6 +422,9 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
             </Motion.div>
           </div>
         </section>
+
+      {/* ─── CTA ─── */}
+      
     </>
   );
 }

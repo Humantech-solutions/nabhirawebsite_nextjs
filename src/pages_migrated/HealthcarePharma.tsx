@@ -36,7 +36,6 @@ import {
 export default function HealthcarePharma({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Healthcare & Life Sciences | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -85,7 +86,7 @@ export default function EventDetail({ wordpressData }: any) {
 
   return (
     <>
-      <main className="pt-20">
+      <main className="">
         {/* Header Section */}
         <section className="relative h-[400px] overflow-hidden">
           <div className="absolute inset-0">

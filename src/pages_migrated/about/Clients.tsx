@@ -1,13 +1,13 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote, Zap } from "lucide-react";
 import { formatQuotesToBold, renderHeroTitle, renderDynamicIcon } from "../../lib/utils";
-
 import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
 import H2HLogo from "../../imports/Group79";
 import Two2FootLogo from "../../imports/Group78-509-300";
@@ -17,11 +17,9 @@ import helionLogo from "../../assets/bc9968f5cbe35f8837559e9f31871e02de629df6.pn
 import intwayLogo from "../../assets/53a59feaee1d46abc83f87eb629a51975d9c5ee7.png";
 import vitmarkLogo from "../../assets/328e0509dd589bd5013f84e17bf754af3b15999a.png";
 
-/* ─── Component ────────────────────────────────────────────── */
 export default function Clients({ wordpressData }: { wordpressData?: any }) {
   const heroData = wordpressData?.globalSettings?.heroSlides;
   const fields = wordpressData?.clientsPageFields;
-
   useEffect(() => {
     document.title = "Our Clients | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -418,10 +416,10 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
               {fields?.clientGridSubtitle || "Our Clientele"}
             </p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              {renderHeroTitle(fields?.clientGridTitle || "Companies That Trust Nabhira", "text-[#11253e]")}
+              {renderHeroTitle(fields?.clientGridTitle || "Organizations That Trust Nabhira", "text-[#11253e]")}
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-6" />
-            <p className="max-w-xl mx-auto text-[#11253e] font-light text-sm leading-relaxed" style={{ opacity: 0.65 }}>
+            <p className="max-w-xl mx-auto text-[#11253e] font-light text-md leading-relaxed" style={{ opacity: 0.65 }}>
               {renderHeroTitle(fields?.clientGridDesc || "We are privileged to serve a diverse portfolio of clients across industries — each partnership a testament to our commitment to engineering excellence.", "text-[#11253e]")}
             </p>
           </div>
@@ -518,7 +516,6 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
           </div>
         </div>
       </section>
-
       {/* ── Testimonials ─────────────────────────────────────── */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6 sm:px-12">
@@ -542,17 +539,12 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
                 viewport={{ once: true }}
                 className="bg-[#f8f9fb] rounded-sm p-8 flex flex-col gap-5 relative group hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                {/* Top accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 rounded-t-sm" style={{ background: t.color }} />
-
                 <Quote size={28} style={{ color: t.color, opacity: 0.35 }} />
-
                 <p className="text-[#11253e] text-sm font-light leading-relaxed flex-1" style={{ opacity: 0.85 }}>
                   {renderHeroTitle(t.quote, "text-[#11253e]")}
                 </p>
-
                 <div className="flex items-center gap-3 pt-2 border-t border-gray-200">
-                  {/* Avatar initial */}
                   <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
                     style={{ background: t.color }}>
                     {t.author?.[0] || "?"}
@@ -570,7 +562,6 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
 
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="relative py-24 bg-[#11253e] overflow-hidden">
-        {/* Decorative background */}
         <div className="absolute inset-0 pointer-events-none">
           <div style={{ position: "absolute", top: -120, right: -80, width: 480, height: 480, borderRadius: "50%", background: "radial-gradient(circle, rgba(249,157,28,0.18) 0%, transparent 70%)" }} />
           <div style={{ position: "absolute", bottom: -80, left: -60, width: 360, height: 360, borderRadius: "50%", background: "radial-gradient(circle, rgba(249,157,28,0.10) 0%, transparent 70%)" }} />

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import logo from '../assets/logo.png';
-import Image from "next/image";
 
 export function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -73,7 +73,7 @@ export function Navbar() {
         "Policy Engine System",
         "Cloud Infra Deployment and Monitoring",
         "WorkbookNow ERP",
-        "HRMS and Payroll Solutions"
+        "HRMS and Payroll Solutions",
       ]
     },
     "INDUSTRIES": {
@@ -121,14 +121,7 @@ export function Navbar() {
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center shrink-0">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-              <Image 
-                src={logo} 
-                alt="Nabhira Logo" 
-                width={120}
-                height={40}
-                priority
-                className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} 
-              />
+              <Image src={logo} alt="Nabhira Logo" className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} />
             </Link>
           </div>
           
@@ -157,7 +150,7 @@ export function Navbar() {
                   className={`relative transition-all duration-300 flex items-center group px-4 ${scrolled ? 'h-16' : 'h-20'}`}
                   onMouseEnter={() => setActiveMenu(link.key)}
                 >
-                  <div className="relative cursor-pointer py-2 text-[#11253e]">
+                  <div className="relative cursor-pointer py-2">
                     {isDirectLink && routeMap[link.key] ? (
                       <Link href={routeMap[link.key]}>
                         {LabelContent}
@@ -202,12 +195,11 @@ export function Navbar() {
                                 {(() => {
                                   const categoryRoutes: Record<string, string> = {
                                     "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                    "DATA FOUNDATION": "/solutions/data-foundation",
-                                    "AI ACCELERATION": "/solutions/artificial-intelligence"
+                                    "DATA & ANALYTICS": "/solutions/data-analytics",
+                                    "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
                                   };
                                   return (
-                                    <Link 
-                                      href={categoryRoutes[col.title] || "#"} 
+                                    <Link href={categoryRoutes[col.title] || "#"} 
                                       className="text-[12px] font-bold text-[#11253e] tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
                                       onClick={() => setActiveMenu(null)}
                                     >
@@ -238,8 +230,7 @@ export function Navbar() {
                                   const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
                                     if (solutionRoutes[item]) {
                                       return (
-                                        <Link 
-                                          href={solutionRoutes[item]} 
+                                        <Link href={solutionRoutes[item]} 
                                           className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
                                           onClick={() => setActiveMenu(null)}
                                         >
@@ -276,8 +267,8 @@ export function Navbar() {
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
                               "Awards": "/awards",
-                              "AI Powered Point of Sales App": "/solutions/pos",
-                              "AI based LMS system": "/solutions/lms",
+                              "AI Powered Point of Sales App": "/solutions/enterprise-pos",
+                              "AI based LMS system": "/solutions/ailms",
                               "Policy Engine System": "/solutions/policy-engine",
                               "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
                               "WorkbookNow ERP": "/solutions/erp",
@@ -297,8 +288,7 @@ export function Navbar() {
                             const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
                               if (routes[item]) {
                                 return (
-                                  <Link 
-                                    href={routes[item]} 
+                                  <Link href={routes[item]} 
                                     className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
                                     onClick={() => setActiveMenu(null)}
                                   >
@@ -401,12 +391,11 @@ export function Navbar() {
                             {(() => {
                               const categoryRoutes: Record<string, string> = {
                                 "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                "DATA FOUNDATION": "/solutions/data-foundation",
-                                "AI ACCELERATION": "/solutions/artificial-intelligence"
+                                "DATA & ANALYTICS": "/solutions/data-analytics",
+                                "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
                               };
                               return (
-                                <Link 
-                                  href={categoryRoutes[col.title] || "#"} 
+                                <Link href={categoryRoutes[col.title] || "#"} 
                                   className="text-[12px] font-bold text-[#f99d1c] tracking-widest uppercase block"
                                   onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -462,19 +451,19 @@ export function Navbar() {
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
-                              "Awards": "/awards",
-                              "AI Powered Point of Sales App": "/solutions/pos",
-                              "AI based LMS system": "/solutions/lms",
-                              "Policy Engine System": "/solutions/policy-engine",
-                              "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
-                              "WorkbookNow ERP": "/solutions/erp",
-                              "HRMS and Payroll Solutions": "/solutions/hrms",
+                               "Awards": "/awards",
+                               "AI Powered Point of Sales App": "/solutions/enterprise-pos",
+                               "AI based LMS system": "/solutions/ailms",
+                               "Policy Engine System": "/solutions/policy-engine",
+                               "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
+                               "WorkbookNow ERP": "/solutions/erp",
+                               "HRMS and Payroll Solutions": "/solutions/hrms",
                               "Banking & Financial Services": "/industries/banking-finance",
                               "Retail & Consumer Goods": "/industries/retail-consumer",
                               "Manufacturing & Automotive": "/industries/manufacturing-automotive",
                               "Healthcare & Pharma": "/industries/healthcare-pharma",
+                               "Media & Entertainment": "/industries/media-entertainment",
                               "Government & PSUs": "/industries/government-psu",
-                              "Media & Entertainment": "/industries/media-entertainment",
                               "Blogs": "/resources/blogs",
                               "Case Studies": "/resources/case-studies",
                               "In the News": "/resources/news",
