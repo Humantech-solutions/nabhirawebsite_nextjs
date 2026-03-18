@@ -1,20 +1,62 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import * as LucideIcons from "lucide-react";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { Handshake, Globe, Zap, Shield } from "lucide-react";
 import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../lib/utils";
-
 import awsLogo from "../../assets/ea968b74fff705800a15a9dcb40b38e7a1dafe03.png";
 import azureLogo from "../../assets/acad6f6c0c4fe301453542c28672d7b86bd38c70.png";
 import gcpLogo from "../../assets/d1262fcb47dec58df7ef32995607ef721a7ad5fb.png";
 import serviceNowLogo from "../../assets/7ad3e2b8e0d3a0223019a17cc80a66c38aa61012.png";
 import salesforceLogo from "../../assets/b13c4c100e4cb0ee511f80c66e134500635067e2.png";
 import zohoLogo from "../../assets/a6fec1352116809105f3fa70afd94fcb58e73b87.png";
-import erpnextLogo from "../../assets/dd535cd89e27dabcb4fee78b3ad285a386d91bee.png";
+import oracleLogo from "../../assets/28c3e17412501b71ed55305c831d4873b30e8129.png";
+import oracleLogoRed from "../../assets/9fcacc9a598db3516da218cb0e4e6c23822c9077.png";
+import awsLogoNew from "../../assets/e8db84a0f02155e9712916e3b3f246e97af59ea6.png";
+import azureLogoNew from "../../assets/6815eb4c7e3fdf7615e2d88a4bc90f9d4f5f65e8.png";
+import serviceNowLogoNew from "../../assets/479c5e7ee7cc184f2a8f2f72295d6fc29ff8cf16.png";
+import serviceNowLogoText from "../../assets/80225d6957c2683205c179076212d35a3bc670de.png";
+import oracleSvgPaths from "../../imports/svg-qvm2dmjxvx";
+import awsSvgPaths from "../../imports/svg-6r1cut85br";
+import ZohoLogo from "../../imports/ZohoLogo";
+import MicrosoftAzureLogo from "../../imports/MicrosoftAzureLogo";
+import Group from "../../imports/Group";
+const ibmLogo = "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg";
+
+// Inline Oracle SVG logo (from Figma import)
+function OracleSvgLogo({ style }: { style?: React.CSSProperties }) {
+  return (
+    <svg
+      viewBox="0 0 231.075 30.0345"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={style}
+    >
+      <path d={oracleSvgPaths.p1eaaa600} fill="#E43118" />
+    </svg>
+  );
+}
+
+// Inline AWS SVG logo (from Figma import)
+function AwsSvgLogo({ style }: { style?: React.CSSProperties }) {
+  return (
+    <svg
+      viewBox="0 0 300.671 179.8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={style}
+    >
+      <path d={awsSvgPaths.p1387fa00} fill="white" />
+      <path clipRule="evenodd" d={awsSvgPaths.p1c293b80} fill="#FF9900" fillRule="evenodd" />
+      <path clipRule="evenodd" d={awsSvgPaths.p2d627700} fill="#FF9900" fillRule="evenodd" />
+    </svg>
+  );
+}
 
 // ACF select fields can return an array (["image"]) or a plain string ("image").
 // This helper always gives back a plain string.
@@ -81,7 +123,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
     { name: ppf?.partner_ta_4_name || "ServiceNow", logo: ppf?.partner_ta_4_logo?.node?.sourceUrl || serviceNowLogo.src, hoverColor: "rgba(98,216,78,0.2)", textColor: "group-hover:text-[#62D84E]" },
     { name: ppf?.partner_ta_5_name || "Salesforce", logo: ppf?.partner_ta_5_logo?.node?.sourceUrl || salesforceLogo.src, hoverColor: "rgba(0,161,224,0.15)", textColor: "group-hover:text-[#00A1E0]" },
     { name: ppf?.partner_ta_6_name || "Zoho", logo: ppf?.partner_ta_6_logo?.node?.sourceUrl || zohoLogo.src, hoverColor: "rgba(228,37,39,0.15)", textColor: "group-hover:text-[#E42527]" },
-    { name: ppf?.partner_ta_7_name || "ERPNext", logo: ppf?.partner_ta_7_logo?.node?.sourceUrl || erpnextLogo.src, hoverColor: "rgba(0,137,255,0.15)", textColor: "group-hover:text-[#0089FF]", colSpan: "col-span-2 sm:col-span-1" }
+    { name: ppf?.partner_ta_7_name || "ERPNext", logo: ppf?.partner_ta_7_logo?.node?.sourceUrl || "https://erpnext.com/files/erpnext-logo.svg", hoverColor: "rgba(0,137,255,0.15)", textColor: "group-hover:text-[#0089FF]", colSpan: "col-span-2 sm:col-span-1" }
   ];
 
   const stats = [
@@ -360,7 +402,35 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                           boxShadow: `0 0 16px ${node.color}30`
                         }}
                       >
-                        <span style={{ color: node.color, fontWeight: 800, fontSize: 10, letterSpacing: "0.05em", textAlign: "center", lineHeight: 1.1 }}>{node.label}</span>
+                        <div className="p-2 flex items-center justify-center w-full h-full">
+                          {node.label === "Oracle" ? (
+                            <OracleSvgLogo style={{ width: "100%", height: "auto", filter: "brightness(1.5)" }} />
+                          ) : node.label === "AWS" ? (
+                            <AwsSvgLogo style={{ width: "100%", height: "auto" }} />
+                          ) : node.label === "SFDC" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <Group />
+                            </div>
+                          ) : node.label === "SN" ? (
+                            <Image src={serviceNowLogoNew} alt="ServiceNow" className="max-w-full max-h-full object-contain" />
+                          ) : node.label === "Zoho" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <ZohoLogo />
+                            </div>
+                          ) : node.label === "Azure" ? (
+                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                              <MicrosoftAzureLogo />
+                            </div>
+                          ) : (
+<div className="relative w-[120px] h-[60px]">
+  <Image
+    src={node.logo}
+    alt={node.label}
+    fill
+    className="object-contain filter grayscale hover:grayscale-0 transition-all brightness-[1.5] hover:brightness-100"
+  />
+</div>                          )}
+                        </div>
                       </Motion.div>
                     );
                   })}

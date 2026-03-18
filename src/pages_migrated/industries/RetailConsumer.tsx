@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
@@ -78,7 +79,7 @@ export default function RetailConsumer({ wordpressData }: any) {
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Retail & Consumer Goods</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Retail & <span className="text-[#f99d1c]">Transition.</span></span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (

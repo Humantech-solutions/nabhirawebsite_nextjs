@@ -1,52 +1,67 @@
 // Consolidated data for dynamic routes
 
+export function slugify(title: string, location: string): string {
+  const citySlug = location
+    .split(/[,\/]/)
+    .map(part => part.trim().split(/\s+/)[0].toLowerCase())
+    .filter(Boolean)
+    .join("-");
+  const titleSlug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+  return `${titleSlug}-${citySlug}`;
+}
+
 export const jobs = [
   {
-    id: "sr-architect-001",
+    id: "NBR-001",
     title: "Senior AI Solutions Architect",
     department: "Engineering",
     location: "Mumbai, India",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "8+ yrs",
     posted: "2 days ago"
   },
   {
-    id: "digital-strat-002",
+    id: "NBR-002",
     title: "Principal Digital Strategist",
     department: "Consulting",
     location: "Dubai, UAE",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "6-8 yrs",
     posted: "5 days ago"
   },
   {
-    id: "cloud-eng-003",
+    id: "NBR-003",
     title: "Cloud Infrastructure Engineer",
     department: "Engineering",
     location: "Remote / Bengaluru",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "4-6 yrs",
     posted: "1 week ago"
   },
   {
-    id: "ux-designer-004",
-    title: "Senior UX Designer",
+    id: "NBR-004",
+    title: "Senior Product Designer (UX/UI)",
     department: "Design",
-    location: "Mumbai, India",
+    location: "Singapore",
     type: "Full-time",
-    salary: "Competitive",
+    experience: "5-7 yrs",
     posted: "3 days ago"
   },
   {
-    id: "data-sci-005",
-    title: "Lead Data Scientist",
-    department: "Data & AI",
-    location: "Bengaluru, India",
+    id: "NBR-005",
+    title: "Machine Learning Engineer",
+    department: "Engineering",
+    location: "London, UK",
     type: "Full-time",
-    salary: "Competitive",
-    posted: "1 week ago"
+    experience: "4-6 yrs",
+    posted: "1 day ago"
   }
-];
+].map(job => ({ ...job, slug: slugify(job.title, job.location) }));
+
 
 export const events = [
   {
@@ -211,57 +226,368 @@ export const blogPosts = [
 export const caseStudies = [
   {
     id: 1,
-    title: "Global Bank: Cloud Modernization",
-    client: "Tier 1 Investment Bank",
+    slug: "global-bank-cloud-modernization",
+    title: "Real-Time Fraud Detection Platform",
+    client: "Leading Indian Retail Bank",
     industry: "Banking & Financial Services",
-    impact: "60% Reduction in OPEX",
-    tags: ["Cloud", "Finance"],
+    impact: "Fraud Detection in Milliseconds",
+    tags: ["Cloud", "Finance", "Banking"],
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600",
-    challenge: "The client was struggling with fragmented legacy infrastructure across 12 countries, leading to significant operational overhead and slow deployment cycles for new financial products.",
-    solution: "We implemented a multi-region cloud-native architecture using Kubernetes and a unified data fabric. This allowed for centralized governance while maintaining localized data residency compliance.",
+    challenge: "A leading retail bank faced rising fraud incidents across card payments, ATM withdrawals and digital banking transactions. The existing fraud detection system relied on batch-based processing, identifying fraudulent activity several hours after transactions were completed.",
+    solution: "Our team implemented a real-time fraud detection platform leveraging streaming data architecture and machine learning models. The new platform analyzes transactions within milliseconds, enabling the bank to detect suspicious activity instantly and prevent financial losses.",
     results: [
-      "Migrated 400+ applications to the new architecture with zero downtime.",
-      "Achieved a 60% reduction in annual infrastructure maintenance costs.",
-      "Reduced time-to-market for new digital features from 4 months to 2 weeks."
+      "Fraud detection time improved from hours to milliseconds.",
+      "False alerts reduced by 30%, improving customer experience.",
+      "Fraud investigation teams became more productive with real-time monitoring tools.",
+      "Positioned the bank for long-term digital growth with scalable AI-driven risk management."
     ],
-    quote: "Nabhira didn't just move us to the cloud; they re-architected how we do business. Their precision and engineering depth were critical to our success.",
-    quoteAuthor: "Chief Technology Officer, Tier 1 Investment Bank"
+    quote: "The real-time fraud detection platform transformed our risk management capabilities. Nabhira's expertise in streaming architecture and machine learning enabled us to protect our customers while enhancing their banking experience.",
+    quoteAuthor: "Head of Engineering, Leading Indian Bank",
+    executiveSummary: "A leading retail bank in India partnered with Nabhira Technologies to modernize its fraud detection infrastructure and implement a real-time transaction monitoring platform. The bank was experiencing rising fraud incidents across multiple channels including card payments, ATM withdrawals and digital banking transactions. The existing batch-based fraud detection system identified fraudulent activity several hours after completion, resulting in significant financial losses and customer dissatisfaction. Nabhira implemented a comprehensive real-time fraud detection platform leveraging streaming data architecture, machine learning models and event-driven processing to detect and prevent fraud within milliseconds of transaction initiation.",
+    customerBackground: "The customer is a leading retail bank in India serving millions of customers across urban and rural markets. The bank operates an extensive network of branches, ATMs and digital banking channels including mobile banking, online payments and card services. With the rapid growth of digital banking adoption in India, the bank experienced exponential increases in transaction volumes across all channels. This growth brought new challenges in fraud prevention, customer protection and regulatory compliance. The organization sought to build a modern fraud detection platform capable of real-time transaction monitoring, AI-driven fraud detection, scalable event-driven architecture and faster fraud investigation workflows while reducing false positives that impacted customer experience.",
+    detailedChallenges: [
+      {
+        title: "Delayed Fraud Detection",
+        description: "Fraud detection processes were batch-oriented and ran every few hours, resulting in delayed responses and inability to prevent fraudulent transactions in real-time."
+      },
+      {
+        title: "Increasing Digital Transactions",
+        description: "The rapid growth of mobile banking, online payments and card transactions increased fraud risk and created challenges in monitoring high-volume transaction flows."
+      },
+      {
+        title: "Fragmented Data Ecosystem",
+        description: "Transaction data originated from multiple systems including ATM networks, card payment gateways, mobile banking platforms and online banking systems, creating data integration challenges."
+      },
+      {
+        title: "Inefficient Rule-Based Systems",
+        description: "Legacy rule-based systems produced high false positives, leading to unnecessary transaction declines and customer dissatisfaction while missing sophisticated fraud patterns."
+      }
+    ],
+    solutionSections: [
+      {
+        title: "Real-Time Event Streaming Architecture",
+        description: "A real-time event streaming architecture was implemented to process transactions as they occur. The platform integrates transaction streams, applies fraud detection algorithms and generates alerts instantly.",
+        items: [
+          "Streaming platform for high-volume transaction ingestion",
+          "Event-driven architecture for real-time processing",
+          "Integration with all banking channels and payment systems",
+          "Scalable infrastructure to handle peak transaction volumes"
+        ]
+      },
+      {
+        title: "Data Ingestion and Processing",
+        description: "The platform ingests transaction data from multiple banking channels and processes them in real-time using stream processing engines.",
+        items: [
+          "Real-time ingestion from ATM networks",
+          "Card payment gateway integration",
+          "Mobile banking transaction streams",
+          "Online banking system connectivity",
+          "Stream processing engines for instant transaction analysis"
+        ]
+      },
+      {
+        title: "Machine Learning Fraud Detection",
+        description: "Advanced machine learning models were deployed to identify fraud patterns and anomalies in real-time transaction flows.",
+        items: [
+          "Fraud detection models trained on historical transaction data",
+          "Behavioral analytics analyzing customer spending patterns",
+          "Anomaly detection comparing transactions with historical behavior",
+          "Continuous model training and improvement"
+        ]
+      },
+      {
+        title: "Fraud Detection Capabilities",
+        description: "The platform combines multiple fraud detection techniques including rule-based detection, behavioral analytics and machine learning models.",
+        items: [
+          "Rule-based detection for known fraud patterns",
+          "Detection of rapid multiple transactions and unusual purchases",
+          "Identification of transactions from suspicious locations",
+          "Behavioral analysis of spending habits and device usage",
+          "ML-driven anomaly detection for sophisticated fraud schemes"
+        ]
+      },
+      {
+        title: "Data Platform and Analytics",
+        description: "A comprehensive data platform was built to store historical transaction data and enable fraud pattern analysis.",
+        items: [
+          "Data lake for storing transaction history",
+          "Real-time fraud monitoring dashboards",
+          "Analytics tools for fraud investigation teams",
+          "Visualization layer for fraud pattern analysis"
+        ]
+      }
+    ],
+    detailedResults: [
+      {
+        title: "Real-Time Fraud Prevention",
+        description: "The platform enabled instant fraud detection and prevention, transforming the bank's risk management capabilities.",
+        impacts: [
+          "Fraud detection time improved from hours to milliseconds",
+          "Real-time transaction blocking for suspicious activities",
+          "Immediate customer notifications for potential fraud"
+        ]
+      },
+      {
+        title: "Enhanced Customer Experience",
+        description: "Advanced machine learning models significantly reduced false positives, improving legitimate transaction approval rates.",
+        impacts: [
+          "30% reduction in false alerts",
+          "Fewer legitimate transaction declines",
+          "Improved customer satisfaction and trust"
+        ]
+      },
+      {
+        title: "Operational Efficiency",
+        description: "Real-time monitoring tools and automated fraud detection increased fraud investigation team productivity.",
+        impacts: [
+          "Faster fraud investigation workflows",
+          "Automated fraud pattern recognition",
+          "Reduced manual review requirements"
+        ]
+      },
+      {
+        title: "Scalable Digital Banking Platform",
+        description: "The platform positioned the bank for long-term digital growth with modern fraud prevention capabilities.",
+        impacts: [
+          "Scalable architecture supporting transaction volume growth",
+          "AI-driven risk management capabilities",
+          "Improved regulatory compliance",
+          "Foundation for future digital banking innovation"
+        ]
+      }
+    ]
   },
   {
     id: 2,
-    title: "Retail Giant: AI Supply Chain",
-    client: "Fortune 500 Retailer",
-    industry: "Retail & Consumer Goods",
-    impact: "40% Inventory Optimization",
-    tags: ["AI", "Retail"],
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=1600",
-    challenge: "Inaccurate demand forecasting was leading to overstocking in some regions and stockouts in others, resulting in millions in lost revenue and excessive warehouse costs.",
-    solution: "We deployed an Agentic AI solution that integrated real-time sales data, weather patterns, and social sentiment to provide hyper-local demand predictions and automated inventory rebalancing.",
+    slug: "multi-brand-ecommerce-platform-on-aws",
+    title: "Multi-Brand Ecommerce Platform on AWS",
+    client: "Leading Southeast Asian Retail Group",
+    industry: "Retail & Ecommerce",
+    impact: "Scaled platform to handle 5x Peak Traffic",
+    tags: ["Cloud", "Ecommerce", "AWS"],
+    image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1600",
+    challenge: "A leading multi-brand retail chain headquartered in Indonesia faced significant challenges with their legacy on-premise infrastructure. The system struggled with limited scalability during peak sales, multi-country expansion complexity across Southeast Asia, fragmented retail and supply chain systems operating in silos and slow deployment cycles that hindered innovation and new brand launches.",
+    solution: "Nabhira Technologies designed and implemented a comprehensive cloud-native ecommerce platform on AWS. The solution included migration from on-premise to AWS cloud infrastructure, multi-brand ecommerce portals with regional localization, store management applications for omnichannel operations and integrated supply chain management systems.",
     results: [
-      "40% reduction in average inventory holding costs.",
-      "15% increase in on-shelf availability during peak seasons.",
-      "Automated 80% of routine procurement decisions."
+      "5x increase in peak traffic handling capacity with near-zero downtime during promotional events.",
+      "60% faster deployment cycles and reduced infrastructure provisioning from weeks to minutes.",
+      "35% reduction in infrastructure management costs with lower operational overhead.",
+      "40% improvement in website performance leading to higher customer engagement and conversion rates."
     ],
-    quote: "The intelligence Nabhira built into our supply chain has transformed our bottom line and allowed our teams to focus on strategic growth rather than manual firefighting.",
-    quoteAuthor: "VP of Operations, Global Retail Group"
+    quote: "Nabhira Technologies transformed our digital commerce infrastructure from a limiting factor into a competitive advantage. The solution Nabhira built enabled us to scale across Southeast Asia while delivering superior customer experience.",
+    quoteAuthor: "CIO, Southeast Asian Retail Group",
+    executiveSummary: "A leading multi-brand retail chain headquartered in Indonesia partnered with Nabhira Technologies to modernize its digital commerce ecosystem and expand its presence across Southeast Asia. The company manages and markets several international fashion and apparel brands across markets including Indonesia, Vietnam, Philippines, Cambodia and Singapore. The organization needed a scalable and resilient digital platform capable of supporting multiple brand storefronts, omnichannel retail operations and integrated supply chain management.",
+    customerBackground: "The customer is a leading Indonesian retail conglomerate specializing in fashion and apparel distribution for globally recognized brands. The company operates both physical retail outlets and digital commerce platforms across Southeast Asia. With growing consumer demand for online retail and omnichannel experiences, the organization sought to strengthen its digital capabilities and create a unified platform capable of managing multi-brand ecommerce storefronts, inventory and supply chain operations, store management and retail analytics and cross-border commerce across multiple Southeast Asian markets.",
+    detailedChallenges: [
+      {
+        title: "Legacy On-Premise Infrastructure",
+        description: "The existing ecommerce and retail systems were hosted on on-premise data centers, which created challenges in scalability, maintenance and operational costs."
+      },
+      {
+        title: "Limited Scalability During Peak Sales",
+        description: "Seasonal campaigns, promotional events and brand launches caused traffic spikes, resulting in system performance degradation and slower customer experiences."
+      },
+      {
+        title: "Multi-Country Expansion Complexity",
+        description: "Expanding ecommerce operations across Southeast Asian markets required a platform capable of supporting multi-currency, localization and regional logistics integrations."
+      },
+      {
+        title: "Fragmented Retail and Supply Chain Systems",
+        description: "Existing systems for store operations, ecommerce and supply chain management operated in silos, limiting real-time visibility into inventory and fulfillment."
+      },
+      {
+        title: "Slow Deployment and Innovation Cycles",
+        description: "Infrastructure provisioning and software deployments required manual intervention, slowing down the launch of new features and brands."
+      }
+    ],
+    solutionSections: [
+      {
+        title: "Cloud Migration Strategy",
+        description: "The project began with a structured migration of applications from on-premise infrastructure to AWS, ensuring minimal disruption to existing retail operations.",
+        items: [
+          "Assessment of legacy systems and application architecture",
+          "Cloud readiness evaluation",
+          "Migration planning and phased deployment strategy",
+          "Data migration and system modernization"
+        ]
+      },
+      {
+        title: "AWS Cloud Architecture",
+        description: "The new platform was built using AWS cloud infrastructure to ensure high availability, scalability and operational efficiency.",
+        items: [
+          "Amazon EC2 for scalable application hosting",
+          "Amazon RDS for managed relational database services",
+          "Amazon S3 for secure and scalable storage of product images and digital assets",
+          "Amazon CloudFront for global content delivery and improved customer experience",
+          "AWS Auto Scaling to handle peak traffic during promotional campaigns",
+          "AWS Load Balancer for application reliability and high availability",
+          "AWS CloudWatch for monitoring and operational visibility"
+        ]
+      },
+      {
+        title: "Retail Cloud Architecture",
+        description: "A scalable AWS infrastructure diagram connecting web and mobile users to retail, supply chain, and logistics systems.",
+        showDiagram: true
+      },
+      {
+        title: "Architecture Component Breakdown",
+        description: "The platform architecture is organized into four key layers, each serving specific functions within the retail ecosystem.",
+        hasComponentBreakdown: true,
+        components: [
+          {
+            category: "Edge & Security",
+            items: [
+              "Amazon Route 53 - DNS and traffic routing",
+              "Amazon CloudFront - Content delivery network",
+              "AWS WAF - Web application firewall",
+              "AWS Shield - DDoS protection"
+            ]
+          },
+          {
+            category: "Compute Layer",
+            items: [
+              "Amazon EC2 - Scalable compute instances",
+              "AWS Auto Scaling - Dynamic capacity management",
+              "Elastic Load Balancer - Traffic distribution"
+            ]
+          },
+          {
+            category: "Data Persistence",
+            items: [
+              "Amazon RDS - Relational database service",
+              "Amazon S3 - Object storage for media assets",
+              "Amazon ElastiCache - In-memory data caching"
+            ]
+          },
+          {
+            category: "External Integrations",
+            items: [
+              "Payment Gateway - Secure payment processing",
+              "Logistics API - Shipping and delivery integration",
+              "ERP System - Enterprise resource planning connectivity"
+            ]
+          }
+        ]
+      }
+    ],
+    detailedResults: [
+      {
+        title: "Improved Scalability",
+        description: "The cloud-native architecture allows the platform to automatically scale during peak sales periods, ensuring consistent performance even during high traffic events.",
+        impacts: [
+          "5x increase in peak traffic handling capacity",
+          "Near-zero downtime during promotional events"
+        ]
+      },
+      {
+        title: "Faster Time-to-Market",
+        description: "Cloud infrastructure and automated deployment pipelines enabled faster feature releases and brand launches.",
+        impacts: [
+          "60% faster deployment cycles",
+          "Reduced infrastructure provisioning time from weeks to minutes"
+        ]
+      },
+      {
+        title: "Operational Cost Optimization",
+        description: "Migrating from on-premise infrastructure to AWS reduced hardware management costs and improved resource utilization.",
+        impacts: [
+          "35% reduction in infrastructure management costs",
+          "Lower operational overhead"
+        ]
+      },
+      {
+        title: "Enhanced Customer Experience",
+        description: "The new ecommerce platform provides faster page loads, seamless checkout experiences, and improved reliability across Southeast Asian markets.",
+        impacts: [
+          "40% improvement in website performance",
+          "Higher customer engagement and conversion rates"
+        ]
+      }
+    ]
   },
   {
     id: 3,
-    title: "Smart Factory: Edge Intelligence",
-    client: "Global Automotive OEM",
-    industry: "Manufacturing & Automotive",
-    impact: "Zero Unplanned Downtime",
-    tags: ["IoT", "Manufacturing"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1600",
-    challenge: "Frequent unplanned downtime in the assembly line was costing the client approximately $50,000 per hour. Existing preventative maintenance was reactive and inefficient.",
-    solution: "We implemented an Edge AI monitoring system that processes vibration and thermal data directly at the source. Machine learning models predict component failures before they occur.",
+    slug: "fresh-food-hyperlocal-delivery-platform",
+    title: "Hyperlocal Delivery Platform",
+    client: "Large Fresh Food Retail Chain",
+    industry: "Retail & Ecommerce",
+    impact: "Processes 9,000 Daily Orders",
+    tags: ["Cloud", "Retail", "Logistics"],
+    image: "https://images.unsplash.com/photo-1609952578538-3d454550301d?auto=format&fit=crop&q=80&w=1080",
+    challenge: "A leading fresh food and vegetable hyperlocal retail chain in South India needed to rapidly launch a digital commerce platform capable of delivering fresh groceries to customers within 30 minutes. With an extensive network of 750 franchise stores and an average of 9,000 orders per day, the retailer required a highly scalable and reliable technology platform to support real-time inventory management, fast order processing and hyperlocal logistics.",
+    solution: "Nabhira Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months. The solution included a Store POS system, Ecommerce portal, Order Management system and Supply Chain platform, enabling seamless coordination between online ordering, in-store operations and delivery logistics.",
     results: [
-      "Achieved zero unplanned downtime over a 12-month period.",
-      "Extended the lifecycle of critical machinery by an average of 30%.",
-      "Reduced maintenance labor costs by 25% through predictive scheduling."
+      "Digital platform launched within three months meeting aggressive timeline.",
+      "Successfully supports 9,000 daily orders with ability to scale during peak demand.",
+      "Average delivery time maintained within 30 minutes across 750 franchise stores.",
+      "Real-time inventory synchronization reduced manual processes in store operations."
     ],
-    quote: "Nabhira's edge intelligence solution has made our factory truly smart. The predictive capabilities have become the backbone of our operational excellence.",
-    quoteAuthor: "Director of Manufacturing Engineering, Automotive OEM"
+    quote: "Nabhira Technologies delivered a comprehensive cloud-native platform that transformed our business model. The integrated system enabled us to launch hyperlocal delivery across 750 stores within three months, delivering fresh food to customers in 30 minutes while efficiently managing thousands of daily orders.",
+    quoteAuthor: "Zonal Sales Head, Fresh Food Retail Chain",
+    executiveSummary: "A leading fresh food and vegetable hyperlocal retail chain in South India partnered with Nabhira Technologies to rapidly launch a digital commerce platform capable of delivering fresh groceries to customers within 30 minutes. With an extensive network of 750 franchise stores and an average of 9,000 orders per day, the retailer required a highly scalable and reliable technology platform to support real-time inventory management, fast order processing and hyperlocal logistics. To meet aggressive timelines, Nabhira Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months.",
+    customerBackground: "The customer is a large fresh food and vegetable retail chain operating across South India, with a strong presence through franchise-based neighborhood stores. The company specializes in delivering fresh produce, groceries and daily essentials to local communities. With the rapid growth of online grocery ordering and hyperlocal delivery services, the retailer recognized the need to modernize its operations and offer customers a seamless digital ordering experience with fast delivery times. The organization operates approximately 750 franchise retail stores, which serve as local fulfillment centers for hyperlocal deliveries.",
+    detailedChallenges: [
+      {
+        title: "Rapid Digital Launch Requirement",
+        description: "The company needed to launch a fully functional ecommerce and delivery platform within three months, enabling customers to order groceries online and receive deliveries within 30 minutes."
+      },
+      {
+        title: "Large Distributed Store Network",
+        description: "With 750 franchise stores, the retailer required a system capable of managing store-level inventory, order routing and delivery logistics across multiple cities."
+      },
+      {
+        title: "Real-Time Inventory Synchronization",
+        description: "Fresh food retail requires real-time stock visibility, as inventory changes frequently due to perishability and daily replenishment cycles."
+      },
+      {
+        title: "High Order Volume",
+        description: "The platform needed to support approximately 9,000 daily orders, with the ability to scale during peak demand periods such as weekends and promotions."
+      }
+    ],
+    solutionSections: [
+      {
+        title: "Cloud-Native Architecture on AWS",
+        description: "The platform was built using AWS cloud services, ensuring high availability, performance and scalability.",
+        items: [
+          "Amazon EC2 for scalable application hosting",
+          "Amazon RDS for secure and managed relational databases",
+          "Amazon S3 for storing product images and digital assets",
+          "Amazon CloudFront for fast content delivery",
+          "AWS Auto Scaling for handling peak order volumes",
+          "Elastic Load Balancer for high availability and traffic distribution"
+        ]
+      },
+      {
+        title: "Store POS System",
+        description: "A modern cloud-connected POS system was developed for franchise stores to support daily retail operations. The POS system ensures that store inventory and online availability remain synchronized.",
+        items: [
+          "Real-time billing and checkout",
+          "Inventory updates across stores",
+          "Integration with ecommerce orders",
+          "Store-level reporting and analytics"
+        ]
+      }
+    ],
+    detailedResults: [
+      {
+        title: "Rapid Time-to-Market",
+        description: "The cloud-native development approach enabled the platform to be delivered within three months, meeting the retailer's aggressive launch timeline.",
+        impacts: [
+          "Digital platform launched within planned schedule",
+          "Rapid onboarding of 750 franchise stores",
+          "Enabled immediate digital commerce capabilities"
+        ]
+      },
+      {
+        title: "High Transaction Scalability",
+        description: "The platform successfully supports around 9,000 daily orders, with the ability to scale during peak demand periods.",
+        impacts: [
+          "Reliable order processing across all stores",
+          "Seamless handling of high traffic events",
+          "Automatic scaling during peak demand"
+        ]
+      }
+    ]
   }
 ];
 

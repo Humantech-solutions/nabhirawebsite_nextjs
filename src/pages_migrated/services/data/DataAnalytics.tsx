@@ -1,8 +1,11 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
+import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { Database, BarChart3, ShieldCheck, Zap, ArrowRight, Layers, FileSpreadsheet, Network } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
@@ -98,8 +101,7 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
                   {formatQuotesToBold(solution.desc)}
                 </p>
-                <Link 
-                  href={solution.path}
+                <Link href={solution.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>Explore Solution</span>
@@ -140,11 +142,9 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
 
             <div className="relative">
               <div className="aspect-[4/5] bg-white/5 backdrop-blur-3xl border border-white/10 p-1 rounded-sm overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bbbda5366fd2?auto=format&fit=crop&q=80&w=1000" 
+                <Image src="https://images.unsplash.com/photo-1551288049-bbbda5366fd2?auto=format&fit=crop&q=80&w=1000" 
                   alt="Analytics Dashboard" 
-                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
+                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700" />
               </div>
               <div className="absolute -bottom-8 -right-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
                 <p className="text-4xl font-bold tracking-tighter">{formatQuotesToBold("70%")}</p>

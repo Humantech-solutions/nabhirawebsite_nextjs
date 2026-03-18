@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ExternalLink, ArrowRight } from "lucide-react";
@@ -55,7 +56,6 @@ export default function News({ wordpressData }: any) {
                 {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
                   <>In the <span className="text-[#f99d1c]">News</span></>
                 ))}
-
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
                 Global recognition and press mentions for our architectural contributions.

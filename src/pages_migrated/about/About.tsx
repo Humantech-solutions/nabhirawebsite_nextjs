@@ -1,14 +1,14 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Target, Eye, ShieldCheck, Lightbulb, HeartHandshake, BookOpen, Award } from "lucide-react";
 import logo from '../../assets/logo.png';
 import storyImg from '../../assets/81ed9d35393b4048d395b1d256aa4c9d085a37b4.png';
-import Image from "next/image";
 import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../lib/utils";
 
 export default function About({ wordpressData }: any) {
@@ -16,7 +16,7 @@ export default function About({ wordpressData }: any) {
 
   const displayValues = [
     {
-      icon: renderDynamicIcon(aboutFields?.v1IconType, aboutFields?.v1Lucide, aboutFields?.v1Image?.node),
+      icon: renderDynamicIcon(aboutFields?.v1IconType, aboutFields?.v1Lucide, aboutFields?.v1Image?.node) || <Lightbulb className="text-[#f99d1c]" size={32} />,
       title: aboutFields?.v1Title || "Innovation with Purpose",
       desc: aboutFields?.v1Desc || "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
     },
@@ -26,17 +26,17 @@ export default function About({ wordpressData }: any) {
       desc: aboutFields?.v2Desc || "Our clients' success defines our success. We partner closely to understand their challenges and deliver solutions that create lasting value."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v3IconType, aboutFields?.v3Lucide, aboutFields?.v3Image?.node),
+      icon: renderDynamicIcon(aboutFields?.v3IconType, aboutFields?.v3Lucide, aboutFields?.v3Image?.node) || <Award className="text-[#f99d1c]" size={32} />,
       title: aboutFields?.v3Title || "Engineering Excellence",
       desc: aboutFields?.v3Desc || "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v4IconType, aboutFields?.v4Lucide, aboutFields?.v4Image?.node),
+      icon: renderDynamicIcon(aboutFields?.v4IconType, aboutFields?.v4Lucide, aboutFields?.v4Image?.node) || <ShieldCheck className="text-[#f99d1c]" size={32} />,
       title: aboutFields?.v4Title || "Integrity and Trust",
       desc: aboutFields?.v4Desc || "We operate with transparency, accountability, and ethical responsibility in every engagement."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v5IconType, aboutFields?.v5Lucide, aboutFields?.v5Image?.node),
+      icon: renderDynamicIcon(aboutFields?.v5IconType, aboutFields?.v5Lucide, aboutFields?.v5Image?.node) || <BookOpen className="text-[#f99d1c]" size={32} />,
       title: aboutFields?.v5Title || "Continuous Learning",
       desc: aboutFields?.v5Desc || "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
     },
@@ -89,7 +89,6 @@ export default function About({ wordpressData }: any) {
                 <span className="text-[#f99d1c]">About Us</span>
               </nav>
               
-              <div className="border-l-[1px] border-white/20 pl-6 md:pl-12 py-2">
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                   {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
                     <>
@@ -98,12 +97,11 @@ export default function About({ wordpressData }: any) {
                     </>
                   ))}
                 </h1>
-                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira is a global pioneer in digital transformation, orchestrating evolution through Cloud-first intelligence and Data-driven engineering.")}
+                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm border-l-2 border-[#f99d1c] pl-6 overflow-hidden">
+                  {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira accelerates digital transformation through advanced AI, cloud-first intelligence and data-driven engineering.")}
                 </p>
-              </div>
-            </Motion.div>
-          </div>
+              </Motion.div>
+            </div>
         </section>
 
         {/* Narrative Section */}
@@ -125,6 +123,7 @@ export default function About({ wordpressData }: any) {
                     src={aboutFields?.storyImage?.node?.sourceUrl || aboutFields?.storyImage?.sourceUrl || storyImg}
                     alt="Corporate Leadership"
                     className="w-full h-full object-cover"
+                    fill
                   />
                 </div>
                 {/* Decorative Elements */}
@@ -201,7 +200,7 @@ export default function About({ wordpressData }: any) {
               alt="Nabhira Logo"
               width={150}
               height={50}
-              className="h-10 w-auto"
+              className="h-10 w-auto grayscale"
             />
           </div>
           
@@ -227,10 +226,10 @@ export default function About({ wordpressData }: any) {
                   <div className="mb-6 group-hover:scale-110 transition-transform duration-300 text-[#f99d1c]">
                     {v.icon}
                   </div>
-                  <h4 className="text-[#11253e] text-xl font-medium mb-4 tracking-normal uppercase text-[14px]">
+                  <h4 className="text-[#11253e] text-xl font-bold mb-4 tracking-normal uppercase text-[14px]">
                     {formatQuotesToBold(v.title)}
                   </h4>
-                  <p className="text-[#11253e] text-sm font-light leading-relaxed">
+                  <p className="text-[#11253e] text-[15px] font-light leading-relaxed">
                     {formatQuotesToBold(v.desc)}
                   </p>
                 </Motion.div>
@@ -244,20 +243,20 @@ export default function About({ wordpressData }: any) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat1Value || "5+"}</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat1Label || "Countries"}</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">{aboutFields?.stat1Value || "5+"}</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">{aboutFields?.stat1Label || "Countries"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat2Value || "25+"}</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat2Label || "Customers"}</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">{aboutFields?.stat2Value || "25+"}</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">{aboutFields?.stat2Label || "Customers"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat3Value || "10+"}</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat3Label || "Industries"}</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">{aboutFields?.stat3Value || "10+"}</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">{aboutFields?.stat3Label || "Industries"}</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-medium text-[#11253e] mb-2">{aboutFields?.stat4Value || "98%"}</div>
-                <div className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">{aboutFields?.stat4Label || "Retention"}</div>
+                <div className="text-4xl md:text-5xl font-bold text-[#11253e] mb-2">{aboutFields?.stat4Value || "98%"}</div>
+                <div className="text-[#f99d1c] text-[13px] font-medium tracking-normal uppercase">{aboutFields?.stat4Label || "Retention"}</div>
               </div>
             </div>
           </div>

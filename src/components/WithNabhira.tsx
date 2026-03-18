@@ -1,63 +1,14 @@
 "use client";
+import Image from "next/image";
 
-import { motion } from "motion/react";
+import React from "react";
+import { motion as Motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { formatQuotesToBold } from "../lib/utils";
 
-interface WithNabhiraProps {
-  data?: {
-    wnTitle?: string;
-    wnI1Cat?: string;
-    wnI1Title?: string;
-    wnI1Desc?: string;
-    wnI1Image?: { node: { sourceUrl: string } };
-    wnI1ImageUrl?: string;
-    
-    wnI2Cat?: string;
-    wnI2Title?: string;
-    wnI2Desc?: string;
-    wnI2Image?: { node: { sourceUrl: string } };
-    wnI2ImageUrl?: string;
-
-    wnI3Cat?: string;
-    wnI3Title?: string;
-    wnI3Desc?: string;
-    wnI3Image?: { node: { sourceUrl: string } };
-    wnI3ImageUrl?: string;
-  };
-}
-
-export function WithNabhira({ data }: WithNabhiraProps) {
-  const dynamicItems = [];
-  
-  if (data?.wnI1Title || data?.wnI1Image || data?.wnI1ImageUrl) {
-    dynamicItems.push({
-      title: data.wnI1Title || "",
-      desc: data.wnI1Desc || "",
-      category: data.wnI1Cat || "",
-      image: data.wnI1ImageUrl || data.wnI1Image?.node?.sourceUrl || (data.wnI1Image as any)?.sourceUrl || "https://images.unsplash.com/photo-1633174074875-f09b1b53ecf6?q=80&w=1080"
-    });
-  }
-  
-  if (data?.wnI2Title || data?.wnI2Image || data?.wnI2ImageUrl) {
-    dynamicItems.push({
-      title: data.wnI2Title || "",
-      desc: data.wnI2Desc || "",
-      category: data.wnI2Cat || "",
-      image: data.wnI2ImageUrl || data.wnI2Image?.node?.sourceUrl || (data.wnI2Image as any)?.sourceUrl || "https://images.unsplash.com/photo-1758876202980-0a28b744fb24?q=80&w=1080"
-    });
-  }
-
-  if (data?.wnI3Title || data?.wnI3Image || data?.wnI3ImageUrl) {
-    dynamicItems.push({
-      title: data.wnI3Title || "",
-      desc: data.wnI3Desc || "",
-      category: data.wnI3Cat || "",
-      image: data.wnI3ImageUrl || data.wnI3Image?.node?.sourceUrl || (data.wnI3Image as any)?.sourceUrl || "https://images.unsplash.com/photo-1695902173528-0b15104c4554?q=80&w=1080"
-    });
-  }
-
-  const items = dynamicItems.length > 0 ? dynamicItems : [
+export function WithNabhira({ data }: any) {
+  const sectionTitle = data?.wnTitle || "With Nabhira";
+  const items = [
     {
       title: "Future ready with Cloud",
       desc: "Stay ahead of the curve with cloud solutions. Outpace change with cloud agility",
@@ -78,15 +29,13 @@ export function WithNabhira({ data }: WithNabhiraProps) {
     },
   ];
 
-  const sectionTitle = data?.wnTitle || "With Nabhira";
-
   return (
     <section className="bg-white py-20 md:py-24 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         
         {/* WITH NABHIRA Header */}
         <div className="mb-10 text-center md:text-left flex flex-col items-center md:items-start">
-          <motion.h2 
+          <Motion.h2 
             initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -94,13 +43,13 @@ export function WithNabhira({ data }: WithNabhiraProps) {
           >
             {formatQuotesToBold(sectionTitle)}
             <span className="ml-4 md:ml-6 h-[1px] w-16 md:w-24 bg-[#f99d1c]"></span>
-          </motion.h2>
+          </Motion.h2>
         </div>
 
         {/* The Grid - Image Cards with Slide-up Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
           {items.map((item, idx) => (
-            <motion.div 
+            <Motion.div 
               key={idx} 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +96,7 @@ export function WithNabhira({ data }: WithNabhiraProps) {
 
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 w-full h-[3px] bg-[#f99d1c] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
 

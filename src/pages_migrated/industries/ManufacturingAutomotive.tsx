@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
@@ -65,11 +66,7 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
               <span className="text-[#f99d1c] uppercase tracking-widest">Manufacturing & Automotive</span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle(heroData?.heroS1Title || (
-                <>
-                  Manufacturing & <br /><span className="text-[#f99d1c]">Automotive</span>
-                </>
-              ))}
+              {renderHeroTitle(heroData?.heroS1Title || "Manufacturing & |Automotive|")}
             </h1>
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
               {formatQuotesToBold(heroData?.heroS1Desc || "We help manufacturers transition from rigid production to intelligent, resilient and innovation-driven enterprises.")}
@@ -83,7 +80,7 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
-                {formatQuotesToBold("The Industry \"Imperative\"")}
+                {formatQuotesToBold("The Industry &quot;Imperative&quot;")}
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
@@ -105,7 +102,7 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
-              {formatQuotesToBold("Where We Create 'Impact'")}
+              {formatQuotesToBold("Where We Create &apos;Impact&apos;")}
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">Modernize production environments, enable Industry 4.0 transformation and accelerate digital innovation at scale.</p>
           </div>

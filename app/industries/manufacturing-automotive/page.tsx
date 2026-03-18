@@ -1,7 +1,7 @@
 import ManufacturingAutomotive from "../../../src/pages_migrated/industries/ManufacturingAutomotive";
-import { getPageBySlug } from "@/src/lib/wordpress";
+import { getPageBySlug } from "../../../src/lib/wordpress";
 
-export default async function Page() {
-  const wordpressData = await getPageBySlug('manufacturing-automotive');
+export default async function ManufacturingAutomotivePage() {
+  const wordpressData = await getPageBySlug("manufacturing-automotive");
   return <ManufacturingAutomotive wordpressData={wordpressData} />;
 }

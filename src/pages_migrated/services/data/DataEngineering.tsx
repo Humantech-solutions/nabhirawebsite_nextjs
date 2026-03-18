@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
@@ -226,7 +228,7 @@ export default function DataEngineering({ wordpressData }: { wordpressData?: any
             <div className="max-w-3xl mb-10">
               <Motion.div
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="space-y-3"
               >

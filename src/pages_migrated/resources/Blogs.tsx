@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { User, ArrowRight } from "lucide-react";
@@ -102,9 +103,9 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                 const slug = post.slug;
                 const title = post.title;
                 const excerpt = post.excerpt?.replace(/<[^>]*>/g, "") || "";
-                const image = post.featuredImage?.node?.sourceUrl || "";
-                const author = post.author?.node?.name || "Nabhira Team";
-                const category = post.categories?.nodes?.[0]?.name || "";
+                const image = post.featuredImage?.node?.sourceUrl || post.image || "";
+                const author = post.author?.node?.name || post.author || "Nabhira Team";
+                const category = post.categories?.nodes?.[0]?.name || post.category || "";
                 const date = formatDate(post.date);
 
                 return (
@@ -116,7 +117,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                     viewport={{ once: true }}
                     className="group"
                   >
-                    <Link href={`/resources/blogs/${slug}`} className="block">
+                    <Link href={`/resources/blogs/${slug || post.id}`} className="block">
                       <div className="aspect-[16/9] overflow-hidden mb-6 rounded-sm relative">
                         {image ? (
                           <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -132,7 +133,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                         {category && <span className="w-1 h-1 bg-gray-300 rounded-full"></span>}
                         <span className="text-gray-400">{date}</span>
                       </div>
-                      <Link href={`/resources/blogs/${slug}`} className="block">
+                      <Link href={`/resources/blogs/${slug || post.id}`} className="block">
                         <h3 className="text-[#11253e] text-xl font-bold group-hover:text-[#f99d1c] transition-colors leading-tight">
                           {title}
                         </h3>
@@ -144,7 +145,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                         <div className="flex items-center gap-2 text-xs font-medium text-[#11253e]">
                           <User size={14} /> {author}
                         </div>
-                        <Link href={`/resources/blogs/${slug}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        <Link href={`/resources/blogs/${slug || post.id}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
                           <ArrowRight size={18} />
                         </Link>
                       </div>

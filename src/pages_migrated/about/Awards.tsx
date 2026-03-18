@@ -1,7 +1,8 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";

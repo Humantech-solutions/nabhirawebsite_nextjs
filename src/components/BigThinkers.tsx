@@ -1,8 +1,10 @@
 "use client";
+import Image from "next/image";
 
+import React from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { formatQuotesToBold } from "../lib/utils";
-const sundarImg = "/assets/logo2.png";
+import sundarImg from "../assets/logo2.png";
 
 interface BigThinkersProps {
   data?: {
@@ -44,10 +46,6 @@ export function BigThinkers({ data }: BigThinkersProps) {
           <div className="text-[#f99d1c] text-lg md:text-xl font-light italic mb-8 md:mb-10">
             — {author}
           </div>
-          
-          <button className="bg-[#f99d1c] text-white px-8 md:px-10 py-4 text-[10px] md:text-xs font-black tracking-[0.2em] hover:bg-white hover:text-[#f99d1c] transition-all uppercase rounded-sm">
-            {buttonText}
-          </button>
         </div>
         
         <div className="relative mt-8 md:mt-0">
