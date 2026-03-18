@@ -51,7 +51,7 @@ export async function fetchGraphQL(query: string, variables = {}) {
   } catch (error: any) {
     // Log once but don't blow up
     if (error.name === 'AbortError') {
-      console.error(`[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 3s`);
+      console.error(`[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 8s`);
     } else {
       console.error(`[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL} - ${error.message || 'Fetch failed'}`);
     }
