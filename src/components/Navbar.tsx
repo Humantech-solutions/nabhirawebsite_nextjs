@@ -179,7 +179,7 @@ export function Navbar() {
                         className={`absolute ${scrolled ? 'top-16' : 'top-20'} ${
                           link.key === 'SERVICES' || menuData[link.key]?.type === 'mega' 
                             ? 'fixed left-4 right-4 md:left-auto md:right-auto md:w-[594px] lg:w-[726px] md:left-1/2 md:-translate-x-1/2' 
-                            : link.key === 'RESOURCES' ? 'left-0 w-44' : (link.key === 'ABOUT US' || link.key === 'INDUSTRIES' || link.key === 'SOLUTIONS') ? 'left-0 w-64' : 'left-0 w-72'
+                            : link.key === 'RESOURCES' ? 'left-0 w-44' : (link.key === 'ABOUT US' || link.key === 'INDUSTRIES') ? 'left-0 w-64' : link.key === 'SOLUTIONS' ? 'left-0 w-80' : 'left-0 w-72'
                         } backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] rounded-b-2xl overflow-hidden pt-10 pb-10 px-6 z-50 pointer-events-auto border-t border-gray-100/50`}
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
                       >
@@ -289,7 +289,7 @@ export function Navbar() {
                               if (routes[item]) {
                                 return (
                                   <Link href={routes[item]} 
-                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
                                     onClick={() => setActiveMenu(null)}
                                   >
                                     {children}
@@ -297,7 +297,7 @@ export function Navbar() {
                                 );
                               }
                               return (
-                                <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
+                                <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap">
                                   {children}
                                 </a>
                               );

@@ -21,19 +21,33 @@ export function ImageWithFallback(props: any) {
   const hasDimensions = rest.width && rest.height;
   const useFill = fill || (isStringSrc && !hasDimensions);
 
+  if (!useFill) {
+    return (
+      <Image
+        {...rest}
+        src={currentSrc}
+        alt={alt || "image"}
+        className={className}
+        style={style}
+        onError={handleError}
+      />
+    );
+  }
+
   // If using fill, we wrap in a relative container to ensure it shows up
   // next/image 'fill' requires a relative/absolute/fixed parent.
   return (
     <div 
-      className={useFill ? `relative overflow-hidden ${className || ''}` : className} 
-      style={useFill ? { ...style, minHeight: style?.height || style?.minHeight || '100%', minWidth: style?.width || style?.minWidth || '100%' } : style}
+      className={`relative overflow-hidden ${className || ''}`} 
+      style={{ ...style, minHeight: style?.height || style?.minHeight || '100%', minWidth: style?.width || style?.minWidth || '100%' }}
     >
       <Image
         src={currentSrc}
         alt={alt || "image"}
         onError={handleError}
-        {...(useFill ? { fill: true, style: { objectFit: 'cover', ...style } } : { ...rest, style })}
-        {...(!useFill ? rest : {})}
+        fill
+        style={{ objectFit: 'cover', ...style }}
+        {...rest}
       />
     </div>
   );
