@@ -1,5 +1,8 @@
 // Use 127.0.0.1 instead of localhost to avoid IPv6 resolution issues on Windows
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace('localhost', '127.0.0.1');
+const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace(
+  "localhost",
+  "127.0.0.1",
+);
 
 // Set this to true to temporarily stop all WordPress API calls and only use static data
 const FORCE_STATIC_FALLBACK = false;
@@ -8,28 +11,36 @@ import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
 
 export async function fetchGraphQL(query: string, variables = {}) {
   if (!WORDPRESS_API_URL || FORCE_STATIC_FALLBACK) {
-    return { 
-      data: null, 
-      errors: [{ message: FORCE_STATIC_FALLBACK ? "Bypassing fetch as FORCE_STATIC_FALLBACK is enabled" : "WORDPRESS_API_URL missing" }] 
+    return {
+      data: null,
+      errors: [
+        {
+          message: FORCE_STATIC_FALLBACK
+            ? "Bypassing fetch as FORCE_STATIC_FALLBACK is enabled"
+            : "WORDPRESS_API_URL missing",
+        },
+      ],
     };
   }
 
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+
   try {
     // We wrapped this in a short timeout or just a normal catch
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     const res = await fetch(WORDPRESS_API_URL, {
-      method: 'POST',
+      method: "POST",
       headers,
       body: JSON.stringify({
         query,
         variables,
       }),
-      cache: 'no-store',
-      signal: controller.signal
+      cache: "no-store",
+      signal: controller.signal,
     });
 
     clearTimeout(id);
@@ -37,29 +48,42 @@ export async function fetchGraphQL(query: string, variables = {}) {
     if (!res.ok) {
       const errorText = await res.text();
       console.error(`[WPGraphQL FETCH ERROR]: Status ${res.status}`, errorText);
-      return { errors: [{ message: `HTTP Error ${res.status}: ${res.statusText}` }] };
+      return {
+        errors: [{ message: `HTTP Error ${res.status}: ${res.statusText}` }],
+      };
     }
 
     const json = await res.json();
-    
+
     if (json.errors) {
-      console.error('[WPGraphQL GraphQL ERROR]:', JSON.stringify(json.errors, null, 2));
+      console.error(
+        "[WPGraphQL GraphQL ERROR]:",
+        JSON.stringify(json.errors, null, 2),
+      );
       return json;
     }
 
     return json;
   } catch (error: any) {
     // Log once but don't blow up
-    if (error.name === 'AbortError') {
-      console.error(`[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 8s`);
+    if (error.name === "AbortError") {
+      console.error(
+        `[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 8s`,
+      );
     } else {
-      console.error(`[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL} - ${error.message || 'Fetch failed'}`);
+      console.error(
+        `[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL} - ${error.message || "Fetch failed"}`,
+      );
     }
-    
+
     // Return a structured error so it doesn't crash the caller
-    return { 
+    return {
       data: null,
-      errors: [{ message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Falling back to static data.` }] 
+      errors: [
+        {
+          message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Falling back to static data.`,
+        },
+      ],
     };
   }
 }
@@ -117,10 +141,10 @@ export async function getGlobalSettings() {
       }
     }
   `;
-  
+
   // Try multiple common pages where global settings might be attached
   const uris = ["/contact/", "/", "/home/"];
-  
+
   for (const uri of uris) {
     const response = await fetchGraphQL(query(uri));
     const settings = response?.data?.page?.globalSettings;
@@ -128,7 +152,7 @@ export async function getGlobalSettings() {
       return settings;
     }
   }
-  
+
   return null;
 }
 
@@ -681,8 +705,10 @@ export const AWARDS_PAGE_FIELDS_FRAGMENT = `
 
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
-  const formattedSlug = slug.startsWith('/') ? slug : `/${slug}`;
-  const finalSlug = formattedSlug.endsWith('/') ? formattedSlug : `${formattedSlug}/`;
+  const formattedSlug = slug.startsWith("/") ? slug : `/${slug}`;
+  const finalSlug = formattedSlug.endsWith("/")
+    ? formattedSlug
+    : `${formattedSlug}/`;
 
   const query = `
     ${GLOBAL_SETTINGS_FRAGMENT}
@@ -720,17 +746,16 @@ export async function getPageBySlug(slug: string) {
 
   `;
 
-
   const variables = {
     id: finalSlug,
-    idType: 'URI',
+    idType: "URI",
   };
 
   const response = await fetchGraphQL(query, variables);
-  
+
   // Try fallback without trailing slash if primary fails
   if (!response?.data?.page) {
-    const fallbackVariables = { id: formattedSlug, idType: 'URI' };
+    const fallbackVariables = { id: formattedSlug, idType: "URI" };
     const fallbackResponse = await fetchGraphQL(query, fallbackVariables);
     if (fallbackResponse?.data?.page) return fallbackResponse.data.page;
   }
@@ -739,7 +764,7 @@ export async function getPageBySlug(slug: string) {
 
   // Fallback for known static pages if WP is down
   if (!page) {
-    if (slug === '/about' || slug === 'about') {
+    if (slug === "/about" || slug === "about") {
       return {
         title: "About Nabhira",
         content: "Nabhira Technologies is an architectural powerhouse...",
@@ -936,9 +961,11 @@ export async function getHomePage() {
 
     // Try root URI first
     let response = await fetchGraphQL(queryByUri("/"));
-    
+
     if (response?.errors) {
-      console.warn('DEBUG [getHomePage]: Primary query failed, retrying without optional sections...');
+      console.warn(
+        "DEBUG [getHomePage]: Primary query failed, retrying without optional sections...",
+      );
       const fallbackSafeQuery = `
         query GetHomePageSafe {
           page(id: "/", idType: URI) { ${pageFieldsFragment} }
@@ -958,22 +985,24 @@ export async function getHomePage() {
     }
 
     if (!page) {
-      console.error('[getHomePage ERROR]: No page data found for "/" or "/home/". Falling back to static data.');
+      console.error(
+        '[getHomePage ERROR]: No page data found for "/" or "/home/". Falling back to static data.',
+      );
       // Return a structured static object instead of null to allow the page to render
       return {
         homePageFields: {},
         globalSettings: {},
-        newsPosts: blogPosts.slice(0, 3).map(post => ({
+        newsPosts: blogPosts.slice(0, 3).map((post) => ({
           title: post.title,
           date: post.date,
           featuredImage: { node: { sourceUrl: post.image } },
-          uri: `/resources/blogs/${post.id}`
+          uri: `/resources/blogs/${post.id}`,
         })),
-        thinkingPosts: blogPosts.slice(0, 6).map(post => ({
+        thinkingPosts: blogPosts.slice(0, 6).map((post) => ({
           title: post.title,
           featuredImage: { node: { sourceUrl: post.image } },
-          uri: `/resources/blogs/${post.id}`
-        }))
+          uri: `/resources/blogs/${post.id}`,
+        })),
       };
     }
 
@@ -981,22 +1010,33 @@ export async function getHomePage() {
     const rawSettings = page?.whatSNewSettings1;
     const whatsNewSettings = {
       wnTitle: rawSettings?.sectionTitle || "What's New",
-      wnSubtitle: rawSettings?.sectionSubtitle || "The current and future news from Nabhira and around the world.",
-      wnFilterBy: rawSettings?.filterBy || 'category',
+      wnSubtitle:
+        rawSettings?.sectionSubtitle ||
+        "The current and future news from Nabhira and around the world.",
+      wnFilterBy: rawSettings?.filterBy || "category",
       wnCategory: rawSettings?.filterCategory || { nodes: [] },
       wnTag: rawSettings?.filterTag || { nodes: [] },
       wnPostsCount: rawSettings?.postsCount || 10,
     };
-    
+
     // Fetch News Posts
     const filterBy = whatsNewSettings.wnFilterBy;
-    const postsCount = Math.min(Math.max(whatsNewSettings.wnPostsCount || 3, 1), 12);
+    const postsCount = Math.min(
+      Math.max(whatsNewSettings.wnPostsCount || 3, 1),
+      12,
+    );
     // Extract filter values (handles multiple checkboxes/selections)
     let filterValues: string[] = [];
-    if (filterBy === 'tag') {
-      filterValues = whatsNewSettings.wnTag?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
+    if (filterBy === "tag") {
+      filterValues =
+        whatsNewSettings.wnTag?.nodes
+          ?.map((n: any) => n.slug || n.name)
+          .filter(Boolean) || [];
     } else {
-      filterValues = whatsNewSettings.wnCategory?.nodes?.map((n: any) => n.slug || n.name).filter(Boolean) || [];
+      filterValues =
+        whatsNewSettings.wnCategory?.nodes
+          ?.map((n: any) => n.slug || n.name)
+          .filter(Boolean) || [];
     }
 
     // Build where clause using slug-compatible args:
@@ -1005,16 +1045,17 @@ export async function getHomePage() {
     // (categoryIn / tagIn expect integer term IDs — not slugs — so they are avoided)
     let whereClause: string;
     if (filterValues.length > 0) {
-      if (filterBy === 'tag') {
+      if (filterBy === "tag") {
         // WPGraphQL `tag` arg accepts a single slug string
         whereClause = `tag: ${JSON.stringify(filterValues[0])}`;
       } else {
         // WPGraphQL `categoryName` accepts a comma-separated slug string for OR filtering
-        whereClause = `categoryName: ${JSON.stringify(filterValues.join(','))}`;
+        whereClause = `categoryName: ${JSON.stringify(filterValues.join(","))}`;
       }
     } else {
       // No filter configured — default fallback labels
-      whereClause = filterBy === 'tag' ? 'tag: "featured"' : 'categoryName: "news"';
+      whereClause =
+        filterBy === "tag" ? 'tag: "featured"' : 'categoryName: "news"';
     }
 
     const postsQuery = `
@@ -1036,7 +1077,9 @@ export async function getHomePage() {
 
     // Only use the no-filter fallback when NO category/tag was configured at all
     if (newsPosts.length === 0 && filterValues.length === 0) {
-      const fallbackPostsResponse = await fetchGraphQL(`query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } } uri } } }`);
+      const fallbackPostsResponse = await fetchGraphQL(
+        `query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } } uri } } }`,
+      );
       newsPosts = fallbackPostsResponse?.data?.posts?.nodes || [];
     }
 
@@ -1046,32 +1089,31 @@ export async function getHomePage() {
       thinkingPosts,
       settings: {
         ...whatsNewSettings,
-        wnPostsCount: whatsNewSettings.wnPostsCount
-      }
+        wnPostsCount: whatsNewSettings.wnPostsCount,
+      },
     };
   } catch (error) {
-    console.error('[WPGraphQL FETCH ERROR]:', error);
-    
+    console.error("[WPGraphQL FETCH ERROR]:", error);
+
     // Return a minimal valid object that satisfies the UI requirements
     // This allows the Hero and other components to use their own defaults
     return {
       homePageFields: {},
       globalSettings: {},
-      newsPosts: blogPosts.slice(0, 3).map(post => ({
+      newsPosts: blogPosts.slice(0, 3).map((post) => ({
         title: post.title,
         date: post.date,
         featuredImage: { node: { sourceUrl: post.image } },
-        uri: `/resources/blogs/${post.id}`
+        uri: `/resources/blogs/${post.id}`,
       })),
-      thinkingPosts: blogPosts.slice(0, 6).map(post => ({
+      thinkingPosts: blogPosts.slice(0, 6).map((post) => ({
         title: post.title,
         featuredImage: { node: { sourceUrl: post.image } },
-        uri: `/resources/blogs/${post.id}`
-      }))
+        uri: `/resources/blogs/${post.id}`,
+      })),
     };
   }
 }
-
 
 export async function getAllPosts() {
   const query = `
@@ -1110,10 +1152,12 @@ export async function getAllPosts() {
   try {
     const response = await fetchGraphQL(query);
     const posts = response?.data?.posts?.nodes;
-    
+
     if (!posts || posts.length === 0) {
-      console.warn('DEBUG [getAllPosts]: No posts found or fetch failed. Using static fallback data.');
-      return blogPosts.map(post => ({
+      console.warn(
+        "DEBUG [getAllPosts]: No posts found or fetch failed. Using static fallback data.",
+      );
+      return blogPosts.map((post) => ({
         id: post.id.toString(),
         title: post.title,
         excerpt: post.excerpt,
@@ -1121,14 +1165,14 @@ export async function getAllPosts() {
         slug: post.id.toString(),
         featuredImage: { node: { sourceUrl: post.image } },
         author: { node: { name: post.author } },
-        categories: { nodes: [{ name: post.category }] }
+        categories: { nodes: [{ name: post.category }] },
       }));
     }
-    
+
     return posts;
   } catch (error) {
-    console.error('Error fetching all posts:', error);
-    return blogPosts.map(post => ({
+    console.error("Error fetching all posts:", error);
+    return blogPosts.map((post) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt,
@@ -1136,35 +1180,40 @@ export async function getAllPosts() {
       slug: post.id.toString(),
       featuredImage: { node: { sourceUrl: post.image } },
       author: { node: { name: post.author } },
-      categories: { nodes: [{ name: post.category }] }
+      categories: { nodes: [{ name: post.category }] },
     }));
   }
 }
 
 export async function getPostBySlug(slug: string) {
   console.log(`[getPostBySlug] Attempting to find post with slug: "${slug}"`);
-  
+
   // Strategy 1: Find in the list of all posts (more reliable for matching)
   try {
     const allPosts = await getAllPosts();
     console.log(`[getPostBySlug] allPosts count: ${allPosts.length}`);
-    const foundPost = allPosts.find((p: any) => 
-      p.slug === slug || 
-      p.slug === slug.toLowerCase() || 
-      p.id?.toString() === slug
+    const foundPost = allPosts.find(
+      (p: any) =>
+        p.slug === slug ||
+        p.slug === slug.toLowerCase() ||
+        p.id?.toString() === slug,
     );
-    
+
     if (foundPost) {
-      console.log(`[getPostBySlug] Post found in allPosts list for: ${slug}. Fetching full content...`);
+      console.log(
+        `[getPostBySlug] Post found in allPosts list for: ${slug}. Fetching full content...`,
+      );
       // Re-fetch by ID to get the full "content" field since getAllPosts might be trimmed
       const fullPost = await getPostById(foundPost.id);
       if (fullPost) return fullPost;
 
-      console.log(`[getPostBySlug] getPostById failed, returning foundPost as fallback for: ${slug}`);
+      console.log(
+        `[getPostBySlug] getPostById failed, returning foundPost as fallback for: ${slug}`,
+      );
       return foundPost;
     }
   } catch (err) {
-    console.error('[getPostBySlug] Error searching in allPosts:', err);
+    console.error("[getPostBySlug] Error searching in allPosts:", err);
   }
 
   // Strategy 2: Direct GraphQL query by slug (fallback)
@@ -1189,11 +1238,13 @@ export async function getPostBySlug(slug: string) {
   `;
 
   try {
-    const variables = { id: slug, idType: 'SLUG' };
+    const variables = { id: slug, idType: "SLUG" };
     const response = await fetchGraphQL(query, variables);
-    
+
     if (response?.data?.post) {
-      console.log(`[getPostBySlug] Post found via direct SLUG query for: ${slug}`);
+      console.log(
+        `[getPostBySlug] Post found via direct SLUG query for: ${slug}`,
+      );
       return response.data.post;
     }
 
@@ -1213,32 +1264,32 @@ export async function getPostBySlug(slug: string) {
  * Formats a date string (ISO or WP format) into a human-readable "X days ago" string.
  */
 function formatDateToDaysAgo(dateString: string) {
-  if (!dateString) return '';
+  if (!dateString) return "";
   const date = new Date(dateString);
   const now = new Date();
   const diffTime = Math.abs(now.getTime() - date.getTime());
-  
+
   const diffHrs = Math.floor(diffTime / (1000 * 60 * 60));
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-  if (diffHrs < 1) return 'Just now';
-  if (diffHrs < 24) return `${diffHrs} ${diffHrs === 1 ? 'hr' : 'hrs'} ago`;
-  
-  if (diffDays === 1) return '1 day ago';
+  if (diffHrs < 1) return "Just now";
+  if (diffHrs < 24) return `${diffHrs} ${diffHrs === 1 ? "hr" : "hrs"} ago`;
+
+  if (diffDays === 1) return "1 day ago";
   if (diffDays < 7) return `${diffDays} days ago`;
-  
+
   if (diffDays < 30) {
     const weeks = Math.floor(diffDays / 7);
-    return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+    return `${weeks} ${weeks === 1 ? "week" : "weeks"} ago`;
   }
-  
+
   const months = Math.floor(diffDays / 30);
   if (months < 12) {
-    return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+    return `${months} ${months === 1 ? "month" : "months"} ago`;
   }
-  
+
   const years = Math.floor(months / 12);
-  return `${years} ${years === 1 ? 'year' : 'years'} ago`;
+  return `${years} ${years === 1 ? "year" : "years"} ago`;
 }
 
 // ─── CAREERS CPT ─────────────────────────────────────────────────────────────
@@ -1273,24 +1324,26 @@ export async function getCareerPosts() {
     const nodes = response?.data?.careers?.nodes;
 
     if (!nodes || nodes.length === 0) {
-      console.warn('[getCareerPosts]: No careers found or fetch failed. Using static fallback.');
+      console.warn(
+        "[getCareerPosts]: No careers found or fetch failed. Using static fallback.",
+      );
       return null; // caller will use static fallback
     }
 
     // Normalize to the same shape the UI expects
     return nodes.map((node: any) => ({
-      id: node.slug,           // use slug as id so /careers/[id] routes work
+      id: node.slug, // use slug as id so /careers/[id] routes work
       slug: node.slug,
       title: node.title,
-      department: node.careerJobOpeningDetails?.careerDepartment || '',
-      location: node.careerJobOpeningDetails?.careerLocation || '',
-      type: node.careerJobOpeningDetails?.careerType || 'Full-time',
+      department: node.careerJobOpeningDetails?.careerDepartment || "",
+      location: node.careerJobOpeningDetails?.careerLocation || "",
+      type: node.careerJobOpeningDetails?.careerType || "Full-time",
       posted: formatDateToDaysAgo(node.date), // Use published date
-      salary: 'Competitive',   // kept for backward compat with JobDetails
-      description: node.careerJobOpeningDetails?.careerDescription || '',
+      salary: "Competitive", // kept for backward compat with JobDetails
+      description: node.careerJobOpeningDetails?.careerDescription || "",
     }));
   } catch (error) {
-    console.error('[getCareerPosts] Error:', error);
+    console.error("[getCareerPosts] Error:", error);
     return null;
   }
 }
@@ -1323,7 +1376,9 @@ export async function getCareerPostBySlug(slug: string) {
     const node = response?.data?.career;
 
     if (!node) {
-      console.warn(`[getCareerPostBySlug]: No career found for slug "${slug}".`);
+      console.warn(
+        `[getCareerPostBySlug]: No career found for slug "${slug}".`,
+      );
       return null;
     }
 
@@ -1332,12 +1387,14 @@ export async function getCareerPostBySlug(slug: string) {
       slug: node.slug,
       title: node.title,
       date: node.date,
-      department: node.careerJobOpeningDetails?.careerDepartment || 'Engineering',
-      location: node.careerJobOpeningDetails?.careerLocation || 'Nabhira Technologies',
-      type: node.careerJobOpeningDetails?.careerType || 'Full-time',
+      department:
+        node.careerJobOpeningDetails?.careerDepartment || "Engineering",
+      location:
+        node.careerJobOpeningDetails?.careerLocation || "Nabhira Technologies",
+      type: node.careerJobOpeningDetails?.careerType || "Full-time",
       posted: formatDateToDaysAgo(node.date),
-      salary: 'Competitive',
-      description: node.careerJobOpeningDetails?.careerDescription || '',
+      salary: "Competitive",
+      description: node.careerJobOpeningDetails?.careerDescription || "",
     };
   } catch (error) {
     console.error(`[getCareerPostBySlug] Error for slug "${slug}":`, error);
@@ -1420,21 +1477,32 @@ export async function getEvents() {
       title: node.title,
       excerpt: node.excerpt,
       date: node.eventFields?.eventDate || node.date,
-      startDate: (node.eventFields?.eventStartDate && node.eventFields?.eventStartTime) 
-        ? `${node.eventFields.eventStartDate.split('T')[0]}T${node.eventFields.eventStartTime}` 
-        : node.eventFields?.eventStartDate,
-      endDate: (node.eventFields?.eventEndDate && node.eventFields?.eventEndTime) 
-        ? `${node.eventFields.eventEndDate.split('T')[0]}T${node.eventFields.eventEndTime}` 
-        : node.eventFields?.eventEndDate,
-      location: node.eventFields?.eventLocation || 'Global',
-      content: node.content || '',
-      image: node.eventFields?.eventBannerImage?.node?.sourceUrl || node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
+      startDate:
+        node.eventFields?.eventStartDate && node.eventFields?.eventStartTime
+          ? `${node.eventFields.eventStartDate.split("T")[0]}T${node.eventFields.eventStartTime}`
+          : node.eventFields?.eventStartDate,
+      endDate:
+        node.eventFields?.eventEndDate && node.eventFields?.eventEndTime
+          ? `${node.eventFields.eventEndDate.split("T")[0]}T${node.eventFields.eventEndTime}`
+          : node.eventFields?.eventEndDate,
+      location: node.eventFields?.eventLocation || "Global",
+      content: node.content || "",
+      image:
+        node.eventFields?.eventBannerImage?.node?.sourceUrl ||
+        node.featuredImage?.node?.sourceUrl ||
+        "/images/placeholder.jpg",
       externalUrl: node.eventFields?.eventExternalUrl || null,
-      buttonText: node.eventFields?.eventButtonText || node.eventFields?.eventButtonTextAlt,
-      eventType: node.eventFields?.eventType || (node.eventFields?.eventExternalUrl ? 'External Event' : 'Flagship Event')
+      buttonText:
+        node.eventFields?.eventButtonText ||
+        node.eventFields?.eventButtonTextAlt,
+      eventType:
+        node.eventFields?.eventType ||
+        (node.eventFields?.eventExternalUrl
+          ? "External Event"
+          : "Flagship Event"),
     }));
   } catch (error) {
-    console.error('[getEvents] Error:', error);
+    console.error("[getEvents] Error:", error);
     return [];
   }
 }
@@ -1491,19 +1559,28 @@ export async function getEventBySlug(slug: string) {
       title: node.title,
       slug: node.slug,
       date: node.eventFields?.eventDate || node.date,
-      startDate: (node.eventFields?.eventStartDate && node.eventFields?.eventStartTime) 
-        ? `${node.eventFields.eventStartDate.split('T')[0]}T${node.eventFields.eventStartTime}` 
-        : node.eventFields?.eventStartDate,
-      endDate: (node.eventFields?.eventEndDate && node.eventFields?.eventEndTime) 
-        ? `${node.eventFields.eventEndDate.split('T')[0]}T${node.eventFields.eventEndTime}` 
-        : node.eventFields?.eventEndDate,
-      location: node.eventFields?.eventLocation || 'Global',
-      content: node.content || '',
-      excerpt: node.excerpt || '',
-      image: node.eventFields?.eventBannerImage?.node?.sourceUrl || node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
+      startDate:
+        node.eventFields?.eventStartDate && node.eventFields?.eventStartTime
+          ? `${node.eventFields.eventStartDate.split("T")[0]}T${node.eventFields.eventStartTime}`
+          : node.eventFields?.eventStartDate,
+      endDate:
+        node.eventFields?.eventEndDate && node.eventFields?.eventEndTime
+          ? `${node.eventFields.eventEndDate.split("T")[0]}T${node.eventFields.eventEndTime}`
+          : node.eventFields?.eventEndDate,
+      location: node.eventFields?.eventLocation || "Global",
+      content: node.content || "",
+      excerpt: node.excerpt || "",
+      image:
+        node.eventFields?.eventBannerImage?.node?.sourceUrl ||
+        node.featuredImage?.node?.sourceUrl ||
+        "/images/placeholder.jpg",
       externalUrl: node.eventFields?.eventExternalUrl || null,
       buttonText: node.eventFields?.eventButtonText,
-      eventType: node.eventFields?.eventType || (node.eventFields?.eventExternalUrl ? 'External Event' : 'Flagship Event')
+      eventType:
+        node.eventFields?.eventType ||
+        (node.eventFields?.eventExternalUrl
+          ? "External Event"
+          : "Flagship Event"),
     };
   } catch (error) {
     console.error(`[getEventBySlug] Error for slug "${slug}":`, error);
@@ -1511,3 +1588,239 @@ export async function getEventBySlug(slug: string) {
   }
 }
 
+/**
+ * News Queries
+ * Uses WordPress REST API directly.
+ * NOTE: To switch to WPGraphQL, register the 'news' CPT in functions.php with:
+ *   'show_in_graphql'     => true,
+ *   'graphql_single_name' => 'newsItem',
+ *   'graphql_plural_name' => 'newsItems',
+ */
+
+const WP_BASE_URL =
+  process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://localhost/wordpress";
+
+/**
+ * Strips the site name suffix from a scraped page title.
+ * News sites append site/section names after separators like:
+ *   "Article Title | Bengaluru News - Times of India"
+ *   "Article Title — BBC News"
+ *   "Article Title · Reuters"
+ */
+function cleanTitle(
+  rawTitle: string | undefined,
+  siteName?: string,
+): string | undefined {
+  if (!rawTitle) return undefined;
+  let title = rawTitle.trim();
+
+  // If we know the og:site_name, try to strip it and anything after the last separator
+  if (siteName) {
+    // Remove "| Site Name" or "- Site Name" or "— Site Name" at the end
+    const escaped = siteName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    title = title
+      .replace(new RegExp(`[|\\-—·]\\s*${escaped}.*$`, "i"), "")
+      .trim();
+  }
+
+  // Strip trailing section/site name after the LAST strong separator (|, —, ·)
+  // Only strip if the suffix is short (< 60 chars = likely a site name, not part of the title)
+  const pipeIdx = title.lastIndexOf(" | ");
+  const dashIdx = title.lastIndexOf(" — ");
+  const bulletIdx = title.lastIndexOf(" · ");
+  const sepIdx = Math.max(pipeIdx, dashIdx, bulletIdx);
+
+  if (sepIdx > 0) {
+    const suffix = title.slice(sepIdx + 3);
+    if (suffix.length < 60) {
+      title = title.slice(0, sepIdx).trim();
+    }
+  }
+
+  // Also strip trailing "- Short Suffix" only if suffix is <= 40 chars
+  const lastDash = title.lastIndexOf(" - ");
+  if (lastDash > 0) {
+    const suffix = title.slice(lastDash + 3);
+    if (suffix.length <= 40) {
+      title = title.slice(0, lastDash).trim();
+    }
+  }
+
+  return title || rawTitle.trim();
+}
+
+/**
+ * Fetches Open Graph / meta metadata from an external URL.
+ * Used to auto-populate title, source, and date for external news links.
+ * Results are cached by Next.js for 24 hours (revalidate: 86400).
+ */
+async function fetchExternalMeta(
+  url: string,
+): Promise<{ title?: string; source?: string; date?: string }> {
+  try {
+    const res = await fetch(url, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; Nabhirabot/1.0)" },
+      next: { revalidate: 86400 }, // cache for 24 hrs
+    });
+    if (!res.ok) return {};
+    const html = await res.text();
+
+    // og:title (preferred — usually already clean)
+    const ogTitle =
+      html.match(
+        /<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i,
+      )?.[1] ||
+      html.match(
+        /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i,
+      )?.[1];
+
+    // <title> fallback — often contains site name suffix
+    const htmlTitle = html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1];
+
+    // article:published_time or date meta
+    const ogDate =
+      html.match(
+        /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i,
+      )?.[1] ||
+      html.match(
+        /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']article:published_time["']/i,
+      )?.[1] ||
+      html.match(
+        /<meta[^>]+name=["']date["'][^>]+content=["']([^"']+)["']/i,
+      )?.[1] ||
+      html.match(/<time[^>]+datetime=["']([^"']+)["']/i)?.[1];
+
+    // og:site_name
+    const ogSource =
+      html.match(
+        /<meta[^>]+property=["']og:site_name["'][^>]+content=["']([^"']+)["']/i,
+      )?.[1] ||
+      html.match(
+        /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:site_name["']/i,
+      )?.[1];
+
+    // Use og:title if available (cleaner), fall back to <title> and strip suffix
+    const rawTitle = ogTitle || htmlTitle;
+    const title = cleanTitle(rawTitle, ogSource?.trim());
+
+    return {
+      title,
+      source: ogSource?.trim(),
+      date: ogDate?.trim(),
+    };
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Enriches a mapped news item with external URL metadata,
+ * only filling in fields that aren't already set manually in ACF.
+ * For external news items, the external OG title is always preferred.
+ */
+async function enrichWithExternalMeta(item: any): Promise<any> {
+  if (!item.externalUrl) return item;
+
+  const needsSource = !item.source || item.source === "";
+  const needsDate = !item.date || item.date === "";
+  // For external items: ALWAYS try to get the real article title from OG metadata
+  // The WordPress post title (e.g., "Test News") is just a placeholder
+
+  const meta = await fetchExternalMeta(item.externalUrl);
+
+  // Derive source from domain if og:site_name isn't available
+  const domainSource = (() => {
+    try {
+      const hostname = new URL(item.externalUrl).hostname.replace("www.", "");
+      return hostname.split(".")[0].replace(/\b\w/g, (c) => c.toUpperCase());
+    } catch {
+      return undefined;
+    }
+  })();
+
+  return {
+    ...item,
+    // External title always wins over the WordPress post title (which is just a placeholder)
+    title: meta.title || item.title,
+    // ACF-entered source wins; otherwise use OG site_name or domain
+    source: needsSource
+      ? meta.source || domainSource || item.source
+      : item.source,
+    // ACF-entered date wins; otherwise use OG article:published_time
+    date: needsDate ? meta.date || item.date : item.date,
+  };
+}
+
+function mapNewsPost(post: any) {
+  // ACF fields are registered as top-level fields via register_rest_field in functions.php
+  // They can also appear under post.acf if ACF REST API is enabled in ACF settings
+  const externalUrl =
+    post.news_external_url || post.acf?.news_external_url || null;
+  const acfSource = post.news_source || post.acf?.news_source || "";
+  const acfDate = post.news_date || post.acf?.news_date || "";
+
+  // For internal news: use "Nabhira News" and today's WordPress post date as fallbacks
+  // For external news: leave empty so enrichWithExternalMeta can fill from OG metadata
+  const source = acfSource || (externalUrl ? "" : "Nabhira News");
+  const date = acfDate || post.date; // WordPress post date = publish date (today for new posts)
+
+  return {
+    id: post.id,
+    title: post.title?.rendered || "",
+    slug: post.slug,
+    date,
+    source,
+    externalUrl,
+    excerpt: post.excerpt?.rendered?.replace(/<[^>]*>/g, "") || "",
+    content: post.content?.rendered || "",
+    image:
+      post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+      "/images/placeholder.jpg",
+  };
+}
+
+export async function getNews(): Promise<any[]> {
+  try {
+    const res = await fetch(
+      `${WP_BASE_URL}/wp-json/wp/v2/news?per_page=100&orderby=date&order=desc&_embed`,
+      { next: { revalidate: 60 } },
+    );
+    if (!res.ok) {
+      console.error(
+        `[getNews] REST API returned ${res.status}: ${res.statusText}`,
+      );
+      return [];
+    }
+    const posts: any[] = await res.json();
+    const mapped = posts.map(mapNewsPost);
+
+    // Enrich external news items with OG metadata in parallel
+    const enriched = await Promise.all(mapped.map(enrichWithExternalMeta));
+
+    // Sort by publication date descending — latest first
+    return enriched.sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
+    });
+  } catch (error) {
+    console.error("[getNews] Error fetching news:", error);
+    return [];
+  }
+}
+
+export async function getNewsBySlug(slug: string): Promise<any | null> {
+  try {
+    const res = await fetch(
+      `${WP_BASE_URL}/wp-json/wp/v2/news?slug=${slug}&_embed`,
+      { next: { revalidate: 60 } },
+    );
+    if (!res.ok) return null;
+    const posts: any[] = await res.json();
+    if (!posts.length) return null;
+    return mapNewsPost(posts[0]);
+  } catch (error) {
+    console.error(`[getNewsBySlug] Error for slug "${slug}":`, error);
+    return null;
+  }
+}

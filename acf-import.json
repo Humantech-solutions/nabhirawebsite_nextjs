@@ -1,153 +1,40 @@
 [
   {
-    "key": "group_event_details",
-    "title": "Event Details",
+    "key": "group_news_details",
+    "title": "News Details",
     "fields": [
       {
-        "key": "field_event_tab_info",
-        "label": "Event Information",
-        "name": "",
-        "type": "tab",
-        "instructions": "",
-        "required": 0,
-        "placement": "top",
-        "endpoint": 0
-      },
-      {
-        "key": "field_event_type",
-        "label": "Event Type",
-        "name": "event_type",
+        "key": "field_news_source",
+        "label": "News Source",
+        "name": "news_source",
         "type": "text",
-        "instructions": "Enter the category of this event (e.g., Flagship Event).",
+        "instructions": "e.g., Bloomberg, TechCrunch, etc.",
         "required": 1,
-        "default_value": "FLAGSHIP EVENT",
-        "placeholder": "e.g. Flagship Event",
         "show_in_graphql": 1,
-        "graphql_field_name": "eventType"
+        "graphql_field_name": "newsSource"
       },
       {
-        "key": "field_event_start_date",
-        "label": "Event Start Date",
-        "name": "event_start_date",
-        "type": "date_picker",
-        "instructions": "Select the start date.",
-        "required": 0,
-        "display_format": "F j, Y",
-        "return_format": "Y-m-d",
-        "first_day": 1,
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventStartDate"
-      },
-      {
-        "key": "field_event_start_time",
-        "label": "Event Start Time",
-        "name": "event_start_time",
-        "type": "time_picker",
-        "instructions": "Select the start time.",
-        "required": 0,
-        "display_format": "g:i a",
-        "return_format": "H:i:s",
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventStartTime"
-      },
-      {
-        "key": "field_event_end_date",
-        "label": "Event End Date",
-        "name": "event_end_date",
-        "type": "date_picker",
-        "instructions": "Select the end date.",
-        "required": 0,
-        "display_format": "F j, Y",
-        "return_format": "Y-m-d",
-        "first_day": 1,
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventEndDate"
-      },
-      {
-        "key": "field_event_end_time",
-        "label": "Event End Time",
-        "name": "event_end_time",
-        "type": "time_picker",
-        "instructions": "Select the end time.",
-        "required": 0,
-        "display_format": "g:i a",
-        "return_format": "H:i:s",
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventEndTime"
-      },
-      {
-        "key": "field_event_date_display",
-        "label": "Legacy Event Date Display",
-        "name": "event_date",
-        "type": "text",
-        "instructions": "Optional: override the date text (e.g., 'Coming Soon'). Leave empty to use the selected dates above.",
-        "required": 0,
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventDate"
-      },
-      {
-        "key": "field_event_location",
-        "label": "Location",
-        "name": "event_location",
-        "type": "text",
-        "instructions": "e.g., Singapore or Online",
-        "required": 0,
-        "default_value": "Global",
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventLocation"
-      },
-      {
-        "key": "field_event_button_text",
-        "label": "Custom Button Text",
-        "name": "event_button_text",
-        "type": "text",
-        "instructions": "e.g., JOIN WEBINAR (Defaults to REGISTER NOW)",
-        "required": 0,
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventButtonText"
-      },
-      {
-        "key": "field_event_tab_media",
-        "label": "Media & Links",
-        "name": "",
-        "type": "tab",
-        "instructions": "",
-        "required": 0,
-        "placement": "top",
-        "endpoint": 0
-      },
-      {
-        "key": "field_event_banner_image",
-        "label": "Banner Image (Overrides Featured)",
-        "name": "event_banner_image",
-        "type": "image",
-        "instructions": "This will override the featured image in the banner section of the listing page.",
-        "required": 0,
-        "return_format": "array",
-        "preview_size": "medium",
-        "library": "all",
-        "show_in_graphql": 1,
-        "graphql_field_name": "eventBannerImage"
-      },
-      {
-        "key": "field_event_external_url",
-        "label": "External Event URL",
-        "name": "event_external_url",
+        "key": "field_news_external_url",
+        "label": "External Article URL",
+        "name": "news_external_url",
         "type": "url",
-        "instructions": "If this is an external event, provide the URL here.",
+        "instructions": "If this is an external news feature, provide the link here.",
         "required": 0,
         "show_in_graphql": 1,
-        "graphql_field_name": "eventExternalUrl"
+        "graphql_field_name": "newsExternalUrl"
       },
       {
-        "key": "field_event_button_text_alt",
-        "label": "Custom Button Text",
-        "name": "event_button_text_alt",
-        "type": "text",
-        "instructions": "e.g., JOIN WEBINAR (Defaults to REGISTER NOW)",
-        "required": 0,
+        "key": "field_news_date",
+        "label": "Publication Date",
+        "name": "news_date",
+        "type": "date_picker",
+        "instructions": "Select the date this news was published.",
+        "required": 1,
+        "display_format": "M j, Y",
+        "return_format": "Y-m-d",
+        "first_day": 1,
         "show_in_graphql": 1,
-        "graphql_field_name": "eventButtonTextAlt"
+        "graphql_field_name": "newsDate"
       }
     ],
     "location": [
@@ -155,7 +42,7 @@
         {
           "param": "post_type",
           "operator": "==",
-          "value": "events"
+          "value": "news"
         }
       ]
     ],
@@ -168,6 +55,6 @@
     "active": true,
     "description": "",
     "show_in_graphql": 1,
-    "graphql_field_name": "eventFields"
+    "graphql_field_name": "newsFields"
   }
 ]
