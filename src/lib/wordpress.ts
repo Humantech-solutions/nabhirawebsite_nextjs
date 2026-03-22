@@ -109,16 +109,27 @@ export const GLOBAL_SETTINGS_FRAGMENT = `
 `;
 
 export async function getGlobalSettings() {
-  const query = `
+  const query = (uri: string) => `
     ${GLOBAL_SETTINGS_FRAGMENT}
     query GetGlobalSettings {
-      page(id: "/contact/", idType: URI) {
+      page(id: "${uri}", idType: URI) {
         ...GlobalSettingsFields
       }
     }
   `;
-  const response = await fetchGraphQL(query);
-  return response?.data?.page?.globalSettings || null;
+  
+  // Try multiple common pages where global settings might be attached
+  const uris = ["/contact/", "/", "/home/"];
+  
+  for (const uri of uris) {
+    const response = await fetchGraphQL(query(uri));
+    const settings = response?.data?.page?.globalSettings;
+    if (settings && settings.heroSlides) {
+      return settings;
+    }
+  }
+  
+  return null;
 }
 
 export const CONTACT_PAGE_FIELDS_FRAGMENT = `
@@ -691,6 +702,11 @@ export async function getPageBySlug(slug: string) {
         slug
         uri
         date
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
         ...GlobalSettingsFields
         ...ContactPageFields
         ...CareersPageFields
@@ -1352,5 +1368,146 @@ async function getPostById(id: string) {
   `;
   const response = await fetchGraphQL(query, { id });
   return response?.data?.post || null;
+}
+
+/**
+ * Fetch all events for the events listing page.
+ */
+export async function getEvents() {
+  const query = `
+    query GetEvents {
+      events(first: 100, where: { orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          id
+          title
+          slug
+          excerpt
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          eventFields {
+            eventDate
+            eventStartDate
+            eventStartTime
+            eventEndDate
+            eventEndTime
+            eventLocation
+            eventExternalUrl
+            eventButtonText
+            eventButtonTextAlt
+            eventType
+            eventBannerImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    const nodes = response?.data?.events?.nodes || [];
+
+    return nodes.map((node: any) => ({
+      id: node.id,
+      slug: node.slug,
+      title: node.title,
+      excerpt: node.excerpt,
+      date: node.eventFields?.eventDate || node.date,
+      startDate: (node.eventFields?.eventStartDate && node.eventFields?.eventStartTime) 
+        ? `${node.eventFields.eventStartDate.split('T')[0]}T${node.eventFields.eventStartTime}` 
+        : node.eventFields?.eventStartDate,
+      endDate: (node.eventFields?.eventEndDate && node.eventFields?.eventEndTime) 
+        ? `${node.eventFields.eventEndDate.split('T')[0]}T${node.eventFields.eventEndTime}` 
+        : node.eventFields?.eventEndDate,
+      location: node.eventFields?.eventLocation || 'Global',
+      content: node.content || '',
+      image: node.eventFields?.eventBannerImage?.node?.sourceUrl || node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
+      externalUrl: node.eventFields?.eventExternalUrl || null,
+      buttonText: node.eventFields?.eventButtonText || node.eventFields?.eventButtonTextAlt,
+      eventType: node.eventFields?.eventType || (node.eventFields?.eventExternalUrl ? 'External Event' : 'Flagship Event')
+    }));
+  } catch (error) {
+    console.error('[getEvents] Error:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch a single event by its slug.
+ */
+export async function getEventBySlug(slug: string) {
+  const query = `
+    query GetEventBySlug($id: ID!) {
+      event(id: $id, idType: SLUG) {
+        id
+        title
+        content
+        date
+        slug
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        eventFields {
+          eventDate
+          eventStartDate
+          eventStartTime
+          eventEndDate
+          eventEndTime
+          eventLocation
+          eventExternalUrl
+          eventButtonText
+          eventButtonTextAlt
+          eventType
+          eventBannerImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, { id: slug });
+    const node = response?.data?.event;
+
+    if (!node) {
+      console.warn(`[getEventBySlug]: No event found for slug "${slug}".`);
+      return null;
+    }
+
+    return {
+      id: node.id,
+      title: node.title,
+      slug: node.slug,
+      date: node.eventFields?.eventDate || node.date,
+      startDate: (node.eventFields?.eventStartDate && node.eventFields?.eventStartTime) 
+        ? `${node.eventFields.eventStartDate.split('T')[0]}T${node.eventFields.eventStartTime}` 
+        : node.eventFields?.eventStartDate,
+      endDate: (node.eventFields?.eventEndDate && node.eventFields?.eventEndTime) 
+        ? `${node.eventFields.eventEndDate.split('T')[0]}T${node.eventFields.eventEndTime}` 
+        : node.eventFields?.eventEndDate,
+      location: node.eventFields?.eventLocation || 'Global',
+      content: node.content || '',
+      excerpt: node.excerpt || '',
+      image: node.eventFields?.eventBannerImage?.node?.sourceUrl || node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
+      externalUrl: node.eventFields?.eventExternalUrl || null,
+      buttonText: node.eventFields?.eventButtonText,
+      eventType: node.eventFields?.eventType || (node.eventFields?.eventExternalUrl ? 'External Event' : 'Flagship Event')
+    };
+  } catch (error) {
+    console.error(`[getEventBySlug] Error for slug "${slug}":`, error);
+    return null;
+  }
 }
 

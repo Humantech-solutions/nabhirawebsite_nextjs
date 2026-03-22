@@ -96,3 +96,45 @@ export const formatQuotesToBold = (text: string) => {
     return part;
   });
 };
+
+export const formatEventDate = (dateString: string) => {
+  if (!dateString) return "";
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (e) {
+    return dateString;
+  }
+};
+
+export const formatEventRange = (start: string, end: string) => {
+  if (!start) return "";
+  if (!end || start.split('T')[0] === end.split('T')[0]) {
+    return formatEventDate(start);
+  }
+
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+    return `${start} - ${end}`;
+  }
+
+  const sMonth = startDate.toLocaleString('en-US', { month: 'long' });
+  const eMonth = endDate.toLocaleString('en-US', { month: 'long' });
+  const sYear = startDate.getFullYear();
+  const eYear = endDate.getFullYear();
+  const sDay = startDate.getDate();
+  const eDay = endDate.getDate();
+
+  if (sMonth === eMonth && sYear === eYear) {
+    return `${sMonth} ${sDay}-${eDay}, ${sYear}`;
+  }
+
+  return `${formatEventDate(start)} - ${formatEventDate(end)}`;
+};

@@ -7,41 +7,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { Calendar, Clock, MapPin, ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowLeft, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
-
-const events = [
-  {
-    id: 1,
-    title: "Nabhira Architecture Summit 2026",
-    date: "March 15-16, 2026",
-    time: "09:00 AM - 06:00 PM",
-    location: "Marina Bay Financial Centre, Singapore",
-    type: "Flagship Event",
-    description: "Our annual flagship summit bringing together the brightest minds in digital architecture. Join us for two days of intensive workshops, keynote sessions from industry titans, and networking opportunities that will shape the next decade of enterprise technology.",
-    image: "https://images.unsplash.com/photo-1561489411-c0ce86e994bb?auto=format&fit=crop&q=80&w=1200"
-  },
-  {
-    id: 2,
-    title: "Webinar: Architecting Autonomous Enterprises",
-    date: "Feb 28, 2026",
-    time: "03:00 PM - 04:30 PM",
-    location: "Online / Virtual",
-    type: "Webinar",
-    description: "Explore the transition from automated to autonomous enterprises. This webinar dives deep into Agentic AI frameworks and how they integrate into existing legacy architectures to drive unprecedented efficiency.",
-    image: "https://images.unsplash.com/photo-1615852993296-b42d4dbb5555?auto=format&fit=crop&q=80&w=1200"
-  },
-  {
-    id: 3,
-    title: "Cloud & Data Expo 2026",
-    date: "April 05, 2026",
-    time: "10:00 AM - 05:00 PM",
-    location: "ExCeL London, UK",
-    type: "Exhibition",
-    description: "Visit Nabhira Technologies at booth #442. We will be showcasing our latest breakthroughs in multi-cloud mesh architectures and real-time data fabric implementations. Exclusive live demos and consulting sessions available.",
-    image: "https://images.unsplash.com/photo-1598209494655-b8e249540dfc?auto=format&fit=crop&q=80&w=1200"
-  }
-];
+import { formatEventDate, formatEventRange } from "../../lib/utils";
 
 type RegistrationForm = {
   firstName: string;
@@ -52,16 +20,14 @@ type RegistrationForm = {
   interests: string;
 };
 
-export default function EventDetail({ wordpressData }: any) {
-  const { id } = useParams();
-  const event = events.find(e => e.id === Number(id));
+export default function EventDetail({ wordpressData: event }: any) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegistrationForm>();
 
   useEffect(() => {
     if (event) {
-      document.title = `${event.title} | Registration | Nabhira`;
+      document.title = `${event.title} | Nabhira Technologies`;
       window.scrollTo(0, 0);
     }
   }, [event]);
@@ -71,6 +37,21 @@ export default function EventDetail({ wordpressData }: any) {
     console.log("Registration Data:", data);
     setIsSubmitted(true);
     toast.success("Registration Successful!");
+  };
+
+  const formatTime = (dateString: string) => {
+    if (!dateString) return "";
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return "";
+      return date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    } catch (e) {
+      return "";
+    }
   };
 
   if (!event) {
@@ -84,9 +65,15 @@ export default function EventDetail({ wordpressData }: any) {
     );
   }
 
+  const displayTime = (event.startDate && event.endDate)
+    ? `${formatTime(event.startDate)} - ${formatTime(event.endDate)}`
+    : formatTime(event.startDate);
+
+  const displayDate = formatEventRange(event.startDate || event.date, event.endDate);
+
   return (
     <>
-      <main className="">
+      <main className="bg-white">
         {/* Header Section */}
         <section className="relative h-[400px] overflow-hidden">
           <div className="absolute inset-0">
@@ -103,54 +90,129 @@ export default function EventDetail({ wordpressData }: any) {
               <ArrowLeft size={14} /> Back to Events
             </Link>
             <div className="max-w-3xl space-y-6">
-              <span className="px-3 py-1 bg-[#f99d1c] text-white text-[9px] font-bold uppercase tracking-widest">{event.type}</span>
+              <span className="px-3 py-1 bg-[#f99d1c] text-white text-[9px] font-bold uppercase tracking-widest">
+                {event.eventType}
+              </span>
               <h1 className="text-white text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-                {event.title}
+                {event.title}{" "}
+                {event.externalUrl && (
+                  <span className="inline-block align-middle text-white/50 text-xl md:text-2xl ml-4">
+                    ({(() => {
+                      try {
+                        return new URL(event.externalUrl).hostname.replace('www.', '');
+                      } catch (e) {
+                        return 'External Site';
+                      }
+                    })()})
+                  </span>
+                )}
               </h1>
               <div className="flex flex-wrap gap-8 pt-4">
                 <div className="flex items-center gap-3 text-white/70 text-sm">
-                  <Calendar size={18} className="text-[#f99d1c]" /> {event.date}
+                  <Calendar size={18} className="text-[#f99d1c]" /> 
+                  {displayDate || "-"}
                 </div>
                 <div className="flex items-center gap-3 text-white/70 text-sm">
-                  <Clock size={18} className="text-[#f99d1c]" /> {event.time}
+                  <Clock size={18} className="text-[#f99d1c]" /> 
+                  {displayTime || "-"}
                 </div>
                 <div className="flex items-center gap-3 text-white/70 text-sm">
-                  <MapPin size={18} className="text-[#f99d1c]" /> {event.location}
+                  <MapPin size={18} className="text-[#f99d1c]" /> 
+                  {event.location || "-"}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24">
+        <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-20">
             
-            {/* Event Description */}
+            {/* Event Description Content Blocks */}
             <div className="lg:col-span-7 space-y-12">
-              <div className="space-y-6">
-                <h2 className="text-[#11253e] text-2xl font-bold uppercase tracking-tight">About the Event</h2>
-                <div className="w-12 h-1 bg-[#f99d1c]"></div>
-                <p className="text-[#11253e] text-lg font-light leading-relaxed">{event.description}</p>
-              </div>
+              {(() => {
+                const content = event.content || event.excerpt || `
+                  <h2>About the Event</h2>
+                  <p>Our annual flagship summit bringing together the brightest minds in digital architecture. Join us for two days of intensive workshops, keynote sessions from industry titans, and networking opportunities that will shape the next decade of enterprise technology.</p>
+                  <h3>Key Takeaways</h3>
+                  <ul>
+                    <li>Strategic roadmap for 2026 digital transformations</li>
+                    <li>Exclusive access to proprietary architecture frameworks</li>
+                    <li>One-on-one consulting with senior Nabhira architects</li>
+                    <li>Network with Fortune 500 technology leaders</li>
+                  </ul>
+                `;
 
-              <div className="space-y-8">
-                <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">Key Takeaways</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[
-                    "Strategic roadmap for 2026 digital transformations",
-                    "Exclusive access to proprietary architecture frameworks",
-                    "One-on-one consulting with senior Nabhira architects",
-                    "Network with Fortune 500 technology leaders"
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-4 items-start">
-                      <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#f99d1c]/10 flex items-center justify-center">
-                        <CheckCircle2 size={12} className="text-[#f99d1c]" />
+                // Simple regex block parser to split content into manageable chunks
+                const blocks = content.match(/<(h[1-6]|p|ul)[^>]*>([\s\S]*?)<\/\1>/gi) || [];
+
+                return blocks.map((block: string, index: number) => {
+                  const tagMatch = block.match(/<(h[1-6]|p|ul)/i);
+                  const tag = tagMatch ? tagMatch[1].toLowerCase() : '';
+                  const innerHTML = block.replace(/<[^>]+>/, '').replace(/<\/[^>]+>$/, '');
+
+                  // Render block based on tag type to maintain the "Ready UI"
+                  if (tag === 'h2' && innerHTML.toLowerCase().includes('about the event')) {
+                    return (
+                      <div key={index} className="space-y-6">
+                        <h2 className="text-[#11253e] text-2xl font-bold uppercase tracking-tight">About the Event</h2>
+                        <div className="w-12 h-1 bg-[#f99d1c]"></div>
                       </div>
-                      <p className="text-sm text-[#11253e]">{item}</p>
-                    </div>
-                  ))}
+                    );
+                  }
+
+                  if (tag.startsWith('h')) {
+                    return (
+                      <h3 key={index} className="text-[#11253e] text-xl font-bold uppercase tracking-tight">
+                        {innerHTML.replace(/<[^>]*>?/gm, '')}
+                      </h3>
+                    );
+                  }
+
+                  if (tag === 'p') {
+                    return (
+                      <div 
+                        key={index} 
+                        className="text-[#11253e] text-lg font-light leading-relaxed prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: innerHTML }}
+                      />
+                    );
+                  }
+
+                  if (tag === 'ul') {
+                    const items = innerHTML.match(/<li[^>]*>(.*?)<\/li>/gi) || [];
+                    return (
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {items.map((li: string, i: number) => (
+                          <div key={i} className="flex gap-4 items-start">
+                            <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#f99d1c]/10 flex items-center justify-center">
+                              <CheckCircle2 size={12} className="text-[#f99d1c]" />
+                            </div>
+                            <div 
+                              className="text-sm text-[#11253e]"
+                              dangerouslySetInnerHTML={{ __html: li.replace(/<\/?li[^>]*>/g, '') }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  return null;
+                });
+              })()}
+
+              {event.externalUrl && (
+                <div className="pt-8">
+                  <Link 
+                    href={event.externalUrl}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#f99d1c] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#11253e] transition-colors"
+                  >
+                    Visit Official Event Site <ArrowRight size={14} />
+                  </Link>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Registration Form */}
@@ -264,4 +326,4 @@ export default function EventDetail({ wordpressData }: any) {
       </main>
     </>
   );
-}
+}
