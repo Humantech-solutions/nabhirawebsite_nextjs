@@ -1,5 +1,5 @@
 import CaseStudyDetail from "@/src/pages_migrated/resources/CaseStudyDetail";
-import { caseStudies } from "@/src/data/migrated_data";
+import { getCaseStudyBySlug, getCaseStudies } from "@/src/lib/wordpress";
 import { constructMetadata, getArticleSchema, getBreadcrumbSchema } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
 import { siteConfig } from "@/src/config/site";
@@ -10,27 +10,28 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return caseStudies.map((study) => ({
+  const studies = await getCaseStudies();
+  return studies.map((study: any) => ({
     id: study.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const study = caseStudies.find((s) => s.slug === id);
+  const study = await getCaseStudyBySlug(id);
 
   if (!study) return constructMetadata({ title: "Case Study Not Found" });
 
   return constructMetadata({
     title: study.title,
-    description: study.challenge,
+    description: study.challengeDescription || study.challenge,
     image: study.image,
   });
 }
 
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
-  const study = caseStudies.find((s) => s.slug === id);
+  const study = await getCaseStudyBySlug(id);
 
   if (!study) return null;
 
@@ -41,9 +42,9 @@ export default async function Page({ params }: PageProps) {
       <Schema
         jsonLd={getArticleSchema({
           title: study.title,
-          description: study.challenge,
+          description: study.challengeDescription || study.challenge,
           image: study.image,
-          datePublished: "2026-01-01", // Placeholder date
+          datePublished: study.date || "2026-01-01",
           authorName: "Nabhira Architects",
           url: url,
         })}
@@ -56,7 +57,7 @@ export default async function Page({ params }: PageProps) {
           { name: study.title, item: `/resources/case-studies/${id}` },
         ])}
       />
-      <CaseStudyDetail />
+      <CaseStudyDetail wordpressData={study} />
     </>
   );
 }

@@ -9,11 +9,29 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { renderHeroTitle } from "../../lib/utils";
 import { caseStudies } from "@/src/data/migrated_data";
 
-export default function CaseStudies({ wordpressData }: any) {
+export default function CaseStudies({ 
+  wordpressData,
+  caseStudiesData = [],
+  globalSettings
+}: any) {
   useEffect(() => {
     document.title = "Case Studies | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const { heroSlides } = globalSettings || {};
+  const { heroS1Title, heroS1Desc, heroS1Image, heroS1ImageUrl } = heroSlides || {};
+
+  const bannerImage = 
+    heroS1ImageUrl || 
+    heroS1Image?.node?.sourceUrl || 
+    wordpressData?.featuredImage?.node?.sourceUrl || 
+    "https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwZGlnaXRhbCUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NzE5MDA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080";
+
+  const bannerTitle = heroS1Title || wordpressData?.title || "Architectural Success";
+  const bannerExcerpt = heroS1Desc || wordpressData?.excerpt?.replace(/<[^>]*>?/gm, "") || "Proven results delivered through rigorous digital engineering.";
+
+  const displayCaseStudies = caseStudiesData.length > 0 ? caseStudiesData : caseStudies;
 
   return (
     <>
@@ -21,7 +39,7 @@ export default function CaseStudies({ wordpressData }: any) {
       <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwZGlnaXRhbCUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NzE5MDA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              src={bannerImage}
               alt="Nabhira Case Studies"
               className="w-full h-full object-cover"
             />
@@ -30,12 +48,10 @@ export default function CaseStudies({ wordpressData }: any) {
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
-                  <>Architectural <span className="text-[#f99d1c]">Success</span></>
-                ))}
+                {renderHeroTitle(bannerTitle)}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Proven results delivered through rigorous digital engineering.
+                {renderHeroTitle(bannerExcerpt, "text-white/90")}
               </p>
             </div>
           </div>
@@ -43,7 +59,7 @@ export default function CaseStudies({ wordpressData }: any) {
 
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 space-y-20">
-            {caseStudies.map((c: any, idx: number) => (
+            {displayCaseStudies.map((c: any, idx: number) => (
               <Motion.div 
                 key={idx}
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}

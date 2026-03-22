@@ -1824,3 +1824,202 @@ export async function getNewsBySlug(slug: string): Promise<any | null> {
     return null;
   }
 }
+
+/**
+ * Fetch all case studies for the case studies listing page.
+ */
+export async function getCaseStudies() {
+  const query = `
+    query GetCaseStudies {
+      caseStudies(first: 100, where: { orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          id
+          title
+          slug
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          tags {
+            nodes {
+              name
+            }
+          }
+          caseStudyFields {
+            clientName
+            clientIndustry
+            impactMetric
+            highlight1
+            highlight2
+            highlight3
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    const nodes = response?.data?.caseStudies?.nodes || [];
+
+    return nodes.map((node: any) => ({
+      id: node.id,
+      slug: node.slug,
+      title: node.title,
+      subtitle: node.caseStudyFields?.executiveSummaryTitle || "",
+      client: node.caseStudyFields?.clientName || "",
+      industry: node.caseStudyFields?.clientIndustry || "",
+      image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
+      impact: node.caseStudyFields?.impactMetric || "",
+      tags: node.tags?.nodes?.map((t: any) => t.name) || [node.caseStudyFields?.clientIndustry].filter(Boolean) || []
+    }));
+  } catch (error) {
+    console.error("[getCaseStudies] Error:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetch a single case study by its slug.
+ */
+export async function getCaseStudyBySlug(slug: string) {
+  const query = `
+    query GetCaseStudyBySlug($id: ID!) {
+      caseStudy(id: $id, idType: SLUG) {
+        id
+        title
+        slug
+        content
+        date
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        caseStudyFields {
+          clientName
+          clientIndustry
+          impactMetric
+          highlight1
+          highlight2
+          highlight3
+          executiveSummaryTitle
+          executiveSummary
+          customerBackgroundTitle
+          customerBackground
+          challengeMainTitle
+          challengeDescription
+          challenge1Title
+          challenge1Description
+          challenge2Title
+          challenge2Description
+          challenge3Title
+          challenge3Description
+          challenge4Title
+          challenge4Description
+          challenge5Title
+          challenge5Description
+          challenge6Title
+          challenge6Description
+          challenge7Title
+          challenge7Description
+          challenge8Title
+          challenge8Description
+          solutionMainTitle
+          solutionDescription
+          solution1Title
+          solution1Description
+          solution1Items
+          solution2Title
+          solution2Description
+          solution2Items
+          solution3Title
+          solution3Description
+          solution3Items
+          solution4Title
+          solution4Description
+          solution4Items
+          solution5Title
+          solution5Description
+          solution5Items
+          solution6Title
+          solution6Description
+          solution6Items
+          solution7Title
+          solution7Description
+          solution7Items
+          solution8Title
+          solution8Description
+          solution8Items
+          solution9Title
+          solution9Description
+          solution9Items
+          solution10Title
+          solution10Description
+          solution10Items
+          impactMainTitle
+          impactIntro
+          result1Title
+          result1Description
+          result1Metrics
+          result2Title
+          result2Description
+          result2Metrics
+          result3Title
+          result3Description
+          result3Metrics
+          result4Title
+          result4Description
+          result4Metrics
+          result5Title
+          result5Description
+          result5Metrics
+          result6Title
+          result6Description
+          result6Metrics
+          result7Title
+          result7Description
+          result7Metrics
+          result8Title
+          result8Description
+          result8Metrics
+          result9Title
+          result9Description
+          result9Metrics
+          quoteText
+          quoteAuthor
+          ctaTitle
+          ctaDescription
+          ctaButton1Text
+          ctaButton1Url
+          ctaButton2Text
+          ctaButton2Url
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, { id: slug });
+    const node = response?.data?.caseStudy;
+
+    if (!node) {
+      console.warn(`[getCaseStudyBySlug]: No case study found for slug "${slug}".`);
+      return null;
+    }
+
+    return {
+      id: node.id,
+      title: node.title,
+      slug: node.slug,
+      content: node.content,
+      ...node.caseStudyFields,
+      image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg"
+    };
+  } catch (error) {
+    console.error(`[getCaseStudyBySlug] Error for slug "${slug}":`, error);
+    return null;
+  }
+}
+
