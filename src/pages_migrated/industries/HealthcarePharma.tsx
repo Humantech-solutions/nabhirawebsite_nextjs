@@ -126,7 +126,7 @@ export default function HealthcarePharma({ wordpressData }: any) {
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">Technology <br /><span className="font-bold text-[#f99d1c]">Enablement</span></h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">We leverage secure, compliant cloud platforms and advanced AI to power modern healthcare and life sciences ecosystems.</p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">Partner with us <ArrowRight size={20} /></Link>
+              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent('Healthcare & Life Sciences')}`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">Partner with us <ArrowRight size={20} /></Link>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {techEnablement.map((service, idx) => (

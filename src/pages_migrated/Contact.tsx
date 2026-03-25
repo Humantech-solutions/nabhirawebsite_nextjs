@@ -17,23 +17,76 @@ export default function Contact({ wordpressData }: any) {
     subject: "",
     message: ""
   });
+  const [context, setContext] = useState({
+    pageTitle: "",
+    pageUrl: "",
+    category: "General"
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     document.title = "Contact Us | Nabhira Technologies";
     window.scrollTo(0, 0);
+
+    // Extract context
+    const searchParams = new URLSearchParams(window.location.search);
+    const refUrl = searchParams.get('ref') || document.referrer;
+    const refTitle = searchParams.get('title') || "";
+
+    let category = "General";
+    if (refUrl) {
+      if (refUrl.includes('/industries')) category = "Industries";
+      else if (refUrl.includes('/solutions')) category = "Solutions";
+      else if (refUrl.includes('/case-studies')) category = "Case Study";
+      else if (refUrl.includes('/blog')) category = "Blog";
+      else if (refUrl.includes('/services')) category = "Service";
+      else if (refUrl.includes('/careers')) category = "Career";
+    }
+
+    if (category === "General" && refTitle) {
+      const industryKeywords = ['Banking', 'Retail', 'Manufacturing', 'Healthcare', 'Government', 'Media'];
+      if (industryKeywords.some(kw => refTitle.includes(kw))) {
+        category = "Industries";
+      }
+    }
+
+    setContext({
+      pageTitle: refTitle || "Quick Contact", 
+      pageUrl: refUrl || (typeof window !== 'undefined' ? window.location.href : ""),
+      category
+    });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Message sent successfully! Our team will reach out shortly.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      const response = await fetch("http://localhost:8000/api/contact/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          ...context
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message sent successfully! Our team will reach out shortly.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error(data.message || "Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Contact error:", error);
+      toast.error("Unable to connect to the server.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactDetails = [

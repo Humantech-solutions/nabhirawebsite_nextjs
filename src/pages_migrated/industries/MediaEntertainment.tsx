@@ -281,8 +281,8 @@ export default function MediaEntertainment({ wordpressData }: any) {
                 We bring deep expertise in building scalable digital platforms, strong understanding of high-availability streaming environments, and a security-first architecture.
               </p>
               
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Start your journey <ArrowRight size={20} />
+              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent('Media & Entertainment')}`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
+                Partner with us <ArrowRight size={20} />
               </Link>
             </div>
 

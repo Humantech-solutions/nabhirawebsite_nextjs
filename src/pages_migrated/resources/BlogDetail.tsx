@@ -210,7 +210,7 @@ export default function BlogDetail({ wordpressData }: any) {
                 <div className="w-10 h-1 bg-[#f99d1c]"></div>
                 <h3 className="text-white font-bold text-lg leading-tight uppercase tracking-tight">Ready to architect your future?</h3>
                 <p className="text-white/60 text-sm font-light">Consult with our engineering team on your next transformation project.</p>
-                <Link href="/contact" className="block text-[#f99d1c] text-xs font-bold uppercase tracking-[0.2em] pt-4 hover:translate-x-1 transition-transform inline-flex items-center gap-2">
+                <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(post.title)}`} className="block text-[#f99d1c] text-xs font-bold uppercase tracking-[0.2em] pt-4 hover:translate-x-1 transition-transform inline-flex items-center gap-2">
                   Get in Touch <ArrowLeft size={14} className="rotate-180" />
                 </Link>
               </div>
