@@ -72,13 +72,44 @@ export default function JobDetails() {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    linkedin: ""
+  });
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/career/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          pageTitle: document.title,
+          pageUrl: window.location.href,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || "Failed to submit application.");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError("Unable to connect to the server. Please try again later.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -200,6 +231,8 @@ export default function JobDetails() {
       required
       type="text"
       placeholder="John Doe"
+      value={formData.name}
+      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -212,6 +245,8 @@ export default function JobDetails() {
       required
       type="email"
       placeholder="john@example.com"
+      value={formData.email}
+      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -224,6 +259,8 @@ export default function JobDetails() {
       required
       type="url"
       placeholder="https://linkedin.com/in/..."
+      value={formData.linkedin}
+      onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -252,6 +289,12 @@ export default function JobDetails() {
     {isSubmitting ? "Processing..." : "Submit Application"}
     {!isSubmitting && <Send size={16} />}
   </button>
+
+  {error && (
+    <p className="text-red-400 text-[11px] text-center font-medium mt-4">
+      {error}
+    </p>
+  )}
 
   <p className="text-[10px] text-white/30 text-center font-light leading-relaxed">
     By applying, you agree to our recruitment privacy policy. Nabhira is an
