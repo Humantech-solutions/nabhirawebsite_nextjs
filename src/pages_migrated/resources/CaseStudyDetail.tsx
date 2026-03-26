@@ -479,7 +479,7 @@ export default function CaseStudyDetail({ wordpressData }: any) {
               viewport={{ once: true }}
               className="flex flex-col sm:flex-row gap-4 lg:justify-end"
             >
-              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(study.title)}`}>
+              <Link href={`/contact?ref=${encodeURIComponent(`https://nabhira.com/resources/case-studies/${study.slug}`)}&title=${encodeURIComponent(study.title)}&category=Case Study`}>
                 <button className="w-full sm:w-auto bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
                   Consult Our Experts
                 </button>

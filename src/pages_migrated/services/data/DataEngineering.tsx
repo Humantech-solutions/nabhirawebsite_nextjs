@@ -160,10 +160,12 @@ export default function DataEngineering({ wordpressData }: any) {
               </p>
 
               <div className="pt-6 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
-                  <span>START YOUR JOURNEY</span>
-                  <ArrowRight size={14} />
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/data/data-engineering')}&title=${encodeURIComponent('Data Engineering')}&category=Service`}>
+                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
+                    <span>START YOUR JOURNEY</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </Link>
               </div>
             </Motion.div>
           </div>
@@ -595,13 +597,15 @@ export default function DataEngineering({ wordpressData }: any) {
                   Engage our Data Engineers to evaluate your current architecture and design a roadmap for scalable, future-proof data operations.
                 </p>
               </div>
-              <button
-                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
-                style={{ fontSize: "13px", fontWeight: 600 }}
-              >
-                <span>START YOUR JOURNEY</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/data/data-engineering')}&title=${encodeURIComponent('Data Engineering')}&category=Service`}>
+                <button
+                  className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                  style={{ fontSize: "13px", fontWeight: 600 }}
+                >
+                  <span>START YOUR JOURNEY</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </Motion.div>
           </div>
         </section>

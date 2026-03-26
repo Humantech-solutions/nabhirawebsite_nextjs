@@ -144,10 +144,12 @@ export default function DataGovernance({ wordpressData }: any) {
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">
-              <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
-                <span>COMPLIANCE AUDIT</span>
-                <ArrowRight size={14} />
-              </button>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/data/data-governance')}&title=${encodeURIComponent('Data Governance')}&category=Service`}>
+                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
+                  <span>COMPLIANCE AUDIT</span>
+                  <ArrowRight size={14} />
+                </button>
+              </Link>
             </div>
           </Motion.div>
         </div>
@@ -522,13 +524,15 @@ export default function DataGovernance({ wordpressData }: any) {
                   Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
                 </p>
               </div>
-              <button
-                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
-                style={{ fontSize: "13px", fontWeight: 600 }}
-              >
-                <span>START AUDIT</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/data/data-governance')}&title=${encodeURIComponent('Data Governance')}&category=Service`}>
+                <button
+                  className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                  style={{ fontSize: "13px", fontWeight: 600 }}
+                >
+                  <span>START AUDIT</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </Motion.div>
           </div>
         </section>

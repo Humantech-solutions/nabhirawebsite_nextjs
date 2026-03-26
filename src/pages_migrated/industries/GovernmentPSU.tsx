@@ -369,7 +369,7 @@ export default function GovernmentPSU({ wordpressData }: any) {
                 compliance.
               </p>
 
-              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent('Government & PSUs')}`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/industries/government-psu')}&title=${encodeURIComponent('Government & PSUs')}&category=Industries`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
                 Partner with us <ArrowRight size={20} />
               </Link>
             </div>

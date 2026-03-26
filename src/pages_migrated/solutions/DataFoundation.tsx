@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { motion as Motion } from "motion/react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
@@ -75,10 +76,12 @@ export default function DataFoundation({ wordpressData }: any) {
               </p>
 
               <div className="pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>Explore Architecture</span>
-                  <ArrowRight size={14} />
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/data-foundation')}&title=${encodeURIComponent('Data Foundation')}&category=Solutions`}>
+                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
+                    <span>Explore Architecture</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </Link>
               </div>
             </Motion.div>
           </div>
@@ -177,10 +180,12 @@ export default function DataFoundation({ wordpressData }: any) {
                   Start with a baseline assessment of your storage architecture. Our experts will design a foundation that supports your 10-year growth plan.
                 </p>
               </div>
-              <button className="whitespace-nowrap bg-[#11253e] hover:bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium transition-all inline-flex items-center space-x-4 uppercase text-xs tracking-[0.2em] group">
-                <span>View Framework</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/data-foundation')}&title=${encodeURIComponent('Data Foundation')}&category=Solutions`}>
+                <button className="whitespace-nowrap bg-[#11253e] hover:bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium transition-all inline-flex items-center space-x-4 uppercase text-xs tracking-[0.2em] group">
+                  <span>View Framework</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </div>
           </div>
         </section>

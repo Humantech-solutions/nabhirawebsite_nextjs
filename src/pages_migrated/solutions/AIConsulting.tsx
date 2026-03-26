@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { motion as Motion } from "motion/react";
 
 import { Navbar } from "../../components/Navbar";
@@ -77,10 +78,12 @@ export default function AIConsulting({ wordpressData }: any) {
               </p>
 
               <div className="pt-4 md:pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[10px] md:text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>Start AI Roadmap</span>
-                  <ArrowRight size={14} />
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/ai-consulting')}&title=${encodeURIComponent('AI Consulting')}&category=Solutions`}>
+                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[10px] md:text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
+                    <span>Start AI Roadmap</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </Link>
               </div>
             </Motion.div>
           </div>
@@ -182,9 +185,11 @@ export default function AIConsulting({ wordpressData }: any) {
                 Our AI architects are ready to help you define and execute your next breakthrough.
               </p>
               <div className="flex flex-wrap justify-center gap-6">
-                <button className="bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-xs tracking-widest shadow-xl">
-                  Connect with an AI Expert
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/ai-consulting')}&title=${encodeURIComponent('AI Consulting')}&category=Solutions`}>
+                  <button className="bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-xs tracking-widest shadow-xl">
+                    Connect with an AI Expert
+                  </button>
+                </Link>
               </div>
             </Motion.div>
           </div>

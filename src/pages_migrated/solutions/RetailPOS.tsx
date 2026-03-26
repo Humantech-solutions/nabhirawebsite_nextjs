@@ -277,7 +277,7 @@ export default function RetailPOS({ wordpressData }: any) {
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4">
-              <Link href="/contact">
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/retail-pos')}&title=${encodeURIComponent('Retail POS & Franchise')}&category=Solutions`}>
                 <button
                   className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20"
                   style={{ fontSize: "13px", fontWeight: 600 }}
@@ -481,7 +481,7 @@ export default function RetailPOS({ wordpressData }: any) {
                 ))}
               </div>
 
-              <Link href="/contact">
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/retail-pos')}&title=${encodeURIComponent('Retail POS & Franchise')}&category=Solutions`}>
                 <button
                   className="mt-4 bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 rounded-sm transition-all inline-flex items-center gap-3 uppercase tracking-widest"
                   style={{ fontSize: "12px", fontWeight: 600 }}
@@ -739,7 +739,7 @@ export default function RetailPOS({ wordpressData }: any) {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center pt-4">
-              <Link href="/contact">
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/retail-pos')}&title=${encodeURIComponent('Retail POS & Franchise')}&category=Solutions`}>
                 <Motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}

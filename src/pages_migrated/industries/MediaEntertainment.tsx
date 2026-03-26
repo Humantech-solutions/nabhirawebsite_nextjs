@@ -165,8 +165,11 @@ export default function MediaEntertainment({ wordpressData }: any) {
             </div>
             
             <div className="pt-4 flex flex-wrap gap-4">
-              <Link href="/contact">
-               
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/industries/media-and-entertainment')}&title=${encodeURIComponent('Media & Entertainment')}&category=Industries`}>
+                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20 group">
+                  <span>GET STARTED</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </button>
               </Link>
             </div>
           </Motion.div>
@@ -281,7 +284,7 @@ export default function MediaEntertainment({ wordpressData }: any) {
                 We bring deep expertise in building scalable digital platforms, strong understanding of high-availability streaming environments, and a security-first architecture.
               </p>
               
-              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent('Media & Entertainment')}`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/industries/media-entertainment')}&title=${encodeURIComponent('Media & Entertainment')}&category=Industries`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
                 Partner with us <ArrowRight size={20} />
               </Link>
             </div>

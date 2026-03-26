@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { motion as Motion } from "motion/react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
@@ -68,12 +69,16 @@ export default function POSSolution({ wordpressData }: any) {
                   Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity.
                 </p>
                 <div className="flex flex-wrap gap-6">
-                  <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
-                    Request Demo
-                  </button>
-                  <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2">
-                    Whitepaper <ArrowRight size={16} />
-                  </button>
+                  <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/pos')}&title=${encodeURIComponent('Intelligent Retail POS')}&category=Solutions`}>
+                    <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
+                      Request Demo
+                    </button>
+                  </Link>
+                  <Link href="/resources">
+                    <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2">
+                      Whitepaper <ArrowRight size={16} />
+                    </button>
+                  </Link>
                 </div>
               </Motion.div>
             </div>
@@ -145,9 +150,11 @@ export default function POSSolution({ wordpressData }: any) {
                   ))}
                 </div>
                 
-                <button className="pt-4 text-[#f99d1c] text-[12px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 group">
-                  Explore Architecture <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/pos')}&title=${encodeURIComponent('Intelligent Retail POS')}&category=Solutions`}>
+                  <button className="pt-4 text-[#f99d1c] text-[12px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 group">
+                    Explore Architecture <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -161,9 +168,11 @@ export default function POSSolution({ wordpressData }: any) {
             <p className="text-white/60 text-lg font-light max-w-2xl mx-auto mb-12">
               Join leading global brands that trust Nabhira for their mission-critical retail infrastructure.
             </p>
-            <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-              Schedule a Consultation
-            </button>
+            <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/pos')}&title=${encodeURIComponent('Intelligent Retail POS')}&category=Solutions`}>
+              <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                Schedule a Consultation
+              </button>
+            </Link>
           </div>
         </section>
     </>

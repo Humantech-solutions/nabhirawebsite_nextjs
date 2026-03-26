@@ -112,7 +112,7 @@ export default function Solutions({ wordpressData }: any) {
             Our engineering team specializes in architecting bespoke solutions for unique enterprise requirements. Let's build what's next.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="/contact">
+            <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions')}&title=${encodeURIComponent('Enterprise Solutions')}&category=Solutions`}>
               <button className="bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium uppercase text-[11px] tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all duration-300 w-full sm:w-auto shadow-2xl">
                 Get a Custom Quote
               </button>

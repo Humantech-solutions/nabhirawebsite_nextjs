@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { motion as Motion } from "motion/react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
@@ -62,12 +63,16 @@ export default function LMSSolution({ wordpressData }: any) {
                   Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.
                 </p>
                 <div className="flex flex-wrap gap-6">
-                  <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
-                    Start Your Transformation
-                  </button>
-                  <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all">
-                    View Platforms
-                  </button>
+                  <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/lms')}&title=${encodeURIComponent('Cognitive Learning LMS')}&category=Solutions`}>
+                    <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
+                      Start Your Transformation
+                    </button>
+                  </Link>
+                  <Link href="/resources">
+                    <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all">
+                      View Platforms
+                    </button>
+                  </Link>
                 </div>
               </Motion.div>
             </div>
@@ -161,9 +166,11 @@ export default function LMSSolution({ wordpressData }: any) {
         <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-[#11253e] text-4xl font-bold mb-12">Ready to architect your organization's future?</h2>
-            <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
-              Request Platform Tour
-            </button>
+            <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/lms')}&title=${encodeURIComponent('Cognitive Learning LMS')}&category=Solutions`}>
+              <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
+                Request Platform Tour
+              </button>
+            </Link>
           </div>
         </section>
     </>

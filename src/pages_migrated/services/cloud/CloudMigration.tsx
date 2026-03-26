@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
@@ -335,13 +336,15 @@ export default function CloudMigration({ wordpressData }: any) {
                   Let our experts design a migration strategy that scales with your ambition and delivers measurable business value.
                 </p>
               </div>
-              <button
-                className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
-                style={{ fontSize: "13px", fontWeight: 600 }}
-              >
-                <span>START YOUR JOURNEY</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/cloud/cloud-migration')}&title=${encodeURIComponent('Cloud Migration')}&category=Service`}>
+                <button
+                  className="whitespace-nowrap bg-[#f99d1c] hover:bg-[#10243c] text-white px-10 py-5 rounded-md transition-all inline-flex items-center space-x-3 uppercase tracking-[0.18em] group shrink-0"
+                  style={{ fontSize: "13px", fontWeight: 600 }}
+                >
+                  <span>START YOUR JOURNEY</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </Motion.div>
           </div>
         </section>

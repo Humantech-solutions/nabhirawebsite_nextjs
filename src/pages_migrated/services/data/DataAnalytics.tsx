@@ -158,7 +158,7 @@ export default function DataAnalytics({ wordpressData }: any) {
             <span className="italic font-light">value in your data?</span>
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="/contact">
+            <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/services/data/data-analytics')}&title=${encodeURIComponent('Data & Analytics')}&category=Service`}>
               <button className="bg-[#11253e] text-white px-12 py-6 rounded-sm font-medium uppercase text-[11px] tracking-[0.2em] hover:bg-[#f99d1c] transition-all duration-300 w-full sm:w-auto shadow-2xl">
                 Consult our Experts
               </button>

@@ -20,7 +20,7 @@ export default function Contact({ wordpressData }: any) {
   const [context, setContext] = useState({
     pageTitle: "",
     pageUrl: "",
-    category: "General"
+    category: "Solutions"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,8 +33,9 @@ export default function Contact({ wordpressData }: any) {
     const refUrl = searchParams.get('ref') || document.referrer;
     const refTitle = searchParams.get('title') || "";
 
-    let category = "General";
-    if (refUrl) {
+    let category = searchParams.get('category') || "";
+    
+    if (!category && refUrl) {
       if (refUrl.includes('/industries')) category = "Industries";
       else if (refUrl.includes('/solutions')) category = "Solutions";
       else if (refUrl.includes('/case-studies')) category = "Case Study";
@@ -43,12 +44,14 @@ export default function Contact({ wordpressData }: any) {
       else if (refUrl.includes('/careers')) category = "Career";
     }
 
-    if (category === "General" && refTitle) {
+    if (!category && refTitle) {
       const industryKeywords = ['Banking', 'Retail', 'Manufacturing', 'Healthcare', 'Government', 'Media'];
       if (industryKeywords.some(kw => refTitle.includes(kw))) {
         category = "Industries";
       }
     }
+
+    if (!category) category = "Solutions"; // Default to Solutions if unknown
 
     setContext({
       pageTitle: refTitle || "Quick Contact", 

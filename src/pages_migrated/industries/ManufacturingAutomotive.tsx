@@ -125,7 +125,8 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">Technology <br /><span className="font-bold text-[#f99d1c]">Enablement</span></h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">We leverage secure and scalable cloud platforms such as Amazon Web Services, Microsoft Azure and Google Cloud to support industrial-scale workloads.</p>
-              <Link href={`/contact?ref=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent('Manufacturing & Automotive')}`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">Partner with us <ArrowRight size={20} /></Link>
+              <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/industries/manufacturing-automotive')}&title=${encodeURIComponent('Manufacturing & Automotive')}&category=Industries`} className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
+Partner with us <ArrowRight size={20} /></Link>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {techEnablement.map((service, idx) => (

@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { motion as Motion } from "motion/react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Store, TrendingUp, Eye, AlertCircle, Layers, CheckCircle2, Shield, Zap, Cloud, Box, Lock, Users, BarChart3, Settings, Gauge } from "lucide-react";
@@ -54,9 +55,11 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 </p>
                 
                 <div className="flex flex-wrap gap-6 pt-4">
-                  <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
-                    Request Demo
-                  </button>
+                  <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/enterprise-pos')}&title=${encodeURIComponent('Enterprise POS')}&category=Solutions`}>
+                    <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all">
+                      Request Demo
+                    </button>
+                  </Link>
                 </div>
               </Motion.div>
             </div>
@@ -254,9 +257,11 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 </p>
                 
                 <div className="pt-4">
-                  <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[14px] uppercase tracking-[0.2em] hover:bg-white transition-all">
-                    Explore Platform
-                  </button>
+                  <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/enterprise-pos')}&title=${encodeURIComponent('Enterprise POS')}&category=Solutions`}>
+                    <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[14px] uppercase tracking-[0.2em] hover:bg-white transition-all">
+                      Explore Platform
+                    </button>
+                  </Link>
                 </div>
               </Motion.div>
               
@@ -559,12 +564,16 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
-                  Schedule Consultation
-                </button>
-                <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                  Download Brochure
-                </button>
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/enterprise-pos')}&title=${encodeURIComponent('Enterprise POS')}&category=Solutions`}>
+                  <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
+                    Schedule Consultation
+                  </button>
+                </Link>
+                <Link href="/resources">
+                  <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                    Download Brochure
+                  </button>
+                </Link>
               </div>
             </div>
           </Motion.div>

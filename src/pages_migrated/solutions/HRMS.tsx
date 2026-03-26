@@ -50,7 +50,7 @@ export default function HRMSSolution({ wordpressData }: any) {
               </p>
               
               <div className="flex flex-wrap gap-6 pt-4">
-                <Link href="/contact">
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/hrms')}&title=${encodeURIComponent('HRMS & Payroll')}&category=Solutions`}>
                   <button className="bg-[#f99d1c] text-white px-10 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
                     REQUEST DEMO
                   </button>
@@ -420,7 +420,7 @@ export default function HRMSSolution({ wordpressData }: any) {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                <Link href="/contact">
+                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/hrms')}&title=${encodeURIComponent('HRMS & Payroll')}&category=Solutions`}>
                   <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
                     Schedule Consultation
                   </button>
