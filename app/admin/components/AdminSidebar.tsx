@@ -57,8 +57,8 @@ const navItems = [
     icon: <FileText size={20} />,
   },
   {
-    label: "Chatbot",
-    href: "/admin/dashboard/chatbot",
+    label: "Chat Queries",
+    href: "/admin/dashboard/chat-queries",
     icon: <MessageSquare size={20} />,
   },
 ];
