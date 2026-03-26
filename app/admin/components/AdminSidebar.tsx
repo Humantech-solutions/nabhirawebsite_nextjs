@@ -23,10 +23,11 @@ const navItems = [
     href: "/admin/dashboard/contact-form",
     icon: <Mail size={20} />,
     subItems: [
+        { label: "All Inquiries", href: "/admin/dashboard/contact-form" },
       { label: "Contact Form", href: "/admin/dashboard/contact-form?category=Contact" },
       { label: "Clients Form", href: "/admin/dashboard/contact-form?category=Client" },
       { label: "Footer Contact Form", href: "/admin/dashboard/contact-form?category=Footer" },
-      { label: "All Inquiries", href: "/admin/dashboard/contact-form" },
+    
       { label: "Industries", href: "/admin/dashboard/contact-form?category=Industries" },
       { label: "Solutions", href: "/admin/dashboard/contact-form?category=Solutions" },
       { label: "Case Study", href: "/admin/dashboard/contact-form?category=Case Study" },
@@ -48,6 +49,11 @@ const navItems = [
   {
     label: "Career Mails",
     href: "/admin/dashboard/career-mails",
+    icon: <FileText size={20} />,
+  },
+  {
+    label: "Sales Mails",
+    href: "/admin/dashboard/sales-mails",
     icon: <FileText size={20} />,
   },
   {

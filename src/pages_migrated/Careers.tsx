@@ -8,7 +8,8 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LimitlessTogether } from "../components/LimitlessTogether";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { MapPin, Briefcase, GraduationCap, ChevronRight, Search, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen, Share2, Copy, Check } from "lucide-react";
+import { MapPin, Briefcase, GraduationCap, ChevronRight, Search, Lightbulb, Globe2, TrendingUp, Users, Award, Zap, HeartHandshake, BookOpen, Share2, Copy, Check, X, FileText, Send, Download } from "lucide-react";
+import { toast } from "sonner";
 import Link from "next/link";
 
 /** Converts a job title + location string into a URL-safe slug.
@@ -121,9 +122,118 @@ function ShareButton({ title, url }: { title: string; url: string }) {
   );
 }
 
+function BrochureModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("http://localhost:8000/api/career/brochure", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          pageTitle: document.title,
+          pageUrl: window.location.href
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        toast.success("Brochure link has been sent to your email!");
+        onClose();
+      } else {
+        toast.error("Failed to process request.");
+      }
+    } catch (error) {
+      toast.error("Connection error.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#11253e]/60 backdrop-blur-sm transition-all duration-300">
+      <Motion.div 
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200"
+      >
+        <div className="px-8 py-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-[#f99d1c] rounded-2xl flex items-center justify-center text-white">
+              <FileText size={20} />
+            </div>
+            <div>
+              <h2 className="font-bold text-[#11253e]">Download Brochure</h2>
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Careers Cohort 2026</p>
+            </div>
+          </div>
+          <button 
+            onClick={onClose} 
+            className="p-2 hover:bg-gray-100 rounded-xl transition-all text-gray-400 hover:text-[#11253e]"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <div className="bg-orange-50/50 border border-orange-100 p-4 rounded-2xl">
+              <p className="text-xs text-[#11253e] font-light leading-relaxed">
+                Enter your details to receive our comprehensive career brochure and internship guide.
+              </p>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest ml-1">Full Name</label>
+              <input 
+                required
+                type="text" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full bg-gray-50 border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] rounded-2xl transition-all focus:ring-4 focus:ring-[#f99d1c]/5"
+                placeholder="John Doe"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest ml-1">Email Address</label>
+              <input 
+                required
+                type="email" 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full bg-gray-50 border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] rounded-2xl transition-all focus:ring-4 focus:ring-[#f99d1c]/5"
+                placeholder="john@example.com"
+              />
+            </div>
+          </div>
+
+          <button 
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-[#11253e] hover:bg-[#1a3a60] text-white py-4 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-[12px] uppercase tracking-[0.2em] group disabled:opacity-70 shadow-lg shadow-[#11253e]/20 active:scale-[0.98]"
+          >
+            {isSubmitting ? "Processing..." : (
+              <>
+                Send Brochure
+                <Send size={16} className="group-hover:translate-x-1 transition-transform" />
+              </>
+            )}
+          </button>
+        </form>
+      </Motion.div>
+    </div>
+  );
+}
+
 export default function Careers({ wordpressData }: any) {
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -389,12 +499,12 @@ export default function Careers({ wordpressData }: any) {
                     Apply Now
                     <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </a>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => setIsBrochureModalOpen(true)}
                     className="inline-flex items-center gap-2 border border-[#11253e]/20 hover:border-[#f99d1c] text-[#11253e] px-8 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all"
                   >
                     Download Brochure
-                  </a>
+                  </button>
                 </div>
               </Motion.div>
 
@@ -473,6 +583,7 @@ export default function Careers({ wordpressData }: any) {
         </section>
 
         <LimitlessTogether />
+        <BrochureModal isOpen={isBrochureModalOpen} onClose={() => setIsBrochureModalOpen(false)} />
     </>
   );
 }

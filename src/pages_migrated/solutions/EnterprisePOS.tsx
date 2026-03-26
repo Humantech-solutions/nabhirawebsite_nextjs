@@ -1,13 +1,16 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion as Motion } from "motion/react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Store, TrendingUp, Eye, AlertCircle, Layers, CheckCircle2, Shield, Zap, Cloud, Box, Lock, Users, BarChart3, Settings, Gauge } from "lucide-react";
 
 export default function EnterprisePOSSolution({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Enterprise POS & Franchise Management Platform | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -569,16 +572,23 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                     Schedule Consultation
                   </button>
                 </Link>
-                <Link href="/resources">
-                  <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                    Download Brochure
-                  </button>
-                </Link>
+                <button 
+                  onClick={() => setIsBrochureModalOpen(true)}
+                  className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all"
+                >
+                  Download Brochure
+                </button>
               </div>
             </div>
           </Motion.div>
         </div>
       </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Enterprise POS" 
+      />
     </div>
   );
 }

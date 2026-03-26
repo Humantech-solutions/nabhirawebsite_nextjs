@@ -1,15 +1,18 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion as Motion } from "motion/react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { GraduationCap, BrainCircuit, BarChart, Laptop, Globe, UserCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function LMSSolution({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "AI-Powered LMS | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -68,11 +71,12 @@ export default function LMSSolution({ wordpressData }: any) {
                       Start Your Transformation
                     </button>
                   </Link>
-                  <Link href="/resources">
-                    <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all">
-                      View Platforms
-                    </button>
-                  </Link>
+                  <button 
+                    onClick={() => setIsBrochureModalOpen(true)}
+                    className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all"
+                  >
+                    Download Brochure
+                  </button>
                 </div>
               </Motion.div>
             </div>
@@ -171,8 +175,20 @@ export default function LMSSolution({ wordpressData }: any) {
                 Request Platform Tour
               </button>
             </Link>
+            <button 
+              onClick={() => setIsBrochureModalOpen(true)}
+              className="mt-6 border border-[#11253e] text-[#11253e] px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#11253e] hover:text-white transition-all ml-4"
+            >
+              Download Brochure
+            </button>
           </div>
         </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Cognitive Learning LMS" 
+      />
     </>
   );
 }

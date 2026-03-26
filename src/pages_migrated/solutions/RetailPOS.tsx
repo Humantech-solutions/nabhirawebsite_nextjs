@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { LimitlessTogether } from "../../components/Footer";
 import {
@@ -221,6 +222,8 @@ const problemPoints = [
 ];
 
 export default function RetailPOS({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Retail POS System | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -287,10 +290,11 @@ export default function RetailPOS({ wordpressData }: any) {
                 </button>
               </Link>
               <button
-                className="border border-white/25 text-white hover:border-[#f99d1c] hover:text-[#f99d1c] px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest"
-                style={{ fontSize: "13px", fontWeight: 600 }}
+                onClick={() => setIsBrochureModalOpen(true)}
+                className="border border-white/25 text-white hover:border-[#f99d1c] hover:text-[#f99d1c] px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest font-semibold"
+                style={{ fontSize: "13px" }}
               >
-                <span>View Features</span>
+                <span>Download Brochure</span>
               </button>
             </div>
           </Motion.div>
@@ -754,16 +758,31 @@ export default function RetailPOS({ wordpressData }: any) {
                 <Motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="border border-[#11253e]/20 text-[#11253e] hover:border-[#f99d1c] hover:text-[#f99d1c] px-10 py-5 rounded-sm transition-all inline-flex items-center gap-3 uppercase tracking-widest"
-                  style={{ fontSize: "13px", fontWeight: 600 }}
+                  className="border border-[#11253e]/20 text-[#11253e] hover:border-[#f99d1c] hover:text-[#f99d1c] px-10 py-5 rounded-sm transition-all inline-flex items-center gap-3 uppercase tracking-widest font-semibold"
+                  style={{ fontSize: "13px" }}
                 >
                   <span>Explore All Solutions</span>
                 </Motion.button>
               </Link>
+              <Motion.button
+                onClick={() => setIsBrochureModalOpen(true)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="bg-[#11253e] text-white px-10 py-5 rounded-sm inline-flex items-center gap-3 uppercase tracking-widest shadow-xl font-semibold"
+                style={{ fontSize: "13px" }}
+              >
+                <span>Download Brochure</span>
+              </Motion.button>
             </div>
           </Motion.div>
         </div>
       </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Retail POS & Franchise" 
+      />
 
       <LimitlessTogether />
     </>

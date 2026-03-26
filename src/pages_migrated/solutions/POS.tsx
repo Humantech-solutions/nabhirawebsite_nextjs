@@ -1,15 +1,18 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion as Motion } from "motion/react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ShoppingCart, Zap, BarChart3, Users, ShieldCheck, Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function POSSolution({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "AI-Powered Point of Sale | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -74,11 +77,12 @@ export default function POSSolution({ wordpressData }: any) {
                       Request Demo
                     </button>
                   </Link>
-                  <Link href="/resources">
-                    <button className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2">
-                      Whitepaper <ArrowRight size={16} />
-                    </button>
-                  </Link>
+                  <button 
+                    onClick={() => setIsBrochureModalOpen(true)}
+                    className="text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2"
+                  >
+                    Download Brochure <ArrowRight size={16} />
+                  </button>
                 </div>
               </Motion.div>
             </div>
@@ -173,8 +177,20 @@ export default function POSSolution({ wordpressData }: any) {
                 Schedule a Consultation
               </button>
             </Link>
+            <button 
+              onClick={() => setIsBrochureModalOpen(true)}
+              className="mt-6 border border-white text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all ml-4"
+            >
+              Download Brochure
+            </button>
           </div>
         </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Intelligent Retail POS" 
+      />
     </>
   );
 }

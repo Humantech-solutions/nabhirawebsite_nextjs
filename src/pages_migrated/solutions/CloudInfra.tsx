@@ -1,11 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import Link from "next/link";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Cloud, Server, BarChart3, ShieldCheck, Terminal, Database, ArrowRight, CheckCircle2, DollarSign, Eye, Lock, TrendingDown } from "lucide-react";
 
 export default function CloudInfraSolution({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Cloud Infra Deployment & Monitoring | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -357,16 +360,23 @@ export default function CloudInfraSolution({ wordpressData }: any) {
                     Schedule Consultation
                   </button>
                 </Link>
-                <Link href="/resources">
-                  <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                    Download Brochure
-                  </button>
-                </Link>
+                <button 
+                  onClick={() => setIsBrochureModalOpen(true)}
+                  className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all"
+                >
+                  Download Brochure
+                </button>
               </div>
             </div>
           </Motion.div>
         </div>
       </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Cloud Infra" 
+      />
     </>
   );
 }

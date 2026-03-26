@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import automationHeroImg from "../../assets/ai.png";
 import {
@@ -21,6 +23,8 @@ import {
 } from "lucide-react";
 
 export default function IntelligentAutomation({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Intelligent Automation | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -418,12 +422,22 @@ export default function IntelligentAutomation({ wordpressData }: any) {
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
+              <button
+                onClick={() => setIsBrochureModalOpen(true)}
+                className="whitespace-nowrap border-2 border-[#11253e] text-[#11253e] px-10 py-5 rounded-md hover:bg-[#11253e] hover:text-white transition-all uppercase tracking-[0.18em] shrink-0 font-semibold"
+                style={{ fontSize: "13px" }}
+              >
+                Download Brochure
+              </button>
             </Motion.div>
           </div>
         </section>
 
-      {/* ─── CTA ─── */}
-      
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Intelligent Automation" 
+      />
     </>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion as Motion } from "motion/react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
@@ -12,6 +13,8 @@ import aiServerImg from "../../assets/ai.png";
 import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
 export default function AIConsulting({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "AI Consulting | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -79,9 +82,11 @@ export default function AIConsulting({ wordpressData }: any) {
 
               <div className="pt-4 md:pt-8 flex flex-wrap gap-4">
                 <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/ai-consulting')}&title=${encodeURIComponent('AI Consulting')}&category=Solutions`}>
-                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[10px] md:text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                    <span>Start AI Roadmap</span>
-                    <ArrowRight size={14} />
+                  <button 
+                    onClick={() => setIsBrochureModalOpen(true)}
+                    className="border-2 border-white/20 text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-[10px] md:text-[11px] tracking-widest"
+                  >
+                    Download Brochure
                   </button>
                 </Link>
               </div>
@@ -190,10 +195,22 @@ export default function AIConsulting({ wordpressData }: any) {
                     Connect with an AI Expert
                   </button>
                 </Link>
+                <button 
+                  onClick={() => setIsBrochureModalOpen(true)}
+                  className="border border-white/40 text-white px-12 py-6 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-xs tracking-widest"
+                >
+                  Download Brochure
+                </button>
               </div>
             </Motion.div>
           </div>
         </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="AI Consulting" 
+      />
     </>
   );
 }

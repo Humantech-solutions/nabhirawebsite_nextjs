@@ -1,15 +1,18 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion as Motion } from "motion/react";
+import { SalesBrochureModal } from "../../components/SalesBrochureModal";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ArrowRight, Box, Layout, ShieldCheck, Database, HardDrive, Share2 } from "lucide-react";
 
 export default function DataFoundation({ wordpressData }: any) {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Data Foundation & Storage | Nabhira Technologies";
     window.scrollTo(0, 0);
@@ -76,12 +79,12 @@ export default function DataFoundation({ wordpressData }: any) {
               </p>
 
               <div className="pt-8 flex flex-wrap gap-4">
-                <Link href={`/contact?ref=${encodeURIComponent('https://nabhira.com/solutions/data-foundation')}&title=${encodeURIComponent('Data Foundation')}&category=Solutions`}>
-                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                    <span>Explore Architecture</span>
-                    <ArrowRight size={14} />
-                  </button>
-                </Link>
+                <button 
+                  onClick={() => setIsBrochureModalOpen(true)}
+                  className="border-2 border-white/20 text-white px-10 py-5 rounded-sm font-medium hover:bg-white hover:text-[#11253e] transition-all uppercase text-[11px] tracking-widest"
+                >
+                  Download Brochure
+                </button>
               </div>
             </Motion.div>
           </div>
@@ -186,9 +189,21 @@ export default function DataFoundation({ wordpressData }: any) {
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
+              <button 
+                onClick={() => setIsBrochureModalOpen(true)}
+                className="mt-6 md:mt-0 border border-[#11253e]/20 text-[#11253e] px-12 py-6 rounded-sm font-medium hover:bg-[#11253e] hover:text-white transition-all uppercase text-xs tracking-[0.2em]"
+              >
+                Download Brochure
+              </button>
             </div>
           </div>
         </section>
+
+      <SalesBrochureModal 
+        isOpen={isBrochureModalOpen} 
+        onClose={() => setIsBrochureModalOpen(false)} 
+        pageTitle="Data Foundation" 
+      />
     </>
   );
 }

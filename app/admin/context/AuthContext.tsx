@@ -22,27 +22,34 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("adminAuth") === "true";
+    }
+    return false;
+  });
+  const [user, setUser] = useState<User | null>(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = sessionStorage.getItem("adminUser");
+      if (storedUser) {
+        try {
+          return JSON.parse(storedUser);
+        } catch (e) {
+          return null;
+        }
+      }
+    }
+    return null;
+  });
   const router = useRouter();
 
+  // Local storage/session storage is already checked in initial state, 
+  // but we can keep this for any manual changes or sync if needed.
   useEffect(() => {
     const storedAuth = sessionStorage.getItem("adminAuth");
-    const storedUser = sessionStorage.getItem("adminUser");
-
-    if (storedAuth === "true" && storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setIsAuthenticated(true);
-        setUser(parsedUser);
-      } catch (e) {
-        console.error("Failed to parse stored user data:", e);
-        sessionStorage.removeItem("adminAuth");
-        sessionStorage.removeItem("adminUser");
-        sessionStorage.removeItem("adminToken");
-        setIsAuthenticated(false);
-        setUser(null);
-      }
+    if (storedAuth !== "true") {
+      setIsAuthenticated(false);
+      setUser(null);
     }
   }, []);
 

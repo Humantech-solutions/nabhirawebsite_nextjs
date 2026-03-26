@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     if (!isAuthenticated) {
-      const stored = sessionStorage.getItem("nabhira_admin_auth");
+      const stored = sessionStorage.getItem("adminAuth");
       if (stored !== "true") {
         router.replace("/admin/login");
       }
