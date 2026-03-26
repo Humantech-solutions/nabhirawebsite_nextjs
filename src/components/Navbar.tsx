@@ -128,10 +128,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center">
             {navLinks.map((link) => {
               const isDirectLink = !menuData[link.key];
-              const routeMap: Record<string, string> = {
-                "CAREERS": "/careers",
-                "CONTACT US": "/contact" // assuming for now
-              };
+// Direct routes refactored to explicit checks below
 
               const LabelContent = (
                 <div className="flex items-center space-x-1">
@@ -151,8 +148,8 @@ export function Navbar() {
                   onMouseEnter={() => setActiveMenu(link.key)}
                 >
                   <div className="relative cursor-pointer py-2">
-                    {isDirectLink && routeMap[link.key] ? (
-                      <Link href={routeMap[link.key]}>
+                    {isDirectLink ? (
+                      <Link href={link.key === "CONTACT US" ? "/contact?category=Contact" : (link.key === "CAREERS" ? "/careers" : "#")}>
                         {LabelContent}
                       </Link>
                     ) : (
@@ -343,25 +340,25 @@ export function Navbar() {
             <div className="px-6 py-10 space-y-8">
               {navLinks.map((link) => {
                 const isDirectLink = !menuData[link.key];
-                const routeMap: Record<string, string> = {
-                  "CAREERS": "/careers",
-                  "CONTACT US": "/contact"
-                };
+// Direct routes refactored to explicit checks below
 
                 return (
                   <div key={link.key} className="border-b border-[#11253e]/5 pb-6">
                     <div 
                       className="flex justify-between items-center group cursor-pointer"
                       onClick={() => {
-                        if (isDirectLink && routeMap[link.key]) {
+                        if (isDirectLink && (link.key === "CONTACT US" || link.key === "CAREERS")) {
                           setIsMobileMenuOpen(false);
                         } else {
                           setExpandedMobileMenu(expandedMobileMenu === link.key ? null : link.key);
                         }
                       }}
                     >
-                      {isDirectLink && routeMap[link.key] ? (
-                        <Link href={routeMap[link.key]} className="text-[16px] font-bold tracking-tight text-[#11253e] uppercase">
+                      {isDirectLink ? (
+                        <Link 
+                          href={link.key === "CONTACT US" ? "/contact?category=Contact" : (link.key === "CAREERS" ? "/careers" : "#")} 
+                          className="text-[16px] font-bold tracking-tight text-[#11253e] uppercase"
+                        >
                           {link.label}
                         </Link>
                       ) : (
@@ -496,7 +493,7 @@ export function Navbar() {
               );
             })}
             <div className="pt-4">
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/contact?category=Contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <button className="w-full bg-[#f99d1c] text-white py-4 text-[12px] font-medium tracking-normal uppercase rounded-sm">
                   CONTACT US
                 </button>

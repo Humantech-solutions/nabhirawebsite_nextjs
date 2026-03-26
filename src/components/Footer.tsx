@@ -351,7 +351,7 @@ export function Footer() {
             <a href="#" className="hover:text-[#08b2ff] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#08b2ff] transition-colors">Terms of Use</a>
             <a href="#" className="hover:text-[#08b2ff] transition-colors">Cookie Policy</a>
-            <Link href="/contact" className="hover:text-[#08b2ff] transition-colors">Contact Us</Link>
+            <Link href="/contact?category=Footer" className="hover:text-[#08b2ff] transition-colors">Contact Us</Link>
           </div>
         </div>
 

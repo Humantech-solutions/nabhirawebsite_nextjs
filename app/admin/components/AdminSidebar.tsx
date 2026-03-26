@@ -23,6 +23,9 @@ const navItems = [
     href: "/admin/dashboard/contact-form",
     icon: <Mail size={20} />,
     subItems: [
+      { label: "Contact Form", href: "/admin/dashboard/contact-form?category=Contact" },
+      { label: "Clients Form", href: "/admin/dashboard/contact-form?category=Client" },
+      { label: "Footer Contact Form", href: "/admin/dashboard/contact-form?category=Footer" },
       { label: "All Inquiries", href: "/admin/dashboard/contact-form" },
       { label: "Industries", href: "/admin/dashboard/contact-form?category=Industries" },
       { label: "Solutions", href: "/admin/dashboard/contact-form?category=Solutions" },

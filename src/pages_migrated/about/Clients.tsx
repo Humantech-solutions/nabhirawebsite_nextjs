@@ -337,7 +337,7 @@ export default function Clients({ wordpressData }: any) {
 
             <div className="flex flex-wrap gap-4 justify-center">
               <Motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/contact"
+                <Link href="/contact?category=Client"
                   className="block bg-[#f99d1c] text-white px-10 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors"
                   style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
                 >

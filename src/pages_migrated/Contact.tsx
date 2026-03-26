@@ -20,7 +20,7 @@ export default function Contact({ wordpressData }: any) {
   const [context, setContext] = useState({
     pageTitle: "",
     pageUrl: "",
-    category: "Solutions"
+    category: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,15 +33,24 @@ export default function Contact({ wordpressData }: any) {
     const refUrl = searchParams.get('ref') || document.referrer;
     const refTitle = searchParams.get('title') || "";
 
-    let category = searchParams.get('category') || "";
+    let category = searchParams.get('category');
     
-    if (!category && refUrl) {
-      if (refUrl.includes('/industries')) category = "Industries";
-      else if (refUrl.includes('/solutions')) category = "Solutions";
-      else if (refUrl.includes('/case-studies')) category = "Case Study";
-      else if (refUrl.includes('/blog')) category = "Blog";
-      else if (refUrl.includes('/services')) category = "Service";
-      else if (refUrl.includes('/careers')) category = "Career";
+    if (!category) {
+      if (refUrl) {
+        if (refUrl.includes('/clients')) category = "Client";
+        else if (refUrl.includes('/footer')) category = "Footer";
+        else if (refUrl.includes('/industries')) category = "Industries";
+        else if (refUrl.includes('/solutions')) category = "Solutions";
+        else if (refUrl.includes('/case-studies')) category = "Case Study";
+        else if (refUrl.includes('/blog')) category = "Blog";
+        else if (refUrl.includes('/services')) category = "Service";
+        else if (refUrl.includes('/careers')) category = "Career";
+      }
+
+      // If still no category and on /contact page without a referrer, it's a direct "Contact" lead
+      if (!category && window.location.pathname === '/contact') {
+        category = "Contact";
+      }
     }
 
     if (!category && refTitle) {
@@ -51,12 +60,13 @@ export default function Contact({ wordpressData }: any) {
       }
     }
 
-    if (!category) category = "Solutions"; // Default to Solutions if unknown
+    // Standard fallback
+    if (!category) category = "Contact"; 
 
     setContext({
-      pageTitle: refTitle || "Quick Contact", 
+      pageTitle: refTitle || (category === "Contact" ? "Main Contact Page" : "Quick Contact"), 
       pageUrl: refUrl || (typeof window !== 'undefined' ? window.location.href : ""),
-      category
+      category: category as string
     });
   }, []);
 

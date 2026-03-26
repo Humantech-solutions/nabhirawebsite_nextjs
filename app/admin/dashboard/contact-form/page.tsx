@@ -144,15 +144,21 @@ function ContactDashboardContent() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex flex-col">
-                        <span className="text-xs text-[#11253e] font-medium max-w-[150px] truncate" title={item.pageTitle}>
+                      <div className="flex flex-col min-w-[150px]">
+                        <span className="text-xs text-[#11253e] font-bold truncate transition-all" title={item.pageTitle}>
                           {item.pageTitle || "Quick Contact"}
                         </span>
-                        <span className="text-[10px] text-gray-400 font-mono truncate max-w-[150px]">{new URL(item.pageUrl).pathname}</span>
+                        <span className="text-[10px] text-gray-400 font-mono truncate hover:text-[#f99d1c] transition-colors" title={item.pageUrl}>
+                          {item.pageUrl ? new URL(item.pageUrl).pathname : "No URL Captured"}
+                        </span>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">
+                      <span className={`text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider
+                        ${item.category === 'Contact' ? 'bg-indigo-50 text-indigo-600' : 
+                          item.category === 'Client' ? 'bg-purple-50 text-purple-600' : 
+                          item.category === 'Footer' ? 'bg-teal-50 text-teal-600' : 
+                          'bg-gray-100 text-gray-600'}`}>
                         {item.category}
                       </span>
                     </td>

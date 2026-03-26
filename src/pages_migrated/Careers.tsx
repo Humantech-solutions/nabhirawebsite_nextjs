@@ -461,7 +461,7 @@ export default function Careers({ wordpressData }: any) {
               className="mt-12"
             >
               <Link
-                href="/contact"
+                href="/contact?category=Career"
                 className="inline-flex items-center gap-2 bg-[#11253e] hover:bg-[#1a3a60] text-white px-10 py-4 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all group"
               >
                 Talk to Our Talent Team
