@@ -67,10 +67,33 @@ export default function EventDetail({ wordpressData }: any) {
   }, [event]);
 
   const onSubmit = async (data: RegistrationForm) => {
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log("Registration Data:", data);
-    setIsSubmitted(true);
-    toast.success("Registration Successful!");
+    setIsSubmitted(false);
+    try {
+      const response = await fetch("http://localhost:8000/api/event-registration/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          eventTitle: event.title,
+          pageTitle: document.title,
+          pageUrl: window.location.href
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        toast.success("Registration Successful!");
+      } else {
+        toast.error(result.message || "Registration failed.");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Unable to connect to the server.");
+    }
   };
 
   if (!event) {
