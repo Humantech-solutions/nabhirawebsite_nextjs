@@ -10,12 +10,17 @@ interface User {
 interface AuthResult {
   success: boolean;
   error?: string;
+  mfaRequired?: boolean;
+  mfaSetupRequired?: boolean;
+  mfaToken?: string;
+  message?: string;
 }
 
 interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
   login: (email: string, password: string) => Promise<AuthResult>;
+  verifyMfa: (mfaToken: string, otp: string) => Promise<AuthResult>;
   logout: () => void;
 }
 
@@ -66,6 +71,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await response.json();
 
       if (data.success) {
+        if (data.mfaRequired || data.mfaSetupRequired) {
+          return {
+            success: true,
+            mfaRequired: data.mfaRequired,
+            mfaSetupRequired: data.mfaSetupRequired,
+            mfaToken: data.mfaToken,
+            message: data.message
+          };
+        }
+        
         setIsAuthenticated(true);
         setUser(data.user);
         sessionStorage.setItem("adminAuth", "true");
@@ -73,10 +88,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         sessionStorage.setItem("adminToken", data.token);
         return { success: true };
       } else {
-        return { success: false, error: data.message || "Invalid credentials" };
+        const errorMsg = data.details ? `${data.message}: ${data.details}` : (data.message || "Invalid credentials");
+        return { success: false, error: errorMsg };
       }
     } catch (error) {
       console.error("Login error:", error);
+      return { success: false, error: "Unable to connect to authentication server." };
+    }
+  };
+
+  const verifyMfa = async (mfaToken: string, otp: string): Promise<AuthResult> => {
+    try {
+      const response = await fetch("http://localhost:8000/api/auth/verify-mfa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mfaToken, otp }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsAuthenticated(true);
+        setUser(data.user);
+        sessionStorage.setItem("adminAuth", "true");
+        sessionStorage.setItem("adminUser", JSON.stringify(data.user));
+        sessionStorage.setItem("adminToken", data.token);
+        return { success: true };
+      } else {
+        return { success: false, error: data.message || "Invalid MFA code" };
+      }
+    } catch (error) {
+      console.error("MFA Verify error:", error);
       return { success: false, error: "Unable to connect to authentication server." };
     }
   };
@@ -91,7 +135,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, verifyMfa, logout }}>
       {children}
     </AuthContext.Provider>
   );
