@@ -82,7 +82,9 @@ export default function Contact({ wordpressData }: any) {
         },
         body: JSON.stringify({
           ...formData,
-          ...context
+          ...context,
+          project: "nabhira",
+          companyName: "Nabhira Technologies"
         }),
       });
 
