@@ -27,12 +27,29 @@ const whyNabhiraQA = [
 export function LimitlessTogether({ data }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  // Dynamic Data
+  const title = data?.ltTitle || "Why Nabhira?";
+  const p1 = data?.ltP1 || "We bring a structured, outcome-driven approach to every transformation initiative.";
+  const p2 = data?.ltP2 || "Our delivery maturity ensures predictable execution, governance discipline, and measurable results.";
+  const p3 = data?.ltP3 || "With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency.";
+  const imageUrl = data?.ltImageUrl || data?.ltImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1758691737246-95bf8f09a997?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0d28lMjB3b21lbiUyMHRhbGtpbmclMjBpbiUyMG1vZGVybiUyMG9mZmljZSUyMG9mZmljZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080";
+
+  const dynamicQA = [];
+  if (data) {
+    if (data.ltQ1 || data.ltA1) dynamicQA.push({ question: data.ltQ1, answer: data.ltA1 });
+    if (data.ltQ2 || data.ltA2) dynamicQA.push({ question: data.ltQ2, answer: data.ltA2 });
+    if (data.ltQ3 || data.ltA3) dynamicQA.push({ question: data.ltQ3, answer: data.ltA3 });
+    if (data.ltQ4 || data.ltA4) dynamicQA.push({ question: data.ltQ4, answer: data.ltA4 });
+  }
+
+  const renderQA = dynamicQA.length > 0 ? dynamicQA : whyNabhiraQA;
+
   return (
     <section className="bg-black text-white relative overflow-hidden py-24 min-h-[600px] flex items-center">
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1758691737246-95bf8f09a997?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0d28lMjB3b21lbiUyMHRhbGtpbmclMjBpbiUyMG1vZGVybiUyMG9mZmljZSUyMG9mZmljZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080"
-          alt="Why Nabhira?"
+          src={imageUrl}
+          alt={title}
           className="w-full h-full object-cover opacity-50 transition-opacity duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
@@ -42,23 +59,17 @@ export function LimitlessTogether({ data }: any) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="space-y-8">
             <h2 className="text-5xl font-extralight tracking-tight leading-tight">
-              Why Nabhira?
+              {title}
             </h2>
             <div className="text-white/70 text-lg font-light leading-relaxed max-w-lg space-y-6">
-              <p>
-                We bring a structured, outcome-driven approach to every transformation initiative.
-              </p>
-              <p>
-                Our delivery maturity ensures predictable execution, governance discipline, and measurable results.
-              </p>
-              <p>
-                With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency.
-              </p>
+              {p1 && <p>{p1}</p>}
+              {p2 && <p>{p2}</p>}
+              {p3 && <p>{p3}</p>}
             </div>
           </div>
 
           <div className="space-y-4">
-            {whyNabhiraQA.map((item, index) => (
+            {renderQA.map((item, index) => (
               <div 
                 key={index} 
                 className={`border-b border-white/10 transition-all duration-300 ${openIndex === index ? 'pb-6' : 'pb-4'}`}

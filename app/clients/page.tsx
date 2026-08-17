@@ -1,5 +1,5 @@
 import Clients from "@/src/pages_migrated/about/Clients";
-import { getPageBySlug } from "@/src/lib/wordpress";
+import { getPageBySlug, getTestimonials } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
@@ -12,7 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  // Try both slugs and prioritize the one that returns data
   const wordpressData = await getPageBySlug('clients') || await getPageBySlug('our-clients');
-  return <Clients wordpressData={wordpressData} />;
+  const fields = wordpressData?.clientsPageFields;
+  const testimonials = await getTestimonials(fields?.testimonialCount || 3, fields?.testimonialCategory?.nodes?.map((n: any) => n.databaseId) || []);
+  
+  return <Clients wordpressData={wordpressData} testimonials={testimonials} />;
 }

@@ -14,38 +14,81 @@ import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../li
 export default function About({ wordpressData }: any) {
   const aboutFields = wordpressData?.aboutUs;
 
-  const displayValues = [
+  const fallbackValues = [
     {
-      icon: renderDynamicIcon(aboutFields?.v1IconType, aboutFields?.v1Lucide, aboutFields?.v1Image?.node) || <Lightbulb className="text-[#f99d1c]" size={32} />,
-      title: aboutFields?.v1Title || "Innovation with Purpose",
-      desc: aboutFields?.v1Desc || "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
+      icon: <Lightbulb className="text-[#f99d1c]" size={32} />,
+      title: "Innovation with Purpose",
+      desc: "We harness emerging technologies like AI, cloud, and data engineering to solve real-world problems and create meaningful business impact."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v2IconType, aboutFields?.v2Lucide, aboutFields?.v2Image?.node),
-      title: aboutFields?.v2Title || "Customer-Centric Thinking",
-      desc: aboutFields?.v2Desc || "Our clients' success defines our success. We partner closely to understand their challenges and deliver solutions that create lasting value."
+      icon: <HeartHandshake className="text-[#f99d1c]" size={32} />,
+      title: "Customer-Centric Thinking",
+      desc: "Our clients' success defines our success. We partner closely to understand their challenges and deliver solutions that create lasting value."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v3IconType, aboutFields?.v3Lucide, aboutFields?.v3Image?.node) || <Award className="text-[#f99d1c]" size={32} />,
-      title: aboutFields?.v3Title || "Engineering Excellence",
-      desc: aboutFields?.v3Desc || "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
+      icon: <Award className="text-[#f99d1c]" size={32} />,
+      title: "Engineering Excellence",
+      desc: "We uphold the highest standards in architecture, design, and delivery—building solutions that are scalable, resilient, and future-ready."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v4IconType, aboutFields?.v4Lucide, aboutFields?.v4Image?.node) || <ShieldCheck className="text-[#f99d1c]" size={32} />,
-      title: aboutFields?.v4Title || "Integrity and Trust",
-      desc: aboutFields?.v4Desc || "We operate with transparency, accountability, and ethical responsibility in every engagement."
+      icon: <ShieldCheck className="text-[#f99d1c]" size={32} />,
+      title: "Integrity and Trust",
+      desc: "We operate with transparency, accountability, and ethical responsibility in every engagement."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v5IconType, aboutFields?.v5Lucide, aboutFields?.v5Image?.node) || <BookOpen className="text-[#f99d1c]" size={32} />,
-      title: aboutFields?.v5Title || "Continuous Learning",
-      desc: aboutFields?.v5Desc || "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
+      icon: <BookOpen className="text-[#f99d1c]" size={32} />,
+      title: "Continuous Learning",
+      desc: "Technology evolves rapidly, and so do we. We foster a culture of curiosity, learning, and constant improvement."
     },
     {
-      icon: renderDynamicIcon(aboutFields?.v6IconType, aboutFields?.v6Lucide, aboutFields?.v6Image?.node),
-      title: aboutFields?.v6Title || "Ownership and Accountability",
-      desc: aboutFields?.v6Desc || "We take full ownership of outcomes, delivering predictable results through disciplined execution and strong commitment."
+      icon: <Target className="text-[#f99d1c]" size={32} />,
+      title: "Ownership and Accountability",
+      desc: "We take full ownership of outcomes, delivering predictable results through disciplined execution and strong commitment."
     },
   ];
+
+  const extractList = (prefix: string, max: number, defaultIcon: React.ReactNode) => {
+    let list = [];
+    for (let i = 1; i <= max; i++) {
+      if (aboutFields?.[`${prefix}${i}Title`]) {
+        list.push({
+          icon: renderDynamicIcon(
+            aboutFields[`${prefix}${i}IconType`],
+            aboutFields[`${prefix}${i}Lucide`],
+            aboutFields[`${prefix}${i}Image`]?.node
+          ) || defaultIcon,
+          title: aboutFields[`${prefix}${i}Title`],
+          desc: aboutFields[`${prefix}${i}Desc`]
+        });
+      }
+    }
+    return list;
+  };
+
+  const extractedValues = extractList('v', 12, <Lightbulb className="text-[#f99d1c]" size={32} />);
+  const displayValues = extractedValues.length > 0 ? extractedValues : fallbackValues;
+
+  const fallbackVisions = [
+    {
+      icon: <Eye className="text-[#f99d1c]" size={32} />,
+      title: "Our Vision",
+      desc: "To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence."
+    }
+  ];
+
+  const extractedVisions = extractList('vision', 3, <Eye className="text-[#f99d1c]" size={32} />);
+  const displayVisions = extractedVisions.length > 0 ? extractedVisions : fallbackVisions;
+
+  const fallbackMissions = [
+    {
+      icon: <Target className="text-[#f99d1c]" size={32} />,
+      title: "Our Mission",
+      desc: "To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision."
+    }
+  ];
+
+  const extractedMissions = extractList('mission', 3, <Target className="text-[#f99d1c]" size={32} />);
+  const displayMissions = extractedMissions.length > 0 ? extractedMissions : fallbackMissions;
 
   const storyContent1 = aboutFields?.storyContentP1 || "Rooted in its name - Nabhira, inspired by “Nabha,” the limitless sky and “Vira,” the spirit of leadership, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.";
   const storyContent2 = aboutFields?.storyContentP2 || "Nabhira partners with organizations across industries to reimagine what is possible, accelerating transformation through advanced AI, cloud-first intelligence and data-driven engineering. What started as a bold vision has grown into a commitment to deliver innovation at scale and impact across borders, empowering businesses to evolve, adapt and lead in a world of limitless potential";
@@ -149,44 +192,56 @@ export default function About({ wordpressData }: any) {
 
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-white/10 pt-16">
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 mb-8">
-                  <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.visionLabel || "Purpose"}</span>
-                </div>
-                <div className="flex items-start space-x-6">
-                  <div className="p-4 bg-white/5 rounded-full border border-white/10">
-                    <span className="text-[#f99d1c]">
-                      {renderDynamicIcon(aboutFields?.visionIconType, aboutFields?.visionLucide || "Eye", aboutFields?.visionImage?.node, 32)}
-                    </span>
+              <div className="space-y-12">
+                {displayVisions.map((v: any, i: number) => (
+                  <div key={i} className="space-y-6">
+                    {i === 0 && (
+                      <div className="flex items-center space-x-4 mb-8">
+                        <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
+                        <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.visionLabel || "Purpose"}</span>
+                      </div>
+                    )}
+                    <div className="flex items-start space-x-6">
+                      <div className="p-4 bg-white/5 rounded-full border border-white/10 shrink-0">
+                        <span className="text-[#f99d1c]">
+                          {v.icon}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(v.title)}</h3>
+                        <p className="text-white/80 font-light leading-relaxed">
+                          {formatQuotesToBold(v.desc)}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(aboutFields?.visionTitle || "Our Vision")}</h3>
-                    <p className="text-white/80 font-light leading-relaxed">
-                      {formatQuotesToBold(aboutFields?.visionDescription || "To be the foundational architecture upon which the world's most resilient and innovative digital enterprises are built, setting new benchmarks in AI and Cloud-first intelligence.")}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 mb-8">
-                  <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.missionLabel || "Commitment"}</span>
-                </div>
-                <div className="flex items-start space-x-6">
-                  <div className="p-4 bg-white/5 rounded-full border border-white/10">
-                    <span className="text-[#f99d1c]">
-                      {renderDynamicIcon(aboutFields?.missionIconType, aboutFields?.missionLucide || "Target", aboutFields?.missionImage?.node, 32)}
-                    </span>
+              <div className="space-y-12">
+                {displayMissions.map((m: any, i: number) => (
+                  <div key={i} className="space-y-6">
+                    {i === 0 && (
+                      <div className="flex items-center space-x-4 mb-8">
+                        <div className="w-12 h-[1px] bg-[#f99d1c]"></div>
+                        <span className="text-[#f99d1c] font-medium tracking-normal text-[10px] uppercase">{aboutFields?.missionLabel || "Commitment"}</span>
+                      </div>
+                    )}
+                    <div className="flex items-start space-x-6">
+                      <div className="p-4 bg-white/5 rounded-full border border-white/10 shrink-0">
+                        <span className="text-[#f99d1c]">
+                          {m.icon}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(m.title)}</h3>
+                        <p className="text-white/80 font-light leading-relaxed">
+                          {formatQuotesToBold(m.desc)}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-3xl font-light mb-4 tracking-tight">{formatQuotesToBold(aboutFields?.missionTitle || "Our Mission")}</h3>
-                    <p className="text-white/80 font-light leading-relaxed">
-                      {formatQuotesToBold(aboutFields?.missionDescription || "To empower organizations through high-performance engineering, data sovereignty, and autonomous cloud platforms, enabling them to navigate their digital evolution with confidence and precision.")}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

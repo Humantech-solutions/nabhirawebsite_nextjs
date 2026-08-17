@@ -318,17 +318,7 @@ export const ABOUT_PAGE_FIELDS_FRAGMENT = `
       storyContentP2
       storyImage { node { sourceUrl mediaItemUrl } }
       visionLabel
-      visionTitle
-      visionDescription
-      visionIconType
-      visionLucide
-      visionImage { node { sourceUrl mediaItemUrl } }
       missionLabel
-      missionTitle
-      missionDescription
-      missionIconType
-      missionLucide
-      missionImage { node { sourceUrl mediaItemUrl } }
       valuesSectionTitle
       v1Title
       v1Desc
@@ -642,19 +632,7 @@ export const CLIENTS_PAGE_FIELDS_FRAGMENT = `
       ind6Color
       testimonialSubtitle
       testimonialTitle
-      test1Quote
-      test1Author
-      test1Company
-      test1Color
-      test2Quote
-      test2Author
-      test2Company
-      test2Color
-      test3Quote
-      test3Author
-      test3Company
-      test3Color
-      ctaSubtitle
+            ctaSubtitle
       ctaTitle
       ctaDesc
       ctaBtn1Text
@@ -807,37 +785,10 @@ export async function getHomePage() {
       capabilities {
         cTitle
         cDesc
-        cC1Label
-        cC1Icon
-        cC1IconImg { node { sourceUrl } }
-        cC2Label
-        cC2Icon
-        cC2IconImg { node { sourceUrl } }
-        cC3Label
-        cC3Icon
-        cC3IconImg { node { sourceUrl } }
       }
       industries {
         iTitle
         iDesc
-        iI1Name
-        iI1Icon
-        iI1IconImg { node { sourceUrl } }
-        iI2Name
-        iI2Icon
-        iI2IconImg { node { sourceUrl } }
-        iI3Name
-        iI3Icon
-        iI3IconImg { node { sourceUrl } }
-        iI4Name
-        iI4Icon
-        iI4IconImg { node { sourceUrl } }
-        iI5Name
-        iI5Icon
-        iI5IconImg { node { sourceUrl } }
-        iI6Name
-        iI6Icon
-        iI6IconImg { node { sourceUrl } }
       }
       bigThinkers {
         bSecTitle
@@ -869,26 +820,13 @@ export async function getHomePage() {
         clCl6Logo { node { sourceUrl } }
         clCl6LogoUrl
       }
-      successStories {
-        sTitle
-        sDesc
-        sI1Title
-        sI1Author
-        sI1Role
-        sI2Title
-        sI2Author
-        sI2Role
-        sI3Title
-        sI3Author
-        sI3Role
-        sI4Title
-        sI4Author
-        sI4Role
-      }
       gridHeaders {
         ltHeaderTitle
         ltHeaderDesc
       }
+      successTitle
+      successDesc
+      successCount
     }
     globalSettings {
       heroSlides {
@@ -1112,6 +1050,69 @@ export async function getHomePage() {
         uri: `/resources/blogs/${post.id}`,
       })),
     };
+  }
+}
+
+
+export async function getServices() {
+  const query = `
+    query GetServices {
+      services(first: 100) {
+        nodes {
+          id
+          title
+          excerpt
+          slug
+          serviceCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    return response?.data?.services?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return [];
+  }
+}
+
+export async function getIndustries() {
+  const query = `
+    query GetIndustries {
+      industries(first: 100) {
+        nodes {
+          id
+          title
+          excerpt
+          slug
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    return response?.data?.industries?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching industries:", error);
+    return [];
   }
 }
 
@@ -1841,7 +1842,7 @@ export async function getCaseStudies() {
               sourceUrl
             }
           }
-          tags {
+          caseStudyTags {
             nodes {
               name
             }
@@ -1872,7 +1873,7 @@ export async function getCaseStudies() {
       industry: node.caseStudyFields?.clientIndustry || "",
       image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
       impact: node.caseStudyFields?.impactMetric || "",
-      tags: node.tags?.nodes?.map((t: any) => t.name) || [node.caseStudyFields?.clientIndustry].filter(Boolean) || []
+      tags: node.caseStudyTags?.nodes?.map((t: any) => t.name) || [node.caseStudyFields?.clientIndustry].filter(Boolean) || []
     }));
   } catch (error) {
     console.error("[getCaseStudies] Error:", error);
@@ -2023,3 +2024,72 @@ export async function getCaseStudyBySlug(slug: string) {
   }
 }
 
+
+
+export const GET_TESTIMONIALS_ALL = `
+  query GetTestimonials($first: Int = 10) {
+    testimonials(first: $first) {
+      nodes {
+        title
+        content
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        testimonialFields {
+          quote
+          author
+          companyOrRole
+        }
+      }
+    }
+  }
+`;
+
+export const GET_TESTIMONIALS_BY_CATEGORY = `
+  query GetTestimonialsByCategory($first: Int = 10, $categoryIn: [Int]) {
+    testimonialCategories(where: { include: $categoryIn }) {
+      nodes {
+        testimonials(first: $first) {
+          nodes {
+            title
+            content
+            excerpt
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            testimonialFields {
+              quote
+              author
+              companyOrRole
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export async function getTestimonials(count = 10, categoryIds = []) {
+  if (categoryIds && categoryIds.length > 0) {
+    const variables = { first: count, categoryIn: categoryIds };
+    const response = await fetchGraphQL(GET_TESTIMONIALS_BY_CATEGORY, variables);
+    const nodes = [];
+    const categories = response?.data?.testimonialCategories?.nodes || [];
+    categories.forEach((cat) => {
+      if (cat.testimonials && cat.testimonials.nodes) {
+        nodes.push(...cat.testimonials.nodes);
+      }
+    });
+    const uniqueNodes = Array.from(new Map(nodes.map((item) => [item.title, item])).values());
+    return uniqueNodes.slice(0, count);
+  } else {
+    const variables = { first: count };
+    const response = await fetchGraphQL(GET_TESTIMONIALS_ALL, variables);
+    return response?.data?.testimonials?.nodes || [];
+  }
+}

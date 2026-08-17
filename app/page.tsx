@@ -7,7 +7,7 @@ import { WithNabhira } from "../src/components/WithNabhira";
 import { SuccessStories } from "../src/components/SuccessStories";
 import { Clients } from "../src/components/Clients";
 import { LimitlessTogether } from "../src/components/LimitlessTogether";
-import { getHomePage } from "@/src/lib/wordpress";
+import { getHomePage, getServices, getIndustries, getTestimonials } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
 import { Metadata } from "next";
@@ -22,24 +22,28 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const homeData = await getHomePage();
+  const services = await getServices();
+  const industries = await getIndustries();
+  
   const fields = homeData?.homePageFields;
   const global = homeData?.globalSettings;
   const heroData = global?.heroSlides;
   const wnData = fields?.withNabhira;
+  const testimonials = await getTestimonials(fields?.successCount || 4, fields?.successCategory?.nodes?.map((n: any) => n.databaseId) || []);
 
   return (
     <div className="bg-white min-h-screen">
       <Hero data={heroData} />
       <WithNabhira data={wnData} />
-      <Capabilities data={fields?.capabilities} />
-      <Industries data={fields?.industries} />
+      <Capabilities data={fields?.capabilities} services={services} />
+      <Industries data={fields?.industries} industries={industries} />
       <BigThinkers data={fields?.bigThinkers} />
       <WhatsNew data={{ 
         newsPosts: homeData?.newsPosts,
         settings: homeData?.settings
       }} />
       <Clients data={fields?.clients} />
-      <SuccessStories data={fields?.successStories} />
+      <SuccessStories data={fields} testimonials={testimonials} />
       <LimitlessTogether data={global?.limitlessTogether} />
     </div>
   );

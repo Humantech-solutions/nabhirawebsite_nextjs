@@ -21,42 +21,8 @@ import awsLogoNew from "../../assets/e8db84a0f02155e9712916e3b3f246e97af59ea6.pn
 import azureLogoNew from "../../assets/6815eb4c7e3fdf7615e2d88a4bc90f9d4f5f65e8.png";
 import serviceNowLogoNew from "../../assets/479c5e7ee7cc184f2a8f2f72295d6fc29ff8cf16.png";
 import serviceNowLogoText from "../../assets/80225d6957c2683205c179076212d35a3bc670de.png";
-import oracleSvgPaths from "../../imports/svg-qvm2dmjxvx";
-import awsSvgPaths from "../../imports/svg-6r1cut85br";
-import ZohoLogo from "../../imports/ZohoLogo";
-import MicrosoftAzureLogo from "../../imports/MicrosoftAzureLogo";
-import Group from "../../imports/Group";
 const ibmLogo = "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg";
 
-// Inline Oracle SVG logo (from Figma import)
-function OracleSvgLogo({ style }: { style?: React.CSSProperties }) {
-  return (
-    <svg
-      viewBox="0 0 231.075 30.0345"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={style}
-    >
-      <path d={oracleSvgPaths.p1eaaa600} fill="#E43118" />
-    </svg>
-  );
-}
-
-// Inline AWS SVG logo (from Figma import)
-function AwsSvgLogo({ style }: { style?: React.CSSProperties }) {
-  return (
-    <svg
-      viewBox="0 0 300.671 179.8"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={style}
-    >
-      <path d={awsSvgPaths.p1387fa00} fill="white" />
-      <path clipRule="evenodd" d={awsSvgPaths.p1c293b80} fill="#FF9900" fillRule="evenodd" />
-      <path clipRule="evenodd" d={awsSvgPaths.p2d627700} fill="#FF9900" fillRule="evenodd" />
-    </svg>
-  );
-}
 
 // ACF select fields can return an array (["image"]) or a plain string ("image").
 // This helper always gives back a plain string.
@@ -66,9 +32,10 @@ const normalizeAcfValue = (val: any): string => {
 };
 
 const AnyIcon = ({ type, lucide, image, className, size = 32 }: { type: any, lucide?: string, image?: string, className?: string, size?: number }) => {
+  const formattedLucide = lucide ? lucide.charAt(0).toUpperCase() + lucide.slice(1) : 'Globe';
   return (
     <div className={className}>
-      {renderDynamicIcon(normalizeAcfValue(type), lucide || 'Globe', image, size)}
+      {renderDynamicIcon(normalizeAcfValue(type), formattedLucide, image, size)}
     </div>
   );
 };
@@ -133,13 +100,13 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
   ];
 
   const orbitalNodes = [
-    { label: ppf?.partner_cta_o1_label || "AWS", color: ppf?.partner_cta_o1_color || "#FF9900", angle: 0, r: 130 },
-    { label: ppf?.partner_cta_o2_label || "Azure", color: ppf?.partner_cta_o2_color || "#0078D4", angle: 51, r: 130 },
-    { label: ppf?.partner_cta_o3_label || "GCP", color: ppf?.partner_cta_o3_color || "#4285F4", angle: 103, r: 130 },
-    { label: ppf?.partner_cta_o4_label || "SFDC", color: ppf?.partner_cta_o4_color || "#00A1E0", angle: 154, r: 130 },
-    { label: ppf?.partner_cta_o5_label || "SN", color: ppf?.partner_cta_o5_color || "#62D84E", angle: 205, r: 130 },
-    { label: ppf?.partner_cta_o6_label || "Zoho", color: ppf?.partner_cta_o6_color || "#E42527", angle: 257, r: 130 },
-    { label: ppf?.partner_cta_o7_label || "ERP", color: ppf?.partner_cta_o7_color || "#0089FF", angle: 308, r: 130 },
+    { label: ppf?.partner_cta_o1_label || "AWS", color: ppf?.partner_cta_o1_color || "#FF9900", image: ppf?.partnerCtaO1Image?.node?.sourceUrl, angle: 0, r: 130 },
+    { label: ppf?.partner_cta_o2_label || "Azure", color: ppf?.partner_cta_o2_color || "#0078D4", image: ppf?.partnerCtaO2Image?.node?.sourceUrl, angle: 51, r: 130 },
+    { label: ppf?.partner_cta_o3_label || "GCP", color: ppf?.partner_cta_o3_color || "#4285F4", image: ppf?.partnerCtaO3Image?.node?.sourceUrl, angle: 103, r: 130 },
+    { label: ppf?.partner_cta_o4_label || "SFDC", color: ppf?.partner_cta_o4_color || "#00A1E0", image: ppf?.partnerCtaO4Image?.node?.sourceUrl, angle: 154, r: 130 },
+    { label: ppf?.partner_cta_o5_label || "SN", color: ppf?.partner_cta_o5_color || "#62D84E", image: ppf?.partnerCtaO5Image?.node?.sourceUrl, angle: 205, r: 130 },
+    { label: ppf?.partner_cta_o6_label || "Zoho", color: ppf?.partner_cta_o6_color || "#E42527", image: ppf?.partnerCtaO6Image?.node?.sourceUrl, angle: 257, r: 130 },
+    { label: ppf?.partner_cta_o7_label || "ERP", color: ppf?.partner_cta_o7_color || "#0089FF", image: ppf?.partnerCtaO7Image?.node?.sourceUrl, angle: 308, r: 130 },
   ];
 
   return (
@@ -214,8 +181,8 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                   className={`bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer ${brand.colSpan || ''}`}
                   style={{ minHeight: 110 }}
                 >
-                  <div className="flex items-center justify-center" style={{ height: 48 }}>
-                    <ImageWithFallback src={brand.logo} alt={brand.name} className="max-h-[44px] max-w-[130px] object-contain" />
+                  <div className="flex items-center justify-center w-full" style={{ height: 48 }}>
+                    <ImageWithFallback src={brand.logo} alt={brand.name} width={130} height={44} className="h-full w-full object-contain" style={{ objectFit: 'contain' }} />
                   </div>
                   <span className={`text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 ${brand.textColor} transition-colors text-center`}>{brand.name}</span>
                 </Motion.div>
@@ -329,21 +296,25 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
 
                 {/* CTA buttons */}
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <Motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="bg-[#f99d1c] text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors shadow-lg"
-                    style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
-                  >
-                    Become a Partner
-                  </Motion.button>
-                  <Motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="border border-white/25 text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:border-[#f99d1c] hover:text-[#f99d1c] transition-colors"
-                  >
-                    Contact Us
-                  </Motion.button>
+                  <Link href={ppf?.partnerCtaBtn1Link || "/contact"}>
+                    <Motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="bg-[#f99d1c] text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors shadow-lg"
+                      style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
+                    >
+                      {ppf?.partnerCtaBtn1Label || "Become a Partner"}
+                    </Motion.button>
+                  </Link>
+                  <Link href={ppf?.partnerCtaBtn2Link || "/contact"}>
+                    <Motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="border border-white/25 text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:border-[#f99d1c] hover:text-[#f99d1c] transition-colors"
+                    >
+                      {ppf?.partnerCtaBtn2Label || "Contact Us"}
+                    </Motion.button>
+                  </Link>
                 </div>
               </Motion.div>
 
@@ -402,34 +373,25 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                           boxShadow: `0 0 16px ${node.color}30`
                         }}
                       >
-                        <div className="p-2 flex items-center justify-center w-full h-full">
-                          {node.label === "Oracle" ? (
-                            <OracleSvgLogo style={{ width: "100%", height: "auto", filter: "brightness(1.5)" }} />
+                        <div className="p-1 flex flex-col items-center justify-center w-full h-full gap-1">
+                          {node.image ? (
+                            <img src={node.image} alt={node.label} className="w-5 h-5 object-contain" />
+                          ) : node.label === "Oracle" ? (
+                            <Image src={oracleLogo} alt="Oracle" className="w-5 h-5 object-contain" style={{ filter: "brightness(1.5)" }} />
                           ) : node.label === "AWS" ? (
-                            <AwsSvgLogo style={{ width: "100%", height: "auto" }} />
+                            <Image src={awsLogoNew} alt="AWS" className="w-5 h-5 object-contain" />
                           ) : node.label === "SFDC" ? (
-                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                              <Group />
-                            </div>
+                            <Image src={salesforceLogo} alt="Salesforce" className="w-5 h-5 object-contain" />
                           ) : node.label === "SN" ? (
-                            <Image src={serviceNowLogoNew} alt="ServiceNow" className="max-w-full max-h-full object-contain" />
+                            <Image src={serviceNowLogoNew} alt="ServiceNow" className="w-5 h-5 object-contain" />
                           ) : node.label === "Zoho" ? (
-                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                              <ZohoLogo />
-                            </div>
+                            <Image src={zohoLogo} alt="Zoho" className="w-5 h-5 object-contain" />
                           ) : node.label === "Azure" ? (
-                            <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                              <MicrosoftAzureLogo />
-                            </div>
+                            <Image src={azureLogoNew} alt="Azure" className="w-5 h-5 object-contain" />
                           ) : (
-<div className="relative w-[120px] h-[60px]">
-  <Image
-    src={node.logo}
-    alt={node.label}
-    fill
-    className="object-contain filter grayscale hover:grayscale-0 transition-all brightness-[1.5] hover:brightness-100"
-  />
-</div>                          )}
+                            <Image src={gcpLogo} alt="GCP" className="w-5 h-5 object-contain" />
+                          )}
+                          <span className="text-white text-[8px] font-bold tracking-widest uppercase text-center">{node.label}</span>
                         </div>
                       </Motion.div>
                     );
