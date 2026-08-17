@@ -27,6 +27,8 @@ type Service = {
   title: string;
   desc: string;
   icon: React.ElementType;
+  slug?: string;
+  href?: string;
 };
 
 type Category = {
@@ -120,10 +122,42 @@ const capabilitiesData: Category[] = [
   }
 ];
 
-export function Capabilities({ data }: any) {
-  const [activeTab, setActiveTab] = useState(capabilitiesData[0].id);
+export function Capabilities({ data, services: wpServices }: any) {
+  // Use WP services if available
+  const mappedCapabilities = React.useMemo(() => {
+    if (!wpServices || wpServices.length === 0) return capabilitiesData;
 
-  const activeCategory = capabilitiesData.find(cat => cat.id === activeTab) || capabilitiesData[0];
+    // Group services by category
+    const grouped = wpServices.reduce((acc: any, service: any) => {
+      const cat = service.categories?.nodes?.[0] || { name: 'Other Services', slug: 'other' };
+      const catSlug = cat.slug;
+
+      if (!acc[catSlug]) {
+        acc[catSlug] = {
+          id: catSlug,
+          label: cat.name,
+          icon: Cloud, // Default icon, could map based on slug
+          services: []
+        };
+      }
+      
+      acc[catSlug].services.push({
+        title: service.title,
+        slug: service.slug,
+        href: service.slug ? `/services/${service.slug}` : undefined,
+        desc: service.excerpt ? service.excerpt.replace(/<[^>]*>?/gm, '') : '',
+        icon: Compass // Default icon
+      });
+
+      return acc;
+    }, {});
+
+    return Object.values(grouped) as Category[];
+  }, [wpServices]);
+
+  const [activeTab, setActiveTab] = useState(mappedCapabilities[0]?.id || capabilitiesData[0].id);
+
+  const activeCategory = mappedCapabilities.find(cat => cat.id === activeTab) || mappedCapabilities[0] || capabilitiesData[0];
 
   const sectionTitle = data?.cTitle || "Our capabilities";
   const sectionDesc = data?.cDesc || "Stay Ahead of Curve with Cloud Solutions";
@@ -167,7 +201,7 @@ export function Capabilities({ data }: any) {
 
         {/* Category Navigation */}
         <div className="flex overflow-x-auto no-scrollbar gap-6 md:gap-10 mb-10 md:mb-12 border-b border-[#11253e]/10 -mx-6 px-6 md:mx-0 md:px-0">
-          {capabilitiesData.map((cat) => {
+          {mappedCapabilities.map((cat) => {
             const Icon = cat.icon;
             return (
               <button
@@ -241,14 +275,17 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
     "Intelligent Automation": "/solutions/intelligent-automation"
   };
 
-  return (
+  // Use WP-derived href if available, else fall back to static routeMap
+  const href = service.href || routeMap[service.title] || null;
+
+  const cardInner = (
     <Motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05 }}
       whileHover={{ y: -5 }}
-      className="group bg-white p-8 rounded-sm border border-transparent hover:border-[#f99d1c]/30 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col h-full relative overflow-hidden cursor-default"
+      className="group bg-white p-8 rounded-sm border border-transparent hover:border-[#f99d1c]/30 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col h-full relative overflow-hidden cursor-pointer"
     >
       {/* Hover Background Pattern Reveal */}
       <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#f99d1c]/5 rounded-full blur-3xl group-hover:bg-[#f99d1c]/10 transition-colors duration-500" />
@@ -269,16 +306,23 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
       </div>
 
       <div className="relative z-10 mt-auto pt-6 border-t border-[#11253e]/5">
-        <Link href={routeMap[service.title] || "#"}
-          className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase hover:gap-4 transition-all duration-300 cursor-pointer"
-        >
+        <span className="flex items-center gap-2 text-[#f99d1c] text-xs font-medium tracking-normal uppercase group-hover:gap-4 transition-all duration-300">
           Explore More
           <ChevronRight size={14} />
-        </Link>
+        </span>
       </div>
 
       {/* Decorative side accent */}
       <div className="absolute top-0 left-0 w-[2px] h-0 bg-[#f99d1c] group-hover:h-full transition-all duration-500" />
     </Motion.div>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="flex flex-col h-full">
+        {cardInner}
+      </Link>
+    );
+  }
+  return cardInner;
 }

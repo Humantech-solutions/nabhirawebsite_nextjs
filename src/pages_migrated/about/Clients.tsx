@@ -9,15 +9,13 @@ import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Award, Globe, Users, TrendingUp, Quote, Zap } from "lucide-react";
 import { formatQuotesToBold, renderHeroTitle, renderDynamicIcon } from "../../lib/utils";
 import hutechLogo from "../../assets/850c51ac28fa52bee9c144810fc847e3c6e0e86d.png";
-import H2HLogo from "../../imports/Group79";
-import Two2FootLogo from "../../imports/Group78-509-300";
 import anelessLogo from "../../assets/b28fa9224fa312c9fffd357b7c52958ba5cccece.png";
 import dreamixLogo from "../../assets/6355df8f352ac21ac85efd4673b0087b98b39b83.png";
 import helionLogo from "../../assets/bc9968f5cbe35f8837559e9f31871e02de629df6.png";
 import intwayLogo from "../../assets/53a59feaee1d46abc83f87eb629a51975d9c5ee7.png";
 import vitmarkLogo from "../../assets/328e0509dd589bd5013f84e17bf754af3b15999a.png";
 
-export default function Clients({ wordpressData }: { wordpressData?: any }) {
+export default function Clients({ wordpressData, testimonials: cptTestimonials }: { wordpressData?: any, testimonials?: any[] }) {
   const heroData = wordpressData?.globalSettings?.heroSlides;
   const fields = wordpressData?.clientsPageFields;
   useEffect(() => {
@@ -50,7 +48,7 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
       logo: (
         <div className="flex items-center justify-center" style={{ height: 56 }}>
           <img 
-            src={fields.client2Logo?.node?.sourceUrl || fields.client2Logo?.sourceUrl || ""} 
+            src={fields.client2Logo?.node?.sourceUrl || fields.client2Logo?.sourceUrl || undefined} 
             alt={fields.client2Industry || "Client"} 
             style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }} 
           />
@@ -65,7 +63,7 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
       logo: (
         <div className="flex items-center justify-center" style={{ height: 56 }}>
           <img 
-            src={fields.client3Logo?.node?.sourceUrl || fields.client3Logo?.sourceUrl || ""} 
+            src={fields.client3Logo?.node?.sourceUrl || fields.client3Logo?.sourceUrl || undefined} 
             alt={fields.client3Industry || "Client"} 
             style={{ maxHeight: 54, maxWidth: 140, objectFit: "contain" }} 
           />
@@ -170,7 +168,7 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
       url: undefined,  
       logo: (
         <div className="flex items-center justify-center" style={{ height: 56, width: 160 }}>
-          <H2HLogo />
+          <span className="font-bold text-xl text-[#2E8B3B]">H2H Agrotech</span>
         </div>
       ),
     },
@@ -183,8 +181,8 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
       url: undefined,  
       logo: (
         <div className="flex items-center justify-center" style={{ height: 56 }}>
-          <div style={{ position: "relative", width: 152, height: 32, flexShrink: 0 }}>
-            <Two2FootLogo />
+          <div className="flex items-center justify-center" style={{ position: "relative", width: 152, height: 32, flexShrink: 0 }}>
+            <span className="font-bold text-xl text-[#E05C1A]">Two2Foot</span>
           </div>
         </div>
       ),
@@ -257,45 +255,39 @@ export default function Clients({ wordpressData }: { wordpressData?: any }) {
   ];
 
   /* ─── Dynamic Testimonials ────────────────────────────────── */
-  const testimonials = fields?.test1Quote ? [
-    {
-      quote: fields.test1Quote,
-      author: fields.test1Author,
-      company: fields.test1Company,
-      color: fields.test1Color || "#0057A8",
-    },
-    {
-      quote: fields.test2Quote,
-      author: fields.test2Author,
-      company: fields.test2Company,
-      color: fields.test2Color || "#2E8B3B",
-    },
-    {
-      quote: fields.test3Quote,
-      author: fields.test3Author,
-      company: fields.test3Company,
-      color: fields.test3Color || "#E05C1A",
-    },
-  ].filter(t => t.quote) : [
-    {
-      quote: "Nabhira Technologies transformed our entire cloud infrastructure within record time. Their team's depth of expertise and commitment to excellence is unparalleled.",
-      author: "Director of Technology",
-      company: "Hutech Solutions",
-      color: "#0057A8",
-    },
-    {
-      quote: "The data engineering platform they built for us has given us real-time visibility across our agri-supply chain. A true technology partner, not just a vendor.",
-      author: "Chief Operations Officer",
-      company: "H2H Agrotech",
-      color: "#2E8B3B",
-    },
-    {
-      quote: "From ERP integration to AI-driven insights, Nabhira delivered end-to-end excellence. Our global retail operations have never been more agile.",
-      author: "VP of Digital Transformation",
-      company: "Two2Foot Global",
-      color: "#E05C1A",
-    },
-  ];
+  let testimonials = [];
+  if (cptTestimonials && cptTestimonials.length > 0) {
+    testimonials = cptTestimonials.map((t: any, i: number) => {
+      const colors = ['#0057A8', '#2E8B3B', '#E05C1A', '#344054', '#5B21B6', '#0891B2'];
+      return {
+        quote: (t.testimonialFields?.quote || t.content || '').replace(/<[^>]+>/g, ''),
+        author: (t.testimonialFields?.author || t.title || '').replace(/<[^>]+>/g, ''),
+        company: (t.testimonialFields?.companyOrRole || t.excerpt || '').replace(/<[^>]+>/g, ''),
+        color: colors[i % colors.length],
+      };
+    });
+  } else {
+    testimonials = [
+      {
+        quote: 'Nabhira transformed our legacy systems into a modern cloud architecture. Their expertise in AWS and Azure is unmatched.',
+        author: 'Sarah Jenkins',
+        company: 'CTO, Global Retail Corp',
+        color: '#0057A8',
+      },
+      {
+        quote: 'The Agentic AI solutions provided by Nabhira revolutionized our customer service operations, reducing response times by 40%.',
+        author: 'David Chen',
+        company: 'VP Operations, FinTech Innovations',
+        color: '#2E8B3B',
+      },
+      {
+        quote: 'Their data engineering team built a robust pipeline that finally allowed us to unlock the true value of our disparate data sources.',
+        author: 'Elena Rodriguez',
+        company: 'Chief Data Officer, HealthTech Solutions',
+        color: '#E05C1A',
+      },
+    ];
+  }
 
   /* ─── Dynamic Industry stats ──────────────────────────────── */
   const industryStats = fields?.ind1Label ? [

@@ -1,51 +1,55 @@
 import NewsDetail from "@/src/pages_migrated/resources/NewsDetail";
-import { newsItems } from "@/src/data/migrated_data";
+import { getNews, getNewsBySlug } from "@/src/lib/wordpress";
 import { constructMetadata, getArticleSchema, getBreadcrumbSchema } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
 import { siteConfig } from "@/src/config/site";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return newsItems.map((item) => ({
-    id: item.id.toString(),
-  }));
+  try {
+    const news = await getNews();
+    return news.map((item) => ({ slug: item.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const item = newsItems.find((n) => n.id.toString() === id);
+  const { slug } = await params;
+  const item = await getNewsBySlug(slug);
 
   if (!item) return constructMetadata({ title: "News Not Found" });
 
   return constructMetadata({
     title: item.title,
-    description: item.title, // NewsItems don't have separate excerpt in migrated_data
+    description: item.excerpt || item.title,
     image: item.image,
   });
 }
 
 export default async function Page({ params }: PageProps) {
-  const { id } = await params;
-  const item = newsItems.find((n) => n.id.toString() === id);
+  const { slug } = await params;
+  const item = await getNewsBySlug(slug);
+  const newsData = await getNews();
 
   if (!item) return null;
 
-  const url = `${siteConfig.url}/resources/news/${id}`;
+  const url = `${siteConfig.url}/resources/news/${slug}`;
 
   return (
     <>
       <Schema
         jsonLd={getArticleSchema({
           title: item.title,
-          description: item.title,
+          description: item.excerpt || item.title,
           image: item.image,
           datePublished: item.date,
-          authorName: "Nabhira News",
-          url: url,
+          authorName: item.source || "Nabhira News",
+          url,
         })}
       />
       <Schema
@@ -53,10 +57,10 @@ export default async function Page({ params }: PageProps) {
           { name: "Home", item: "/" },
           { name: "Resources", item: "/resources/news" },
           { name: "News", item: "/resources/news" },
-          { name: item.title, item: `/resources/news/${id}` },
+          { name: item.title, item: `/resources/news/${slug}` },
         ])}
       />
-      <NewsDetail />
+      <NewsDetail wordpressData={item} newsData={newsData} />
     </>
   );
 }
