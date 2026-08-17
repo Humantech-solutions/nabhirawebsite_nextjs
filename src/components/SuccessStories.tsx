@@ -13,18 +13,9 @@ export function SuccessStories({ data, testimonials }: any) {
   let stories = [];
   if (testimonials && testimonials.length > 0) {
     stories = testimonials.map((t: any) => ({
-      title: (t.testimonialFields?.quote || t.content || "").replace(
-        /<[^>]+>/g,
-        "",
-      ),
-      author: (t.testimonialFields?.author || t.title || "").replace(
-        /<[^>]+>/g,
-        "",
-      ),
-      role: (t.testimonialFields?.companyOrRole || t.excerpt || "").replace(
-        /<[^>]+>/g,
-        "",
-      ),
+      title: (t.testimonialFields?.quote || t.content || "").replace(/<[^>]+>/g, ""),
+      author: (t.testimonialFields?.author || t.title || "").replace(/<[^>]+>/g, ""),
+      role: (t.testimonialFields?.companyOrRole || t.excerpt || "").replace(/<[^>]+>/g, "")
     }));
   }
 

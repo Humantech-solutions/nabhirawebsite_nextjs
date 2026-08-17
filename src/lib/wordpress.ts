@@ -675,6 +675,48 @@ export const AWARDS_PAGE_FIELDS_FRAGMENT = `
       award4IconType
       award4Lucide
       award4Image { node { sourceUrl mediaItemUrl } }
+      award5Year
+      award5Org
+      award5Title
+      award5Desc
+      award5IconType
+      award5Lucide
+      award5Image { node { sourceUrl mediaItemUrl } }
+      award6Year
+      award6Org
+      award6Title
+      award6Desc
+      award6IconType
+      award6Lucide
+      award6Image { node { sourceUrl mediaItemUrl } }
+      award7Year
+      award7Org
+      award7Title
+      award7Desc
+      award7IconType
+      award7Lucide
+      award7Image { node { sourceUrl mediaItemUrl } }
+      award8Year
+      award8Org
+      award8Title
+      award8Desc
+      award8IconType
+      award8Lucide
+      award8Image { node { sourceUrl mediaItemUrl } }
+      award9Year
+      award9Org
+      award9Title
+      award9Desc
+      award9IconType
+      award9Lucide
+      award9Image { node { sourceUrl mediaItemUrl } }
+      award10Year
+      award10Org
+      award10Title
+      award10Desc
+      award10IconType
+      award10Lucide
+      award10Image { node { sourceUrl mediaItemUrl } }
       impactTitle
       impactDesc
     }
@@ -706,11 +748,7 @@ export async function getPageBySlug(slug: string) {
         slug
         uri
         date
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
+        featuredImage { node { sourceUrl } } 
         ...GlobalSettingsFields
         ...ContactPageFields
         ...CareersPageFields
@@ -886,7 +924,7 @@ export async function getHomePage() {
         nodes {
           title
           categories { nodes { name } }
-          featuredImage { node { sourceUrl } }
+          featuredImage { node { sourceUrl } } 
           uri
         }
       }
@@ -1003,7 +1041,7 @@ export async function getHomePage() {
             title
             date
             slug
-            featuredImage { node { sourceUrl } }
+            featuredImage { node { sourceUrl } } 
             uri
           }
         }
@@ -1016,7 +1054,7 @@ export async function getHomePage() {
     // Only use the no-filter fallback when NO category/tag was configured at all
     if (newsPosts.length === 0 && filterValues.length === 0) {
       const fallbackPostsResponse = await fetchGraphQL(
-        `query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } } uri } } }`,
+        `query { posts(first: ${postsCount}) { nodes { title date featuredImage { node { sourceUrl } }  uri } } }`,
       );
       newsPosts = fallbackPostsResponse?.data?.posts?.nodes || [];
     }
@@ -1069,11 +1107,7 @@ export async function getServices() {
               slug
             }
           }
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
+          featuredImage { node { sourceUrl } } 
         }
       }
     }
@@ -1097,11 +1131,7 @@ export async function getIndustries() {
           title
           excerpt
           slug
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
+          featuredImage { node { sourceUrl } } 
         }
       }
     }
@@ -1126,11 +1156,7 @@ export async function getAllPosts() {
           excerpt
           date
           slug
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
+          featuredImage { node { sourceUrl } } 
           author {
             node {
               name
@@ -1228,7 +1254,7 @@ export async function getPostBySlug(slug: string) {
         date
         slug
         excerpt
-        featuredImage { node { sourceUrl } }
+        featuredImage { node { sourceUrl } } 
         author { node { name } }
         categories { nodes { name slug } }
         blogPostSettings {
@@ -1415,7 +1441,7 @@ async function getPostById(id: string) {
         date
         slug
         excerpt
-        featuredImage { node { sourceUrl } }
+        featuredImage { node { sourceUrl } } 
         author { node { name } }
         categories { nodes { name slug } }
         blogPostSettings {
@@ -1441,11 +1467,7 @@ export async function getEvents() {
           slug
           excerpt
           date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
+          featuredImage { node { sourceUrl } } 
           eventFields {
             eventDate
             eventStartDate
@@ -1520,11 +1542,7 @@ export async function getEventBySlug(slug: string) {
         content
         date
         slug
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
+        featuredImage { node { sourceUrl } } 
         eventFields {
           eventDate
           eventStartDate
@@ -1837,11 +1855,7 @@ export async function getCaseStudies() {
           id
           title
           slug
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
+          featuredImage { node { sourceUrl } } 
           caseStudyTags {
             nodes {
               name
@@ -1893,11 +1907,7 @@ export async function getCaseStudyBySlug(slug: string) {
         slug
         content
         date
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
+        featuredImage { node { sourceUrl } } 
         caseStudyFields {
           clientName
           clientIndustry
@@ -2033,11 +2043,7 @@ export const GET_TESTIMONIALS_ALL = `
         title
         content
         excerpt
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
+        featuredImage { node { sourceUrl } } 
         testimonialFields {
           quote
           author
@@ -2057,11 +2063,7 @@ export const GET_TESTIMONIALS_BY_CATEGORY = `
             title
             content
             excerpt
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
+            featuredImage { node { sourceUrl } } 
             testimonialFields {
               quote
               author
@@ -2092,4 +2094,32 @@ export async function getTestimonials(count = 10, categoryIds = []) {
     const response = await fetchGraphQL(GET_TESTIMONIALS_ALL, variables);
     return response?.data?.testimonials?.nodes || [];
   }
+}
+
+export const GET_AWARDS = `
+  query GetAwards($first: Int = 100) {
+    awards(first: $first) {
+      nodes {
+        id
+        title
+        awardFields {
+          awardYear
+          awardOrg
+          awardDesc
+          awardIconType
+          awardLucide
+          awardImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export async function getAwards() {
+  const response = await fetchGraphQL(GET_AWARDS);
+  return response?.data?.awards?.nodes || [];
 }

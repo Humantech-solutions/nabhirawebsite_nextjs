@@ -14,71 +14,60 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
   const heroData = gs?.heroSlides;
   const fields = wordpressData?.awardsPageFields;
 
-
   useEffect(() => {
     document.title = "Awards & Recognition | Nabhira Technologies";
     window.scrollTo(0, 0);
   }, []);
 
-  const awards = fields?.award1Year ? [
-    {
-      year: fields.award1Year,
-      title: fields.award1Title,
-      org: fields.award1Org,
-      desc: fields.award1Desc,
-      icon: renderDynamicIcon(fields.award1IconType, fields.award1Lucide, fields.award1Image, 24)
-    },
-    {
-      year: fields.award2Year,
-      title: fields.award2Title,
-      org: fields.award2Org,
-      desc: fields.award2Desc,
-      icon: renderDynamicIcon(fields.award2IconType, fields.award2Lucide, fields.award2Image, 24)
-    },
-    {
-      year: fields.award3Year,
-      title: fields.award3Title,
-      org: fields.award3Org,
-      desc: fields.award3Desc,
-      icon: renderDynamicIcon(fields.award3IconType, fields.award3Lucide, fields.award3Image, 24)
-    },
-    {
-      year: fields.award4Year,
-      title: fields.award4Title,
-      org: fields.award4Org,
-      desc: fields.award4Desc,
-      icon: renderDynamicIcon(fields.award4IconType, fields.award4Lucide, fields.award4Image, 24)
+  let awards = [];
+  
+  // Dynamically build awards from static fields (award1 to award10)
+  for (let i = 1; i <= 10; i++) {
+    const year = fields?.[`award${i}Year`];
+    if (year) {
+      awards.push({
+        year: year,
+        title: fields[`award${i}Title`],
+        org: fields[`award${i}Org`],
+        desc: fields[`award${i}Desc`],
+        icon: renderDynamicIcon(fields[`award${i}IconType`], fields[`award${i}Lucide`], fields[`award${i}Image`], 24)
+      });
     }
-  ].filter(a => a.year) : [
-    {
-      year: "2025",
-      title: "Global AI Innovator of the Year",
-      org: "Tech Leadership Summit",
-      desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
-      icon: <Trophy size={24} />
-    },
-    {
-      year: "2024",
-      title: "Cloud Transformation Partner",
-      org: "Enterprise Global Cloud Council",
-      desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures.",
-      icon: <Award size={24} />
-    },
-    {
-      year: "2024",
-      title: "Top 50 Most Innovative Firms",
-      org: "Digital Innovation Review",
-      desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting.",
-      icon: <Star size={24} />
-    },
-    {
-      year: "2023",
-      title: "Sustainability Architecture Award",
-      org: "Green Tech Collective",
-      desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts.",
-      icon: <Medal size={24} />
-    }
-  ];
+  }
+
+  // Fallback if no awards exist at all
+  if (awards.length === 0) {
+    awards = [
+      {
+        year: "2025",
+        title: "Global AI Innovator of the Year",
+        org: "Tech Leadership Summit",
+        desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
+        icon: <Trophy size={24} />
+      },
+      {
+        year: "2024",
+        title: "Cloud Transformation Partner",
+        org: "Enterprise Global Cloud Council",
+        desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures.",
+        icon: <Award size={24} />
+      },
+      {
+        year: "2024",
+        title: "Top 50 Most Innovative Firms",
+        org: "Digital Innovation Review",
+        desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting.",
+        icon: <Star size={24} />
+      },
+      {
+        year: "2023",
+        title: "Sustainability Architecture Award",
+        org: "Green Tech Collective",
+        desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts.",
+        icon: <Medal size={24} />
+      }
+    ];
+  }
 
   return (
     <>
