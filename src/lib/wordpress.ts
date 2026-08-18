@@ -1777,6 +1777,10 @@ function mapNewsPost(post: any) {
     post.news_external_url || post.acf?.news_external_url || null;
   const acfSource = post.news_source || post.acf?.news_source || "";
   const acfDate = post.news_date || post.acf?.news_date || "";
+  const mediaContact = post.news_media_contact || post.acf?.news_media_contact || "press@nabhira.tech";
+  const acfVideoFile = post.news_video_file || post.acf?.news_video_file || null;
+  const acfVideoUrl = post.news_video_url || post.acf?.news_video_url || null;
+  const videoUrl = acfVideoFile || acfVideoUrl;
 
   // For internal news: use "Nabhira News" and today's WordPress post date as fallbacks
   // For external news: leave empty so enrichWithExternalMeta can fill from OG metadata
@@ -1790,6 +1794,8 @@ function mapNewsPost(post: any) {
     date,
     source,
     externalUrl,
+    mediaContact,
+    videoUrl,
     excerpt: post.excerpt?.rendered?.replace(/<[^>]*>/g, "") || "",
     content: post.content?.rendered || "",
     image:
@@ -2122,4 +2128,40 @@ export const GET_AWARDS = `
 export async function getAwards() {
   const response = await fetchGraphQL(GET_AWARDS);
   return response?.data?.awards?.nodes || [];
+}
+
+export interface SiteChromeData {
+  menus: any;
+  header: any;
+  footer: any;
+  social: any;
+}
+
+export async function getSiteChrome(): Promise<SiteChromeData | null> {
+  const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql', 
+'/wp-json/nabhira/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/nabhira/v1/site-chrome';
+  
+  if (FORCE_STATIC_FALLBACK) return null;
+
+  try {
+    const res = await fetch(REST_URL, {
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) {
+      console.warn(`[WP] Could not fetch site chrome. HTTP ${res.status}`);
+      return null;
+    }
+
+    const raw = await res.json();
+    return {
+      menus: raw?.menus || {},
+      header: raw?.header || {},
+      footer: raw?.footer || {},
+      social: raw?.social || {},
+    };
+  } catch (err: any) {
+    console.warn("[WP] getSiteChrome() failed:", err?.message || err);
+    return null;
+  }
 }

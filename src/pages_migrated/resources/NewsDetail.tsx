@@ -62,7 +62,7 @@ export default function NewsDetail({ wordpressData: item, newsData = [] }: any) 
             
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <span className="bg-[#f99d1c] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Press Release</span>
+                <span className="bg-[#f99d1c] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">{item.category || "Press Release"}</span>
                 <span className="text-[#11253e] text-[10px] font-bold uppercase tracking-widest">
                   {formatEventDate(item.date)}
                 </span>
@@ -89,14 +89,34 @@ export default function NewsDetail({ wordpressData: item, newsData = [] }: any) 
           </div>
         </section>
 
-        {/* Hero Image */}
-        <section className="max-w-7xl mx-auto px-6 -mt-10">
-          <div className="aspect-21/9 overflow-hidden rounded-sm shadow-2xl">
-            <ImageWithFallback 
-              src={item.image} 
-              alt={item.title} 
-              className="w-full h-full object-cover" 
-            />
+        {/* Hero Media */}
+        <section className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+          <div className="aspect-[21/9] overflow-hidden rounded-sm shadow-2xl bg-black">
+            {item.videoUrl ? (
+              item.videoUrl.includes("youtube.com") || item.videoUrl.includes("youtu.be") ? (
+                <iframe 
+                  className="w-full h-full" 
+                  src={`https://www.youtube.com/embed/${item.videoUrl.includes("v=") ? item.videoUrl.split("v=")[1].split("&")[0] : item.videoUrl.split("youtu.be/")[1]?.split("?")[0]}?autoplay=1&mute=1`} 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen
+                ></iframe>
+              ) : item.videoUrl.includes("vimeo.com") ? (
+                <iframe 
+                  className="w-full h-full" 
+                  src={`https://player.vimeo.com/video/${item.videoUrl.split("vimeo.com/")[1]?.split("?")[0]}?autoplay=1&muted=1`} 
+                  allow="autoplay; fullscreen" 
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <video className="w-full h-full object-cover" src={item.videoUrl} autoPlay muted loop playsInline controls />
+              )
+            ) : (
+              <ImageWithFallback 
+                src={item.image} 
+                alt={item.title} 
+                className="w-full h-full object-cover" 
+              />
+            )}
           </div>
         </section>
 
@@ -112,8 +132,8 @@ export default function NewsDetail({ wordpressData: item, newsData = [] }: any) 
               <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-8">
                 <div className="space-y-1">
                   <p className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Media Contact</p>
-                  <a href="mailto:press@nabhira.tech" className="text-sm font-bold text-[#11253e] hover:text-[#f99d1c] transition-colors inline-block">
-                    press@nabhira.tech
+                  <a href={`mailto:${item.mediaContact || "press@nabhira.tech"}`} className="text-sm font-bold text-[#11253e] hover:text-[#f99d1c] transition-colors inline-block">
+                    {item.mediaContact || "press@nabhira.tech"}
                   </a>
                 </div>
                 

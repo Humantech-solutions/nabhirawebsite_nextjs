@@ -26,6 +26,7 @@ interface BlogPost {
       name: string;
     };
   } | string;
+  customAuthorName?: string;
   categories?: {
     nodes: Array<{
       name: string;
@@ -149,9 +150,35 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
   }
 
   const postImage = post.featuredImage?.node?.sourceUrl || post.image || "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=1200";
-  const postAuthor = typeof post.author === 'string' ? post.author : post.author?.node?.name || "Nabhira Team";
+  const postAuthor = post.customAuthorName || (typeof post.author === 'string' ? post.author : post.author?.node?.name) || "Nabhira Team";
   const postDate = post.date ? new Date(post.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase() : "";
   const postCategory = post.categories?.nodes?.[0]?.name || "Artificial Intelligence";
+
+  const handleShare = (platform: string) => {
+    if (typeof window === 'undefined') return;
+    
+    const url = window.location.href;
+    const title = post.title;
+
+    if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank', 'width=600,height=400');
+    } else if (platform === 'linkedin') {
+      // Using the legacy shareArticle endpoint because it allows passing the title parameter,
+      // which is helpful for localhost testing where LinkedIn cannot scrape Open Graph tags.
+      window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank', 'width=600,height=400');
+    } else if (platform === 'native') {
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          url: url
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link copied to clipboard!');
+        });
+      }
+    }
+  };
 
   return (
     <>
@@ -209,13 +236,13 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
             {/* Sidebar / Social Share */}
             <aside className="lg:col-span-1 flex lg:flex-col items-center lg:items-end gap-6 order-2 lg:order-1 lg:sticky lg:top-32 h-fit">
               <span className="hidden lg:block text-[10px] font-bold text-[#11253e] uppercase tracking-[0.3em] mb-4">Share Insights</span>
-              <button className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
+              <button onClick={() => handleShare('twitter')} className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
                 <Twitter size={18} />
               </button>
-              <button className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
+              <button onClick={() => handleShare('linkedin')} className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
                 <Linkedin size={18} />
               </button>
-              <button className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
+              <button onClick={() => handleShare('native')} className="p-3 rounded-full border border-gray-100 text-[#11253e] hover:text-[#f99d1c] hover:border-[#f99d1c] transition-all cursor-pointer">
                 <Share2 size={18} />
               </button>
             </aside>

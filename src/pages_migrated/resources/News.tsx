@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ExternalLink, ArrowRight } from "lucide-react";
-import { renderHeroTitle, formatEventDate } from "../../lib/utils";
+import { renderHeroTitle, formatEventDate, formatQuotesToBold } from "../../lib/utils";
 
 export default function News({ wordpressData, newsData = [], globalSettings }: any) {
   useEffect(() => {
@@ -47,9 +47,9 @@ export default function News({ wordpressData, newsData = [], globalSettings }: a
                   <>In the <span className="text-[#f99d1c]">News</span></>
                 ))}
               </h1>
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                {heroS1Desc || "Global recognition and press mentions for our architectural contributions."}
-              </p>
+              <div className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                {formatQuotesToBold(heroS1Desc || "Global recognition and press mentions for our architectural contributions.") as any}
+              </div>
             </div>
           </div>
         </section>

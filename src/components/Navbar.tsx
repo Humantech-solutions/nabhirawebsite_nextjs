@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from '../assets/logo.png';
 
-export function Navbar() {
+export function Navbar({ data }: { data?: any }) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
@@ -19,7 +19,39 @@ export function Navbar() {
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
+    
+  // Merge WP Data if available
+  if (data?.menus?.primary && data.menus.primary.length > 0) {
+    navLinks = [];
+    menuData = {};
+    
+    data.menus.primary.forEach((item: any) => {
+      const topLabel = item.title.toUpperCase();
+      navLinks.push({ label: topLabel, key: topLabel, path: item.url });
+      
+      if (item.children && item.children.length > 0) {
+        const hasGrandchildren = item.children.some((child: any) => child.children && child.children.length > 0);
+        
+        if (hasGrandchildren || topLabel === 'SERVICES') {
+          menuData[topLabel] = {
+            type: "mega",
+            columns: item.children.map((child: any) => ({
+              title: child.title.toUpperCase(),
+              url: child.url,
+              items: child.children ? child.children.map((gc: any) => ({ title: gc.title, url: gc.url })) : [],
+            }))
+          };
+        } else {
+          menuData[topLabel] = {
+            type: "simple",
+            items: item.children.map((child: any) => ({ title: child.title, url: child.url }))
+          };
+        }
+      }
+    });
+  }
+
+  return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
@@ -32,7 +64,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuData: Record<string, any> = {
+  let menuData: Record<string, any> = {
     "SERVICES": {
       type: "mega",
       columns: [
@@ -97,7 +129,7 @@ export function Navbar() {
     }
   };
 
-  const navLinks = [
+  let navLinks: { label: string, key: string, path?: string }[] = [
     { label: "ABOUT US", key: "ABOUT US" },
     { label: "SERVICES", key: "SERVICES" },
     { label: "SOLUTIONS", key: "SOLUTIONS" },
@@ -106,6 +138,37 @@ export function Navbar() {
     { label: "CAREERS", key: "CAREERS" },
     { label: "CONTACT US", key: "CONTACT US" }
   ];
+
+  // Merge WP Data if available
+  if (data?.menus?.primary && data.menus.primary.length > 0) {
+    navLinks = [];
+    menuData = {};
+    
+    data.menus.primary.forEach((item: any) => {
+      const topLabel = item.title.toUpperCase();
+      navLinks.push({ label: topLabel, key: topLabel, path: item.url });
+      
+      if (item.children && item.children.length > 0) {
+        const hasGrandchildren = item.children.some((child: any) => child.children && child.children.length > 0);
+        
+        if (hasGrandchildren || topLabel === 'SERVICES') {
+          menuData[topLabel] = {
+            type: "mega",
+            columns: item.children.map((child: any) => ({
+              title: child.title.toUpperCase(),
+              url: child.url,
+              items: child.children ? child.children.map((gc: any) => ({ title: gc.title, url: gc.url })) : [],
+            }))
+          };
+        } else {
+          menuData[topLabel] = {
+            type: "simple",
+            items: item.children.map((child: any) => ({ title: child.title, url: child.url }))
+          };
+        }
+      }
+    });
+  }
 
   return (
     <nav 
@@ -129,9 +192,12 @@ export function Navbar() {
             {navLinks.map((link) => {
               const isDirectLink = !menuData[link.key];
               const routeMap: Record<string, string> = {
-                "CAREERS": "/careers",
-                "CONTACT US": "/contact" // assuming for now
-              };
+  "CAREERS": "/careers",
+  "CONTACT US": "/contact"
+};
+if (link.path && link.path !== '#') {
+  routeMap[link.key] = link.path;
+}
 
               const LabelContent = (
                 <div className="flex items-center space-x-1">
@@ -209,7 +275,9 @@ export function Navbar() {
                                 })()}
                               </div>
                               <ul className="space-y-3">
-                                {col.items.map((item: string, j: number) => {
+                                {col.items.map((itemObj: any, j: number) => {
+                                  const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                                  const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                   const solutionRoutes: Record<string, string> = {
                                     "Cloud Advisory": "/solutions/cloud-advisory",
                                     "Cloud Migration": "/solutions/cloud-migration",
@@ -228,6 +296,16 @@ export function Navbar() {
                                   };
 
                                   const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
+                                    if (dynamicUrl && dynamicUrl !== '#') {
+                                      return (
+                                        <Link href={dynamicUrl} 
+                                          className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          onClick={() => setActiveMenu(null)}
+                                        >
+                                          {children}
+                                        </Link>
+                                      );
+                                    }
                                     if (solutionRoutes[item]) {
                                       return (
                                         <Link href={solutionRoutes[item]} 
@@ -260,7 +338,9 @@ export function Navbar() {
                         </div>
                       ) : (
                         <div className="flex flex-col space-y-3">
-                          {menuData[link.key].items.map((item: string, i: number) => {
+                          {menuData[link.key].items.map((itemObj: any, i: number) => {
+                            const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                            const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
                               "About Nabhira": "/about",
                               "Leadership": "/leadership",
@@ -286,6 +366,16 @@ export function Navbar() {
                             };
                             
                             const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
+                              if (dynamicUrl && dynamicUrl !== '#') {
+                                return (
+                                  <Link href={dynamicUrl} 
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    {children}
+                                  </Link>
+                                );
+                              }
                               if (routes[item]) {
                                 return (
                                   <Link href={routes[item]} 
@@ -343,10 +433,13 @@ export function Navbar() {
             <div className="px-6 py-10 space-y-8">
               {navLinks.map((link) => {
                 const isDirectLink = !menuData[link.key];
-                const routeMap: Record<string, string> = {
-                  "CAREERS": "/careers",
-                  "CONTACT US": "/contact"
-                };
+              const routeMap: Record<string, string> = {
+  "CAREERS": "/careers",
+  "CONTACT US": "/contact"
+};
+if (link.path && link.path !== '#') {
+  routeMap[link.key] = link.path;
+}
 
                 return (
                   <div key={link.key} className="border-b border-[#11253e]/5 pb-6">
@@ -404,7 +497,9 @@ export function Navbar() {
                               );
                             })()}
                             <div className="space-y-4 pl-2 border-l border-gray-100">
-                              {col.items.map((item: string, j: number) => {
+                              {col.items.map((itemObj: any, j: number) => {
+                                  const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                                  const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                 const solutionRoutes: Record<string, string> = {
                                   "Cloud Advisory": "/solutions/cloud-advisory",
                                   "Cloud Migration": "/solutions/cloud-migration",
@@ -422,7 +517,17 @@ export function Navbar() {
                                   "Intelligent Automation": "/solutions/intelligent-automation"
                                 };
 
-                                if (solutionRoutes[item]) {
+                                if (dynamicUrl && dynamicUrl !== '#') {
+                                      return (
+                                        <Link href={dynamicUrl} 
+                                          className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          onClick={() => setActiveMenu(null)}
+                                        >
+                                          {item}
+                                        </Link>
+                                      );
+                                    }
+                                    if (solutionRoutes[item]) {
                                   return (
                                     <Link 
                                       key={j} 
@@ -445,7 +550,9 @@ export function Navbar() {
                         ))
                       ) : (
                         <div className="space-y-4 pl-2 border-l border-gray-100">
-                          {menuData[link.key].items.map((item: string, i: number) => {
+                          {menuData[link.key].items.map((itemObj: any, i: number) => {
+                            const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                            const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
                               "About Nabhira": "/about",
                               "Leadership": "/leadership",
@@ -470,7 +577,17 @@ export function Navbar() {
                               "Events": "/resources/events"
                             };
 
-                            if (routes[item]) {
+                            if (dynamicUrl && dynamicUrl !== '#') {
+                                return (
+                                  <Link href={dynamicUrl} 
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    {item}
+                                  </Link>
+                                );
+                              }
+                              if (routes[item]) {
                               return (
                                 <Link 
                                   key={i} 
