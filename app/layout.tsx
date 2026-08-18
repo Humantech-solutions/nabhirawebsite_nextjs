@@ -7,6 +7,7 @@ import { Navbar } from "../src/components/Navbar";
 import { Footer } from "../src/components/Footer";
 import { siteConfig } from "../src/config/site";
 import { constructMetadata, getSiteSchema } from "../src/lib/seo";
+import { getSiteChrome } from "../src/lib/wordpress";
 
 export const viewport: Viewport = {
   themeColor: "#11253e",
@@ -17,14 +18,15 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = constructMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const siteSchema = getSiteSchema();
+  const siteChrome = await getSiteChrome();
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -35,13 +37,13 @@ export default function RootLayout({
         className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden antialiased"
       >
         <header>
-          <Navbar />
+          <Navbar data={siteChrome} />
         </header>
         <main id="main-content" className="flex-grow pt-[80px] md:pt-[80px]">
           {children}
         </main>
         <footer>
-          <Footer />
+          <Footer data={siteChrome} />
         </footer>
       </body>
     </html>

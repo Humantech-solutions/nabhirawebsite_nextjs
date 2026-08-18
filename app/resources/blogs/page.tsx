@@ -1,5 +1,5 @@
 import Blogs from "@/src/pages_migrated/resources/Blogs";
-import { getAllPosts, getPageBySlug } from "@/src/lib/wordpress";
+import { getAllPosts, getPageBySlug, getSiteChrome } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
@@ -14,5 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const posts = await getAllPosts();
   const wordpressData = await getPageBySlug('blogs');
-  return <Blogs posts={posts} wordpressData={wordpressData} />;
+  const siteChrome = await getSiteChrome();
+  return <Blogs posts={posts} wordpressData={wordpressData} siteChrome={siteChrome} />;
 }

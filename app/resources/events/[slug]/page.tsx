@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
+  const eventsData = await getEvents();
 
   if (!event) return null;
 
@@ -59,7 +60,7 @@ export default async function Page({ params }: PageProps) {
           { name: event.title, item: `/resources/events/${slug}` },
         ])}
       />
-      <EventDetail wordpressData={event} />
+      <EventDetail wordpressData={event} eventsData={eventsData} />
     </>
   );
 }

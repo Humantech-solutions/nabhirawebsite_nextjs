@@ -205,7 +205,7 @@ const resourceLinks = [
 interface MobileSectionProps {
   id: string;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   openSection: string | null;
   toggle: (key: string) => void;
 }
@@ -236,22 +236,62 @@ const MobileSection = ({
   </div>
 );
 
-export function Footer() {
+export function Footer({ data }: { data?: any }) {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const toggle = (key: string) => setOpenSection(prev => prev === key ? null : key);
 
+  const siteDesc = data?.footer?.description || "{siteDesc}";
+  const siteCopyright = data?.footer?.copyright || "{siteCopyright}";
+  const logoSrc = data?.footer?.logoUrl || logo;
+  const siteTagline = data?.footer?.tagline || "{siteTagline}";
+  const tServices = data?.footer?.titles?.services || "Our Services";
+  const tIndustries = data?.footer?.titles?.industries || "Industries";
+  const tSolutions = data?.footer?.titles?.solutions || "Solutions";
+  const tResources = data?.footer?.titles?.resources || "Resources";
+  const tTopics = data?.footer?.titles?.topics || "Topics";
+
+  const hasDynamicMenus = data?.menus && Object.keys(data.menus).length > 0;
+
+  const finalServiceLinks = hasDynamicMenus && data.menus.footerServices?.length > 0 
+    ? data.menus.footerServices.map((item: any) => ({ label: item.title, to: item.url }))
+    : serviceLinks;
+    
+  const finalIndustryLinks = hasDynamicMenus && data.menus.footerIndustries?.length > 0 
+    ? data.menus.footerIndustries.map((item: any) => ({ label: item.title, to: item.url }))
+    : industryLinks;
+    
+  const finalSolutionLinks = hasDynamicMenus && data.menus.footerSolutions?.length > 0 
+    ? data.menus.footerSolutions.map((item: any) => ({ label: item.title, to: item.url }))
+    : solutionLinks;
+    
+  const finalResourceLinks = hasDynamicMenus && data.menus.footerResources?.length > 0 
+    ? data.menus.footerResources.map((item: any) => ({ label: item.title, to: item.url }))
+    : resourceLinks;
+    
+  const finalCompanyLinks = hasDynamicMenus && data.menus.footerCompany?.length > 0 
+    ? data.menus.footerCompany.map((item: any) => ({ label: item.title, to: item.url }))
+    : [{ label: "AI & ML", to: "#" }, { label: "Sustainability", to: "#" }, { label: "Cybersecurity", to: "#" }, { label: "Careers", to: "/careers" }];
+    
+  const finalPolicyLinks = hasDynamicMenus && data.menus.footerPolicy?.length > 0 
+    ? data.menus.footerPolicy.map((item: any) => ({ label: item.title, to: item.url }))
+    : [
+        { label: "Privacy Policy", to: "#" },
+        { label: "Terms of Use", to: "#" }
+      ];
+
+
   return (
     <footer className="bg-[#0b1b3d] text-white pt-12 md:pt-16 lg:pt-24 pb-8 md:pb-12 overflow-hidden relative">
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#f99d1c] opacity-5 -mb-24 -mr-24 blur-[120px]"></div>
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#f99d1c] opacity-5 -mb-24 -mr-24 blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Brand row on mobile (always visible) ── */}
         <div className="mb-8 md:mb-0">
           <div className="lg:hidden flex items-center mb-5">
             <Link href="/">
-              <Image src={logo} alt="Nabhira Logo" className="h-9 w-auto" />
+              <Image src={logoSrc} alt="Nabhira Logo" width={160} height={40} className="h-9 w-auto object-contain" />
             </Link>
           </div>
           <p className="lg:hidden text-white/60 text-[14px] font-light leading-relaxed mb-5">
@@ -261,12 +301,31 @@ export function Footer() {
           <div className="lg:hidden space-y-3 pb-6 border-b border-white/10">
             <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">Follow Us</h4>
             <div className="flex items-center flex-wrap gap-5">
-              {socialIcons.map((social) => (
-                <a key={social.name} href={social.href} aria-label={social.name}
-                  className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300">
-                  {social.svg}
-                </a>
-              ))}
+              {socialIcons.map((social) => {
+                let socialKey = social.name.toLowerCase();
+                if (socialKey === "x (twitter)" || socialKey === "x") socialKey = "x";
+                
+                let socialData = data?.social?.[socialKey];
+                let finalHref = (socialData && typeof socialData === "object") ? socialData.url : socialData;
+                
+                // If empty in admin, show default icons with their default href
+                if (!finalHref || finalHref === "#" || finalHref === "") {
+                  finalHref = social.href;
+                }
+                
+                let customIcon = (socialData && typeof socialData === "object") ? socialData.icon : null;
+                
+                return (
+                  <a key={social.name} href={finalHref} aria-label={social.name}
+                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300 flex items-center justify-center">
+                    {customIcon ? (
+                      <img src={customIcon} alt={social.name} className="w-5 h-5 object-contain" />
+                    ) : (
+                      social.svg
+                    )}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -277,34 +336,53 @@ export function Footer() {
           {/* Column 1 — Brand (desktop only) */}
           <div className="hidden lg:flex flex-col space-y-5">
             <div className="flex items-center">
-              <Link href="/"><Image src={logo} alt="Nabhira Logo" className="h-10 w-auto" /></Link>
+              <Link href="/"><Image src={logoSrc} alt="Nabhira Logo" width={160} height={40} className="h-10 w-auto object-contain" /></Link>
             </div>
             <div className="space-y-4">
               <p className="text-white/70 text-[14px] font-light leading-relaxed tracking-wide">
-                Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering and Agentic AI. We empower enterprises across 50+ countries to orchestrate their digital evolution through advanced data ecosystems and autonomous cloud platforms.
+                {siteDesc}
               </p>
               <p className="text-white/70 text-[12px] font-light italic">
-                Driving innovation through Cloud Advisory, Data Engineering, and Agentic AI solutions for the modern enterprise.
+                {siteTagline}
               </p>
             </div>
             <div className="space-y-4 pt-2">
               <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">Follow Us</h4>
               <div className="flex items-center flex-wrap gap-4">
-                {socialIcons.map((social) => (
-                  <a key={social.name} href={social.href} aria-label={social.name}
-                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300">
-                    {social.svg}
+                {socialIcons.map((social) => {
+                let socialKey = social.name.toLowerCase();
+                if (socialKey === "x (twitter)" || socialKey === "x") socialKey = "x";
+                
+                let socialData = data?.social?.[socialKey];
+                let finalHref = (socialData && typeof socialData === "object") ? socialData.url : socialData;
+                
+                // If empty in admin, show default icons with their default href
+                if (!finalHref || finalHref === "#" || finalHref === "") {
+                  finalHref = social.href;
+                }
+                
+                let customIcon = (socialData && typeof socialData === "object") ? socialData.icon : null;
+                
+                return (
+                  <a key={social.name} href={finalHref} aria-label={social.name}
+                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300 flex items-center justify-center">
+                    {customIcon ? (
+                      <img src={customIcon} alt={social.name} className="w-5 h-5 object-contain" />
+                    ) : (
+                      social.svg
+                    )}
                   </a>
-                ))}
+                );
+              })}
               </div>
             </div>
           </div>
 
           {/* Column 2 — Our Services */}
           <div>
-            <MobileSection id="services" title="Our Services" openSection={openSection} toggle={toggle}>
+            <MobileSection id="services" title={tServices} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {serviceLinks.map((link) => (
+                {finalServiceLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
@@ -315,17 +393,17 @@ export function Footer() {
 
           {/* Column 3 — Industries + Solutions */}
           <div>
-            <MobileSection id="industries" title="Industries" openSection={openSection} toggle={toggle}>
+            <MobileSection id="industries" title={tIndustries} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {industryLinks.map((link) => (
+                {finalIndustryLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
                 ))}
               </ul>
-              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Solutions</h4>
+              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">{tSolutions}</h4>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {solutionLinks.map((link) => (
+                {finalSolutionLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
@@ -336,20 +414,21 @@ export function Footer() {
 
           {/* Column 4 — Resources + Topics */}
           <div>
-            <MobileSection id="resources" title="Resources" openSection={openSection} toggle={toggle}>
+            <MobileSection id="resources" title={tResources} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {resourceLinks.map((link) => (
+                {finalResourceLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
                 ))}
               </ul>
-              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Topics</h4>
+              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">{tTopics}</h4>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                <li><a href="#" className="hover:text-white transition-colors">AI &amp; ML</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cybersecurity</a></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+                {finalCompanyLinks.map((link: any, idx: number) => (
+                  <li key={idx}>
+                    <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </MobileSection>
           </div>
@@ -358,12 +437,11 @@ export function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="pt-6 md:pt-8 border-t border-white/5 flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0 text-[10px] font-light text-white/40 uppercase tracking-widest">
-          <p className="text-center md:text-left">© 2026 NABHIRA TECHNOLOGIES PRIVATE LIMITED</p>
+          <p className="text-center md:text-left">{siteCopyright}</p>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Terms of Use</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Cookie Policy</a>
-            <Link href="/contact" className="hover:text-[#08b2ff] transition-colors">Contact Us</Link>
+            {finalPolicyLinks.map((link: any, idx: number) => (
+              <Link key={idx} href={link.to} className="hover:text-[#08b2ff] transition-colors">{link.label}</Link>
+            ))}
           </div>
         </div>
 
