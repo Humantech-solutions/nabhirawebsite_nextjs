@@ -1,5 +1,5 @@
 import CaseStudies from "@/src/pages_migrated/resources/CaseStudies";
-import { getPageBySlug, getCaseStudies, getGlobalSettings } from "@/src/lib/wordpress";
+import { getPageBySlug, getCaseStudies } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
@@ -12,14 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const [wordpressPage, caseStudiesData, fallbackGlobalSettings] = await Promise.all([
+  const [wordpressPage, caseStudiesData] = await Promise.all([
     getPageBySlug('case-studies'),
-    getCaseStudies(),
-    getGlobalSettings()
+    getCaseStudies()
   ]);
   
-  // Prioritize global settings from the case studies page itself if present
-  const globalSettings = wordpressPage?.globalSettings || fallbackGlobalSettings;
-  
-  return <CaseStudies wordpressData={wordpressPage} caseStudiesData={caseStudiesData} globalSettings={globalSettings} />;
+  return <CaseStudies wordpressData={wordpressPage} caseStudiesData={caseStudiesData} globalSettings={wordpressPage?.globalSettings} />;
 }

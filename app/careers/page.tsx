@@ -1,5 +1,6 @@
 import Careers from "@/src/pages_migrated/Careers";
-import { getPageBySlug, getCareerPosts } from "@/src/lib/wordpress";
+import { getPageBySlug, getGlobalSettings, getCareerPosts } from "@/src/lib/wordpress";
+import { getRecruitProJobs } from "@/src/lib/recruitpro";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
@@ -13,6 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const wordpressData = await getPageBySlug('careers');
-  const wpJobs = await getCareerPosts();
-  return <Careers wordpressData={wordpressData} wpJobs={wpJobs} />;
+  const recruitProJobs = await getRecruitProJobs() || [];
+  const wpJobsRaw = await getCareerPosts() || [];
+  const allJobs = [...recruitProJobs, ...wpJobsRaw];
+  
+  return <Careers wordpressData={wordpressData} wpJobs={allJobs} />;
 }

@@ -138,3 +138,46 @@ export const formatEventRange = (start: string, end: string) => {
 
   return `${formatEventDate(start)} - ${formatEventDate(end)}`;
 };
+
+/**
+ * Helper to check if an ACF component (object) has any populated fields
+ */
+function isACFObjectPopulated(obj: any): boolean {
+  if (obj === null || obj === undefined) return false;
+  if (typeof obj !== 'object') return obj !== "";
+  
+  for (const key of Object.keys(obj)) {
+    const val = obj[key];
+    if (val !== null && val !== undefined && val !== "" && (!Array.isArray(val) || val.length > 0)) {
+      if (typeof val === 'object' && !Array.isArray(val)) {
+        if (isACFObjectPopulated(val)) return true;
+      } else {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+/**
+ * Component-level merge for ACF data.
+ * If a top-level component (like heroSlides or limitlessTogether) is populated on the page,
+ * it completely overrides the fallback component. It does NOT merge individual fields.
+ */
+export function mergeACFData(pageData: any, fallbackData: any): any {
+  if (pageData === null || pageData === undefined) return fallbackData;
+  if (fallbackData === null || fallbackData === undefined) return pageData;
+  
+  const result = { ...fallbackData };
+  
+  for (const key of Object.keys(pageData)) {
+    const pageVal = pageData[key];
+    
+    // If the component has any data, we use it entirely, ignoring the fallback's sub-fields.
+    if (isACFObjectPopulated(pageVal)) {
+      result[key] = pageVal;
+    }
+  }
+  
+  return result;
+}

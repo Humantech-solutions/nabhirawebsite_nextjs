@@ -8,6 +8,7 @@ const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace(
 const FORCE_STATIC_FALLBACK = false;
 
 import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
+import { mergeACFData } from "./utils";
 
 export async function fetchGraphQL(query: string, variables = {}) {
   if (!WORDPRESS_API_URL || FORCE_STATIC_FALLBACK) {
@@ -143,7 +144,7 @@ export async function getGlobalSettings() {
   `;
 
   // Try multiple common pages where global settings might be attached
-  const uris = ["/contact/", "/", "/home/"];
+  const uris = ["/", "/home/", "/contact/"];
 
   for (const uri of uris) {
     const response = await fetchGraphQL(query(uri));
@@ -769,14 +770,62 @@ export async function getPageBySlug(slug: string) {
 
   const response = await fetchGraphQL(query, variables);
 
+  let page = response?.data?.page;
+
   // Try fallback without trailing slash if primary fails
-  if (!response?.data?.page) {
+  if (!page) {
     const fallbackVariables = { id: formattedSlug, idType: "URI" };
     const fallbackResponse = await fetchGraphQL(query, fallbackVariables);
-    if (fallbackResponse?.data?.page) return fallbackResponse.data.page;
+    page = fallbackResponse?.data?.page;
   }
 
-  const page = response?.data?.page;
+  // Final fallback: query by slug directly via the pages connection
+  if (!page) {
+    // We construct a query to search by name (slug) and get the first node
+    const slugQuery = `
+      ${GLOBAL_SETTINGS_FRAGMENT}
+      ${CONTACT_PAGE_FIELDS_FRAGMENT}
+      ${CAREERS_PAGE_FIELDS_FRAGMENT}
+      ${ABOUT_PAGE_FIELDS_FRAGMENT}
+      ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
+      ${PARTNERS_PAGE_FIELDS_FRAGMENT}
+      ${CLIENTS_PAGE_FIELDS_FRAGMENT}
+      ${AWARDS_PAGE_FIELDS_FRAGMENT}
+      query GetPageBySlugName($name: String!) {
+        pages(where: { name: $name }, first: 1) {
+          nodes {
+            id
+            title
+            content
+            slug
+            uri
+            date
+            featuredImage { node { sourceUrl } } 
+            ...GlobalSettingsFields
+            ...ContactPageFields
+            ...CareersPageFields
+            ...AboutPageFields
+            ...LeadershipPageFields
+            ...PartnersPageFields
+            ...ClientsPageFields
+            ...AwardsPageFields
+          }
+        }
+      }
+    `;
+    const slugName = slug.replace(/^\/|\/$/g, ''); // strip slashes for 'name' argument
+    const finalFallbackResponse = await fetchGraphQL(slugQuery, { name: slugName });
+    if (finalFallbackResponse?.data?.pages?.nodes?.length > 0) {
+      page = finalFallbackResponse.data.pages.nodes[0];
+    }
+  }
+
+  if (page) {
+    const globalFallback = await getGlobalSettings();
+    if (globalFallback) {
+      page.globalSettings = mergeACFData(page.globalSettings, globalFallback);
+    }
+  }
 
   // Fallback for known static pages if WP is down
   if (!page) {
@@ -1338,8 +1387,8 @@ export async function getCareerPosts() {
             careerDepartment
             careerLocation
             careerType
-            careerPosted
-            careerDescription
+            careerExperience
+            careerJobId
           }
         }
       }
@@ -1365,9 +1414,9 @@ export async function getCareerPosts() {
       department: node.careerJobOpeningDetails?.careerDepartment || "",
       location: node.careerJobOpeningDetails?.careerLocation || "",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
+      experience: node.careerJobOpeningDetails?.careerExperience || "",
+      jobId: node.careerJobOpeningDetails?.careerJobId || "",
       posted: formatDateToDaysAgo(node.date), // Use published date
-      salary: "Competitive", // kept for backward compat with JobDetails
-      description: node.careerJobOpeningDetails?.careerDescription || "",
     }));
   } catch (error) {
     console.error("[getCareerPosts] Error:", error);
@@ -1387,12 +1436,13 @@ export async function getCareerPostBySlug(slug: string) {
         slug
         title
         date
+        content
         careerJobOpeningDetails {
           careerDepartment
           careerLocation
           careerType
-          careerPosted
-          careerDescription
+          careerExperience
+          careerJobId
         }
       }
     }
@@ -1419,9 +1469,10 @@ export async function getCareerPostBySlug(slug: string) {
       location:
         node.careerJobOpeningDetails?.careerLocation || "Nabhira Technologies",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
+      experience: node.careerJobOpeningDetails?.careerExperience || "",
+      jobId: node.careerJobOpeningDetails?.careerJobId || "",
       posted: formatDateToDaysAgo(node.date),
-      salary: "Competitive",
-      description: node.careerJobOpeningDetails?.careerDescription || "",
+      content: node.content || "",
     };
   } catch (error) {
     console.error(`[getCareerPostBySlug] Error for slug "${slug}":`, error);
