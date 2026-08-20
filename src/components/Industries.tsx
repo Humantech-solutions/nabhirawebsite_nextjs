@@ -113,7 +113,7 @@ export function Industries({ data, industries: wpIndustries }: any) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-          {renderIndustries.map((industry, i) => {
+          {renderIndustries.map((industry: any, i) => {
             const Icon = industry.icon;
             const card = (
               <div className="group bg-white p-4 md:p-5 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[160px] md:h-[180px] flex flex-col">

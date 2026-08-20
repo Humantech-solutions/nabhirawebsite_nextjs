@@ -37,7 +37,7 @@ export async function generateStaticParams() {
         slug: slugArray,
       };
     })
-    .filter((param) => {
+    .filter((param: { slug: string[] }) => {
       const firstSlug = param.slug[0];
       // Exclude it if it belongs to a hardcoded root folder
       return firstSlug && !excludeSlugs.includes(firstSlug);

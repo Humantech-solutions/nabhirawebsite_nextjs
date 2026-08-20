@@ -12,6 +12,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
+  if (!posts || posts.length === 0) return [{ slug: 'fallback' }];
   return posts.map((post: any) => ({
     slug: post.slug,
   }));

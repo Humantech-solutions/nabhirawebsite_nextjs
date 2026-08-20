@@ -12,9 +12,10 @@ interface PageProps {
 export async function generateStaticParams() {
   try {
     const news = await getNews();
+    if (!news || news.length === 0) return [{ slug: 'fallback' }];
     return news.map((item) => ({ slug: item.slug }));
   } catch {
-    return [];
+    return [{ slug: 'fallback' }];
   }
 }
 

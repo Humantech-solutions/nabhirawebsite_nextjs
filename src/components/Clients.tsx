@@ -80,7 +80,7 @@ export function Clients({ data }: any) {
           }}
         >
           {/* Double the array for seamless looping */}
-          {[...renderClients, ...renderClients, ...renderClients].map((client, index) => (
+          {[...renderClients, ...renderClients, ...renderClients].map((client: any, index) => (
             <div 
               key={index} 
               className="inline-flex items-center space-x-3 px-12 py-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default group"
