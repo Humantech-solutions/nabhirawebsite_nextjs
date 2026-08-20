@@ -1,4 +1,5 @@
 import JobDetails from "@/src/pages_migrated/JobDetails";
+import { getRecruitProJobs, getRecruitProJobBySlug } from "@/src/lib/recruitpro";
 import { getCareerPosts, getCareerPostBySlug } from "@/src/lib/wordpress";
 import { constructMetadata, getBreadcrumbSchema } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
@@ -9,22 +10,45 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+import { jobs } from "@/src/data/migrated_data";
+
+function slugify(title: string, location: string) {
+  return `${title}-${location}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+}
+
 export async function generateStaticParams() {
-  const wpJobs = await getCareerPosts();
-  if (!wpJobs) return [];
+  const recruitProJobs = await getRecruitProJobs() || [];
+  const wpJobsRaw = await getCareerPosts() || [];
   
-  return wpJobs.map((job: any) => ({
+  const allJobs = [...recruitProJobs, ...wpJobsRaw];
+  
+  if (allJobs.length === 0) {
+    return jobs.map((job) => ({
+      slug: slugify(job.title, job.location),
+    }));
+  }
+  
+  return allJobs.map((job: any) => ({
     slug: job.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const wpJob = await getCareerPostBySlug(slug);
+  let wpJob = await getRecruitProJobBySlug(slug);
+  
+  if (!wpJob) {
+    const wpData = await getCareerPostBySlug(slug);
+    if (wpData) {
+      wpJob = {
+        title: wpData.title,
+        location: wpData.location
+      };
+    }
+  }
 
   if (!wpJob) return constructMetadata({ title: "Job Not Found" });
 
-  // Handle Wordpress data structure
   const title = wpJob.title || "Job Opportunity";
   const location = wpJob.location || "Nabhira Technologies";
 
@@ -36,15 +60,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const wpJob = await getCareerPostBySlug(slug);
+  
+  let mappedJob = await getRecruitProJobBySlug(slug);
+  
+  if (!mappedJob) {
+    const wpJob = await getCareerPostBySlug(slug);
+    if (wpJob) {
+      mappedJob = {
+        id: wpJob.jobId || slug,
+        slug: wpJob.slug,
+        title: wpJob.title,
+        location: wpJob.location || "Nabhira Technologies",
+        type: wpJob.type || "Full Time",
+        department: wpJob.department || "Engineering",
+        experience: wpJob.experience || "Not Specified",
+        jobId: wpJob.jobId || slug,
+        posted: wpJob.posted,
+        description: wpJob.content,
+      };
+    }
+  }
 
-  if (!wpJob) return null;
-
-  const title = wpJob.title || "Job Opportunity";
-  const location = wpJob.location || "Nabhira Technologies";
-  const jobId = wpJob.id?.toString() || slug;
-  const employmentType = wpJob.type || "Full Time";
-  const department = wpJob.department || "Engineering";
+  if (!mappedJob) return null;
 
   return (
     <>
@@ -52,11 +89,11 @@ export default async function Page({ params }: PageProps) {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "JobPosting",
-          identifier: jobId,
-          title: title,
-          description: `${title} - ${department} at Nabhira Technologies`,
-          datePosted: wpJob.date || new Date().toISOString().split('T')[0],
-          employmentType: employmentType,
+          identifier: mappedJob.id,
+          title: mappedJob.title,
+          description: `${mappedJob.title} - ${mappedJob.department} at Nabhira Technologies`,
+          datePosted: mappedJob.posted || new Date().toISOString().split('T')[0],
+          employmentType: mappedJob.type,
           hiringOrganization: {
             "@type": "Organization",
             name: siteConfig.name,
@@ -66,7 +103,7 @@ export default async function Page({ params }: PageProps) {
             "@type": "Place",
             address: {
               "@type": "PostalAddress",
-              addressLocality: location,
+              addressLocality: mappedJob.location,
             },
           },
         }}
@@ -75,10 +112,10 @@ export default async function Page({ params }: PageProps) {
         jsonLd={getBreadcrumbSchema([
           { name: "Home", item: "/" },
           { name: "Careers", item: "/careers" },
-          { name: title, item: `/careers/${slug}` },
+          { name: mappedJob.title, item: `/careers/${mappedJob.slug}` },
         ])}
       />
-      <JobDetails wpJob={wpJob} />
+      <JobDetails wpJob={mappedJob} />
     </>
   );
 }

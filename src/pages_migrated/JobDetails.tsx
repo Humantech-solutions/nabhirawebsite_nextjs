@@ -104,7 +104,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                 {/* Job ID badge instead of department */}
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-8 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="font-mono text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{job.id}</span>
+                  <span className="font-mono text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{job.jobId}</span>
                 </div>
                 <h1 className="text-[#11253e] text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{job.title}</h1>
                 
@@ -118,11 +118,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <GraduationCap size={16} className="text-[#f99d1c]" /> {job.experience}
                   </div>
-                  {job.salary && (
-                    <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
-                      <span className="text-[#f99d1c] font-bold">$$</span> {job.salary}
-                    </div>
-                  )}
+                  {/* Salary removed */}
                   {/* Copy & Share — pushed to flex-end */}
                   <div className="ml-auto flex items-center gap-1">
                     <CopyLinkButton />

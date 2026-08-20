@@ -1,5 +1,5 @@
 import Events from "@/src/pages_migrated/resources/Events";
-import { getPageBySlug, getEvents, getGlobalSettings } from "@/src/lib/wordpress";
+import { getPageBySlug, getEvents } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
@@ -12,14 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const [wordpressPage, eventsData, fallbackGlobalSettings] = await Promise.all([
+  const [wordpressPage, eventsData] = await Promise.all([
     getPageBySlug('events'),
-    getEvents(),
-    getGlobalSettings()
+    getEvents()
   ]);
 
-  // Prioritize global settings from the events page itself if present
-  const globalSettings = wordpressPage?.globalSettings || fallbackGlobalSettings;
-
-  return <Events wordpressData={wordpressPage} eventsData={eventsData} globalSettings={globalSettings} />;
+  return <Events wordpressData={wordpressPage} eventsData={eventsData} globalSettings={wordpressPage?.globalSettings} />;
 }

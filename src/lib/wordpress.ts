@@ -8,6 +8,7 @@ const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace(
 const FORCE_STATIC_FALLBACK = false;
 
 import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
+import { mergeACFData } from "./utils";
 
 export async function fetchGraphQL(query: string, variables = {}) {
   if (!WORDPRESS_API_URL || FORCE_STATIC_FALLBACK) {
@@ -143,7 +144,7 @@ export async function getGlobalSettings() {
   `;
 
   // Try multiple common pages where global settings might be attached
-  const uris = ["/contact/", "/", "/home/"];
+  const uris = ["/", "/home/", "/contact/"];
 
   for (const uri of uris) {
     const response = await fetchGraphQL(query(uri));
@@ -748,6 +749,12 @@ export async function getPageBySlug(slug: string) {
         slug
         uri
         date
+        template {
+          templateName
+        }
+        pageRoutingSettings {
+          nextjsTemplate
+        }
         featuredImage { node { sourceUrl } } 
         ...GlobalSettingsFields
         ...ContactPageFields
@@ -769,14 +776,68 @@ export async function getPageBySlug(slug: string) {
 
   const response = await fetchGraphQL(query, variables);
 
+  let page = response?.data?.page;
+
   // Try fallback without trailing slash if primary fails
-  if (!response?.data?.page) {
+  if (!page) {
     const fallbackVariables = { id: formattedSlug, idType: "URI" };
     const fallbackResponse = await fetchGraphQL(query, fallbackVariables);
-    if (fallbackResponse?.data?.page) return fallbackResponse.data.page;
+    page = fallbackResponse?.data?.page;
   }
 
-  const page = response?.data?.page;
+  // Final fallback: query by slug directly via the pages connection
+  if (!page) {
+    // We construct a query to search by name (slug) and get the first node
+    const slugQuery = `
+      ${GLOBAL_SETTINGS_FRAGMENT}
+      ${CONTACT_PAGE_FIELDS_FRAGMENT}
+      ${CAREERS_PAGE_FIELDS_FRAGMENT}
+      ${ABOUT_PAGE_FIELDS_FRAGMENT}
+      ${LEADERSHIP_PAGE_FIELDS_FRAGMENT}
+      ${PARTNERS_PAGE_FIELDS_FRAGMENT}
+      ${CLIENTS_PAGE_FIELDS_FRAGMENT}
+      ${AWARDS_PAGE_FIELDS_FRAGMENT}
+      query GetPageBySlugName($name: String!) {
+        pages(where: { name: $name }, first: 1) {
+          nodes {
+            id
+            title
+            content
+            slug
+            uri
+            date
+            template {
+              templateName
+            }
+            pageRoutingSettings {
+              nextjsTemplate
+            }
+            featuredImage { node { sourceUrl } } 
+            ...GlobalSettingsFields
+            ...ContactPageFields
+            ...CareersPageFields
+            ...AboutPageFields
+            ...LeadershipPageFields
+            ...PartnersPageFields
+            ...ClientsPageFields
+            ...AwardsPageFields
+          }
+        }
+      }
+    `;
+    const slugName = slug.replace(/^\/|\/$/g, ''); // strip slashes for 'name' argument
+    const finalFallbackResponse = await fetchGraphQL(slugQuery, { name: slugName });
+    if (finalFallbackResponse?.data?.pages?.nodes?.length > 0) {
+      page = finalFallbackResponse.data.pages.nodes[0];
+    }
+  }
+
+  if (page) {
+    const globalFallback = await getGlobalSettings();
+    if (globalFallback) {
+      page.globalSettings = mergeACFData(page.globalSettings, globalFallback);
+    }
+  }
 
   // Fallback for known static pages if WP is down
   if (!page) {
@@ -791,6 +852,103 @@ export async function getPageBySlug(slug: string) {
   }
 
   return page;
+}
+
+export async function getAllPages() {
+  const query = `
+    query GetAllPages {
+      pages(first: 100) {
+        nodes {
+          title
+          slug
+          uri
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    return response?.data?.pages?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching all pages:", error);
+    return [];
+  }
+}
+
+export interface SitemapLink {
+  name: string;
+  path: string;
+}
+
+export async function getSitemapData(): Promise<SitemapLink[]> {
+  const [
+    pages,
+    services,
+    industries,
+    solutions,
+    caseStudies,
+    events,
+    news,
+    careers
+  ] = await Promise.all([
+    getAllPages(),
+    getServices(),
+    getIndustries(),
+    getSolutions(),
+    getCaseStudies(),
+    getEvents(),
+    getNews(),
+    getCareerPosts()
+  ]);
+
+  const allLinks: SitemapLink[] = [];
+
+  pages.forEach((p: any) => {
+    if (p.uri && p.title) allLinks.push({ name: p.title, path: p.uri });
+  });
+
+  services.forEach((s: any) => {
+    if (s.slug && s.title) allLinks.push({ name: s.title, path: `/services/${s.slug}` });
+  });
+
+  industries.forEach((i: any) => {
+    if (i.slug && i.title) allLinks.push({ name: i.title, path: `/industries/${i.slug}` });
+  });
+
+  solutions.forEach((sol: any) => {
+    if (sol.slug && sol.title) allLinks.push({ name: sol.title, path: `/solutions/${sol.slug}` });
+  });
+
+  caseStudies.forEach((c: any) => {
+    if (c.slug && c.title) allLinks.push({ name: c.title, path: `/resources/case-studies/${c.slug}` });
+  });
+
+  events.forEach((e: any) => {
+    if (e.slug && e.title) allLinks.push({ name: e.title, path: `/resources/events/${e.slug}` });
+  });
+
+  news.forEach((n: any) => {
+    if (n.slug && n.title) allLinks.push({ name: n.title, path: `/resources/news/${n.slug}` });
+  });
+
+  careers.forEach((c: any) => {
+    if (c.slug && c.title) allLinks.push({ name: c.title, path: `/careers/${c.slug}` });
+  });
+
+  // Remove duplicates based on path
+  const seen = new Set();
+  const uniqueLinks: SitemapLink[] = [];
+  
+  allLinks.forEach(link => {
+    const p = link.path.endsWith('/') && link.path !== '/' ? link.path.slice(0, -1) : link.path;
+    if (!seen.has(p)) {
+      seen.add(p);
+      uniqueLinks.push(link);
+    }
+  });
+
+  return uniqueLinks;
 }
 
 export async function getHomePage() {
@@ -1122,6 +1280,28 @@ export async function getServices() {
   }
 }
 
+export async function getSolutions() {
+  const query = `
+    query GetSolutions {
+      solutions(first: 100) {
+        nodes {
+          id
+          title
+          slug
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query);
+    return response?.data?.solutions?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching solutions:", error);
+    return [];
+  }
+}
+
 export async function getIndustries() {
   const query = `
     query GetIndustries {
@@ -1338,8 +1518,8 @@ export async function getCareerPosts() {
             careerDepartment
             careerLocation
             careerType
-            careerPosted
-            careerDescription
+            careerExperience
+            careerJobId
           }
         }
       }
@@ -1365,9 +1545,9 @@ export async function getCareerPosts() {
       department: node.careerJobOpeningDetails?.careerDepartment || "",
       location: node.careerJobOpeningDetails?.careerLocation || "",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
+      experience: node.careerJobOpeningDetails?.careerExperience || "",
+      jobId: node.careerJobOpeningDetails?.careerJobId || "",
       posted: formatDateToDaysAgo(node.date), // Use published date
-      salary: "Competitive", // kept for backward compat with JobDetails
-      description: node.careerJobOpeningDetails?.careerDescription || "",
     }));
   } catch (error) {
     console.error("[getCareerPosts] Error:", error);
@@ -1387,12 +1567,13 @@ export async function getCareerPostBySlug(slug: string) {
         slug
         title
         date
+        content
         careerJobOpeningDetails {
           careerDepartment
           careerLocation
           careerType
-          careerPosted
-          careerDescription
+          careerExperience
+          careerJobId
         }
       }
     }
@@ -1419,9 +1600,10 @@ export async function getCareerPostBySlug(slug: string) {
       location:
         node.careerJobOpeningDetails?.careerLocation || "Nabhira Technologies",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
+      experience: node.careerJobOpeningDetails?.careerExperience || "",
+      jobId: node.careerJobOpeningDetails?.careerJobId || "",
       posted: formatDateToDaysAgo(node.date),
-      salary: "Competitive",
-      description: node.careerJobOpeningDetails?.careerDescription || "",
+      content: node.content || "",
     };
   } catch (error) {
     console.error(`[getCareerPostBySlug] Error for slug "${slug}":`, error);
@@ -2154,8 +2336,42 @@ export async function getSiteChrome(): Promise<SiteChromeData | null> {
     }
 
     const raw = await res.json();
+    const rawMenus = raw?.menus || {};
+
+    const cleanMenuUrl = (url: string): string => {
+      if (!url) return "#";
+      if (url.startsWith("/") || url.startsWith("#")) return url;
+      try {
+        const parsedUrl = new URL(url);
+        const wpApiHost = WORDPRESS_API_URL ? new URL(WORDPRESS_API_URL).hostname : '127.0.0.1';
+        if (parsedUrl.hostname === wpApiHost || parsedUrl.hostname === 'localhost' || parsedUrl.hostname === '127.0.0.1') {
+          let path = parsedUrl.pathname + parsedUrl.search;
+          if (path.startsWith("/wordpress/")) path = path.replace("/wordpress/", "/");
+          else if (path === "/wordpress") path = "/";
+          return path;
+        }
+        return url;
+      } catch (e) {
+        return url;
+      }
+    };
+
+    const transformMenuUrls = (menu: any[]): any[] => {
+      if (!Array.isArray(menu)) return menu;
+      return menu.map(item => ({
+        ...item,
+        url: cleanMenuUrl(item.url),
+        children: item.children ? transformMenuUrls(item.children) : []
+      }));
+    };
+
+    const cleanedMenus: any = {};
+    for (const key of Object.keys(rawMenus)) {
+      cleanedMenus[key] = transformMenuUrls(rawMenus[key]);
+    }
+
     return {
-      menus: raw?.menus || {},
+      menus: cleanedMenus,
       header: raw?.header || {},
       footer: raw?.footer || {},
       social: raw?.social || {},
