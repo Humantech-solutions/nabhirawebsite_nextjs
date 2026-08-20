@@ -12,7 +12,7 @@ import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitB
 export default function DataGovernance({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Data Governance & Quality | Nabhira Technologies";
+    document.title = "Data Governance & Quality | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

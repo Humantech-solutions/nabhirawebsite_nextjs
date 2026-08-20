@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('leadership');
   return constructMetadata({
     title: page?.title || "Our Leadership",
-    description: "Meet the visionaries behind the precision engineering at Nabhira Technologies.",
+    description: "Meet the visionaries behind the precision engineering at Hutech Solutions Technologies.",
   });
 }
 

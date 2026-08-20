@@ -125,7 +125,7 @@ export function Navbar({ data }: { data?: any }) {
     },
     "ABOUT US": {
       type: "simple",
-      items: ["About Nabhira", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
+      items: ["About Hutech Solutions", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
     }
   };
 
@@ -184,7 +184,7 @@ export function Navbar({ data }: { data?: any }) {
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center shrink-0">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-              <Image src={logo} alt="Nabhira Logo" className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} />
+              <Image src={logo} alt="Hutech Solutions Logo" className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} />
             </Link>
           </div>
           
@@ -342,7 +342,7 @@ if (link.path && link.path !== '#') {
                             const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                             const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
-                              "About Nabhira": "/about",
+                              "About Hutech Solutions": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
@@ -554,7 +554,7 @@ if (link.path && link.path !== '#') {
                             const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                             const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
-                              "About Nabhira": "/about",
+                              "About Hutech Solutions": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",

@@ -50,11 +50,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!wpJob) return constructMetadata({ title: "Job Not Found" });
 
   const title = wpJob.title || "Job Opportunity";
-  const location = wpJob.location || "Nabhira Technologies";
+  const location = wpJob.location || "Hutech Solutions Technologies";
 
   return constructMetadata({
     title: `${title} — ${location}`,
-    description: `${title} at Nabhira Technologies. View details and apply.`,
+    description: `${title} at Hutech Solutions Technologies. View details and apply.`,
   });
 }
 
@@ -70,7 +70,7 @@ export default async function Page({ params }: PageProps) {
         id: wpJob.jobId || slug,
         slug: wpJob.slug,
         title: wpJob.title,
-        location: wpJob.location || "Nabhira Technologies",
+        location: wpJob.location || "Hutech Solutions Technologies",
         type: wpJob.type || "Full Time",
         department: wpJob.department || "Engineering",
         experience: wpJob.experience || "Not Specified",
@@ -91,7 +91,7 @@ export default async function Page({ params }: PageProps) {
           "@type": "JobPosting",
           identifier: mappedJob.id,
           title: mappedJob.title,
-          description: `${mappedJob.title} - ${mappedJob.department} at Nabhira Technologies`,
+          description: `${mappedJob.title} - ${mappedJob.department} at Hutech Solutions Technologies`,
           datePosted: mappedJob.posted || new Date().toISOString().split('T')[0],
           employmentType: mappedJob.type,
           hiringOrganization: {

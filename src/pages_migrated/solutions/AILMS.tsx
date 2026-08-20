@@ -7,7 +7,7 @@ import { GraduationCap, BookOpen, Brain, CheckCircle2, Users, FileText, BarChart
 
 export default function AILMSSolution() {
   useEffect(() => {
-    document.title = "AI Powered Learning Management System | Nabhira Technologies";
+    document.title = "AI Powered Learning Management System | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -98,7 +98,7 @@ export default function AILMSSolution() {
             </h2>
             <div className="w-24 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
             <p className="text-[#11253e]/80 text-xl font-light leading-relaxed mb-6">
-              Nabhira LMS is an AI-powered learning management system designed to support modern digital education environments. The platform integrates artificial intelligence into academic workflows to assist educators, automate institutional management, and enhance student learning experiences.
+              Hutech Solutions LMS is an AI-powered learning management system designed to support modern digital education environments. The platform integrates artificial intelligence into academic workflows to assist educators, automate institutional management, and enhance student learning experiences.
             </p>
             <p className="text-[#11253e]/80 text-xl font-light leading-relaxed">
               The system leverages advanced AI technologies including GPT-4o, Gemini 2.0 Flash, and DALL-E 3 to generate structured educational materials, assessments, and visual learning resources within a unified digital ecosystem.
@@ -196,7 +196,7 @@ export default function AILMSSolution() {
             </h2>
             <div className="w-24 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
             <p className="text-[#11253e]/80 text-lg font-light max-w-3xl mx-auto">
-              Nabhira LMS introduces a unified intelligence layer that integrates artificial intelligence across the entire academic workflow. Educators and administrators can access AI-powered capabilities within a single platform.
+              Hutech Solutions LMS introduces a unified intelligence layer that integrates artificial intelligence across the entire academic workflow. Educators and administrators can access AI-powered capabilities within a single platform.
             </p>
           </Motion.div>
 
@@ -540,7 +540,7 @@ export default function AILMSSolution() {
                 </h2>
                 <div className="w-24 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Nabhira's AI-powered LMS can revolutionize your academic workflows and enhance student learning experiences.
+                  Discover how Hutech Solutions' AI-powered LMS can revolutionize your academic workflows and enhance student learning experiences.
                 </p>
               </div>
               

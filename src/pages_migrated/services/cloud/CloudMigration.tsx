@@ -23,7 +23,7 @@ import {
 
 export default function CloudMigration({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Migration Services | Nabhira Technologies";
+    document.title = "Cloud Migration Services | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

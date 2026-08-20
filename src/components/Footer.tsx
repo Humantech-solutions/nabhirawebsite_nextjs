@@ -30,7 +30,7 @@ const whyNabhiraQA = [
 export function LimitlessTogether({ data }: { data?: any }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const title = data?.ltTitle || "Why Nabhira?";
+  const title = data?.ltTitle || "Why Hutech Solutions?";
   const bgImage = data?.ltImage?.node?.sourceUrl || data?.ltImage?.sourceUrl || data?.ltImageUrl || "https://images.unsplash.com/photo-1758691737246-95bf8f09a997?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0d28lMjB3b21lbiUyMHRhbGtpbmclMjBpbiUyMG1vZGVybiUyMG9mZmljZSUyMG9mZmljZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080";
 
   const paragraphs = [
@@ -192,7 +192,7 @@ const solutionLinks = [
 ];
 
 const resourceLinks = [
-  { label: "About Nabhira", to: "/about" },
+  { label: "About Hutech Solutions", to: "/about" },
   { label: "Leadership", to: "/leadership" },
   { label: "Partners Ecosystem", to: "/partners" },
   { label: "Awards", to: "/awards" },
@@ -291,11 +291,11 @@ export function Footer({ data }: { data?: any }) {
         <div className="mb-8 md:mb-0">
           <div className="lg:hidden flex items-center mb-5">
             <Link href="/">
-              <Image src={logoSrc} alt="Nabhira Logo" width={160} height={40} className="h-9 w-auto object-contain" />
+              <Image src={logoSrc} alt="Hutech Solutions Logo" width={160} height={40} className="h-9 w-auto object-contain" />
             </Link>
           </div>
           <p className="lg:hidden text-white/60 text-[14px] font-light leading-relaxed mb-5">
-            Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI — empowering enterprises across 50+ countries.
+            Hutech Solutions is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI — empowering enterprises across 50+ countries.
           </p>
           {/* Social icons always visible on mobile */}
           <div className="lg:hidden space-y-3 pb-6 border-b border-white/10">
@@ -336,7 +336,7 @@ export function Footer({ data }: { data?: any }) {
           {/* Column 1 — Brand (desktop only) */}
           <div className="hidden lg:flex flex-col space-y-5">
             <div className="flex items-center">
-              <Link href="/"><Image src={logoSrc} alt="Nabhira Logo" width={160} height={40} className="h-10 w-auto object-contain" /></Link>
+              <Link href="/"><Image src={logoSrc} alt="Hutech Solutions Logo" width={160} height={40} className="h-10 w-auto object-contain" /></Link>
             </div>
             <div className="space-y-4">
               <p className="text-white/70 text-[14px] font-light leading-relaxed tracking-wide">

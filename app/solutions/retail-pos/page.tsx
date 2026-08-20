@@ -6,8 +6,8 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('retail-pos');
   return constructMetadata({
-    title: page?.title || "Retail POS System | Nabhira",
-    description: "Modern Point of Sale systems for retail and service industries by Nabhira.",
+    title: page?.title || "Retail POS System | Hutech Solutions",
+    description: "Modern Point of Sale systems for retail and service industries by Hutech Solutions.",
   });
 }
 

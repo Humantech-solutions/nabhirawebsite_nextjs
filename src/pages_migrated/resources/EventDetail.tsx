@@ -38,7 +38,7 @@ export default function EventDetail({
 }: any) {
   useEffect(() => {
     if (event) {
-      document.title = `${event.title} | Nabhira Technologies`;
+      document.title = `${event.title} | Hutech Solutions Technologies`;
       window.scrollTo(0, 0);
     }
   }, [event]);
@@ -176,7 +176,7 @@ export default function EventDetail({
                   <ul>
                     <li>Strategic roadmap for 2026 digital transformations</li>
                     <li>Exclusive access to proprietary architecture frameworks</li>
-                    <li>One-on-one consulting with senior Nabhira architects</li>
+                    <li>One-on-one consulting with senior Hutech Solutions architects</li>
                     <li>Network with Fortune 500 technology leaders</li>
                   </ul>
                 `;

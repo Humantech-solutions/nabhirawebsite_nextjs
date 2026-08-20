@@ -14,7 +14,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
   const heroData = gs?.heroSlides;
 
   useEffect(() => {
-    document.title = "Leadership | Nabhira Technologies";
+    document.title = "Leadership | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -24,7 +24,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
     {
       name: lp?.leader1Name || "Aditya Vardhan",
       role: lp?.leader1Role || "Chief Executive Officer",
-      bio: lp?.leader1Bio || "With over 20 years of experience in digital transformation, Aditya leads Nabhira's vision to architect the future of enterprise intelligence.",
+      bio: lp?.leader1Bio || "With over 20 years of experience in digital transformation, Aditya leads Hutech Solutions' vision to architect the future of enterprise intelligence.",
       image: lp?.leader1Image?.node?.sourceUrl || lp?.leader1Image?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc3MTg5OTAyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       linkedinUrl: lp?.leader1LinkedinUrl,
       linkedinIconType: lp?.leader1LinkedinIconType || 'lucide',
@@ -38,7 +38,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
     {
       name: lp?.leader2Name || "Meera Krishnan",
       role: lp?.leader2Role || "Chief Technology Officer",
-      bio: lp?.leader2Bio || "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Nabhira's market-leading solutions.",
+      bio: lp?.leader2Bio || "Meera is a pioneer in Cloud-native architectures and AI, driving the technological excellence that defines Hutech Solutions' market-leading solutions.",
       image: lp?.leader2Image?.node?.sourceUrl || lp?.leader2Image?.sourceUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY2VjdXRpdmUlMjB3b21hbiUyMHN1aXR8ZW58MXx8fHwxNzcxODk5MDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       linkedinUrl: lp?.leader2LinkedinUrl,
       linkedinIconType: lp?.leader2LinkedinIconType || 'lucide',
@@ -156,7 +156,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
           <div className="absolute inset-0 z-0">
             <ImageWithFallback
               src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1700809888987-cf2b29ecbd2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBsZWFkZXJzaGlwJTIwdGVhbSUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzE4OTkwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080"}
-              alt="Nabhira Leadership"
+              alt="Hutech Solutions Leadership"
               className="w-full h-full object-cover opacity-40 mix-blend-screen"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -249,7 +249,7 @@ export default function Leadership({ wordpressData }: { wordpressData?: any }) {
             </h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-[#11253e] font-light leading-relaxed">
-                {formatQuotesToBold(lp?.advisorsDescription || "Nabhira is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.")}
+                {formatQuotesToBold(lp?.advisorsDescription || "Hutech Solutions is advised by a globally diverse board of industry veterans who bring decades of experience from the world's leading technology and consulting firms, ensuring our strategic direction remains at the absolute forefront of digital innovation.")}
               </p>
             </div>
           </div>

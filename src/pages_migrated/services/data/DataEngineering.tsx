@@ -35,7 +35,7 @@ import {
 export default function DataEngineering({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Data Engineering Services | Nabhira Technologies";
+    document.title = "Data Engineering Services | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

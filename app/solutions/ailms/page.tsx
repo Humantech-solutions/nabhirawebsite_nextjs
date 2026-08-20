@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('lms');
   return constructMetadata({
-    title: page?.title || "AI Powered Learning Management System | Nabhira Technologies",
+    title: page?.title || "AI Powered Learning Management System | Hutech Solutions Technologies",
     description: "Learning Management Systems for effective corporate training and education.",
   });
 }

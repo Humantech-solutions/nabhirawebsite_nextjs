@@ -46,7 +46,7 @@ export default async function Page({ params }: PageProps) {
           description: study.challengeDescription || study.challenge,
           image: study.image,
           datePublished: study.date || "2026-01-01",
-          authorName: "Nabhira Architects",
+          authorName: "Hutech Solutions Architects",
           url: url,
         })}
       />

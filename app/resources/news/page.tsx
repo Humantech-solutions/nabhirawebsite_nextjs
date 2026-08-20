@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('news');
   return constructMetadata({
     title: page?.title || "In the News",
-    description: "Stay updated with Nabhira's latest milestones, partnerships, and industry recognitions.",
+    description: "Stay updated with Hutech Solutions' latest milestones, partnerships, and industry recognitions.",
   });
 }
 

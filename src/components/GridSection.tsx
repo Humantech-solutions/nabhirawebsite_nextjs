@@ -151,19 +151,19 @@ export function WhatsNew({ data }: WhatsNewProps) {
     };
   }) : [
     {
-      title: "Nabhira & NVIDIA Partner to Advance AI-Native 5G Cloud Network Solutions",
+      title: "Hutech Solutions & NVIDIA Partner to Advance AI-Native 5G Cloud Network Solutions",
       image: "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbG93aW5nJTIwYmx1ZSUyMHRlY2hub2xvZ3klMjBnbGFzc3xlbnwxfHx8fDE3NzE3Nzc0ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       date: "FEB 18 2026",
       href: "#"
     },
     {
-      title: "Nabhira Announces Q3 Financial Results for Digital Services Boom 2025",
+      title: "Hutech Solutions Announces Q3 Financial Results for Digital Services Boom 2025",
       image: "https://images.unsplash.com/photo-1769008301376-9a349cf2177b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMHNreXNjcmFwZXIlMjBsb3clMjBhbmdsZXxlbnwxfHx8fDE3NzE3Nzc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       date: "FEB 15 2026",
       href: "#"
     },
     {
-      title: "Microsoft & Nabhira Accelerate Driven Decarbonization for Banking",
+      title: "Microsoft & Hutech Solutions Accelerate Driven Decarbonization for Banking",
       image: "https://images.unsplash.com/photo-1736175549681-c24c552da1e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGJsdWUlMjB3YXZ5JTIwcGF0dGVybiUyMHRlY2h8ZW58MXx8fHwxNzcxNzc3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       date: "FEB 12 2026",
       href: "#"
@@ -226,7 +226,7 @@ export function WhatsNew({ data }: WhatsNewProps) {
               {formatQuotesToBold(data?.settings?.wnTitle || "What's New")}
             </h2>
             <p className="text-sm text-gray-500 font-light">
-              {formatQuotesToBold(data?.settings?.wnSubtitle || "The current and future news from Nabhira and around the world.")}
+              {formatQuotesToBold(data?.settings?.wnSubtitle || "The current and future news from Hutech Solutions and around the world.")}
             </p>
           </div>
           <div className="flex space-x-2">

@@ -21,7 +21,7 @@ export default function Contact({ wordpressData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact Us | Nabhira Technologies";
+    document.title = "Contact Us | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -141,7 +141,7 @@ export default function Contact({ wordpressData }: any) {
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={acfHero?.heroImage?.node?.sourceUrl || acfHero?.heroImage || wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1769146109206-e87b458649a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTk4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
-            alt="Nabhira Contact"
+            alt="Hutech Solutions Contact"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -197,7 +197,7 @@ export default function Contact({ wordpressData }: any) {
                     })()}
                   </h2>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist. For growing your business with Nabhira, please drop us a line – our experts will contact you soon.")}
+                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist. For growing your business with Hutech Solutions, please drop us a line – our experts will contact you soon.")}
                   </p>
                 </div>
 

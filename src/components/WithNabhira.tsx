@@ -6,7 +6,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { formatQuotesToBold } from "../lib/utils";
 
 export function WithNabhira({ data }: any) {
-  const sectionTitle = data?.wnTitle || "With Nabhira";
+  const sectionTitle = data?.wnTitle || "With Hutech Solutions";
   const items = [
     {
       title: data?.wnI1Title || "Future ready with Cloud",
@@ -35,7 +35,7 @@ export function WithNabhira({ data }: any) {
     <section className="bg-white py-20 md:py-24 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         
-        {/* WITH NABHIRA Header */}
+        {/* WITH HUTECH SOLUTIONS Header */}
         <div className="mb-10 text-center md:text-left flex flex-col items-center md:items-start">
           <Motion.h2 
             initial={{ opacity: 0, x: -15 }}

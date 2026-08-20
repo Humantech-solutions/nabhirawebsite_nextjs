@@ -15,7 +15,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
   const fields = wordpressData?.awardsPageFields;
 
   useEffect(() => {
-    document.title = "Awards & Recognition | Nabhira Technologies";
+    document.title = "Awards & Recognition | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -42,7 +42,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
         year: "2025",
         title: "Global AI Innovator of the Year",
         org: "Tech Leadership Summit",
-        desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
+        desc: "Recognizing Hutech Solutions' pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
         icon: <Trophy size={24} />
       },
       {

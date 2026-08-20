@@ -11,7 +11,7 @@ import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function POSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "AI-Powered Point of Sale | Nabhira Technologies";
+    document.title = "AI-Powered Point of Sale | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -72,7 +72,7 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira's AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity.")}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Hutech Solutions' AI-Powered POS isn't just a transaction tool; it's a strategic asset that transforms every checkout into a data-driven opportunity.")}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
@@ -166,7 +166,7 @@ export default function POSSolution({ wordpressData }: { wordpressData?: any }) 
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <h2 className="text-white text-4xl font-bold mb-8">{formatQuotesToBold("Ready to Transform Your Retail Experience?")}</h2>
             <p className="text-white/60 text-lg font-light max-w-2xl mx-auto mb-12">
-              {formatQuotesToBold("Join leading global brands that trust Nabhira for their mission-critical retail infrastructure.")}
+              {formatQuotesToBold("Join leading global brands that trust Hutech Solutions for their mission-critical retail infrastructure.")}
             </p>
             <button className="bg-[#f99d1c] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
               Schedule a Consultation

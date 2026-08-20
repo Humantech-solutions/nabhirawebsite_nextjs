@@ -6,8 +6,8 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('enterprise-pos');
   return constructMetadata({
-    title: page?.title || "Enterprise POS & Franchise Management | Nabhira",
-    description: "Centralized control for multi-outlet operations with Nabhira's AI-Powered Enterprise POS.",
+    title: page?.title || "Enterprise POS & Franchise Management | Hutech Solutions",
+    description: "Centralized control for multi-outlet operations with Hutech Solutions' AI-Powered Enterprise POS.",
   });
 }
 

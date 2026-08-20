@@ -21,7 +21,7 @@ import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function PolicyEngineSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Policy Reinforcement Agent | Nabhira Technologies";
+    document.title = "Policy Reinforcement Agent | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -143,7 +143,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                 Manual validation by trained staff creates operational bottlenecks, delays processing, and increases the risk of errors. Inconsistent interpretation of policies can lead to unfair claim decisions, compliance violations, and regulatory penalties.
               </p>
               <p className="text-xl font-medium text-[#11253e]">
-                Nabhira&apos;s Policy Reinforcement Agent automates policy management, validation, and enforcement—ensuring accurate, consistent, and compliant decision-making across the organization.
+                Hutech Solutions&apos; Policy Reinforcement Agent automates policy management, validation, and enforcement—ensuring accurate, consistent, and compliant decision-making across the organization.
               </p>
             </div>
           </Motion.div>
@@ -251,7 +251,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
               </h2>
               <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
               <p className="text-white/90 text-xl font-light leading-relaxed">
-                Nabhira Policy Reinforcement Agent
+                Hutech Solutions Policy Reinforcement Agent
               </p>
             </div>
             
@@ -264,7 +264,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                 className="space-y-8"
               >
                 <p className="text-white text-lg font-light leading-relaxed">
-                  Nabhira's Policy Reinforcement Agent integrates directly with enterprise applications to automate the entire policy management lifecycle.
+                  Hutech Solutions' Policy Reinforcement Agent integrates directly with enterprise applications to automate the entire policy management lifecycle.
                 </p>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
                   The system extracts rules from policy documents, validates claims automatically, and ensures consistent policy enforcement.
@@ -494,7 +494,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                 </h2>
                 <div className="w-24 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Nabhira&apos;s Policy Reinforcement Agent can transform your compliance operations and reduce operational costs.
+                  Discover how Hutech Solutions&apos; Policy Reinforcement Agent can transform your compliance operations and reduce operational costs.
                 </p>
               </div>
               

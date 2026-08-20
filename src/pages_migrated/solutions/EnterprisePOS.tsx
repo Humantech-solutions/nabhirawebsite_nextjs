@@ -8,7 +8,7 @@ import { Store, TrendingUp, Eye, AlertCircle, Layers, CheckCircle2, Shield, Zap,
 
 export default function EnterprisePOSSolution({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Enterprise POS & Franchise Management Platform | Nabhira Technologies";
+    document.title = "Enterprise POS & Franchise Management Platform | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -123,7 +123,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 Head office teams frequently lack real-time control over pricing, promotions, and store-level performance. Without centralized systems, businesses face operational inefficiencies, reporting errors, and limited transparency across their network.
               </p>
               <p className="text-xl font-medium text-[#11253e]">
-                Nabhira's Enterprise POS & Franchise Management Platform provides a centralized system to manage billing, inventory, sales tracking, and outlet performance—helping businesses scale efficiently while maintaining full operational control.
+                Hutech Solutions' Enterprise POS & Franchise Management Platform provides a centralized system to manage billing, inventory, sales tracking, and outlet performance—helping businesses scale efficiently while maintaining full operational control.
               </p>
             </div>
           </Motion.div>
@@ -244,7 +244,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 className="space-y-8"
               >
                 <p className="text-white text-lg font-light leading-relaxed">
-                  Nabhira's Retail POS System is a packaged web-based platform designed for retail chains and food businesses operating across multiple outlets.
+                  Hutech Solutions' Retail POS System is a packaged web-based platform designed for retail chains and food businesses operating across multiple outlets.
                 </p>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
                   The solution centralizes operations while allowing each outlet to function independently within a controlled framework. Head office teams gain full visibility into sales performance, inventory, and profitability through real-time dashboards.
@@ -554,7 +554,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 </h2>
                 <div className="w-24 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Nabhira's Enterprise POS Platform can centralize your operations and accelerate franchise growth.
+                  Discover how Hutech Solutions' Enterprise POS Platform can centralize your operations and accelerate franchise growth.
                 </p>
               </div>
               

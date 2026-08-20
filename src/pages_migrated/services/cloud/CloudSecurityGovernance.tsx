@@ -25,7 +25,7 @@ import {
 
 export default function CloudSecurityGovernance({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Security & Governance | Nabhira Technologies";
+    document.title = "Cloud Security & Governance | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

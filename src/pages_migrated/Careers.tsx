@@ -189,7 +189,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                 ?.sourceUrl ||
               heroImg
             }
-            alt="Nabhira Careers"
+            alt="Hutech Solutions Careers"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -270,7 +270,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
               <p className="text-[#11253e] font-light leading-relaxed text-sm">
                 {formatQuotesToBold(
                   pageFields?.culture2Desc ||
-                    "Working at Nabhira means impacting Fortune 500 enterprises across continents, shaping the digital backbone of the global economy.",
+                    "Working at Hutech Solutions means impacting Fortune 500 enterprises across continents, shaping the digital backbone of the global economy.",
                 )}
               </p>
             </div>
@@ -440,7 +440,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                   src={
                     pageFields?.internshipImage?.node?.sourceUrl || campusImg
                   }
-                  alt="Nabhira Internship Programme"
+                  alt="Hutech Solutions Internship Programme"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#11253e]/60 via-transparent to-transparent"></div>
@@ -482,14 +482,14 @@ export default function Careers({ wordpressData, wpJobs }: any) {
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-light tracking-tight mb-4">
                   {formatQuotesToBold(
                     pageFields?.internshipTitle ||
-                      'Launch Your Career \n"at Nabhira"',
+                      'Launch Your Career \n"at Hutech Solutions"',
                   )}
                 </h2>
                 <div className="h-[2px] w-16 bg-[#f99d1c] mb-6"></div>
                 <p className="text-[#11253e] font-light leading-relaxed">
                   {formatQuotesToBold(
                     pageFields?.internshipDesc ||
-                      "The Nabhira Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects.",
+                      "The Hutech Solutions Emerging Talent Programme is a structured 12-week immersion into enterprise technology, strategy consulting, and AI-driven innovation. Work alongside senior architects on real client engagements — not internal projects.",
                   )}
                 </p>
               </div>
@@ -630,7 +630,7 @@ export default function Careers({ wordpressData, wpJobs }: any) {
             </div>
             <h2 className="text-[#11253e] text-3xl md:text-[48px] font-light tracking-tight leading-tight">
               {formatQuotesToBold(
-                pageFields?.advantageTitle || 'Why Nabhira is "Different"',
+                pageFields?.advantageTitle || 'Why Hutech Solutions is "Different"',
               )}
             </h2>
           </Motion.div>

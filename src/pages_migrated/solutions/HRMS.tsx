@@ -8,7 +8,7 @@ import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function HRMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "HRMS and Payroll Solutions | Nabhira Technologies";
+    document.title = "HRMS and Payroll Solutions | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -45,7 +45,7 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {formatQuotesToBold(heroData?.heroS1Desc || "Go beyond simple payroll. Nabhira’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance.")}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Go beyond simple payroll. Hutech Solutions’s HRMS leverages AI to identify high-potential talent, optimize performance, and simplify global compliance.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -174,7 +174,7 @@ export default function HRMSSolution({ wordpressData }: { wordpressData?: any })
                 },
                 {
                   title: "Learning (LMS)",
-                  desc: "Native integration with Nabhira’s AI LMS for seamless skills development and compliance training.",
+                  desc: "Native integration with Hutech Solutions’s AI LMS for seamless skills development and compliance training.",
                   icon: <Users className="text-[#f99d1c]" />
                 },
                 {

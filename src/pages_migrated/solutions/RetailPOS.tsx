@@ -222,7 +222,7 @@ const problemPoints = [
 
 export default function RetailPOS({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Retail POS System | Nabhira Technologies";
+    document.title = "Retail POS System | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

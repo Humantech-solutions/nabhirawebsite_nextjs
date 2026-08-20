@@ -78,7 +78,7 @@ export const navigationConfig = {
     "ABOUT US": {
       type: "simple" as const,
       items: [
-        { label: "About Nabhira", href: "/about" },
+        { label: "About Hutech Solutions", href: "/about" },
         { label: "Leadership", href: "/leadership" },
         { label: "Partners Ecosystem", href: "/partners" },
         { label: "Our Clients", href: "/clients" },
@@ -118,7 +118,7 @@ export const navigationConfig = {
       { label: "HRMS and Payroll Solutions", href: "/solutions/hrms" }
     ],
     resources: [
-      { label: "About Nabhira", href: "/about" },
+      { label: "About Hutech Solutions", href: "/about" },
       { label: "Leadership", href: "/leadership" },
       { label: "Partners Ecosystem", href: "/partners" },
       { label: "Awards", href: "/awards" },

@@ -32,7 +32,7 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight mb-8">
-              {formatQuotesToBold("Why Move to the Cloud \n^with Nabhira?^")}
+              {formatQuotesToBold("Why Move to the Cloud \n^with Hutech Solutions?^")}
             </h2>
             <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed">
               {formatQuotesToBold("Cloud is more than just someone else's server. It's an opportunity to rebuild your business for ^agility, resilience, and speed.^")}

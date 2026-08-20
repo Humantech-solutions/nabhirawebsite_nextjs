@@ -51,7 +51,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
       id: 1,
       title: "The Rise of Agentic AI: Beyond Simple Automation",
       excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-      author: "Dr. Arvan Nabhira",
+      author: "Dr. Arvan Hutech Solutions",
       date: "Feb 20, 2026",
       slug: "agentic-ai",
       category: "Artificial Intelligence",
@@ -59,7 +59,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
       content: `
         <p className="mb-6">The landscape of Artificial Intelligence is undergoing a seismic shift. We are moving beyond the era of passive chatbots and simple automation into the age of Agentic AI—systems capable of autonomous reasoning, goal-setting, and execution within complex, real-world environments.</p>
         <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Understanding Agency</h2>
-        <p className="mb-6">Unlike traditional AI that requires constant prompting, agentic systems are designed with 'agency'—the ability to decompose high-level objectives into actionable steps. For Nabhira Technologies, this represents the ultimate architectural challenge: building the digital nervous systems that allow these agents to interact securely with legacy enterprise data.</p>
+        <p className="mb-6">Unlike traditional AI that requires constant prompting, agentic systems are designed with 'agency'—the ability to decompose high-level objectives into actionable steps. For Hutech Solutions Technologies, this represents the ultimate architectural challenge: building the digital nervous systems that allow these agents to interact securely with legacy enterprise data.</p>
         <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-4 my-12 italic text-xl text-[#11253e] bg-[#f99d1c]/5">
           "The true power of AI isn't in its ability to predict the next word, but in its potential to navigate the next business crisis autonomously."
         </blockquote>
@@ -82,7 +82,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
         <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">The New Geography of Data</h2>
         <p className="mb-6">National borders have returned to the digital realm. Governments are increasingly demanding that data generated within their territory stays within their territory. This has led to the rise of 'Cloud Sovereignty'—a strategy where infrastructure is localized but managed through a unified global control plane.</p>
         <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Strategic Implementation</h2>
-        <p className="mb-6">At Nabhira Technologies, we advocate for a 'Sovereign-by-Design' approach. This means architecting applications from day one to be location-aware, with automated data routing that ensures compliance without sacrificing performance or developer velocity.</p>
+        <p className="mb-6">At Hutech Solutions Technologies, we advocate for a 'Sovereign-by-Design' approach. This means architecting applications from day one to be location-aware, with automated data routing that ensures compliance without sacrificing performance or developer velocity.</p>
         <p className="mb-6">The transition to sovereign cloud architectures is not just a compliance checkbox; it is a competitive advantage for enterprises that want to build deep trust in the markets they serve.</p>
       `
     },
@@ -108,7 +108,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
       id: 4,
       title: "Modernization Is Now a Survival Strategy",
       excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-      author: "Dr. Arvan Nabhira",
+      author: "Dr. Arvan Hutech Solutions",
       date: "Mar 01, 2026",
       slug: "modernization-survival",
       category: "AI Modernization",
@@ -130,7 +130,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
   const post = postProp || blogPosts.find(p => p.id === Number(idOrSlug) || p.slug === idOrSlug);
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} | Nabhira Technologies`;
+      document.title = `${post.title} | Hutech Solutions Technologies`;
       window.scrollTo(0, 0);
     }
   }, [post]);
@@ -150,7 +150,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
   }
 
   const postImage = post.featuredImage?.node?.sourceUrl || post.image || "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=1200";
-  const postAuthor = post.customAuthorName || (typeof post.author === 'string' ? post.author : post.author?.node?.name) || "Nabhira Team";
+  const postAuthor = post.customAuthorName || (typeof post.author === 'string' ? post.author : post.author?.node?.name) || "Hutech Solutions Team";
   const postDate = post.date ? new Date(post.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase() : "";
   const postCategory = post.categories?.nodes?.[0]?.name || "Artificial Intelligence";
 
@@ -264,7 +264,7 @@ export default function BlogDetail({ post: postProp, wordpressData }: { post?: B
                   </div>
                   <div>
                     <h4 className="text-[#11253e] font-bold uppercase tracking-tight text-sm">Written by {postAuthor}</h4>
-                    <p className="text-xs text-gray-400">{post.blogPostSettings?.authorRole || "Senior Architecture Consultant @ Nabhira"}</p>
+                    <p className="text-xs text-gray-400">{post.blogPostSettings?.authorRole || "Senior Architecture Consultant @ Hutech Solutions"}</p>
                   </div>
                 </div>
                 <Link href="/resources/blogs" className="group inline-flex items-center gap-3 text-[#11253e] font-bold text-sm uppercase tracking-widest hover:text-[#f99d1c] transition-colors">

@@ -135,14 +135,14 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                     <section>
                       <h3 className="text-[#11253e] text-xl font-bold mb-4">About the Role</h3>
                       <p className="leading-relaxed">
-                        Nabhira Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
+                        Hutech Solutions Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
                       </p>
                     </section>
 
                     <section>
                       <h3 className="text-[#11253e] text-xl font-bold mb-4">Key Responsibilities</h3>
                       <ul className="list-disc pl-5 space-y-2">
-                        <li>Design and implement scalable, high-performance architectures aligned with Nabhira's core principles.</li>
+                        <li>Design and implement scalable, high-performance architectures aligned with Hutech Solutions' core principles.</li>
                         <li>Collaborate with cross-functional teams to translate complex business requirements into technical solutions.</li>
                         <li>Ensure all deliverables maintain the highest standards of architectural integrity and performance.</li>
                         <li>Mentor junior team members and contribute to the evolution of our engineering practices.</li>
@@ -184,7 +184,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                       </div>
                       <h2 className="text-2xl font-bold">Application Sent</h2>
                       <p className="text-white/60 font-light leading-relaxed">
-                        Thank you for your interest in Nabhira. Our talent acquisition team will review your application and be in touch shortly.
+                        Thank you for your interest in Hutech Solutions. Our talent acquisition team will review your application and be in touch shortly.
                       </p>
                       <button 
                         onClick={() => setSubmitted(false)}
@@ -262,7 +262,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
   </button>
 
   <p className="text-[10px] text-white/30 text-center font-light leading-relaxed">
-    By applying, you agree to our recruitment privacy policy. Nabhira is an
+    By applying, you agree to our recruitment privacy policy. Hutech Solutions is an
     equal opportunity employer.
   </p>
 
