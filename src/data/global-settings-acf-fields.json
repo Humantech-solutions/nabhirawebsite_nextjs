@@ -141,7 +141,7 @@
             },
             {
                 "key": "field_group_lt_global",
-                "label": "Limitless Together (Why Nabhira)",
+                "label": "Limitless Together (Why Hutech Solutions)",
                 "name": "limitless_together",
                 "type": "group",
                 "show_in_graphql": 1,

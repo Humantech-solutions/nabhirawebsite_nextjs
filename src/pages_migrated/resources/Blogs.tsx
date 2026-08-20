@@ -1,10 +1,12 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { User, ArrowRight } from "lucide-react";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 // Static fallback posts shown when WordPress is unavailable
 const STATIC_POSTS = [
@@ -13,7 +15,7 @@ const STATIC_POSTS = [
     slug: "the-rise-of-agentic-ai",
     title: "The Rise of Agentic AI: Beyond Simple Automation",
     excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-    author: { node: { name: "Dr. Arvan Nabhira" } },
+    author: { node: { name: "Dr. Arvan Hutech Solutions" } },
     date: "2026-02-20T00:00:00",
     categories: { nodes: [{ name: "Artificial Intelligence" }] },
     featuredImage: { node: { sourceUrl: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=800" } }
@@ -43,7 +45,7 @@ const STATIC_POSTS = [
     slug: "modernization-survival-strategy",
     title: "Modernization Is Now a Survival Strategy",
     excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-    author: { node: { name: "Dr. Arvan Nabhira" } },
+    author: { node: { name: "Dr. Arvan Hutech Solutions" } },
     date: "2026-03-01T00:00:00",
     categories: { nodes: [{ name: "AI Modernization" }] },
     featuredImage: { node: { sourceUrl: "https://images.unsplash.com/photo-1744640326166-433469d102f2?auto=format&fit=crop&q=80&w=800" } }
@@ -62,9 +64,10 @@ function formatDate(dateStr: string) {
   }
 }
 
-export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpressData?: any }) {
+export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: any[]; wordpressData?: any; siteChrome?: any }) {
+  const heroSlides = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
-    document.title = "Insights & Perspectives | Nabhira Technologies";
+    document.title = "Insights & Perspectives | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -77,8 +80,8 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
       <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Nabhira Blogs"
+              src={heroSlides?.heroS1Image?.node?.sourceUrl || siteChrome?.blogHero?.image || wordpressData?.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
+              alt={heroSlides?.heroS1Title || siteChrome?.blogHero?.title || wordpressData?.title || "Hutech Solutions Blogs"}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>
@@ -86,11 +89,11 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Insights & <span className="text-[#f99d1c]">Perspectives</span>
+                {renderHeroTitle(heroSlides?.heroS1Title || siteChrome?.blogHero?.title || wordpressData?.title || 'Insights & |Perspectives|')}
               </h1>
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Expert analysis on the architectural trends shaping the digital frontier.
-              </p>
+              <div className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                {formatQuotesToBold(heroSlides?.heroS1Desc || siteChrome?.blogHero?.desc || wordpressData?.content?.replace(/<[^>]*>/g, '') || 'Expert analysis on the architectural trends shaping the digital frontier.') as any}
+              </div>
             </div>
           </div>
         </section>
@@ -102,9 +105,9 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                 const slug = post.slug;
                 const title = post.title;
                 const excerpt = post.excerpt?.replace(/<[^>]*>/g, "") || "";
-                const image = post.featuredImage?.node?.sourceUrl || "";
-                const author = post.author?.node?.name || "Nabhira Team";
-                const category = post.categories?.nodes?.[0]?.name || "";
+                const image = post.featuredImage?.node?.sourceUrl || post.image || "";
+                const author = post.customAuthorName || post.author?.node?.name || post.author || "Hutech Solutions Team";
+                const category = post.categories?.nodes?.[0]?.name || post.category || "";
                 const date = formatDate(post.date);
 
                 return (
@@ -116,7 +119,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                     viewport={{ once: true }}
                     className="group"
                   >
-                    <Link href={`/resources/blogs/${slug}`} className="block">
+                    <Link href={`/resources/blogs/${slug || post.id}`} className="block">
                       <div className="aspect-[16/9] overflow-hidden mb-6 rounded-sm relative">
                         {image ? (
                           <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -132,7 +135,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                         {category && <span className="w-1 h-1 bg-gray-300 rounded-full"></span>}
                         <span className="text-gray-400">{date}</span>
                       </div>
-                      <Link href={`/resources/blogs/${slug}`} className="block">
+                      <Link href={`/resources/blogs/${slug || post.id}`} className="block">
                         <h3 className="text-[#11253e] text-xl font-bold group-hover:text-[#f99d1c] transition-colors leading-tight">
                           {title}
                         </h3>
@@ -144,7 +147,7 @@ export default function Blogs({ posts, wordpressData }: { posts?: any[]; wordpre
                         <div className="flex items-center gap-2 text-xs font-medium text-[#11253e]">
                           <User size={14} /> {author}
                         </div>
-                        <Link href={`/resources/blogs/${slug}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        <Link href={`/resources/blogs/${slug || post.id}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
                           <ArrowRight size={18} />
                         </Link>
                       </div>

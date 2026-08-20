@@ -1,7 +1,15 @@
 "use client";
+import Image from "next/image";
 
+import React, { useRef } from "react";
+import Link from "next/link";
+import Slider from "react-slick";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-const patternImage = '/assets/gridsection.png';
+import { formatQuotesToBold, renderHeroTitle } from "../lib/utils";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import patternImage from '../assets/gridsection.png';
 
 interface CardProps {
   category?: string;
@@ -23,7 +31,7 @@ function Card({ category, title, image, className, dark }: CardProps) {
       
       {/* Geometric Overlay Pattern on Hover */}
       <div className="absolute inset-0 z-5 opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none mix-blend-overlay">
-        <img 
+        <ImageWithFallback 
           src={patternImage} 
           alt="" 
           className="w-full h-full object-cover scale-150 group-hover:scale-110 transition-transform duration-1000 ease-out" 
@@ -37,33 +45,18 @@ function Card({ category, title, image, className, dark }: CardProps) {
           </span>
         )}
         <h3 className="text-white text-lg font-light leading-snug group-hover:text-[#f99d1c] transition-colors">
-          {title}
+          {formatQuotesToBold(title)}
         </h3>
       </div>
     </div>
   );
 }
 
-interface LatestThinkingProps {
-  data?: {
-    thinkingPosts?: Array<{
-      title: string;
-      categories: { nodes: Array<{ name: string }> };
-      featuredImage: { node: { sourceUrl: string } };
-    }>;
-    header?: {
-      ltHeaderTitle?: string;
-      ltHeaderDesc?: string;
-    };
-  };
-}
+export function LatestThinking({ data }: any) {
+  const sectionTitle = data?.ltTitle || "Latest Thinking";
+  const sectionDesc = data?.ltDesc || "Read our latest thinking, research that provides fresh new perspectives that challenge business-as-usual and help you succeed tomorrow.";
 
-export function LatestThinking({ data }: LatestThinkingProps) {
-  const items = (data?.thinkingPosts && data.thinkingPosts.length > 0) ? data.thinkingPosts.map(post => ({
-    category: post.categories?.nodes[0]?.name || "Thinking",
-    title: post.title,
-    image: post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1770316320266-ba445bbd7890?q=80&w=1080"
-  })) : [
+  const items = [
     {
       category: "Strategy & Lean",
       title: "Building the IT Operations of Tomorrow",
@@ -82,22 +75,19 @@ export function LatestThinking({ data }: LatestThinkingProps) {
     {
       category: "Energy & Logistics",
       title: "Driving the sustainability in Product Development",
-      image: "https://images.unsplash.com/photo-1770745778460-9d9f1a7e8632?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJpbGl0eSUyMG5hdHVyZSUyMHRlY2glMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE3Nzc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "https://images.unsplash.com/photo-1770745778460-9d9f1a7e8632?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJpbGl0eSUyMG5hdHVyZSUyMHRlY2glMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE3Nzc0ODMA&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
       category: "Enterprise AI & Cloud",
       title: "Unlocking Cybersecurity in Enterprise AI",
-      image: "https://images.unsplash.com/photo-1659414378449-eb7c77eb799a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwYWJzdHJhY3QlMjBkaWdpdGFsJTIwbG9ja3xlbnwxfHx8fDE3NzE3Nzc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "https://images.unsplash.com/photo-1659414378449-eb7c77eb799a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwYWJzdHJhY3QlMjBkaWdpdGFsJTIwbG9ja3xlbnwxfHx8fDE3NzE3Nzc0ODMA&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
       category: "General AI",
       title: "Accelerating Innovation with Beyond the Future",
-      image: "https://images.unsplash.com/photo-1663084777461-4dfebe53d255?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRpZ2l0YWwlMjBsYW5kc2NhcGUlMjBuZXR3b3JrfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "https://images.unsplash.com/photo-1663084777461-4dfebe53d255?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRpZ2l0YWwlMjBsYW5kc2NhcGUlMjBuZXR3b3JrfGVufDF8fHx8MTc3MTc3NzQ4NQA&ixlib=rb-4.1.0&q=80&w=1080"
     }
   ];
-
-  const sectionTitle = data?.header?.ltHeaderTitle || "Latest Thinking";
-  const sectionDesc = data?.header?.ltHeaderDesc || "Read our latest thinking, research that provides fresh new perspectives that challenge business-as-usual and help you succeed tomorrow.";
 
   return (
     <section className="bg-white py-20 md:py-24">
@@ -105,10 +95,12 @@ export function LatestThinking({ data }: LatestThinkingProps) {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 border-b border-gray-100 pb-8">
           <div className="flex flex-col space-y-2">
             <span className="text-[#f99d1c] text-[10px] font-medium tracking-normal uppercase">THOUGHT LEADERSHIP</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#11253e] tracking-tight">{sectionTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#11253e] tracking-tight">
+              {formatQuotesToBold(sectionTitle)}
+            </h2>
           </div>
           <p className="max-w-xl text-[#7d8597] text-base md:text-[18px] font-normal text-left leading-relaxed mt-6 md:mt-0">
-            {sectionDesc}
+            {formatQuotesToBold(sectionDesc)}
           </p>
         </div>
         
@@ -122,22 +114,19 @@ export function LatestThinking({ data }: LatestThinkingProps) {
   );
 }
 
-import { useRef } from "react";
-import Slider from "react-slick";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 interface WhatsNewProps {
   data?: {
     newsPosts?: Array<{
       title: string;
       date: string;
+      slug?: string;
+      uri?: string;
       featuredImage: { node: { sourceUrl: string } };
     }>;
     settings?: {
       wnTitle?: string;
       wnSubtitle?: string;
+      wnPostsCount?: number;
     };
   };
 }
@@ -145,30 +134,39 @@ interface WhatsNewProps {
 export function WhatsNew({ data }: WhatsNewProps) {
   const sliderRef = useRef<Slider>(null);
 
-  const news = (data?.newsPosts && data.newsPosts.length > 0) ? data.newsPosts.map(post => {
+  // Respect the ACF posts count setting for display
+  const displayCount = data?.settings?.wnPostsCount;
+  const rawPosts = data?.newsPosts ?? [];
+  const slicedPosts = displayCount && displayCount > 0 ? rawPosts.slice(0, displayCount) : rawPosts;
+
+  const news = (slicedPosts.length > 0) ? slicedPosts.map(post => {
     const date = new Date(post.date);
     const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
     
     return {
       title: post.title,
       image: post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?q=80&w=1080",
-      date: formattedDate
+      date: formattedDate,
+      href: post.slug ? `/resources/blogs/${post.slug}` : (post.uri || '#')
     };
   }) : [
     {
-      title: "Nabhira & NVIDIA Partner to Advance AI-Native 5G Cloud Network Solutions",
+      title: "Hutech Solutions & NVIDIA Partner to Advance AI-Native 5G Cloud Network Solutions",
       image: "https://images.unsplash.com/photo-1771065502806-67c8f31dd336?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbG93aW5nJTIwYmx1ZSUyMHRlY2hub2xvZ3klMjBnbGFzc3xlbnwxfHx8fDE3NzE3Nzc0ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      date: "FEB 18 2026"
+      date: "FEB 18 2026",
+      href: "#"
     },
     {
-      title: "Nabhira Announces Q3 Financial Results for Digital Services Boom 2025",
-      image: "https://images.unsplash.com/photo-1769008301376-9a349cf2177b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMHNreXNjcmFwZXIlMjBsb3clMjBhbmdsZXxlbnwxfHx8fDE3NzE3Nzc0ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      date: "FEB 15 2026"
+      title: "Hutech Solutions Announces Q3 Financial Results for Digital Services Boom 2025",
+      image: "https://images.unsplash.com/photo-1769008301376-9a349cf2177b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMHNreXNjcmFwZXIlMjBsb3clMjBhbmdsZXxlbnwxfHx8fDE3NzE3Nzc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      date: "FEB 15 2026",
+      href: "#"
     },
     {
-      title: "Microsoft & Nabhira Accelerate Driven Decarbonization for Banking",
+      title: "Microsoft & Hutech Solutions Accelerate Driven Decarbonization for Banking",
       image: "https://images.unsplash.com/photo-1736175549681-c24c552da1e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGJsdWUlMjB3YXZ5JTIwcGF0dGVybiUyMHRlY2h8ZW58MXx8fHwxNzcxNzc3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      date: "FEB 12 2026"
+      date: "FEB 12 2026",
+      href: "#"
     }
   ];
 
@@ -176,12 +174,12 @@ export function WhatsNew({ data }: WhatsNewProps) {
 
   const sliderSettings = {
     dots: false,
-    infinite: true,
+    infinite: shouldShowCarousel,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: shouldShowCarousel,
     autoplaySpeed: 4000,
     responsive: [
       {
@@ -200,20 +198,22 @@ export function WhatsNew({ data }: WhatsNewProps) {
   };
 
   const renderItem = (item: any, i: number) => (
-    <div key={i} className={`group cursor-pointer ${shouldShowCarousel ? 'px-4' : ''}`}>
-      <div className="relative aspect-[4/3] overflow-hidden mb-6">
-        <ImageWithFallback
-          src={item.image}
-          alt={item.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-        />
-        <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
-          {item.date}
+    <div key={i} className={`${shouldShowCarousel ? 'px-4' : ''}`}>
+      <Link href={item.href || '#'} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden mb-6">
+          <ImageWithFallback
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          />
+          <div className="absolute top-4 left-4 bg-[#f99d1c] text-white text-[9px] font-medium py-1 px-2 tracking-normal uppercase">
+            {item.date}
+          </div>
         </div>
-      </div>
-      <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
-        {item.title}
-      </h3>
+        <h3 className="text-xl font-light leading-tight group-hover:text-[#f99d1c] transition-colors line-clamp-2">
+          {formatQuotesToBold(item.title)}
+        </h3>
+      </Link>
     </div>
   );
 
@@ -222,8 +222,12 @@ export function WhatsNew({ data }: WhatsNewProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 md:mb-12 space-y-6 sm:space-y-0">
           <div className="space-y-3 md:space-y-4">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900">{data?.settings?.wnTitle || "What's New"}</h2>
-            <p className="text-sm text-gray-500 font-light">{data?.settings?.wnSubtitle || "The current and future news from Nabhira and around the world."}</p>
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900">
+              {formatQuotesToBold(data?.settings?.wnTitle || "What's New")}
+            </h2>
+            <p className="text-sm text-gray-500 font-light">
+              {formatQuotesToBold(data?.settings?.wnSubtitle || "The current and future news from Hutech Solutions and around the world.")}
+            </p>
           </div>
           <div className="flex space-x-2">
             <button 
@@ -256,4 +260,3 @@ export function WhatsNew({ data }: WhatsNewProps) {
     </section>
   );
 }
-

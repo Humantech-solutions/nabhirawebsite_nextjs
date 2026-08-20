@@ -1,16 +1,17 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { GraduationCap, BrainCircuit, BarChart, Laptop, Globe, UserCheck, ArrowRight, CheckCircle2 } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function LMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "AI-Powered LMS | Nabhira Technologies";
+    document.title = "AI-Powered LMS | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -59,11 +60,14 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                 </div>
                 <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                   {renderHeroTitle(heroData?.heroS1Title || (
-                    <>Empower Your Workforce with <br /> <span className="text-[#f99d1c]">Cognitive Learning</span></>
+                    <>
+                      Empower Your Workforce with <br />
+                      |Cognitive Learning|
+                    </>
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  {heroData?.heroS1Desc || "Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention."}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Hutech Solutions' AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
@@ -87,8 +91,8 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                   <div className="w-16 h-16 bg-[#11253e] flex items-center justify-center rounded-sm">
                     {pillar.icon}
                   </div>
-                  <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">{pillar.title}</h3>
-                  <p className="text-[#11253e] text-sm leading-relaxed">{pillar.description}</p>
+                  <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">{formatQuotesToBold(pillar.title)}</h3>
+                  <p className="text-[#11253e] text-sm leading-relaxed">{formatQuotesToBold(pillar.description)}</p>
                 </div>
               ))}
             </div>
@@ -104,16 +108,16 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                 <ImageWithFallback 
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
                   alt="Learning Team"
-                  className="relative rounded-sm shadow-2xl"
+                  className="relative rounded-sm shadow-2xl aspect-video"
                 />
               </div>
               <div className="order-1 lg:order-2 space-y-10">
                 <div className="space-y-4">
-                  <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">The Architecture of <br />Intelligent Upskilling</h2>
+                  <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">{renderHeroTitle("The Architecture of \n|Intelligent Upskilling|")}</h2>
                   <div className="w-16 h-1 bg-[#f99d1c]"></div>
                 </div>
                 <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                  Our system utilizes a decentralized data mesh to ensure that learning data is secure yet accessible for cross-departmental analytics. From micro-learning modules to comprehensive certification tracks, every interaction is measured and mapped.
+                  {formatQuotesToBold("Our system utilizes a decentralized data mesh to ensure that learning data is secure yet accessible for cross-departmental analytics. From micro-learning modules to comprehensive certification tracks, every interaction is measured and mapped.")}
                 </p>
                 
                 <div className="grid gap-6">
@@ -139,22 +143,22 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
         {/* Comparison Section */}
         <section className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">Why Nabhira LMS?</h2>
+            <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">{formatQuotesToBold("Why Hutech Solutions LMS?")}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-[#11253e] p-12 text-white">
-                <h3 className="text-[#f99d1c] text-xl font-bold mb-8 uppercase tracking-widest">Modern AI LMS</h3>
+                <h3 className="text-[#f99d1c] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Modern AI LMS")}</h3>
                 <ul className="space-y-6">
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> Personalized based on neural behavior</li>
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> Real-time skill gap automated mitigation</li>
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> Agentic AI teaching assistants 24/7</li>
+                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Personalized based on neural behavior")}</li>
+                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Real-time skill gap automated mitigation")}</li>
+                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Agentic AI teaching assistants 24/7")}</li>
                 </ul>
               </div>
               <div className="bg-gray-50 p-12">
-                <h3 className="text-[#11253e] text-xl font-bold mb-8 uppercase tracking-widest">Traditional LMS</h3>
+                <h3 className="text-[#11253e] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Traditional LMS")}</h3>
                 <ul className="space-y-6">
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> Linear, one-size-fits-all approach</li>
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> Manual reporting and gap analysis</li>
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> static content hosting only</li>
+                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Linear, one-size-fits-all approach")}</li>
+                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Manual reporting and gap analysis")}</li>
+                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("static content hosting only")}</li>
                 </ul>
               </div>
             </div>
@@ -164,7 +168,7 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
         {/* CTA */}
         <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-[#11253e] text-4xl font-bold mb-12">Ready to architect your organization's future?</h2>
+            <h2 className="text-[#11253e] text-4xl font-bold mb-12">{formatQuotesToBold("Ready to architect your organization's future?")}</h2>
             <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
               Request Platform Tour
             </button>

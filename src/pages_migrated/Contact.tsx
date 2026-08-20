@@ -1,14 +1,15 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
-import { renderHeroTitle } from "../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../lib/utils";
 
 export default function Contact({ wordpressData }: any) {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function Contact({ wordpressData }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact Us | Nabhira Technologies";
+    document.title = "Contact Us | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -140,7 +141,7 @@ export default function Contact({ wordpressData }: any) {
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={acfHero?.heroImage?.node?.sourceUrl || acfHero?.heroImage || wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1769146109206-e87b458649a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBnbGFzcyUyMG9mZmljZSUyMGludGVyaW9yJTIwd29ya3NwYWNlJTIwYXJjaGl0ZWN0dXJhbHxlbnwxfHx8fDE3NzE4OTk4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080"}
-            alt="Nabhira Contact"
+            alt="Hutech Solutions Contact"
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -153,49 +154,31 @@ export default function Contact({ wordpressData }: any) {
             <Motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
-              {/* Breadcrumb */}
               <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
                 <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
                 <span className="text-white/30 font-light">&gt;</span>
-                <span className="text-[#f99d1c] uppercase tracking-[0.2em]">CONTACT US</span>
+                <span className="text-[#f99d1c] uppercase tracking-widest">Contact Us</span>
               </nav>
 
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {(() => {
-                  const acfTitle = acfHero?.heroTitle || wordpressData?.globalSettings?.heroSlides?.heroS1Title;
-                  if (acfTitle) {
-                    // Force 2rd line shift for the default text to match original UI when no custom pipe logic is used
-                    if (typeof acfTitle === 'string' && 
-                        !acfTitle.includes('|') && 
-                        !acfTitle.includes('\\\\') && 
-                        acfTitle.trim() === 'Start the Conversation') {
-                      return (
-                        <>
-                          Start the <br />Conversation
-                        </>
-                      );
-                    }
-                    return renderHeroTitle(acfTitle);
-                  }
-                  return (
-                    <>
-                      Start the <br />Conversation
-                    </>
-                  );
-                })()}
+                {renderHeroTitle(acfHero?.heroTitle || (
+                  <>
+                    Start the <br /><span className="text-[#f99d1c]">Conversation</span>
+                  </>
+                ))}
               </h1>
               <p className="text-white text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
-                {acfHero?.heroDescription || wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "We would love to hear from you."}
+                {formatQuotesToBold(acfHero?.heroDescription || "We would love to hear from you.")}
               </p>
             </Motion.div>
           </div>
         </div>
       </section>
 
-        {/* Contact Content */}
-        <section className="py-24 bg-white">
+      {/* Contact Content */}
+      <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
               
@@ -214,7 +197,7 @@ export default function Contact({ wordpressData }: any) {
                     })()}
                   </h2>
                   <p className="text-[#11253e] font-light leading-relaxed">
-                    {acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist."}
+                    {formatQuotesToBold(acfContactGroup?.ciDescription || "Whether you're looking for cloud transformation, AI solutions, or global digital strategy, our architects are ready to assist. For growing your business with Hutech Solutions, please drop us a line – our experts will contact you soon.")}
                   </p>
                 </div>
 
@@ -379,7 +362,7 @@ export default function Contact({ wordpressData }: any) {
                 )}
             </h3>
             <p className="text-white/40 text-sm mt-2">
-                {acfGlobalGroup?.gpSubtitle || "Serving clients across 5+ countries through our specialized delivery centers."}
+                {formatQuotesToBold(acfGlobalGroup?.gpSubtitle || "Serving clients across 5+ countries through our specialized delivery centers.")}
             </p>
           </div>
 

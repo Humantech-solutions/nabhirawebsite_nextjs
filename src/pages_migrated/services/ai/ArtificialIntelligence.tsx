@@ -1,12 +1,14 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
+import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { Cpu, Brain, Sparkles, Workflow, ArrowRight, Zap, Target, Lightbulb } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import aiServerImg from "../../../assets/ai.png";
-import Image from "next/image";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
 export default function ArtificialIntelligence({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -61,14 +63,10 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
       <ServiceHero
         subtitle="Artificial Intelligence"
         title={renderHeroTitle(heroData?.heroS1Title || (
-          <>
-            Orchestrating <br />
-            <span className="text-white/40 font-light italic">Intelligent Outcomes.</span>
-          </>
+          <>Orchestrating <br /><span className="text-[#f99d1c]">Intelligent Outcomes.</span></>
         ))}
-        description={heroData?.heroS1Desc || "We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance."}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "We bridge the gap between AI hype and business reality. Our AI services focus on building practical, scalable, and secure systems that redefine enterprise performance.") as any}
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || aiServerImg.src}
-
       />
 
       {/* Solutions Grid */}
@@ -76,7 +74,7 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-medium tracking-tight mb-8">
-              The Next Era of <span className="text-[#f99d1c]">Enterprise AI</span>
+              {formatQuotesToBold("The Next Era of ^Enterprise AI^")}
             </h2>
             <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed font-light">
               We help you transition from experimentation to production, embedding intelligence into every facet of your organization.
@@ -96,12 +94,11 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
                 <div className="mb-8 p-4 bg-white shadow-sm inline-block rounded-sm transition-transform duration-500 group-hover:scale-110">
                   {solution.icon}
                 </div>
-                <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{solution.title}</h3>
+                <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{formatQuotesToBold(solution.title)}</h3>
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
-                  {solution.desc}
+                  {formatQuotesToBold(solution.desc)}
                 </p>
-                <Link 
-                  href={solution.path}
+                <Link href={solution.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>Explore Solution</span>
@@ -122,7 +119,7 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className="text-3xl lg:text-5xl font-medium tracking-tight">
-                  Intelligent <span className="text-[#f99d1c]">Core</span>
+                  {formatQuotesToBold("Intelligent ^Core^")}
                 </h2>
                 <p className="text-white/60 text-lg font-light leading-relaxed">
                   Our methodologies ensure that AI implementations are robust, secure, and deliver consistent value to stakeholders.
@@ -133,8 +130,8 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
                 {features.map((feature, idx) => (
                   <div key={idx} className="space-y-4">
                     <div className="text-[#f99d1c]">{feature.icon}</div>
-                    <h4 className="text-xl font-medium">{feature.title}</h4>
-                    <p className="text-white/40 text-sm font-light leading-relaxed">{feature.desc}</p>
+                    <h4 className="text-xl font-medium">{formatQuotesToBold(feature.title)}</h4>
+                    <p className="text-white/40 text-sm font-light leading-relaxed">{formatQuotesToBold(feature.desc)}</p>
                   </div>
                 ))}
               </div>
@@ -142,11 +139,9 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
 
             <div className="relative">
               <div className="aspect-[4/5] bg-white/5 backdrop-blur-3xl border border-white/10 p-1 rounded-sm overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" 
+                <Image src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" 
                   alt="AI Neural Network" 
-                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
+                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700" />
               </div>
               <div className="absolute -top-8 -left-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
                 <p className="text-4xl font-bold tracking-tighter">AI-First</p>
@@ -161,8 +156,7 @@ export default function ArtificialIntelligence({ wordpressData }: { wordpressDat
       <section className="py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 text-center space-y-12">
           <h2 className="text-4xl lg:text-6xl font-medium tracking-tight text-[#11253e]">
-            Lead the charge into <br /> 
-            <span className="italic font-light">the era of intelligence.</span>
+            {formatQuotesToBold("Lead the charge into \n 'the era of intelligence.'")}
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link href="/contact">

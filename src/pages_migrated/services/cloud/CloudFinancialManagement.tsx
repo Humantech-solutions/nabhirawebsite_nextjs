@@ -1,10 +1,11 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import { 
   BarChart3, 
   TrendingDown, 
@@ -26,7 +27,7 @@ import {
 
 export default function CloudFinancialManagement({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Financial Management (FinOps) | Nabhira Technologies";
+    document.title = "Cloud Financial Management (FinOps) | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -83,8 +84,10 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Cloud <span className="text-[#f99d1c]">Economics.</span></>)}
-        description={heroData?.heroS1Desc || "Maximize the business value of every cloud dollar. Our FinOps services provide deep visibility, automated optimization and cultural change to drive unit-economic efficiency at scale."}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Cloud <br /><span className="text-[#f99d1c]">Economics.</span></>
+        ))}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "Maximize the business value of every cloud dollar. Our FinOps services provide deep visibility, automated optimization and cultural change to drive unit-economic efficiency at scale.") as any}
         subtitle="Cloud Financial Management"
         category="Cloud Financial Management"
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1632055186471-64814edeaab4?auto=format&fit=crop&q=80&w=2000"}
@@ -101,8 +104,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               className="space-y-8"
             >
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-[-0.02em] leading-tight">
-                Bring Financial Discipline to
-                <span className="text-[#f99d1c]"> Cloud Innovation</span>
+                {formatQuotesToBold("Bring Financial Discipline to \n^Cloud Innovation^")}
               </h2>
               <p className="text-[#11253e] text-lg md:text-xl font-light leading-relaxed">
                 The cloud gives you flexibility and speed but without financial visibility, it can also create unpredictable costs. We ensure every amount invested supports business outcomes.
@@ -117,7 +119,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               className="space-y-6"
             >
               <p className="text-[#11253e] text-lg leading-relaxed font-light">
-                Cloud Finance Management is about bringing clarity, accountability and control to cloud spending. We help you move from reactive cost monitoring to proactive financial governance.
+                {formatQuotesToBold("Cloud Finance Management is about bringing clarity, accountability and control to cloud spending. We help you move from reactive cost monitoring to proactive financial governance.")}
               </p>
               <div className="w-20 h-px bg-[#f99d1c]"></div>
             </Motion.div>
@@ -144,8 +146,8 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                   <span className="text-[#f99d1c] font-black text-6xl">01</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Approach</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">Visibility Without Slowing Innovation</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">{formatQuotesToBold("Visibility Without Slowing Innovation")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -162,7 +164,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{item}</span>
+                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -188,10 +190,10 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               <span className="text-[#f99d1c] font-black text-6xl">02</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Methodology</h2>
-            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">Structured FinOps with Continuous Optimization</h3>
+            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">{formatQuotesToBold("Structured FinOps with Continuous Optimization")}</h3>
             <p className="text-[#11253e] text-lg font-light max-w-2xl mx-auto">
-              We follow a practical, phased framework to bring financial discipline into your cloud operations and maximize investment value.
+              {formatQuotesToBold("We follow a practical, phased framework to bring financial discipline into your cloud operations and maximize investment value.")}
             </p>
           </div>
 
@@ -208,12 +210,12 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                 <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto group-hover:bg-[#f99d1c]/10 transition-colors">
                   {step.icon}
                 </div>
-                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{step.title}</h4>
+                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{formatQuotesToBold(step.title)}</h4>
                 <div className="space-y-4 flex-grow text-left w-full">
                   {step.points.map((point, i) => (
                     <div key={i} className="flex items-start space-x-3">
                       <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
-                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{point}</span>
+                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{formatQuotesToBold(point)}</span>
                     </div>
                   ))}
                 </div>
@@ -238,8 +240,8 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                   <span className="text-[#f99d1c] font-black text-6xl">03</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">Tools & Platforms</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">Built on Leading Cloud Ecosystems.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">{formatQuotesToBold("Tools & 'Platforms'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">{formatQuotesToBold("Built on Leading Cloud Ecosystems.")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -272,7 +274,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               </div>
               <div className="absolute -bottom-6 -left-6 bg-[#f99d1c] p-8 text-[#11253e] max-w-xs shadow-xl hidden md:block">
                 <p className="text-sm font-medium italic">
-                  "We help leadership shift the conversation from 'Why is cloud expensive?' to 'How is cloud delivering measurable value?'"
+                  {formatQuotesToBold("'We help leadership shift the conversation from 'Why is cloud expensive?' to 'How is cloud delivering measurable value?''")}
                 </p>
               </div>
             </div>
@@ -290,8 +292,8 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               <span className="text-[#f99d1c] font-black text-6xl">04</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
-            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Predictable Costs. Measurable ROI.</h3>
+            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Value 'Proposition'")}</h2>
+            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Predictable Costs. Measurable ROI.")}</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -315,23 +317,25 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                   <div className="w-8 h-8 rounded-full bg-[#f99d1c] flex items-center justify-center text-[#11253e]">
                     <CheckCircle2 size={16} />
                   </div>
-                  <h4 className="text-white text-lg font-medium tracking-tight">{item.title}</h4>
+                  <h4 className="text-white text-lg font-medium tracking-tight">{formatQuotesToBold(item.title)}</h4>
                 </div>
                 <p className="text-white/60 text-sm font-light leading-relaxed">
-                  {item.desc}
+                  {formatQuotesToBold(item.desc)}
                 </p>
               </Motion.div>
             ))}
           </div>
+
+         
         </div>
       </section>
 
-      <section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
-        {/* Diagonal stripe texture */}
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
-        {/* Corner glow blobs */}
-        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
-        <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
+<section className="py-14 relative bg-[#e5dfd3] overflow-hidden">
+          {/* Diagonal stripe texture */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `repeating-linear-gradient(110deg, transparent, transparent 20px, #11253e 20px, #11253e 21px)` }} />
+          {/* Corner glow blobs */}
+          <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+          <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] bg-[#11253e]/20 rounded-full blur-[100px]"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <Motion.div
@@ -343,11 +347,10 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
             <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
             <div className="max-w-xl space-y-4">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-              Maximize your cloud  <br />
-                <span className="text-[#f99d1c]">investment today. </span>
+              {formatQuotesToBold("Maximize your cloud \n^investment today.^")}
               </h2>
               <p className="text-[#11253e] text-base font-light leading-relaxed">
-                Partner with Nabhira to transition from reactive monitoring to a proactive, value-driven FinOps culture.
+                Partner with Hutech Solutions to transition from reactive monitoring to a proactive, value-driven FinOps culture.
               </p>
             </div>
             <button
@@ -360,6 +363,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
           </Motion.div>
         </div>
       </section>
+      
     </>
   );
 }

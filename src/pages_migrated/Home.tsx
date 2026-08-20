@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Navbar } from "../components/Navbar";
 import { Hero } from "../components/Hero";
 import { BigThinkers } from "../components/BigThinkers";
@@ -14,7 +14,7 @@ import { LimitlessTogether, Footer } from "../components/Footer";
 
 export default function Home({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Nabhira Technologies | Digital Transformation & AI Solutions";
+    document.title = "Hutech Solutions Technologies | Digital Transformation & AI Solutions";
   }, []);
 
   return (
@@ -27,7 +27,7 @@ export default function Home({ wordpressData }: any) {
       <WhatsNew />
       <Clients />
       <SuccessStories />
-      <LimitlessTogether />
+      <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </div>
   );
 }

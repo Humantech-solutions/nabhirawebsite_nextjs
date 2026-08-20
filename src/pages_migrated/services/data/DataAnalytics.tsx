@@ -1,10 +1,13 @@
 "use client";
 
+import React from "react";
 import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
+import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
 import { Database, BarChart3, ShieldCheck, Zap, ArrowRight, Layers, FileSpreadsheet, Network } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
 export default function DataAnalytics({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -62,10 +65,10 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
         title={renderHeroTitle(heroData?.heroS1Title || (
           <>
             Turn Data into <br />
-            <span className="text-white/40 font-light italic">Strategic Capital.</span>
+            <span className="text-[#f99d1c]">Strategic Capital.</span>
           </>
         ))}
-        description={heroData?.heroS1Desc || "From foundation to foresight, we build the architectures that empower data-driven enterprises. Our solutions turn raw complexity into clear competitive advantage."}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "From foundation to foresight, we build the architectures that empower data-driven enterprises. Our solutions turn raw complexity into clear ^competitive advantage.^") as any}
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1686061593213-98dad7c599b9?auto=format&fit=crop&q=80&w=2000"}
       />
 
@@ -74,10 +77,10 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-medium tracking-tight mb-8">
-              End-to-End <span className="text-[#f99d1c]">Data Excellence</span>
+              {formatQuotesToBold("End-to-End \n^Data Excellence^")}
             </h2>
             <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed font-light">
-              We provide the full spectrum of data services, ensuring your organization can ingest, store, manage, and analyze information at scale.
+              {formatQuotesToBold("We provide the full spectrum of data services, ensuring your organization can ingest, store, manage, and analyze information at scale.")}
             </p>
           </div>
 
@@ -94,12 +97,11 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
                 <div className="mb-8 p-4 bg-white shadow-sm inline-block rounded-sm transition-transform duration-500 group-hover:scale-110">
                   {solution.icon}
                 </div>
-                <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{solution.title}</h3>
+                <h3 className="text-2xl font-medium mb-4 group-hover:text-[#f99d1c] transition-colors">{formatQuotesToBold(solution.title)}</h3>
                 <p className="text-[#11253e] text-sm leading-relaxed mb-8 font-light">
-                  {solution.desc}
+                  {formatQuotesToBold(solution.desc)}
                 </p>
-                <Link 
-                  href={solution.path}
+                <Link href={solution.path}
                   className="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-widest text-[#11253e] hover:text-[#f99d1c] transition-colors"
                 >
                   <span>Explore Solution</span>
@@ -120,10 +122,10 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className="text-3xl lg:text-5xl font-medium tracking-tight">
-                  Advanced <span className="text-[#f99d1c]">Capabilities</span>
+                  {formatQuotesToBold("Advanced \n^Capabilities^")}
                 </h2>
                 <p className="text-white/60 text-lg font-light leading-relaxed">
-                  Beyond standard pipelines, we implement cutting-edge analytics techniques that provide deep business intelligence.
+                  {formatQuotesToBold("Beyond standard pipelines, we implement cutting-edge analytics techniques that provide deep business intelligence.")}
                 </p>
               </div>
 
@@ -131,8 +133,8 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
                 {features.map((feature, idx) => (
                   <div key={idx} className="space-y-4">
                     <div className="text-[#f99d1c]">{feature.icon}</div>
-                    <h4 className="text-xl font-medium">{feature.title}</h4>
-                    <p className="text-white/40 text-sm font-light leading-relaxed">{feature.desc}</p>
+                    <h4 className="text-xl font-medium">{formatQuotesToBold(feature.title)}</h4>
+                    <p className="text-white/40 text-sm font-light leading-relaxed">{formatQuotesToBold(feature.desc)}</p>
                   </div>
                 ))}
               </div>
@@ -140,15 +142,13 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
 
             <div className="relative">
               <div className="aspect-[4/5] bg-white/5 backdrop-blur-3xl border border-white/10 p-1 rounded-sm overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bbbda5366fd2?auto=format&fit=crop&q=80&w=1000" 
+                <Image src="https://images.unsplash.com/photo-1551288049-bbbda5366fd2?auto=format&fit=crop&q=80&w=1000" 
                   alt="Analytics Dashboard" 
-                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
+                  className="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-700" />
               </div>
               <div className="absolute -bottom-8 -right-8 bg-[#f99d1c] p-10 text-[#11253e] hidden md:block">
-                <p className="text-4xl font-bold tracking-tighter">70%</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest">Faster Insights</p>
+                <p className="text-4xl font-bold tracking-tighter">{formatQuotesToBold("70%")}</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest">{formatQuotesToBold("Faster Insights")}</p>
               </div>
             </div>
           </div>
@@ -159,8 +159,7 @@ export default function DataAnalytics({ wordpressData }: { wordpressData?: any }
       <section className="py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 text-center space-y-12">
           <h2 className="text-4xl lg:text-6xl font-medium tracking-tight text-[#11253e]">
-            Ready to unlock the <br /> 
-            <span className="italic font-light">value in your data?</span>
+            {formatQuotesToBold("Ready to unlock the \n^value in your data?^")}
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link href="/contact">

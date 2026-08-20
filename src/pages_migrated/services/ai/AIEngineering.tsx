@@ -1,10 +1,12 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import heroImg from "../../../assets/heroImg.png";
 
 import {
@@ -31,7 +33,7 @@ import {
 export default function AIEngineering({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "AI Engineering | Nabhira Technologies";
+    document.title = "AI Engineering | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -180,13 +182,13 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
             </nav>
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle(heroData?.heroS1Title || (<>AI Engineering</>))}
+              {renderHeroTitle(heroData?.heroS1Title || (
+                <>Engineering <br /><span className="text-[#f99d1c]">Intelligence</span></>
+              ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              {heroData?.heroS1Desc || (
-                <>Engineering <span className="text-white font-medium">Intelligence</span> into the <span className="text-[#f99d1c] font-medium">Core of Your Enterprise</span></>
-              )}
+              {formatQuotesToBold(heroData?.heroS1Desc || "Engineering 'Intelligence' into the ^Core of Your Enterprise^")}
             </p>
 
             <div className="pt-6 flex flex-wrap gap-4">
@@ -213,8 +215,7 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
             className="space-y-8"
           >
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light leading-snug">
-              Artificial Intelligence is no longer experimental. <br />
-              It is becoming the <span className="font-semibold text-[#f99d1c]">operating layer of modern enterprises</span>.
+              {formatQuotesToBold("Artificial Intelligence is no longer experimental. \nIt is becoming the ^operating layer of modern enterprises^.")}
             </h2>
             <div className="w-20 h-1 bg-[#11253e] mx-auto"></div>
             <p className="text-[#11253e] text-lg leading-relaxed max-w-3xl mx-auto">
@@ -235,7 +236,7 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
           <div className="mb-16 md:flex md:items-end md:justify-between">
             <div className="max-w-2xl">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">01 Approach</span>
-              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">From AI Ambition to <br/><span className="text-white/50">Enterprise Grade Execution</span></h2>
+              <h2 className="text-white text-4xl md:text-5xl font-medium tracking-tight mb-6">{formatQuotesToBold("From AI Ambition to \n'Enterprise Grade Execution'")}</h2>
               <p className="text-white/80 text-lg font-light max-w-xl">
                 AI success is not about models alone. It is about architecture integration, governance, and business alignment.
               </p>
@@ -258,9 +259,9 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
                 <div className="w-12 h-12 bg-[#f99d1c] rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   {point.icon}
                 </div>
-                <h3 className="text-white text-xl font-medium mb-3">{point.title}</h3>
+                <h3 className="text-white text-xl font-medium mb-3">{formatQuotesToBold(point.title)}</h3>
                 <p className="text-white/60 font-light leading-relaxed">
-                  {point.text}
+                  {formatQuotesToBold(point.text)}
                 </p>
               </Motion.div>
             ))}
@@ -298,8 +299,8 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
                     <div className="w-8 h-1 bg-[#11253e]/10 group-hover:bg-[#f99d1c] transition-colors"></div>
                  </div>
 
-                 <h3 className="text-[#11253e] text-2xl font-bold mb-3">{step.title}</h3>
-                 <p className="text-[#f99d1c] font-medium text-xs uppercase tracking-widest mb-6 min-h-[3rem]">{step.description}</p>
+                 <h3 className="text-[#11253e] text-2xl font-bold mb-3">{formatQuotesToBold(step.title)}</h3>
+                 <p className="text-[#f99d1c] font-medium text-xs uppercase tracking-widest mb-6 min-h-[3rem]">{formatQuotesToBold(step.description)}</p>
                  
                  <div className="flex-grow">
                    <ul className="space-y-3">
@@ -367,7 +368,7 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
         <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-16">
               <span className="text-[#f99d1c] font-bold tracking-widest uppercase text-sm mb-2 block">04 Value Proposition</span>
-              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">Scalable Intelligence <br/> Measurable Outcomes</h2>
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-medium tracking-tight">{formatQuotesToBold("Scalable Intelligence \n Measurable Outcomes")}</h2>
            </div>
 
            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -383,7 +384,7 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
                   <div className="w-6 h-6 mt-1 bg-[#f99d1c] rounded-full flex items-center justify-center shrink-0">
                     <Check size={14} className="text-white" strokeWidth={3} />
                   </div>
-                  <p className="text-[#11253e] font-medium leading-relaxed">{prop}</p>
+                  <p className="text-[#11253e] font-medium leading-relaxed">{formatQuotesToBold(prop)}</p>
                 </Motion.div>
               ))}
            </div>
@@ -415,8 +416,7 @@ export default function AIEngineering({ wordpressData }: { wordpressData?: any }
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Ready to engineer  <br />
-                  <span className="text-[#f99d1c]">intelligence?</span>
+                  {formatQuotesToBold("Ready to engineer \n^intelligence?^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
                   Transform from experimentation to production-grade intelligence.

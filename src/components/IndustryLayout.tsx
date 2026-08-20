@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LimitlessTogether } from "./Footer";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
@@ -21,6 +22,7 @@ interface IndustryLayoutProps {
   cloudService: ServiceBlock;
   dataService: ServiceBlock;
   aiService: ServiceBlock;
+  limitlessTogetherData?: any;
 }
 
 export function IndustryLayout({
@@ -30,10 +32,11 @@ export function IndustryLayout({
   overview,
   cloudService,
   dataService,
-  aiService
+  aiService,
+  limitlessTogetherData
 }: IndustryLayoutProps) {
   useEffect(() => {
-    document.title = `${title} | Nabhira Technologies`;
+    document.title = `${title} | Hutech Solutions Technologies`;
     window.scrollTo(0, 0);
   }, [title]);
 
@@ -214,7 +217,7 @@ export function IndustryLayout({
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={limitlessTogetherData} />
     </>
   );
 }

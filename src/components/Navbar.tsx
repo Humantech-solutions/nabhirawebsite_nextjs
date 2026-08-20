@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import logo from '../assets/logo.png';
-import Image from "next/image";
 
-export function Navbar() {
+export function Navbar({ data }: { data?: any }) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
@@ -19,7 +19,39 @@ export function Navbar() {
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
+    
+  // Merge WP Data if available
+  if (data?.menus?.primary && data.menus.primary.length > 0) {
+    navLinks = [];
+    menuData = {};
+    
+    data.menus.primary.forEach((item: any) => {
+      const topLabel = item.title.toUpperCase();
+      navLinks.push({ label: topLabel, key: topLabel, path: item.url });
+      
+      if (item.children && item.children.length > 0) {
+        const hasGrandchildren = item.children.some((child: any) => child.children && child.children.length > 0);
+        
+        if (hasGrandchildren || topLabel === 'SERVICES') {
+          menuData[topLabel] = {
+            type: "mega",
+            columns: item.children.map((child: any) => ({
+              title: child.title.toUpperCase(),
+              url: child.url,
+              items: child.children ? child.children.map((gc: any) => ({ title: gc.title, url: gc.url })) : [],
+            }))
+          };
+        } else {
+          menuData[topLabel] = {
+            type: "simple",
+            items: item.children.map((child: any) => ({ title: child.title, url: child.url }))
+          };
+        }
+      }
+    });
+  }
+
+  return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
@@ -32,7 +64,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuData: Record<string, any> = {
+  let menuData: Record<string, any> = {
     "SERVICES": {
       type: "mega",
       columns: [
@@ -73,7 +105,7 @@ export function Navbar() {
         "Policy Engine System",
         "Cloud Infra Deployment and Monitoring",
         "WorkbookNow ERP",
-        "HRMS and Payroll Solutions"
+        "HRMS and Payroll Solutions",
       ]
     },
     "INDUSTRIES": {
@@ -93,11 +125,11 @@ export function Navbar() {
     },
     "ABOUT US": {
       type: "simple",
-      items: ["About Nabhira", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
+      items: ["About Hutech Solutions", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
     }
   };
 
-  const navLinks = [
+  let navLinks: { label: string, key: string, path?: string }[] = [
     { label: "ABOUT US", key: "ABOUT US" },
     { label: "SERVICES", key: "SERVICES" },
     { label: "SOLUTIONS", key: "SOLUTIONS" },
@@ -106,6 +138,37 @@ export function Navbar() {
     { label: "CAREERS", key: "CAREERS" },
     { label: "CONTACT US", key: "CONTACT US" }
   ];
+
+  // Merge WP Data if available
+  if (data?.menus?.primary && data.menus.primary.length > 0) {
+    navLinks = [];
+    menuData = {};
+    
+    data.menus.primary.forEach((item: any) => {
+      const topLabel = item.title.toUpperCase();
+      navLinks.push({ label: topLabel, key: topLabel, path: item.url });
+      
+      if (item.children && item.children.length > 0) {
+        const hasGrandchildren = item.children.some((child: any) => child.children && child.children.length > 0);
+        
+        if (hasGrandchildren || topLabel === 'SERVICES') {
+          menuData[topLabel] = {
+            type: "mega",
+            columns: item.children.map((child: any) => ({
+              title: child.title.toUpperCase(),
+              url: child.url,
+              items: child.children ? child.children.map((gc: any) => ({ title: gc.title, url: gc.url })) : [],
+            }))
+          };
+        } else {
+          menuData[topLabel] = {
+            type: "simple",
+            items: item.children.map((child: any) => ({ title: child.title, url: child.url }))
+          };
+        }
+      }
+    });
+  }
 
   return (
     <nav 
@@ -121,14 +184,7 @@ export function Navbar() {
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           <div className="flex items-center shrink-0">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-              <Image 
-                src={logo} 
-                alt="Nabhira Logo" 
-                width={120}
-                height={40}
-                priority
-                className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} 
-              />
+              <Image src={logo} alt="Hutech Solutions Logo" className={`transition-all duration-300 ${scrolled ? 'h-6 sm:h-7' : 'h-8 sm:h-9'} w-auto`} />
             </Link>
           </div>
           
@@ -136,9 +192,12 @@ export function Navbar() {
             {navLinks.map((link) => {
               const isDirectLink = !menuData[link.key];
               const routeMap: Record<string, string> = {
-                "CAREERS": "/careers",
-                "CONTACT US": "/contact" // assuming for now
-              };
+  "CAREERS": "/careers",
+  "CONTACT US": "/contact"
+};
+if (link.path && link.path !== '#') {
+  routeMap[link.key] = link.path;
+}
 
               const LabelContent = (
                 <div className="flex items-center space-x-1">
@@ -157,7 +216,7 @@ export function Navbar() {
                   className={`relative transition-all duration-300 flex items-center group px-4 ${scrolled ? 'h-16' : 'h-20'}`}
                   onMouseEnter={() => setActiveMenu(link.key)}
                 >
-                  <div className="relative cursor-pointer py-2 text-[#11253e]">
+                  <div className="relative cursor-pointer py-2">
                     {isDirectLink && routeMap[link.key] ? (
                       <Link href={routeMap[link.key]}>
                         {LabelContent}
@@ -186,7 +245,7 @@ export function Navbar() {
                         className={`absolute ${scrolled ? 'top-16' : 'top-20'} ${
                           link.key === 'SERVICES' || menuData[link.key]?.type === 'mega' 
                             ? 'fixed left-4 right-4 md:left-auto md:right-auto md:w-[594px] lg:w-[726px] md:left-1/2 md:-translate-x-1/2' 
-                            : link.key === 'RESOURCES' ? 'left-0 w-44' : (link.key === 'ABOUT US' || link.key === 'INDUSTRIES' || link.key === 'SOLUTIONS') ? 'left-0 w-64' : 'left-0 w-72'
+                            : link.key === 'RESOURCES' ? 'left-0 w-44' : (link.key === 'ABOUT US' || link.key === 'INDUSTRIES') ? 'left-0 w-64' : link.key === 'SOLUTIONS' ? 'left-0 w-80' : 'left-0 w-72'
                         } backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] rounded-b-2xl overflow-hidden pt-10 pb-10 px-6 z-50 pointer-events-auto border-t border-gray-100/50`}
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
                       >
@@ -202,12 +261,11 @@ export function Navbar() {
                                 {(() => {
                                   const categoryRoutes: Record<string, string> = {
                                     "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                    "DATA FOUNDATION": "/solutions/data-foundation",
-                                    "AI ACCELERATION": "/solutions/artificial-intelligence"
+                                    "DATA & ANALYTICS": "/solutions/data-analytics",
+                                    "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
                                   };
                                   return (
-                                    <Link 
-                                      href={categoryRoutes[col.title] || "#"} 
+                                    <Link href={categoryRoutes[col.title] || "#"} 
                                       className="text-[12px] font-bold text-[#11253e] tracking-[0.1em] uppercase hover:text-[#f99d1c] transition-colors"
                                       onClick={() => setActiveMenu(null)}
                                     >
@@ -217,7 +275,9 @@ export function Navbar() {
                                 })()}
                               </div>
                               <ul className="space-y-3">
-                                {col.items.map((item: string, j: number) => {
+                                {col.items.map((itemObj: any, j: number) => {
+                                  const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                                  const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                   const solutionRoutes: Record<string, string> = {
                                     "Cloud Advisory": "/solutions/cloud-advisory",
                                     "Cloud Migration": "/solutions/cloud-migration",
@@ -236,10 +296,19 @@ export function Navbar() {
                                   };
 
                                   const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
+                                    if (dynamicUrl && dynamicUrl !== '#') {
+                                      return (
+                                        <Link href={dynamicUrl} 
+                                          className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          onClick={() => setActiveMenu(null)}
+                                        >
+                                          {children}
+                                        </Link>
+                                      );
+                                    }
                                     if (solutionRoutes[item]) {
                                       return (
-                                        <Link 
-                                          href={solutionRoutes[item]} 
+                                        <Link href={solutionRoutes[item]} 
                                           className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
                                           onClick={() => setActiveMenu(null)}
                                         >
@@ -269,15 +338,17 @@ export function Navbar() {
                         </div>
                       ) : (
                         <div className="flex flex-col space-y-3">
-                          {menuData[link.key].items.map((item: string, i: number) => {
+                          {menuData[link.key].items.map((itemObj: any, i: number) => {
+                            const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                            const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
-                              "About Nabhira": "/about",
+                              "About Hutech Solutions": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
                               "Awards": "/awards",
-                              "AI Powered Point of Sales App": "/solutions/pos",
-                              "AI based LMS system": "/solutions/lms",
+                              "AI Powered Point of Sales App": "/solutions/enterprise-pos",
+                              "AI based LMS system": "/solutions/ailms",
                               "Policy Engine System": "/solutions/policy-engine",
                               "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
                               "WorkbookNow ERP": "/solutions/erp",
@@ -295,11 +366,20 @@ export function Navbar() {
                             };
                             
                             const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
+                              if (dynamicUrl && dynamicUrl !== '#') {
+                                return (
+                                  <Link href={dynamicUrl} 
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    {children}
+                                  </Link>
+                                );
+                              }
                               if (routes[item]) {
                                 return (
-                                  <Link 
-                                    href={routes[item]} 
-                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                  <Link href={routes[item]} 
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
                                     onClick={() => setActiveMenu(null)}
                                   >
                                     {children}
@@ -307,7 +387,7 @@ export function Navbar() {
                                 );
                               }
                               return (
-                                <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item">
+                                <a href="#" className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap">
                                   {children}
                                 </a>
                               );
@@ -353,10 +433,13 @@ export function Navbar() {
             <div className="px-6 py-10 space-y-8">
               {navLinks.map((link) => {
                 const isDirectLink = !menuData[link.key];
-                const routeMap: Record<string, string> = {
-                  "CAREERS": "/careers",
-                  "CONTACT US": "/contact"
-                };
+              const routeMap: Record<string, string> = {
+  "CAREERS": "/careers",
+  "CONTACT US": "/contact"
+};
+if (link.path && link.path !== '#') {
+  routeMap[link.key] = link.path;
+}
 
                 return (
                   <div key={link.key} className="border-b border-[#11253e]/5 pb-6">
@@ -401,12 +484,11 @@ export function Navbar() {
                             {(() => {
                               const categoryRoutes: Record<string, string> = {
                                 "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                "DATA FOUNDATION": "/solutions/data-foundation",
-                                "AI ACCELERATION": "/solutions/artificial-intelligence"
+                                "DATA & ANALYTICS": "/solutions/data-analytics",
+                                "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
                               };
                               return (
-                                <Link 
-                                  href={categoryRoutes[col.title] || "#"} 
+                                <Link href={categoryRoutes[col.title] || "#"} 
                                   className="text-[12px] font-bold text-[#f99d1c] tracking-widest uppercase block"
                                   onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -415,7 +497,9 @@ export function Navbar() {
                               );
                             })()}
                             <div className="space-y-4 pl-2 border-l border-gray-100">
-                              {col.items.map((item: string, j: number) => {
+                              {col.items.map((itemObj: any, j: number) => {
+                                  const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                                  const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                 const solutionRoutes: Record<string, string> = {
                                   "Cloud Advisory": "/solutions/cloud-advisory",
                                   "Cloud Migration": "/solutions/cloud-migration",
@@ -433,7 +517,17 @@ export function Navbar() {
                                   "Intelligent Automation": "/solutions/intelligent-automation"
                                 };
 
-                                if (solutionRoutes[item]) {
+                                if (dynamicUrl && dynamicUrl !== '#') {
+                                      return (
+                                        <Link href={dynamicUrl} 
+                                          className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item"
+                                          onClick={() => setActiveMenu(null)}
+                                        >
+                                          {item}
+                                        </Link>
+                                      );
+                                    }
+                                    if (solutionRoutes[item]) {
                                   return (
                                     <Link 
                                       key={j} 
@@ -456,32 +550,44 @@ export function Navbar() {
                         ))
                       ) : (
                         <div className="space-y-4 pl-2 border-l border-gray-100">
-                          {menuData[link.key].items.map((item: string, i: number) => {
+                          {menuData[link.key].items.map((itemObj: any, i: number) => {
+                            const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
+                            const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                             const routes: Record<string, string> = {
-                              "About Nabhira": "/about",
+                              "About Hutech Solutions": "/about",
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
-                              "Awards": "/awards",
-                              "AI Powered Point of Sales App": "/solutions/pos",
-                              "AI based LMS system": "/solutions/lms",
-                              "Policy Engine System": "/solutions/policy-engine",
-                              "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
-                              "WorkbookNow ERP": "/solutions/erp",
-                              "HRMS and Payroll Solutions": "/solutions/hrms",
+                               "Awards": "/awards",
+                               "AI Powered Point of Sales App": "/solutions/enterprise-pos",
+                               "AI based LMS system": "/solutions/ailms",
+                               "Policy Engine System": "/solutions/policy-engine",
+                               "Cloud Infra Deployment and Monitoring": "/solutions/cloud-infra",
+                               "WorkbookNow ERP": "/solutions/erp",
+                               "HRMS and Payroll Solutions": "/solutions/hrms",
                               "Banking & Financial Services": "/industries/banking-finance",
                               "Retail & Consumer Goods": "/industries/retail-consumer",
                               "Manufacturing & Automotive": "/industries/manufacturing-automotive",
                               "Healthcare & Pharma": "/industries/healthcare-pharma",
+                               "Media & Entertainment": "/industries/media-entertainment",
                               "Government & PSUs": "/industries/government-psu",
-                              "Media & Entertainment": "/industries/media-entertainment",
                               "Blogs": "/resources/blogs",
                               "Case Studies": "/resources/case-studies",
                               "In the News": "/resources/news",
                               "Events": "/resources/events"
                             };
 
-                            if (routes[item]) {
+                            if (dynamicUrl && dynamicUrl !== '#') {
+                                return (
+                                  <Link href={dynamicUrl} 
+                                    className="text-[14px] font-medium text-[#475567] hover:text-[#f99d1c] hover:translate-x-1 transition-all duration-300 flex items-center group/item whitespace-nowrap"
+                                    onClick={() => setActiveMenu(null)}
+                                  >
+                                    {item}
+                                  </Link>
+                                );
+                              }
+                              if (routes[item]) {
                               return (
                                 <Link 
                                   key={i} 

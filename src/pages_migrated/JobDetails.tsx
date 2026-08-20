@@ -2,26 +2,64 @@
 
 import { motion as Motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Navbar } from "../components/Navbar";
-import { Footer, LimitlessTogether } from "../components/Footer";
-import { MapPin, Briefcase, Clock, ChevronLeft, Upload, Send } from "lucide-react";
+import { LimitlessTogether } from "../components/LimitlessTogether";
+import { MapPin, Briefcase, GraduationCap, ChevronLeft, Upload, Send, Share2, Copy, Check } from "lucide-react";
 import { jobs } from "../data/migrated_data";
 
+function CopyLinkButton() {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    if (typeof window !== 'undefined') {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+  return (
+    <button
+      onClick={handleCopy}
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-400 hover:text-[#f99d1c] hover:bg-[#f99d1c]/10 transition-all"
+    >
+      {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} />}
+    </button>
+  );
+}
+
+function ShareJobButton({ title }: { title: string }) {
+  const handleShare = () => {
+    if (typeof window !== 'undefined') {
+      if (navigator.share) {
+        navigator.share({ title, url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+      }
+    }
+  };
+  return (
+    <button
+      onClick={handleShare}
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-400 hover:text-[#f99d1c] hover:bg-[#f99d1c]/10 transition-all"
+    >
+      <Share2 size={16} />
+    </button>
+  );
+}
+
 export default function JobDetails({ wpJob }: { wpJob?: any }) {
-  const { id } = useParams();
+  const params = useParams();
+  const slug = params.slug as string;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  // Use wpJob if available, else fallback to static data
-  const job = wpJob || jobs.find(j => j.id === id);
+  // Use wpJob if available, else fallback to static data lookup by slug or id
+  const job = wpJob || jobs.find(j => j.slug === slug || j.id === slug || j.id === params.id);
 
   useEffect(() => {
     if (job) {
-      document.title = `${job.title} | Nabhira Technologies Careers`;
+      window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
   }, [job]);
 
   if (!job) {
@@ -38,7 +76,6 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
@@ -49,32 +86,44 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
     <>
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <Link href="/careers" className="inline-flex items-center gap-2 text-[#11253e] hover:text-[#f99d1c] transition-colors mb-12 text-[12px] font-bold uppercase tracking-widest">
-            <ChevronLeft size={18} /> All Open Roles
-          </Link>
+          <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
+            <Link href="/careers" className="inline-flex items-center gap-2 text-[#11253e] hover:text-[#f99d1c] transition-colors text-[12px] font-bold uppercase tracking-widest">
+              <ChevronLeft size={18} /> All Open Roles
+            </Link>
+            {/* Share/Copy buttons at the top */}
+            {/* <div className="flex items-center gap-3">
+              <CopyLinkButton />
+              <ShareJobButton title={job.title} />
+            </div> */}
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Job Content */}
             <div className="lg:col-span-7 space-y-12">
               <section className="space-y-6">
+                {/* Job ID badge instead of department */}
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-8 h-[1px] bg-[#f99d1c]"></div>
-                  <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{job.department}</span>
+                  <span className="font-mono text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{job.jobId}</span>
                 </div>
                 <h1 className="text-[#11253e] text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{job.title}</h1>
                 
-                <div className="flex flex-wrap items-center gap-6 text-sm font-light text-[#11253e] pt-4">
+                <div className="flex flex-wrap items-center gap-3 text-sm font-light text-[#11253e] pt-4">
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <MapPin size={16} className="text-[#f99d1c]" /> {job.location}
                   </div>
                   <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
                     <Briefcase size={16} className="text-[#f99d1c]" /> {job.type}
                   </div>
-                  {job.salary && (
-                    <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
-                      <Clock size={16} className="text-[#f99d1c]" /> {job.salary}
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2 bg-[#f8f9fa] px-4 py-2 rounded-full border border-gray-100">
+                    <GraduationCap size={16} className="text-[#f99d1c]" /> {job.experience}
+                  </div>
+                  {/* Salary removed */}
+                  {/* Copy & Share — pushed to flex-end */}
+                  <div className="ml-auto flex items-center gap-1">
+                    <CopyLinkButton />
+                    <ShareJobButton title={job.title} />
+                  </div>
                 </div>
               </section>
 
@@ -86,14 +135,14 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                     <section>
                       <h3 className="text-[#11253e] text-xl font-bold mb-4">About the Role</h3>
                       <p className="leading-relaxed">
-                        Nabhira Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
+                        Hutech Solutions Technologies is looking for a {job.title} to join our high-performing {job.department} team. In this role, you will be responsible for architecting critical infrastructure and driving digital transformation for our global clients. You'll work closely with a multidisciplinary team of engineers, designers, and strategists to deliver world-class digital experiences.
                       </p>
                     </section>
 
                     <section>
                       <h3 className="text-[#11253e] text-xl font-bold mb-4">Key Responsibilities</h3>
                       <ul className="list-disc pl-5 space-y-2">
-                        <li>Design and implement scalable, high-performance architectures aligned with Nabhira's core principles.</li>
+                        <li>Design and implement scalable, high-performance architectures aligned with Hutech Solutions' core principles.</li>
                         <li>Collaborate with cross-functional teams to translate complex business requirements into technical solutions.</li>
                         <li>Ensure all deliverables maintain the highest standards of architectural integrity and performance.</li>
                         <li>Mentor junior team members and contribute to the evolution of our engineering practices.</li>
@@ -135,7 +184,7 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                       </div>
                       <h2 className="text-2xl font-bold">Application Sent</h2>
                       <p className="text-white/60 font-light leading-relaxed">
-                        Thank you for your interest in Nabhira. Our talent acquisition team will review your application and be in touch shortly.
+                        Thank you for your interest in Hutech Solutions. Our talent acquisition team will review your application and be in touch shortly.
                       </p>
                       <button 
                         onClick={() => setSubmitted(false)}
@@ -149,54 +198,75 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
                       <h2 className="text-2xl font-bold mb-2">Apply for this role</h2>
                       <p className="text-white/60 text-sm font-light mb-8">Architect the future with us.</p>
                       
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Full Name</label>
-                          <input 
-                            required
-                            type="text" 
-                            className="w-full bg-white/5 border-b border-white/10 py-2 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm"
-                            placeholder="John Doe"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email Address</label>
-                          <input 
-                            required
-                            type="email" 
-                            className="w-full bg-white/5 border-b border-white/10 py-2 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm"
-                            placeholder="john@example.com"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">LinkedIn Profile (URL)</label>
-                          <input 
-                            required
-                            type="url" 
-                            className="w-full bg-white/5 border-b border-white/10 py-2 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm"
-                            placeholder="https://linkedin.com/in/..."
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Resume / CV</label>
-                          <div className="border border-dashed border-white/20 rounded-sm p-6 text-center cursor-pointer hover:border-[#f99d1c] transition-colors group">
-                            <Upload size={20} className="mx-auto text-white/20 mb-2 group-hover:text-[#f99d1c]" />
-                            <p className="text-[12px] font-light text-white/40">PDF, DOCX (Max 5MB)</p>
-                          </div>
-                        </div>
-                        
-                        <button 
-                          disabled={isSubmitting}
-                          type="submit"
-                          className="w-full bg-[#f99d1c] text-white py-4 font-bold text-[12px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-all transform active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
-                        >
-                          {isSubmitting ? "Processing..." : "Submit Application"}
-                          {!isSubmitting && <Send size={16} />}
-                        </button>
-                        <p className="text-[10px] text-white/30 text-center font-light leading-relaxed">
-                          By applying, you agree to our recruitment privacy policy. Nabhira is an equal opportunity employer.
-                        </p>
-                      </form>
+                     <form onSubmit={handleSubmit} className="space-y-6">
+  
+  <div className="space-y-2">
+    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+      Full Name
+    </label>
+    <input
+      required
+      type="text"
+      placeholder="John Doe"
+      className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
+    />
+  </div>
+
+  <div className="space-y-2">
+    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+      Email Address
+    </label>
+    <input
+      required
+      type="email"
+      placeholder="john@example.com"
+      className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
+    />
+  </div>
+
+  <div className="space-y-2">
+    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+      LinkedIn Profile (URL)
+    </label>
+    <input
+      required
+      type="url"
+      placeholder="https://linkedin.com/in/..."
+      className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
+    />
+  </div>
+
+  <div className="space-y-2">
+    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+      Resume / CV
+    </label>
+
+    <div className="border border-dashed border-white/20 rounded-sm p-6 text-center cursor-pointer hover:border-[#f99d1c] transition-colors group">
+      <Upload
+        size={20}
+        className="mx-auto text-white/20 mb-2 group-hover:text-[#f99d1c]"
+      />
+      <p className="text-[12px] font-light text-white/40">
+        PDF, DOCX (Max 5MB)
+      </p>
+    </div>
+  </div>
+
+  <button
+    disabled={isSubmitting}
+    type="submit"
+    className="w-full bg-[#f99d1c] text-white py-4 font-bold text-[12px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-all transform active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
+  >
+    {isSubmitting ? "Processing..." : "Submit Application"}
+    {!isSubmitting && <Send size={16} />}
+  </button>
+
+  <p className="text-[10px] text-white/30 text-center font-light leading-relaxed">
+    By applying, you agree to our recruitment privacy policy. Hutech Solutions is an
+    equal opportunity employer.
+  </p>
+
+</form>
                     </div>
                   )}
                 </Motion.div>

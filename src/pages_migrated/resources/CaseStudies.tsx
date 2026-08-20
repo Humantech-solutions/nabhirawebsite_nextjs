@@ -1,44 +1,37 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { renderHeroTitle } from "../../lib/utils";
+import { caseStudies } from "@/src/data/migrated_data";
 
-const cases = [
-  {
-    id: 1,
-    title: "Global Bank: Cloud Modernization",
-    client: "Tier 1 Investment Bank",
-    impact: "60% Reduction in OPEX",
-    tags: ["Cloud", "Finance"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 2,
-    title: "Retail Giant: AI Supply Chain",
-    client: "Fortune 500 Retailer",
-    impact: "40% Inventory Optimization",
-    tags: ["AI", "Retail"],
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: 3,
-    title: "Smart Factory: Edge Intelligence",
-    client: "Global Automotive OEM",
-    impact: "Zero Unplanned Downtime",
-    tags: ["IoT", "Manufacturing"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
-  }
-];
-
-export default function CaseStudies({ wordpressData }: any) {
+export default function CaseStudies({ 
+  wordpressData,
+  caseStudiesData = [],
+  globalSettings
+}: any) {
   useEffect(() => {
-    document.title = "Case Studies | Nabhira Technologies";
+    document.title = "Case Studies | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const { heroSlides } = globalSettings || {};
+  const { heroS1Title, heroS1Desc, heroS1Image, heroS1ImageUrl } = heroSlides || {};
+
+  const bannerImage = 
+    heroS1ImageUrl || 
+    heroS1Image?.node?.sourceUrl || 
+    wordpressData?.featuredImage?.node?.sourceUrl || 
+    "https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwZGlnaXRhbCUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NzE5MDA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080";
+
+  const bannerTitle = heroS1Title || wordpressData?.title || "Architectural Success";
+  const bannerExcerpt = heroS1Desc || wordpressData?.excerpt?.replace(/<[^>]*>?/gm, "") || "Proven results delivered through rigorous digital engineering.";
+
+  const displayCaseStudies = caseStudiesData.length > 0 ? caseStudiesData : caseStudies;
 
   return (
     <>
@@ -46,8 +39,8 @@ export default function CaseStudies({ wordpressData }: any) {
       <section className="relative h-[300px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwZGlnaXRhbCUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NzE5MDA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Nabhira Case Studies"
+              src={bannerImage}
+              alt="Hutech Solutions Case Studies"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>
@@ -55,12 +48,10 @@ export default function CaseStudies({ wordpressData }: any) {
           <div className="relative h-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex items-center">
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(wordpressData?.globalSettings?.heroSlides?.heroS1Title || (
-                  <>Architectural <span className="text-[#f99d1c]">Success</span></>
-                ))}
+                {renderHeroTitle(bannerTitle)}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                Proven results delivered through rigorous digital engineering.
+                {renderHeroTitle(bannerExcerpt, "text-white/90")}
               </p>
             </div>
           </div>
@@ -68,7 +59,7 @@ export default function CaseStudies({ wordpressData }: any) {
 
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 space-y-20">
-            {cases.map((c, idx) => (
+            {displayCaseStudies.map((c: any, idx: number) => (
               <Motion.div 
                 key={idx}
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
@@ -77,12 +68,18 @@ export default function CaseStudies({ wordpressData }: any) {
                 viewport={{ once: true }}
                 className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
               >
-                <div className="w-full lg:w-1/2 aspect-video overflow-hidden rounded-sm">
-                  <img src={c.image} alt={c.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <div className="w-full lg:w-1/2 aspect-video overflow-hidden rounded-sm relative">
+                  <Image 
+                    src={c.image} 
+                    alt={c.title} 
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover hover:scale-105 transition-transform duration-700" 
+                  />
                 </div>
                 <div className="w-full lg:w-1/2 space-y-6">
-                  <div className="flex gap-2">
-                    {c.tags.map(tag => (
+                  <div className="flex gap-2 font-bold flex-wrap">
+                    {c.tags.map((tag: string) => (
                       <span key={tag} className="px-3 py-1 bg-[#11253e]/5 text-[#11253e] text-[10px] font-bold uppercase tracking-widest rounded-full">{tag}</span>
                     ))}
                   </div>
@@ -98,7 +95,7 @@ export default function CaseStudies({ wordpressData }: any) {
                       {c.impact}
                     </div>
                   </div>
-                  <Link href={`/resources/case-studies/${c.id}`} className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#11253e] group">
+                  <Link href={`/resources/case-studies/${c.slug}`} className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#11253e] group">
                     Read Full Case Study <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>

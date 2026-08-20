@@ -21,7 +21,7 @@ interface BlogPageProps {
 
 export default function Blogs({ posts, wordpressData }: BlogPageProps) {
   useEffect(() => {
-    document.title = "Insights & Perspectives | Nabhira Technologies";
+    document.title = "Insights & Perspectives | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -37,7 +37,7 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
           <div className="absolute inset-0">
             <ImageWithFallback
               src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
-              alt="Nabhira Blogs"
+              alt="Hutech Solutions Blogs"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>
@@ -46,7 +46,9 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
             <div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Insights & <span className="text-[#f99d1c]">Perspectives</span></>
+                  <>
+                    Insights & <span className="text-[#f99d1c]">Perspectives</span>
+                  </>
                 ))}
               </h1>
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
@@ -67,7 +69,7 @@ export default function Blogs({ posts, wordpressData }: BlogPageProps) {
                 const postCategory = post.categories?.nodes[0]?.name || post.category || "General";
                 const postDate = post.date ? new Date(post.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase() : post.date;
                 const postExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 150) + "..." || post.excerpt;
-                const postAuthor = post.author?.node?.name || post.author || "Nabhira Team";
+                const postAuthor = post.author?.node?.name || post.author || "Hutech Solutions Team";
 
                 return (
                   <Motion.div 

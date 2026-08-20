@@ -27,7 +27,7 @@ import {
 
 export default function RetailConsumer({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Retail & Consumer Goods | Nabhira Technologies";
+    document.title = "Retail & Consumer Goods | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

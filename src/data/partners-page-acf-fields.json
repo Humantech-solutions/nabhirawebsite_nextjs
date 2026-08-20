@@ -1,0 +1,755 @@
+[
+    {
+        "key": "group_partners_page",
+        "title": "Partners Page Settings",
+        "fields": [
+            {
+                "key": "field_tab_ta",
+                "label": "Trusted Alliances",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "placement": "top"
+            },
+            {
+                "key": "field_p_ta_sub",
+                "label": "Subtitle",
+                "name": "partner_ta_subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_subtitle",
+                "default_value": "Trusted Alliances"
+            },
+            {
+                "key": "field_p_ta_title",
+                "label": "Title",
+                "name": "partner_ta_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_title",
+                "default_value": "Our Technology Partners"
+            },
+            {
+                "key": "field_p_ta_desc",
+                "label": "Description",
+                "name": "partner_ta_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_desc",
+                "default_value": "Strategic alliances with world-leading technology platforms to deliver integrated, future-proof solutions."
+            },
+            {
+                "key": "field_p_ta_1_name",
+                "label": "Partner 1 Name",
+                "name": "partner_ta_1_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_1_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_1_logo",
+                "label": "Partner 1 Logo",
+                "name": "partner_ta_1_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_1_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_2_name",
+                "label": "Partner 2 Name",
+                "name": "partner_ta_2_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_2_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_2_logo",
+                "label": "Partner 2 Logo",
+                "name": "partner_ta_2_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_2_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_3_name",
+                "label": "Partner 3 Name",
+                "name": "partner_ta_3_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_3_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_3_logo",
+                "label": "Partner 3 Logo",
+                "name": "partner_ta_3_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_3_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_4_name",
+                "label": "Partner 4 Name",
+                "name": "partner_ta_4_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_4_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_4_logo",
+                "label": "Partner 4 Logo",
+                "name": "partner_ta_4_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_4_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_5_name",
+                "label": "Partner 5 Name",
+                "name": "partner_ta_5_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_5_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_5_logo",
+                "label": "Partner 5 Logo",
+                "name": "partner_ta_5_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_5_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_6_name",
+                "label": "Partner 6 Name",
+                "name": "partner_ta_6_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_6_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_6_logo",
+                "label": "Partner 6 Logo",
+                "name": "partner_ta_6_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_6_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_p_ta_7_name",
+                "label": "Partner 7 Name",
+                "name": "partner_ta_7_name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_7_name",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ta_7_logo",
+                "label": "Partner 7 Logo",
+                "name": "partner_ta_7_logo",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ta_7_logo",
+                "return_format": "array"
+            },
+            {
+                "key": "field_tab_ev",
+                "label": "Ecosystem Value",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "placement": "top"
+            },
+            {
+                "key": "field_p_ev_title",
+                "label": "Title",
+                "name": "partner_ev_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_title",
+                "default_value": "An Ecosystem of Innovation"
+            },
+            {
+                "key": "field_p_ev_desc",
+                "label": "Description",
+                "name": "partner_ev_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_desc",
+                "default_value": "We don't just work with partners; we co-create value."
+            },
+            {
+                "key": "field_p_ev_1_title",
+                "label": "Feature 1 Title",
+                "name": "partner_ev_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_1_title",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_1_desc",
+                "label": "Feature 1 Desc",
+                "name": "partner_ev_1_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_1_desc",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_1_icon_itype",
+                "label": "Feature 1 Icon Type",
+                "name": "partner_ev_1_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_1IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_p_ev_1_icon_lucide",
+                "label": "Feature 1 Lucide Icon",
+                "name": "partner_ev_1_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_1Lucide",
+                "default_value": "Globe",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_1_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_1_icon_img",
+                "label": "Feature 1 Image",
+                "name": "partner_ev_1_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_1Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_1_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_2_title",
+                "label": "Feature 2 Title",
+                "name": "partner_ev_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_2_title",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_2_desc",
+                "label": "Feature 2 Desc",
+                "name": "partner_ev_2_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_2_desc",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_2_icon_itype",
+                "label": "Feature 2 Icon Type",
+                "name": "partner_ev_2_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_2IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_p_ev_2_icon_lucide",
+                "label": "Feature 2 Lucide Icon",
+                "name": "partner_ev_2_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_2Lucide",
+                "default_value": "Zap",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_2_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_2_icon_img",
+                "label": "Feature 2 Image",
+                "name": "partner_ev_2_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_2Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_2_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_3_title",
+                "label": "Feature 3 Title",
+                "name": "partner_ev_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_3_title",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_3_desc",
+                "label": "Feature 3 Desc",
+                "name": "partner_ev_3_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_3_desc",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_3_icon_itype",
+                "label": "Feature 3 Icon Type",
+                "name": "partner_ev_3_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_3IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_p_ev_3_icon_lucide",
+                "label": "Feature 3 Lucide Icon",
+                "name": "partner_ev_3_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_3Lucide",
+                "default_value": "Shield",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_3_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_3_icon_img",
+                "label": "Feature 3 Image",
+                "name": "partner_ev_3_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_3Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_3_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_4_title",
+                "label": "Feature 4 Title",
+                "name": "partner_ev_4_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_4_title",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_4_desc",
+                "label": "Feature 4 Desc",
+                "name": "partner_ev_4_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_4_desc",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_ev_4_icon_itype",
+                "label": "Feature 4 Icon Type",
+                "name": "partner_ev_4_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_4IconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_p_ev_4_icon_lucide",
+                "label": "Feature 4 Lucide Icon",
+                "name": "partner_ev_4_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_4Lucide",
+                "default_value": "Handshake",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_4_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_ev_4_icon_img",
+                "label": "Feature 4 Image",
+                "name": "partner_ev_4_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_ev_4Image",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_ev_4_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_tab_cta",
+                "label": "CTA & Orbital Nodes",
+                "name": "",
+                "type": "tab",
+                "show_in_graphql": 1,
+                "placement": "top"
+            },
+            {
+                "key": "field_p_cta_sub",
+                "label": "Subtitle",
+                "name": "partner_cta_subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_subtitle",
+                "default_value": "Partner With Us"
+            },
+            {
+                "key": "field_p_cta_title",
+                "label": "Title (HTML allowed)",
+                "name": "partner_cta_title",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_title",
+                "default_value": "Ready to architect<br />\n<span class=\"text-[#f99d1c] font-bold\">together</span>?"
+            },
+            {
+                "key": "field_p_cta_desc",
+                "label": "Description",
+                "name": "partner_cta_desc",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_desc",
+                "default_value": "We are always looking for partners who share our commitment..."
+            },
+            {
+                "key": "field_p_cta_s1_val",
+                "label": "Stat 1 Value",
+                "name": "partner_cta_s1_val",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s1_val",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_s1_lbl",
+                "label": "Stat 1 Label",
+                "name": "partner_cta_s1_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s1_label",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_s2_val",
+                "label": "Stat 2 Value",
+                "name": "partner_cta_s2_val",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s2_val",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_s2_lbl",
+                "label": "Stat 2 Label",
+                "name": "partner_cta_s2_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s2_label",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_s3_val",
+                "label": "Stat 3 Value",
+                "name": "partner_cta_s3_val",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s3_val",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_s3_lbl",
+                "label": "Stat 3 Label",
+                "name": "partner_cta_s3_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_s3_label",
+                "default_value": ""
+            },
+            {
+                "key": "field_p_cta_center_icon_itype",
+                "label": "Orbital Center Icon Type",
+                "name": "partner_cta_center_icon_type",
+                "type": "select",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_centerIconType",
+                "choices": {
+                    "lucide": "Lucide Icon Name",
+                    "image": "Upload Image"
+                },
+                "default_value": "lucide"
+            },
+            {
+                "key": "field_p_cta_center_icon_lucide",
+                "label": "Orbital Center Lucide Icon",
+                "name": "partner_cta_center_lucide",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_centerLucide",
+                "default_value": "Handshake",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_cta_center_icon_itype",
+                            "operator": "==",
+                            "value": "lucide"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_cta_center_icon_img",
+                "label": "Orbital Center Image",
+                "name": "partner_cta_center_image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_centerImage",
+                "return_format": "array",
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_p_cta_center_icon_itype",
+                            "operator": "==",
+                            "value": "image"
+                        }
+                    ]
+                ]
+            },
+            {
+                "key": "field_p_cta_center_label",
+                "label": "Orbital Center Label",
+                "name": "partner_cta_center_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_center_label",
+                "default_value": "Partner"
+            },
+            {
+                "key": "field_p_cta_o1_lbl",
+                "label": "Orbital 1 Label",
+                "name": "partner_cta_o1_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o1_label",
+                "default_value": "AWS"
+            },
+            {
+                "key": "field_p_cta_o1_col",
+                "label": "Orbital 1 Color",
+                "name": "partner_cta_o1_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o1_color",
+                "default_value": "#FF9900"
+            },
+            {
+                "key": "field_p_cta_o2_lbl",
+                "label": "Orbital 2 Label",
+                "name": "partner_cta_o2_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o2_label",
+                "default_value": "Azure"
+            },
+            {
+                "key": "field_p_cta_o2_col",
+                "label": "Orbital 2 Color",
+                "name": "partner_cta_o2_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o2_color",
+                "default_value": "#0078D4"
+            },
+            {
+                "key": "field_p_cta_o3_lbl",
+                "label": "Orbital 3 Label",
+                "name": "partner_cta_o3_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o3_label",
+                "default_value": "GCP"
+            },
+            {
+                "key": "field_p_cta_o3_col",
+                "label": "Orbital 3 Color",
+                "name": "partner_cta_o3_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o3_color",
+                "default_value": "#4285F4"
+            },
+            {
+                "key": "field_p_cta_o4_lbl",
+                "label": "Orbital 4 Label",
+                "name": "partner_cta_o4_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o4_label",
+                "default_value": "SFDC"
+            },
+            {
+                "key": "field_p_cta_o4_col",
+                "label": "Orbital 4 Color",
+                "name": "partner_cta_o4_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o4_color",
+                "default_value": "#00A1E0"
+            },
+            {
+                "key": "field_p_cta_o5_lbl",
+                "label": "Orbital 5 Label",
+                "name": "partner_cta_o5_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o5_label",
+                "default_value": "SN"
+            },
+            {
+                "key": "field_p_cta_o5_col",
+                "label": "Orbital 5 Color",
+                "name": "partner_cta_o5_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o5_color",
+                "default_value": "#62D84E"
+            },
+            {
+                "key": "field_p_cta_o6_lbl",
+                "label": "Orbital 6 Label",
+                "name": "partner_cta_o6_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o6_label",
+                "default_value": "Zoho"
+            },
+            {
+                "key": "field_p_cta_o6_col",
+                "label": "Orbital 6 Color",
+                "name": "partner_cta_o6_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o6_color",
+                "default_value": "#E42527"
+            },
+            {
+                "key": "field_p_cta_o7_lbl",
+                "label": "Orbital 7 Label",
+                "name": "partner_cta_o7_label",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o7_label",
+                "default_value": "ERP"
+            },
+            {
+                "key": "field_p_cta_o7_col",
+                "label": "Orbital 7 Color",
+                "name": "partner_cta_o7_color",
+                "type": "color_picker",
+                "show_in_graphql": 1,
+                "graphql_field_name": "partner_cta_o7_color",
+                "default_value": "#0089FF"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_type",
+                    "operator": "==",
+                    "value": "front_page"
+                }
+            ],
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": "130"
+                }
+            ]
+        ],
+        "active": true,
+        "show_in_graphql": 1,
+        "graphql_field_name": "partnersPageFields"
+    }
+]

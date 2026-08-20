@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import logo from '../assets/footer.png';
-import { motion, AnimatePresence } from "motion/react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const whyNabhiraQA = [
   {
@@ -30,12 +30,30 @@ const whyNabhiraQA = [
 export function LimitlessTogether({ data }: { data?: any }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  const title = data?.ltTitle || "Why Hutech Solutions?";
+  const bgImage = data?.ltImage?.node?.sourceUrl || data?.ltImage?.sourceUrl || data?.ltImageUrl || "https://images.unsplash.com/photo-1758691737246-95bf8f09a997?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0d28lMjB3b21lbiUyMHRhbGtpbmclMjBpbiUyMG1vZGVybiUyMG9mZmljZSUyMG9mZmljZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080";
+
+  const paragraphs = [
+    data?.ltP1 || "We bring a structured, outcome-driven approach to every transformation initiative.",
+    data?.ltP2 || "Our delivery maturity ensures predictable execution, governance discipline, and measurable results.",
+    data?.ltP3 || "With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency."
+  ].filter(Boolean);
+
+  const dynamicQA = [
+    { question: data?.ltQ1, answer: data?.ltA1 },
+    { question: data?.ltQ2, answer: data?.ltA2 },
+    { question: data?.ltQ3, answer: data?.ltA3 },
+    { question: data?.ltQ4, answer: data?.ltA4 },
+  ].filter(item => item.question && item.answer);
+
+  const qaList = dynamicQA.length > 0 ? dynamicQA : whyNabhiraQA;
+
   return (
     <section className="bg-black text-white relative overflow-hidden py-24 min-h-[600px] flex items-center">
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1758691737246-95bf8f09a997?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0d28lMjB3b21lbiUyMHRhbGtpbmclMjBpbiUyMG1vZGVybiUyMG9mZmljZSUyMG9mZmljZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MTc3NzQ4NXww&ixlib=rb-4.1.0&q=80&w=1080"
-          alt="Why Nabhira?"
+          src={bgImage}
+          alt={title}
           className="w-full h-full object-cover opacity-50 transition-opacity duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
@@ -45,23 +63,17 @@ export function LimitlessTogether({ data }: { data?: any }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="space-y-8">
             <h2 className="text-5xl font-extralight tracking-tight leading-tight">
-              Why Nabhira?
+              {title}
             </h2>
             <div className="text-white/70 text-lg font-light leading-relaxed max-w-lg space-y-6">
-              <p>
-                We bring a structured, outcome-driven approach to every transformation initiative.
-              </p>
-              <p>
-                Our delivery maturity ensures predictable execution, governance discipline, and measurable results.
-              </p>
-              <p>
-                With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency.
-              </p>
+              {paragraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
             </div>
           </div>
 
           <div className="space-y-4">
-            {whyNabhiraQA.map((item, index) => (
+            {qaList.map((item, index) => (
               <div 
                 key={index} 
                 className={`border-b border-white/10 transition-all duration-300 ${openIndex === index ? 'pb-6' : 'pb-4'}`}
@@ -79,17 +91,17 @@ export function LimitlessTogether({ data }: { data?: any }) {
                 </button>
                 <AnimatePresence>
                   {openIndex === index && (
-                    <motion.div
+                    <Motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-4 text-white/90 font-light leading-relaxed text-sm">
+                      <p className="mt-4 text-white/90 font-light leading-relaxed text-md">
                         {item.answer}
                       </p>
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -113,7 +125,7 @@ const socialIcons = [
   },
   {
     name: "X",
-    href: "#",
+    href: "https://x.com/NabhiraTech",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -122,7 +134,7 @@ const socialIcons = [
   },
   {
     name: "YouTube",
-    href: "#",
+    href: "https://www.youtube.com/@NabhiraTechnologies",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -131,7 +143,7 @@ const socialIcons = [
   },
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/nabhira_technologies/",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -174,16 +186,13 @@ const industryLinks = [
 ];
 
 const solutionLinks = [
-  { label: "AI Powered Point of Sales App", to: "/solutions/pos" },
-  { label: "AI based LMS System", to: "/solutions/lms" },
+  { label: "AI Powered Point of Sales App", to: "/solutions/enterprise-pos" },
+  { label: "AI based LMS System", to: "/solutions/ailms" },
   { label: "Policy Engine System", to: "/solutions/policy-engine" },
-  { label: "Cloud Infra Deployment and Monitoring", to: "/solutions/cloud-infra" },
-  { label: "WorkbookNow ERP", to: "/solutions/erp" },
-  { label: "HRMS and Payroll Solutions", to: "/solutions/hrms" },
 ];
 
 const resourceLinks = [
-  { label: "About Nabhira", to: "/about" },
+  { label: "About Hutech Solutions", to: "/about" },
   { label: "Leadership", to: "/leadership" },
   { label: "Partners Ecosystem", to: "/partners" },
   { label: "Awards", to: "/awards" },
@@ -193,69 +202,130 @@ const resourceLinks = [
   { label: "Events", to: "/resources/events" },
 ];
 
-export function Footer() {
+interface MobileSectionProps {
+  id: string;
+  title: string;
+  children?: React.ReactNode;
+  openSection: string | null;
+  toggle: (key: string) => void;
+}
+
+const MobileSection = ({
+  id, title, children, openSection, toggle
+}: MobileSectionProps) => (
+  <div className="border-b border-white/10 lg:border-none">
+    {/* Mobile toggle header */}
+    <button
+      className="w-full flex items-center justify-between py-4 lg:hidden"
+      onClick={() => toggle(id)}
+      aria-expanded={openSection === id}
+    >
+      <span className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">{title}</span>
+      <span className={`text-white/40 transition-transform duration-300 ${openSection === id ? "rotate-180" : ""}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </span>
+    </button>
+    {/* Desktop heading always visible */}
+    <h4 className="hidden lg:block text-xs font-medium uppercase tracking-normal text-[#f99d1c] mb-5">{title}</h4>
+    {/* Content: always visible on lg+, animated on mobile */}
+    <div className={`overflow-hidden transition-all duration-300 ease-in-out lg:!max-h-none lg:opacity-100 ${openSection === id ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
+      {children}
+    </div>
+  </div>
+);
+
+export function Footer({ data }: { data?: any }) {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const toggle = (key: string) => setOpenSection(prev => prev === key ? null : key);
 
-  const MobileSection = ({
-    id, title, children
-  }: { id: string; title: string; children: React.ReactNode }) => (
-    <div className="border-b border-white/10 lg:border-none">
-      {/* Mobile toggle header */}
-      <button
-        className="w-full flex items-center justify-between py-4 lg:hidden"
-        onClick={() => toggle(id)}
-        aria-expanded={openSection === id}
-      >
-        <span className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">{title}</span>
-        <span className={`text-white/40 transition-transform duration-300 ${openSection === id ? "rotate-180" : ""}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-            <path d="M19 9l-7 7-7-7" />
-          </svg>
-        </span>
-      </button>
-      {/* Desktop heading always visible */}
-      <h4 className="hidden lg:block text-xs font-medium uppercase tracking-normal text-[#f99d1c] mb-5">{title}</h4>
-      {/* Content: always visible on lg+, animated on mobile */}
-      <div className={`overflow-hidden transition-all duration-300 ease-in-out lg:!max-h-none lg:opacity-100 ${openSection === id ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
-        {children}
-      </div>
-    </div>
-  );
+  const siteDesc = data?.footer?.description || "{siteDesc}";
+  const siteCopyright = data?.footer?.copyright || "{siteCopyright}";
+  const logoSrc = data?.footer?.logoUrl || logo;
+  const siteTagline = data?.footer?.tagline || "{siteTagline}";
+  const tServices = data?.footer?.titles?.services || "Our Services";
+  const tIndustries = data?.footer?.titles?.industries || "Industries";
+  const tSolutions = data?.footer?.titles?.solutions || "Solutions";
+  const tResources = data?.footer?.titles?.resources || "Resources";
+  const tTopics = data?.footer?.titles?.topics || "Topics";
+
+  const hasDynamicMenus = data?.menus && Object.keys(data.menus).length > 0;
+
+  const finalServiceLinks = hasDynamicMenus && data.menus.footerServices?.length > 0 
+    ? data.menus.footerServices.map((item: any) => ({ label: item.title, to: item.url }))
+    : serviceLinks;
+    
+  const finalIndustryLinks = hasDynamicMenus && data.menus.footerIndustries?.length > 0 
+    ? data.menus.footerIndustries.map((item: any) => ({ label: item.title, to: item.url }))
+    : industryLinks;
+    
+  const finalSolutionLinks = hasDynamicMenus && data.menus.footerSolutions?.length > 0 
+    ? data.menus.footerSolutions.map((item: any) => ({ label: item.title, to: item.url }))
+    : solutionLinks;
+    
+  const finalResourceLinks = hasDynamicMenus && data.menus.footerResources?.length > 0 
+    ? data.menus.footerResources.map((item: any) => ({ label: item.title, to: item.url }))
+    : resourceLinks;
+    
+  const finalCompanyLinks = hasDynamicMenus && data.menus.footerCompany?.length > 0 
+    ? data.menus.footerCompany.map((item: any) => ({ label: item.title, to: item.url }))
+    : [{ label: "AI & ML", to: "#" }, { label: "Sustainability", to: "#" }, { label: "Cybersecurity", to: "#" }, { label: "Careers", to: "/careers" }];
+    
+  const finalPolicyLinks = hasDynamicMenus && data.menus.footerPolicy?.length > 0 
+    ? data.menus.footerPolicy.map((item: any) => ({ label: item.title, to: item.url }))
+    : [
+        { label: "Privacy Policy", to: "#" },
+        { label: "Terms of Use", to: "#" }
+      ];
+
 
   return (
     <footer className="bg-[#0b1b3d] text-white pt-12 md:pt-16 lg:pt-24 pb-8 md:pb-12 overflow-hidden relative">
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#f99d1c] opacity-5 -mb-24 -mr-24 blur-[120px]"></div>
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#f99d1c] opacity-5 -mb-24 -mr-24 blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Brand row on mobile (always visible) ── */}
         <div className="mb-8 md:mb-0">
           <div className="lg:hidden flex items-center mb-5">
             <Link href="/">
-                <Image 
-                  src={logo} 
-                  alt="Nabhira Logo" 
-                  width={150}
-                  height={50}
-                  className="h-10 w-auto" 
-                />
-              </Link>
+              <Image src={logoSrc} alt="Hutech Solutions Logo" width={160} height={40} className="h-9 w-auto object-contain" />
+            </Link>
           </div>
-          <p className="lg:hidden text-white/60 text-[13px] font-light leading-relaxed mb-5">
-            Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI — empowering enterprises across 50+ countries.
+          <p className="lg:hidden text-white/60 text-[14px] font-light leading-relaxed mb-5">
+            Hutech Solutions is a global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI — empowering enterprises across 50+ countries.
           </p>
           {/* Social icons always visible on mobile */}
           <div className="lg:hidden space-y-3 pb-6 border-b border-white/10">
             <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">Follow Us</h4>
             <div className="flex items-center flex-wrap gap-5">
-              {socialIcons.map((social) => (
-                <a key={social.name} href={social.href} aria-label={social.name}
-                  className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300">
-                  {social.svg}
-                </a>
-              ))}
+              {socialIcons.map((social) => {
+                let socialKey = social.name.toLowerCase();
+                if (socialKey === "x (twitter)" || socialKey === "x") socialKey = "x";
+                
+                let socialData = data?.social?.[socialKey];
+                let finalHref = (socialData && typeof socialData === "object") ? socialData.url : socialData;
+                
+                // If empty in admin, show default icons with their default href
+                if (!finalHref || finalHref === "#" || finalHref === "") {
+                  finalHref = social.href;
+                }
+                
+                let customIcon = (socialData && typeof socialData === "object") ? socialData.icon : null;
+                
+                return (
+                  <a key={social.name} href={finalHref} aria-label={social.name}
+                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300 flex items-center justify-center">
+                    {customIcon ? (
+                      <img src={customIcon} alt={social.name} className="w-5 h-5 object-contain" />
+                    ) : (
+                      social.svg
+                    )}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -266,42 +336,53 @@ export function Footer() {
           {/* Column 1 — Brand (desktop only) */}
           <div className="hidden lg:flex flex-col space-y-5">
             <div className="flex items-center">
-               <Link href="/">
-                <Image 
-                  src={logo} 
-                  alt="Nabhira Logo" 
-                  width={150}
-                  height={50}
-                  className="h-10 w-auto" 
-                />
-              </Link>
+              <Link href="/"><Image src={logoSrc} alt="Hutech Solutions Logo" width={160} height={40} className="h-10 w-auto object-contain" /></Link>
             </div>
             <div className="space-y-4">
-              <p className="text-white/70 text-[13px] font-light leading-relaxed tracking-wide">
-                Nabhira is a global pioneer in Cloud-first intelligence, Data-driven engineering and Agentic AI. We empower enterprises across 50+ countries to orchestrate their digital evolution through advanced data ecosystems and autonomous cloud platforms.
+              <p className="text-white/70 text-[14px] font-light leading-relaxed tracking-wide">
+                {siteDesc}
               </p>
               <p className="text-white/70 text-[12px] font-light italic">
-                Driving innovation through Cloud Advisory, Data Engineering, and Agentic AI solutions for the modern enterprise.
+                {siteTagline}
               </p>
             </div>
             <div className="space-y-4 pt-2">
               <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c]">Follow Us</h4>
               <div className="flex items-center flex-wrap gap-4">
-                {socialIcons.map((social) => (
-                  <a key={social.name} href={social.href} aria-label={social.name}
-                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300">
-                    {social.svg}
+                {socialIcons.map((social) => {
+                let socialKey = social.name.toLowerCase();
+                if (socialKey === "x (twitter)" || socialKey === "x") socialKey = "x";
+                
+                let socialData = data?.social?.[socialKey];
+                let finalHref = (socialData && typeof socialData === "object") ? socialData.url : socialData;
+                
+                // If empty in admin, show default icons with their default href
+                if (!finalHref || finalHref === "#" || finalHref === "") {
+                  finalHref = social.href;
+                }
+                
+                let customIcon = (socialData && typeof socialData === "object") ? socialData.icon : null;
+                
+                return (
+                  <a key={social.name} href={finalHref} aria-label={social.name}
+                    className="text-white/40 hover:text-[#f99d1c] transition-colors duration-300 flex items-center justify-center">
+                    {customIcon ? (
+                      <img src={customIcon} alt={social.name} className="w-5 h-5 object-contain" />
+                    ) : (
+                      social.svg
+                    )}
                   </a>
-                ))}
+                );
+              })}
               </div>
             </div>
           </div>
 
           {/* Column 2 — Our Services */}
           <div>
-            <MobileSection id="services" title="Our Services">
+            <MobileSection id="services" title={tServices} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {serviceLinks.map((link) => (
+                {finalServiceLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
@@ -312,17 +393,17 @@ export function Footer() {
 
           {/* Column 3 — Industries + Solutions */}
           <div>
-            <MobileSection id="industries" title="Industries">
+            <MobileSection id="industries" title={tIndustries} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {industryLinks.map((link) => (
+                {finalIndustryLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
                 ))}
               </ul>
-              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Solutions</h4>
+              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">{tSolutions}</h4>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {solutionLinks.map((link) => (
+                {finalSolutionLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
@@ -333,20 +414,21 @@ export function Footer() {
 
           {/* Column 4 — Resources + Topics */}
           <div>
-            <MobileSection id="resources" title="Resources">
+            <MobileSection id="resources" title={tResources} openSection={openSection} toggle={toggle}>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                {resourceLinks.map((link) => (
+                {finalResourceLinks.map((link: any) => (
                   <li key={link.to}>
                     <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
                   </li>
                 ))}
               </ul>
-              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">Topics</h4>
+              <h4 className="text-xs font-medium uppercase tracking-normal text-[#f99d1c] mt-6 mb-4">{tTopics}</h4>
               <ul className="space-y-3 text-sm font-light text-white/60">
-                <li><a href="#" className="hover:text-white transition-colors">AI &amp; ML</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cybersecurity</a></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+                {finalCompanyLinks.map((link: any, idx: number) => (
+                  <li key={idx}>
+                    <Link href={link.to} className="hover:text-white transition-colors">{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </MobileSection>
           </div>
@@ -355,12 +437,11 @@ export function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="pt-6 md:pt-8 border-t border-white/5 flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0 text-[10px] font-light text-white/40 uppercase tracking-widest">
-          <p className="text-center md:text-left">© 2026 NABHIRA TECHNOLOGIES PRIVATE LIMITED</p>
+          <p className="text-center md:text-left">{siteCopyright}</p>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Terms of Use</a>
-            <a href="#" className="hover:text-[#08b2ff] transition-colors">Cookie Policy</a>
-            <Link href="/contact" className="hover:text-[#08b2ff] transition-colors">Contact Us</Link>
+            {finalPolicyLinks.map((link: any, idx: number) => (
+              <Link key={idx} href={link.to} className="hover:text-[#08b2ff] transition-colors">{link.label}</Link>
+            ))}
           </div>
         </div>
 

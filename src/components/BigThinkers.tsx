@@ -1,7 +1,10 @@
 "use client";
+import Image from "next/image";
 
+import React from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-const sundarImg = "/assets/logo2.png";
+import { formatQuotesToBold } from "../lib/utils";
+import sundarImg from "../assets/logo2.png";
 
 interface BigThinkersProps {
   data?: {
@@ -21,7 +24,13 @@ export function BigThinkers({ data }: BigThinkersProps) {
   const author = data?.bAuthor || "Sundar Pichai (CEO, Google)";
   const buttonText = data?.bBtnText || "READ MORE";
   const buttonUrl = data?.bBtnUrl || "#";
-  const image = data?.bImageUrl || (data?.bImage as any)?.node?.sourceUrl || (data?.bImage as any)?.sourceUrl || sundarImg;
+
+  // Determine if we have an external URL or should use the local static asset
+  const externalImageSrc: string | null =
+    data?.bImageUrl ||
+    (data?.bImage as any)?.node?.sourceUrl ||
+    (data?.bImage as any)?.sourceUrl ||
+    null;
 
   return (
     <section className="bg-[#0b1b3d] text-white py-24 relative overflow-hidden">
@@ -38,24 +47,34 @@ export function BigThinkers({ data }: BigThinkersProps) {
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extralight leading-tight mb-4 max-w-xl mx-auto md:mx-0">
-            {content}
+            {formatQuotesToBold(content)}
           </h2>
           <div className="text-[#f99d1c] text-lg md:text-xl font-light italic mb-8 md:mb-10">
             — {author}
           </div>
-          
-          <button className="bg-[#f99d1c] text-white px-8 md:px-10 py-4 text-[10px] md:text-xs font-black tracking-[0.2em] hover:bg-white hover:text-[#f99d1c] transition-all uppercase rounded-sm">
-            {buttonText}
-          </button>
         </div>
         
         <div className="relative mt-8 md:mt-0">
           <div className="absolute -inset-10 bg-[#f99d1c]/10 blur-3xl rounded-full"></div>
-          <ImageWithFallback
-            src={image}
-            alt={author}
-            className="w-full max-w-2xl mx-auto relative z-10 grayscale hover:grayscale-0 transition-all duration-700 rounded-sm shadow-2xl"
-          />
+          {externalImageSrc ? (
+            /* External URL from WordPress ACF */
+            <ImageWithFallback
+              src={externalImageSrc}
+              alt={author}
+              width={800}
+              height={800}
+              className="w-full h-auto max-w-2xl mx-auto relative z-10 grayscale hover:grayscale-0 transition-all duration-700 rounded-sm shadow-2xl object-cover"
+            />
+          ) : (
+            /* Local static asset — use Next.js Image with proper dimensions */
+            <Image
+              src={sundarImg}
+              alt={author}
+              className="w-full max-w-2xl mx-auto relative z-10 grayscale hover:grayscale-0 transition-all duration-700 rounded-sm shadow-2xl"
+              placeholder="blur"
+              priority
+            />
+          )}
         </div>
       </div>
     </section>

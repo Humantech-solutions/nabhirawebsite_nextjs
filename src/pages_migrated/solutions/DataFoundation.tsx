@@ -1,16 +1,17 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import { ArrowRight, Box, Layout, ShieldCheck, Database, HardDrive, Share2 } from "lucide-react";
 
 export default function DataFoundation({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Data Foundation & Storage | Nabhira Technologies";
+    document.title = "Data Foundation & Storage | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -70,14 +71,14 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Solid Data <br /> <span className="text-white/40">Foundations.</span></>
+                  <>
+                    Solid Data <br /> <span className="text-white/40">Foundations.</span>
+                  </>
                 ))}
               </h1>
               
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                {heroData?.heroS1Desc || (
-                  <>Building the structural integrity required for <span className="text-white font-medium">Enterprise AI</span> through robust storage and master data frameworks.</>
-                )}
+                {formatQuotesToBold(heroData?.heroS1Desc || "Building the structural integrity required for Enterprise AI through robust storage and master data frameworks.")}
               </p>
 
               <div className="pt-8 flex flex-wrap gap-4">
@@ -94,9 +95,9 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
         <section className="py-32 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">The Pillars of <span className="text-[#f99d1c]">Scalability</span></h2>
+              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">{renderHeroTitle("The Pillars of |Scalability|")}</h2>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                A house is only as strong as its foundation. We ensure your data estate is built on rock-solid principles of integrity and accessibility.
+                {formatQuotesToBold("A house is only as strong as its foundation. We ensure your data estate is built on rock-solid principles of integrity and accessibility.")}
               </p>
             </div>
 
@@ -114,8 +115,8 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
                     {pillar.icon}
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-[#11253e] text-lg font-bold tracking-normal uppercase">{pillar.title}</h3>
-                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{pillar.desc}</p>
+                    <h3 className="text-[#11253e] text-lg font-bold tracking-normal uppercase">{formatQuotesToBold(pillar.title)}</h3>
+                    <p className="text-[#11253e] text-sm font-light leading-relaxed">{formatQuotesToBold(pillar.desc)}</p>
                   </div>
                 </Motion.div>
               ))}
@@ -135,11 +136,10 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
               <div className="space-y-12">
                 <div className="space-y-6">
                   <h2 className="text-4xl md:text-5xl font-medium leading-tight tracking-tight">
-                    Architecting for <br />
-                    <span className="text-[#f99d1c]">Unbounded Growth.</span>
+                    {renderHeroTitle("Architecting for \n|Unbounded Growth|.")}
                   </h2>
                   <p className="text-white/60 text-lg font-light leading-relaxed">
-                    We move away from rigid silos toward flexible, componentized data architectures that adapt as your business evolves.
+                    {formatQuotesToBold("We move away from rigid silos toward flexible, componentized data architectures that adapt as your business evolves.")}
                   </p>
                 </div>
 
@@ -177,10 +177,10 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
               <div className="absolute left-0 top-0 w-1 h-full bg-[#f99d1c]"></div>
               <div className="max-w-2xl space-y-6">
                 <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-tight">
-                  Design Your <span className="text-[#f99d1c]">Data Legacy.</span>
+                  {renderHeroTitle("Design Your |Data Legacy|.")}
                 </h2>
                 <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                  Start with a baseline assessment of your storage architecture. Our experts will design a foundation that supports your 10-year growth plan.
+                  {formatQuotesToBold("Start with a baseline assessment of your storage architecture. Our experts will design a foundation that supports your 10-year growth plan.")}
                 </p>
               </div>
               <button className="whitespace-nowrap bg-[#11253e] hover:bg-[#f99d1c] text-white px-12 py-6 rounded-sm font-medium transition-all inline-flex items-center space-x-4 uppercase text-xs tracking-[0.2em] group">

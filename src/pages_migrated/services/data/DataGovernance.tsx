@@ -1,16 +1,18 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import { ArrowRight, Shield, Layers, Brain, Cog, Rocket, Lightbulb, Target, GitBranch, ShieldCheck, Eye, Workflow, TrendingUp, Lock, BarChart3, Search, Users, FileCheck, Database } from "lucide-react";
 
 export default function DataGovernance({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Data Governance & Quality | Nabhira Technologies";
+    document.title = "Data Governance & Quality | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -138,14 +140,12 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
-                <>Governance by <br /> <span className="text-white/40">Design.</span></>
+                <>Governance by <br /> <span className="text-[#f99d1c]">Design.</span></>
               ))}
             </h1>
 
             <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              {heroData?.heroS1Desc || (
-                <>Embedding <span className="text-white font-medium">trust</span> and <span className="text-[#f99d1c] font-medium">compliance</span> into every layer of your data lifecycle through automated governance.</>
-              )}
+              {formatQuotesToBold(heroData?.heroS1Desc || "Embedding 'trust' and ^compliance^ into every layer of your data lifecycle through automated governance.") as any}
             </p>
 
             <div className="pt-8 flex flex-wrap gap-4">
@@ -168,13 +168,12 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">Data Governance</h2>
+              <h2 className="text-[#11253e] text-4xl font-medium tracking-tight">{formatQuotesToBold("Data 'Governance'")}</h2>
               <p className="text-[#11253e] text-xl md:text-2xl font-light leading-relaxed">
-                Trust as the Foundation of{" "}
-                <span className="text-[#f99d1c] font-medium">Digital Enterprise</span>
+                {formatQuotesToBold("Trust as the Foundation of \n^Digital Enterprise^")}
               </p>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                In a data driven economy trust is not optional. It is foundational. As organizations expand across digital channels, cloud platforms and global markets, data complexity increases. Without strong governance, enterprises face inconsistent reporting, regulatory exposure, security risks and loss of decision confidence.
+                {formatQuotesToBold("In a data driven economy trust is not optional. It is foundational. As organizations expand across digital channels, cloud platforms and global markets, data complexity increases. Without strong governance, enterprises face inconsistent reporting, regulatory exposure, security risks and loss of decision confidence.")}
               </p>
 
             </Motion.div>
@@ -188,11 +187,11 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
             >
               <div className="border-l-3 border-[#f99d1c] pl-6">
                 <p className="text-[#11253e] text-lg font-medium leading-relaxed italic">
-                  We help enterprises design and institutionalize governance frameworks that ensure data integrity, transparency and regulatory discipline while supporting innovation at scale.
+                  {formatQuotesToBold("'We help enterprises design and institutionalize governance frameworks that ensure data integrity, transparency and regulatory discipline while supporting innovation at scale.'")}
                 </p>
               </div>
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                Our Data Governance Experts facilitates reliable, compliant and accountable data usage across the organization.
+                {formatQuotesToBold("Our Data Governance Experts facilitates reliable, compliant and accountable data usage across the organization.")}
               </p>
               <div className="w-16 h-px bg-[#f99d1c]"></div>
             </Motion.div>
@@ -220,10 +219,10 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">01</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Approach</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Governance by Design Not by Reaction</h3>
+              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Governance by Design Not by Reaction")}</h3>
               <p className="text-white/80 text-base font-light leading-relaxed max-w-2xl">
-                Effective governance must be embedded into enterprise strategy rather than implemented as a corrective measure. Our approach begins with executive alignment to define accountability, ownership and risk appetite across the organization.
+                {formatQuotesToBold("Effective governance must be embedded into enterprise strategy rather than implemented as a corrective measure. Our approach begins with executive alignment to define accountability, ownership and risk appetite across the organization.")}
               </p>
             </Motion.div>
           </div>
@@ -264,7 +263,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                   className="group flex items-center space-x-4"
                 >
                   <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                  <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{point.text}</span>
+                  <span className="text-white text-lg font-light leading-relaxed group-hover:text-white/90 transition-colors">{formatQuotesToBold(point.text)}</span>
                 </Motion.div>
               ))}
             </div>
@@ -279,7 +278,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
           >
             <div className="w-1 h-10 bg-[#f99d1c] shrink-0"></div>
             <p className="text-white/80 text-lg font-light italic leading-relaxed">
-              We position governance as a strategic enabler of confidence, not a bureaucratic constraint.
+              {formatQuotesToBold("'We position governance as a strategic enabler of confidence, not a bureaucratic constraint.'")}
             </p>
           </Motion.div>
         </div>
@@ -302,10 +301,10 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">02</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">Methodology</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Structured Governance Framework for Enterprise Scale</h3>
+              <h2 className="text-[#11253e] text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Structured Governance Framework for Enterprise Scale")}</h3>
               <p className="text-[#11253e] text-base font-light leading-relaxed max-w-2xl">
-                We apply a disciplined framework to operationalize governance.
+                {formatQuotesToBold("We apply a disciplined framework to operationalize governance.")}
               </p>
             </Motion.div>
           </div>
@@ -331,14 +330,14 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-[#11253e] text-xl font-semibold mb-6 text-center">{step.title}</h4>
+                  <h4 className="text-[#11253e] text-xl font-semibold mb-6 text-center">{formatQuotesToBold(step.title)}</h4>
 
                   {/* Points */}
                   <div className="space-y-3">
                     {step.points.map((point, i) => (
                       <div key={i} className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c]/40 mt-1.5 shrink-0"></div>
-                        <span className="text-[#11253e] text-[15px] leading-relaxed">{point}</span>
+                        <span className="text-[#11253e] text-[15px] leading-relaxed">{formatQuotesToBold(point)}</span>
                       </div>
                     ))}
                   </div>
@@ -385,10 +384,10 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                 <span className="text-[#f99d1c] font-black text-5xl leading-none">03</span>
                 <div className="h-px w-16 bg-[#f99d1c]/40"></div>
               </div>
-              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">Tools & Ecosystem</h2>
-              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">Enterprise Grade Governance Ecosystem</h3>
+              <h2 className="text-white text-3xl lg:text-4xl font-medium tracking-tight">{formatQuotesToBold("Tools & 'Ecosystem'")}</h2>
+              <h3 className="text-[#f99d1c] text-base font-bold uppercase tracking-widest">{formatQuotesToBold("Enterprise Grade Governance Ecosystem")}</h3>
               <p className="text-white/80 text-base font-light leading-relaxed max-w-2xl">
-                We design governance frameworks leveraging secure and scalable cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud.
+                {formatQuotesToBold("We design governance frameworks leveraging secure and scalable cloud environments such as ^Amazon Web Services, Microsoft Azure and Google Cloud.^")}
               </p>
             </Motion.div>
           </div>
@@ -410,7 +409,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                     <div className="text-[#f99d1c]">{tool.icon}</div>
                   </div>
                   <div>
-                    <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{tool.text}</span>
+                    <span className="text-white/80 group-hover:text-white text-[14px] font-light leading-relaxed transition-colors duration-500">{formatQuotesToBold(tool.text)}</span>
                   </div>
                 </div>
               </Motion.div>
@@ -425,7 +424,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
               className="bg-[#f99d1c]/10 p-8 flex items-center"
             >
               <p className="text-white/40 text-[13px] font-light italic leading-relaxed">
-                Technology selection is guided by enterprise scalability, security and regulatory alignment.
+                {formatQuotesToBold("'Technology selection is guided by enterprise scalability, security and regulatory alignment.'")}
               </p>
             </Motion.div>
           </div>
@@ -476,7 +475,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
                   <div className="w-9 h-9 bg-[#f99d1c]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[#f99d1c]/20 transition-colors">
                     <div className="text-[#f99d1c]">{item.icon}</div>
                   </div>
-                  <span className="text-[#11253e] text-[15px] font-light leading-relaxed">{item.text}</span>
+                  <span className="text-[#11253e] text-[15px] font-light leading-relaxed">{formatQuotesToBold(item.text)}</span>
                 </Motion.div>
               ))}
             </div>
@@ -492,7 +491,7 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
               <div className="relative z-10 flex items-start space-x-4">
                 <Lightbulb className="text-[#f99d1c] shrink-0 mt-1" size={24} />
                 <p className="text-white/80 text-lg font-light leading-relaxed italic">
-                  Most importantly we help organizations build trust in their data — which strengthens executive confidence, stakeholder transparency and long term enterprise resilience.
+                  {formatQuotesToBold("'Most importantly we help organizations build trust in their data — which strengthens executive confidence, stakeholder transparency and long term enterprise resilience.'")}
                 </p>
               </div>
             </Motion.div>
@@ -520,11 +519,10 @@ export default function DataGovernance({ wordpressData }: { wordpressData?: any 
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Secure Your <br />
-                  <span className="text-[#f99d1c]">Competitive Edge.</span>
+                  {formatQuotesToBold("Secure Your \n^Competitive Edge.^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
-                  Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.
+                  {formatQuotesToBold("Join the ranks of data-driven enterprises that prioritize trust. Schedule a governance workshop to identify your compliance gaps.")}
                 </p>
               </div>
               <button

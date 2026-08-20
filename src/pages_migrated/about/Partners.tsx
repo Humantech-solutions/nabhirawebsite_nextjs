@@ -1,44 +1,112 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import * as LucideIcons from "lucide-react";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { Handshake, Globe, Zap, Shield } from "lucide-react";
+import { renderHeroTitle, renderDynamicIcon, formatQuotesToBold } from "../../lib/utils";
+import awsLogo from "../../assets/ea968b74fff705800a15a9dcb40b38e7a1dafe03.png";
+import azureLogo from "../../assets/acad6f6c0c4fe301453542c28672d7b86bd38c70.png";
+import gcpLogo from "../../assets/d1262fcb47dec58df7ef32995607ef721a7ad5fb.png";
+import serviceNowLogo from "../../assets/7ad3e2b8e0d3a0223019a17cc80a66c38aa61012.png";
+import salesforceLogo from "../../assets/b13c4c100e4cb0ee511f80c66e134500635067e2.png";
+import zohoLogo from "../../assets/a6fec1352116809105f3fa70afd94fcb58e73b87.png";
+import oracleLogo from "../../assets/28c3e17412501b71ed55305c831d4873b30e8129.png";
+import oracleLogoRed from "../../assets/9fcacc9a598db3516da218cb0e4e6c23822c9077.png";
+import awsLogoNew from "../../assets/e8db84a0f02155e9712916e3b3f246e97af59ea6.png";
+import azureLogoNew from "../../assets/6815eb4c7e3fdf7615e2d88a4bc90f9d4f5f65e8.png";
+import serviceNowLogoNew from "../../assets/479c5e7ee7cc184f2a8f2f72295d6fc29ff8cf16.png";
+import serviceNowLogoText from "../../assets/80225d6957c2683205c179076212d35a3bc670de.png";
+const ibmLogo = "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg";
+
+
+// ACF select fields can return an array (["image"]) or a plain string ("image").
+// This helper always gives back a plain string.
+const normalizeAcfValue = (val: any): string => {
+  if (Array.isArray(val)) return val[0] ?? '';
+  return val ?? '';
+};
+
+const AnyIcon = ({ type, lucide, image, className, size = 32 }: { type: any, lucide?: string, image?: string, className?: string, size?: number }) => {
+  const formattedLucide = lucide ? lucide.charAt(0).toUpperCase() + lucide.slice(1) : 'Globe';
+  return (
+    <div className={className}>
+      {renderDynamicIcon(normalizeAcfValue(type), formattedLucide, image, size)}
+    </div>
+  );
+};
 
 
 export default function Partners({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
+  const ppf = wordpressData?.partnersPageFields;
 
 
   useEffect(() => {
-    document.title = "Partners Ecosystem | Nabhira Technologies";
+    document.title = "Partners Ecosystem | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
   const partnerTypes = [
     {
-      icon: <Globe className="text-[#f99d1c]" size={32} />,
-      title: "Hyperscalers",
-      desc: "Strategic alliances with leading cloud providers to deliver scalable, global-ready infrastructure."
+      type: normalizeAcfValue(ppf?.partner_ev_1IconType) || 'lucide',
+      lucide: ppf?.partner_ev_1Lucide || "Globe",
+      image: ppf?.partner_ev_1Image?.node?.sourceUrl,
+      title: formatQuotesToBold(ppf?.partner_ev_1_title || "Hyperscalers"),
+      desc: formatQuotesToBold(ppf?.partner_ev_1_desc || "Strategic alliances with leading cloud providers to deliver scalable, global-ready infrastructure.")
     },
     {
-      icon: <Zap className="text-[#f99d1c]" size={32} />,
-      title: "ISV Partners",
-      desc: "Collaboration with specialized software vendors to integrate best-of-breed solutions into our architectures."
+      type: normalizeAcfValue(ppf?.partner_ev_2IconType) || 'lucide',
+      lucide: ppf?.partner_ev_2Lucide || "Zap",
+      image: ppf?.partner_ev_2Image?.node?.sourceUrl,
+      title: formatQuotesToBold(ppf?.partner_ev_2_title || "ISV Partners"),
+      desc: formatQuotesToBold(ppf?.partner_ev_2_desc || "Collaboration with specialized software vendors to integrate best-of-breed solutions into our architectures.")
     },
     {
-      icon: <Shield className="text-[#f99d1c]" size={32} />,
-      title: "Compliance & Security",
-      desc: "Tier-1 security partnerships ensuring sovereign data residency and enterprise-grade governance."
+      type: normalizeAcfValue(ppf?.partner_ev_3IconType) || 'lucide',
+      lucide: ppf?.partner_ev_3Lucide || "Shield",
+      image: ppf?.partner_ev_3Image?.node?.sourceUrl,
+      title: formatQuotesToBold(ppf?.partner_ev_3_title || "Compliance & Security"),
+      desc: formatQuotesToBold(ppf?.partner_ev_3_desc || "Tier-1 security partnerships ensuring sovereign data residency and enterprise-grade governance.")
     },
     {
-      icon: <Handshake className="text-[#f99d1c]" size={32} />,
-      title: "Niche Consultants",
-      desc: "Specialized knowledge partners that augment our deep engineering with industry-specific domain expertise."
+      type: normalizeAcfValue(ppf?.partner_ev_4IconType) || 'lucide',
+      lucide: ppf?.partner_ev_4Lucide || "Handshake",
+      image: ppf?.partner_ev_4Image?.node?.sourceUrl,
+      title: formatQuotesToBold(ppf?.partner_ev_4_title || "Niche Consultants"),
+      desc: formatQuotesToBold(ppf?.partner_ev_4_desc || "Specialized knowledge partners that augment our deep engineering with industry-specific domain expertise.")
     }
+  ];
+
+  const partnerLogos = [
+    { name: ppf?.partner_ta_1_name || "Amazon Web Services", logo: ppf?.partner_ta_1_logo?.node?.sourceUrl || awsLogo.src, hoverColor: "rgba(255,153,0,0.15)", textColor: "group-hover:text-[#FF9900]" },
+    { name: ppf?.partner_ta_2_name || "Microsoft Azure", logo: ppf?.partner_ta_2_logo?.node?.sourceUrl || azureLogo.src, hoverColor: "rgba(0,120,212,0.15)", textColor: "group-hover:text-[#0078D4]" },
+    { name: ppf?.partner_ta_3_name || "Google Cloud Platform", logo: ppf?.partner_ta_3_logo?.node?.sourceUrl || gcpLogo.src, hoverColor: "rgba(66,133,244,0.15)", textColor: "group-hover:text-[#4285F4]" },
+    { name: ppf?.partner_ta_4_name || "ServiceNow", logo: ppf?.partner_ta_4_logo?.node?.sourceUrl || serviceNowLogo.src, hoverColor: "rgba(98,216,78,0.2)", textColor: "group-hover:text-[#62D84E]" },
+    { name: ppf?.partner_ta_5_name || "Salesforce", logo: ppf?.partner_ta_5_logo?.node?.sourceUrl || salesforceLogo.src, hoverColor: "rgba(0,161,224,0.15)", textColor: "group-hover:text-[#00A1E0]" },
+    { name: ppf?.partner_ta_6_name || "Zoho", logo: ppf?.partner_ta_6_logo?.node?.sourceUrl || zohoLogo.src, hoverColor: "rgba(228,37,39,0.15)", textColor: "group-hover:text-[#E42527]" },
+    { name: ppf?.partner_ta_7_name || "ERPNext", logo: ppf?.partner_ta_7_logo?.node?.sourceUrl || "https://erpnext.com/files/erpnext-logo.svg", hoverColor: "rgba(0,137,255,0.15)", textColor: "group-hover:text-[#0089FF]", colSpan: "col-span-2 sm:col-span-1" }
+  ];
+
+  const stats = [
+    { value: ppf?.partner_cta_s1_val || "10+", label: ppf?.partner_cta_s1_label || "Global Partners" },
+    { value: ppf?.partner_cta_s2_val || "5+", label: ppf?.partner_cta_s2_label || "Countries" },
+    { value: ppf?.partner_cta_s3_val || "30+", label: ppf?.partner_cta_s3_label || "Projects Delivered" },
+  ];
+
+  const orbitalNodes = [
+    { label: ppf?.partner_cta_o1_label || "AWS", color: ppf?.partner_cta_o1_color || "#FF9900", image: ppf?.partnerCtaO1Image?.node?.sourceUrl, angle: 0, r: 130 },
+    { label: ppf?.partner_cta_o2_label || "Azure", color: ppf?.partner_cta_o2_color || "#0078D4", image: ppf?.partnerCtaO2Image?.node?.sourceUrl, angle: 51, r: 130 },
+    { label: ppf?.partner_cta_o3_label || "GCP", color: ppf?.partner_cta_o3_color || "#4285F4", image: ppf?.partnerCtaO3Image?.node?.sourceUrl, angle: 103, r: 130 },
+    { label: ppf?.partner_cta_o4_label || "SFDC", color: ppf?.partner_cta_o4_color || "#00A1E0", image: ppf?.partnerCtaO4Image?.node?.sourceUrl, angle: 154, r: 130 },
+    { label: ppf?.partner_cta_o5_label || "SN", color: ppf?.partner_cta_o5_color || "#62D84E", image: ppf?.partnerCtaO5Image?.node?.sourceUrl, angle: 205, r: 130 },
+    { label: ppf?.partner_cta_o6_label || "Zoho", color: ppf?.partner_cta_o6_color || "#E42527", image: ppf?.partnerCtaO6Image?.node?.sourceUrl, angle: 257, r: 130 },
+    { label: ppf?.partner_cta_o7_label || "ERP", color: ppf?.partner_cta_o7_color || "#0089FF", image: ppf?.partnerCtaO7Image?.node?.sourceUrl, angle: 308, r: 130 },
   ];
 
   return (
@@ -72,12 +140,16 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
               </nav>
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                Orchestrating <br /><span className="text-[#f99d1c]">Global</span> Synergy
+                {renderHeroTitle(heroData?.heroS1Title || (
+                  <>
+                    Orchestrating <br />Global <span className="text-[#f99d1c]">Synergy</span>
+                  </>
+                ))}
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {heroData?.heroS1Desc || "Our ecosystem is built on the principle of collaborative excellence. We partner with the world's leading technology pioneers to deliver integrated, future-proof solutions."}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Our ecosystem is built on the principle of collaborative excellence. We partner with the world's leading technology pioneers to deliver integrated, future-proof solutions.")}
                 </p>
               </div>
             </Motion.div>
@@ -88,177 +160,33 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
         <section className="py-20 bg-white border-y border-gray-100">
           <div className="max-w-6xl mx-auto px-6 sm:px-12">
             <div className="text-center mb-14">
-              <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">Trusted Alliances</p>
+              <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#f99d1c] mb-3">{formatQuotesToBold(ppf?.partner_ta_subtitle || "Trusted Alliances")}</p>
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                Our <span className="font-bold">Technology Partners</span>
+                {renderHeroTitle(ppf?.partner_ta_title || `Our |Technology Partners|`, "text-[#11253e]")}
               </h2>
               <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-6"></div>
               <p className="max-w-xl mx-auto text-[#11253e] font-light text-sm leading-relaxed" style={{ opacity: 0.65 }}>
-                Strategic alliances with world-leading technology platforms to deliver integrated, future-proof solutions.
+                {formatQuotesToBold(ppf?.partner_ta_desc || "Strategic alliances with world-leading technology platforms to deliver integrated, future-proof solutions.")}
               </p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
 
-              {/* AWS */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(255,153,0,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex flex-col items-center gap-2">
-                  <div style={{ background: "#232F3E", borderRadius: 8, padding: "6px 18px" }}>
-                    <span style={{ color: "white", fontWeight: 900, fontSize: 28, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-1px", lineHeight: 1.15 }}>aws</span>
+              {partnerLogos.map((brand, i) => (
+                <Motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + (i * 0.05) }} viewport={{ once: true }}
+                  whileHover={{ y: -5, boxShadow: `0 16px 40px ${brand.hoverColor}` }}
+                  className={`bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer ${brand.colSpan || ''}`}
+                  style={{ minHeight: 110 }}
+                >
+                  <div className="flex items-center justify-center w-full" style={{ height: 48 }}>
+                    <ImageWithFallback src={brand.logo} alt={brand.name} width={130} height={44} className="h-full w-full object-contain" style={{ objectFit: 'contain' }} />
                   </div>
-                  <svg width="72" height="14" viewBox="0 0 72 14" fill="none">
-                    <path d="M2 7 C16 13 56 13 70 7" stroke="#FF9900" strokeWidth="3" strokeLinecap="round"/>
-                    <path d="M65 3.5 L72 7 L65 10.5 Z" fill="#FF9900"/>
-                  </svg>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#FF9900] transition-colors text-center">Amazon Web Services</span>
-              </Motion.div>
-
-              {/* Azure */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.10 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,120,212,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex items-center gap-3">
-                  {/* Azure 'a' geometric mark */}
-                  <svg width="44" height="44" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="az1" x1="0.661" y1="0.25" x2="0.5" y2="0.936" gradientUnits="objectBoundingBox">
-                        <stop offset="0" stopColor="#114A8B"/>
-                        <stop offset="1" stopColor="#0669BC"/>
-                      </linearGradient>
-                      <linearGradient id="az2" x1="0.661" y1="0.25" x2="0.5" y2="0.936" gradientUnits="objectBoundingBox">
-                        <stop offset="0" stopColor="#3ccbf4" stopOpacity="0"/>
-                        <stop offset="1" stopColor="#198AB3"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M6.53 1.1H10.8l-4.62 13.6H1.9z" fill="url(#az1)"/>
-                    <path d="M11.56 1.1l-3.1 9.2 3.8 4.24 4.84-13.44z" fill="url(#az2)"/>
-                    <path d="M6.3 14.7H16.1l-1.32-1.7H9.47z" fill="#0078D4"/>
-                  </svg>
-                  <span style={{ color: "#0078D4", fontWeight: 600, fontSize: 22, fontFamily: "Segoe UI, Arial, sans-serif" }}>Azure</span>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0078D4] transition-colors text-center">Microsoft Azure</span>
-              </Motion.div>
-
-              {/* Google Cloud */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(66,133,244,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex flex-col items-center gap-1.5">
-                  {/* Google Cloud icon — stylized cloud with G colors */}
-                  <svg width="52" height="36" viewBox="0 0 64 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M40 8a16 16 0 0 0-15.4 11.7A10 10 0 0 0 24 38h30a10 10 0 0 0 2.6-19.7A16 16 0 0 0 40 8z" fill="#4285F4"/>
-                    <path d="M16 16a10 10 0 0 0-2 19.8V36H24v-.2A10 10 0 0 0 16 16z" fill="#EA4335"/>
-                    <rect x="28" y="28" width="4" height="10" rx="1" fill="white"/>
-                    <rect x="36" y="28" width="4" height="10" rx="1" fill="white"/>
-                    <rect x="44" y="28" width="4" height="10" rx="1" fill="white"/>
-                  </svg>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
-                    <span style={{ fontWeight: 700, fontSize: 16, fontFamily: "Arial, sans-serif" }}>
-                      <span style={{ color: "#4285F4" }}>G</span>
-                      <span style={{ color: "#EA4335" }}>o</span>
-                      <span style={{ color: "#FBBC05" }}>o</span>
-                      <span style={{ color: "#4285F4" }}>g</span>
-                      <span style={{ color: "#34A853" }}>l</span>
-                      <span style={{ color: "#EA4335" }}>e</span>
-                    </span>
-                    <span style={{ color: "#5F6368", fontWeight: 400, fontSize: 16, fontFamily: "Arial, sans-serif" }}>Cloud</span>
-                  </div>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#4285F4] transition-colors text-center">Google Cloud Platform</span>
-              </Motion.div>
-
-              {/* ServiceNow */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.20 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(98,216,78,0.2)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex items-center gap-3">
-                  {/* ServiceNow icon: green rounded square + white ring-arrow */}
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="9" fill="#62D84E"/>
-                    <path d="M20 10a10 10 0 1 1-7.07 2.93" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                    <path d="M10 10 L13 17 L17 11 Z" fill="white"/>
-                  </svg>
-                  <span style={{ color: "#293E40", fontWeight: 700, fontSize: 18, fontFamily: "Arial, sans-serif" }}>ServiceNow</span>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#62D84E] transition-colors text-center">ServiceNow</span>
-              </Motion.div>
-
-              {/* Salesforce */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,161,224,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex flex-col items-center gap-1.5">
-                  {/* Salesforce cloud icon */}
-                  <svg width="72" height="40" viewBox="0 0 100 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M41 12c3.9-4.1 9.3-6.6 15.3-6.6 8.2 0 15.3 4.6 19.1 11.4 3.3-1.5 7-2.3 10.9-2.3C99 14.5 108 23.7 108 35c0 11.3-9 20.5-20.7 20.5H20C10.1 55.5 2 47.3 2 37.3c0-9.3 6.7-17 15.6-19 .2-8 6.5-14.4 14.4-14.4 3.5 0 6.7 1.2 9 3.1z" fill="#00A1E0" transform="scale(0.85) translate(4,0)"/>
-                    <text x="14" y="38" style={{ fontFamily: "Arial, sans-serif", fontWeight: 700, fontSize: 20, fill: "white" }}>Salesforce</text>
-                  </svg>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#00A1E0] transition-colors text-center">Salesforce</span>
-              </Motion.div>
-
-              {/* Zoho */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.30 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(228,37,39,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex items-center gap-2">
-                  {/* Zoho Z badge */}
-                  <div style={{ background: "#E42527", borderRadius: 6, width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ color: "white", fontWeight: 900, fontSize: 26, fontFamily: "Arial Black, Arial, sans-serif", lineHeight: 1 }}>Z</span>
-                  </div>
-                  <span style={{ color: "#E42527", fontWeight: 700, fontSize: 26, fontFamily: "Arial, sans-serif", letterSpacing: "-0.5px" }}>oho</span>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#E42527] transition-colors text-center">Zoho</span>
-              </Motion.div>
-
-              {/* ERPNext */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }} viewport={{ once: true }}
-                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,137,255,0.15)" }}
-                className="bg-white border border-gray-150 rounded-lg flex flex-col items-center justify-center py-5 px-5 gap-3 transition-all duration-300 group cursor-pointer col-span-2 sm:col-span-1"
-                style={{ minHeight: 110 }}
-              >
-                <div className="flex items-center gap-2">
-                  {/* ERPNext icon */}
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="8" fill="#0089FF"/>
-                    <path d="M10 10h20v5H16v5h12v5H16v5h14v5H10z" fill="white"/>
-                  </svg>
-                  <div>
-                    <span style={{ color: "#0089FF", fontWeight: 800, fontSize: 20, fontFamily: "Arial Black, Arial, sans-serif", letterSpacing: "-0.5px" }}>ERP</span>
-                    <span style={{ color: "#293E40", fontWeight: 400, fontSize: 20, fontFamily: "Arial, sans-serif" }}>Next</span>
-                  </div>
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 group-hover:text-[#0089FF] transition-colors text-center">ERPNext</span>
-              </Motion.div>
+                  <span className={`text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 ${brand.textColor} transition-colors text-center`}>{brand.name}</span>
+                </Motion.div>
+              ))}
 
             </div>
           </div>
@@ -269,11 +197,11 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                An Ecosystem of <span className="font-bold">Innovation</span>
+                {renderHeroTitle(ppf?.partner_ev_title || `An Ecosystem of |Innovation|`, "text-[#11253e]")}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
               <p className="max-w-2xl mx-auto text-[#11253e] font-light leading-relaxed">
-                We don't just work with partners; we co-create value. Our alliances are deep, technical, and focused on delivering architectural superiority.
+                {formatQuotesToBold(ppf?.partner_ev_desc || "We don't just work with partners; we co-create value. Our alliances are deep, technical, and focused on delivering architectural superiority.")}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -287,7 +215,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                   className="p-10 border border-gray-100 hover:border-[#f99d1c]/30 hover:shadow-xl transition-all duration-300 rounded-sm group"
                 >
                   <div className="mb-8 group-hover:scale-110 transition-transform duration-300">
-                    {type.icon}
+                    <AnyIcon type={type.type} lucide={type.lucide} image={type.image} className="text-[#f99d1c]" size={32} />
                   </div>
                   <h4 className="text-[#11253e] font-bold mb-4 tracking-tight uppercase text-[12px]">{type.title}</h4>
                   <p className="text-[#11253e] text-sm font-light leading-relaxed">{type.desc}</p>
@@ -345,25 +273,20 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                 {/* Orange accent label */}
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-px bg-[#f99d1c]" />
-                  <span className="text-[#f99d1c] text-[10px] font-bold tracking-[0.3em] uppercase">Partner With Us</span>
+                  <span className="text-[#f99d1c] text-[10px] font-bold tracking-[0.3em] uppercase">{formatQuotesToBold(ppf?.partner_cta_subtitle || "Partner With Us")}</span>
                 </div>
 
                 <h2 className="text-white text-4xl md:text-5xl font-light leading-tight tracking-tight">
-                  Ready to architect<br />
-                  <span className="text-[#f99d1c] font-bold">together</span>?
+                  {renderHeroTitle(ppf?.partner_cta_title || `Ready to architect<br />\n|together|?`)}
                 </h2>
 
                 <p className="text-white/70 font-light leading-relaxed max-w-md">
-                  We are always looking for partners who share our commitment to precision engineering and digital excellence. Join our ecosystem and help us shape the future of enterprise technology.
+                  {formatQuotesToBold(ppf?.partner_cta_desc || "We are always looking for partners who share our commitment to precision engineering and digital excellence. Join our ecosystem and help us shape the future of enterprise technology.")}
                 </p>
 
                 {/* Stats row */}
                 <div className="flex gap-10 pt-2">
-                  {[
-                    { value: "10+", label: "Global Partners" },
-                    { value: "5+", label: "Countries" },
-                    { value: "30+", label: "Projects Delivered" },
-                  ].map((stat, i) => (
+                  {stats.map((stat, i) => (
                     <div key={i} className="flex flex-col">
                       <span className="text-[#f99d1c] text-2xl font-bold">{stat.value}</span>
                       <span className="text-white/50 text-[11px] tracking-widest uppercase font-medium mt-0.5">{stat.label}</span>
@@ -373,21 +296,25 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
 
                 {/* CTA buttons */}
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <Motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="bg-[#f99d1c] text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors shadow-lg"
-                    style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
-                  >
-                    Become a Partner
-                  </Motion.button>
-                  <Motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="border border-white/25 text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:border-[#f99d1c] hover:text-[#f99d1c] transition-colors"
-                  >
-                    Contact Us
-                  </Motion.button>
+                  <Link href={ppf?.partnerCtaBtn1Link || "/contact"}>
+                    <Motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="bg-[#f99d1c] text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#e08b1a] transition-colors shadow-lg"
+                      style={{ boxShadow: "0 8px 32px rgba(249,157,28,0.35)" }}
+                    >
+                      {ppf?.partnerCtaBtn1Label || "Become a Partner"}
+                    </Motion.button>
+                  </Link>
+                  <Link href={ppf?.partnerCtaBtn2Link || "/contact"}>
+                    <Motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="border border-white/25 text-white px-9 py-4 font-bold text-[11px] tracking-[0.2em] uppercase rounded-sm hover:border-[#f99d1c] hover:text-[#f99d1c] transition-colors"
+                    >
+                      {ppf?.partnerCtaBtn2Label || "Contact Us"}
+                    </Motion.button>
+                  </Link>
                 </div>
               </Motion.div>
 
@@ -413,23 +340,18 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                   <div className="relative z-10 flex flex-col items-center justify-center rounded-full bg-[#f99d1c] shadow-2xl" 
                     style={{ width: 120, height: 120, boxShadow: "0 0 60px rgba(249,157,28,0.5)" }}>
                     {/* Handshake icon */}
-                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9 12l-4-2.5V5l4 2.5M9 12l3 1.5M9 12V19m3-5.5L15 12M12 13.5V19m0-5.5l3-1.5M15 12l4-2.5V5l-4 2.5M15 12V19" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M9 7.5L12 9l3-1.5M9 7.5L6 5M12 9l3-1.5M6 5l3-2.5 3 2.5 3-2.5 3 2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className="text-white text-[9px] font-bold tracking-widest uppercase mt-1">Partner</span>
+                    {(() => { const ct = normalizeAcfValue(ppf?.partner_cta_centerIconType); return (ct === 'image' || ct === 'Upload Image') && ppf?.partner_cta_centerImage?.node?.sourceUrl; })() ? (
+                      <img src={ppf.partner_cta_centerImage.node.sourceUrl} className="w-11 h-11 object-contain" alt="" />
+                    ) : (
+                      <AnyIcon type="lucide" lucide={ppf?.partner_cta_centerLucide || "Handshake"} className="text-white" size={44} />
+                    )}
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase mt-1">
+                      {ppf?.partner_cta_center_label || "Partner"}
+                    </span>
                   </div>
 
                   {/* Orbiting partner nodes */}
-                  {[
-                    { label: "AWS", color: "#FF9900", angle: 0, r: 130 },
-                    { label: "Azure", color: "#0078D4", angle: 51, r: 130 },
-                    { label: "GCP", color: "#4285F4", angle: 103, r: 130 },
-                    { label: "SFDC", color: "#00A1E0", angle: 154, r: 130 },
-                    { label: "SN", color: "#62D84E", angle: 205, r: 130 },
-                    { label: "Zoho", color: "#E42527", angle: 257, r: 130 },
-                    { label: "ERP", color: "#0089FF", angle: 308, r: 130 },
-                  ].map((node, i) => {
+                  {orbitalNodes.map((node, i) => {
                     const rad = (node.angle * Math.PI) / 180;
                     const x = 150 + node.r * Math.cos(rad) - 26;
                     const y = 150 + node.r * Math.sin(rad) - 26;
@@ -451,22 +373,40 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
                           boxShadow: `0 0 16px ${node.color}30`
                         }}
                       >
-                        <span style={{ color: node.color, fontWeight: 800, fontSize: 10, letterSpacing: "0.05em", textAlign: "center", lineHeight: 1.1 }}>{node.label}</span>
+                        <div className="p-1 flex flex-col items-center justify-center w-full h-full gap-1">
+                          {node.image ? (
+                            <img src={node.image} alt={node.label} className="w-5 h-5 object-contain" />
+                          ) : node.label === "Oracle" ? (
+                            <Image src={oracleLogo} alt="Oracle" className="w-5 h-5 object-contain" style={{ filter: "brightness(1.5)" }} />
+                          ) : node.label === "AWS" ? (
+                            <Image src={awsLogoNew} alt="AWS" className="w-5 h-5 object-contain" />
+                          ) : node.label === "SFDC" ? (
+                            <Image src={salesforceLogo} alt="Salesforce" className="w-5 h-5 object-contain" />
+                          ) : node.label === "SN" ? (
+                            <Image src={serviceNowLogoNew} alt="ServiceNow" className="w-5 h-5 object-contain" />
+                          ) : node.label === "Zoho" ? (
+                            <Image src={zohoLogo} alt="Zoho" className="w-5 h-5 object-contain" />
+                          ) : node.label === "Azure" ? (
+                            <Image src={azureLogoNew} alt="Azure" className="w-5 h-5 object-contain" />
+                          ) : (
+                            <Image src={gcpLogo} alt="GCP" className="w-5 h-5 object-contain" />
+                          )}
+                          <span className="text-white text-[8px] font-bold tracking-widest uppercase text-center">{node.label}</span>
+                        </div>
                       </Motion.div>
                     );
                   })}
 
                   {/* Connecting lines from center to each node */}
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300" style={{ pointerEvents: "none" }}>
-                    {[0, 51, 103, 154, 205, 257, 308].map((angle, i) => {
-                      const rad = (angle * Math.PI) / 180;
+                    {orbitalNodes.map((node, i) => {
+                      const rad = (node.angle * Math.PI) / 180;
                       const x2 = 150 + 104 * Math.cos(rad);
                       const y2 = 150 + 104 * Math.sin(rad);
-                      const colors = ["#FF9900","#0078D4","#4285F4","#00A1E0","#62D84E","#E42527","#0089FF"];
                       return (
                         <line key={i}
                           x1="150" y1="150" x2={x2} y2={y2}
-                          stroke={colors[i]} strokeWidth="0.8" strokeOpacity="0.35"
+                          stroke={node.color} strokeWidth="0.8" strokeOpacity="0.35"
                           strokeDasharray="4 3"
                         />
                       );
@@ -479,8 +419,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={wordpressData?.globalSettings?.limitlessTogether} />
     </>
   );
 }
-

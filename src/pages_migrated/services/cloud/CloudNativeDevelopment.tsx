@@ -1,10 +1,11 @@
 "use client";
+import Image from "next/image";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { ImageWithFallback } from "../../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -24,7 +25,7 @@ import {
 
 export default function CloudNativeDevelopment({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Native Development | Nabhira Technologies";
+    document.title = "Cloud Native Development | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -81,8 +82,10 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
   return (
     <>
       <ServiceHero 
-        title={renderHeroTitle(heroData?.heroS1Title || <>Build at the <span className="text-[#f99d1c]">Speed of Cloud.</span></>)}
-        description={heroData?.heroS1Desc || "We design and build ultra-scalable, resilient applications using serverless, containerization and microservices. Empower your digital products to scale with your ambition."}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Build at the <br /><span className="text-[#f99d1c]">Speed of Cloud.</span></>
+        ))}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "We design and build ultra-scalable, resilient applications using 'serverless', 'containerization' and 'microservices'. Empower your digital products to scale with your ambition.") as any}
         subtitle="Cloud Native Development"
         category="Cloud Native Development"
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1628313348684-5d75dd67e7c8?auto=format&fit=crop&q=80&w=2000"}
@@ -99,8 +102,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               className="space-y-8"
             >
               <h2 className="text-[#11253e] text-3xl md:text-5xl font-medium tracking-[-0.02em] leading-tight">
-                Build Applications that <br />
-                <span className="text-[#f99d1c]">Scale, Adapt and Evolve</span>
+                {formatQuotesToBold("Build Applications that \n^Scale, Adapt and Evolve^")}
               </h2>
               <p className="text-[#11253e] text-lg md:text-xl font-light leading-relaxed">
                 Today's digital businesses need applications that are fast, resilient and ready to scale instantly. Traditional development approaches often struggle to keep up with changing customer expectations.
@@ -115,7 +117,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               className="space-y-6"
             >
               <p className="text-[#11253e] text-lg leading-relaxed font-light">
-                Cloud-native development is about building applications specifically for the cloud, designed to scale automatically, recover quickly and evolve continuously. We help you build modern applications that are agile by design.
+                {formatQuotesToBold("Cloud-native development is about building applications specifically for the cloud, designed to scale automatically, recover quickly and evolve continuously. We help you build modern applications that are agile by design.")}
               </p>
               <div className="w-20 h-px bg-[#f99d1c]"></div>
             </Motion.div>
@@ -142,8 +144,8 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                   <span className="text-[#f99d1c] font-black text-6xl">01</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Approach</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Design for Agility. Build for Scale.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Approach'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Design for Agility. Build for Scale.")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -160,7 +162,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{item}</span>
+                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -186,10 +188,10 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               <span className="text-[#f99d1c] font-black text-6xl">02</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">Our Methodology</h2>
-            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">Structured Innovation with Continuous Delivery</h3>
+            <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Our 'Methodology'")}</h2>
+            <h3 className="text-[#11253e] text-xl font-light uppercase tracking-[0.2em]">{formatQuotesToBold("Structured Innovation with Continuous Delivery")}</h3>
             <p className="text-[#11253e] text-lg font-light max-w-2xl mx-auto">
-              We follow a disciplined development framework to ensure speed without sacrificing stability or security.
+              {formatQuotesToBold("We follow a disciplined development framework to ensure speed without sacrificing stability or security.")}
             </p>
           </div>
 
@@ -206,12 +208,12 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                 <div className="w-14 h-14 bg-[#11253e]/5 rounded-sm flex items-center justify-center mb-8 mx-auto group-hover:bg-[#f99d1c]/10 transition-colors">
                   {step.icon}
                 </div>
-                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{step.title}</h4>
+                <h4 className="text-[#11253e] text-2xl font-medium mb-6 w-full">{formatQuotesToBold(step.title)}</h4>
                 <div className="space-y-4 flex-grow text-left w-full">
                   {step.points.map((point, i) => (
                     <div key={i} className="flex items-start space-x-3">
                       <div className="w-1 h-1 rounded-full bg-[#f99d1c] mt-2 shrink-0"></div>
-                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{point}</span>
+                      <span className="text-[#11253e] text-[15px] leading-relaxed font-normal">{formatQuotesToBold(point)}</span>
                     </div>
                   ))}
                 </div>
@@ -236,8 +238,8 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                   <span className="text-[#f99d1c] font-black text-6xl">03</span>
                   <div className="h-px w-12 bg-[#f99d1c]"></div>
                 </div>
-                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">Tools & Platforms</h2>
-                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">Built on Proven Cloud Ecosystems.</h3>
+                <h2 className="text-[#11253e] text-4xl lg:text-5xl font-medium tracking-tight leading-tight">{formatQuotesToBold("Tools & 'Platforms'")}</h2>
+                <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest leading-snug">{formatQuotesToBold("Built on Proven Cloud Ecosystems.")}</h3>
               </div>
 
               <p className="text-[#11253e] text-lg font-light leading-relaxed">
@@ -270,7 +272,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               </div>
               <div className="absolute -bottom-6 -left-6 bg-[#f99d1c] p-8 text-[#11253e] max-w-xs shadow-xl hidden md:block">
                 <p className="text-sm font-medium italic">
-                  "Our toolkit enables teams to focus on business value rather than infrastructure management."
+                  {formatQuotesToBold("'Our toolkit enables teams to focus on business value rather than infrastructure management.'")}
                 </p>
               </div>
             </div>
@@ -287,8 +289,8 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               <span className="text-[#f99d1c] font-black text-6xl">04</span>
               <div className="h-px w-12 bg-[#f99d1c]"></div>
             </div>
-            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">Value Proposition</h2>
-            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">Faster Innovation. Sustainable Scale.</h3>
+            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Value 'Proposition'")}</h2>
+            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Faster Innovation. Sustainable Scale.")}</h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -311,10 +313,10 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                   <div className="w-8 h-8 rounded-full bg-[#f99d1c] flex items-center justify-center text-[#11253e]">
                     <CheckCircle2 size={16} />
                   </div>
-                  <h4 className="text-white text-lg font-medium tracking-tight">{item.title}</h4>
+                  <h4 className="text-white text-lg font-medium tracking-tight">{formatQuotesToBold(item.title)}</h4>
                 </div>
                 <p className="text-white/60 text-sm font-light leading-relaxed">
-                  {item.desc}
+                  {formatQuotesToBold(item.desc)}
                 </p>
               </Motion.div>
             ))}
@@ -339,8 +341,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
               <div className="absolute top-0 left-0 w-1.5 h-full bg-[#f99d1c]"></div>
               <div className="max-w-xl space-y-4">
                 <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight leading-[1.2]">
-                 Ready to innovate <br />
-                  <span className="text-[#f99d1c]">at scale? </span>
+                  {formatQuotesToBold("Ready to innovate \n^at scale?^")}
                 </h2>
                 <p className="text-[#11253e] text-base font-light leading-relaxed">
                   Transform your development lifecycle with a cloud-native strategy designed for agility and long-term success.

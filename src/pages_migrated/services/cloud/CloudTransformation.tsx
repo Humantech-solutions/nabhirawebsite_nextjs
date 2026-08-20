@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "motion/react";
+import React from "react";
+import { motion as Motion } from "motion/react";
 import { ServiceHero } from "../../../components/ServiceHero";
 import { CheckCircle2, Layout, Zap, Users, Shield, Server } from "lucide-react";
-import { renderHeroTitle } from "../../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../../lib/utils";
 
 export default function CloudTransformation({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
@@ -19,8 +20,10 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
     <div className="flex flex-col">
       <ServiceHero
         subtitle="Cloud Transformation"
-        title={renderHeroTitle(heroData?.heroS1Title || "Scalable Infrastructure for the Future")}
-        description={heroData?.heroS1Desc || "Migrate, modernize, and manage your enterprise workloads with our world-class cloud architectural expertise. We specialize in AWS, Azure, and Google Cloud."}
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Scalable <br /><span className="text-[#f99d1c]">Infrastructure.</span></>
+        ))}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "Migrate, modernize, and manage your enterprise workloads with our world-class cloud architectural expertise. We specialize in 'AWS', 'Azure', and 'Google Cloud'.") as any}
         image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1721444127971-b7d0023bbef2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBjbG91ZCUyMHNlcnZlciUyMGJsdWV8ZW58MXx8fHwxNzcxOTU1MTE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
       />
 
@@ -29,10 +32,10 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight mb-8">
-              Why Move to the Cloud with Nabhira?
+              {formatQuotesToBold("Why Move to the Cloud \n^with Hutech Solutions?^")}
             </h2>
             <p className="text-[#11253e] text-lg lg:text-xl leading-relaxed">
-              Cloud is more than just someone else's server. It's an opportunity to rebuild your business for agility, resilience, and speed.
+              {formatQuotesToBold("Cloud is more than just someone else's server. It's an opportunity to rebuild your business for ^agility, resilience, and speed.^")}
             </p>
           </div>
 
@@ -45,7 +48,7 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
               { icon: <Shield />, title: "Zero Trust Security", desc: "Enterprise-grade security built into the very fabric of your network." },
               { icon: <CheckCircle2 />, title: "99.99% Availability", desc: "Architected for high availability and disaster recovery." },
             ].map((f, idx) => (
-              <motion.div
+              <Motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -56,9 +59,9 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
                 <div className="text-[#f99d1c] mb-6 p-3 bg-[#11253e]/5 rounded-sm inline-block">
                   {f.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{f.title}</h3>
-                <p className="text-[#11253e] text-sm leading-relaxed">{f.desc}</p>
-              </motion.div>
+                <h3 className="text-xl font-bold mb-4">{formatQuotesToBold(f.title)}</h3>
+                <p className="text-[#11253e] text-sm leading-relaxed">{formatQuotesToBold(f.desc)}</p>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -74,8 +77,8 @@ export default function CloudTransformation({ wordpressData }: { wordpressData?:
                   0{idx + 1}
                 </div>
                 <div className="relative z-10 pt-4">
-                  <h4 className="text-xl md:text-2xl font-bold mb-4 text-[#f99d1c]">{step.title}</h4>
-                  <p className="text-white/70 text-sm md:text-base font-light leading-relaxed">{step.desc}</p>
+                  <h4 className="text-xl md:text-2xl font-bold mb-4 text-[#f99d1c]">{formatQuotesToBold(step.title)}</h4>
+                  <p className="text-white/70 text-sm md:text-base font-light leading-relaxed">{formatQuotesToBold(step.desc)}</p>
                 </div>
               </div>
             ))}

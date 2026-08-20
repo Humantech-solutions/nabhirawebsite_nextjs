@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle } from "../../lib/utils";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import {
   ArrowRight,
   ShieldCheck,
@@ -24,7 +25,7 @@ import {
 export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Government & PSUs | Nabhira Technologies";
+    document.title = "Government & PSUs | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -201,8 +202,7 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
             className="max-w-3xl space-y-8"
           >
             <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-              <Link
-                href="/"
+              <Link href="/"
                 className="hover:text-white cursor-pointer transition-colors"
               >
                 Home
@@ -219,15 +219,16 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
 
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
-                <>Government <br /> <span className="text-[#f99d1c]">& PSUs</span></>
+                <>
+                  Government <br /> <span className="text-[#f99d1c]">& PSUs</span>
+                </>
               ))}
             </h1>
 
 
             <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                {heroData?.heroS1Desc || "Enabling Citizen-Centric, Transparent and Resilient Public Services. We partner with agencies to modernize infrastructure and strengthen public trust."}
-
+                {formatQuotesToBold(heroData?.heroS1Desc || "Enabling Citizen-Centric, Transparent and Resilient Public Services. We partner with agencies to modernize infrastructure and strengthen public trust.")}
               </p>
             </div>
           </Motion.div>
@@ -240,8 +241,7 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
-                The Industry{" "}
-                <span className="font-bold">Imperative</span>
+                {formatQuotesToBold("The Industry \"Imperative\"")}
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
@@ -268,10 +268,10 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">
-                  {item.title}
+                  {formatQuotesToBold(item.title)}
                 </h3>
                 <p className="text-[#11253e] leading-relaxed">
-                  {item.text}
+                  {formatQuotesToBold(item.text)}
                 </p>
               </Motion.div>
             ))}
@@ -284,14 +284,10 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
-              Where We Create{" "}
-              <span className="italic font-serif text-[#f99d1c]">
-                Impact
-              </span>
+              {formatQuotesToBold("Where We Create 'Impact'")}
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              We help Governments and PSUs evolve into
-              intelligent, connected and resilient institutions.
+              {formatQuotesToBold("We help Governments and PSUs evolve into intelligent, connected and resilient institutions.")}
             </p>
           </div>
 
@@ -313,10 +309,10 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
                     <div className="h-px bg-[#11253e]/10 flex-grow"></div>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">
-                    {area.title}
+                    {formatQuotesToBold(area.title)}
                   </h3>
                   <p className="text-[#11253e] text-lg leading-relaxed">
-                    {area.description}
+                    {formatQuotesToBold(area.description)}
                   </p>
 
                   <ul className="space-y-3 pt-4">
@@ -362,21 +358,13 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">
-                Technology <br />
-                <span className="font-bold text-[#f99d1c]">
-                  Enablement
-                </span>
+                {formatQuotesToBold("Technology \n'Enablement'")}
               </h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                We leverage secure and compliant cloud
-                environments such as Amazon Web Services,
-                Microsoft Azure and Google Cloud to support
-                government-grade scalability, security and
-                compliance.
+                {formatQuotesToBold("We leverage secure and compliant cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud to support government-grade scalability, security and compliance.")}
               </p>
 
-              <Link
-                href="/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all"
               >
                 Start your journey <ArrowRight size={20} />
@@ -393,10 +381,10 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
                     {cap.icon}
                   </div>
                   <h4 className="font-bold text-lg mb-2">
-                    {cap.title}
+                    {formatQuotesToBold(cap.title)}
                   </h4>
                   <p className="text-white/50 text-sm">
-                    {cap.desc}
+                    {formatQuotesToBold(cap.desc)}
                   </p>
                 </div>
               ))}

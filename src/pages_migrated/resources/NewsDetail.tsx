@@ -1,64 +1,40 @@
 "use client";
 
-import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { ArrowLeft, Share2, Globe, FileText, ChevronRight } from "lucide-react";
+import { ArrowLeft, Share2, Globe, FileText, ChevronRight, ExternalLink } from "lucide-react";
+import { formatEventDate } from "../../lib/utils";
 
-const newsItems = [
-  {
-    id: 1,
-    date: "Feb 10, 2026",
-    source: "Bloomberg Technology",
-    title: "Nabhira Technologies Announces Expansion into Southeast Asian Markets",
-    image: "https://images.unsplash.com/photo-1542241617-956c329d6404?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">SINGAPORE — Nabhira Technologies, the architectural consulting powerhouse, today announced a multi-year expansion plan into the Southeast Asian (SEA) markets, starting with a new regional headquarters in Singapore.</p>
-      <p className="mb-6 text-[#11253e] leading-relaxed">The move comes as SEA experiences a surge in demand for high-end digital architecture and AI-native enterprise transformation. Nabhira's CEO stated that the region's unique blend of emerging fintech and manufacturing hubs provides the ideal environment for the firm's signature architectural approach.</p>
-      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">Regional Hub Strategy</h2>
-      <p className="mb-6 text-[#11253e] leading-relaxed">"Southeast Asia is no longer just a manufacturing hub; it's a global center for digital innovation." The Singapore office will serve as a center of excellence for Cloud Sovereignty and Agentic AI, employing over 200 senior architects and consultants by the end of 2026.</p>
-    `
-  },
-  {
-    id: 2,
-    date: "Jan 25, 2026",
-    source: "Financial Times",
-    title: "The Architecture of Tomorrow: Why Nabhira is Leading the AI-Native Revolution",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">LONDON — In the crowded field of enterprise consulting, one firm is standing out for its refusal to use buzzwords. Nabhira Technologies has built its reputation on a rigorous, architectural approach to Artificial Intelligence.</p>
-      <p className="mb-6 text-[#11253e] leading-relaxed">The Financial Times explores how Nabhira's "First Principles Architecture" is helping Fortune 500 companies move past the pilot phase of AI. While others focus on models, Nabhira focuses on the data fabric that feeds them.</p>
-      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">A Different Kind of Consultant</h2>
-      <p className="mb-6 text-[#11253e] leading-relaxed">Industry analysts suggest that Nabhira's success lies in its deep engineering roots. Unlike traditional management consultancies, Nabhira doesn't just provide strategies; they design the digital nervous systems that execute them.</p>
-      <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-6 my-12 italic text-2xl text-[#11253e] bg-gray-50">
-        "Nabhira is the architect that builds the cathedral, not just the contractor that lays the bricks." — Senior Analyst, FT Intelligence.
-      </blockquote>
-    `
-  },
-  {
-    id: 3,
-    date: "Dec 12, 2025",
-    source: "Business Insider",
-    title: "Top 50 Cloud Companies to Watch in 2026",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
-    content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">NEW YORK — Business Insider has released its annual list of the 'Top 50 Cloud Companies to Watch', and Nabhira Technologies has claimed a top-five spot for the first time.</p>
-      <p className="mb-6 text-[#11253e] leading-relaxed">The list highlights companies that are fundamentally changing how enterprises utilize cloud computing. Nabhira was praised for its pioneering work in multi-cloud mesh architectures and decentralized data governance.</p>
-      <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">The Multi-Cloud Advantage</h2>
-      <p className="mb-6 text-[#11253e] leading-relaxed">The recognition comes after a year of record growth for Nabhira, which saw its global client base expand by 40%. The firm's proprietary "Nabhira Mesh" framework has become the gold standard for enterprises looking to avoid vendor lock-in while maintaining high performance across disparate cloud providers.</p>
-    `
-  }
-];
+export default function NewsDetail({ wordpressData: item, newsData = [] }: any) {
+  const [copied, setCopied] = React.useState(false);
 
-export default function NewsDetail({ wordpressData }: any) {
-  const { id } = useParams();
-  const item = newsItems.find(n => n.id === Number(id));
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: item?.title || document.title,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      handleCopy();
+    }
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   useEffect(() => {
     if (item) {
-      document.title = `${item.title} | Nabhira Press`;
+      document.title = `${item.title} | Hutech Solutions Press`;
       window.scrollTo(0, 0);
     }
   }, [item]);
@@ -86,8 +62,10 @@ export default function NewsDetail({ wordpressData }: any) {
             
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <span className="bg-[#f99d1c] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Press Release</span>
-                <span className="text-[#11253e] text-[10px] font-bold uppercase tracking-widest">{item.date}</span>
+                <span className="bg-[#f99d1c] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">{item.category || "Press Release"}</span>
+                <span className="text-[#11253e] text-[10px] font-bold uppercase tracking-widest">
+                  {formatEventDate(item.date)}
+                </span>
               </div>
               
               <h1 className="text-[#11253e] text-3xl md:text-5xl font-bold leading-tight tracking-tight">
@@ -97,19 +75,48 @@ export default function NewsDetail({ wordpressData }: any) {
               <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
                 <Globe size={16} className="text-[#f99d1c]" />
                 <span className="text-sm font-bold text-[#11253e] uppercase tracking-widest">{item.source}</span>
+                {item.externalUrl && (
+                  <Link 
+                    href={item.externalUrl} 
+                    target="_blank"
+                    className="ml-auto inline-flex items-center gap-2 text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest hover:opacity-70"
+                  >
+                    View Original <ExternalLink size={12} />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Hero Image */}
-        <section className="max-w-7xl mx-auto px-6 -mt-10">
-          <div className="aspect-[21/9] overflow-hidden rounded-sm shadow-2xl">
-            <ImageWithFallback 
-              src={item.image} 
-              alt={item.title} 
-              className="w-full h-full object-cover" 
-            />
+        {/* Hero Media */}
+        <section className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+          <div className="aspect-[21/9] overflow-hidden rounded-sm shadow-2xl bg-black">
+            {item.videoUrl ? (
+              item.videoUrl.includes("youtube.com") || item.videoUrl.includes("youtu.be") ? (
+                <iframe 
+                  className="w-full h-full" 
+                  src={`https://www.youtube.com/embed/${item.videoUrl.includes("v=") ? item.videoUrl.split("v=")[1].split("&")[0] : item.videoUrl.split("youtu.be/")[1]?.split("?")[0]}?autoplay=1&mute=1`} 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen
+                ></iframe>
+              ) : item.videoUrl.includes("vimeo.com") ? (
+                <iframe 
+                  className="w-full h-full" 
+                  src={`https://player.vimeo.com/video/${item.videoUrl.split("vimeo.com/")[1]?.split("?")[0]}?autoplay=1&muted=1`} 
+                  allow="autoplay; fullscreen" 
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <video className="w-full h-full object-cover" src={item.videoUrl} autoPlay muted loop playsInline controls />
+              )
+            ) : (
+              <ImageWithFallback 
+                src={item.image} 
+                alt={item.title} 
+                className="w-full h-full object-cover" 
+              />
+            )}
           </div>
         </section>
 
@@ -125,12 +132,31 @@ export default function NewsDetail({ wordpressData }: any) {
               <div className="mt-20 pt-12 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-8">
                 <div className="space-y-1">
                   <p className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Media Contact</p>
-                  <p className="text-sm font-bold text-[#11253e]">press@nabhira.tech</p>
+                  <a href={`mailto:${item.mediaContact || "press@nabhira.tech"}`} className="text-sm font-bold text-[#11253e] hover:text-[#f99d1c] transition-colors inline-block">
+                    {item.mediaContact || "press@nabhira.tech"}
+                  </a>
                 </div>
                 
                 <div className="flex items-center gap-6">
-                  <button className="text-[#11253e] hover:text-[#f99d1c] transition-colors"><Share2 size={18} /></button>
-                  <button className="text-[#11253e] hover:text-[#f99d1c] transition-colors"><FileText size={18} /></button>
+                  <button 
+                    onClick={handleShare}
+                    className="text-[#11253e] hover:text-[#f99d1c] transition-colors" 
+                    title="Share Article"
+                  >
+                    <Share2 size={18} />
+                  </button>
+                  <button 
+                    onClick={handleCopy}
+                    className="text-[#11253e] hover:text-[#f99d1c] transition-colors relative"
+                    title="Copy Link"
+                  >
+                    <FileText size={18} />
+                    {copied && (
+                      <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#11253e] text-white text-[10px] px-2 py-1 rounded whitespace-nowrap shadow-sm">
+                        Copied!
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
@@ -138,28 +164,36 @@ export default function NewsDetail({ wordpressData }: any) {
         </section>
 
         {/* More News Section */}
-        <section className="py-24 bg-[#11253e]">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-            <div className="flex justify-between items-end mb-12">
-              <h2 className="text-white text-3xl font-bold tracking-tight">Recent <span className="text-[#f99d1c]">Coverage</span></h2>
-              <Link href="/resources/news" className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 hover:translate-x-1 transition-transform">
-                View All <ChevronRight size={14} />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {newsItems.filter(n => n.id !== item.id).slice(0, 2).map((news) => (
-                <Link key={news.id} href={`/resources/news/${news.id}`} className="block group">
-                  <div className="bg-white/5 p-8 border border-white/10 group-hover:bg-white/10 transition-colors h-full">
-                    <p className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-4">{news.date}</p>
-                    <h3 className="text-white text-xl font-bold mb-6 group-hover:text-[#f99d1c] transition-colors">{news.title}</h3>
-                    <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">{news.source}</span>
-                  </div>
+        {newsData?.length > 0 && (
+          <section className="py-24 bg-[#11253e]">
+            <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+              <div className="flex justify-between items-end mb-12">
+                <h2 className="text-white text-3xl font-bold tracking-tight">Recent <span className="text-[#f99d1c]">Coverage</span></h2>
+                <Link href="/resources/news" className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 hover:translate-x-1 transition-transform">
+                  View All <ChevronRight size={14} />
                 </Link>
-              ))}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {newsData.filter((n: any) => n.slug !== item.slug).slice(0, 2).map((news: any) => (
+                  <Link key={news.id} href={`/resources/news/${news.slug}`} className="block group">
+                    <div className="bg-white/5 p-8 border border-white/10 group-hover:bg-white/10 transition-colors h-full">
+                      <p className="text-[10px] font-bold text-[#f99d1c] uppercase tracking-widest mb-4">
+                        {formatEventDate(news.date)}
+                      </p>
+                      <h3 className="text-white text-xl font-bold mb-6 group-hover:text-[#f99d1c] transition-colors">
+                        {news.title}
+                      </h3>
+                      <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">
+                        {news.source}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </main>
     </>
   );

@@ -1,4 +1,9 @@
+"use client";
+import Image from "next/image";
+
+import React from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { formatQuotesToBold, renderHeroTitle } from "../lib/utils";
 
 export function IntroSection() {
   return (
@@ -6,9 +11,9 @@ export function IntroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col space-y-8">
           <div className="flex flex-col">
-            <h2 className="text-[#e31937] text-xl font-medium uppercase tracking-normal mb-4">With Nabhira</h2>
+            <h2 className="text-[#e31937] text-xl font-medium uppercase tracking-normal mb-4">With Hutech Solutions</h2>
             <p className="text-gray-800 text-3xl font-light leading-snug">
-              Our promise to help enterprise-level industries transform at speed with agility, resilience, and efficiency, so next is now.
+              {formatQuotesToBold("Our promise to help enterprise-level industries transform at speed with agility, resilience, and efficiency, so next is now.")}
             </p>
           </div>
           <div className="flex space-x-4 pt-4">

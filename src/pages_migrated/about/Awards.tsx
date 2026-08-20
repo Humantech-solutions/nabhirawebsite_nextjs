@@ -1,49 +1,73 @@
 "use client";
 
 import { motion as Motion } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LimitlessTogether } from "../../components/Footer";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { Award, Trophy, Star, Medal } from "lucide-react";
-import { renderHeroTitle } from "../../lib/utils";
+import { Award, Trophy, Star, Medal, Zap } from "lucide-react";
+import { renderHeroTitle, formatQuotesToBold, renderDynamicIcon } from "../../lib/utils";
 
 export default function Awards({ wordpressData }: { wordpressData?: any }) {
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
-
+  const fields = wordpressData?.awardsPageFields;
 
   useEffect(() => {
-    document.title = "Awards & Recognition | Nabhira Technologies";
+    document.title = "Awards & Recognition | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
-  const awards = [
-    {
-      year: "2025",
-      title: "Global AI Innovator of the Year",
-      org: "Tech Leadership Summit",
-      desc: "Recognizing Nabhira's pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises."
-    },
-    {
-      year: "2024",
-      title: "Cloud Transformation Partner",
-      org: "Enterprise Global Cloud Council",
-      desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures."
-    },
-    {
-      year: "2024",
-      title: "Top 50 Most Innovative Firms",
-      org: "Digital Innovation Review",
-      desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting."
-    },
-    {
-      year: "2023",
-      title: "Sustainability Architecture Award",
-      org: "Green Tech Collective",
-      desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts."
+  let awards = [];
+  
+  // Dynamically build awards from static fields (award1 to award10)
+  for (let i = 1; i <= 10; i++) {
+    const year = fields?.[`award${i}Year`];
+    if (year) {
+      awards.push({
+        year: year,
+        title: fields[`award${i}Title`],
+        org: fields[`award${i}Org`],
+        desc: fields[`award${i}Desc`],
+        icon: renderDynamicIcon(fields[`award${i}IconType`], fields[`award${i}Lucide`], fields[`award${i}Image`], 24)
+      });
     }
-  ];
+  }
+
+  // Fallback if no awards exist at all
+  if (awards.length === 0) {
+    awards = [
+      {
+        year: "2025",
+        title: "Global AI Innovator of the Year",
+        org: "Tech Leadership Summit",
+        desc: "Recognizing Hutech Solutions' pioneering work in building high-performance, autonomous data ecosystems for Fortune 500 enterprises.",
+        icon: <Trophy size={24} />
+      },
+      {
+        year: "2024",
+        title: "Cloud Transformation Partner",
+        org: "Enterprise Global Cloud Council",
+        desc: "Awarded for excellence in orchestrating large-scale digital evolution through precision Cloud-first intelligence architectures.",
+        icon: <Award size={24} />
+      },
+      {
+        year: "2024",
+        title: "Top 50 Most Innovative Firms",
+        org: "Digital Innovation Review",
+        desc: "Selected for our relentless pursuit of excellence and commitment to architectural precision in digital consulting.",
+        icon: <Star size={24} />
+      },
+      {
+        year: "2023",
+        title: "Sustainability Architecture Award",
+        org: "Green Tech Collective",
+        desc: "For implementing resource-efficient, high-performance data engineering solutions across global major accounts.",
+        icon: <Medal size={24} />
+      }
+    ];
+  }
 
   return (
     <>
@@ -77,13 +101,15 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
               
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
                 {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Excellence <br /><span className="text-[#f99d1c]">Recognized</span></>
+                  <>
+                    Excellence <br /><span className="text-[#f99d1c]">Recognized</span>
+                  </>
                 ))}
               </h1>
               
               <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations."}
+                  {renderHeroTitle(heroData?.heroS1Desc || "Our commitment to precision engineering and digital excellence has earned us recognition from the world's most prestigious industry organizations.")}
                 </p>
               </div>
             </Motion.div>
@@ -95,7 +121,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
             <div className="text-center mb-20">
               <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-                A Journey of <span className="font-bold">Distinction</span>
+                {renderHeroTitle(fields?.awardTimelineTitle || "A Journey of Distinction", "text-[#11253e]")}
               </h2>
               <div className="w-20 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
             </div>
@@ -118,14 +144,16 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
                       <div className="w-8 h-[1px] bg-[#f99d1c]"></div>
                       <span className="text-[#f99d1c] font-bold tracking-[0.2em] text-[10px] uppercase">{award.org}</span>
                     </div>
-                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">{award.title}</h3>
+                    <h3 className="text-[#11253e] text-2xl font-bold mb-4 tracking-tight">
+                      {renderHeroTitle(award.title, "text-[#11253e]")}
+                    </h3>
                     <p className="text-[#11253e] font-light text-sm leading-relaxed max-w-2xl">
-                      {award.desc}
+                      {renderHeroTitle(award.desc, "text-[#11253e]")}
                     </p>
                   </div>
                   <div className="md:col-span-3 flex justify-end">
                     <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-[#f99d1c] border border-gray-100">
-                      {i % 4 === 0 ? <Trophy size={24} /> : i % 4 === 1 ? <Award size={24} /> : i % 4 === 2 ? <Star size={24} /> : <Medal size={24} />}
+                      {award.icon}
                     </div>
                   </div>
                 </Motion.div>
@@ -138,11 +166,11 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
         <section className="py-24 bg-[#11253e] text-white overflow-hidden relative">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center relative z-10">
             <h2 className="text-3xl font-light mb-12 tracking-tight">
-              Impact Beyond <span className="text-[#f99d1c] font-bold">Awards</span>
+              {renderHeroTitle(fields?.impactTitle || "Impact Beyond Awards")}
             </h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-white/80 font-light leading-relaxed mb-12">
-                While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.
+                {renderHeroTitle(fields?.impactDesc || "While recognition is valued, our greatest achievement remains the measurable success of our global clientele. From optimizing critical infrastructure to architecting AI ecosystems, our impact is defined by the resilience and growth of the enterprises we serve.")}
               </p>
             </div>
           </div>
@@ -151,7 +179,7 @@ export default function Awards({ wordpressData }: { wordpressData?: any }) {
           </div>
         </section>
 
-        <LimitlessTogether />
+        <LimitlessTogether data={gs?.limitlessTogether} />
     </>
   );
 }

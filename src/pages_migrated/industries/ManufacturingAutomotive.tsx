@@ -1,9 +1,11 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll } from "motion/react";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 import heroBg from "../../assets/a5b4a7e7bbf8a581496fc155ece5264832a5dd71.png";
 import {
   ArrowRight, Factory, Cpu, Truck, Zap, Activity, CheckCircle, Leaf, Globe, Settings,
@@ -12,7 +14,7 @@ import {
 
 export default function ManufacturingAutomotive({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Manufacturing & Automotive | Nabhira Technologies";
+    document.title = "Manufacturing & Automotive | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -45,6 +47,8 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
     { title: "OT Cybersecurity", desc: "Securing operational technology environments.", icon: <Shield /> },
   ];
 
+  const heroData = wordpressData?.acf?.hero_section; // Assuming heroData is passed or fetched
+
   return (
     <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
@@ -62,9 +66,11 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
               <span className="text-[#f99d1c] uppercase tracking-widest">Manufacturing & Automotive</span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              Manufacturing & <br /><span className="text-white/100">Automotive</span>
+              {renderHeroTitle(heroData?.heroS1Title || "Manufacturing & |Automotive|")}
             </h1>
-            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">Engineering the Intelligent Connected Factory.</p>
+            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+              {formatQuotesToBold(heroData?.heroS1Desc || "We help manufacturers transition from rigid production to intelligent, resilient and innovation-driven enterprises.")}
+            </p>
           </Motion.div>
         </div>
       </section>
@@ -73,7 +79,9 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">The Industry <span className="font-bold">Transformation</span></h2>
+              <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
+                {formatQuotesToBold("The Industry &quot;Imperative&quot;")}
+              </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
             <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">Manufacturing and Automotive leaders must address supply chain volatility and the shift toward software-defined vehicles.</p>
@@ -82,8 +90,8 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
             {challenges.map((item, idx) => (
               <Motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#f99d1c]/30 transition-all duration-300 group">
                 <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] transition-colors duration-300">{item.icon}</div>
-                <h3 className="text-xl font-bold text-[#11253e] mb-3">{item.title}</h3>
-                <p className="text-[#11253e] leading-relaxed">{item.text}</p>
+                <h3 className="text-xl font-bold text-[#11253e] mb-3">{formatQuotesToBold(item.title)}</h3>
+                <p className="text-[#11253e] leading-relaxed">{formatQuotesToBold(item.text)}</p>
               </Motion.div>
             ))}
           </div>
@@ -93,7 +101,9 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">Where We Create <span className="italic font-serif text-[#f99d1c]">Impact</span></h2>
+            <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
+              {formatQuotesToBold("Where We Create &apos;Impact&apos;")}
+            </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">Modernize production environments, enable Industry 4.0 transformation and accelerate digital innovation at scale.</p>
           </div>
           <div className="space-y-24">
@@ -101,8 +111,8 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
               <Motion.div key={area.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }} className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}>
                 <div className="flex-1 space-y-6">
                   <div className="flex items-center gap-4 mb-2"><span className="text-[#f99d1c] font-mono text-lg">0{idx + 1}</span><div className="h-px bg-[#11253e]/10 flex-grow"></div></div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{area.title}</h3>
-                  <p className="text-[#11253e] text-lg leading-relaxed">{area.description}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{formatQuotesToBold(area.title)}</h3>
+                  <p className="text-[#11253e] text-lg leading-relaxed">{formatQuotesToBold(area.description)}</p>
                   <ul className="space-y-3 pt-4">{area.details.map((detail, i) => (<li key={i} className="flex items-center gap-3 text-[#11253e] font-medium"><div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>{detail}</li>))}</ul>
                 </div>
                 <div className="flex-1 w-full">
