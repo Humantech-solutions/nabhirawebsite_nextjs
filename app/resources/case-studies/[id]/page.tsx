@@ -11,6 +11,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const studies = await getCaseStudies();
+  if (!studies || studies.length === 0) return [{ id: 'fallback' }];
   return studies.map((study: any) => ({
     id: study.slug,
   }));

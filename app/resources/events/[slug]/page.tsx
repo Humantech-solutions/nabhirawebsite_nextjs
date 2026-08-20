@@ -10,6 +10,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const events = await getEvents();
+  if (!events || events.length === 0) return [{ slug: 'fallback' }];
   return events.map((event: any) => ({
     slug: event.slug,
   }));

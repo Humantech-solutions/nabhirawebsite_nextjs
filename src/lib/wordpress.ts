@@ -28,65 +28,69 @@ export async function fetchGraphQL(query: string, variables = {}) {
     "Content-Type": "application/json",
   };
 
-  try {
-    // We wrapped this in a short timeout or just a normal catch
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+  let retries = 3;
+  let lastError;
 
-    const res = await fetch(WORDPRESS_API_URL, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-      cache: "no-store",
-      signal: controller.signal,
-    });
+  while (retries > 0) {
+    try {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-    clearTimeout(id);
+      const res = await fetch(WORDPRESS_API_URL, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+        cache: "force-cache",
+        signal: controller.signal,
+      });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`[WPGraphQL FETCH ERROR]: Status ${res.status}`, errorText);
-      return {
-        errors: [{ message: `HTTP Error ${res.status}: ${res.statusText}` }],
-      };
+      clearTimeout(id);
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`HTTP Error ${res.status}: ${res.statusText} - ${errorText}`);
+      }
+
+      const json = await res.json();
+
+      if (json.errors) {
+        console.error(
+          "[WPGraphQL GraphQL ERROR]:",
+          JSON.stringify(json.errors, null, 2),
+        );
+        return json; // Return GraphQL errors normally
+      }
+
+      return json; // Success!
+
+    } catch (error: any) {
+      lastError = error;
+      retries -= 1;
+      
+      if (retries > 0) {
+        console.warn(`[WPGraphQL FETCH RETRY] ${error.message || "Failed"}. Retrying in 2s...`);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      }
     }
-
-    const json = await res.json();
-
-    if (json.errors) {
-      console.error(
-        "[WPGraphQL GraphQL ERROR]:",
-        JSON.stringify(json.errors, null, 2),
-      );
-      return json;
-    }
-
-    return json;
-  } catch (error: any) {
-    // Log once but don't blow up
-    if (error.name === "AbortError") {
-      console.error(
-        `[WPGraphQL TIMEOUT] URL: ${WORDPRESS_API_URL} timed out after 8s`,
-      );
-    } else {
-      console.error(
-        `[WPGraphQL CONNECTION ERROR] URL: ${WORDPRESS_API_URL} - ${error.message || "Fetch failed"}`,
-      );
-    }
-
-    // Return a structured error so it doesn't crash the caller
-    return {
-      data: null,
-      errors: [
-        {
-          message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Falling back to static data.`,
-        },
-      ],
-    };
   }
+
+  // If we exhaust all retries:
+  console.error(
+    `[WPGraphQL FATAL ERROR] URL: ${WORDPRESS_API_URL} failed after 3 retries. Error: ${lastError?.message}`
+  );
+
+  // Return a structured error so it doesn't crash the caller
+  return {
+    data: null,
+    errors: [
+      {
+        message: `Failed to connect to WordPress API at ${WORDPRESS_API_URL}. Falling back to static data.`,
+      },
+    ],
+  };
 }
 
 export const GLOBAL_SETTINGS_FRAGMENT = `
