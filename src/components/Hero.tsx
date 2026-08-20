@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -14,9 +15,10 @@ import { renderHeroTitle as renderTitle, formatQuotesToBold } from "../lib/utils
 
 interface HeroProps {
   data?: any;
+  heightClass?: string;
 }
 
-export function Hero({ data }: HeroProps) {
+export function Hero({ data, heightClass }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
@@ -78,7 +80,7 @@ export function Hero({ data }: HeroProps) {
       description: heroData.heroS1Desc || "",
       image: heroData.heroS1ImageUrl || heroData.heroS1Image?.node?.sourceUrl || banner1Img,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: heroData.heroS1Button?.title || "SEE HOW",
+      buttonText: heroData.heroS1Button?.title || "",
       buttonUrl: heroData.heroS1Button?.url || ""
     },
     {
@@ -88,7 +90,7 @@ export function Hero({ data }: HeroProps) {
       description: heroData.heroS2Desc || "",
       image: heroData.heroS2ImageUrl || heroData.heroS2Image?.node?.sourceUrl || banner2Img,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: heroData.heroS2Button?.title || "SEE HOW",
+      buttonText: heroData.heroS2Button?.title || "",
       buttonUrl: heroData.heroS2Button?.url || ""
     },
     {
@@ -98,7 +100,7 @@ export function Hero({ data }: HeroProps) {
       description: heroData.heroS3Desc || "",
       image: heroData.heroS3ImageUrl || heroData.heroS3Image?.node?.sourceUrl || aiServerImg,
       overlay: "bg-gradient-to-r from-[#11253e]/90 via-[#11253e]/50 to-transparent",
-      buttonText: heroData.heroS3Button?.title || "SEE HOW",
+      buttonText: heroData.heroS3Button?.title || "",
       buttonUrl: heroData.heroS3Button?.url || ""
     }
   ].filter((_, i) => {
@@ -131,7 +133,7 @@ export function Hero({ data }: HeroProps) {
   const banner = finalBanners[currentSlide];
 
   return (
-    <section className="relative h-[500px] md:h-[620px] overflow-hidden group bg-[#11253e]">
+    <section className={`relative overflow-hidden group bg-[#11253e] ${heightClass || "h-[500px] md:h-[620px]"}`}>
       <AnimatePresence mode="wait">
         <Motion.div
           key={currentSlide}
@@ -190,63 +192,75 @@ export function Hero({ data }: HeroProps) {
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] mb-8 md:mb-12 max-w-2xl font-light leading-relaxed drop-shadow-sm">
                 {formatQuotesToBold(banner.description)}
               </p>
-              <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none">
-                <span>{banner.buttonText || "SEE HOW"}</span>
-                <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
-                <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
-              </button>
+              {(banner.buttonText || banner.buttonUrl) && (
+                banner.buttonUrl ? (
+                  <Link href={banner.buttonUrl} className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none">
+                    <span>{banner.buttonText || "SEE HOW"}</span>
+                    <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
+                    <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
+                  </Link>
+                ) : (
+                  <button className="group/btn flex items-center space-x-4 text-white text-[12px] md:text-[13px] font-medium tracking-normal transition-all duration-300 uppercase cursor-pointer bg-transparent border-none">
+                    <span>{banner.buttonText}</span>
+                    <div className="w-10 md:w-12 h-[1px] bg-[#f99d1c] group-hover/btn:w-16 md:group-hover/btn:w-20 transition-all duration-500"></div>
+                    <ChevronRight size={18} className="text-[#f99d1c] group-hover/btn:translate-x-2 transition-all duration-500" strokeWidth={3} />
+                  </button>
+                )
+              )}
             </Motion.div>
           </div>
         </Motion.div>
       </AnimatePresence>
 
       {/* Navigation Controls */}
-      <div className="absolute bottom-6 md:bottom-10 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-end justify-between">
-          {/* Indicators */}
-          <div className="flex items-center space-x-2 md:space-x-3 mb-2">
-            {finalBanners.map((_, i) => (
+      {finalBanners.length > 1 && (
+        <div className="absolute bottom-6 md:bottom-10 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-end justify-between">
+            {/* Indicators */}
+            <div className="flex items-center space-x-2 md:space-x-3 mb-2">
+              {finalBanners.map((_, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => {
+                    setCurrentSlide(i);
+                    setIsAutoPlaying(false);
+                  }}
+                  className={`h-[2px] transition-all duration-500 ease-in-out cursor-pointer ${
+                    currentSlide === i 
+                    ? 'w-8 md:w-16 bg-[#f99d1c]' 
+                    : 'w-4 md:w-8 bg-white/30 hover:bg-white/50'
+                  }`}
+                ></button>
+              ))}
+            </div>
+
+            {/* Next/Previous Controls */}
+            <div className="flex items-center space-x-4 md:space-x-6 bg-black/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 border-l border-white/20">
               <button 
-                key={i} 
                 onClick={() => {
-                  setCurrentSlide(i);
+                  prevSlide();
                   setIsAutoPlaying(false);
                 }}
-                className={`h-[2px] transition-all duration-500 ease-in-out cursor-pointer ${
-                  currentSlide === i 
-                  ? 'w-8 md:w-16 bg-[#f99d1c]' 
-                  : 'w-4 md:w-8 bg-white/30 hover:bg-white/50'
-                }`}
-              ></button>
-            ))}
-          </div>
-
-          {/* Next/Previous Controls */}
-          <div className="flex items-center space-x-4 md:space-x-6 bg-black/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 border-l border-white/20">
-            <button 
-              onClick={() => {
-                prevSlide();
-                setIsAutoPlaying(false);
-              }}
-              className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer"
-            >
-              <ChevronLeft size={20} className="md:w-6 md:h-6" strokeWidth={1} />
-            </button>
-            
-            <div className="w-[1px] h-6 md:h-10 bg-white/30"></div>
-            
-            <button 
-              onClick={() => {
-                nextSlide();
-                setIsAutoPlaying(false);
-              }}
-              className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer"
-            >
-              <ChevronRight size={20} className="md:w-6 md:h-6" strokeWidth={1} />
-            </button>
+                className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer"
+              >
+                <ChevronLeft size={20} className="md:w-6 md:h-6" strokeWidth={1} />
+              </button>
+              
+              <div className="w-[1px] h-6 md:h-10 bg-white/30"></div>
+              
+              <button 
+                onClick={() => {
+                  nextSlide();
+                  setIsAutoPlaying(false);
+                }}
+                className="text-white/60 hover:text-white transition-colors p-1 cursor-pointer"
+              >
+                <ChevronRight size={20} className="md:w-6 md:h-6" strokeWidth={1} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
