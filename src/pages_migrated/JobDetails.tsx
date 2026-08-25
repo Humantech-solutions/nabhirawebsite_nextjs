@@ -52,6 +52,12 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
   const slug = params.slug as string;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    linkedin: "",
+  });
+  const [resume, setResume] = useState<File | null>(null);
   
   // Use wpJob if available, else fallback to static data lookup by slug or id
   const job = wpJob || jobs.find(j => j.slug === slug || j.id === slug || j.id === params.id);
@@ -73,13 +79,41 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    
+    try {
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("linkedin", formData.linkedin);
+      data.append("pageTitle", document.title || job?.title || "Careers — Hutech Solutions");
+      data.append("pageUrl", window.location.href);
+      data.append("project", "hutech");
+      data.append("companyName", "Hutech Solutions");
+      if (resume) {
+        data.append("resume", resume);
+      }
+
+      const response = await fetch("https://apis.admin.hutechsolutions.in/api/career/apply", {
+        method: "POST",
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit application");
+      }
+
       setSubmitted(true);
-    }, 1500);
+      setFormData({ name: "", email: "", linkedin: "" });
+      setResume(null);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -207,7 +241,8 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
     <input
       required
       type="text"
-      placeholder="John Doe"
+      value={formData.name}
+      onChange={(e) => setFormData({...formData, name: e.target.value})}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -219,7 +254,8 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
     <input
       required
       type="email"
-      placeholder="john@example.com"
+      value={formData.email}
+      onChange={(e) => setFormData({...formData, email: e.target.value})}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -231,7 +267,8 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
     <input
       required
       type="url"
-      placeholder="https://linkedin.com/in/..."
+      value={formData.linkedin}
+      onChange={(e) => setFormData({...formData, linkedin: e.target.value})}
       className="w-full bg-white/5 border-b border-white/10 py-3 px-3 focus:outline-none focus:border-[#f99d1c] transition-colors font-light text-sm text-white placeholder-white/40"
     />
   </div>
@@ -241,14 +278,31 @@ export default function JobDetails({ wpJob }: { wpJob?: any }) {
       Resume / CV
     </label>
 
-    <div className="border border-dashed border-white/20 rounded-sm p-6 text-center cursor-pointer hover:border-[#f99d1c] transition-colors group">
+    <div className="relative border border-dashed border-white/20 rounded-sm p-6 text-center cursor-pointer hover:border-[#f99d1c] transition-colors group overflow-hidden">
+      <input 
+        type="file"
+        required
+        accept=".pdf,.doc,.docx"
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            setResume(e.target.files[0]);
+          }
+        }}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+      />
       <Upload
         size={20}
         className="mx-auto text-white/20 mb-2 group-hover:text-[#f99d1c]"
       />
-      <p className="text-[12px] font-light text-white/40">
-        PDF, DOCX (Max 5MB)
-      </p>
+      {resume ? (
+        <p className="text-[12px] font-light text-[#f99d1c]">
+          {resume.name}
+        </p>
+      ) : (
+        <p className="text-[12px] font-light text-white/40">
+          PDF, DOCX (Max 5MB)
+        </p>
+      )}
     </div>
   </div>
 

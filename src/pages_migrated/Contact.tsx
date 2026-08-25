@@ -15,6 +15,7 @@ export default function Contact({ wordpressData }: any) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: ""
   });
@@ -25,16 +26,44 @@ export default function Contact({ wordpressData }: any) {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        project: "hutech",
+        companyName: "Hutech Solutions",
+        category: "Contact",
+        pageTitle: document.title,
+        pageUrl: window.location.href,
+      };
+
+      const response = await fetch("https://apis.admin.hutechsolutions.in/api/contact/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
       toast.success("Message sent successfully! Our team will reach out shortly.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const getIcon = (iconName: string, iconImg?: any, size = 24, className = "text-[#f99d1c]") => {
@@ -289,7 +318,6 @@ export default function Contact({ wordpressData }: any) {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors rounded-sm"
-                        placeholder="John Doe"
                       />
                     </div>
                     <div className="space-y-2">
@@ -300,9 +328,18 @@ export default function Contact({ wordpressData }: any) {
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors rounded-sm"
-                        placeholder="john@example.com"
                       />
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-[#11253e] uppercase tracking-widest">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors rounded-sm"
+                    />
                   </div>
                   
                   <div className="space-y-2">
@@ -313,7 +350,6 @@ export default function Contact({ wordpressData }: any) {
                       value={formData.subject}
                       onChange={(e) => setFormData({...formData, subject: e.target.value})}
                       className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors rounded-sm"
-                      placeholder="Consultation Inquiry"
                     />
                   </div>
 
@@ -325,7 +361,6 @@ export default function Contact({ wordpressData }: any) {
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#f99d1c] transition-colors rounded-sm resize-none"
-                      placeholder="How can we help architect your future?"
                     ></textarea>
                   </div>
 
