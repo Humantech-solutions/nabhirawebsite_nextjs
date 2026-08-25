@@ -36,7 +36,7 @@ export default async function RootLayout({
       <body
         className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden antialiased"
       >
-        <header>
+        <header className="relative z-[9999]">
           <Navbar data={siteChrome} />
         </header>
         <main id="main-content" className="flex-grow pt-[80px] md:pt-[80px]">

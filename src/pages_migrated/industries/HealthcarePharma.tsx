@@ -33,11 +33,11 @@ export default function HealthcarePharma({ wordpressData }: any) {
   ];
 
   const impactAreas = [
-    { id: "digital-health", title: "Digital Health Platforms", description: "We architect secure, scalable platforms for telehealth, remote patient monitoring and virtual care delivery, extending reach beyond hospital walls.", details: ["Telehealth Solutions", "Remote Monitoring", "Virtual Care"], icon: <Stethoscope size={40} /> },
-    { id: "clinical-data", title: "Clinical Data Intelligence", description: "We leverage AI and advanced analytics to unlock insights from EHRs, genomic data and real-world evidence, accelerating research and personalized medicine.", details: ["Real-World Evidence", "Genomic Analytics", "Personalized Medicine"], icon: <Dna size={40} /> },
-    { id: "smart-hospitals", title: "Smart Hospitals & IoT", description: "We integrate IoMT devices and hospital information systems to optimize workflows, asset tracking and patient safety in real-time.", details: ["Asset Tracking", "Workflow Optimization", "Patient Safety"], icon: <Wifi size={40} /> },
-    { id: "pharma-supply", title: "Pharma Supply Chain Visibility", description: "We build end-to-end traceability solutions using blockchain and IoT to ensure drug safety, compliance and efficient distribution.", details: ["End-to-End Traceability", "Cold Chain Monitoring", "Anti-Counterfeiting"], icon: <Pill size={40} /> },
-    { id: "patient-engagement", title: "Patient Engagement & Support", description: "We design intuitive mobile apps and portals that empower patients to manage their health, access records and communicate with providers.", details: ["Patient Portals", "Health Management Apps", "Provider Communication"], icon: <Heart size={40} /> },
+    { id: "digital-health", title: "Digital Health Platforms", description: "We architect secure, scalable platforms for telehealth, remote patient monitoring and virtual care delivery, extending reach beyond hospital walls.", details: ["Telehealth Solutions", "Remote Monitoring", "Virtual Care"], icon: <Stethoscope size={32} />, image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop" },
+    { id: "clinical-data", title: "Clinical Data Intelligence", description: "We leverage AI and advanced analytics to unlock insights from EHRs, genomic data and real-world evidence, accelerating research and personalized medicine.", details: ["Real-World Evidence", "Genomic Analytics", "Personalized Medicine"], icon: <Dna size={32} />, image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop" },
+    { id: "smart-hospitals", title: "Smart Hospitals & IoT", description: "We integrate IoMT devices and hospital information systems to optimize workflows, asset tracking and patient safety in real-time.", details: ["Asset Tracking", "Workflow Optimization", "Patient Safety"], icon: <Wifi size={32} />, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop" },
+    { id: "pharma-supply", title: "Pharma Supply Chain Visibility", description: "We build end-to-end traceability solutions using blockchain and IoT to ensure drug safety, compliance and efficient distribution.", details: ["End-to-End Traceability", "Cold Chain Monitoring", "Anti-Counterfeiting"], icon: <Pill size={32} />, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop" },
+    { id: "patient-engagement", title: "Patient Engagement & Support", description: "We design intuitive mobile apps and portals that empower patients to manage their health, access records and communicate with providers.", details: ["Patient Portals", "Health Management Apps", "Provider Communication"], icon: <Heart size={32} />, image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop" },
   ];
 
   const techEnablement = [
@@ -63,18 +63,28 @@ export default function HealthcarePharma({ wordpressData }: any) {
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Life Sciences</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">Healthcare & Pharma</span>
             </nav>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
                 <>
-                  Healthcare & <br /><span className="text-[#f99d1c]">Life Sciences</span>
+                  Healthcare & <br /><span className="text-[#f99d1c]">Pharma Solutions</span>
                 </>
               ))}
             </h1>
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+              <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-8 border-l-2 border-[#f99d1c] pl-6">
                 {formatQuotesToBold(wordpressData?.heroS1Desc || "Empowering the future of healthcare through intelligent platforms and secure data foundations.")}
               </p>
+
+              <div className="pt-2">
+                <Link 
+                  href="/contact"
+                  className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+                >
+                  <span>Consult Us</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
           </Motion.div>
         </div>
       </section>
@@ -88,7 +98,7 @@ export default function HealthcarePharma({ wordpressData }: any) {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">Healthcare and Pharma leaders must balance innovation with compliance, cost pressures and patient outcomes.</p>
+            <p className="text-[#11253e] text-lg max-w-md text-left">Healthcare and Pharma leaders must balance innovation with compliance, cost pressures and patient outcomes.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {challenges.map((item, idx) => (
@@ -120,9 +130,14 @@ export default function HealthcarePharma({ wordpressData }: any) {
                   <ul className="space-y-3 pt-4">{area.details.map((detail, i) => (<li key={i} className="flex items-center gap-3 text-[#11253e] font-medium"><div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>{detail}</li>))}</ul>
                 </div>
                 <div className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
-                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500"><div className="transform scale-150">{area.icon}</div></div>
-                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                    <ImageWithFallback 
+                      src={area.image}
+                      alt={area.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                 </div>
               </Motion.div>
@@ -138,7 +153,13 @@ export default function HealthcarePharma({ wordpressData }: any) {
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">Technology <br /><span className="font-bold text-[#f99d1c]">Enablement</span></h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">We leverage secure, compliant cloud platforms and advanced AI to power modern healthcare and life sciences ecosystems.</p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">Partner with us <ArrowRight size={20} /></Link>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
+                    PARTNER WITH US <ArrowRight size={16} />
+                  </button>
+                </Link>
+              </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {techEnablement.map((service, idx) => (

@@ -151,7 +151,7 @@ export default function CloudModernization({ wordpressData }: { wordpressData?: 
                 We help you move from legacy complexity to modern, scalable, cloud-native capability without disrupting your business.
               </p>
 
-              <div className="grid gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   "Incremental modernization to reduce risk",
                   "Security and compliance by design",
@@ -160,7 +160,7 @@ export default function CloudModernization({ wordpressData }: { wordpressData?: 
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -244,7 +244,7 @@ export default function CloudModernization({ wordpressData }: { wordpressData?: 
                 We leverage leading cloud ecosystems such as Amazon Web Services, Microsoft Azure and Google Cloud to modernize workloads efficiently and securely.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   { icon: <Layers size={18} />, text: "Container orchestration platforms" },
                   { icon: <Settings size={18} />, text: "Infrastructure-as-Code for repeatable deployments" },
@@ -252,9 +252,9 @@ export default function CloudModernization({ wordpressData }: { wordpressData?: 
                   { icon: <BarChart3 size={18} />, text: "Application performance monitoring tools" },
                   { icon: <ShieldCheck size={18} />, text: "Cost optimization and cloud governance accelerators" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>

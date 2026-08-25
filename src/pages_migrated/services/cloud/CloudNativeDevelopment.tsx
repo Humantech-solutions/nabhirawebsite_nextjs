@@ -152,7 +152,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                 Cloud-native development is not just about containers. It is about creating systems that can grow with your business without becoming complex or fragile.
               </p>
 
-              <div className="grid gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   "Aligning architecture with business goals",
                   "Designing loosely coupled, scalable systems",
@@ -162,7 +162,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -246,7 +246,7 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                 We leverage leading cloud platforms—AWS, Azure, and Google Cloud—to build resilient, scalable cloud-native solutions that stand the test of time.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   { icon: <Box size={18} />, text: "Kubernetes & Container Orchestration" },
                   { icon: <Zap size={18} />, text: "Serverless Computing Frameworks" },
@@ -254,9 +254,9 @@ export default function CloudNativeDevelopment({ wordpressData }: { wordpressDat
                   { icon: <Workflow size={18} />, text: "CI/CD Pipelines & DevOps Toolchains" },
                   { icon: <Activity size={18} />, text: "Observability & Performance Monitoring" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>

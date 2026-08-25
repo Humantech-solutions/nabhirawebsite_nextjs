@@ -154,7 +154,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                 Cloud finance is not just about cutting costs. It is about making smarter investment decisions and ensuring both technology and finance teams speak the same language.
               </p>
 
-              <div className="grid gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   "Creating complete visibility into cloud spending",
                   "Aligning cloud costs with business units and products",
@@ -164,7 +164,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -248,7 +248,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                 We leverage the cost management capabilities of AWS, Azure and Google Cloud to bring transparency and actionable insight to your financial operations.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   { icon: <BarChart3 size={18} />, text: "Native Cloud Cost Management Dashboards" },
                   { icon: <PieChart size={18} />, text: "FinOps Analytics & Reporting Frameworks" },
@@ -256,9 +256,9 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
                   { icon: <LineChart size={18} />, text: "Budgeting & Forecasting Models" },
                   { icon: <Activity size={18} />, text: "Usage Anomaly Detection Systems" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>

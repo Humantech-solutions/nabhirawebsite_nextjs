@@ -2,19 +2,29 @@
 
 import React, { ReactNode } from "react";
 import { motion as Motion } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { ArrowRight } from "lucide-react";
 
 interface ServiceHeroProps {
   title: ReactNode;
-  subtitle: string;
+  subtitle?: string;
   category?: string;
   image?: string;
   description?: string;
+  ctaText?: string;
+  ctaLink?: string;
 }
 
-export function ServiceHero({ title, subtitle, category = "Services", image, description }: ServiceHeroProps) {
+export function ServiceHero({
+  title,
+  subtitle,
+  category = "Services",
+  image,
+  description,
+  ctaText = "Consult Us",
+  ctaLink = "/contact"
+}: ServiceHeroProps) {
   return (
     <section className="relative h-[400px] md:h-[520px] w-full overflow-hidden flex items-center">
       {/* Background Image */}
@@ -39,21 +49,27 @@ export function ServiceHero({ title, subtitle, category = "Services", image, des
           <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em]">
             <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
             <span className="text-white/30 font-light">&gt;</span>
-            <span className="text-[#f99d1c] uppercase tracking-widest">{category}</span>
+            <span className="text-[#f99d1c] uppercase tracking-widest">{category || subtitle}</span>
           </nav>
 
-          <div className="space-y-4 md:space-y-6">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-4 md:mb-8">
+          <div className="space-y-6 md:space-y-8">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm">
               {title}
             </h1>
-            <p className="text-[#f99d1c] text-sm md:text-lg font-bold tracking-[0.2em] uppercase mb-4">
-              {subtitle}
-            </p>
             {description && (
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-6 md:mb-12">
+              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                 {description}
               </p>
             )}
+            <div className="pt-2 md:pt-4">
+              <Link 
+                href={ctaLink}
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[14px] font-medium"
+              >
+                <span>{ctaText}</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </Motion.div>
       </div>
@@ -63,4 +79,5 @@ export function ServiceHero({ title, subtitle, category = "Services", image, des
     </section>
   );
 }
+
 
