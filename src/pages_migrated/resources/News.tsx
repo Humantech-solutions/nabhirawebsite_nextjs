@@ -10,7 +10,7 @@ import { renderHeroTitle, formatEventDate, formatQuotesToBold } from "../../lib/
 
 export default function News({ wordpressData, newsData = [], globalSettings }: any) {
   useEffect(() => {
-    document.title = "In the News | Nabhira Technologies";
+    document.title = "In the News | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -35,7 +35,7 @@ export default function News({ wordpressData, newsData = [], globalSettings }: a
           <div className="absolute inset-0">
             <ImageWithFallback
               src={bannerImage}
-              alt="Nabhira in the News"
+              alt="Hutech Solutions in the News"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>

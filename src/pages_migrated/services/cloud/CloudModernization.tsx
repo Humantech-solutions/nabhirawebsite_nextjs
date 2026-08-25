@@ -24,7 +24,7 @@ import {
 
 export default function CloudModernization({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Modernization Services | Nabhira Technologies";
+    document.title = "Cloud Modernization Services | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

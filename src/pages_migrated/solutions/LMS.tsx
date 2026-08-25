@@ -11,7 +11,7 @@ import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function LMSSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "AI-Powered LMS | Nabhira Technologies";
+    document.title = "AI-Powered LMS | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -67,7 +67,7 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Hutech Solutions' AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
@@ -143,7 +143,7 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
         {/* Comparison Section */}
         <section className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">{formatQuotesToBold("Why Nabhira LMS?")}</h2>
+            <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">{formatQuotesToBold("Why Hutech Solutions LMS?")}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-[#11253e] p-12 text-white">
                 <h3 className="text-[#f99d1c] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Modern AI LMS")}</h3>

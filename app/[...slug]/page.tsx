@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   return constructMetadata({
     title: page.title,
-    description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Nabhira Technologies",
+    description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Hutech Solutions Technologies",
   });
 }
 

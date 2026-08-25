@@ -24,19 +24,19 @@ export function SuccessStories({ data, testimonials }: any) {
     stories.push(
       {
         title:
-          "How Nabhira is helping a leading US beverage retailer in its digital supply chain transformation.",
+          "How Hutech Solutions is helping a leading US beverage retailer in its digital supply chain transformation.",
         author: "James Jay",
         role: "Digital Supply Chain Transformation",
       },
       {
         title:
-          "Nabhira helps a leading Japanese telecommunications operator build a state-of-the-art enterprise cloud platform.",
+          "Hutech Solutions helps a leading Japanese telecommunications operator build a state-of-the-art enterprise cloud platform.",
         author: "Yoshiyasu Sano",
         role: "Global Enterprise Strategy",
       },
       {
         title:
-          "Nabhira helps a global automotive manufacturer drive connected mobility solutions for the future of travel.",
+          "Hutech Solutions helps a global automotive manufacturer drive connected mobility solutions for the future of travel.",
         author: "Sarah Brown",
         role: "Mobility and Innovation",
       },

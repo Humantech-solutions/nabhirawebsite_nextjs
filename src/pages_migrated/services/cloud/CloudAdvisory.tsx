@@ -22,7 +22,7 @@ import { Hero } from "../../../components/Hero";
 
 export default function CloudAdvisory({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Advisory Services | Nabhira Technologies";
+    document.title = "Cloud Advisory Services | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

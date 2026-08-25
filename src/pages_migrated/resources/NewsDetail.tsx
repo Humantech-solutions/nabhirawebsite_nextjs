@@ -34,7 +34,7 @@ export default function NewsDetail({ wordpressData: item, newsData = [] }: any) 
 
   useEffect(() => {
     if (item) {
-      document.title = `${item.title} | Nabhira Press`;
+      document.title = `${item.title} | Hutech Solutions Press`;
       window.scrollTo(0, 0);
     }
   }, [item]);

@@ -66,7 +66,7 @@ export const jobs = [
 export const events = [
   {
     id: 1,
-    title: "Nabhira Architecture Summit 2026",
+    title: "Hutech Solutions Architecture Summit 2026",
     date: "March 15-16, 2026",
     time: "09:00 AM - 06:00 PM",
     location: "Marina Bay Financial Centre, Singapore",
@@ -91,7 +91,7 @@ export const events = [
     time: "10:00 AM - 05:00 PM",
     location: "ExCeL London, UK",
     type: "Conference",
-    description: "Visit the Nabhira pavilion at the world's largest Cloud & Data expo. Our architects will be presenting live on stage about the future of multi-cloud mesh architectures and decentralized data governance.",
+    description: "Visit the Hutech Solutions pavilion at the world's largest Cloud & Data expo. Our architects will be presenting live on stage about the future of multi-cloud mesh architectures and decentralized data governance.",
     image: "https://images.unsplash.com/photo-1540575861501-7ad0582373f1?auto=format&fit=crop&q=80&w=1200"
   }
 ];
@@ -101,7 +101,7 @@ export const blogPosts = [
     id: 1,
     title: "The Rise of Agentic AI: Beyond Simple Automation",
     excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-    author: "Dr. Arvan Nabhira",
+    author: "Dr. Arvan Hutech Solutions",
     date: "Feb 20, 2026",
     category: "Artificial Intelligence",
     image: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=1200",
@@ -109,7 +109,7 @@ export const blogPosts = [
       <p className="mb-6">The landscape of Artificial Intelligence is undergoing a seismic shift. We are moving beyond the era of passive chatbots and simple automation into the age of Agentic AI—systems capable of autonomous reasoning, goal-setting, and execution within complex, real-world environments.</p>
       
       <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Understanding Agency</h2>
-      <p className="mb-6">Unlike traditional AI that requires constant prompting, agentic systems are designed with 'agency'—the ability to decompose high-level objectives into actionable steps. For Nabhira Technologies, this represents the ultimate architectural challenge: building the digital nervous systems that allow these agents to interact securely with legacy enterprise data.</p>
+      <p className="mb-6">Unlike traditional AI that requires constant prompting, agentic systems are designed with 'agency'—the ability to decompose high-level objectives into actionable steps. For Hutech Solutions Technologies, this represents the ultimate architectural challenge: building the digital nervous systems that allow these agents to interact securely with legacy enterprise data.</p>
       
       <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-4 my-12 italic text-xl text-[#11253e]/80 bg-[#f99d1c]/5">
         "The true power of AI isn't in its ability to predict the next word, but in its potential to navigate the next business crisis autonomously."
@@ -136,7 +136,7 @@ export const blogPosts = [
       <p className="mb-6">National borders have returned to the digital realm. Governments are increasingly demanding that data generated within their territory stays within their territory. This has led to the rise of 'Cloud Sovereignty'—a strategy where infrastructure is localized but managed through a unified global control plane.</p>
       
       <h2 className="text-2xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-tight">Strategic Implementation</h2>
-      <p className="mb-6">At Nabhira Technologies, we advocate for a 'Sovereign-by-Design' approach. This means architecting applications from day one to be location-aware, with automated data routing that ensures compliance without sacrificing performance or developer velocity.</p>
+      <p className="mb-6">At Hutech Solutions Technologies, we advocate for a 'Sovereign-by-Design' approach. This means architecting applications from day one to be location-aware, with automated data routing that ensures compliance without sacrificing performance or developer velocity.</p>
       
       <p className="mb-6">The transition to sovereign cloud architectures is not just a compliance checkbox; it is a competitive advantage for enterprises that want to build deep trust in the markets they serve.</p>
     `
@@ -165,7 +165,7 @@ export const blogPosts = [
     id: 4,
     title: "Modernization Is Now a Survival Strategy",
     excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-    author: "Dr. Arvan Nabhira",
+    author: "Dr. Arvan Hutech Solutions",
     date: "Mar 01, 2026",
     category: "AI Modernization",
     image: "https://images.unsplash.com/photo-1744640326166-433469d102f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbW9kZXJuaXphdGlvbiUyMGNvcnBvcmF0ZSUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNDU1NTA0fDA&ixlib=rb-4.1.0&q=80&w=1200",
@@ -241,9 +241,9 @@ export const caseStudies = [
       "Fraud investigation teams became more productive with real-time monitoring tools.",
       "Positioned the bank for long-term digital growth with scalable AI-driven risk management."
     ],
-    quote: "The real-time fraud detection platform transformed our risk management capabilities. Nabhira's expertise in streaming architecture and machine learning enabled us to protect our customers while enhancing their banking experience.",
+    quote: "The real-time fraud detection platform transformed our risk management capabilities. Hutech Solutions' expertise in streaming architecture and machine learning enabled us to protect our customers while enhancing their banking experience.",
     quoteAuthor: "Head of Engineering, Leading Indian Bank",
-    executiveSummary: "A leading retail bank in India partnered with Nabhira Technologies to modernize its fraud detection infrastructure and implement a real-time transaction monitoring platform. The bank was experiencing rising fraud incidents across multiple channels including card payments, ATM withdrawals and digital banking transactions. The existing batch-based fraud detection system identified fraudulent activity several hours after completion, resulting in significant financial losses and customer dissatisfaction. Nabhira implemented a comprehensive real-time fraud detection platform leveraging streaming data architecture, machine learning models and event-driven processing to detect and prevent fraud within milliseconds of transaction initiation.",
+    executiveSummary: "A leading retail bank in India partnered with Hutech Solutions Technologies to modernize its fraud detection infrastructure and implement a real-time transaction monitoring platform. The bank was experiencing rising fraud incidents across multiple channels including card payments, ATM withdrawals and digital banking transactions. The existing batch-based fraud detection system identified fraudulent activity several hours after completion, resulting in significant financial losses and customer dissatisfaction. Hutech Solutions implemented a comprehensive real-time fraud detection platform leveraging streaming data architecture, machine learning models and event-driven processing to detect and prevent fraud within milliseconds of transaction initiation.",
     customerBackground: "The customer is a leading retail bank in India serving millions of customers across urban and rural markets. The bank operates an extensive network of branches, ATMs and digital banking channels including mobile banking, online payments and card services. With the rapid growth of digital banking adoption in India, the bank experienced exponential increases in transaction volumes across all channels. This growth brought new challenges in fraud prevention, customer protection and regulatory compliance. The organization sought to build a modern fraud detection platform capable of real-time transaction monitoring, AI-driven fraud detection, scalable event-driven architecture and faster fraud investigation workflows while reducing false positives that impacted customer experience.",
     detailedChallenges: [
       {
@@ -367,16 +367,16 @@ export const caseStudies = [
     tags: ["Cloud", "Ecommerce", "AWS"],
     image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1600",
     challenge: "A leading multi-brand retail chain headquartered in Indonesia faced significant challenges with their legacy on-premise infrastructure. The system struggled with limited scalability during peak sales, multi-country expansion complexity across Southeast Asia, fragmented retail and supply chain systems operating in silos and slow deployment cycles that hindered innovation and new brand launches.",
-    solution: "Nabhira Technologies designed and implemented a comprehensive cloud-native ecommerce platform on AWS. The solution included migration from on-premise to AWS cloud infrastructure, multi-brand ecommerce portals with regional localization, store management applications for omnichannel operations and integrated supply chain management systems.",
+    solution: "Hutech Solutions Technologies designed and implemented a comprehensive cloud-native ecommerce platform on AWS. The solution included migration from on-premise to AWS cloud infrastructure, multi-brand ecommerce portals with regional localization, store management applications for omnichannel operations and integrated supply chain management systems.",
     results: [
       "5x increase in peak traffic handling capacity with near-zero downtime during promotional events.",
       "60% faster deployment cycles and reduced infrastructure provisioning from weeks to minutes.",
       "35% reduction in infrastructure management costs with lower operational overhead.",
       "40% improvement in website performance leading to higher customer engagement and conversion rates."
     ],
-    quote: "Nabhira Technologies transformed our digital commerce infrastructure from a limiting factor into a competitive advantage. The solution Nabhira built enabled us to scale across Southeast Asia while delivering superior customer experience.",
+    quote: "Hutech Solutions Technologies transformed our digital commerce infrastructure from a limiting factor into a competitive advantage. The solution Hutech Solutions built enabled us to scale across Southeast Asia while delivering superior customer experience.",
     quoteAuthor: "CIO, Southeast Asian Retail Group",
-    executiveSummary: "A leading multi-brand retail chain headquartered in Indonesia partnered with Nabhira Technologies to modernize its digital commerce ecosystem and expand its presence across Southeast Asia. The company manages and markets several international fashion and apparel brands across markets including Indonesia, Vietnam, Philippines, Cambodia and Singapore. The organization needed a scalable and resilient digital platform capable of supporting multiple brand storefronts, omnichannel retail operations and integrated supply chain management.",
+    executiveSummary: "A leading multi-brand retail chain headquartered in Indonesia partnered with Hutech Solutions Technologies to modernize its digital commerce ecosystem and expand its presence across Southeast Asia. The company manages and markets several international fashion and apparel brands across markets including Indonesia, Vietnam, Philippines, Cambodia and Singapore. The organization needed a scalable and resilient digital platform capable of supporting multiple brand storefronts, omnichannel retail operations and integrated supply chain management.",
     customerBackground: "The customer is a leading Indonesian retail conglomerate specializing in fashion and apparel distribution for globally recognized brands. The company operates both physical retail outlets and digital commerce platforms across Southeast Asia. With growing consumer demand for online retail and omnichannel experiences, the organization sought to strengthen its digital capabilities and create a unified platform capable of managing multi-brand ecommerce storefronts, inventory and supply chain operations, store management and retail analytics and cross-border commerce across multiple Southeast Asian markets.",
     detailedChallenges: [
       {
@@ -515,16 +515,16 @@ export const caseStudies = [
     tags: ["Cloud", "Retail", "Logistics"],
     image: "https://images.unsplash.com/photo-1609952578538-3d454550301d?auto=format&fit=crop&q=80&w=1080",
     challenge: "A leading fresh food and vegetable hyperlocal retail chain in South India needed to rapidly launch a digital commerce platform capable of delivering fresh groceries to customers within 30 minutes. With an extensive network of 750 franchise stores and an average of 9,000 orders per day, the retailer required a highly scalable and reliable technology platform to support real-time inventory management, fast order processing and hyperlocal logistics.",
-    solution: "Nabhira Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months. The solution included a Store POS system, Ecommerce portal, Order Management system and Supply Chain platform, enabling seamless coordination between online ordering, in-store operations and delivery logistics.",
+    solution: "Hutech Solutions Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months. The solution included a Store POS system, Ecommerce portal, Order Management system and Supply Chain platform, enabling seamless coordination between online ordering, in-store operations and delivery logistics.",
     results: [
       "Digital platform launched within three months meeting aggressive timeline.",
       "Successfully supports 9,000 daily orders with ability to scale during peak demand.",
       "Average delivery time maintained within 30 minutes across 750 franchise stores.",
       "Real-time inventory synchronization reduced manual processes in store operations."
     ],
-    quote: "Nabhira Technologies delivered a comprehensive cloud-native platform that transformed our business model. The integrated system enabled us to launch hyperlocal delivery across 750 stores within three months, delivering fresh food to customers in 30 minutes while efficiently managing thousands of daily orders.",
+    quote: "Hutech Solutions Technologies delivered a comprehensive cloud-native platform that transformed our business model. The integrated system enabled us to launch hyperlocal delivery across 750 stores within three months, delivering fresh food to customers in 30 minutes while efficiently managing thousands of daily orders.",
     quoteAuthor: "Zonal Sales Head, Fresh Food Retail Chain",
-    executiveSummary: "A leading fresh food and vegetable hyperlocal retail chain in South India partnered with Nabhira Technologies to rapidly launch a digital commerce platform capable of delivering fresh groceries to customers within 30 minutes. With an extensive network of 750 franchise stores and an average of 9,000 orders per day, the retailer required a highly scalable and reliable technology platform to support real-time inventory management, fast order processing and hyperlocal logistics. To meet aggressive timelines, Nabhira Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months.",
+    executiveSummary: "A leading fresh food and vegetable hyperlocal retail chain in South India partnered with Hutech Solutions Technologies to rapidly launch a digital commerce platform capable of delivering fresh groceries to customers within 30 minutes. With an extensive network of 750 franchise stores and an average of 9,000 orders per day, the retailer required a highly scalable and reliable technology platform to support real-time inventory management, fast order processing and hyperlocal logistics. To meet aggressive timelines, Hutech Solutions Technologies adopted a cloud-native development approach leveraging AWS cloud services to design and deploy an integrated retail platform within three months.",
     customerBackground: "The customer is a large fresh food and vegetable retail chain operating across South India, with a strong presence through franchise-based neighborhood stores. The company specializes in delivering fresh produce, groceries and daily essentials to local communities. With the rapid growth of online grocery ordering and hyperlocal delivery services, the retailer recognized the need to modernize its operations and offer customers a seamless digital ordering experience with fast delivery times. The organization operates approximately 750 franchise retail stores, which serve as local fulfillment centers for hyperlocal deliveries.",
     detailedChallenges: [
       {
@@ -596,16 +596,16 @@ export const newsItems = [
     id: 1,
     date: "Feb 10, 2026",
     source: "Bloomberg Technology",
-    title: "Nabhira Technologies Announces Expansion into Southeast Asian Markets",
+    title: "Hutech Solutions Technologies Announces Expansion into Southeast Asian Markets",
     link: "/resources/news/1",
     image: "https://images.unsplash.com/photo-1542241617-956c329d6404?auto=format&fit=crop&q=80&w=1200",
     content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">SINGAPORE — Nabhira Technologies, the architectural consulting powerhouse, today announced a multi-year expansion plan into the Southeast Asian (SEA) markets, starting with a new regional headquarters in Singapore.</p>
+      <p className="mb-6 font-bold text-[#11253e] text-lg">SINGAPORE — Hutech Solutions Technologies, the architectural consulting powerhouse, today announced a multi-year expansion plan into the Southeast Asian (SEA) markets, starting with a new regional headquarters in Singapore.</p>
       
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The move comes as SEA experiences a surge in demand for high-end digital architecture and AI-native enterprise transformation. Nabhira’s CEO, Dr. Arvan Nabhira, stated that the region's unique blend of emerging fintech and manufacturing hubs provides the ideal environment for the firm's signature "minimalist" architectural approach.</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The move comes as SEA experiences a surge in demand for high-end digital architecture and AI-native enterprise transformation. Hutech Solutions’s CEO, Dr. Arvan Hutech Solutions, stated that the region's unique blend of emerging fintech and manufacturing hubs provides the ideal environment for the firm's signature "minimalist" architectural approach.</p>
       
       <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">Regional Hub Strategy</h2>
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">"Southeast Asia is no longer just a manufacturing hub; it's a global center for digital innovation," said Dr. Nabhira during the press conference at the Marina Bay Financial Centre. "Our presence here will allow us to partner more closely with local leaders to build the resilient digital infrastructure required for the next decade of growth."</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">"Southeast Asia is no longer just a manufacturing hub; it's a global center for digital innovation," said Dr. Hutech Solutions during the press conference at the Marina Bay Financial Centre. "Our presence here will allow us to partner more closely with local leaders to build the resilient digital infrastructure required for the next decade of growth."</p>
       
       <p className="mb-6 text-[#11253e]/70 leading-relaxed">The Singapore office will serve as a center of excellence for Cloud Sovereignty and Agentic AI, employing over 200 senior architects and consultants by the end of 2026.</p>
     `
@@ -614,19 +614,19 @@ export const newsItems = [
     id: 2,
     date: "Jan 25, 2026",
     source: "Financial Times",
-    title: "The Architecture of Tomorrow: Why Nabhira is Leading the AI-Native Revolution",
+    title: "The Architecture of Tomorrow: Why Hutech Solutions is Leading the AI-Native Revolution",
     link: "/resources/news/2",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
     content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">LONDON — In the crowded field of enterprise consulting, one firm is standing out for its refusal to use buzzwords. Nabhira Technologies has built its reputation on a rigorous, architectural approach to Artificial Intelligence.</p>
+      <p className="mb-6 font-bold text-[#11253e] text-lg">LONDON — In the crowded field of enterprise consulting, one firm is standing out for its refusal to use buzzwords. Hutech Solutions Technologies has built its reputation on a rigorous, architectural approach to Artificial Intelligence.</p>
       
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The Financial Times explores how Nabhira’s "First Principles Architecture" is helping Fortune 500 companies move past the pilot phase of AI. While others focus on models, Nabhira focuses on the data fabric that feeds them.</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The Financial Times explores how Hutech Solutions’s "First Principles Architecture" is helping Fortune 500 companies move past the pilot phase of AI. While others focus on models, Hutech Solutions focuses on the data fabric that feeds them.</p>
       
       <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">A Different Kind of Consultant</h2>
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">Industry analysts suggest that Nabhira’s success lies in its deep engineering roots. Unlike traditional management consultancies, Nabhira doesn't just provide strategies; they design the digital nervous systems that execute them.</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">Industry analysts suggest that Hutech Solutions’s success lies in its deep engineering roots. Unlike traditional management consultancies, Hutech Solutions doesn't just provide strategies; they design the digital nervous systems that execute them.</p>
       
       <blockquote className="border-l-4 border-[#f99d1c] pl-8 py-6 my-12 italic text-2xl text-[#11253e] bg-gray-50">
-        "Nabhira is the architect that builds the cathedral, not just the contractor that lays the bricks." — Senior Analyst, FT Intelligence.
+        "Hutech Solutions is the architect that builds the cathedral, not just the contractor that lays the bricks." — Senior Analyst, FT Intelligence.
       </blockquote>
     `
   },
@@ -638,12 +638,12 @@ export const newsItems = [
     link: "/resources/news/3",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
     content: `
-      <p className="mb-6 font-bold text-[#11253e] text-lg">NEW YORK — Business Insider has released its annual list of the 'Top 50 Cloud Companies to Watch', and Nabhira Technologies has claimed a top-five spot for the first time.</p>
+      <p className="mb-6 font-bold text-[#11253e] text-lg">NEW YORK — Business Insider has released its annual list of the 'Top 50 Cloud Companies to Watch', and Hutech Solutions Technologies has claimed a top-five spot for the first time.</p>
       
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The list highlights companies that are fundamentally changing how enterprises utilize cloud computing. Nabhira was praised for its pioneering work in multi-cloud mesh architectures and decentralized data governance.</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The list highlights companies that are fundamentally changing how enterprises utilize cloud computing. Hutech Solutions was praised for its pioneering work in multi-cloud mesh architectures and decentralized data governance.</p>
       
       <h2 className="text-xl font-bold text-[#11253e] mt-12 mb-6 uppercase tracking-widest">The Multi-Cloud Advantage</h2>
-      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The recognition comes after a year of record growth for Nabhira, which saw its global client base expand by 40%. The firm’s proprietary "Nabhira Mesh" framework has become the gold standard for enterprises looking to avoid vendor lock-in while maintaining high performance across disparate cloud providers.</p>
+      <p className="mb-6 text-[#11253e]/70 leading-relaxed">The recognition comes after a year of record growth for Hutech Solutions, which saw its global client base expand by 40%. The firm’s proprietary "Hutech Solutions Mesh" framework has become the gold standard for enterprises looking to avoid vendor lock-in while maintaining high performance across disparate cloud providers.</p>
     `
   }
 ];

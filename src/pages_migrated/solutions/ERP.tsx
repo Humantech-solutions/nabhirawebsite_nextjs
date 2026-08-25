@@ -1,16 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { DownloadModal } from "../../components/DownloadModal";
 import { Briefcase, Building2, Users, Package, DollarSign, Headphones, CheckCircle2, BarChart3, Shield, Zap, Database, Workflow, ArrowRight, PieChart, Truck, Users2 } from "lucide-react";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function ERPSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "WorkbookNow ERP Solutions | Nabhira Technologies";
+    document.title = "ERP Systems | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
@@ -44,7 +47,7 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
                     ))}
                   </h1>
                   <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                    {formatQuotesToBold(heroData?.heroS1Desc || "One source of truth. Nabhira’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform.")}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "One source of truth. Hutech Solutions’s WorkbookNow ERP synchronizes your entire business—from procurement to final delivery—on a unified, AI-native platform.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <button className="bg-[#f99d1c] text-white px-10 py-5 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
@@ -434,16 +437,15 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
                     Schedule Consultation
                   </button>
                 </Link>
-                <Link href="/resources">
-                  <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                    Download Brochure
-                  </button>
-                </Link>
+                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                  Download Brochure
+                </button>
               </div>
             </div>
           </Motion.div>
         </div>
       </section>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} documentName="ERP System Brochure" />
     </>
   );
 }

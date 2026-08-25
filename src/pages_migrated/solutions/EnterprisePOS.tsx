@@ -1,16 +1,19 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { DownloadModal } from "../../components/DownloadModal";
 import { Store, TrendingUp, Eye, AlertCircle, Layers, CheckCircle2, Shield, Zap, Cloud, Box, Lock, Users, BarChart3, Settings, Gauge } from "lucide-react";
 
 export default function EnterprisePOSSolution({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Enterprise POS & Franchise Management Platform | Nabhira Technologies";
+    document.title = "Enterprise POS Solutions | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   return (
     <div>
@@ -123,7 +126,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 Head office teams frequently lack real-time control over pricing, promotions, and store-level performance. Without centralized systems, businesses face operational inefficiencies, reporting errors, and limited transparency across their network.
               </p>
               <p className="text-xl font-medium text-[#11253e]">
-                Nabhira's Enterprise POS & Franchise Management Platform provides a centralized system to manage billing, inventory, sales tracking, and outlet performance—helping businesses scale efficiently while maintaining full operational control.
+                Hutech Solutions' Enterprise POS & Franchise Management Platform provides a centralized system to manage billing, inventory, sales tracking, and outlet performance—helping businesses scale efficiently while maintaining full operational control.
               </p>
             </div>
           </Motion.div>
@@ -244,7 +247,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 className="space-y-8"
               >
                 <p className="text-white text-lg font-light leading-relaxed">
-                  Nabhira's Retail POS System is a packaged web-based platform designed for retail chains and food businesses operating across multiple outlets.
+                  Hutech Solutions' Retail POS System is a packaged web-based platform designed for retail chains and food businesses operating across multiple outlets.
                 </p>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
                   The solution centralizes operations while allowing each outlet to function independently within a controlled framework. Head office teams gain full visibility into sales performance, inventory, and profitability through real-time dashboards.
@@ -554,7 +557,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 </h2>
                 <div className="w-24 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Nabhira's Enterprise POS Platform can centralize your operations and accelerate franchise growth.
+                  Discover how Hutech Solutions' Enterprise POS Platform can centralize your operations and accelerate franchise growth.
                 </p>
               </div>
               
@@ -562,7 +565,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
                   Schedule Consultation
                 </button>
-                <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
                   Download Brochure
                 </button>
               </div>
@@ -570,6 +573,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
           </Motion.div>
         </div>
       </section>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} documentName="Enterprise POS Brochure" />
     </div>
   );
 }

@@ -11,7 +11,7 @@ import { ArrowRight, Box, Layout, ShieldCheck, Database, HardDrive, Share2 } fro
 
 export default function DataFoundation({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Data Foundation & Storage | Nabhira Technologies";
+    document.title = "Data Foundation & Storage | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

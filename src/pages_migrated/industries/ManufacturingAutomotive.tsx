@@ -14,7 +14,7 @@ import {
 
 export default function ManufacturingAutomotive({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Manufacturing & Automotive | Nabhira Technologies";
+    document.title = "Manufacturing & Automotive | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

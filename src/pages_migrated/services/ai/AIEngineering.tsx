@@ -33,7 +33,7 @@ import {
 export default function AIEngineering({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "AI Engineering | Nabhira Technologies";
+    document.title = "AI Engineering | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -36,7 +36,7 @@ export function IndustryLayout({
   limitlessTogetherData
 }: IndustryLayoutProps) {
   useEffect(() => {
-    document.title = `${title} | Nabhira Technologies`;
+    document.title = `${title} | Hutech Solutions Technologies`;
     window.scrollTo(0, 0);
   }, [title]);
 

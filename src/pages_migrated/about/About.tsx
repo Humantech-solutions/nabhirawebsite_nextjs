@@ -90,8 +90,8 @@ export default function About({ wordpressData }: any) {
   const extractedMissions = extractList('mission', 3, <Target className="text-[#f99d1c]" size={32} />);
   const displayMissions = extractedMissions.length > 0 ? extractedMissions : fallbackMissions;
 
-  const storyContent1 = aboutFields?.storyContentP1 || "Rooted in its name - Nabhira, inspired by “Nabha,” the limitless sky and “Vira,” the spirit of leadership, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Nabhira set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.";
-  const storyContent2 = aboutFields?.storyContentP2 || "Nabhira partners with organizations across industries to reimagine what is possible, accelerating transformation through advanced AI, cloud-first intelligence and data-driven engineering. What started as a bold vision has grown into a commitment to deliver innovation at scale and impact across borders, empowering businesses to evolve, adapt and lead in a world of limitless potential";
+  const storyContent1 = aboutFields?.storyContentP1 || "Rooted in its name - Hutech Solutions, inspired by “Nabha,” the limitless sky and “Vira,” the spirit of leadership, our journey began with a simple belief: technology should expand possibilities, not limit them. Founded on this vision, Hutech Solutions set out to help enterprises navigate the rapidly evolving digital landscape with clarity, intelligence, and purpose.";
+  const storyContent2 = aboutFields?.storyContentP2 || "Hutech Solutions partners with organizations across industries to reimagine what is possible, accelerating transformation through advanced AI, cloud-first intelligence and data-driven engineering. What started as a bold vision has grown into a commitment to deliver innovation at scale and impact across borders, empowering businesses to evolve, adapt and lead in a world of limitless potential";
 
   return (
     <>
@@ -100,7 +100,7 @@ export default function About({ wordpressData }: any) {
           <div className="absolute inset-0">
             <ImageWithFallback
               src={wordpressData?.globalSettings?.heroSlides?.heroS1ImageUrl || wordpressData?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1765400669597-fd5161a9a5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBhcmNoaXRlY3R1cmUlMjBnbGFzcyUyMGJ1aWxkaW5nJTIwc3Vuc2V0fGVufDF8fHx8MTc3MTg5NzM2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"}
-              alt="About Nabhira"
+              alt="About Hutech Solutions"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/70 to-transparent"></div>
@@ -141,7 +141,7 @@ export default function About({ wordpressData }: any) {
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm border-l-2 border-[#f99d1c] pl-6 overflow-hidden">
-                  {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Nabhira accelerates digital transformation through advanced AI, cloud-first intelligence and data-driven engineering.")}
+                  {formatQuotesToBold(wordpressData?.globalSettings?.heroSlides?.heroS1Desc || "Hutech Solutions accelerates digital transformation through advanced AI, cloud-first intelligence and data-driven engineering.")}
                 </p>
               </Motion.div>
             </div>
@@ -252,7 +252,7 @@ export default function About({ wordpressData }: any) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none scale-150">
             <Image
               src={logo}
-              alt="Nabhira Logo"
+              alt="Hutech Solutions Logo"
               width={150}
               height={50}
               className="h-10 w-auto grayscale"

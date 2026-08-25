@@ -46,7 +46,7 @@ export default async function Page({ params }: PageProps) {
   const excerpt = post.excerpt?.rendered?.replace(/<[^>]*>/g, '') || post.excerpt || "";
   const url = `${siteConfig.url}/resources/blogs/${slug}`;
   const date = post.date || new Date().toISOString();
-  const author = post._embedded?.author?.[0]?.name || post.author || "Nabhira Team";
+  const author = post._embedded?.author?.[0]?.name || post.author || "Hutech Solutions Team";
 
   return (
     <>

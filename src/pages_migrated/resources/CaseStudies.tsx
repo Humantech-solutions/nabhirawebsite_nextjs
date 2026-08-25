@@ -15,7 +15,7 @@ export default function CaseStudies({
   globalSettings
 }: any) {
   useEffect(() => {
-    document.title = "Case Studies | Nabhira Technologies";
+    document.title = "Case Studies | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -40,7 +40,7 @@ export default function CaseStudies({
           <div className="absolute inset-0">
             <ImageWithFallback
               src={bannerImage}
-              alt="Nabhira Case Studies"
+              alt="Hutech Solutions Case Studies"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>

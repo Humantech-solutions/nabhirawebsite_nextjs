@@ -48,7 +48,7 @@ export default function Partners({ wordpressData }: { wordpressData?: any }) {
 
 
   useEffect(() => {
-    document.title = "Partners Ecosystem | Nabhira Technologies";
+    document.title = "Partners Ecosystem | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

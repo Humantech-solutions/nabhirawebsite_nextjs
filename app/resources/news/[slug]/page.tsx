@@ -49,7 +49,7 @@ export default async function Page({ params }: PageProps) {
           description: item.excerpt || item.title,
           image: item.image,
           datePublished: item.date,
-          authorName: item.source || "Nabhira News",
+          authorName: item.source || "Hutech Solutions News",
           url,
         })}
       />

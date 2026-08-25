@@ -847,8 +847,8 @@ export async function getPageBySlug(slug: string) {
   if (!page) {
     if (slug === "/about" || slug === "about") {
       return {
-        title: "About Nabhira",
-        content: "Nabhira Technologies is an architectural powerhouse...",
+        title: "About Hutech Solutions",
+        content: "Hutech Solutions Technologies is an architectural powerhouse...",
         slug: "about",
         uri: "/about",
       };
@@ -1150,7 +1150,7 @@ export async function getHomePage() {
       wnTitle: rawSettings?.sectionTitle || "What's New",
       wnSubtitle:
         rawSettings?.sectionSubtitle ||
-        "The current and future news from Nabhira and around the world.",
+        "The current and future news from Hutech Solutions and around the world.",
       wnFilterBy: rawSettings?.filterBy || "category",
       wnCategory: rawSettings?.filterCategory || { nodes: [] },
       wnTag: rawSettings?.filterTag || { nodes: [] },
@@ -1602,7 +1602,7 @@ export async function getCareerPostBySlug(slug: string) {
       department:
         node.careerJobOpeningDetails?.careerDepartment || "Engineering",
       location:
-        node.careerJobOpeningDetails?.careerLocation || "Nabhira Technologies",
+        node.careerJobOpeningDetails?.careerLocation || "Hutech Solutions Technologies",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
       experience: node.careerJobOpeningDetails?.careerExperience || "",
       jobId: node.careerJobOpeningDetails?.careerJobId || "",
@@ -1968,9 +1968,9 @@ function mapNewsPost(post: any) {
   const acfVideoUrl = post.news_video_url || post.acf?.news_video_url || null;
   const videoUrl = acfVideoFile || acfVideoUrl;
 
-  // For internal news: use "Nabhira News" and today's WordPress post date as fallbacks
+  // For internal news: use "Hutech Solutions News" and today's WordPress post date as fallbacks
   // For external news: leave empty so enrichWithExternalMeta can fill from OG metadata
-  const source = acfSource || (externalUrl ? "" : "Nabhira News");
+  const source = acfSource || (externalUrl ? "" : "Hutech Solutions News");
   const date = acfDate || post.date; // WordPress post date = publish date (today for new posts)
 
   return {
@@ -2325,7 +2325,7 @@ export interface SiteChromeData {
 
 export async function getSiteChrome(): Promise<SiteChromeData | null> {
   const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql', 
-'/wp-json/nabhira/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/nabhira/v1/site-chrome';
+'/wp-json/Hutech Solutions/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/Hutech Solutions/v1/site-chrome';
   
   if (FORCE_STATIC_FALLBACK) return null;
 

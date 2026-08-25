@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('careers');
   return constructMetadata({
     title: page?.title || "Careers",
-    description: "Join Nabhira Technologies and build what is next. Explore our open positions in AI, Cloud, and Data Engineering.",
+    description: "Join Hutech Solutions Technologies and build what is next. Explore our open positions in AI, Cloud, and Data Engineering.",
   });
 }
 

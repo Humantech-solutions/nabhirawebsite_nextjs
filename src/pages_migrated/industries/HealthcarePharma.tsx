@@ -16,7 +16,7 @@ import {
 export default function HealthcarePharma({ wordpressData }: any) {
   const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
-    document.title = "Healthcare & Pharma | Nabhira Technologies";
+    document.title = "Healthcare & Pharma | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

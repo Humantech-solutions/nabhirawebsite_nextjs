@@ -25,7 +25,7 @@ import {
 
 export default function CloudNativeDevelopment({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Native Development | Nabhira Technologies";
+    document.title = "Cloud Native Development | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

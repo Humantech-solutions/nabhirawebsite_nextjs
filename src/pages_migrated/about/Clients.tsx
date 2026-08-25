@@ -19,7 +19,7 @@ export default function Clients({ wordpressData, testimonials: cptTestimonials }
   const heroData = wordpressData?.globalSettings?.heroSlides;
   const fields = wordpressData?.clientsPageFields;
   useEffect(() => {
-    document.title = "Our Clients | Nabhira Technologies";
+    document.title = "Our Clients | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -269,13 +269,13 @@ export default function Clients({ wordpressData, testimonials: cptTestimonials }
   } else {
     testimonials = [
       {
-        quote: 'Nabhira transformed our legacy systems into a modern cloud architecture. Their expertise in AWS and Azure is unmatched.',
+        quote: 'Hutech Solutions transformed our legacy systems into a modern cloud architecture. Their expertise in AWS and Azure is unmatched.',
         author: 'Sarah Jenkins',
         company: 'CTO, Global Retail Corp',
         color: '#0057A8',
       },
       {
-        quote: 'The Agentic AI solutions provided by Nabhira revolutionized our customer service operations, reducing response times by 40%.',
+        quote: 'The Agentic AI solutions provided by Hutech Solutions revolutionized our customer service operations, reducing response times by 40%.',
         author: 'David Chen',
         company: 'VP Operations, FinTech Innovations',
         color: '#2E8B3B',
@@ -408,7 +408,7 @@ export default function Clients({ wordpressData, testimonials: cptTestimonials }
               {fields?.clientGridSubtitle || "Our Clientele"}
             </p>
             <h2 className="text-[#11253e] text-3xl md:text-4xl font-light mb-4 tracking-tight">
-              {renderHeroTitle(fields?.clientGridTitle || "Organizations That Trust Nabhira", "text-[#11253e]")}
+              {renderHeroTitle(fields?.clientGridTitle || "Organizations That Trust Hutech Solutions", "text-[#11253e]")}
             </h2>
             <div className="w-16 h-1 bg-[#f99d1c] mx-auto mb-6" />
             <p className="max-w-xl mx-auto text-[#11253e] font-light text-md leading-relaxed" style={{ opacity: 0.65 }}>

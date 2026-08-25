@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('blogs');
   return constructMetadata({
     title: page?.title || "Insights & Perspectives",
-    description: "Explore the latest architectural insights, AI trends, and cloud-native innovations from Nabhira.",
+    description: "Explore the latest architectural insights, AI trends, and cloud-native innovations from Hutech Solutions.",
   });
 }
 

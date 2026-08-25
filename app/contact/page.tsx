@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('contact');
   return constructMetadata({
     title: page?.title || "Contact Us",
-    description: "Get in touch with Nabhira Technologies. Let us discuss how we can help your enterprise evolve through advanced AI and Cloud architectures.",
+    description: "Get in touch with Hutech Solutions Technologies. Let us discuss how we can help your enterprise evolve through advanced AI and Cloud architectures.",
   });
 }
 

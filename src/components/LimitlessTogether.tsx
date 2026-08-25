@@ -28,7 +28,7 @@ export function LimitlessTogether({ data }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   // Dynamic Data
-  const title = data?.ltTitle || "Why Nabhira?";
+  const title = data?.ltTitle || "Why Hutech Solutions?";
   const p1 = data?.ltP1 || "We bring a structured, outcome-driven approach to every transformation initiative.";
   const p2 = data?.ltP2 || "Our delivery maturity ensures predictable execution, governance discipline, and measurable results.";
   const p3 = data?.ltP3 || "With automation embedded at the core, we accelerate speed, enhance quality, and drive sustainable cost efficiency.";

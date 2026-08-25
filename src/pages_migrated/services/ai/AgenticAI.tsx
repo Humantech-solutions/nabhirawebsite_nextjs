@@ -34,7 +34,7 @@ import {
 export default function AgenticAI({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Agentic AI | Nabhira Technologies";
+    document.title = "Agentic AI | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

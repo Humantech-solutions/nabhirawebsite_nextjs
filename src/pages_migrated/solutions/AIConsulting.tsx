@@ -13,7 +13,7 @@ import { Target, Brain, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 
 export default function AIConsulting({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "AI Consulting | Nabhira Technologies";
+    document.title = "AI Consulting | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

@@ -8,7 +8,7 @@ import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function CloudInfraSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Infra Deployment & Monitoring | Nabhira Technologies";
+    document.title = "Cloud Infra Deployment & Monitoring | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -44,7 +44,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                     ))}
                   </h1>
                   <p className="text-white/90 text-xl font-light leading-relaxed max-w-2xl mb-12">
-                    {formatQuotesToBold(heroData?.heroS1Desc || "Automated deployment, predictive monitoring, and sovereign cloud governance. Nabhira builds the foundations that never fail.")}
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Automated deployment, predictive monitoring, and sovereign cloud governance. Hutech Solutions builds the foundations that never fail.")}
                   </p>
                   <div className="flex flex-wrap gap-8">
                     <Link href="/contact">
@@ -148,7 +148,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                 <div className="space-y-6">
                   <h2 className="text-[#11253e] text-4xl font-bold tracking-tight">{formatQuotesToBold("The Unified Data Plane")}</h2>
                   <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                    {formatQuotesToBold("Nabhira provides a single pane of glass for your entire hybrid cloud estate. Whether it's AWS, Azure, GCP, or On-premise bare metal, your monitoring and deployment remain consistent.")}
+                    {formatQuotesToBold("Hutech Solutions provides a single pane of glass for your entire hybrid cloud estate. Whether it's AWS, Azure, GCP, or On-premise bare metal, your monitoring and deployment remain consistent.")}
                   </p>
                 </div>
               </div>
@@ -423,7 +423,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
                 </h2>
                 <div className="w-24 h-1 bg-[#f99d1c]"></div>
                 <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Nabhira's Cloud Infrastructure services can streamline your deployments and maximize your cloud ROI.
+                  Discover how Hutech Solutions' Cloud Infrastructure services can streamline your deployments and maximize your cloud ROI.
                 </p>
               </div>
               
@@ -451,7 +451,7 @@ export default function CloudInfraSolution({ wordpressData }: { wordpressData?: 
           <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 className="text-[#11253e] text-5xl font-bold tracking-tighter">{formatQuotesToBold("Build Your Digital Fortress.")}</h2>
             <p className="text-[#11253e] text-xl font-light">
-              {formatQuotesToBold("Stop fighting with infrastructure. Let Nabhira architect a cloud environment that scales with your ambition.")}
+              {formatQuotesToBold("Stop fighting with infrastructure. Let Hutech Solutions architect a cloud environment that scales with your ambition.")}
             </p>
             <div className="pt-6">
               <Link href="/contact">

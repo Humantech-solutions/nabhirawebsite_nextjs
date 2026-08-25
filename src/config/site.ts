@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "Nabhira Technologies",
+  name: "Hutech Solutions Technologies",
   description: "Global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI solutions.",
   url: "https://nabhira.com", // Replace with actual production URL
   ogImage: "https://nabhira.com/og-image.png",
   links: {
-    twitter: "https://twitter.com/nabhira",
-    linkedin: "https://linkedin.com/company/nabhira",
+    twitter: "https://twitter.com/Hutech Solutions",
+    linkedin: "https://linkedin.com/company/Hutech Solutions",
   },
   mainNav: [
     { title: "ABOUT US", href: "/about" },

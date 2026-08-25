@@ -27,7 +27,7 @@ import {
 
 export default function CloudFinancialManagement({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Cloud Financial Management (FinOps) | Nabhira Technologies";
+    document.title = "Cloud Financial Management (FinOps) | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -350,7 +350,7 @@ export default function CloudFinancialManagement({ wordpressData }: { wordpressD
               {formatQuotesToBold("Maximize your cloud \n^investment today.^")}
               </h2>
               <p className="text-[#11253e] text-base font-light leading-relaxed">
-                Partner with Nabhira to transition from reactive monitoring to a proactive, value-driven FinOps culture.
+                Partner with Hutech Solutions to transition from reactive monitoring to a proactive, value-driven FinOps culture.
               </p>
             </div>
             <button

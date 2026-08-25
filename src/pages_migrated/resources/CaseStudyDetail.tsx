@@ -14,7 +14,7 @@ export default function CaseStudyDetail({ wordpressData }: { wordpressData: any 
 
   useEffect(() => {
     if (study) {
-      document.title = `${study.title} | Nabhira Case Studies`;
+      document.title = `${study.title} | Hutech Solutions Case Studies`;
       window.scrollTo(0, 0);
     }
   }, [study]);

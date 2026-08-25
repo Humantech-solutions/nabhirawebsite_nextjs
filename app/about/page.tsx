@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('about');
   return constructMetadata({
     title: page?.title || "About Us",
-    description: "Learn about Nabhira Technologies, an architectural powerhouse defining the future of digital enterprise through AI and Cloud-native innovation.",
+    description: "Learn about Hutech Solutions Technologies, an architectural powerhouse defining the future of digital enterprise through AI and Cloud-native innovation.",
   });
 }
 

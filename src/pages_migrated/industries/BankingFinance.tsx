@@ -29,7 +29,7 @@ import {
 export default function BankingFinance({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Banking & Financial Services | Nabhira Technologies";
+    document.title = "Banking & Financial Services | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

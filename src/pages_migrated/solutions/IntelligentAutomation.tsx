@@ -23,7 +23,7 @@ import {
 
 export default function IntelligentAutomation({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Intelligent Automation | Nabhira Technologies";
+    document.title = "Intelligent Automation | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

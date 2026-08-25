@@ -29,7 +29,7 @@ import {
 export default function MediaEntertainment({ wordpressData }: any) {
   const heroData = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
-    document.title = "Media & Entertainment | Nabhira Technologies";
+    document.title = "Media & Entertainment | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

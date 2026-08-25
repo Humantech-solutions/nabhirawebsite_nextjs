@@ -15,7 +15,7 @@ const STATIC_POSTS = [
     slug: "the-rise-of-agentic-ai",
     title: "The Rise of Agentic AI: Beyond Simple Automation",
     excerpt: "How autonomous agents are redefining enterprise productivity by making decisions in complex environments.",
-    author: { node: { name: "Dr. Arvan Nabhira" } },
+    author: { node: { name: "Dr. Arvan Hutech Solutions" } },
     date: "2026-02-20T00:00:00",
     categories: { nodes: [{ name: "Artificial Intelligence" }] },
     featuredImage: { node: { sourceUrl: "https://images.unsplash.com/photo-1673255745677-e36f618550d1?auto=format&fit=crop&q=80&w=800" } }
@@ -45,7 +45,7 @@ const STATIC_POSTS = [
     slug: "modernization-survival-strategy",
     title: "Modernization Is Now a Survival Strategy",
     excerpt: "Why organizations are shifting from 'Buy & Use' to 'Build & Use' in the age of AI.",
-    author: { node: { name: "Dr. Arvan Nabhira" } },
+    author: { node: { name: "Dr. Arvan Hutech Solutions" } },
     date: "2026-03-01T00:00:00",
     categories: { nodes: [{ name: "AI Modernization" }] },
     featuredImage: { node: { sourceUrl: "https://images.unsplash.com/photo-1744640326166-433469d102f2?auto=format&fit=crop&q=80&w=800" } }
@@ -67,7 +67,7 @@ function formatDate(dateStr: string) {
 export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: any[]; wordpressData?: any; siteChrome?: any }) {
   const heroSlides = wordpressData?.globalSettings?.heroSlides;
   useEffect(() => {
-    document.title = "Insights & Perspectives | Nabhira Technologies";
+    document.title = "Insights & Perspectives | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -81,7 +81,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
           <div className="absolute inset-0">
             <ImageWithFallback
               src={heroSlides?.heroS1Image?.node?.sourceUrl || siteChrome?.blogHero?.image || wordpressData?.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1761815937101-f32643eaa17e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMHdvcmtzcGFjZSUyMGxhcHRvcCUyMHdpbmRvdyUyMGNpdHklMjB2aWV3fGVufDF8fHx8MTc3MTkwMDkyMXww&ixlib=rb-4.1.0&q=80&w=1080"}
-              alt={heroSlides?.heroS1Title || siteChrome?.blogHero?.title || wordpressData?.title || "Nabhira Blogs"}
+              alt={heroSlides?.heroS1Title || siteChrome?.blogHero?.title || wordpressData?.title || "Hutech Solutions Blogs"}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-[#11253e]/80"></div>
@@ -106,7 +106,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                 const title = post.title;
                 const excerpt = post.excerpt?.replace(/<[^>]*>/g, "") || "";
                 const image = post.featuredImage?.node?.sourceUrl || post.image || "";
-                const author = post.customAuthorName || post.author?.node?.name || post.author || "Nabhira Team";
+                const author = post.customAuthorName || post.author?.node?.name || post.author || "Hutech Solutions Team";
                 const category = post.categories?.nodes?.[0]?.name || post.category || "";
                 const date = formatDate(post.date);
 

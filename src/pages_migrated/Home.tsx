@@ -14,7 +14,7 @@ import { LimitlessTogether, Footer } from "../components/Footer";
 
 export default function Home({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Nabhira Technologies | Digital Transformation & AI Solutions";
+    document.title = "Hutech Solutions Technologies | Digital Transformation & AI Solutions";
   }, []);
 
   return (

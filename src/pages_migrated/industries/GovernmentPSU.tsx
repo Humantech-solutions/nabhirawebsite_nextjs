@@ -25,7 +25,7 @@ import {
 export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }) {
 
   useEffect(() => {
-    document.title = "Government & PSUs | Nabhira Technologies";
+    document.title = "Government & PSUs | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 

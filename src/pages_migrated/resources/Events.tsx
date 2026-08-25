@@ -19,7 +19,7 @@ export default function Events({
   globalSettings,
 }: any) {
   useEffect(() => {
-    document.title = "Events | Nabhira Technologies";
+    document.title = "Events | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
 
@@ -62,7 +62,7 @@ export default function Events({
         <div className="absolute inset-0">
           <ImageWithFallback
             src={bannerImage}
-            alt="Nabhira Events"
+            alt="Hutech Solutions Events"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#11253e]/80"></div>
