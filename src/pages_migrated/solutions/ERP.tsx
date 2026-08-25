@@ -1,16 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { DownloadModal } from "../../components/DownloadModal";
 import { Briefcase, Building2, Users, Package, DollarSign, Headphones, CheckCircle2, BarChart3, Shield, Zap, Database, Workflow, ArrowRight, PieChart, Truck, Users2 } from "lucide-react";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
 
 export default function ERPSolution({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "WorkbookNow ERP Solutions | Hutech Solutions Technologies";
+    document.title = "ERP Systems | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
@@ -434,16 +437,15 @@ export default function ERPSolution({ wordpressData }: { wordpressData?: any }) 
                     Schedule Consultation
                   </button>
                 </Link>
-                <Link href="/resources">
-                  <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                    Download Brochure
-                  </button>
-                </Link>
+                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                  Download Brochure
+                </button>
               </div>
             </div>
           </Motion.div>
         </div>
       </section>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} documentName="ERP System Brochure" />
     </>
   );
 }

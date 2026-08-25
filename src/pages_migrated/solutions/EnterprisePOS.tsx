@@ -1,16 +1,19 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { DownloadModal } from "../../components/DownloadModal";
 import { Store, TrendingUp, Eye, AlertCircle, Layers, CheckCircle2, Shield, Zap, Cloud, Box, Lock, Users, BarChart3, Settings, Gauge } from "lucide-react";
 
 export default function EnterprisePOSSolution({ wordpressData }: any) {
   useEffect(() => {
-    document.title = "Enterprise POS & Franchise Management Platform | Hutech Solutions Technologies";
+    document.title = "Enterprise POS Solutions | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   return (
     <div>
@@ -562,7 +565,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
                 <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
                   Schedule Consultation
                 </button>
-                <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
                   Download Brochure
                 </button>
               </div>
@@ -570,6 +573,7 @@ export default function EnterprisePOSSolution({ wordpressData }: any) {
           </Motion.div>
         </div>
       </section>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} documentName="Enterprise POS Brochure" />
     </div>
   );
 }

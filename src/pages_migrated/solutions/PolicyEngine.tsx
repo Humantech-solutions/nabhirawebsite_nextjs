@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion as Motion } from "motion/react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
+import { DownloadModal } from "../../components/DownloadModal";
 import { 
   ArrowRight, 
   CheckCircle2,
@@ -24,6 +25,8 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
     document.title = "Policy Reinforcement Agent | Hutech Solutions Technologies";
     window.scrollTo(0, 0);
   }, []);
+
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
@@ -502,7 +505,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
                 <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
                   Schedule Consultation
                 </button>
-                <button className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
                   Download Whitepaper
                 </button>
               </div>
@@ -510,6 +513,7 @@ export default function PolicyEngineSolution({ wordpressData }: { wordpressData?
           </Motion.div>
         </div>
       </section>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} documentName="Policy Reinforcement Agent Whitepaper" />
     </>
   );
 }
