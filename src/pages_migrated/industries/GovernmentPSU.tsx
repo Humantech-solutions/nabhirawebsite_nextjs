@@ -77,7 +77,8 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         "Unified Service Delivery",
         "Digital Identity Integration",
       ],
-      icon: <Landmark size={40} />,
+      icon: <Landmark size={32} />,
+      image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "data",
@@ -89,7 +90,8 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         "Real-time Policy Insights",
         "Outcome-based Governance",
       ],
-      icon: <Database size={40} />,
+      icon: <Database size={32} />,
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "automation",
@@ -101,7 +103,8 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         "AI-driven Compliance",
         "Grievance Management",
       ],
-      icon: <Zap size={40} />,
+      icon: <Zap size={32} />,
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "infrastructure",
@@ -114,7 +117,8 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         "Smart Utilities",
         "Predictive Maintenance",
       ],
-      icon: <Globe size={40} />,
+      icon: <Globe size={32} />,
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "security",
@@ -126,7 +130,8 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
         "Sovereign Data Protection",
         "Resilient Infrastructure",
       ],
-      icon: <ShieldCheck size={40} />,
+      icon: <ShieldCheck size={32} />,
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop",
     },
   ];
 
@@ -226,10 +231,20 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
             </h1>
 
 
-            <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
+            <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-6">
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                 {formatQuotesToBold(heroData?.heroS1Desc || "Enabling Citizen-Centric, Transparent and Resilient Public Services. We partner with agencies to modernize infrastructure and strengthen public trust.")}
               </p>
+            </div>
+
+            <div className="pt-2">
+              <Link 
+                href="/contact"
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+              >
+                <span>Consult Us</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </Motion.div>
         </div>
@@ -329,20 +344,14 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
                 </div>
 
                 <div className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
-                    <div
-                      className="absolute inset-0 bg-[#11253e]/5 opacity-20"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(#11253e 1px, transparent 1px)",
-                        backgroundSize: "20px 20px",
-                      }}
-                    ></div>
-                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      <div className="transform scale-150">
-                        {area.icon}
-                      </div>
-                    </div>
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                    <ImageWithFallback 
+                      src={area.image}
+                      alt={area.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                 </div>
               </Motion.div>
@@ -364,11 +373,13 @@ export default function GovernmentPSU({ wordpressData }: { wordpressData?: any }
                 {formatQuotesToBold("We leverage secure and compliant cloud environments such as Amazon Web Services, Microsoft Azure and Google Cloud to support government-grade scalability, security and compliance.")}
               </p>
 
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all"
-              >
-                Start your journey <ArrowRight size={20} />
-              </Link>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
+                    PARTNER WITH US <ArrowRight size={16} />
+                  </button>
+                </Link>
+              </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">

@@ -7,7 +7,7 @@ const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace(
 // Set this to true to temporarily stop all WordPress API calls and only use static data
 const FORCE_STATIC_FALLBACK = false;
 
-import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
+import { blogPosts, caseStudies, newsItems, events, jobs, slugify } from "../data/migrated_data";
 import { mergeACFData } from "./utils";
 
 export async function fetchGraphQL(query: string, variables = {}) {
@@ -69,7 +69,7 @@ export async function fetchGraphQL(query: string, variables = {}) {
     } catch (error: any) {
       lastError = error;
       retries -= 1;
-      
+
       if (retries > 0) {
         console.warn(`[WPGraphQL FETCH RETRY] ${error.message || "Failed"}. Retrying in 2s...`);
         await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -943,7 +943,7 @@ export async function getSitemapData(): Promise<SitemapLink[]> {
   // Remove duplicates based on path
   const seen = new Set();
   const uniqueLinks: SitemapLink[] = [];
-  
+
   allLinks.forEach(link => {
     const p = link.path.endsWith('/') && link.path !== '/' ? link.path.slice(0, -1) : link.path;
     if (!seen.has(p)) {
@@ -1538,7 +1538,17 @@ export async function getCareerPosts() {
       console.warn(
         "[getCareerPosts]: No careers found or fetch failed. Using static fallback.",
       );
-      return null; // caller will use static fallback
+      return jobs.map((job: any) => ({
+        id: job.id,
+        slug: slugify(job.title, job.location),
+        title: job.title,
+        department: job.department,
+        location: job.location,
+        type: job.type,
+        experience: job.experience,
+        posted: job.posted,
+        description: "",
+      }));
     }
 
     // Normalize to the same shape the UI expects
@@ -1680,6 +1690,24 @@ export async function getEvents() {
     const response = await fetchGraphQL(query);
     const nodes = response?.data?.events?.nodes || [];
 
+    if (nodes.length === 0) {
+      return events.map((node: any) => ({
+        id: node.id || node.slug,
+        slug: node.slug || slugify(node.title, node.location),
+        title: node.title,
+        excerpt: node.description || node.title,
+        date: node.date,
+        startDate: node.date,
+        endDate: node.date,
+        location: node.location || "Global",
+        content: node.description || "",
+        image: node.image || "/images/placeholder.jpg",
+        externalUrl: null,
+        buttonText: "Register Now",
+        eventType: "Flagship Event"
+      }));
+    }
+
     return nodes.map((node: any) => ({
       id: node.id,
       slug: node.slug,
@@ -1712,7 +1740,21 @@ export async function getEvents() {
     }));
   } catch (error) {
     console.error("[getEvents] Error:", error);
-    return [];
+    return events.map((node: any) => ({
+      id: node.id || node.slug,
+      slug: node.slug || slugify(node.title, node.location),
+      title: node.title,
+      excerpt: node.description || node.title,
+      date: node.date,
+      startDate: node.date,
+      endDate: node.date,
+      location: node.location || "Global",
+      content: node.description || "",
+      image: node.image || "/images/placeholder.jpg",
+      externalUrl: null,
+      buttonText: "Register Now",
+      eventType: "Flagship Event"
+    }));
   }
 }
 
@@ -2000,9 +2042,18 @@ export async function getNews(): Promise<any[]> {
       console.error(
         `[getNews] REST API returned ${res.status}: ${res.statusText}`,
       );
-      return [];
+      return newsItems.map((item: any) => ({
+        ...item,
+        slug: item.slug || String(item.id),
+      }));
     }
     const posts: any[] = await res.json();
+    if (!posts || posts.length === 0) {
+      return newsItems.map((item: any) => ({
+        ...item,
+        slug: item.slug || String(item.id),
+      }));
+    }
     const mapped = posts.map(mapNewsPost);
 
     // Enrich external news items with OG metadata in parallel
@@ -2016,7 +2067,10 @@ export async function getNews(): Promise<any[]> {
     });
   } catch (error) {
     console.error("[getNews] Error fetching news:", error);
-    return [];
+    return newsItems.map((item: any) => ({
+      ...item,
+      slug: item.slug || String(item.id),
+    }));
   }
 }
 
@@ -2070,6 +2124,21 @@ export async function getCaseStudies() {
     const response = await fetchGraphQL(query);
     const nodes = response?.data?.caseStudies?.nodes || [];
 
+    if (nodes.length === 0) {
+      console.warn("DEBUG [getCaseStudies]: No case studies found or fetch failed. Using static fallback data.");
+      return caseStudies.map((node: any) => ({
+        id: node.id || node.slug,
+        slug: node.slug,
+        title: node.title,
+        subtitle: node.subtitle || "",
+        client: node.client || "",
+        industry: node.industry || "",
+        image: node.image || "/images/placeholder.jpg",
+        impact: node.impact || "",
+        tags: node.tags || []
+      }));
+    }
+
     return nodes.map((node: any) => ({
       id: node.id,
       slug: node.slug,
@@ -2083,7 +2152,17 @@ export async function getCaseStudies() {
     }));
   } catch (error) {
     console.error("[getCaseStudies] Error:", error);
-    return [];
+    return caseStudies.map((node: any) => ({
+      id: node.id || node.slug,
+      slug: node.slug,
+      title: node.title,
+      subtitle: node.subtitle || "",
+      client: node.client || "",
+      industry: node.industry || "",
+      image: node.image || "/images/placeholder.jpg",
+      impact: node.impact || "",
+      tags: node.tags || []
+    }));
   }
 }
 
@@ -2272,9 +2351,9 @@ export async function getTestimonials(count = 10, categoryIds = []) {
   if (categoryIds && categoryIds.length > 0) {
     const variables = { first: count, categoryIn: categoryIds };
     const response = await fetchGraphQL(GET_TESTIMONIALS_BY_CATEGORY, variables);
-    const nodes = [];
+    const nodes: any[] = [];
     const categories = response?.data?.testimonialCategories?.nodes || [];
-    categories.forEach((cat) => {
+    categories.forEach((cat: any) => {
       if (cat.testimonials && cat.testimonials.nodes) {
         nodes.push(...cat.testimonials.nodes);
       }
@@ -2324,9 +2403,9 @@ export interface SiteChromeData {
 }
 
 export async function getSiteChrome(): Promise<SiteChromeData | null> {
-  const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql', 
-'/wp-json/Hutech Solutions/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/Hutech Solutions/v1/site-chrome';
-  
+  const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql',
+    '/wp-json/Hutech Solutions/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/Hutech Solutions/v1/site-chrome';
+
   if (FORCE_STATIC_FALLBACK) return null;
 
   try {

@@ -45,14 +45,16 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
     <>
       {/* Hero Section */}
       <section className="relative h-[650px] bg-[#11253e] overflow-hidden flex items-center">
-          <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url('${heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000"}')` }}></div>
-          
-          <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-            <div className="max-w-4xl">
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url('${heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000"}')` }}></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full py-12 md:py-20">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
               <Motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                className="space-y-8"
               >
                 <div className="inline-flex items-center gap-2 bg-[#f99d1c]/20 px-4 py-2 rounded-full mb-8">
                   <GraduationCap size={16} className="text-[#f99d1c]" />
@@ -67,7 +69,7 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                   ))}
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                  {formatQuotesToBold(heroData?.heroS1Desc || "Hutech Solutions' AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Nabhira's AI-Powered LMS goes beyond hosting videos. It's a cognitive partner that understands how your employees learn and optimizes for maximum retention.")}
                 </p>
                 <div className="flex flex-wrap gap-6">
                   <button className="bg-[#f99d1c] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(249,157,28,0.3)] transition-all">
@@ -79,101 +81,136 @@ export default function LMSSolution({ wordpressData }: { wordpressData?: any }) 
                 </div>
               </Motion.div>
             </div>
-          </div>
-        </section>
 
-        {/* Core Pillars */}
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-              {pillars.map((pillar, idx) => (
-                <div key={idx} className="space-y-6">
-                  <div className="w-16 h-16 bg-[#11253e] flex items-center justify-center rounded-sm">
-                    {pillar.icon}
-                  </div>
-                  <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">{formatQuotesToBold(pillar.title)}</h3>
-                  <p className="text-[#11253e] text-sm leading-relaxed">{formatQuotesToBold(pillar.description)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Feature Focus */}
-        <section className="py-24 bg-gray-50 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
-              <div className="order-2 lg:order-1 relative">
-                <div className="absolute -inset-4 bg-[#f99d1c]/5 -rotate-2 rounded-lg"></div>
-                <ImageWithFallback 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
-                  alt="Learning Team"
-                  className="relative rounded-sm shadow-2xl aspect-video"
-                />
-              </div>
-              <div className="order-1 lg:order-2 space-y-10">
+            {/* Stats Panel */}
+            <div className="lg:col-span-5 w-full">
+              <Motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="bg-white p-8 md:p-10 rounded-sm space-y-8 shadow-2xl border border-gray-100"
+              >
                 <div className="space-y-4">
-                  <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">{renderHeroTitle("The Architecture of \n|Intelligent Upskilling|")}</h2>
                   <div className="w-16 h-1 bg-[#f99d1c]"></div>
+                  <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">Proven Impact</h3>
                 </div>
-                <p className="text-[#11253e] text-lg font-light leading-relaxed">
-                  {formatQuotesToBold("Our system utilizes a decentralized data mesh to ensure that learning data is secure yet accessible for cross-departmental analytics. From micro-learning modules to comprehensive certification tracks, every interaction is measured and mapped.")}
-                </p>
-                
-                <div className="grid gap-6">
+
+                <div className="space-y-6">
                   {[
-                    { label: "AI Proctoring", desc: "Integrity-first assessments with biometric and behavioral analysis." },
-                    { label: "Gamified Ecosystem", desc: "Drive engagement through competitive leaderboards and token rewards." },
-                    { label: "Content Generation", desc: "Automatically create quizzes and summaries from existing documents." }
-                  ].map((feat, i) => (
-                    <div key={i} className="flex gap-6 group">
-                      <div className="w-1 bg-[#f99d1c]/20 group-hover:bg-[#f99d1c] transition-colors"></div>
-                      <div>
-                        <h4 className="text-[#11253e] text-sm font-bold uppercase tracking-widest mb-1">{feat.label}</h4>
-                        <p className="text-[#11253e] text-xs uppercase tracking-wider">{feat.desc}</p>
+                    { value: "01", label: "Course Builder", desc: "Generate rich, structured course outlines and materials." },
+                    { value: "02", label: "Quiz Generator", desc: "Automatically construct custom quizzes based on course content." },
+                    { value: "03", label: "Image Generator", desc: "Create custom illustrations and diagrams for visual learners." }
+                  ].map((stat, i) => (
+                    <div key={i} className="flex items-start gap-6 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                      <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 mt-3"></div>
+                      <div className="space-y-1">
+                        <p className="text-[#f99d1c] text-3xl md:text-4xl font-extrabold tracking-tight">{stat.value}</p>
+                        <p className="text-[#11253e] text-base font-bold">{stat.label}</p>
+                        {stat.desc && (
+                          <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{stat.desc}</p>
+                        )}
                       </div>
                     </div>
                   ))}
                 </div>
+              </Motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Pillars */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {pillars.map((pillar, idx) => (
+              <div key={idx} className="space-y-6">
+                <div className="w-16 h-16 bg-[#11253e] flex items-center justify-center rounded-sm">
+                  {pillar.icon}
+                </div>
+                <h3 className="text-[#11253e] text-xl font-bold uppercase tracking-tight">{formatQuotesToBold(pillar.title)}</h3>
+                <p className="text-[#11253e] text-sm leading-relaxed">{formatQuotesToBold(pillar.description)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Focus */}
+      <section className="py-24 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="order-2 lg:order-1 relative">
+              <div className="absolute -inset-4 bg-[#f99d1c]/5 -rotate-2 rounded-lg"></div>
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
+                alt="Learning Team"
+                className="relative rounded-sm shadow-2xl aspect-video"
+              />
+            </div>
+            <div className="order-1 lg:order-2 space-y-10">
+              <div className="space-y-4">
+                <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">{renderHeroTitle("The Architecture of \n|Intelligent Upskilling|")}</h2>
+                <div className="w-16 h-1 bg-[#f99d1c]"></div>
+              </div>
+              <p className="text-[#11253e] text-lg font-light leading-relaxed">
+                {formatQuotesToBold("Our system utilizes a decentralized data mesh to ensure that learning data is secure yet accessible for cross-departmental analytics. From micro-learning modules to comprehensive certification tracks, every interaction is measured and mapped.")}
+              </p>
+
+              <div className="grid gap-6">
+                {[
+                  { label: "AI Proctoring", desc: "Integrity-first assessments with biometric and behavioral analysis." },
+                  { label: "Gamified Ecosystem", desc: "Drive engagement through competitive leaderboards and token rewards." },
+                  { label: "Content Generation", desc: "Automatically create quizzes and summaries from existing documents." }
+                ].map((feat, i) => (
+                  <div key={i} className="flex gap-6 group">
+                    <div className="w-1 bg-[#f99d1c]/20 group-hover:bg-[#f99d1c] transition-colors"></div>
+                    <div>
+                      <h4 className="text-[#11253e] text-sm font-bold uppercase tracking-widest mb-1">{feat.label}</h4>
+                      <p className="text-[#11253e] text-xs uppercase tracking-wider">{feat.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Comparison Section */}
-        <section className="py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">{formatQuotesToBold("Why Hutech Solutions LMS?")}</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-[#11253e] p-12 text-white">
-                <h3 className="text-[#f99d1c] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Modern AI LMS")}</h3>
-                <ul className="space-y-6">
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Personalized based on neural behavior")}</li>
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Real-time skill gap automated mitigation")}</li>
-                  <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Agentic AI teaching assistants 24/7")}</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 p-12">
-                <h3 className="text-[#11253e] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Traditional LMS")}</h3>
-                <ul className="space-y-6">
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Linear, one-size-fits-all approach")}</li>
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Manual reporting and gap analysis")}</li>
-                  <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("static content hosting only")}</li>
-                </ul>
-              </div>
+      {/* Comparison Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-[#11253e] text-3xl font-bold text-center mb-16 uppercase tracking-widest">{formatQuotesToBold("Why Hutech Solutions LMS?")}</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-[#11253e] p-12 text-white">
+              <h3 className="text-[#f99d1c] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Modern AI LMS")}</h3>
+              <ul className="space-y-6">
+                <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Personalized based on neural behavior")}</li>
+                <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Real-time skill gap automated mitigation")}</li>
+                <li className="flex gap-4 items-start opacity-90"><CheckCircle2 className="text-green-400 shrink-0" size={20} /> {formatQuotesToBold("Agentic AI teaching assistants 24/7")}</li>
+              </ul>
+            </div>
+            <div className="bg-gray-50 p-12">
+              <h3 className="text-[#11253e] text-xl font-bold mb-8 uppercase tracking-widest">{formatQuotesToBold("Traditional LMS")}</h3>
+              <ul className="space-y-6">
+                <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Linear, one-size-fits-all approach")}</li>
+                <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("Manual reporting and gap analysis")}</li>
+                <li className="flex gap-4 items-start opacity-40"><CheckCircle2 size={20} className="shrink-0" /> {formatQuotesToBold("static content hosting only")}</li>
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-[#11253e] text-4xl font-bold mb-12">{formatQuotesToBold("Ready to architect your organization's future?")}</h2>
-            <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
-              Request Platform Tour
-            </button>
-          </div>
-        </section>
+      {/* CTA */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-[#11253e] text-4xl font-bold mb-12">{formatQuotesToBold("Ready to architect your organization's future?")}</h2>
+          <button className="bg-[#11253e] text-white px-12 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-[#f99d1c] transition-all">
+            Request Platform Tour
+          </button>
+        </div>
+      </section>
     </>
   );
 }

@@ -38,12 +38,12 @@ export function Industries({ data, industries: wpIndustries }: any) {
   const mappedIndustries =
     wpIndustries && wpIndustries.length > 0
       ? wpIndustries.map((ind: any) => ({
-          title: ind.title,
-          slug: ind.slug,
-          href: ind.slug ? `/industries/${ind.slug}` : null,
-          icon: Building2, // Default icon, would ideally be mapped from taxonomy/ACF
-          image: ind.featuredImage?.node?.sourceUrl,
-        }))
+        title: ind.title,
+        slug: ind.slug,
+        href: ind.slug ? `/industries/${ind.slug}` : null,
+        icon: Building2, // Default icon, would ideally be mapped from taxonomy/ACF
+        image: ind.featuredImage?.node?.sourceUrl,
+      }))
       : fallbackIndustries;
 
   const renderIndustries = mappedIndustries;
@@ -113,75 +113,75 @@ export function Industries({ data, industries: wpIndustries }: any) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-          {renderIndustries.map((industry: any, i) => {
+          {renderIndustries.map((industry: any, i: number) => {
             const Icon = industry.icon;
-            const card = (
-              <div className="group bg-white p-4 md:p-5 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[160px] md:h-[180px] flex flex-col">
-                <div className="mb-4">
-                  <Icon
-                    className="w-7 h-7 md:w-8 md:h-8 text-[#11253e]"
-                    strokeWidth={1}
-                  />
-                </div>
+          const card = (
+          <div className="group bg-white p-4 md:p-5 border border-transparent hover:shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden h-[160px] md:h-[180px] flex flex-col">
+            <div className="mb-4">
+              <Icon
+                className="w-7 h-7 md:w-8 md:h-8 text-[#11253e]"
+                strokeWidth={1}
+              />
+            </div>
 
-                <div className="mt-auto flex flex-col gap-[1rem]">
-                  <h3 className="text-[#11253e] text-[12px] md:text-[13px] font-medium uppercase tracking-normal leading-tight group-hover:text-[#f99d1c] transition-colors duration-300 max-w-[140px]">
-                    {formatQuotesToBold(industry.title)}
-                  </h3>
-                  <div className="w-7 h-7 rounded-full bg-[#f99d1c] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 self-start">
-                    <ChevronRight size={14} />
-                  </div>
-                </div>
-
-                {/* Decorative orange diagonal lines */}
-                <div className="absolute bottom-0 right-0 w-full h-1/3 opacity-20 pointer-events-none overflow-hidden">
-                  <svg
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 200 100"
-                    preserveAspectRatio="none"
-                  >
-                    <pattern
-                      id={`diagonal-lines-ind-${i}`}
-                      patternUnits="userSpaceOnUse"
-                      width="10"
-                      height="10"
-                      patternTransform="rotate(45)"
-                    >
-                      <line
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="10"
-                        stroke="#f99d1c"
-                        strokeWidth="1"
-                      />
-                    </pattern>
-                    <rect
-                      width="100%"
-                      height="100%"
-                      fill={`url(#diagonal-lines-ind-${i})`}
-                    />
-                  </svg>
-                </div>
+            <div className="mt-auto flex flex-col gap-[1rem]">
+              <h3 className="text-[#11253e] text-[12px] md:text-[13px] font-medium uppercase tracking-normal leading-tight group-hover:text-[#f99d1c] transition-colors duration-300 max-w-[140px]">
+                {formatQuotesToBold(industry.title)}
+              </h3>
+              <div className="w-7 h-7 rounded-full bg-[#f99d1c] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 self-start">
+                <ChevronRight size={14} />
               </div>
-            );
+            </div>
 
-            return (
-              <Motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+            {/* Decorative orange diagonal lines */}
+            <div className="absolute bottom-0 right-0 w-full h-1/3 opacity-20 pointer-events-none overflow-hidden">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 200 100"
+                preserveAspectRatio="none"
               >
-                {(industry as any).href ? (
-                  <Link href={(industry as any).href}>{card}</Link>
-                ) : (
-                  card
-                )}
-              </Motion.div>
-            );
+                <pattern
+                  id={`diagonal-lines-ind-${i}`}
+                  patternUnits="userSpaceOnUse"
+                  width="10"
+                  height="10"
+                  patternTransform="rotate(45)"
+                >
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="10"
+                    stroke="#f99d1c"
+                    strokeWidth="1"
+                  />
+                </pattern>
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill={`url(#diagonal-lines-ind-${i})`}
+                />
+              </svg>
+            </div>
+          </div>
+          );
+
+          return (
+          <Motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.1 }}
+          >
+            {(industry as any).href ? (
+              <Link href={(industry as any).href}>{card}</Link>
+            ) : (
+              card
+            )}
+          </Motion.div>
+          );
           })}
         </div>
       </div>

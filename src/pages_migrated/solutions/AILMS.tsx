@@ -4,7 +4,7 @@ import { motion as Motion } from "motion/react";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { DownloadModal } from "../../components/DownloadModal";
-import { GraduationCap, BookOpen, Brain, CheckCircle2, Users, FileText, BarChart3, Lock, Sparkles, MessageSquare, ClipboardList, Eye, Target, Zap, Shield } from "lucide-react";
+import { GraduationCap, BookOpen, Brain, CheckCircle2, Users, FileText, BarChart3, Lock, Sparkles, MessageSquare, ClipboardList, Eye, Target, Zap, Shield, ArrowRight, Box, Settings } from "lucide-react";
 
 export default function AILMSSolution() {
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function AILMSSolution() {
       <section className="relative min-h-[85vh] flex items-center bg-[#11253e] overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#f99d1c1a_0%,transparent_70%)]"></div>
-          <div 
+          <div
             className="absolute inset-0 opacity-20"
             style={{
               backgroundImage: `radial-gradient(circle, rgba(249, 157, 28, 0.3) 1px, transparent 1px)`,
@@ -29,56 +29,70 @@ export default function AILMSSolution() {
           ></div>
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 py-20 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <Motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-5 py-2">
-                <GraduationCap size={14} className="text-[#f99d1c]" />
-                <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">WHAT WE OFFER</span>
-              </div>
-              
-              <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight">
-                AI Powered Learning<br />
-                <span className="text-[#f99d1c]">Management System</span>
-              </h1>
-              
-              <p className="text-white/90 text-xl font-light leading-relaxed max-w-2xl">
-                Leveraging Artificial Intelligence to modernize digital education infrastructure and transform learning experiences.
-              </p>
-              
-              <div className="flex flex-wrap gap-6 pt-4">
-                <Link href="/contact">
-                  <button className="bg-[#f99d1c] text-white px-10 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                    REQUEST DEMO
-                  </button>
-                </Link>
-              </div>
-            </Motion.div>
-            
-            {/* Metrics Cards */}
-            <Motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-1 gap-6"
-            >
-              {[
-                { stat: "80%", label: "Faster course creation" },
-                { stat: "60%", label: "Admin time saved" },
-                { stat: "95%", label: "Student engagement boost" }
-              ].map((item, i) => (
-                <div key={i} className="bg-white backdrop-blur-sm border border-white/10 p-8 hover:bg-white transition-all">
-                  <p className="text-[#f99d1c] text-5xl font-bold mb-3">{item.stat}</p>
-                  <p className="text-[#11253e] text-md font-light tracking-wide">{item.label}</p>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
+              <Motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8"
+              >
+                <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-5 py-2">
+                  <GraduationCap size={14} className="text-[#f99d1c]" />
+                  <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">WHAT WE OFFER</span>
                 </div>
-              ))}
-            </Motion.div>
+
+                <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight">
+                  AI Powered Learning<br />
+                  <span className="text-[#f99d1c]">Management System</span>
+                </h1>
+
+                <p className="text-white/90 text-xl font-light leading-relaxed max-w-2xl">
+                  Leveraging Artificial Intelligence to modernize digital education infrastructure and transform learning experiences.
+                </p>
+
+                <div className="flex flex-wrap gap-6 pt-4">
+                  <Link href="/contact">
+                    <button className="bg-[#f99d1c] text-white px-10 py-5 text-[14px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
+                      REQUEST DEMO
+                    </button>
+                  </Link>
+                </div>
+              </Motion.div>
+            </div>
+
+            {/* Stats Panel */}
+            <div className="lg:col-span-5 w-full">
+              <Motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="bg-white p-8 md:p-10 rounded-sm space-y-8 shadow-2xl border border-gray-100"
+              >
+                <div className="space-y-4">
+                  <div className="w-16 h-1 bg-[#f99d1c]"></div>
+                  <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">Proven Impact</h3>
+                </div>
+
+                <div className="space-y-6">
+                  {[
+                    { stat: "80%", label: "Faster course creation" },
+                    { stat: "60%", label: "Admin time saved" },
+                    { stat: "95%", label: "Student engagement boost" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-6 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                      <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 mt-3"></div>
+                      <div className="space-y-1">
+                        <p className="text-[#f99d1c] text-3xl md:text-4xl font-extrabold tracking-tight">{item.stat}</p>
+                        <p className="text-[#11253e] text-base font-bold">{item.label}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -181,7 +195,84 @@ export default function AILMSSolution() {
         </div>
       </section>
 
-      {/* AI Powered Solutions */}
+      {/* Our Solution Section */}
+      <section className="py-24 bg-[#11253e] relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle, rgba(249, 157, 28, 0.6) 1px, transparent 1px)`,
+            backgroundSize: '32px 32px'
+          }}
+        ></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-16"
+          >
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight">
+                Our Solution
+              </h2>
+              <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
+              <p className="text-white/90 text-xl font-light leading-relaxed">
+                AI Powered Learning Management Platform
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <Motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <p className="text-white text-lg font-light leading-relaxed">
+                  Nabhira LMS introduces a unified intelligence layer that integrates artificial intelligence across the entire academic workflow. Educators and administrators can access AI-powered capabilities within a single platform.
+                </p>
+                <p className="text-white/80 text-lg font-light leading-relaxed">
+                  The solution centralizes institutional operations while allowing each department and faculty member to function independently within a controlled framework. Educators gain full visibility into student progress, course effectiveness, and engagement through real-time AI analytics.
+                </p>
+                <p className="text-white/80 text-lg font-light leading-relaxed">
+                  Built with scalability, privacy, and security in mind, the platform enables structured academic expansion without operational disruption.
+                </p>
+
+                <div className="pt-4">
+                  <Link href="/contact">
+                    <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[14px] uppercase tracking-[0.2em] hover:bg-white transition-all">
+                      EXPLORE PLATFORM
+                    </button>
+                  </Link>
+                </div>
+              </Motion.div>
+
+              <Motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="w-full relative min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[500px]"
+              >
+                <ImageWithFallback
+                  src="/assets/solution_detail_hero.jpg"
+                  alt="AI Powered Learning Management Platform"
+                  width={800}
+                  height={600}
+                  className="rounded-sm shadow-2xl w-full h-auto max-h-[550px] object-cover"
+                />
+              </Motion.div>
+            </div>
+          </Motion.div>
+        </div>
+      </section>
+
+
+
+      {/* Key Features Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <Motion.div
@@ -189,122 +280,96 @@ export default function AILMSSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="space-y-16"
           >
-            <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2 mb-8">
-              <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">AI POWERED SOLUTION</span>
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-light tracking-tight">
+                Key Features
+              </h2>
+              <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
             </div>
-            <h2 className="text-[#11253e] text-4xl md:text-5xl font-light tracking-tight mb-6">
-              Unified intelligence layer
-            </h2>
-            <div className="w-24 h-1 bg-[#f99d1c] mx-auto mb-8"></div>
-            <p className="text-[#11253e]/80 text-lg font-light max-w-3xl mx-auto">
-              Hutech Solutions LMS introduces a unified intelligence layer that integrates artificial intelligence across the entire academic workflow. Educators and administrators can access AI-powered capabilities within a single platform.
-            </p>
-          </Motion.div>
 
-          {/* Solution Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-12">
-            {[
-              {
-                icon: <BookOpen className="text-[#f99d1c]" size={32} />,
-                title: "AI Course Builder",
-                description: "Transform raw topics or syllabus outlines into structured course modules with organized lessons and learning objectives.",
-                features: [
-                  "Automated course structure generation",
-                  "Learning path optimization",
-                  "Syllabus-aligned module creation",
-                  "Logical lesson sequencing"
-                ]
-              },
-              {
-                icon: <FileText className="text-[#f99d1c]" size={32} />,
-                title: "AI Content Generation",
-                description: "Generate lecture presentations, structured study materials, and academic documents automatically.",
-                features: [
-                  "PPT and PDF generation",
-                  "Study notes creation",
-                  "Professional teaching resources",
-                  "Content structuring for topics"
-                ]
-              },
-              {
-                icon: <ClipboardList className="text-[#f99d1c]" size={32} />,
-                title: "AI Assessment Generator",
-                description: "Produce quizzes, examination questions, and evaluation materials aligned with course content.",
-                features: [
-                  "Syllabus-aligned questions",
-                  "Multiple difficulty levels",
-                  "Diverse question formats",
-                  "Automated exam creation"
-                ]
-              },
-              {
-                icon: <Sparkles className="text-[#f99d1c]" size={32} />,
-                title: "Visual & Media Generation",
-                description: "Generate diagrams, infographics, and conceptual illustrations for complex topics.",
-                features: [
-                  "AI infographic generation",
-                  "Educational visual content",
-                  "Concept illustrations",
-                  "Media resource integration"
-                ]
-              }
-            ].map((service, idx) => (
-              <Motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-50 to-white p-10 border-l-4 border-[#f99d1c] shadow-sm hover:shadow-lg transition-all group"
-              >
-                <div className="flex items-start gap-6 mb-6">
-                  <div className="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center shrink-0 group-hover:border-[#f99d1c] transition-colors">
-                    {service.icon}
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">{service.title}</h3>
-                    <p className="text-[#11253e]/70 font-light leading-relaxed">{service.description}</p>
-                  </div>
-                </div>
-                
-                <div className="space-y-3 pl-[88px]">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className="text-[#f99d1c] shrink-0 mt-0.5" />
-                      <span className="text-[#11253e]/80 text-md font-light">{feature}</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <Settings size={36} className="text-[#f99d1c]" />,
+                  title: "Institutional Management",
+                  description: "Department creation, class management, role-based user permissions, teacher onboarding, and student registration."
+                },
+                {
+                  icon: <Eye size={36} className="text-[#f99d1c]" />,
+                  title: "AI Proctoring & Monitoring",
+                  description: "Reliable remote examination monitoring to ensure academic integrity and detect suspicious behavior during exams."
+                },
+                {
+                  icon: <BarChart3 size={36} className="text-[#f99d1c]" />,
+                  title: "Advanced Result Analytics",
+                  description: "Organize academic results, compile student performance reports, and maintain transparent evaluation workflows."
+                },
+                {
+                  icon: <Shield size={36} className="text-[#f99d1c]" />,
+                  title: "Secure Role-Based Access Control",
+                  description: "Structured permissions ensure secure system access and data isolation across departments and user roles."
+                },
+                {
+                  icon: <Box size={36} className="text-[#f99d1c]" />,
+                  title: "Academic Workflow Automation",
+                  description: "Course approval workflows, attendance tracking, timetable scheduling, and assignment management."
+                },
+                {
+                  icon: <Users size={36} className="text-[#f99d1c]" />,
+                  title: "Prompt-Based Admin Automation",
+                  description: "AI chatbot assistant and prompt-based administration for onboardings, department setups, and user queries."
+                }
+              ].map((feature, idx) => (
+                <Motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-gradient-to-br from-gray-50 to-white p-10 border border-gray-200 rounded-sm hover:border-[#f99d1c] transition-all group"
+                >
+                  <div className="space-y-6">
+                    <div className="opacity-80 group-hover:opacity-100 transition-opacity">
+                      {feature.icon}
                     </div>
-                  ))}
-                </div>
-              </Motion.div>
-            ))}
-          </div>
+                    <h3 className="text-[#11253e] text-xl font-bold tracking-tight">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[#11253e]/70 font-light leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </Motion.div>
+              ))}
+            </div>
+          </Motion.div>
         </div>
       </section>
 
-      {/* Technical Innovation */}
+      {/* Advanced AI Architecture Section */}
       <section className="py-24 bg-[#11253e] relative overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `radial-gradient(circle, rgba(249, 157, 28, 0.4) 1px, transparent 1px)`,
             backgroundSize: '32px 32px'
           }}
         ></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-20 space-y-6"
           >
-            <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2 mb-8">
+            <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2">
               <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">TECHNICAL INNOVATION</span>
             </div>
-            <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight mb-6">
+            <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight">
               Advanced AI architecture
             </h2>
             <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
@@ -314,17 +379,17 @@ export default function AILMSSolution() {
             {[
               {
                 icon: <Brain className="text-[#f99d1c]" size={40} />,
-                title: "AI Model Integration",
+                title: "AI MODEL INTEGRATION",
                 description: "Integrates multiple AI models including OpenAI GPT-4o, Gemini 2.0 Flash, and DALL-E 3 for comprehensive content generation and media creation."
               },
               {
                 icon: <Target className="text-[#f99d1c]" size={40} />,
-                title: "AI Orchestration Layer",
+                title: "AI ORCHESTRATION LAYER",
                 description: "Coordinates multiple AI services and intelligently routes tasks to the most suitable AI model for optimal results."
               },
               {
                 icon: <Zap className="text-[#f99d1c]" size={40} />,
-                title: "Resource Generation Pipeline",
+                title: "RESOURCE GENERATION PIPELINE",
                 description: "Automatically converts AI-generated content into usable educational assets such as presentations, documents, and structured learning resources."
               }
             ].map((innovation, idx) => (
@@ -336,11 +401,11 @@ export default function AILMSSolution() {
                 viewport={{ once: true }}
                 className="text-center space-y-6"
               >
-                <div className="w-20 h-20 bg-white/5 border border-[#f99d1c]/30 flex items-center justify-center mx-auto">
+                <div className="w-20 h-20 bg-white/5 border border-[#f99d1c]/30 flex items-center justify-center mx-auto rounded-sm">
                   {innovation.icon}
                 </div>
                 <h3 className="text-white text-xl font-bold uppercase tracking-wide">{innovation.title}</h3>
-                <p className="text-white/70 text-md font-light leading-relaxed">
+                <p className="text-white/70 text-base font-light leading-relaxed">
                   {innovation.description}
                 </p>
               </Motion.div>
@@ -349,118 +414,7 @@ export default function AILMSSolution() {
         </div>
       </section>
 
-      {/* Complete Feature Overview */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2 mb-8">
-              <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">COMPLETE FEATURE SET</span>
-            </div>
-            <h2 className="text-[#11253e] text-4xl md:text-5xl font-light tracking-tight mb-6">
-              Comprehensive LMS capabilities
-            </h2>
-            <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
-          </Motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                category: "Institutional Management",
-                features: [
-                  "Department creation and management",
-                  "Class and academic program management",
-                  "Role-based user management",
-                  "Teacher onboarding and assignment",
-                  "Student registration and enrollment",
-                  "Institutional hierarchy configuration"
-                ]
-              },
-              {
-                category: "Academic Workflow",
-                features: [
-                  "Course creation and management",
-                  "Course approval and publishing workflow",
-                  "Learning resource management",
-                  "Attendance tracking system",
-                  "Academic timetable and scheduling",
-                  "Assignment and coursework management"
-                ]
-              },
-              {
-                category: "AI-Powered Features",
-                features: [
-                  "AI course builder",
-                  "AI content generator for PPT, PDF",
-                  "AI assessment generator",
-                  "AI question generation",
-                  "AI study material generation",
-                  "AI content structuring"
-                ]
-              },
-              {
-                category: "Examination & Evaluation",
-                features: [
-                  "AI generated exam questions",
-                  "Quiz and assessment tools",
-                  "Examination workflow management",
-                  "AI proctoring and monitoring",
-                  "Automated result compilation",
-                  "Student performance analytics"
-                ]
-              },
-              {
-                category: "Automation & Intelligence",
-                features: [
-                  "AI chatbot assistant",
-                  "Prompt-based admin automation",
-                  "Automated department setup",
-                  "AI workflow assistance",
-                  "Intelligent content pipelines"
-                ]
-              },
-              {
-                category: "Platform Infrastructure",
-                features: [
-                  "Secure role-based access control",
-                  "Scalable cloud infrastructure",
-                  "Multi-model AI integration",
-                  "Automated resource generation",
-                  "Secure data management"
-                ]
-              }
-            ].map((category, idx) => (
-              <Motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 border border-gray-200 hover:border-[#f99d1c] hover:shadow-lg transition-all"
-              >
-                <h3 className="text-[#11253e] text-lg font-bold uppercase tracking-wide mb-6 pb-4 border-b-2 border-[#f99d1c]">
-                  {category.category}
-                </h3>
-                <ul className="space-y-3">
-                  {category.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[#f99d1c] shrink-0 mt-1" />
-                      <span className="text-[#11253e]/80 text-md font-light">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Business Impact */}
+      {/* Business Benefits Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <Motion.div
@@ -468,96 +422,82 @@ export default function AILMSSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="space-y-16"
           >
-            <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2 mb-8">
-              <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">BUSINESS IMPACT</span>
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <div className="inline-flex items-center gap-3 border border-[#f99d1c]/30 px-4 py-2">
+                <span className="text-[#f99d1c] text-[10px] font-bold uppercase tracking-[0.3em]">BUSINESS BENEFITS</span>
+              </div>
+              <h2 className="text-[#11253e] text-4xl md:text-5xl font-light tracking-tight">
+                Transform your business operations
+              </h2>
+              <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
             </div>
-            <h2 className="text-[#11253e] text-4xl md:text-5xl font-light tracking-tight mb-6">
-              Real results for institutions
-            </h2>
-            <div className="w-24 h-1 bg-[#f99d1c] mx-auto"></div>
-          </Motion.div>
 
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              {
-                icon: <Users className="text-[#f99d1c]" size={48} />,
-                title: "Improved Academic Workflows",
-                description: "Educators benefit from tools that simplify course preparation and content organization, allowing them to focus more on teaching and mentoring students."
-              },
-              {
-                icon: <BarChart3 className="text-[#f99d1c]" size={48} />,
-                title: "Efficient Institutional Management",
-                description: "Administrators can manage institutional structures more efficiently through automated workflows supported by artificial intelligence."
-              },
-              {
-                icon: <GraduationCap className="text-[#f99d1c]" size={48} />,
-                title: "Enhanced Learning Experience",
-                description: "Students gain access to structured educational resources and visual learning materials that support different learning styles."
-              }
-            ].map((impact, idx) => (
-              <Motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center space-y-6"
-              >
-                <div className="w-24 h-24 bg-gradient-to-br from-gray-50 to-white border-2 border-[#f99d1c]/30 flex items-center justify-center mx-auto">
-                  {impact.icon}
-                </div>
-                <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">{impact.title}</h3>
-                <p className="text-[#11253e]/70 text-md font-light leading-relaxed">
-                  {impact.description}
-                </p>
-              </Motion.div>
-            ))}
-          </div>
+            <div className="grid md:grid-cols-3 gap-12">
+              {[
+                {
+                  icon: <Zap className="text-[#f99d1c]" size={40} />,
+                  title: "Improved Productivity",
+                  description: "Automate repetitive tasks and streamline workflows to help teams focus on strategic initiatives that drive growth."
+                },
+                {
+                  icon: <Shield className="text-[#f99d1c]" size={40} />,
+                  title: "Enhanced Data Security",
+                  description: "Centralized data management with role-based access controls ensures sensitive business information remains secure."
+                },
+                {
+                  icon: <BarChart3 className="text-[#f99d1c]" size={40} />,
+                  title: "Better Decision Making",
+                  description: "Real-time insights and comprehensive reporting enable data-driven decisions across all departments."
+                }
+              ].map((benefit, idx) => (
+                <Motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center space-y-6 group"
+                >
+                  <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-white border border-gray-200 flex items-center justify-center mx-auto rounded-sm group-hover:border-[#f99d1c] transition-all">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-[#11253e] text-xl font-bold tracking-tight">{benefit.title}</h3>
+                  <p className="text-[#11253e]/70 text-base font-light leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </Motion.div>
+              ))}
+            </div>
+          </Motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Final CTA Section */}
+      <section className="py-24 bg-[#e5dfd3] relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#11253e] to-[#1a3a5f] p-16 rounded-sm relative overflow-hidden"
+            className="bg-white p-12 md:p-16 border-l-8 border-[#f99d1c] shadow-xl flex flex-col md:flex-row items-center justify-between gap-8"
           >
-            <div 
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: `radial-gradient(circle, rgba(249, 157, 28, 0.6) 1px, transparent 1px)`,
-                backgroundSize: '32px 32px'
-              }}
-            ></div>
-            
-            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight leading-tight">
-                  Ready to transform your educational institution?
-                </h2>
-                <div className="w-24 h-1 bg-[#f99d1c]"></div>
-                <p className="text-white/80 text-lg font-light leading-relaxed">
-                  Discover how Hutech Solutions' AI-powered LMS can revolutionize your academic workflows and enhance student learning experiences.
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                <Link href="/contact">
-                  <button className="bg-[#f99d1c] text-[#11253e] px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all">
-                    Schedule Consultation
-                  </button>
-                </Link>
-                <button onClick={() => setIsDownloadModalOpen(true)} className="border-2 border-white text-white px-12 py-6 font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-[#11253e] transition-all">
-                  Download Brochure
-                </button>
-              </div>
+            <div className="space-y-4 max-w-2xl">
+              <h2 className="text-[#11253e] text-3xl md:text-4xl font-bold tracking-tight">
+                Ready to Transform Your Educational Institution?
+              </h2>
+              <p className="text-[#11253e]/70 text-lg font-light leading-relaxed">
+                Discover how Nabhira's AI-Powered LMS can revolutionize your academic workflows and enhance student learning experiences.
+              </p>
             </div>
+
+            <Link href="/contact" className="shrink-0">
+              <button className="bg-[#f99d1c] text-white px-10 py-5 font-bold text-[13px] uppercase tracking-[0.2em] hover:bg-[#11253e] transition-all flex items-center gap-3">
+                START YOUR JOURNEY <ArrowRight size={16} />
+              </button>
+            </Link>
           </Motion.div>
         </div>
       </section>
