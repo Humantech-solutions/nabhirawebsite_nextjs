@@ -2325,7 +2325,7 @@ export interface SiteChromeData {
 
 export async function getSiteChrome(): Promise<SiteChromeData | null> {
   const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql', 
-'/wp-json/Hutech Solutions/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/Hutech Solutions/v1/site-chrome';
+'/wp-json/nabhira/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/nabhira/v1/site-chrome';
   
   if (FORCE_STATIC_FALLBACK) return null;
 
