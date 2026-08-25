@@ -109,6 +109,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                 const author = post.customAuthorName || post.author?.node?.name || post.author || "Hutech Solutions Team";
                 const category = post.categories?.nodes?.[0]?.name || post.category || "";
                 const date = formatDate(post.date);
+                const linkHref = post.isIPublish ? `/resources/blogs/ipublish/${post.id}` : `/resources/blogs/${slug || post.id}`;
 
                 return (
                   <Motion.div
@@ -119,10 +120,17 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                     viewport={{ once: true }}
                     className="group"
                   >
-                    <Link href={`/resources/blogs/${slug || post.id}`} className="block">
+                    <Link href={linkHref} className="block">
                       <div className="aspect-[16/9] overflow-hidden mb-6 rounded-sm relative">
                         {image ? (
                           <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        ) : post.isIPublish && post.ipublishMeta ? (
+                          <div 
+                            className="w-full h-full group-hover:scale-105 transition-transform duration-700 flex items-center justify-center p-6 text-center"
+                            style={{ background: `linear-gradient(${post.ipublishMeta.gradientDirection}, ${post.ipublishMeta.gradientFrom}, ${post.ipublishMeta.gradientTo})` }}
+                          >
+                            <span className="text-white font-bold text-lg opacity-90 leading-tight drop-shadow-sm">{title}</span>
+                          </div>
                         ) : (
                           <div className="w-full h-full bg-[#11253e]/10 flex items-center justify-center text-[#11253e]/30 text-sm">No image</div>
                         )}
@@ -135,7 +143,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                         {category && <span className="w-1 h-1 bg-gray-300 rounded-full"></span>}
                         <span className="text-gray-400">{date}</span>
                       </div>
-                      <Link href={`/resources/blogs/${slug || post.id}`} className="block">
+                      <Link href={linkHref} className="block">
                         <h3 className="text-[#11253e] text-xl font-bold group-hover:text-[#f99d1c] transition-colors leading-tight">
                           {title}
                         </h3>
@@ -147,7 +155,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                         <div className="flex items-center gap-2 text-xs font-medium text-[#11253e]">
                           <User size={14} /> {author}
                         </div>
-                        <Link href={`/resources/blogs/${slug || post.id}`} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        <Link href={linkHref} className="text-[#f99d1c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
                           <ArrowRight size={18} />
                         </Link>
                       </div>
