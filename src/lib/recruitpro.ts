@@ -123,17 +123,18 @@ function constructDescription(job: any): string {
 
 export async function getRecruitProJobs() {
   const url = process.env.RECRUITPRO_API_URL;
-  const token = process.env.RECRUITPRO_API_TOKEN;
+  // const token = process.env.RECRUITPRO_API_TOKEN;
 
-  if (!url || !token) {
-    console.error("Missing RecruitPro API URL or Token");
+  if (!url) {
+    console.error("Missing RecruitPro API URL");
     return null;
   }
 
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       next: { revalidate: 60 }, // Cache for 60 seconds
     });
