@@ -145,7 +145,7 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
   return (
     <>
       {/* ─── Hero Banner with Sub-navigation ─── */}
-      <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
+      <section className="relative min-h-[450px] lg:min-h-[520px] bg-[#11253e] overflow-hidden flex items-center py-12 md:py-20">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={automationHeroImg}
@@ -159,38 +159,76 @@ export default function IntelligentAutomation({ wordpressData }: { wordpressData
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <Motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl space-y-8"
-          >
-            {/* Breadcrumb */}
-            <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
-              <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-              <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Intelligent Automation</span>
-            </nav>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
+              <Motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-8"
+              >
+                {/* Breadcrumb */}
+                <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
+                  <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+                  <span className="text-white/30 font-light">&gt;</span>
+                  <span className="text-[#f99d1c] uppercase tracking-widest">Intelligent Automation</span>
+                </nav>
 
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-              {renderHeroTitle(heroData?.heroS1Title || (
-                <>
-                  Intelligent Automation <br /> <span className="text-[#f99d1c]">AI at Edge.</span>
-                </>
-              ))}
-            </h1>
+                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                  {renderHeroTitle(heroData?.heroS1Title || (
+                    <>
+                      Intelligent Automation <br /> <span className="text-[#f99d1c]">AI at Edge.</span>
+                    </>
+                  ))}
+                </h1>
 
-            <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-              {formatQuotesToBold(heroData?.heroS1Desc || "Elevating operational efficiency through Cognitive Workflows and hyper-scale automation frameworks.")}
-            </p>
+                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                  {formatQuotesToBold(heroData?.heroS1Desc || "Elevating operational efficiency through Cognitive Workflows and hyper-scale automation frameworks.")}
+                </p>
 
-            <div className="pt-8 flex flex-wrap gap-4">
-              <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
-                <span>Explore Hyperautomation</span>
-                <ArrowRight size={14} />
-              </button>
+                <div className="pt-8 flex flex-wrap gap-4">
+                  <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20" style={{ fontSize: "14px", fontWeight: 500 }}>
+                    <span>Explore Hyperautomation</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              </Motion.div>
             </div>
-          </Motion.div>
+
+            {/* Stats Panel */}
+            <div className="lg:col-span-5 w-full">
+              <Motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="bg-white p-8 md:p-10 rounded-sm space-y-8 shadow-2xl border border-gray-100"
+              >
+                <div className="space-y-4">
+                  <div className="w-16 h-1 bg-[#f99d1c]"></div>
+                  <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">Proven Impact</h3>
+                </div>
+                
+                <div className="space-y-6">
+                  {[
+                    { value: "01", label: "Operational Cost Reduction", desc: "Reduce operational cost and manual effort." },
+                    { value: "02", label: "Process Accuracy & Compliance", desc: "Improve process accuracy and compliance." },
+                    { value: "03", label: "Fast Transaction Cycles", desc: "Accelerate transaction cycles and customer response times." }
+                  ].map((stat, i) => (
+                    <div key={i} className="flex items-start gap-6 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                      <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 mt-3"></div>
+                      <div className="space-y-1">
+                        <p className="text-[#f99d1c] text-3xl md:text-4xl font-extrabold tracking-tight">{stat.value}</p>
+                        <p className="text-[#11253e] text-base font-bold">{stat.label}</p>
+                        {stat.desc && (
+                          <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{stat.desc}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

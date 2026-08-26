@@ -38,8 +38,8 @@ export function ImageWithFallback(props: any) {
   // next/image 'fill' requires a relative/absolute/fixed parent.
   return (
     <div 
-      className={`relative overflow-hidden ${className || ''}`} 
-      style={{ ...style, minHeight: style?.height || style?.minHeight || '100%', minWidth: style?.width || style?.minWidth || '100%' }}
+      className={`relative overflow-hidden w-full ${className || ''}`} 
+      style={{ minHeight: style?.height || style?.minHeight || '350px', minWidth: style?.width || style?.minWidth || '100%', ...style }}
     >
       <Image
         src={currentSrc}

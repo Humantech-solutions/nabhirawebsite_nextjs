@@ -86,9 +86,9 @@ export function Clients({ data }: any) {
               className="inline-flex items-center space-x-3 px-12 py-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default group"
             >
               {hasDynamicClients ? (
-                client.logo ? <img src={client.logo} alt={client.name} className="h-8 object-contain" /> : null
+                (client as any).logo ? <img src={(client as any).logo} alt={client.name} className="h-8 object-contain" /> : null
               ) : (
-                <client.icon className="w-8 h-8 text-[#11253e] group-hover:text-[#f99d1c] transition-colors" />
+                'icon' in client && client.icon ? <client.icon className="w-8 h-8 text-[#11253e] group-hover:text-[#f99d1c] transition-colors" /> : null
               )}
               <span className="text-[#11253e] font-black tracking-[0.2em] text-sm">{client.name}</span>
             </div>

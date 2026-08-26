@@ -7,7 +7,14 @@ const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL?.replace(
 // Set this to true to temporarily stop all WordPress API calls and only use static data
 const FORCE_STATIC_FALLBACK = false;
 
-import { blogPosts, caseStudies, newsItems } from "../data/migrated_data";
+import {
+  blogPosts,
+  caseStudies,
+  newsItems,
+  events,
+  jobs,
+  slugify,
+} from "../data/migrated_data";
 import { mergeACFData } from "./utils";
 
 export async function fetchGraphQL(query: string, variables = {}) {
@@ -51,7 +58,9 @@ export async function fetchGraphQL(query: string, variables = {}) {
 
       if (!res.ok) {
         const errorText = await res.text();
-        throw new Error(`HTTP Error ${res.status}: ${res.statusText} - ${errorText}`);
+        throw new Error(
+          `HTTP Error ${res.status}: ${res.statusText} - ${errorText}`,
+        );
       }
 
       const json = await res.json();
@@ -65,13 +74,14 @@ export async function fetchGraphQL(query: string, variables = {}) {
       }
 
       return json; // Success!
-
     } catch (error: any) {
       lastError = error;
       retries -= 1;
-      
+
       if (retries > 0) {
-        console.warn(`[WPGraphQL FETCH RETRY] ${error.message || "Failed"}. Retrying in 2s...`);
+        console.warn(
+          `[WPGraphQL FETCH RETRY] ${error.message || "Failed"}. Retrying in 2s...`,
+        );
         await new Promise((resolve) => setTimeout(resolve, 2000));
       }
     }
@@ -79,7 +89,7 @@ export async function fetchGraphQL(query: string, variables = {}) {
 
   // If we exhaust all retries:
   console.error(
-    `[WPGraphQL FATAL ERROR] URL: ${WORDPRESS_API_URL} failed after 3 retries. Error: ${lastError?.message}`
+    `[WPGraphQL FATAL ERROR] URL: ${WORDPRESS_API_URL} failed after 3 retries. Error: ${lastError?.message}`,
   );
 
   // Return a structured error so it doesn't crash the caller
@@ -829,8 +839,10 @@ export async function getPageBySlug(slug: string) {
         }
       }
     `;
-    const slugName = slug.replace(/^\/|\/$/g, ''); // strip slashes for 'name' argument
-    const finalFallbackResponse = await fetchGraphQL(slugQuery, { name: slugName });
+    const slugName = slug.replace(/^\/|\/$/g, ""); // strip slashes for 'name' argument
+    const finalFallbackResponse = await fetchGraphQL(slugQuery, {
+      name: slugName,
+    });
     if (finalFallbackResponse?.data?.pages?.nodes?.length > 0) {
       page = finalFallbackResponse.data.pages.nodes[0];
     }
@@ -848,7 +860,8 @@ export async function getPageBySlug(slug: string) {
     if (slug === "/about" || slug === "about") {
       return {
         title: "About Hutech Solutions",
-        content: "Hutech Solutions Technologies is an architectural powerhouse...",
+        content:
+          "Hutech Solutions Technologies is an architectural powerhouse...",
         slug: "about",
         uri: "/about",
       };
@@ -894,7 +907,7 @@ export async function getSitemapData(): Promise<SitemapLink[]> {
     caseStudies,
     events,
     news,
-    careers
+    careers,
   ] = await Promise.all([
     getAllPages(),
     getServices(),
@@ -903,7 +916,7 @@ export async function getSitemapData(): Promise<SitemapLink[]> {
     getCaseStudies(),
     getEvents(),
     getNews(),
-    getCareerPosts()
+    getCareerPosts(),
   ]);
 
   const allLinks: SitemapLink[] = [];
@@ -913,39 +926,52 @@ export async function getSitemapData(): Promise<SitemapLink[]> {
   });
 
   services.forEach((s: any) => {
-    if (s.slug && s.title) allLinks.push({ name: s.title, path: `/services/${s.slug}` });
+    if (s.slug && s.title)
+      allLinks.push({ name: s.title, path: `/services/${s.slug}` });
   });
 
   industries.forEach((i: any) => {
-    if (i.slug && i.title) allLinks.push({ name: i.title, path: `/industries/${i.slug}` });
+    if (i.slug && i.title)
+      allLinks.push({ name: i.title, path: `/industries/${i.slug}` });
   });
 
   solutions.forEach((sol: any) => {
-    if (sol.slug && sol.title) allLinks.push({ name: sol.title, path: `/solutions/${sol.slug}` });
+    if (sol.slug && sol.title)
+      allLinks.push({ name: sol.title, path: `/solutions/${sol.slug}` });
   });
 
   caseStudies.forEach((c: any) => {
-    if (c.slug && c.title) allLinks.push({ name: c.title, path: `/resources/case-studies/${c.slug}` });
+    if (c.slug && c.title)
+      allLinks.push({
+        name: c.title,
+        path: `/resources/case-studies/${c.slug}`,
+      });
   });
 
   events.forEach((e: any) => {
-    if (e.slug && e.title) allLinks.push({ name: e.title, path: `/resources/events/${e.slug}` });
+    if (e.slug && e.title)
+      allLinks.push({ name: e.title, path: `/resources/events/${e.slug}` });
   });
 
   news.forEach((n: any) => {
-    if (n.slug && n.title) allLinks.push({ name: n.title, path: `/resources/news/${n.slug}` });
+    if (n.slug && n.title)
+      allLinks.push({ name: n.title, path: `/resources/news/${n.slug}` });
   });
 
   careers.forEach((c: any) => {
-    if (c.slug && c.title) allLinks.push({ name: c.title, path: `/careers/${c.slug}` });
+    if (c.slug && c.title)
+      allLinks.push({ name: c.title, path: `/careers/${c.slug}` });
   });
 
   // Remove duplicates based on path
   const seen = new Set();
   const uniqueLinks: SitemapLink[] = [];
-  
-  allLinks.forEach(link => {
-    const p = link.path.endsWith('/') && link.path !== '/' ? link.path.slice(0, -1) : link.path;
+
+  allLinks.forEach((link) => {
+    const p =
+      link.path.endsWith("/") && link.path !== "/"
+        ? link.path.slice(0, -1)
+        : link.path;
     if (!seen.has(p)) {
       seen.add(p);
       uniqueLinks.push(link);
@@ -1253,7 +1279,6 @@ export async function getHomePage() {
   }
 }
 
-
 export async function getServices() {
   const query = `
     query GetServices {
@@ -1538,7 +1563,17 @@ export async function getCareerPosts() {
       console.warn(
         "[getCareerPosts]: No careers found or fetch failed. Using static fallback.",
       );
-      return null; // caller will use static fallback
+      return jobs.map((job: any) => ({
+        id: job.id,
+        slug: slugify(job.title, job.location),
+        title: job.title,
+        department: job.department,
+        location: job.location,
+        type: job.type,
+        experience: job.experience,
+        posted: job.posted,
+        description: "",
+      }));
     }
 
     // Normalize to the same shape the UI expects
@@ -1602,7 +1637,8 @@ export async function getCareerPostBySlug(slug: string) {
       department:
         node.careerJobOpeningDetails?.careerDepartment || "Engineering",
       location:
-        node.careerJobOpeningDetails?.careerLocation || "Hutech Solutions Technologies",
+        node.careerJobOpeningDetails?.careerLocation ||
+        "Hutech Solutions Technologies",
       type: node.careerJobOpeningDetails?.careerType || "Full-time",
       experience: node.careerJobOpeningDetails?.careerExperience || "",
       jobId: node.careerJobOpeningDetails?.careerJobId || "",
@@ -1680,6 +1716,24 @@ export async function getEvents() {
     const response = await fetchGraphQL(query);
     const nodes = response?.data?.events?.nodes || [];
 
+    if (nodes.length === 0) {
+      return events.map((node: any) => ({
+        id: node.id || node.slug,
+        slug: node.slug || slugify(node.title, node.location),
+        title: node.title,
+        excerpt: node.description || node.title,
+        date: node.date,
+        startDate: node.date,
+        endDate: node.date,
+        location: node.location || "Global",
+        content: node.description || "",
+        image: node.image || "/images/placeholder.jpg",
+        externalUrl: null,
+        buttonText: "Register Now",
+        eventType: "Flagship Event",
+      }));
+    }
+
     return nodes.map((node: any) => ({
       id: node.id,
       slug: node.slug,
@@ -1712,7 +1766,21 @@ export async function getEvents() {
     }));
   } catch (error) {
     console.error("[getEvents] Error:", error);
-    return [];
+    return events.map((node: any) => ({
+      id: node.id || node.slug,
+      slug: node.slug || slugify(node.title, node.location),
+      title: node.title,
+      excerpt: node.description || node.title,
+      date: node.date,
+      startDate: node.date,
+      endDate: node.date,
+      location: node.location || "Global",
+      content: node.description || "",
+      image: node.image || "/images/placeholder.jpg",
+      externalUrl: null,
+      buttonText: "Register Now",
+      eventType: "Flagship Event",
+    }));
   }
 }
 
@@ -1963,8 +2031,12 @@ function mapNewsPost(post: any) {
     post.news_external_url || post.acf?.news_external_url || null;
   const acfSource = post.news_source || post.acf?.news_source || "";
   const acfDate = post.news_date || post.acf?.news_date || "";
-  const mediaContact = post.news_media_contact || post.acf?.news_media_contact || "press@nabhira.tech";
-  const acfVideoFile = post.news_video_file || post.acf?.news_video_file || null;
+  const mediaContact =
+    post.news_media_contact ||
+    post.acf?.news_media_contact ||
+    "press@nabhira.tech";
+  const acfVideoFile =
+    post.news_video_file || post.acf?.news_video_file || null;
   const acfVideoUrl = post.news_video_url || post.acf?.news_video_url || null;
   const videoUrl = acfVideoFile || acfVideoUrl;
 
@@ -2000,9 +2072,18 @@ export async function getNews(): Promise<any[]> {
       console.error(
         `[getNews] REST API returned ${res.status}: ${res.statusText}`,
       );
-      return [];
+      return newsItems.map((item: any) => ({
+        ...item,
+        slug: item.slug || String(item.id),
+      }));
     }
     const posts: any[] = await res.json();
+    if (!posts || posts.length === 0) {
+      return newsItems.map((item: any) => ({
+        ...item,
+        slug: item.slug || String(item.id),
+      }));
+    }
     const mapped = posts.map(mapNewsPost);
 
     // Enrich external news items with OG metadata in parallel
@@ -2016,7 +2097,10 @@ export async function getNews(): Promise<any[]> {
     });
   } catch (error) {
     console.error("[getNews] Error fetching news:", error);
-    return [];
+    return newsItems.map((item: any) => ({
+      ...item,
+      slug: item.slug || String(item.id),
+    }));
   }
 }
 
@@ -2070,6 +2154,23 @@ export async function getCaseStudies() {
     const response = await fetchGraphQL(query);
     const nodes = response?.data?.caseStudies?.nodes || [];
 
+    if (nodes.length === 0) {
+      console.warn(
+        "DEBUG [getCaseStudies]: No case studies found or fetch failed. Using static fallback data.",
+      );
+      return caseStudies.map((node: any) => ({
+        id: node.id || node.slug,
+        slug: node.slug,
+        title: node.title,
+        subtitle: node.subtitle || "",
+        client: node.client || "",
+        industry: node.industry || "",
+        image: node.image || "/images/placeholder.jpg",
+        impact: node.impact || "",
+        tags: node.tags || [],
+      }));
+    }
+
     return nodes.map((node: any) => ({
       id: node.id,
       slug: node.slug,
@@ -2079,11 +2180,24 @@ export async function getCaseStudies() {
       industry: node.caseStudyFields?.clientIndustry || "",
       image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
       impact: node.caseStudyFields?.impactMetric || "",
-      tags: node.caseStudyTags?.nodes?.map((t: any) => t.name) || [node.caseStudyFields?.clientIndustry].filter(Boolean) || []
+      tags:
+        node.caseStudyTags?.nodes?.map((t: any) => t.name) ||
+        [node.caseStudyFields?.clientIndustry].filter(Boolean) ||
+        [],
     }));
   } catch (error) {
     console.error("[getCaseStudies] Error:", error);
-    return [];
+    return caseStudies.map((node: any) => ({
+      id: node.id || node.slug,
+      slug: node.slug,
+      title: node.title,
+      subtitle: node.subtitle || "",
+      client: node.client || "",
+      industry: node.industry || "",
+      image: node.image || "/images/placeholder.jpg",
+      impact: node.impact || "",
+      tags: node.tags || [],
+    }));
   }
 }
 
@@ -2208,7 +2322,9 @@ export async function getCaseStudyBySlug(slug: string) {
     const node = response?.data?.caseStudy;
 
     if (!node) {
-      console.warn(`[getCaseStudyBySlug]: No case study found for slug "${slug}".`);
+      console.warn(
+        `[getCaseStudyBySlug]: No case study found for slug "${slug}".`,
+      );
       return null;
     }
 
@@ -2218,15 +2334,13 @@ export async function getCaseStudyBySlug(slug: string) {
       slug: node.slug,
       content: node.content,
       ...node.caseStudyFields,
-      image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg"
+      image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
     };
   } catch (error) {
     console.error(`[getCaseStudyBySlug] Error for slug "${slug}":`, error);
     return null;
   }
 }
-
-
 
 export const GET_TESTIMONIALS_ALL = `
   query GetTestimonials($first: Int = 10) {
@@ -2271,15 +2385,20 @@ export const GET_TESTIMONIALS_BY_CATEGORY = `
 export async function getTestimonials(count = 10, categoryIds = []) {
   if (categoryIds && categoryIds.length > 0) {
     const variables = { first: count, categoryIn: categoryIds };
-    const response = await fetchGraphQL(GET_TESTIMONIALS_BY_CATEGORY, variables);
-    const nodes = [];
+    const response = await fetchGraphQL(
+      GET_TESTIMONIALS_BY_CATEGORY,
+      variables,
+    );
+    const nodes: any[] = [];
     const categories = response?.data?.testimonialCategories?.nodes || [];
-    categories.forEach((cat) => {
+    categories.forEach((cat: any) => {
       if (cat.testimonials && cat.testimonials.nodes) {
         nodes.push(...cat.testimonials.nodes);
       }
     });
-    const uniqueNodes = Array.from(new Map(nodes.map((item) => [item.title, item])).values());
+    const uniqueNodes = Array.from(
+      new Map(nodes.map((item) => [item.title, item])).values(),
+    );
     return uniqueNodes.slice(0, count);
   } else {
     const variables = { first: count };
@@ -2324,9 +2443,10 @@ export interface SiteChromeData {
 }
 
 export async function getSiteChrome(): Promise<SiteChromeData | null> {
-  const REST_URL = WORDPRESS_API_URL ? WORDPRESS_API_URL.replace('/graphql', 
-'/wp-json/nabhira/v1/site-chrome') : 'http://127.0.0.1/wordpress/wp-json/nabhira/v1/site-chrome';
-  
+  const REST_URL = WORDPRESS_API_URL
+    ? WORDPRESS_API_URL.replace("/graphql", "/wp-json/nabhira/v1/site-chrome")
+    : "http://127.0.0.1/wordpress/wp-json/nabhira/v1/site-chrome";
+
   if (FORCE_STATIC_FALLBACK) return null;
 
   try {
@@ -2347,10 +2467,17 @@ export async function getSiteChrome(): Promise<SiteChromeData | null> {
       if (url.startsWith("/") || url.startsWith("#")) return url;
       try {
         const parsedUrl = new URL(url);
-        const wpApiHost = WORDPRESS_API_URL ? new URL(WORDPRESS_API_URL).hostname : '127.0.0.1';
-        if (parsedUrl.hostname === wpApiHost || parsedUrl.hostname === 'localhost' || parsedUrl.hostname === '127.0.0.1') {
+        const wpApiHost = WORDPRESS_API_URL
+          ? new URL(WORDPRESS_API_URL).hostname
+          : "127.0.0.1";
+        if (
+          parsedUrl.hostname === wpApiHost ||
+          parsedUrl.hostname === "localhost" ||
+          parsedUrl.hostname === "127.0.0.1"
+        ) {
           let path = parsedUrl.pathname + parsedUrl.search;
-          if (path.startsWith("/wordpress/")) path = path.replace("/wordpress/", "/");
+          if (path.startsWith("/wordpress/"))
+            path = path.replace("/wordpress/", "/");
           else if (path === "/wordpress") path = "/";
           return path;
         }
@@ -2362,10 +2489,10 @@ export async function getSiteChrome(): Promise<SiteChromeData | null> {
 
     const transformMenuUrls = (menu: any[]): any[] => {
       if (!Array.isArray(menu)) return menu;
-      return menu.map(item => ({
+      return menu.map((item) => ({
         ...item,
         url: cleanMenuUrl(item.url),
-        children: item.children ? transformMenuUrls(item.children) : []
+        children: item.children ? transformMenuUrls(item.children) : [],
       }));
     };
 

@@ -56,38 +56,76 @@ export default function DataFoundation({ wordpressData }: { wordpressData?: any 
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <Motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-3xl space-y-8"
-            >
-              <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-                <span>Home</span>
-                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
-                <span className="text-[#f99d1c]">Data & Analytics</span>
-              </nav>
-              
-              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(heroData?.heroS1Title || (
-                  <>
-                    Solid Data <br /> <span className="text-white/40">Foundations.</span>
-                  </>
-                ))}
-              </h1>
-              
-              <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
-                {formatQuotesToBold(heroData?.heroS1Desc || "Building the structural integrity required for Enterprise AI through robust storage and master data frameworks.")}
-              </p>
+          <div className="max-w-7xl mx-auto px-6 w-full relative z-10 py-12 md:py-20">
+            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              <div className="lg:col-span-7">
+                <Motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="space-y-8"
+                >
+                  <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
+                    <span>Home</span>
+                    <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
+                    <span className="text-[#f99d1c]">Data & Analytics</span>
+                  </nav>
+                  
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
+                    {renderHeroTitle(heroData?.heroS1Title || (
+                      <>
+                        Solid Data <br /> <span className="text-white/40">Foundations.</span>
+                      </>
+                    ))}
+                  </h1>
+                  
+                  <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8 md:mb-12">
+                    {formatQuotesToBold(heroData?.heroS1Desc || "Building the structural integrity required for Enterprise AI through robust storage and master data frameworks.")}
+                  </p>
 
-              <div className="pt-8 flex flex-wrap gap-4">
-                <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
-                  <span>Explore Architecture</span>
-                  <ArrowRight size={14} />
-                </button>
+                  <div className="pt-8 flex flex-wrap gap-4">
+                    <button className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[11px] tracking-widest shadow-2xl shadow-[#f99d1c]/20">
+                      <span>Explore Architecture</span>
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </Motion.div>
               </div>
-            </Motion.div>
+
+              {/* Stats Panel */}
+              <div className="lg:col-span-5 w-full">
+                <Motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="bg-white p-8 md:p-10 rounded-sm space-y-8 shadow-2xl border border-gray-100"
+                >
+                  <div className="space-y-4">
+                    <div className="w-16 h-1 bg-[#f99d1c]"></div>
+                    <h3 className="text-[#11253e] text-2xl font-bold tracking-tight">Proven Impact</h3>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {[
+                      { value: "01", label: "Master Data Management", desc: "Creating a single, trusted version of truth for critical business entities." },
+                      { value: "02", label: "Cloud Data Warehousing", desc: "Architecting high-performance storage solutions that scale elastically." },
+                      { value: "03", label: "Metadata Management", desc: "Implementing cataloging systems to ensure data discoverability." }
+                    ].map((stat, i) => (
+                      <div key={i} className="flex items-start gap-6 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                        <div className="w-2 h-2 bg-[#f99d1c] rounded-full shrink-0 mt-3"></div>
+                        <div className="space-y-1">
+                          <p className="text-[#f99d1c] text-3xl md:text-4xl font-extrabold tracking-tight">{stat.value}</p>
+                          <p className="text-[#11253e] text-base font-bold">{stat.label}</p>
+                          {stat.desc && (
+                            <p className="text-[#11253e]/60 text-sm font-light leading-relaxed">{stat.desc}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Motion.div>
+              </div>
+            </div>
           </div>
         </section>
 

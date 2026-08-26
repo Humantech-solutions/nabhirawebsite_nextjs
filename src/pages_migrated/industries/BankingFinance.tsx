@@ -81,35 +81,40 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
       title: "Modern Core & Cloud Infrastructure",
       description: "Transitioning from monolithic legacy Banking & Finance applications to secure cloud-enabled and API-driven architectures.",
       details: ["Legacy-to-Cloud Migration", "API-First Architecture", "Scalability & Resilience"],
-      icon: <Cloud size={40} />
+      icon: <Cloud size={32} />,
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "digital",
       title: "Digital & Embedded Finance",
       description: "Enabling seamless omnichannel banking experiences including mobile platforms and digital onboarding.",
       details: ["Omnichannel Experience", "Digital Onboarding", "Embedded Finance"],
-      icon: <Smartphone size={40} />
+      icon: <Smartphone size={32} />,
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "risk",
       title: "Risk Intelligence & Fraud Prevention",
       description: "AI-driven systems for credit risk modeling, fraud detection, transaction monitoring and regulatory reporting.",
       details: ["AI Risk Modeling", "Fraud Detection", "Transaction Monitoring"],
-      icon: <Shield size={40} />
+      icon: <Shield size={32} />,
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "governance",
       title: "Data Governance & Regulatory Alignment",
       description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency and audit readiness for financial institutions.",
       details: ["Data Governance", "Audit Readiness", "Reporting Accuracy"],
-      icon: <LayoutTemplate size={40} />
+      icon: <LayoutTemplate size={32} />,
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "operations",
       title: "Intelligent Operations",
       description: "Streamlining high-volume banking processes through automation to improve efficiency and customer response time.",
       details: ["Process Automation", "Operational Efficiency", "Faster Response Times"],
-      icon: <Cpu size={40} />
+      icon: <Cpu size={32} />,
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
     },
   ];
 
@@ -177,9 +182,19 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
               ))}
             </h1>
             
-            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-8 border-l-2 border-[#f99d1c] pl-6">
               {formatQuotesToBold(heroData?.heroS1Desc || "We help financial institutions evolve from legacy-constrained operations to intelligent, secure and innovation-driven enterprises.")}
             </p>
+
+            <div className="pt-2">
+              <Link 
+                href="/contact"
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+              >
+                <span>Consult Us</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </Motion.div>
         </div>
       </section>
@@ -194,7 +209,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">
+            <p className="text-[#11253e] text-lg max-w-md text-left">
               Financial institutions are navigating a defining decade. Transformation is no longer optional—it is structural.
             </p>
           </div>
@@ -262,12 +277,14 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
                 </div>
 
                 <div className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
-                    <div className="absolute inset-0 bg-[#11253e]/5 opacity-20"></div>
-                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      <div className="transform scale-150">{area.icon}</div>
-                    </div>
-                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                    <ImageWithFallback 
+                      src={area.image}
+                      alt={area.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                 </div>
               </Motion.div>
@@ -288,9 +305,13 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
                 {formatQuotesToBold("We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products.")}
               </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Partner with us <ArrowRight size={20} />
-              </Link>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
+                    PARTNER WITH US <ArrowRight size={16} />
+                  </button>
+                </Link>
+              </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">

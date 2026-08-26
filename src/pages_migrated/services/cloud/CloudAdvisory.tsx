@@ -82,56 +82,14 @@ export default function CloudAdvisory({ wordpressData }: { wordpressData?: any }
 
   return (
     <>
-      {/* Full Hero Banner */}
-      <section className="relative h-[400px] md:h-[520px] bg-[#11253e] overflow-hidden flex items-center">
-          <div className="absolute inset-0 z-0">
-            <ImageWithFallback 
-              src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1660058550844-02d4eaa79667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzRCUyMGFic3RyYWN0JTIwZGlnaXRhbCUyMGRhdGElMjBmbG93JTIwYmx1ZSUyMG9yYW5nZSUyMGNpbmVtYXRpY3xlbnwxfHx8fDE3NzE5MzIyNzl8MA&ixlib=rb-4.1.0&q=80&w=1920"}
-              alt="Cloud Data Flow Background"
-              className="w-full h-full object-cover opacity-40 mix-blend-screen"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#11253e] via-transparent to-transparent"></div>
-            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-          </div>
-          
-          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <Motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-3xl space-y-8"
-            >
-              <nav className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4 font-bold">
-                <span className="hover:text-white cursor-pointer transition-colors">Home</span>
-                <span className="w-1 h-1 rounded-full bg-[#f99d1c]"></span>
-                <span className="text-[#f99d1c]">Capabilities</span>
-              </nav>
-              
-              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
-                {renderHeroTitle(heroData?.heroS1Title || (
-                  <>Cloud <br /><span className="text-[#f99d1c]">Advisory</span></>
-                ))}
-              </h1>
-              
-              <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
-                <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
-                  {formatQuotesToBold(heroData?.heroS1Desc || "From 'Cloud Ambition' to ^Real Business Outcomes^ through strategic foresight.")}
-                </p>
-              </div>
-
-              <div className="pt-8 flex flex-wrap gap-4">
-                <button 
-                  onClick={() => heroData?.heroS1Button?.url && (window.location.href = heroData.heroS1Button.url)}
-                  className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-10 py-5 rounded-sm font-medium transition-all inline-flex items-center space-x-3 uppercase text-[14px] tracking-widest shadow-2xl shadow-[#f99d1c]/20"
-                >
-                  <span>{heroData?.heroS1Button?.title || "START YOUR JOURNEY"}</span>
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </Motion.div>
-          </div>
-      </section>
+      <ServiceHero
+        title={renderHeroTitle(heroData?.heroS1Title || (
+          <>Cloud <br /><span className="text-[#f99d1c]">Advisory</span></>
+        ))}
+        description={formatQuotesToBold(heroData?.heroS1Desc || "From 'Cloud Ambition' to ^Real Business Outcomes^ through strategic foresight.") as any}
+        category="Cloud Advisory"
+        image={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1660058550844-02d4eaa79667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzRCUyMGFic3RyYWN0JTIwZGlnaXRhbCUyMGRhdGElMjBmbG93JTIwYmx1ZSUyMG9yYW5nZSUyMGNpbmVtYXRpY3xlbnwxfHx8fDE3NzE5MzIyNzl8MA&ixlib=rb-4.1.0&q=80&w=1920"}
+      />
 
       {/* Intro Section: Moving to the cloud */}
       <section className="py-20 bg-[#fdfbf7] relative">
@@ -296,17 +254,17 @@ export default function CloudAdvisory({ wordpressData }: { wordpressData?: any }
                 </p>
               </div>
 
-              <div className="grid gap-6">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
-                  { icon: <Search size={20} />, text: "Understand your current infrastructure landscape clearly" },
-                  { icon: <BarChart3 size={20} />, text: "Identify cost-saving opportunities through FinOps modeling" },
-                  { icon: <ShieldCheck size={20} />, text: "Benchmark security against global compliance standards" },
-                  { icon: <Database size={20} />, text: "Map application dependencies to avoid migration surprises" },
-                  { icon: <Target size={20} />, text: "Measure cloud maturity and define realistic next steps" }
+                  { icon: <Search size={18} />, text: "Understand your current infrastructure landscape clearly" },
+                  { icon: <BarChart3 size={18} />, text: "Identify cost-saving opportunities through FinOps modeling" },
+                  { icon: <ShieldCheck size={18} />, text: "Benchmark security against global compliance standards" },
+                  { icon: <Database size={18} />, text: "Map application dependencies to avoid migration surprises" },
+                  { icon: <Target size={18} />, text: "Measure cloud maturity and define realistic next steps" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium tracking-tight leading-tight">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>
@@ -328,6 +286,52 @@ export default function CloudAdvisory({ wordpressData }: { wordpressData?: any }
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Value Proposition Section */}
+      <section className="py-20 bg-[#11253e] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
+            <div className="flex items-center justify-center space-x-4 mb-4">
+              <span className="text-[#f99d1c] font-black text-6xl">04</span>
+              <div className="h-px w-12 bg-[#f99d1c]"></div>
+            </div>
+            <h2 className="text-white text-4xl lg:text-5xl font-medium tracking-tight">{formatQuotesToBold("Value 'Proposition'")}</h2>
+            <h3 className="text-[#f99d1c] text-xl font-bold uppercase tracking-widest">{formatQuotesToBold("Strategic Clarity. Measurable Business Outcomes.")}</h3>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Strategic Clarity", desc: "Clear, phased roadmap aligned with corporate growth and innovation objectives." },
+              { title: "Risk Mitigation", desc: "Identify and mitigate architectural, operational, and security risks early." },
+              { title: "Cost Optimization", desc: "Establish FinOps principles for complete cloud spend transparency and ROI." },
+              { title: "Architectural Readiness", desc: "Target-state cloud architecture designed for multi-cloud resilience." },
+              { title: "Faster Time-to-Value", desc: "Shortened decision cycles to execute your transformation with speed." },
+              { title: "Cultural Alignment", desc: "Operational frameworks that empower internal teams for long-term success." }
+            ].map((item, i) => (
+              <Motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm p-10 border border-white/10 hover:border-[#f99d1c]/50 transition-all group"
+              >
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-8 h-8 rounded-full bg-[#f99d1c] flex items-center justify-center text-[#11253e]">
+                    <CheckCircle2 size={16} />
+                  </div>
+                  <h4 className="text-white text-lg font-medium tracking-tight">{formatQuotesToBold(item.title)}</h4>
+                </div>
+                <p className="text-white/60 text-sm font-light leading-relaxed">
+                  {formatQuotesToBold(item.desc)}
+                </p>
+              </Motion.div>
+            ))}
           </div>
         </div>
       </section>
