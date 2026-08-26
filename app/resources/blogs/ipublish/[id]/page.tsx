@@ -1,7 +1,16 @@
-import { getIPublishContentById } from "@/src/lib/ipublish";
+import { getIPublishContentById, getIPublishContents } from "@/src/lib/ipublish";
 import { IPublishDetailClient } from "@/src/components/ipublish/IPublishDetailClient";
 import { notFound } from "next/navigation";
 import { constructMetadata } from "@/src/lib/seo";
+
+export async function generateStaticParams() {
+  const contents = await getIPublishContents();
+  return contents
+    .filter((item: any) => item.content_type === "blog")
+    .map((item: any) => ({
+      id: item.id,
+    }));
+}
 
 export async function generateMetadata({ params }: { params: { id: string } | Promise<{ id: string }> }) {
   // Handle both sync and async params for Next.js compatibility

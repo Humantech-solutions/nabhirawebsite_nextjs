@@ -2,7 +2,8 @@
  * Fetches all published contents from the iPublish CMS.
  */
 export async function getIPublishContents() {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NzUwYmFlYy1lOTllLTRkYzAtOTM5Yy1hYTVjMWQ1MGFhNWYiLCJvcmdfaWQiOiI0ZjdlYmE4YS05OGZjLTQyODEtODJjZi1jYmM4YzIwZmY0NWUiLCJleHAiOjE3ODc2NTg5NTZ9.5de3WJVbeHA5oXjGaj5QMW-GbNlcmVU5tXYkldLZvt0";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NzUwYmFlYy1lOTllLTRkYzAtOTM5Yy1hYTVjMWQ1MGFhNWYiLCJvcmdfaWQiOiI0ZjdlYmE4YS05OGZjLTQyODEtODJjZi1jYmM4YzIwZmY0NWUifQ.nkv7ZboCMX2BzwTt_r1F2t_IGAiFi1bcwpexyPBDxfQ";
   try {
     const res = await fetch(`https://apis.ipublish.hutechsolutions.ai/api/v1/content/published`, {
       headers: {
@@ -28,7 +29,8 @@ export async function getIPublishContents() {
  * Fetches a single published content by ID from the iPublish CMS.
  */
 export async function getIPublishContentById(id: string) {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NzUwYmFlYy1lOTllLTRkYzAtOTM5Yy1hYTVjMWQ1MGFhNWYiLCJvcmdfaWQiOiI0ZjdlYmE4YS05OGZjLTQyODEtODJjZi1jYmM4YzIwZmY0NWUiLCJleHAiOjE3ODc2NTg5NTZ9.5de3WJVbeHA5oXjGaj5QMW-GbNlcmVU5tXYkldLZvt0";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NzUwYmFlYy1lOTllLTRkYzAtOTM5Yy1hYTVjMWQ1MGFhNWYiLCJvcmdfaWQiOiI0ZjdlYmE4YS05OGZjLTQyODEtODJjZi1jYmM4YzIwZmY0NWUifQ.nkv7ZboCMX2BzwTt_r1F2t_IGAiFi1bcwpexyPBDxfQ";
   try {
     const res = await fetch(`https://apis.ipublish.hutechsolutions.ai/api/v1/content/${id}`, {
       headers: {

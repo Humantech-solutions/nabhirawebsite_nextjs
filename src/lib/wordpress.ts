@@ -50,7 +50,7 @@ export async function fetchGraphQL(query: string, variables = {}) {
           query,
           variables,
         }),
-        cache: "force-cache",
+        next: { revalidate: 60 },
         signal: controller.signal,
       });
 
@@ -2154,23 +2154,6 @@ export async function getCaseStudies() {
     const response = await fetchGraphQL(query);
     const nodes = response?.data?.caseStudies?.nodes || [];
 
-    if (nodes.length === 0) {
-      console.warn(
-        "DEBUG [getCaseStudies]: No case studies found or fetch failed. Using static fallback data.",
-      );
-      return caseStudies.map((node: any) => ({
-        id: node.id || node.slug,
-        slug: node.slug,
-        title: node.title,
-        subtitle: node.subtitle || "",
-        client: node.client || "",
-        industry: node.industry || "",
-        image: node.image || "/images/placeholder.jpg",
-        impact: node.impact || "",
-        tags: node.tags || [],
-      }));
-    }
-
     return nodes.map((node: any) => ({
       id: node.id,
       slug: node.slug,
@@ -2187,17 +2170,7 @@ export async function getCaseStudies() {
     }));
   } catch (error) {
     console.error("[getCaseStudies] Error:", error);
-    return caseStudies.map((node: any) => ({
-      id: node.id || node.slug,
-      slug: node.slug,
-      title: node.title,
-      subtitle: node.subtitle || "",
-      client: node.client || "",
-      industry: node.industry || "",
-      image: node.image || "/images/placeholder.jpg",
-      impact: node.impact || "",
-      tags: node.tags || [],
-    }));
+    return [];
   }
 }
 
