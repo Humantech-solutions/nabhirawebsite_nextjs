@@ -1,4 +1,4 @@
-import { getPageBySlug, getAllPages, getSitemapData, getCareerPosts, getNews, getAllPosts, getSiteChrome, getCaseStudies, getTestimonials } from "@/src/lib/wordpress";
+import { getPageBySlug, getAllPages, getSitemapData, getCareerPosts, getNews, getAllPosts, getSiteChrome, getCaseStudies, getTestimonials, getServiceBySlug, getSolutionBySlug, getIndustryBySlug } from "@/src/lib/wordpress";
 import { getRecruitProJobs } from "@/src/lib/recruitpro";
 import { notFound } from "next/navigation";
 import { constructMetadata } from "@/src/lib/seo";
@@ -18,6 +18,9 @@ import Awards from "@/src/pages_migrated/about/Awards";
 import News from "@/src/pages_migrated/resources/News";
 import Blogs from "@/src/pages_migrated/resources/Blogs";
 import CaseStudies from "@/src/pages_migrated/resources/CaseStudies";
+import ServiceTemplate from "@/src/pages_migrated/ServiceTemplate";
+import SolutionTemplate from "@/src/pages_migrated/SolutionTemplate";
+import IndustryTemplate from "@/src/pages_migrated/IndustryTemplate";
 
 export async function generateStaticParams() {
   const pages = await getAllPages();
@@ -47,14 +50,26 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
   const { slug } = await params;
   const slugString = slug.join('/');
-  const page = await getPageBySlug(slugString);
+  const firstSlug = slug[0];
+  const restSlug = slug.slice(1).join('/');
+  
+  let page = null;
+  if (firstSlug === "services") {
+    page = await getServiceBySlug(restSlug);
+  } else if (firstSlug === "solutions") {
+    page = await getSolutionBySlug(restSlug);
+  } else if (firstSlug === "industries") {
+    page = await getIndustryBySlug(restSlug);
+  } else {
+    page = await getPageBySlug(slugString);
+  }
   
   if (!page) {
     return constructMetadata({ title: "Page Not Found" });
   }
   
   return constructMetadata({
-    title: page.title,
+    title: page.title || page.name || "Hutech Solutions Technologies",
     description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Hutech Solutions Technologies",
   });
 }
@@ -62,10 +77,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
   const slugString = slug.join('/');
-  const page = await getPageBySlug(slugString);
+  const firstSlug = slug[0];
+  const restSlug = slug.slice(1).join('/');
+
+  let page = null;
+  if (firstSlug === "services") {
+    page = await getServiceBySlug(restSlug);
+  } else if (firstSlug === "solutions") {
+    page = await getSolutionBySlug(restSlug);
+  } else if (firstSlug === "industries") {
+    page = await getIndustryBySlug(restSlug);
+  } else {
+    page = await getPageBySlug(slugString);
+  }
 
   if (!page) {
     notFound();
+  }
+
+  // Handle Dynamic generic CPT Fallbacks
+  if (firstSlug === "services") {
+    return <ServiceTemplate wordpressData={page} />;
+  }
+  if (firstSlug === "solutions") {
+    return <SolutionTemplate wordpressData={page} />;
+  }
+  if (firstSlug === "industries") {
+    return <IndustryTemplate wordpressData={page} />;
   }
 
   const nativeTemplate = page.template?.templateName || "Default";

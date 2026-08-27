@@ -1,0 +1,585 @@
+[
+    {
+        "key": "group_service_detail",
+        "title": "Service Page Settings",
+        "fields": [
+            {
+                "key": "field_tab_service_intro",
+                "label": "1. Intro Section",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_intro_heading",
+                "name": "intro_heading",
+                "label": "Intro Heading",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "introHeading"
+            },
+            {
+                "key": "field_f_svc_intro_para",
+                "name": "intro_paragraph",
+                "label": "Intro Paragraph",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "introParagraph",
+                "rows": 3
+            },
+            {
+                "key": "field_f_svc_intro_sub_para",
+                "name": "intro_sub_paragraph",
+                "label": "Intro Sub-Paragraph",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "introSubParagraph",
+                "rows": 3
+            },
+            {
+                "key": "field_tab_service_approach",
+                "label": "2. Approach Section",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_appr_image",
+                "name": "approach_image",
+                "label": "Approach Image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachImage",
+                "return_format": "array"
+            },
+            {
+                "key": "field_f_svc_appr_title",
+                "name": "approach_title",
+                "label": "Approach Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachTitle"
+            },
+            {
+                "key": "field_f_svc_appr_subtitle",
+                "name": "approach_subtitle",
+                "label": "Approach Subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachSubtitle"
+            },
+            {
+                "key": "field_f_svc_appr_desc",
+                "name": "approach_description",
+                "label": "Approach Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachDescription",
+                "rows": 3
+            },
+            {
+                "key": "field_f_svc_appr_pt_1",
+                "name": "approach_point_1",
+                "label": "Approach Point 1",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachPoint1"
+            },
+            {
+                "key": "field_f_svc_appr_pt_2",
+                "name": "approach_point_2",
+                "label": "Approach Point 2",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachPoint2"
+            },
+            {
+                "key": "field_f_svc_appr_pt_3",
+                "name": "approach_point_3",
+                "label": "Approach Point 3",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachPoint3"
+            },
+            {
+                "key": "field_f_svc_appr_pt_4",
+                "name": "approach_point_4",
+                "label": "Approach Point 4",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachPoint4"
+            },
+            {
+                "key": "field_f_svc_appr_pt_5",
+                "name": "approach_point_5",
+                "label": "Approach Point 5",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachPoint5"
+            },
+            {
+                "key": "field_f_svc_appr_quote",
+                "name": "approach_quote",
+                "label": "Approach Quote",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "approachQuote",
+                "rows": 2
+            },
+            {
+                "key": "field_tab_service_methodology",
+                "label": "3. Methodology Section",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_meth_title",
+                "name": "methodology_title",
+                "label": "Methodology Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyTitle"
+            },
+            {
+                "key": "field_f_svc_meth_subtitle",
+                "name": "methodology_subtitle",
+                "label": "Methodology Subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologySubtitle"
+            },
+            {
+                "key": "field_f_svc_meth_desc",
+                "name": "methodology_description",
+                "label": "Methodology Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyDescription",
+                "rows": 3
+            },
+            {
+                "key": "field_f_svc_meth_s1_title",
+                "name": "methodology_step_1_title",
+                "label": "Step 1 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep1Title"
+            },
+            {
+                "key": "field_f_svc_meth_s1_icon",
+                "name": "methodology_step_1_icon",
+                "label": "Step 1 Icon Name (e.g. Brain, Search)",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep1Icon"
+            },
+            {
+                "key": "field_f_svc_meth_s1_pts",
+                "name": "methodology_step_1_points",
+                "label": "Step 1 Points (one per line)",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep1Points",
+                "rows": 4
+            },
+            {
+                "key": "field_f_svc_meth_s2_title",
+                "name": "methodology_step_2_title",
+                "label": "Step 2 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep2Title"
+            },
+            {
+                "key": "field_f_svc_meth_s2_icon",
+                "name": "methodology_step_2_icon",
+                "label": "Step 2 Icon Name (e.g. Brain, Search)",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep2Icon"
+            },
+            {
+                "key": "field_f_svc_meth_s2_pts",
+                "name": "methodology_step_2_points",
+                "label": "Step 2 Points (one per line)",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep2Points",
+                "rows": 4
+            },
+            {
+                "key": "field_f_svc_meth_s3_title",
+                "name": "methodology_step_3_title",
+                "label": "Step 3 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep3Title"
+            },
+            {
+                "key": "field_f_svc_meth_s3_icon",
+                "name": "methodology_step_3_icon",
+                "label": "Step 3 Icon Name (e.g. Brain, Search)",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep3Icon"
+            },
+            {
+                "key": "field_f_svc_meth_s3_pts",
+                "name": "methodology_step_3_points",
+                "label": "Step 3 Points (one per line)",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep3Points",
+                "rows": 4
+            },
+            {
+                "key": "field_f_svc_meth_s4_title",
+                "name": "methodology_step_4_title",
+                "label": "Step 4 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep4Title"
+            },
+            {
+                "key": "field_f_svc_meth_s4_icon",
+                "name": "methodology_step_4_icon",
+                "label": "Step 4 Icon Name (e.g. Brain, Search)",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep4Icon"
+            },
+            {
+                "key": "field_f_svc_meth_s4_pts",
+                "name": "methodology_step_4_points",
+                "label": "Step 4 Points (one per line)",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "methodologyStep4Points",
+                "rows": 4
+            },
+            {
+                "key": "field_tab_service_tools",
+                "label": "4. Tools & Accelerators",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_tools_title",
+                "name": "tools_title",
+                "label": "Tools Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsTitle"
+            },
+            {
+                "key": "field_f_svc_tools_subtitle",
+                "name": "tools_subtitle",
+                "label": "Tools Subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsSubtitle"
+            },
+            {
+                "key": "field_f_svc_tools_desc",
+                "name": "tools_description",
+                "label": "Tools Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsDescription",
+                "rows": 3
+            },
+            {
+                "key": "field_f_svc_tools_i1_icon",
+                "name": "tools_item_1_icon",
+                "label": "Tool 1 Icon Name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem1Icon"
+            },
+            {
+                "key": "field_f_svc_tools_i1_text",
+                "name": "tools_item_1_text",
+                "label": "Tool 1 Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem1Text"
+            },
+            {
+                "key": "field_f_svc_tools_i2_icon",
+                "name": "tools_item_2_icon",
+                "label": "Tool 2 Icon Name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem2Icon"
+            },
+            {
+                "key": "field_f_svc_tools_i2_text",
+                "name": "tools_item_2_text",
+                "label": "Tool 2 Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem2Text"
+            },
+            {
+                "key": "field_f_svc_tools_i3_icon",
+                "name": "tools_item_3_icon",
+                "label": "Tool 3 Icon Name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem3Icon"
+            },
+            {
+                "key": "field_f_svc_tools_i3_text",
+                "name": "tools_item_3_text",
+                "label": "Tool 3 Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem3Text"
+            },
+            {
+                "key": "field_f_svc_tools_i4_icon",
+                "name": "tools_item_4_icon",
+                "label": "Tool 4 Icon Name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem4Icon"
+            },
+            {
+                "key": "field_f_svc_tools_i4_text",
+                "name": "tools_item_4_text",
+                "label": "Tool 4 Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem4Text"
+            },
+            {
+                "key": "field_f_svc_tools_i5_icon",
+                "name": "tools_item_5_icon",
+                "label": "Tool 5 Icon Name",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem5Icon"
+            },
+            {
+                "key": "field_f_svc_tools_i5_text",
+                "name": "tools_item_5_text",
+                "label": "Tool 5 Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsItem5Text"
+            },
+            {
+                "key": "field_f_svc_tools_image",
+                "name": "tools_image",
+                "label": "Tools Image",
+                "type": "image",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsImage",
+                "return_format": "array"
+            },
+            {
+                "key": "field_f_svc_tools_quote",
+                "name": "tools_quote",
+                "label": "Tools Quote",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "toolsQuote",
+                "rows": 2
+            },
+            {
+                "key": "field_tab_service_value_prop",
+                "label": "5. Value Proposition",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_vp_title",
+                "name": "value_prop_title",
+                "label": "Value Prop Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropTitle"
+            },
+            {
+                "key": "field_f_svc_vp_subtitle",
+                "name": "value_prop_subtitle",
+                "label": "Value Prop Subtitle",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropSubtitle"
+            },
+            {
+                "key": "field_f_svc_vp_i1_title",
+                "name": "value_prop_item_1_title",
+                "label": "Value Prop 1 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem1Title"
+            },
+            {
+                "key": "field_f_svc_vp_i1_desc",
+                "name": "value_prop_item_1_desc",
+                "label": "Value Prop 1 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem1Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_f_svc_vp_i2_title",
+                "name": "value_prop_item_2_title",
+                "label": "Value Prop 2 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem2Title"
+            },
+            {
+                "key": "field_f_svc_vp_i2_desc",
+                "name": "value_prop_item_2_desc",
+                "label": "Value Prop 2 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem2Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_f_svc_vp_i3_title",
+                "name": "value_prop_item_3_title",
+                "label": "Value Prop 3 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem3Title"
+            },
+            {
+                "key": "field_f_svc_vp_i3_desc",
+                "name": "value_prop_item_3_desc",
+                "label": "Value Prop 3 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem3Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_f_svc_vp_i4_title",
+                "name": "value_prop_item_4_title",
+                "label": "Value Prop 4 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem4Title"
+            },
+            {
+                "key": "field_f_svc_vp_i4_desc",
+                "name": "value_prop_item_4_desc",
+                "label": "Value Prop 4 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem4Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_f_svc_vp_i5_title",
+                "name": "value_prop_item_5_title",
+                "label": "Value Prop 5 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem5Title"
+            },
+            {
+                "key": "field_f_svc_vp_i5_desc",
+                "name": "value_prop_item_5_desc",
+                "label": "Value Prop 5 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem5Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_f_svc_vp_i6_title",
+                "name": "value_prop_item_6_title",
+                "label": "Value Prop 6 Title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem6Title"
+            },
+            {
+                "key": "field_f_svc_vp_i6_desc",
+                "name": "value_prop_item_6_desc",
+                "label": "Value Prop 6 Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "valuePropItem6Desc",
+                "rows": 2
+            },
+            {
+                "key": "field_tab_service_cta",
+                "label": "6. Final CTA",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_f_svc_cta_heading",
+                "name": "cta_heading",
+                "label": "CTA Heading",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "ctaHeading"
+            },
+            {
+                "key": "field_f_svc_cta_desc",
+                "name": "cta_description",
+                "label": "CTA Description",
+                "type": "textarea",
+                "show_in_graphql": 1,
+                "graphql_field_name": "ctaDescription",
+                "rows": 3
+            },
+            {
+                "key": "field_f_svc_cta_btn_text",
+                "name": "cta_button_text",
+                "label": "CTA Button Text",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "ctaButtonText"
+            },
+            {
+                "key": "field_f_svc_cta_btn_link",
+                "name": "cta_button_link",
+                "label": "CTA Button Link",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "ctaButtonLink"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "services"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": [],
+        "active": true,
+        "description": "",
+        "show_in_rest": 1,
+        "show_in_graphql": 1,
+        "graphql_field_name": "serviceFields",
+        "map_graphql_types_from_location_rules": 1
+    }
+]

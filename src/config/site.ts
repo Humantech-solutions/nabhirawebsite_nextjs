@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   mainNav: [
     { title: "ABOUT US", href: "/about" },
-    { title: "SERVICES", href: "/solutions/cloud-transformation" },
+    { title: "SERVICES", href: "/services/cloud-transformation" },
     { title: "SOLUTIONS", href: "/solutions/pos" },
     { title: "INDUSTRIES", href: "/industries/banking-finance" },
     { title: "RESOURCES", href: "/resources/blogs" },

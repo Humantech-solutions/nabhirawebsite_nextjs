@@ -5,11 +5,19 @@ import { constructMetadata } from "@/src/lib/seo";
 
 export async function generateStaticParams() {
   const contents = await getIPublishContents();
-  return contents
+  const validContents = contents
     .filter((item: any) => item.content_type === "blog")
     .map((item: any) => ({
-      id: item.id,
-    }));
+      id: item.id ? item.id.toString() : "",
+    }))
+    .filter((param: { id: string }) => param.id !== "");
+  
+  if (validContents.length === 0) {
+    // Return a dummy array if empty, to prevent "missing generateStaticParams" error in Next.js export
+    return [{ id: "dummy-post" }];
+  }
+  
+  return validContents;
 }
 
 export async function generateMetadata({ params }: { params: { id: string } | Promise<{ id: string }> }) {

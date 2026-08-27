@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 import { motion as Motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
-import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { renderHeroTitle, formatQuotesToBold } from "../lib/utils";
 
 import {
   ArrowRight,
@@ -35,6 +35,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
 
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
+  const sf = wordpressData?.serviceFields;
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({

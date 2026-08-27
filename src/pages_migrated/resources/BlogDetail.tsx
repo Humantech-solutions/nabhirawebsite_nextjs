@@ -17,8 +17,8 @@ interface BlogPost {
   slug: string;
   image?: string;
   featuredImage?: {
-    node: {
-      sourceUrl: string;
+    node?: {
+      sourceUrl?: string;
     };
   };
   author?: {

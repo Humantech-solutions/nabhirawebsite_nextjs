@@ -276,9 +276,9 @@ if (link.path && link.path !== '#') {
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c] group-hover/title:scale-125 transition-transform" />
                                 {(() => {
                                   const categoryRoutes: Record<string, string> = {
-                                    "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                    "DATA & ANALYTICS": "/solutions/data-analytics",
-                                    "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                    "CLOUD TRANSFORMATION": "/services/cloud-transformation",
+                                    "DATA & ANALYTICS": "/services/data-analytics",
+                                    "ARTIFICIAL INTELLIGENCE": "/services/artificial-intelligence"
                                   };
                                   return (
                                     <Link href={categoryRoutes[col.title] || "#"} 
@@ -295,19 +295,19 @@ if (link.path && link.path !== '#') {
                                   const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                                   const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                   const solutionRoutes: Record<string, string> = {
-                                    "Cloud Advisory": "/solutions/cloud-advisory",
-                                    "Cloud Migration": "/solutions/cloud-migration",
-                                    "Cloud Modernization": "/solutions/cloud-modernization",
-                                    "Cloud-native Development": "/solutions/cloud-native-development",
-                                    "Cloud Security & Governance": "/solutions/cloud-security-governance",
-                                    "Cloud Financial Management": "/solutions/cloud-financial-management",
-                                    "Data Engineering": "/solutions/data-engineering",
-                                    "Data Analytics": "/solutions/data-analytics-solution",
+                                    "Cloud Advisory": "/services/cloud-advisory",
+                                    "Cloud Migration": "/services/cloud-migration",
+                                    "Cloud Modernization": "/services/cloud-modernization",
+                                    "Cloud-native Development": "/services/cloud-native-development",
+                                    "Cloud Security & Governance": "/services/cloud-security-governance",
+                                    "Cloud Financial Management": "/services/cloud-financial-management",
+                                    "Data Engineering": "/services/data-engineering",
+                                    "Data Analytics": "/services/data-analytics-solution",
                                     "Data Foundation": "/solutions/data-foundation",
-                                    "Data Governance": "/solutions/data-governance",
+                                    "Data Governance": "/services/data-governance",
                                     "AI Consulting": "/solutions/ai-consulting",
-                                    "AI Engineering": "/solutions/ai-engineering",
-                                    "Agentic AI": "/solutions/agentic-ai",
+                                    "AI Engineering": "/services/ai-engineering",
+                                    "Agentic AI": "/services/agentic-ai",
                                     "Intelligent Automation": "/solutions/intelligent-automation"
                                   };
 
@@ -499,9 +499,9 @@ if (link.path && link.path !== '#') {
                           <div key={i} className="space-y-4">
                             {(() => {
                               const categoryRoutes: Record<string, string> = {
-                                "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                "DATA & ANALYTICS": "/solutions/data-analytics",
-                                "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                "CLOUD TRANSFORMATION": "/services/cloud-transformation",
+                                "DATA & ANALYTICS": "/services/data-analytics",
+                                "ARTIFICIAL INTELLIGENCE": "/services/artificial-intelligence"
                               };
                               return (
                                 <Link href={categoryRoutes[col.title] || "#"} 
@@ -517,19 +517,19 @@ if (link.path && link.path !== '#') {
                                   const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                                   const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                 const solutionRoutes: Record<string, string> = {
-                                  "Cloud Advisory": "/solutions/cloud-advisory",
-                                  "Cloud Migration": "/solutions/cloud-migration",
-                                  "Cloud Modernization": "/solutions/cloud-modernization",
-                                  "Cloud-native Development": "/solutions/cloud-native-development",
-                                  "Cloud Security & Governance": "/solutions/cloud-security-governance",
-                                  "Cloud Financial Management": "/solutions/cloud-financial-management",
-                                  "Data Engineering": "/solutions/data-engineering",
-                                  "Data Analytics": "/solutions/data-analytics-solution",
+                                  "Cloud Advisory": "/services/cloud-advisory",
+                                  "Cloud Migration": "/services/cloud-migration",
+                                  "Cloud Modernization": "/services/cloud-modernization",
+                                  "Cloud-native Development": "/services/cloud-native-development",
+                                  "Cloud Security & Governance": "/services/cloud-security-governance",
+                                  "Cloud Financial Management": "/services/cloud-financial-management",
+                                  "Data Engineering": "/services/data-engineering",
+                                  "Data Analytics": "/services/data-analytics-solution",
                                   "Data Foundation": "/solutions/data-foundation",
-                                  "Data Governance": "/solutions/data-governance",
+                                  "Data Governance": "/services/data-governance",
                                   "AI Consulting": "/solutions/ai-consulting",
-                                  "AI Engineering": "/solutions/ai-engineering",
-                                  "Agentic AI": "/solutions/agentic-ai",
+                                  "AI Engineering": "/services/ai-engineering",
+                                  "Agentic AI": "/services/agentic-ai",
                                   "Intelligent Automation": "/solutions/intelligent-automation"
                                 };
 
