@@ -36,10 +36,18 @@ export function ImageWithFallback(props: any) {
 
   // If using fill, we wrap in a relative container to ensure it shows up
   // next/image 'fill' requires a relative/absolute/fixed parent.
+  const isIcon = className?.includes('w-') && className?.includes('h-');
+  const defaultMinHeight = isIcon ? undefined : '350px';
+  const defaultMinWidth = isIcon ? undefined : '100%';
+
   return (
     <div 
-      className={`relative overflow-hidden w-full ${className || ''}`} 
-      style={{ minHeight: style?.height || style?.minHeight || '350px', minWidth: style?.width || style?.minWidth || '100%', ...style }}
+      className={`relative overflow-hidden ${!isIcon ? 'w-full' : ''} ${className || ''}`} 
+      style={{ 
+        minHeight: style?.height || style?.minHeight || defaultMinHeight, 
+        minWidth: style?.width || style?.minWidth || defaultMinWidth, 
+        ...style 
+      }}
     >
       <Image
         src={currentSrc}

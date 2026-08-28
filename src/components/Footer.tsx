@@ -173,7 +173,7 @@ const serviceLinks = [
   { label: "Data Governance", to: "/services/data-governance" },
   { label: "AI Engineering", to: "/services/ai-engineering" },
   { label: "Agentic AI", to: "/services/agentic-ai" },
-  { label: "Intelligent Automation", to: "/solutions/intelligent-automation" },
+  { label: "Intelligent Automation", to: "/services/intelligent-automation" },
 ];
 
 const industryLinks = [

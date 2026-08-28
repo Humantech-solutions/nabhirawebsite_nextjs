@@ -738,6 +738,101 @@ export const AWARDS_PAGE_FIELDS_FRAGMENT = `
   }
 `;
 
+export const SERVICE_PAGE_FIELDS_FRAGMENT = `
+  fragment ServicePageFields on Page {
+    serviceFields {
+      introHeading
+      introParagraph
+      introSubParagraph
+      approachImage { node { sourceUrl mediaItemUrl } }
+      approachTitle
+      approachSubtitle
+      approachDescription
+      approachPoint1
+      approachPoint2
+      approachPoint3
+      approachPoint4
+      approachPoint5
+      approachPoint6
+      approachPoint7
+      approachPoint8
+      approachPoint9
+      approachPoint10
+      approachQuote
+      methodologyTitle
+      methodologySubtitle
+      methodologyDescription
+      methodologyStep1Title
+      methodologyStep1Subtitle
+      methodologyStep1Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep1Points
+      methodologyStep2Title
+      methodologyStep2Subtitle
+      methodologyStep2Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep2Points
+      methodologyStep3Title
+      methodologyStep3Subtitle
+      methodologyStep3Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep3Points
+      methodologyStep4Title
+      methodologyStep4Subtitle
+      methodologyStep4Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep4Points
+      methodologyStep5Title
+      methodologyStep5Subtitle
+      methodologyStep5Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep5Points
+      methodologyStep6Title
+      methodologyStep6Subtitle
+      methodologyStep6Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep6Points
+      methodologyStep7Title
+      methodologyStep7Subtitle
+      methodologyStep7Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep7Points
+      methodologyStep8Title
+      methodologyStep8Subtitle
+      methodologyStep8Icon { node { sourceUrl mediaItemUrl } }
+      methodologyStep8Points
+      methodologyQuote
+      toolsTitle
+      toolsSubtitle
+      toolsDescription
+      toolsInsight
+      toolsItem1Icon { node { sourceUrl mediaItemUrl } }
+      toolsItem1Text
+      toolsItem2Icon { node { sourceUrl mediaItemUrl } }
+      toolsItem2Text
+      toolsItem3Icon { node { sourceUrl mediaItemUrl } }
+      toolsItem3Text
+      toolsItem4Icon { node { sourceUrl mediaItemUrl } }
+      toolsItem4Text
+      toolsItem5Icon { node { sourceUrl mediaItemUrl } }
+      toolsItem5Text
+      toolsImage { node { sourceUrl mediaItemUrl } }
+      toolsQuote
+      valuePropTitle
+      valuePropSubtitle
+      valuePropItem1Title
+      valuePropItem1Desc
+      valuePropItem2Title
+      valuePropItem2Desc
+      valuePropItem3Title
+      valuePropItem3Desc
+      valuePropItem4Title
+      valuePropItem4Desc
+      valuePropItem5Title
+      valuePropItem5Desc
+      valuePropItem6Title
+      valuePropItem6Desc
+      ctaHeading
+      ctaDescription
+      ctaButtonText
+      ctaButtonLink
+    }
+  }
+`;
+
 export async function getPageBySlug(slug: string) {
   // Ensure slug is properly formatted as a URI
   const formattedSlug = slug.startsWith("/") ? slug : `/${slug}`;
@@ -2482,6 +2577,396 @@ export async function getSiteChrome(): Promise<SiteChromeData | null> {
     };
   } catch (err: any) {
     console.warn("[WP] getSiteChrome() failed:", err?.message || err);
+    return null;
+  }
+}
+
+export const SOLUTION_PAGE_FIELDS_FRAGMENT = `
+  fragment SolutionPageFields on Solution {
+    solutionPageSettings {
+      solHeroTag
+      solHeroTagIcon { node { sourceUrl mediaItemUrl } }
+      solHeroTitle
+      solHeroDesc
+      solHeroCta1Text
+      solHeroCta1Link {
+        nodes {
+          ... on ContentNode {
+            uri
+          }
+        }
+      }
+      solStatsTitle
+      solStat1Value
+      solStat1Label
+      solStat2Value
+      solStat2Label
+      solStat3Value
+      solStat3Label
+      solStat4Value
+      solStat4Label
+      solStat5Value
+      solStat5Label
+      solStat6Value
+      solStat6Label
+      solOverviewTag
+      solOverviewHeading
+      solOverviewPara1
+      solOverviewPara2
+      solOverviewPara3
+      solChallengeHeading
+      solChallenge1Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge1Title
+      solChallenge1Desc
+      solChallenge2Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge2Title
+      solChallenge2Desc
+      solChallenge3Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge3Title
+      solChallenge3Desc
+      solChallenge4Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge4Title
+      solChallenge4Desc
+      solChallenge5Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge5Title
+      solChallenge5Desc
+      solChallenge6Icon { node { sourceUrl mediaItemUrl } }
+      solChallenge6Title
+      solChallenge6Desc
+      solDetailHeading
+      solDetailSubheading
+      solDetailPara1
+      solDetailPara2
+      solDetailPara3
+      solDetailCtaText
+      solDetailCtaLink {
+        nodes {
+          ... on ContentNode {
+            uri
+          }
+        }
+      }
+      solDetailImage { node { sourceUrl mediaItemUrl } }
+      solFeaturesHeading
+      solFeature1Icon { node { sourceUrl mediaItemUrl } }
+      solFeature1Title
+      solFeature1Desc
+      solFeature2Icon { node { sourceUrl mediaItemUrl } }
+      solFeature2Title
+      solFeature2Desc
+      solFeature3Icon { node { sourceUrl mediaItemUrl } }
+      solFeature3Title
+      solFeature3Desc
+      solFeature4Icon { node { sourceUrl mediaItemUrl } }
+      solFeature4Title
+      solFeature4Desc
+      solFeature5Icon { node { sourceUrl mediaItemUrl } }
+      solFeature5Title
+      solFeature5Desc
+      solFeature6Icon { node { sourceUrl mediaItemUrl } }
+      solFeature6Title
+      solFeature6Desc
+      solFeature7Icon { node { sourceUrl mediaItemUrl } }
+      solFeature7Title
+      solFeature7Desc
+      solFeature8Icon { node { sourceUrl mediaItemUrl } }
+      solFeature8Title
+      solFeature8Desc
+      solFeature9Icon { node { sourceUrl mediaItemUrl } }
+      solFeature9Title
+      solFeature9Desc
+      solInnovationTag
+      solInnovationHeading
+      solInnovation1Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation1Title
+      solInnovation1Desc
+      solInnovation2Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation2Title
+      solInnovation2Desc
+      solInnovation3Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation3Title
+      solInnovation3Desc
+      solInnovation4Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation4Title
+      solInnovation4Desc
+      solInnovation5Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation5Title
+      solInnovation5Desc
+      solInnovation6Icon { node { sourceUrl mediaItemUrl } }
+      solInnovation6Title
+      solInnovation6Desc
+      solBenefitsTag
+      solBenefitsHeading
+      solBenefit1Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit1Title
+      solBenefit1Desc
+      solBenefit2Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit2Title
+      solBenefit2Desc
+      solBenefit3Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit3Title
+      solBenefit3Desc
+      solBenefit4Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit4Title
+      solBenefit4Desc
+      solBenefit5Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit5Title
+      solBenefit5Desc
+      solBenefit6Icon { node { sourceUrl mediaItemUrl } }
+      solBenefit6Title
+      solBenefit6Desc
+      solCtaHeading
+      solCtaDesc
+      solCtaBtnText
+      solCtaBtnLink {
+        nodes {
+          ... on ContentNode {
+            uri
+          }
+        }
+      }
+    }
+  }
+`;
+
+export async function getServiceBySlug(slug: string) {
+  const query = `
+    ${GLOBAL_SETTINGS_FRAGMENT.replace('on Page', 'on Service')}
+    ${SERVICE_PAGE_FIELDS_FRAGMENT.replace('on Page', 'on Service')}
+    query GetServiceBySlug($id: ID!, $idType: ServiceIdType!) {
+      service(id: $id, idType: $idType) {
+        id
+        title
+        content
+        slug
+        uri
+        date
+        featuredImage { node { sourceUrl } }
+        ...GlobalSettingsFields
+        ...ServicePageFields
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, {
+      id: slug,
+      idType: 'SLUG'
+    });
+
+    const page = response?.data?.service || null;
+    if (page) {
+      const globalFallback = await getGlobalSettings();
+      if (globalFallback) {
+        page.globalSettings = mergeACFData(page.globalSettings, globalFallback);
+      }
+    }
+    return page;
+  } catch (error) {
+    console.error('Error fetching service by slug:', error);
+    return null;
+  }
+}
+
+export const INDUSTRY_PAGE_FIELDS_FRAGMENT = `
+  fragment IndustryPageFields on Industry {
+    industryFields {
+      imperativeTitle
+      imperativeDescription
+      challenge1Title
+      challenge1Description
+      challenge1Icon { node { sourceUrl mediaItemUrl } }
+      challenge2Title
+      challenge2Description
+      challenge2Icon { node { sourceUrl mediaItemUrl } }
+      challenge3Title
+      challenge3Description
+      challenge3Icon { node { sourceUrl mediaItemUrl } }
+      challenge4Title
+      challenge4Description
+      challenge4Icon { node { sourceUrl mediaItemUrl } }
+      challenge5Title
+      challenge5Description
+      challenge5Icon { node { sourceUrl mediaItemUrl } }
+      challenge6Title
+      challenge6Description
+      challenge6Icon { node { sourceUrl mediaItemUrl } }
+      challenge7Title
+      challenge7Description
+      challenge7Icon { node { sourceUrl mediaItemUrl } }
+      challenge8Title
+      challenge8Description
+      challenge8Icon { node { sourceUrl mediaItemUrl } }
+      impactMainTitle
+      impactMainDescription
+      impact1Title
+      impact1Description
+      impact1Details
+      impact1Icon { node { sourceUrl mediaItemUrl } }
+      impact2Title
+      impact2Description
+      impact2Details
+      impact2Icon { node { sourceUrl mediaItemUrl } }
+      impact3Title
+      impact3Description
+      impact3Details
+      impact3Icon { node { sourceUrl mediaItemUrl } }
+      impact4Title
+      impact4Description
+      impact4Details
+      impact4Icon { node { sourceUrl mediaItemUrl } }
+      impact5Title
+      impact5Description
+      impact5Details
+      impact5Icon { node { sourceUrl mediaItemUrl } }
+      impact6Title
+      impact6Description
+      impact6Details
+      impact6Icon { node { sourceUrl mediaItemUrl } }
+      impact7Title
+      impact7Description
+      impact7Details
+      impact7Icon { node { sourceUrl mediaItemUrl } }
+      impact8Title
+      impact8Description
+      impact8Details
+      impact8Icon { node { sourceUrl mediaItemUrl } }
+      innovationTitle
+      innovationDescription
+      innovationBtnText
+      innovationBtnLink {
+        nodes {
+          ... on ContentNode {
+            uri
+          }
+        }
+      }
+      service1Title
+      service1Description
+      service1Icon { node { sourceUrl mediaItemUrl } }
+      service2Title
+      service2Description
+      service2Icon { node { sourceUrl mediaItemUrl } }
+      service3Title
+      service3Description
+      service3Icon { node { sourceUrl mediaItemUrl } }
+      service4Title
+      service4Description
+      service4Icon { node { sourceUrl mediaItemUrl } }
+      service5Title
+      service5Description
+      service5Icon { node { sourceUrl mediaItemUrl } }
+      service6Title
+      service6Description
+      service6Icon { node { sourceUrl mediaItemUrl } }
+      service7Title
+      service7Description
+      service7Icon { node { sourceUrl mediaItemUrl } }
+      service8Title
+      service8Description
+      service8Icon { node { sourceUrl mediaItemUrl } }
+      outcomesTitle
+      outcomesDescription
+      outcome1Title
+      outcome1Description
+      outcome1Icon { node { sourceUrl mediaItemUrl } }
+      outcome2Title
+      outcome2Description
+      outcome2Icon { node { sourceUrl mediaItemUrl } }
+      outcome3Title
+      outcome3Description
+      outcome3Icon { node { sourceUrl mediaItemUrl } }
+      outcome4Title
+      outcome4Description
+      outcome4Icon { node { sourceUrl mediaItemUrl } }
+      outcome5Title
+      outcome5Description
+      outcome5Icon { node { sourceUrl mediaItemUrl } }
+      outcome6Title
+      outcome6Description
+      outcome6Icon { node { sourceUrl mediaItemUrl } }
+      outcome7Title
+      outcome7Description
+      outcome7Icon { node { sourceUrl mediaItemUrl } }
+      outcome8Title
+      outcome8Description
+      outcome8Icon { node { sourceUrl mediaItemUrl } }
+    }
+  }
+`;
+
+export async function getIndustryBySlug(slug: string) {
+  const query = `
+    ${GLOBAL_SETTINGS_FRAGMENT.replace('on Page', 'on Industry')}
+    ${INDUSTRY_PAGE_FIELDS_FRAGMENT}
+    query GetIndustryBySlug($id: ID!, $idType: IndustryIdType!) {
+      industry(id: $id, idType: $idType) {
+        id
+        title
+        content
+        slug
+        uri
+        date
+        featuredImage { node { sourceUrl } }
+        ...GlobalSettingsFields
+        ...IndustryPageFields
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, {
+      id: slug,
+      idType: 'SLUG'
+    });
+
+    const page = response?.data?.industry || null;
+    if (page) {
+      const globalFallback = await getGlobalSettings();
+      if (globalFallback) {
+        page.globalSettings = mergeACFData(page.globalSettings, globalFallback);
+      }
+    }
+    return page;
+  } catch (error) {
+    console.error('Error fetching industry by slug:', error);
+    return null;
+  }
+}
+
+export async function getSolutionBySlug(slug: string) {
+  const query = `
+    ${SOLUTION_PAGE_FIELDS_FRAGMENT}
+    query GetSolutionBySlug($id: ID!, $idType: SolutionIdType!) {
+      solution(id: $id, idType: $idType) {
+        id
+        title
+        content
+        slug
+        uri
+        date
+        featuredImage { node { sourceUrl } }
+        ...SolutionPageFields
+      }
+    }
+  `;
+
+  try {
+    const response = await fetchGraphQL(query, {
+      id: slug,
+      idType: 'SLUG'
+    });
+
+    const page = response?.data?.solution || null;
+    if (page) {
+      const globalFallback = await getGlobalSettings();
+      if (globalFallback) {
+        page.globalSettings = mergeACFData(page.globalSettings, globalFallback);
+      }
+    }
+    return page;
+  } catch (error) {
+    console.error('Error fetching solution by slug:', error);
     return null;
   }
 }

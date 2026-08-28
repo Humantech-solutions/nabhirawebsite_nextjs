@@ -14,32 +14,32 @@ export const navigationConfig = {
       columns: [
         {
           title: "CLOUD TRANSFORMATION",
-          href: "/solutions/cloud-transformation",
+          href: "/services/cloud-transformation",
           items: [
-            { label: "Cloud Advisory", href: "/solutions/cloud-advisory" },
-            { label: "Cloud Migration", href: "/solutions/cloud-migration" },
-            { label: "Cloud Modernization", href: "/solutions/cloud-modernization" },
-            { label: "Cloud-native Development", href: "/solutions/cloud-native-development" },
-            { label: "Cloud Security & Governance", href: "/solutions/cloud-security-governance" },
-            { label: "Cloud Financial Management", href: "/solutions/cloud-financial-management" }
+            { label: "Cloud Advisory", href: "/services/cloud-advisory" },
+            { label: "Cloud Migration", href: "/services/cloud-migration" },
+            { label: "Cloud Modernization", href: "/services/cloud-modernization" },
+            { label: "Cloud-native Development", href: "/services/cloud-native-development" },
+            { label: "Cloud Security & Governance", href: "/services/cloud-security-governance" },
+            { label: "Cloud Financial Management", href: "/services/cloud-financial-management" }
           ]
         },
         {
           title: "DATA FOUNDATION",
           href: "/solutions/data-foundation",
           items: [
-            { label: "Data Engineering", href: "/solutions/data-engineering" },
-            { label: "Data Analytics", href: "/solutions/data-analytics-solution" },
-            { label: "Data Governance", href: "/solutions/data-governance" }
+            { label: "Data Engineering", href: "/services/data-engineering" },
+            { label: "Data Analytics", href: "/services/data-analytics-solution" },
+            { label: "Data Governance", href: "/services/data-governance" }
           ]
         },
         {
           title: "AI ACCELERATION",
-          href: "/solutions/artificial-intelligence",
+          href: "/services/artificial-intelligence",
           items: [
-            { label: "AI Engineering", href: "/solutions/ai-engineering" },
-            { label: "Agentic AI", href: "/solutions/agentic-ai" },
-            { label: "Intelligent Automation", href: "/solutions/intelligent-automation" }
+            { label: "AI Engineering", href: "/services/ai-engineering" },
+            { label: "Agentic AI", href: "/services/agentic-ai" },
+            { label: "Intelligent Automation", href: "/services/intelligent-automation" }
           ]
         }
       ]
@@ -99,7 +99,7 @@ export const navigationConfig = {
       { label: "Data Governance", href: "/services/data-governance" },
       { label: "AI Engineering", href: "/services/ai-engineering" },
       { label: "Agentic AI", href: "/services/agentic-ai" },
-      { label: "Intelligent Automation", href: "/solutions/intelligent-automation" }
+      { label: "Intelligent Automation", href: "/services/intelligent-automation" }
     ],
     industries: [
       { label: "Banking & Financial Services", href: "/industries/banking-finance" },

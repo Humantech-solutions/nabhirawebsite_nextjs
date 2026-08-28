@@ -1,0 +1,2193 @@
+[
+  {
+    "key": "group_solution_settings",
+    "title": "Solution Page Settings",
+    "fields": [
+      {
+        "key": "tab_3a0fd08066d8",
+        "label": "Hero",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_1853f2f171af",
+        "label": "Hero Tag",
+        "name": "solHeroTag",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_c3a1d9e87f02",
+        "label": "Hero Tag Icon",
+        "name": "solHeroTagIcon",
+        "type": "image",
+        "instructions": "Icon displayed inside the hero tag badge",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_2a85287d8b04",
+        "label": "Hero Title",
+        "name": "solHeroTitle",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_1a5a0c2b73e9",
+        "label": "Hero Description",
+        "name": "solHeroDesc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_b3f4489410f5",
+        "label": "Hero CTA 1 Text",
+        "name": "solHeroCta1Text",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_9282f04bf158",
+        "label": "Hero CTA Link",
+        "name": "solHeroCta1Link",
+        "type": "page_link",
+        "instructions": "Select an existing page or enter an external URL",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "page",
+          "services",
+          "solutions",
+          "industries"
+        ],
+        "taxonomy": "",
+        "allow_null": 1,
+        "allow_archives": 0,
+        "multiple": 0
+      },
+      {
+        "key": "tab_66110f96684f",
+        "label": "Stats",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_748f4be521aa",
+        "label": "Stats Title",
+        "name": "solStatsTitle",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_0d34247a1476",
+        "label": "Stat 1 Value",
+        "name": "solStat1Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_a867136d8a30",
+        "label": "Stat 1 Label",
+        "name": "solStat1Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_5f19ce0b7830",
+        "label": "Stat 2 Value",
+        "name": "solStat2Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_505190cad0bd",
+        "label": "Stat 2 Label",
+        "name": "solStat2Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_a3b1c2d4e5f6",
+        "label": "Stat 3 Value",
+        "name": "solStat3Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_b4c2d3e5f6a7",
+        "label": "Stat 3 Label",
+        "name": "solStat3Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_d6e4f5a7b8c9",
+        "label": "Stat 4 Value",
+        "name": "solStat4Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_e7f5a6b8c9d0",
+        "label": "Stat 4 Label",
+        "name": "solStat4Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_a9b7c8d0e1f2",
+        "label": "Stat 5 Value",
+        "name": "solStat5Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_b0c8d9e1f2a3",
+        "label": "Stat 5 Label",
+        "name": "solStat5Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_d2e0f1a3b4c5",
+        "label": "Stat 6 Value",
+        "name": "solStat6Value",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_e3f1a2b4c5d6",
+        "label": "Stat 6 Label",
+        "name": "solStat6Label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "tab_5a487e145956",
+        "label": "Overview",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_c176c4991246",
+        "label": "Overview Tag",
+        "name": "solOverviewTag",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_1d721b26cf50",
+        "label": "Overview Heading",
+        "name": "solOverviewHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_5c3f8090952c",
+        "label": "Overview Paragraph 1",
+        "name": "solOverviewPara1",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_02b8ce865e60",
+        "label": "Overview Paragraph 2",
+        "name": "solOverviewPara2",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_e0d6840060a8",
+        "label": "Overview Paragraph 3",
+        "name": "solOverviewPara3",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "tab_b1904f41bda5",
+        "label": "Challenges",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_1124e14dbc7e",
+        "label": "Challenges Heading",
+        "name": "solChallengeHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_53e7fc702dc9",
+        "label": "Challenge 1 Icon",
+        "name": "solChallenge1Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_6eebbddf35e8",
+        "label": "Challenge 1 Title",
+        "name": "solChallenge1Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_8a54d9de393f",
+        "label": "Challenge 1 Description",
+        "name": "solChallenge1Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_393df40e5dfb",
+        "label": "Challenge 2 Icon",
+        "name": "solChallenge2Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_fecc65670013",
+        "label": "Challenge 2 Title",
+        "name": "solChallenge2Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_781a3e9bc4ff",
+        "label": "Challenge 2 Description",
+        "name": "solChallenge2Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_fda6632bfeb8",
+        "label": "Challenge 3 Icon",
+        "name": "solChallenge3Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_ef6e4c2480c0",
+        "label": "Challenge 3 Title",
+        "name": "solChallenge3Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_96438ae53b90",
+        "label": "Challenge 3 Description",
+        "name": "solChallenge3Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_ch_4_icon",
+        "label": "Challenge 4 Icon",
+        "name": "solChallenge4Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_ch_4_title",
+        "label": "Challenge 4 Title",
+        "name": "solChallenge4Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_ch_4_desc",
+        "label": "Challenge 4 Description",
+        "name": "solChallenge4Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_ch_5_icon",
+        "label": "Challenge 5 Icon",
+        "name": "solChallenge5Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_ch_5_title",
+        "label": "Challenge 5 Title",
+        "name": "solChallenge5Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_ch_5_desc",
+        "label": "Challenge 5 Description",
+        "name": "solChallenge5Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_ch_6_icon",
+        "label": "Challenge 6 Icon",
+        "name": "solChallenge6Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_ch_6_title",
+        "label": "Challenge 6 Title",
+        "name": "solChallenge6Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_ch_6_desc",
+        "label": "Challenge 6 Description",
+        "name": "solChallenge6Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "tab_39103aaf7410",
+        "label": "Our Solution",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_5d9741262222",
+        "label": "Solution Detail Heading",
+        "name": "solDetailHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_36cfc8c7d4de",
+        "label": "Solution Detail Subheading",
+        "name": "solDetailSubheading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_fa42d2b3f2a7",
+        "label": "Solution Detail Paragraph 1",
+        "name": "solDetailPara1",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_7020ac1ca6ff",
+        "label": "Solution Detail Paragraph 2",
+        "name": "solDetailPara2",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_27e3b99a099c",
+        "label": "Solution Detail Paragraph 3",
+        "name": "solDetailPara3",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_dd3433fece37",
+        "label": "Solution Detail CTA Text",
+        "name": "solDetailCtaText",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_623fc934b0ed",
+        "label": "Solution Detail CTA Link",
+        "name": "solDetailCtaLink",
+        "type": "page_link",
+        "instructions": "Select an existing page or enter an external URL",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "page",
+          "services",
+          "solutions",
+          "industries"
+        ],
+        "taxonomy": "",
+        "allow_null": 1,
+        "allow_archives": 0,
+        "multiple": 0
+      },
+      {
+        "key": "field_c572109129af",
+        "label": "Solution Detail Image",
+        "name": "solDetailImage",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "tab_98be46145934",
+        "label": "Key Features",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_f70bc04ecdd3",
+        "label": "Features Heading",
+        "name": "solFeaturesHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_2d1037eb2bfc",
+        "label": "Feature 1 Icon",
+        "name": "solFeature1Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_1e40c73c7eef",
+        "label": "Feature 1 Title",
+        "name": "solFeature1Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_e514bb21b095",
+        "label": "Feature 1 Description",
+        "name": "solFeature1Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_8238b6c50e4f",
+        "label": "Feature 2 Icon",
+        "name": "solFeature2Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_7fb1690e0658",
+        "label": "Feature 2 Title",
+        "name": "solFeature2Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_c34942ccaa87",
+        "label": "Feature 2 Description",
+        "name": "solFeature2Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_d91a192c3bf7",
+        "label": "Feature 3 Icon",
+        "name": "solFeature3Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_13aad983f1bf",
+        "label": "Feature 3 Title",
+        "name": "solFeature3Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_070a658197e0",
+        "label": "Feature 3 Description",
+        "name": "solFeature3Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_7ced45ce31a6",
+        "label": "Feature 4 Icon",
+        "name": "solFeature4Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_30399ffb5821",
+        "label": "Feature 4 Title",
+        "name": "solFeature4Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_c0933aaf3566",
+        "label": "Feature 4 Description",
+        "name": "solFeature4Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_8ab3198054cb",
+        "label": "Feature 5 Icon",
+        "name": "solFeature5Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_37c0b5a85df6",
+        "label": "Feature 5 Title",
+        "name": "solFeature5Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_8bb1499cf2a0",
+        "label": "Feature 5 Description",
+        "name": "solFeature5Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_05fd31265316",
+        "label": "Feature 6 Icon",
+        "name": "solFeature6Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_4940d748e84e",
+        "label": "Feature 6 Title",
+        "name": "solFeature6Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_086495819a4b",
+        "label": "Feature 6 Description",
+        "name": "solFeature6Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_kf_7_icon",
+        "label": "Feature 7 Icon",
+        "name": "solFeature7Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_kf_7_title",
+        "label": "Feature 7 Title",
+        "name": "solFeature7Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_kf_7_desc",
+        "label": "Feature 7 Description",
+        "name": "solFeature7Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_kf_8_icon",
+        "label": "Feature 8 Icon",
+        "name": "solFeature8Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_kf_8_title",
+        "label": "Feature 8 Title",
+        "name": "solFeature8Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_kf_8_desc",
+        "label": "Feature 8 Description",
+        "name": "solFeature8Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_kf_9_icon",
+        "label": "Feature 9 Icon",
+        "name": "solFeature9Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_kf_9_title",
+        "label": "Feature 9 Title",
+        "name": "solFeature9Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_kf_9_desc",
+        "label": "Feature 9 Description",
+        "name": "solFeature9Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "tab_cb3e889c13f9",
+        "label": "Innovation",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_dc584eae80ad",
+        "label": "Innovation Tag",
+        "name": "solInnovationTag",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_6886065f3234",
+        "label": "Innovation Heading",
+        "name": "solInnovationHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_212da8950773",
+        "label": "Innovation 1 Icon",
+        "name": "solInnovation1Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_47a12df1f7c9",
+        "label": "Innovation 1 Title",
+        "name": "solInnovation1Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_14b3d792bb44",
+        "label": "Innovation 1 Description",
+        "name": "solInnovation1Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_53dc1655a0ac",
+        "label": "Innovation 2 Icon",
+        "name": "solInnovation2Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_3b87e72a6da0",
+        "label": "Innovation 2 Title",
+        "name": "solInnovation2Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_698d961f2768",
+        "label": "Innovation 2 Description",
+        "name": "solInnovation2Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_d48f1e302c67",
+        "label": "Innovation 3 Icon",
+        "name": "solInnovation3Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_5625bf5f5354",
+        "label": "Innovation 3 Title",
+        "name": "solInnovation3Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_6a0967504794",
+        "label": "Innovation 3 Description",
+        "name": "solInnovation3Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_in_4_icon",
+        "label": "Innovation 4 Icon",
+        "name": "solInnovation4Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_in_4_title",
+        "label": "Innovation 4 Title",
+        "name": "solInnovation4Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_in_4_desc",
+        "label": "Innovation 4 Description",
+        "name": "solInnovation4Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_in_5_icon",
+        "label": "Innovation 5 Icon",
+        "name": "solInnovation5Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_in_5_title",
+        "label": "Innovation 5 Title",
+        "name": "solInnovation5Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_in_5_desc",
+        "label": "Innovation 5 Description",
+        "name": "solInnovation5Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_in_6_icon",
+        "label": "Innovation 6 Icon",
+        "name": "solInnovation6Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_in_6_title",
+        "label": "Innovation 6 Title",
+        "name": "solInnovation6Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_in_6_desc",
+        "label": "Innovation 6 Description",
+        "name": "solInnovation6Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "tab_55823d701a36",
+        "label": "Benefits",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_52d96c6147ec",
+        "label": "Benefits Tag",
+        "name": "solBenefitsTag",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_bccc3e929408",
+        "label": "Benefits Heading",
+        "name": "solBenefitsHeading",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_c6c8c43c4f3a",
+        "label": "Benefit 1 Icon",
+        "name": "solBenefit1Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_9081684d7ea3",
+        "label": "Benefit 1 Title",
+        "name": "solBenefit1Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_f19f2cfd812b",
+        "label": "Benefit 1 Description",
+        "name": "solBenefit1Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_4496e72d16f3",
+        "label": "Benefit 2 Icon",
+        "name": "solBenefit2Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_15e7cafd8f33",
+        "label": "Benefit 2 Title",
+        "name": "solBenefit2Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_e5f8e808c301",
+        "label": "Benefit 2 Description",
+        "name": "solBenefit2Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_daaedfa85615",
+        "label": "Benefit 3 Icon",
+        "name": "solBenefit3Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_ebefc0e2c650",
+        "label": "Benefit 3 Title",
+        "name": "solBenefit3Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_d6bbf7a90646",
+        "label": "Benefit 3 Description",
+        "name": "solBenefit3Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_be_4_icon",
+        "label": "Benefit 4 Icon",
+        "name": "solBenefit4Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_be_4_title",
+        "label": "Benefit 4 Title",
+        "name": "solBenefit4Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_be_4_desc",
+        "label": "Benefit 4 Description",
+        "name": "solBenefit4Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_be_5_icon",
+        "label": "Benefit 5 Icon",
+        "name": "solBenefit5Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_be_5_title",
+        "label": "Benefit 5 Title",
+        "name": "solBenefit5Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_be_5_desc",
+        "label": "Benefit 5 Description",
+        "name": "solBenefit5Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_be_6_icon",
+        "label": "Benefit 6 Icon",
+        "name": "solBenefit6Icon",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "url",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_be_6_title",
+        "label": "Benefit 6 Title",
+        "name": "solBenefit6Title",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_be_6_desc",
+        "label": "Benefit 6 Description",
+        "name": "solBenefit6Desc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "tab_66d5d32f468d",
+        "label": "Final CTA",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_ae4e45d4acec",
+        "label": "Final CTA Heading",
+        "name": "solCtaHeading",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_ee77bbfae58f",
+        "label": "Final CTA Description",
+        "name": "solCtaDesc",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_cd5c4163fe8b",
+        "label": "Final CTA Button Text",
+        "name": "solCtaBtnText",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_f5466a646d17",
+        "label": "Final CTA Button Link",
+        "name": "solCtaBtnLink",
+        "type": "page_link",
+        "instructions": "Select an existing page or enter an external URL",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "page",
+          "services",
+          "solutions",
+          "industries"
+        ],
+        "taxonomy": "",
+        "allow_null": 1,
+        "allow_archives": 0,
+        "multiple": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "solution"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+  }
+]
