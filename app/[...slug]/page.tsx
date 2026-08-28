@@ -232,12 +232,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
 
   // 3. Handle Industries Route
   if (firstSlug === "industries") {
-    const IndustryComponent = industryComponentMap[restSlug];
-    if (IndustryComponent) {
-      return <IndustryComponent wordpressData={page} />;
-    }
+    // If page exists in WordPress, use dynamic IndustryTemplate
     if (page) {
       return <IndustryTemplate wordpressData={page} />;
+    }
+    // If not in WordPress, check if we have a dedicated code component
+    const IndustryComponent = industryComponentMap[restSlug];
+    if (IndustryComponent) {
+      return <IndustryComponent wordpressData={null} />;
     }
     // Neither in WP nor in code -> 404
     notFound();

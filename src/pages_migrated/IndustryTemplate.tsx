@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion as Motion, useScroll, useTransform } from "motion/react";
+import { motion as Motion, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -15,7 +15,6 @@ import {
   Smartphone,
   Database,
   Cpu,
-  Check,
   Zap,
   Lock,
   FileCheck,
@@ -26,16 +25,19 @@ import {
   LayoutTemplate
 } from "lucide-react";
 
-export default function BankingFinance({ wordpressData }: { wordpressData?: any }) {
-
+export default function IndustryTemplate({ wordpressData }: { wordpressData?: any }) {
   useEffect(() => {
-    document.title = "Banking & Financial Services | Hutech Solutions Technologies";
+    if (wordpressData?.title) {
+      document.title = `${wordpressData.title} | Hutech Solutions Technologies`;
+    } else {
+      document.title = "Banking & Financial Services | Hutech Solutions Technologies";
+    }
     window.scrollTo(0, 0);
-  }, []);
+  }, [wordpressData]);
 
   const gs = wordpressData?.globalSettings;
   const heroData = gs?.heroSlides;
-  const sf = wordpressData?.serviceFields;
+  const indf = wordpressData?.industryFields;
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -43,7 +45,8 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
     offset: ["start start", "end end"]
   });
 
-  const challenges = [
+  // 1. Challenges (Fallback + Dynamic 1 to 8)
+  const defaultChallenges = [
     {
       title: "Legacy Systems",
       text: "Legacy core systems limiting innovation speed and agility.",
@@ -76,11 +79,25 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
     },
   ];
 
-  const impactAreas = [
+  const dynamicChallenges = [
+    { title: indf?.challenge1Title, text: indf?.challenge1Description, iconUrl: indf?.challenge1Icon?.node?.sourceUrl || indf?.challenge1Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge2Title, text: indf?.challenge2Description, iconUrl: indf?.challenge2Icon?.node?.sourceUrl || indf?.challenge2Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge3Title, text: indf?.challenge3Description, iconUrl: indf?.challenge3Icon?.node?.sourceUrl || indf?.challenge3Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge4Title, text: indf?.challenge4Description, iconUrl: indf?.challenge4Icon?.node?.sourceUrl || indf?.challenge4Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge5Title, text: indf?.challenge5Description, iconUrl: indf?.challenge5Icon?.node?.sourceUrl || indf?.challenge5Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge6Title, text: indf?.challenge6Description, iconUrl: indf?.challenge6Icon?.node?.sourceUrl || indf?.challenge6Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge7Title, text: indf?.challenge7Description, iconUrl: indf?.challenge7Icon?.node?.sourceUrl || indf?.challenge7Icon?.node?.mediaItemUrl },
+    { title: indf?.challenge8Title, text: indf?.challenge8Description, iconUrl: indf?.challenge8Icon?.node?.sourceUrl || indf?.challenge8Icon?.node?.mediaItemUrl },
+  ].filter(c => c.title);
+
+  const challengesList = dynamicChallenges.length > 0 ? dynamicChallenges : defaultChallenges;
+
+  // 2. Impact Areas (Fallback + Dynamic 1 to 8)
+  const defaultImpactAreas = [
     {
       id: "infrastructure",
       title: "Modern Core & Cloud Infrastructure",
-      description: "Transitioning from monolithic legacy Banking & Finance applications to secure cloud-enabled and API-driven architectures.",
+      description: "Transitioning from monolithic legacy applications to secure cloud-enabled and API-driven architectures.",
       details: ["Legacy-to-Cloud Migration", "API-First Architecture", "Scalability & Resilience"],
       icon: <Cloud size={32} />,
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
@@ -88,8 +105,8 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
     {
       id: "digital",
       title: "Digital & Embedded Finance",
-      description: "Enabling seamless omnichannel banking experiences including mobile platforms and digital onboarding.",
-      details: ["Omnichannel Experience", "Digital Onboarding", "Embedded Finance"],
+      description: "Enabling seamless omnichannel experiences including mobile platforms and digital onboarding.",
+      details: ["Omnichannel Experience", "Digital Onboarding", "Embedded Solutions"],
       icon: <Smartphone size={32} />,
       image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop"
     },
@@ -104,7 +121,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
     {
       id: "governance",
       title: "Data Governance & Regulatory Alignment",
-      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency and audit readiness for financial institutions.",
+      description: "Establishing enterprise data governance frameworks that improve reporting accuracy, transparency and audit readiness.",
       details: ["Data Governance", "Audit Readiness", "Reporting Accuracy"],
       icon: <LayoutTemplate size={32} />,
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop"
@@ -112,49 +129,136 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
     {
       id: "operations",
       title: "Intelligent Operations",
-      description: "Streamlining high-volume banking processes through automation to improve efficiency and customer response time.",
+      description: "Streamlining high-volume processes through automation to improve efficiency and customer response time.",
       details: ["Process Automation", "Operational Efficiency", "Faster Response Times"],
       icon: <Cpu size={32} />,
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
     },
   ];
 
-  const fintechServices = [
+  const dynamicImpactAreas = [
     {
-      title: "Cloud Native Engineering",
-      desc: "Building scalable products on modern cloud stacks.",
-      icon: <Cloud />
+      id: "impact1",
+      title: indf?.impact1Title,
+      description: indf?.impact1Description,
+      details: indf?.impact1Details ? indf.impact1Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact1Icon?.node?.sourceUrl || indf?.impact1Icon?.node?.mediaItemUrl || defaultImpactAreas[0].image
     },
     {
-      title: "Secure API Integration",
-      desc: "Connecting ecosystems with banking-grade security.",
-      icon: <Globe />
+      id: "impact2",
+      title: indf?.impact2Title,
+      description: indf?.impact2Description,
+      details: indf?.impact2Details ? indf.impact2Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact2Icon?.node?.sourceUrl || indf?.impact2Icon?.node?.mediaItemUrl || defaultImpactAreas[1].image
     },
     {
-      title: "Payment Platforms",
-      desc: "Next-gen payment and lending infrastructure.",
-      icon: <CreditCard />
+      id: "impact3",
+      title: indf?.impact3Title,
+      description: indf?.impact3Description,
+      details: indf?.impact3Details ? indf.impact3Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact3Icon?.node?.sourceUrl || indf?.impact3Icon?.node?.mediaItemUrl || defaultImpactAreas[2].image
     },
     {
-      title: "Data Architecture",
-      desc: "Regulatory-ready data foundations.",
-      icon: <Database />
+      id: "impact4",
+      title: indf?.impact4Title,
+      description: indf?.impact4Description,
+      details: indf?.impact4Details ? indf.impact4Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact4Icon?.node?.sourceUrl || indf?.impact4Icon?.node?.mediaItemUrl || defaultImpactAreas[3].image
     },
     {
-      title: "AI Underwriting",
-      desc: "Machine learning models for smarter credit decisions.",
-      icon: <Brain />
+      id: "impact5",
+      title: indf?.impact5Title,
+      description: indf?.impact5Description,
+      details: indf?.impact5Details ? indf.impact5Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact5Icon?.node?.sourceUrl || indf?.impact5Icon?.node?.mediaItemUrl || defaultImpactAreas[4].image
     },
+    {
+      id: "impact6",
+      title: indf?.impact6Title,
+      description: indf?.impact6Description,
+      details: indf?.impact6Details ? indf.impact6Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact6Icon?.node?.sourceUrl || indf?.impact6Icon?.node?.mediaItemUrl || defaultImpactAreas[0].image
+    },
+    {
+      id: "impact7",
+      title: indf?.impact7Title,
+      description: indf?.impact7Description,
+      details: indf?.impact7Details ? indf.impact7Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact7Icon?.node?.sourceUrl || indf?.impact7Icon?.node?.mediaItemUrl || defaultImpactAreas[1].image
+    },
+    {
+      id: "impact8",
+      title: indf?.impact8Title,
+      description: indf?.impact8Description,
+      details: indf?.impact8Details ? indf.impact8Details.split('\n').map((d: string) => d.trim()).filter(Boolean) : [],
+      image: indf?.impact8Icon?.node?.sourceUrl || indf?.impact8Icon?.node?.mediaItemUrl || defaultImpactAreas[2].image
+    },
+  ].filter(a => a.title);
+
+  const impactList = dynamicImpactAreas.length > 0 ? dynamicImpactAreas : defaultImpactAreas;
+
+  // 3. Innovation Services (Fallback + Dynamic 1 to 8)
+  const defaultServices = [
+    { title: "Cloud Native Engineering", desc: "Building scalable products on modern cloud stacks.", icon: <Cloud /> },
+    { title: "Secure API Integration", desc: "Connecting ecosystems with enterprise-grade security.", icon: <Globe /> },
+    { title: "Payment Platforms", desc: "Next-gen payment and transaction infrastructure.", icon: <CreditCard /> },
+    { title: "Data Architecture", desc: "Regulatory-ready data foundations.", icon: <Database /> },
+    { title: "AI Underwriting", desc: "Machine learning models for smarter business decisions.", icon: <Brain /> },
   ];
+
+  const dynamicServices = [
+    { title: indf?.service1Title, desc: indf?.service1Description, iconUrl: indf?.service1Icon?.node?.sourceUrl || indf?.service1Icon?.node?.mediaItemUrl },
+    { title: indf?.service2Title, desc: indf?.service2Description, iconUrl: indf?.service2Icon?.node?.sourceUrl || indf?.service2Icon?.node?.mediaItemUrl },
+    { title: indf?.service3Title, desc: indf?.service3Description, iconUrl: indf?.service3Icon?.node?.sourceUrl || indf?.service3Icon?.node?.mediaItemUrl },
+    { title: indf?.service4Title, desc: indf?.service4Description, iconUrl: indf?.service4Icon?.node?.sourceUrl || indf?.service4Icon?.node?.mediaItemUrl },
+    { title: indf?.service5Title, desc: indf?.service5Description, iconUrl: indf?.service5Icon?.node?.sourceUrl || indf?.service5Icon?.node?.mediaItemUrl },
+    { title: indf?.service6Title, desc: indf?.service6Description, iconUrl: indf?.service6Icon?.node?.sourceUrl || indf?.service6Icon?.node?.mediaItemUrl },
+    { title: indf?.service7Title, desc: indf?.service7Description, iconUrl: indf?.service7Icon?.node?.sourceUrl || indf?.service7Icon?.node?.mediaItemUrl },
+    { title: indf?.service8Title, desc: indf?.service8Description, iconUrl: indf?.service8Icon?.node?.sourceUrl || indf?.service8Icon?.node?.mediaItemUrl },
+  ].filter(s => s.title);
+
+  const servicesList = dynamicServices.length > 0 ? dynamicServices : defaultServices;
+
+  // 4. Outcomes (Fallback + Dynamic 1 to 8)
+  const defaultOutcomes = [
+    { title: "Faster Launches", desc: "Accelerated digital product delivery cycles.", icon: <TrendingUp size={32} className="mb-4 text-[#f99d1c]" /> },
+    { title: "Reduced Risk", desc: "Stronger compliance and audit readiness.", icon: <Shield size={32} className="mb-4 text-[#f99d1c]" /> },
+    { title: "Customer Trust", desc: "Improved retention through secure experiences.", icon: <UserCheck size={32} className="mb-4 text-[#f99d1c]" /> },
+    { title: "Future Ready", desc: "Scalable infrastructure for long-term growth.", icon: <Database size={32} className="mb-4 text-[#f99d1c]" /> },
+  ];
+
+  const dynamicOutcomes = [
+    { title: indf?.outcome1Title, desc: indf?.outcome1Description, iconUrl: indf?.outcome1Icon?.node?.sourceUrl || indf?.outcome1Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome2Title, desc: indf?.outcome2Description, iconUrl: indf?.outcome2Icon?.node?.sourceUrl || indf?.outcome2Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome3Title, desc: indf?.outcome3Description, iconUrl: indf?.outcome3Icon?.node?.sourceUrl || indf?.outcome3Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome4Title, desc: indf?.outcome4Description, iconUrl: indf?.outcome4Icon?.node?.sourceUrl || indf?.outcome4Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome5Title, desc: indf?.outcome5Description, iconUrl: indf?.outcome5Icon?.node?.sourceUrl || indf?.outcome5Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome6Title, desc: indf?.outcome6Description, iconUrl: indf?.outcome6Icon?.node?.sourceUrl || indf?.outcome6Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome7Title, desc: indf?.outcome7Description, iconUrl: indf?.outcome7Icon?.node?.sourceUrl || indf?.outcome7Icon?.node?.mediaItemUrl },
+    { title: indf?.outcome8Title, desc: indf?.outcome8Description, iconUrl: indf?.outcome8Icon?.node?.sourceUrl || indf?.outcome8Icon?.node?.mediaItemUrl },
+  ].filter(o => o.title);
+
+  const outcomesList = dynamicOutcomes.length > 0 ? dynamicOutcomes : defaultOutcomes;
+
+  const pageTitle = wordpressData?.title || "Banking & Financial Services";
+
+  // CTA Links
+  const heroCtaHref = heroData?.heroS1Button?.url || "/contact";
+  const heroCtaBtnText = heroData?.heroS1Button?.title || "Consult Us";
+
+  const innovBtnHref = (typeof indf?.innovationBtnLink === "string" ? indf.innovationBtnLink : indf?.innovationBtnLink?.nodes?.[0]?.uri) || "/contact";
+  const innovBtnText = indf?.innovationBtnText || "PARTNER WITH US";
+
+  const heroBgImage = heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || wordpressData?.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
   return (
     <div ref={containerRef} className="bg-white text-[#11253e] selection:bg-[#f99d1c] selection:text-white">
-      {/* ─── Hero Section ─── */}
+      {/* ─── 1. Hero Section ─── */}
       <section className="relative h-[400px] md:h-[520px] flex items-center overflow-hidden bg-[#11253e]">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src={heroData?.heroS1ImageUrl || heroData?.heroS1Image?.node?.sourceUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
-            alt="Modern Financial Architecture"
+            src={heroBgImage}
+            alt={pageTitle}
             className="w-full h-full object-cover opacity-40 mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#11253e] via-[#11253e]/80 to-transparent"></div>
@@ -172,27 +276,27 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
             <nav className="flex items-center space-x-3 text-[11px] md:text-[13px] font-medium tracking-[-0.02em] mb-4">
               <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
               <span className="text-white/30 font-light">&gt;</span>
-              <span className="text-[#f99d1c] uppercase tracking-widest">Banking & Financial Services</span>
+              <span className="text-[#f99d1c] uppercase tracking-widest">{pageTitle}</span>
             </nav>
             
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || (
                 <>
-                  Future of <br /><span className="text-[#f99d1c]">Trusted Finance</span>
+                  Future of <br /><span className="text-[#f99d1c]">Trusted Enterprise</span>
                 </>
               ))}
             </h1>
             
             <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-8 border-l-2 border-[#f99d1c] pl-6">
-              {formatQuotesToBold(heroData?.heroS1Desc || "We help financial institutions evolve from legacy-constrained operations to intelligent, secure and innovation-driven enterprises.")}
+              {formatQuotesToBold(heroData?.heroS1Desc || "We help enterprise leaders evolve from legacy-constrained operations to intelligent, secure and innovation-driven organizations.")}
             </p>
 
             <div className="pt-2">
               <Link 
-                href="/contact"
+                href={heroCtaHref}
                 className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
               >
-                <span>Consult Us</span>
+                <span>{heroCtaBtnText}</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -200,23 +304,23 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         </div>
       </section>
 
-      {/* ─── The Industry Imperative ─── */}
+      {/* ─── 2. The Industry Imperative ─── */}
       <section className="py-24 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#11253e] mb-4">
-                {formatQuotesToBold("The Industry \"Imperative\"")}
+                {formatQuotesToBold(indf?.imperativeTitle || "The Industry \"Imperative\"")}
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
             <p className="text-[#11253e] text-lg max-w-md text-left">
-              Financial institutions are navigating a defining decade. Transformation is no longer optional—it is structural.
+              {formatQuotesToBold(indf?.imperativeDescription || "Enterprises are navigating a defining decade. Transformation is no longer optional—it is structural.")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {challenges.map((item, idx) => (
+            {challengesList.map((item: any, idx: number) => (
               <Motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -226,9 +330,13 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
                 className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#f99d1c]/30 transition-all duration-300 group"
               >
                 <div className="mb-6 bg-[#11253e]/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#11253e] group-hover:text-white transition-colors duration-300">
-                  <div className="group-hover:text-white text-[#11253e] transition-colors duration-300">
-                    {item.icon}
-                  </div>
+                  {item.iconUrl ? (
+                    <ImageWithFallback src={item.iconUrl} alt={item.title} className="w-8 h-8 object-contain" />
+                  ) : (
+                    <div className="group-hover:text-white text-[#11253e] transition-colors duration-300">
+                      {item.icon || <Database className="text-[#f99d1c]" size={32} />}
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-xl font-bold text-[#11253e] mb-3">{formatQuotesToBold(item.title)}</h3>
                 <p className="text-[#11253e] leading-relaxed">{formatQuotesToBold(item.text)}</p>
@@ -238,22 +346,22 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         </div>
       </section>
 
-      {/* ─── Impact Areas ─── */}
+      {/* ─── 3. Impact Areas ─── */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-light text-[#11253e] mb-6">
-              {formatQuotesToBold("Where We Create 'Impact'")}
+              {formatQuotesToBold(indf?.impactMainTitle || "Where We Create 'Impact'")}
             </h2>
             <p className="text-[#11253e] text-xl max-w-3xl mx-auto">
-              {formatQuotesToBold("Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.")}
+              {formatQuotesToBold(indf?.impactMainDescription || "Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.")}
             </p>
           </div>
 
           <div className="space-y-24">
-            {impactAreas.map((area, idx) => (
+            {impactList.map((area: any, idx: number) => (
               <Motion.div
-                key={area.id}
+                key={area.id || idx}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -267,14 +375,16 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#11253e]">{formatQuotesToBold(area.title)}</h3>
                   <p className="text-[#11253e] text-lg leading-relaxed">{formatQuotesToBold(area.description)}</p>
-                  <ul className="space-y-3 pt-4">
-                    {area.details.map((detail, i) => (
-                      <li key={i} className="flex items-center gap-3 text-[#11253e] font-medium">
-                        <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                  {area.details && area.details.length > 0 && (
+                    <ul className="space-y-3 pt-4">
+                      {area.details.map((detail: string, i: number) => (
+                        <li key={i} className="flex items-center gap-3 text-[#11253e] font-medium">
+                          <div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 <div className="flex-1 w-full">
@@ -294,31 +404,37 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         </div>
       </section>
 
-      {/* ─── FinTech Innovation ─── */}
+      {/* ─── 4. Innovation Section ─── */}
       <section className="py-24 bg-[#11253e] text-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#f99d1c]/50 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">
-                {formatQuotesToBold("Enabling \n'FinTech Innovation'")}
+                {formatQuotesToBold(indf?.innovationTitle || "Enabling \n'Enterprise Innovation'")}
               </h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                {formatQuotesToBold("We combine startup agility with enterprise-grade engineering discipline to build the next generation of financial products.")}
+                {formatQuotesToBold(indf?.innovationDescription || "We combine agile speed with enterprise-grade engineering discipline to build the next generation of solutions.")}
               </p>
               <div className="pt-2">
-                <Link href="/contact">
+                <Link href={innovBtnHref}>
                   <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
-                    PARTNER WITH US <ArrowRight size={16} />
+                    {innovBtnText} <ArrowRight size={16} />
                   </button>
                 </Link>
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {fintechServices.map((service, idx) => (
+              {servicesList.map((service: any, idx: number) => (
                 <div key={idx} className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                  <div className="text-[#f99d1c] mb-4">{service.icon}</div>
+                  <div className="text-[#f99d1c] mb-4">
+                    {service.iconUrl ? (
+                      <ImageWithFallback src={service.iconUrl} alt={service.title} className="w-8 h-8 object-contain" />
+                    ) : (
+                      service.icon || <Globe size={24} />
+                    )}
+                  </div>
                   <h4 className="font-bold text-lg mb-2">{formatQuotesToBold(service.title)}</h4>
                   <p className="text-white/50 text-sm">{formatQuotesToBold(service.desc)}</p>
                 </div>
@@ -328,11 +444,7 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         </div>
       </section>
 
-
-      
-
-      
-      {/* ─── Outcomes ─── */}
+      {/* ─── 5. Outcomes ─── */}
       <section className="py-24 bg-[#e5dfd3] relative overflow-hidden">
         <div 
           className="absolute inset-0 opacity-10 pointer-events-none" 
@@ -342,30 +454,25 @@ export default function BankingFinance({ wordpressData }: { wordpressData?: any 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[#11253e]">
             <div className="md:col-span-1">
-              <h2 className="text-3xl font-bold mb-4">Outcomes That Matter</h2>
-              <p>Tangible results for forward-thinking institutions.</p>
+              <h2 className="text-3xl font-bold mb-4">
+                {formatQuotesToBold(indf?.outcomesTitle || "Outcomes That Matter")}
+              </h2>
+              <p>
+                {formatQuotesToBold(indf?.outcomesDescription || "Tangible results for forward-thinking institutions.")}
+              </p>
             </div>
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-8">
-              <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <TrendingUp size={32} className="mb-4" />
-                <h3 className="text-xl font-bold mb-2">Faster Launches</h3>
-                <p className="text-sm">Accelerated digital product delivery cycles.</p>
-              </div>
-              <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Shield size={32} className="mb-4" />
-                <h3 className="text-xl font-bold mb-2">Reduced Risk</h3>
-                <p className="text-sm">Stronger compliance and audit readiness.</p>
-              </div>
-              <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <UserCheck size={32} className="mb-4" />
-                <h3 className="text-xl font-bold mb-2">Customer Trust</h3>
-                <p className="text-sm">Improved retention through secure experiences.</p>
-              </div>
-              <div className="border-l-2 border-[#11253e]/20 pl-6">
-                <Database size={32} className="mb-4" />
-                <h3 className="text-xl font-bold mb-2">Future Ready</h3>
-                <p className="text-sm">Scalable infrastructure for long-term growth.</p>
-              </div>
+              {outcomesList.map((outcome: any, idx: number) => (
+                <div key={idx} className="border-l-2 border-[#11253e]/20 pl-6">
+                  {outcome.iconUrl ? (
+                    <ImageWithFallback src={outcome.iconUrl} alt={outcome.title} className="w-8 h-8 object-contain mb-4" />
+                  ) : (
+                    outcome.icon || <TrendingUp size={32} className="mb-4 text-[#f99d1c]" />
+                  )}
+                  <h3 className="text-xl font-bold mb-2">{formatQuotesToBold(outcome.title)}</h3>
+                  <p className="text-sm">{formatQuotesToBold(outcome.desc)}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

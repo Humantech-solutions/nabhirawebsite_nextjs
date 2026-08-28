@@ -2768,9 +2768,137 @@ export async function getServiceBySlug(slug: string) {
   }
 }
 
+export const INDUSTRY_PAGE_FIELDS_FRAGMENT = `
+  fragment IndustryPageFields on Industry {
+    industryFields {
+      imperativeTitle
+      imperativeDescription
+      challenge1Title
+      challenge1Description
+      challenge1Icon { node { sourceUrl mediaItemUrl } }
+      challenge2Title
+      challenge2Description
+      challenge2Icon { node { sourceUrl mediaItemUrl } }
+      challenge3Title
+      challenge3Description
+      challenge3Icon { node { sourceUrl mediaItemUrl } }
+      challenge4Title
+      challenge4Description
+      challenge4Icon { node { sourceUrl mediaItemUrl } }
+      challenge5Title
+      challenge5Description
+      challenge5Icon { node { sourceUrl mediaItemUrl } }
+      challenge6Title
+      challenge6Description
+      challenge6Icon { node { sourceUrl mediaItemUrl } }
+      challenge7Title
+      challenge7Description
+      challenge7Icon { node { sourceUrl mediaItemUrl } }
+      challenge8Title
+      challenge8Description
+      challenge8Icon { node { sourceUrl mediaItemUrl } }
+      impactMainTitle
+      impactMainDescription
+      impact1Title
+      impact1Description
+      impact1Details
+      impact1Icon { node { sourceUrl mediaItemUrl } }
+      impact2Title
+      impact2Description
+      impact2Details
+      impact2Icon { node { sourceUrl mediaItemUrl } }
+      impact3Title
+      impact3Description
+      impact3Details
+      impact3Icon { node { sourceUrl mediaItemUrl } }
+      impact4Title
+      impact4Description
+      impact4Details
+      impact4Icon { node { sourceUrl mediaItemUrl } }
+      impact5Title
+      impact5Description
+      impact5Details
+      impact5Icon { node { sourceUrl mediaItemUrl } }
+      impact6Title
+      impact6Description
+      impact6Details
+      impact6Icon { node { sourceUrl mediaItemUrl } }
+      impact7Title
+      impact7Description
+      impact7Details
+      impact7Icon { node { sourceUrl mediaItemUrl } }
+      impact8Title
+      impact8Description
+      impact8Details
+      impact8Icon { node { sourceUrl mediaItemUrl } }
+      innovationTitle
+      innovationDescription
+      innovationBtnText
+      innovationBtnLink {
+        nodes {
+          ... on ContentNode {
+            uri
+          }
+        }
+      }
+      service1Title
+      service1Description
+      service1Icon { node { sourceUrl mediaItemUrl } }
+      service2Title
+      service2Description
+      service2Icon { node { sourceUrl mediaItemUrl } }
+      service3Title
+      service3Description
+      service3Icon { node { sourceUrl mediaItemUrl } }
+      service4Title
+      service4Description
+      service4Icon { node { sourceUrl mediaItemUrl } }
+      service5Title
+      service5Description
+      service5Icon { node { sourceUrl mediaItemUrl } }
+      service6Title
+      service6Description
+      service6Icon { node { sourceUrl mediaItemUrl } }
+      service7Title
+      service7Description
+      service7Icon { node { sourceUrl mediaItemUrl } }
+      service8Title
+      service8Description
+      service8Icon { node { sourceUrl mediaItemUrl } }
+      outcomesTitle
+      outcomesDescription
+      outcome1Title
+      outcome1Description
+      outcome1Icon { node { sourceUrl mediaItemUrl } }
+      outcome2Title
+      outcome2Description
+      outcome2Icon { node { sourceUrl mediaItemUrl } }
+      outcome3Title
+      outcome3Description
+      outcome3Icon { node { sourceUrl mediaItemUrl } }
+      outcome4Title
+      outcome4Description
+      outcome4Icon { node { sourceUrl mediaItemUrl } }
+      outcome5Title
+      outcome5Description
+      outcome5Icon { node { sourceUrl mediaItemUrl } }
+      outcome6Title
+      outcome6Description
+      outcome6Icon { node { sourceUrl mediaItemUrl } }
+      outcome7Title
+      outcome7Description
+      outcome7Icon { node { sourceUrl mediaItemUrl } }
+      outcome8Title
+      outcome8Description
+      outcome8Icon { node { sourceUrl mediaItemUrl } }
+    }
+  }
+`;
+
 export async function getIndustryBySlug(slug: string) {
   const query = `
     ${GLOBAL_SETTINGS_FRAGMENT.replace('on Page', 'on Industry')}
+    ${INDUSTRY_PAGE_FIELDS_FRAGMENT}
     query GetIndustryBySlug($id: ID!, $idType: IndustryIdType!) {
       industry(id: $id, idType: $idType) {
         id
@@ -2781,6 +2909,7 @@ export async function getIndustryBySlug(slug: string) {
         date
         featuredImage { node { sourceUrl } }
         ...GlobalSettingsFields
+        ...IndustryPageFields
       }
     }
   `;
