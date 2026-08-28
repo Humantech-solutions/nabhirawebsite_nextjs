@@ -109,7 +109,7 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                 const author = post.customAuthorName || post.author?.node?.name || post.author || "Hutech Solutions Team";
                 const category = post.categories?.nodes?.[0]?.name || post.category || "";
                 const date = formatDate(post.date);
-                const linkHref = post.isIPublish ? `/resources/blogs/ipublish/${post.id}` : `/resources/blogs/${slug || post.id}`;
+                const linkHref = post.isIPublish ? `/resources/blogs/ipublish/${post.slug || post.id}` : `/resources/blogs/${slug || post.id}`;
 
                 return (
                   <Motion.div
