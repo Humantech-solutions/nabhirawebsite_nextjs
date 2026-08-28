@@ -31,11 +31,11 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
   ];
 
   const impactAreas = [
-    { id: "smart-factory", title: "Smart Factory & Industry 4.0 Enablement", description: "We design connected manufacturing ecosystems integrating IoT devices, production systems, and real-time analytics to improve visibility, efficiency and quality control.", details: ["IoT Integration", "Real-time Analytics", "Quality Control"], icon: <Factory size={40} /> },
-    { id: "predictive-maintenance", title: "Predictive Maintenance & Asset Intelligence", description: "We implement AI-driven monitoring systems that reduce unplanned downtime, extend asset life and optimize maintenance scheduling.", details: ["AI Monitoring", "Asset Optimization", "Downtime Reduction"], icon: <Activity size={40} /> },
-    { id: "supply-chain", title: "Supply Chain Digitization", description: "We enable end-to-end supply chain visibility across procurement, production, warehousing and distribution, improving forecasting accuracy and risk mitigation.", details: ["End-to-End Visibility", "Forecasting Accuracy", "Risk Mitigation"], icon: <Globe size={40} /> },
-    { id: "automotive-digital", title: "Automotive Digital Platforms", description: "We support connected vehicle ecosystems, telematics platforms, software integration and data architectures that power modern mobility solutions.", details: ["Connected Vehicles", "Telematics Platforms", "Mobility Solutions"], icon: <Cpu size={40} /> },
-    { id: "engineering-plm", title: "Engineering & Product Lifecycle Management", description: "We modernize engineering systems enabling collaboration, digital twins, simulation and lifecycle traceability across global teams.", details: ["Digital Twins", "Lifecycle Traceability", "Global Collaboration"], icon: <Settings size={40} /> },
+    { id: "smart-factory", title: "Smart Factory & Industry 4.0 Enablement", description: "We design connected manufacturing ecosystems integrating IoT devices, production systems, and real-time analytics to improve visibility, efficiency and quality control.", details: ["IoT Integration", "Real-time Analytics", "Quality Control"], icon: <Factory size={32} />, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop" },
+    { id: "predictive-maintenance", title: "Predictive Maintenance & Asset Intelligence", description: "We implement AI-driven monitoring systems that reduce unplanned downtime, extend asset life and optimize maintenance scheduling.", details: ["AI Monitoring", "Asset Optimization", "Downtime Reduction"], icon: <Activity size={32} />, image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" },
+    { id: "supply-chain", title: "Supply Chain Digitization", description: "We enable end-to-end supply chain visibility across procurement, production, warehousing and distribution, improving forecasting accuracy and risk mitigation.", details: ["End-to-End Visibility", "Forecasting Accuracy", "Risk Mitigation"], icon: <Globe size={32} />, image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop" },
+    { id: "automotive-digital", title: "Automotive Digital Platforms", description: "We support connected vehicle ecosystems, telematics platforms, software integration and data architectures that power modern mobility solutions.", details: ["Connected Vehicles", "Telematics Platforms", "Mobility Solutions"], icon: <Cpu size={32} />, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop" },
+    { id: "engineering-plm", title: "Engineering & Product Lifecycle Management", description: "We modernize engineering systems enabling collaboration, digital twins, simulation and lifecycle traceability across global teams.", details: ["Digital Twins", "Lifecycle Traceability", "Global Collaboration"], icon: <Settings size={32} />, image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop" },
   ];
 
   const techEnablement = [
@@ -68,9 +68,19 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-medium leading-tight md:leading-[1.05] tracking-[-0.02em] drop-shadow-sm mb-6 md:mb-8">
               {renderHeroTitle(heroData?.heroS1Title || "Manufacturing & |Automotive|")}
             </h1>
-            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-10 border-l-2 border-[#f99d1c] pl-6">
+            <p className="text-white/70 text-lg md:text-[22px] font-light max-w-2xl leading-relaxed mb-8 border-l-2 border-[#f99d1c] pl-6">
               {formatQuotesToBold(heroData?.heroS1Desc || "We help manufacturers transition from rigid production to intelligent, resilient and innovation-driven enterprises.")}
             </p>
+
+            <div className="pt-2">
+              <Link 
+                href="/contact"
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+              >
+                <span>Consult Us</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </Motion.div>
         </div>
       </section>
@@ -84,7 +94,7 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
               </h2>
               <div className="h-1 w-20 bg-[#f99d1c]"></div>
             </div>
-            <p className="text-[#11253e] text-lg max-w-md text-right md:text-left">Manufacturing and Automotive leaders must address supply chain volatility and the shift toward software-defined vehicles.</p>
+            <p className="text-[#11253e] text-lg max-w-md text-left">Manufacturing and Automotive leaders must address supply chain volatility and the shift toward software-defined vehicles.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {challenges.map((item, idx) => (
@@ -116,9 +126,14 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
                   <ul className="space-y-3 pt-4">{area.details.map((detail, i) => (<li key={i} className="flex items-center gap-3 text-[#11253e] font-medium"><div className="w-1.5 h-1.5 bg-[#f99d1c] rounded-full"></div>{detail}</li>))}</ul>
                 </div>
                 <div className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
-                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500"><div className="transform scale-150">{area.icon}</div></div>
-                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#f99d1c]/10 rounded-full blur-3xl"></div>
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                    <ImageWithFallback 
+                      src={area.image}
+                      alt={area.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                 </div>
               </Motion.div>
@@ -134,7 +149,13 @@ export default function ManufacturingAutomotive({ wordpressData }: any) {
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light">Technology <br /><span className="font-bold text-[#f99d1c]">Enablement</span></h2>
               <p className="text-white/60 text-lg leading-relaxed max-w-md">We leverage secure and scalable cloud platforms such as Amazon Web Services, Microsoft Azure and Google Cloud to support industrial-scale workloads.</p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">Partner with us <ArrowRight size={20} /></Link>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
+                    PARTNER WITH US <ArrowRight size={16} />
+                  </button>
+                </Link>
+              </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {techEnablement.map((service, idx) => (

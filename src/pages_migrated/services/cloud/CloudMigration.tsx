@@ -150,7 +150,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                 Every migration journey is different. That's why we begin with understanding your business priorities, not just your infrastructure.
               </p>
 
-              <div className="grid gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   "Minimizing downtime and business disruption",
                   "Reducing risk during transition",
@@ -160,7 +160,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -234,7 +234,7 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                 To reduce manual effort and risk, we leverage a suite of intelligent platforms that shorten timelines and reduce human error while maintaining complete visibility.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   { icon: <Search size={18} />, text: "Automated discovery and dependency mapping tools" },
                   { icon: <Layers size={18} />, text: "Cloud-native migration services and replication tools" },
@@ -242,9 +242,9 @@ export default function CloudMigration({ wordpressData }: { wordpressData?: any 
                   { icon: <Cpu size={18} />, text: "Monitoring and performance optimization platforms" },
                   { icon: <BarChart3 size={18} />, text: "FinOps frameworks to track and control spend" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>

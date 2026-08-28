@@ -62,35 +62,40 @@ export default function MediaEntertainment({ wordpressData }: any) {
       title: "Cloud & Platform Modernization",
       description: "Hybrid and multi-cloud architecture design, OTT platform infrastructure setup, and high-availability streaming environments.",
       details: ["Multi-cloud Architecture", "OTT Infrastructure", "Disaster Recovery"],
-      icon: <Cloud size={40} />
+      icon: <Cloud size={32} />,
+      image: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "app-dev",
       title: "Application Development & Modernization",
       description: "Video-on-demand (VOD) platforms, mobile and smart TV applications, content management systems (CMS), and personalization engines.",
       details: ["VOD Platforms", "Smart TV Apps", "Personalization Engines"],
-      icon: <Code size={40} />
+      icon: <Code size={32} />,
+      image: "https://images.unsplash.com/photo-1522869635100-9f4c5e852867?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "analytics",
       title: "Data & Audience Analytics",
       description: "Real-time user engagement dashboards, recommendation engine enablement, viewer behavior analytics, and ad performance tracking.",
       details: ["Engagement Dashboards", "Recommendation Engines", "Ad Performance Tracking"],
-      icon: <BarChart size={40} />
+      icon: <BarChart size={32} />,
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "cybersecurity",
       title: "Cybersecurity & Compliance",
       description: "Digital rights management (DRM) support, secure payment integrations, data privacy compliance, and threat monitoring.",
       details: ["DRM Support", "Secure Payments", "Data Privacy Compliance"],
-      icon: <Lock size={40} />
+      icon: <Lock size={32} />,
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: "managed-services",
       title: "Managed Services & Performance Optimization",
       description: "24/7 monitoring and support, performance tuning for peak traffic, and cost optimization across cloud environments.",
       details: ["24/7 Monitoring", "Performance Tuning", "Cost Optimization"],
-      icon: <Settings size={40} />
+      icon: <Settings size={32} />,
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
     }
   ];
 
@@ -163,15 +168,19 @@ export default function MediaEntertainment({ wordpressData }: any) {
               ))}
             </h1>
 
-            <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-8 md:mb-12">
+            <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12 mb-6">
               <p className="text-white/90 text-base sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
                 {formatQuotesToBold("Powering Digital Experiences That Captivate Audiences. We help media companies modernize their technology backbone to deliver unforgettable experiences.")}
               </p>
             </div>
             
-            <div className="pt-4 flex flex-wrap gap-4">
-              <Link href="/contact">
-               
+            <div className="pt-2">
+              <Link 
+                href="/contact"
+                className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+              >
+                <span>Consult Us</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </Motion.div>
@@ -257,13 +266,14 @@ export default function MediaEntertainment({ wordpressData }: any) {
                 </div>
 
                 <div className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden flex items-center justify-center group">
-                    <div className="absolute inset-0 bg-[#11253e]/5 opacity-20" style={{ backgroundImage: 'radial-gradient(#11253e 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-                    <div className="relative z-10 p-12 bg-white rounded-full shadow-2xl text-[#f99d1c] group-hover:scale-110 transition-transform duration-500">
-                      <div className="transform scale-150">
-                        {service.icon}
-                      </div>
-                    </div>
+                  <div className="relative aspect-[4/3] bg-[#f5f5f5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                    <ImageWithFallback 
+                      src={service.image}
+                      alt={service.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                 </div>
               </Motion.div>
@@ -285,9 +295,13 @@ export default function MediaEntertainment({ wordpressData }: any) {
                 {formatQuotesToBold("We bring deep expertise in building scalable digital platforms, strong understanding of high-availability streaming environments, and a security-first architecture.")}
               </p>
               
-              <Link href="/contact" className="inline-flex items-center gap-2 text-[#f99d1c] font-medium hover:gap-4 transition-all">
-                Start your journey <ArrowRight size={20} />
-              </Link>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <button className="bg-[#f99d1c] text-[#11253e] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-flex items-center gap-3">
+                    PARTNER WITH US <ArrowRight size={16} />
+                  </button>
+                </Link>
+              </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">

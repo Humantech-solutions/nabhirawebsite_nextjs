@@ -63,7 +63,7 @@ export function SuccessStories({ data, testimonials }: any) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {stories.map((story, i) => (
+          {stories.map((story: any, i: number) => (
             <div
               key={i}
               className="group cursor-pointer relative flex flex-col p-10 min-h-[320px] transition-all duration-500 border border-gray-100 bg-[#f8f9fa] hover:bg-[#11253e] hover:border-[#f99d1c]/30 hover:shadow-2xl hover:shadow-[#f99d1c]/5"

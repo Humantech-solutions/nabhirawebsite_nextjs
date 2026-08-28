@@ -152,7 +152,7 @@ export default function CloudSecurityGovernance({ wordpressData }: { wordpressDa
                 Security should never become a bottleneck. We believe in "secure by design" and "governance by default" where protection is built into the foundation.
               </p>
 
-              <div className="grid gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   "Embedding security from architecture design",
                   "Establishing clear governance guardrails",
@@ -162,7 +162,7 @@ export default function CloudSecurityGovernance({ wordpressData }: { wordpressDa
                 ].map((item, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
-                    <span className="text-[#11253e] text-base font-medium">{formatQuotesToBold(item)}</span>
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item)}</span>
                   </div>
                 ))}
               </div>
@@ -246,7 +246,7 @@ export default function CloudSecurityGovernance({ wordpressData }: { wordpressDa
                 We leverage the security ecosystems of AWS, Azure, and Google Cloud, enhanced by best-in-class specialized governance tools.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {[
                   { icon: <Fingerprint size={18} />, text: "Identity & Access Management Frameworks" },
                   { icon: <Eye size={18} />, text: "Cloud Security Posture Management (CSPM)" },
@@ -254,9 +254,9 @@ export default function CloudSecurityGovernance({ wordpressData }: { wordpressDa
                   { icon: <Activity size={18} />, text: "Centralized Logging & SIEM Integration" },
                   { icon: <BarChart3 size={18} />, text: "Cost Governance & FinOps Dashboards" }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 p-4 border border-[#11253e]/5 rounded-sm hover:border-[#f99d1c]/30 transition-colors bg-gray-50/50">
-                    <div className="text-[#f99d1c]">{item.icon}</div>
-                    <span className="text-[#11253e] text-sm font-medium">{item.text}</span>
+                  <div key={i} className="flex items-start space-x-3">
+                    <CheckCircle2 className="text-[#f99d1c] shrink-0 mt-1" size={18} />
+                    <span className="text-[#11253e] text-sm font-medium">{formatQuotesToBold(item.text)}</span>
                   </div>
                 ))}
               </div>

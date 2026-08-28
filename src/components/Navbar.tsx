@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -12,6 +12,21 @@ export function Navbar({ data }: { data?: any }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -172,9 +187,10 @@ export function Navbar({ data }: { data?: any }) {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 border-b ${
         scrolled 
-          ? 'backdrop-blur-xl border-gray-200 shadow-lg' 
+          ? 'backdrop-blur-xl border-gray-200 shadow-lg bg-white/90' 
           : 'bg-white border-gray-100 shadow-sm'
       }`}
       style={scrolled ? { backgroundColor: 'color-mix(in oklab, var(--color-white) 90%, transparent)' } : {}}
@@ -260,9 +276,9 @@ if (link.path && link.path !== '#') {
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#f99d1c] group-hover/title:scale-125 transition-transform" />
                                 {(() => {
                                   const categoryRoutes: Record<string, string> = {
-                                    "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                    "DATA & ANALYTICS": "/solutions/data-analytics",
-                                    "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                    "CLOUD TRANSFORMATION": "/services/cloud-transformation",
+                                    "DATA & ANALYTICS": "/services/data-analytics",
+                                    "ARTIFICIAL INTELLIGENCE": "/services/artificial-intelligence"
                                   };
                                   return (
                                     <Link href={categoryRoutes[col.title] || "#"} 
@@ -279,20 +295,20 @@ if (link.path && link.path !== '#') {
                                   const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                                   const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                   const solutionRoutes: Record<string, string> = {
-                                    "Cloud Advisory": "/solutions/cloud-advisory",
-                                    "Cloud Migration": "/solutions/cloud-migration",
-                                    "Cloud Modernization": "/solutions/cloud-modernization",
-                                    "Cloud-native Development": "/solutions/cloud-native-development",
-                                    "Cloud Security & Governance": "/solutions/cloud-security-governance",
-                                    "Cloud Financial Management": "/solutions/cloud-financial-management",
-                                    "Data Engineering": "/solutions/data-engineering",
-                                    "Data Analytics": "/solutions/data-analytics-solution",
+                                    "Cloud Advisory": "/services/cloud-advisory",
+                                    "Cloud Migration": "/services/cloud-migration",
+                                    "Cloud Modernization": "/services/cloud-modernization",
+                                    "Cloud-native Development": "/services/cloud-native-development",
+                                    "Cloud Security & Governance": "/services/cloud-security-governance",
+                                    "Cloud Financial Management": "/services/cloud-financial-management",
+                                    "Data Engineering": "/services/data-engineering",
+                                    "Data Analytics": "/services/data-analytics-solution",
                                     "Data Foundation": "/solutions/data-foundation",
-                                    "Data Governance": "/solutions/data-governance",
+                                    "Data Governance": "/services/data-governance",
                                     "AI Consulting": "/solutions/ai-consulting",
-                                    "AI Engineering": "/solutions/ai-engineering",
-                                    "Agentic AI": "/solutions/agentic-ai",
-                                    "Intelligent Automation": "/solutions/intelligent-automation"
+                                    "AI Engineering": "/services/ai-engineering",
+                                    "Agentic AI": "/services/agentic-ai",
+                                    "Intelligent Automation": "/services/intelligent-automation"
                                   };
 
                                   const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -428,7 +444,7 @@ if (link.path && link.path !== '#') {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className={`fixed inset-0 ${scrolled ? 'top-16' : 'top-20'} bg-white/95 backdrop-blur-xl z-[60] overflow-y-auto`}
+            className={`absolute left-0 right-0 top-full ${scrolled ? 'h-[calc(100vh-4rem)]' : 'h-[calc(100vh-5rem)]'} bg-white/95 backdrop-blur-xl z-[9998] overflow-y-auto`}
           >
             <div className="px-6 py-10 space-y-8">
               {navLinks.map((link) => {
@@ -483,9 +499,9 @@ if (link.path && link.path !== '#') {
                           <div key={i} className="space-y-4">
                             {(() => {
                               const categoryRoutes: Record<string, string> = {
-                                "CLOUD TRANSFORMATION": "/solutions/cloud-transformation",
-                                "DATA & ANALYTICS": "/solutions/data-analytics",
-                                "ARTIFICIAL INTELLIGENCE": "/solutions/artificial-intelligence"
+                                "CLOUD TRANSFORMATION": "/services/cloud-transformation",
+                                "DATA & ANALYTICS": "/services/data-analytics",
+                                "ARTIFICIAL INTELLIGENCE": "/services/artificial-intelligence"
                               };
                               return (
                                 <Link href={categoryRoutes[col.title] || "#"} 
@@ -501,20 +517,20 @@ if (link.path && link.path !== '#') {
                                   const item = typeof itemObj === 'string' ? itemObj : itemObj.title;
                                   const dynamicUrl = typeof itemObj === 'string' ? null : itemObj.url;
                                 const solutionRoutes: Record<string, string> = {
-                                  "Cloud Advisory": "/solutions/cloud-advisory",
-                                  "Cloud Migration": "/solutions/cloud-migration",
-                                  "Cloud Modernization": "/solutions/cloud-modernization",
-                                  "Cloud-native Development": "/solutions/cloud-native-development",
-                                  "Cloud Security & Governance": "/solutions/cloud-security-governance",
-                                  "Cloud Financial Management": "/solutions/cloud-financial-management",
-                                  "Data Engineering": "/solutions/data-engineering",
-                                  "Data Analytics": "/solutions/data-analytics-solution",
+                                  "Cloud Advisory": "/services/cloud-advisory",
+                                  "Cloud Migration": "/services/cloud-migration",
+                                  "Cloud Modernization": "/services/cloud-modernization",
+                                  "Cloud-native Development": "/services/cloud-native-development",
+                                  "Cloud Security & Governance": "/services/cloud-security-governance",
+                                  "Cloud Financial Management": "/services/cloud-financial-management",
+                                  "Data Engineering": "/services/data-engineering",
+                                  "Data Analytics": "/services/data-analytics-solution",
                                   "Data Foundation": "/solutions/data-foundation",
-                                  "Data Governance": "/solutions/data-governance",
+                                  "Data Governance": "/services/data-governance",
                                   "AI Consulting": "/solutions/ai-consulting",
-                                  "AI Engineering": "/solutions/ai-engineering",
-                                  "Agentic AI": "/solutions/agentic-ai",
-                                  "Intelligent Automation": "/solutions/intelligent-automation"
+                                  "AI Engineering": "/services/ai-engineering",
+                                  "Agentic AI": "/services/agentic-ai",
+                                  "Intelligent Automation": "/services/intelligent-automation"
                                 };
 
                                 if (dynamicUrl && dynamicUrl !== '#') {

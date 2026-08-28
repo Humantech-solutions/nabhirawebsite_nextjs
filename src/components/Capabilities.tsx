@@ -261,18 +261,18 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
   const Icon = service.icon;
 
   const routeMap: Record<string, string> = {
-    "Cloud Advisory": "/solutions/cloud-advisory",
-    "Cloud Migration": "/solutions/cloud-migration",
-    "Cloud Modernization": "/solutions/cloud-modernization",
-    "Cloud Native Development": "/solutions/cloud-native-development",
+    "Cloud Advisory": "/services/cloud-advisory",
+    "Cloud Migration": "/services/cloud-migration",
+    "Cloud Modernization": "/services/cloud-modernization",
+    "Cloud Native Development": "/services/cloud-native-development",
     "Cloud Operations and Control": "/solutions/cloud-infra",
-    "Cloud Financial Management": "/solutions/cloud-financial-management",
-    "Data Engineering": "/solutions/data-engineering",
-    "Data Analytics": "/solutions/data-analytics-solution",
-    "Data Governance": "/solutions/data-governance",
+    "Cloud Financial Management": "/services/cloud-financial-management",
+    "Data Engineering": "/services/data-engineering",
+    "Data Analytics": "/services/data-analytics-solution",
+    "Data Governance": "/services/data-governance",
     "AI Consulting": "/solutions/ai-consulting",
-    "Agentic AI": "/solutions/agentic-ai",
-    "Intelligent Automation": "/solutions/intelligent-automation"
+    "Agentic AI": "/services/agentic-ai",
+    "Intelligent Automation": "/services/intelligent-automation"
   };
 
   // Use WP-derived href if available, else fall back to static routeMap

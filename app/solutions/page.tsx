@@ -1,10 +1,10 @@
 import Solutions from "@/src/pages_migrated/Solutions";
-import { getPageBySlug } from "@/src/lib/wordpress";
+import { getSolutionBySlug } from "@/src/lib/wordpress";
 import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug('solutions');
+  const page = await getSolutionBySlug('solutions');
   return constructMetadata({
     title: page?.title || "Solutions",
     description: "Explore our suite of enterprise-grade software solutions, from AI-powered POS to modular ERP systems.",
@@ -12,6 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const wordpressData = await getPageBySlug('solutions');
+  const wordpressData = await getSolutionBySlug('solutions');
   return <Solutions wordpressData={wordpressData} />;
 }
+
+

@@ -1,0 +1,1134 @@
+[
+    {
+        "key": "group_industry_detail",
+        "title": "Industry Page Settings",
+        "fields": [
+            {
+                "key": "field_ind_tab_imperative",
+                "label": "2. Industry Imperative",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_ind_imp_title",
+                "label": "Imperative Title",
+                "name": "imperative_title",
+                "type": "text",
+                "default_value": "The Industry \"Imperative\"",
+                "show_in_graphql": 1,
+                "graphql_field_name": "imperativeTitle"
+            },
+            {
+                "key": "field_ind_imp_desc",
+                "label": "Imperative Description",
+                "name": "imperative_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "imperativeDescription",
+                "default_value": "Enterprises are navigating a defining decade. Transformation is no longer optional—it is structural."
+            },
+            {
+                "key": "field_ind_challenge_1_icon",
+                "label": "Challenge 1: Icon (Media Library)",
+                "name": "challenge_1_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge1Icon"
+            },
+            {
+                "key": "field_ind_challenge_1_title",
+                "label": "Challenge 1: Title",
+                "name": "challenge_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge1Title"
+            },
+            {
+                "key": "field_ind_challenge_1_desc",
+                "label": "Challenge 1: Description",
+                "name": "challenge_1_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge1Description"
+            },
+            {
+                "key": "field_ind_challenge_2_icon",
+                "label": "Challenge 2: Icon (Media Library)",
+                "name": "challenge_2_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge2Icon"
+            },
+            {
+                "key": "field_ind_challenge_2_title",
+                "label": "Challenge 2: Title",
+                "name": "challenge_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge2Title"
+            },
+            {
+                "key": "field_ind_challenge_2_desc",
+                "label": "Challenge 2: Description",
+                "name": "challenge_2_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge2Description"
+            },
+            {
+                "key": "field_ind_challenge_3_icon",
+                "label": "Challenge 3: Icon (Media Library)",
+                "name": "challenge_3_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge3Icon"
+            },
+            {
+                "key": "field_ind_challenge_3_title",
+                "label": "Challenge 3: Title",
+                "name": "challenge_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge3Title"
+            },
+            {
+                "key": "field_ind_challenge_3_desc",
+                "label": "Challenge 3: Description",
+                "name": "challenge_3_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge3Description"
+            },
+            {
+                "key": "field_ind_challenge_4_icon",
+                "label": "Challenge 4: Icon (Media Library)",
+                "name": "challenge_4_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge4Icon"
+            },
+            {
+                "key": "field_ind_challenge_4_title",
+                "label": "Challenge 4: Title",
+                "name": "challenge_4_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge4Title"
+            },
+            {
+                "key": "field_ind_challenge_4_desc",
+                "label": "Challenge 4: Description",
+                "name": "challenge_4_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge4Description"
+            },
+            {
+                "key": "field_ind_challenge_5_icon",
+                "label": "Challenge 5: Icon (Media Library)",
+                "name": "challenge_5_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge5Icon"
+            },
+            {
+                "key": "field_ind_challenge_5_title",
+                "label": "Challenge 5: Title",
+                "name": "challenge_5_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge5Title"
+            },
+            {
+                "key": "field_ind_challenge_5_desc",
+                "label": "Challenge 5: Description",
+                "name": "challenge_5_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge5Description"
+            },
+            {
+                "key": "field_ind_challenge_6_icon",
+                "label": "Challenge 6: Icon (Media Library)",
+                "name": "challenge_6_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge6Icon"
+            },
+            {
+                "key": "field_ind_challenge_6_title",
+                "label": "Challenge 6: Title",
+                "name": "challenge_6_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge6Title"
+            },
+            {
+                "key": "field_ind_challenge_6_desc",
+                "label": "Challenge 6: Description",
+                "name": "challenge_6_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge6Description"
+            },
+            {
+                "key": "field_ind_challenge_7_icon",
+                "label": "Challenge 7: Icon (Media Library)",
+                "name": "challenge_7_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge7Icon"
+            },
+            {
+                "key": "field_ind_challenge_7_title",
+                "label": "Challenge 7: Title",
+                "name": "challenge_7_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge7Title"
+            },
+            {
+                "key": "field_ind_challenge_7_desc",
+                "label": "Challenge 7: Description",
+                "name": "challenge_7_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge7Description"
+            },
+            {
+                "key": "field_ind_challenge_8_icon",
+                "label": "Challenge 8: Icon (Media Library)",
+                "name": "challenge_8_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge8Icon"
+            },
+            {
+                "key": "field_ind_challenge_8_title",
+                "label": "Challenge 8: Title",
+                "name": "challenge_8_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge8Title"
+            },
+            {
+                "key": "field_ind_challenge_8_desc",
+                "label": "Challenge 8: Description",
+                "name": "challenge_8_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "challenge8Description"
+            },
+            {
+                "key": "field_ind_tab_impact",
+                "label": "3. Impact Areas",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_ind_impact_main_title",
+                "label": "Impact Section Main Title",
+                "name": "impact_main_title",
+                "type": "text",
+                "default_value": "Where We Create \"Impact\"",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impactMainTitle"
+            },
+            {
+                "key": "field_ind_impact_main_desc",
+                "label": "Impact Section Main Description",
+                "name": "impact_main_description",
+                "type": "textarea",
+                "rows": 2,
+                "default_value": "Modernize platforms, strengthen governance and accelerate digital growth without compromising resilience.",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impactMainDescription"
+            },
+            {
+                "key": "field_ind_impact_1_icon",
+                "label": "Impact 1: Image / Icon (Media Library)",
+                "name": "impact_1_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact1Icon"
+            },
+            {
+                "key": "field_ind_impact_1_title",
+                "label": "Impact 1: Title",
+                "name": "impact_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact1Title"
+            },
+            {
+                "key": "field_ind_impact_1_desc",
+                "label": "Impact 1: Description",
+                "name": "impact_1_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact1Description"
+            },
+            {
+                "key": "field_ind_impact_1_details",
+                "label": "Impact 1: Details (one item per line)",
+                "name": "impact_1_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact1Details"
+            },
+            {
+                "key": "field_ind_impact_2_icon",
+                "label": "Impact 2: Image / Icon (Media Library)",
+                "name": "impact_2_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact2Icon"
+            },
+            {
+                "key": "field_ind_impact_2_title",
+                "label": "Impact 2: Title",
+                "name": "impact_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact2Title"
+            },
+            {
+                "key": "field_ind_impact_2_desc",
+                "label": "Impact 2: Description",
+                "name": "impact_2_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact2Description"
+            },
+            {
+                "key": "field_ind_impact_2_details",
+                "label": "Impact 2: Details (one item per line)",
+                "name": "impact_2_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact2Details"
+            },
+            {
+                "key": "field_ind_impact_3_icon",
+                "label": "Impact 3: Image / Icon (Media Library)",
+                "name": "impact_3_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact3Icon"
+            },
+            {
+                "key": "field_ind_impact_3_title",
+                "label": "Impact 3: Title",
+                "name": "impact_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact3Title"
+            },
+            {
+                "key": "field_ind_impact_3_desc",
+                "label": "Impact 3: Description",
+                "name": "impact_3_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact3Description"
+            },
+            {
+                "key": "field_ind_impact_3_details",
+                "label": "Impact 3: Details (one item per line)",
+                "name": "impact_3_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact3Details"
+            },
+            {
+                "key": "field_ind_impact_4_icon",
+                "label": "Impact 4: Image / Icon (Media Library)",
+                "name": "impact_4_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact4Icon"
+            },
+            {
+                "key": "field_ind_impact_4_title",
+                "label": "Impact 4: Title",
+                "name": "impact_4_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact4Title"
+            },
+            {
+                "key": "field_ind_impact_4_desc",
+                "label": "Impact 4: Description",
+                "name": "impact_4_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact4Description"
+            },
+            {
+                "key": "field_ind_impact_4_details",
+                "label": "Impact 4: Details (one item per line)",
+                "name": "impact_4_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact4Details"
+            },
+            {
+                "key": "field_ind_impact_5_icon",
+                "label": "Impact 5: Image / Icon (Media Library)",
+                "name": "impact_5_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact5Icon"
+            },
+            {
+                "key": "field_ind_impact_5_title",
+                "label": "Impact 5: Title",
+                "name": "impact_5_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact5Title"
+            },
+            {
+                "key": "field_ind_impact_5_desc",
+                "label": "Impact 5: Description",
+                "name": "impact_5_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact5Description"
+            },
+            {
+                "key": "field_ind_impact_5_details",
+                "label": "Impact 5: Details (one item per line)",
+                "name": "impact_5_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact5Details"
+            },
+            {
+                "key": "field_ind_impact_6_icon",
+                "label": "Impact 6: Image / Icon (Media Library)",
+                "name": "impact_6_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact6Icon"
+            },
+            {
+                "key": "field_ind_impact_6_title",
+                "label": "Impact 6: Title",
+                "name": "impact_6_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact6Title"
+            },
+            {
+                "key": "field_ind_impact_6_desc",
+                "label": "Impact 6: Description",
+                "name": "impact_6_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact6Description"
+            },
+            {
+                "key": "field_ind_impact_6_details",
+                "label": "Impact 6: Details (one item per line)",
+                "name": "impact_6_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact6Details"
+            },
+            {
+                "key": "field_ind_impact_7_icon",
+                "label": "Impact 7: Image / Icon (Media Library)",
+                "name": "impact_7_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact7Icon"
+            },
+            {
+                "key": "field_ind_impact_7_title",
+                "label": "Impact 7: Title",
+                "name": "impact_7_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact7Title"
+            },
+            {
+                "key": "field_ind_impact_7_desc",
+                "label": "Impact 7: Description",
+                "name": "impact_7_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact7Description"
+            },
+            {
+                "key": "field_ind_impact_7_details",
+                "label": "Impact 7: Details (one item per line)",
+                "name": "impact_7_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact7Details"
+            },
+            {
+                "key": "field_ind_impact_8_icon",
+                "label": "Impact 8: Image / Icon (Media Library)",
+                "name": "impact_8_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact8Icon"
+            },
+            {
+                "key": "field_ind_impact_8_title",
+                "label": "Impact 8: Title",
+                "name": "impact_8_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact8Title"
+            },
+            {
+                "key": "field_ind_impact_8_desc",
+                "label": "Impact 8: Description",
+                "name": "impact_8_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact8Description"
+            },
+            {
+                "key": "field_ind_impact_8_details",
+                "label": "Impact 8: Details (one item per line)",
+                "name": "impact_8_details",
+                "type": "textarea",
+                "rows": 3,
+                "show_in_graphql": 1,
+                "graphql_field_name": "impact8Details"
+            },
+            {
+                "key": "field_ind_tab_innovation",
+                "label": "4. Innovation Section",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_ind_innov_title",
+                "label": "Innovation Section Title",
+                "name": "innovation_title",
+                "type": "text",
+                "default_value": "Enabling \"Enterprise Innovation\"",
+                "show_in_graphql": 1,
+                "graphql_field_name": "innovationTitle"
+            },
+            {
+                "key": "field_ind_innov_desc",
+                "label": "Innovation Section Description",
+                "name": "innovation_description",
+                "type": "textarea",
+                "rows": 2,
+                "default_value": "We combine agile speed with enterprise-grade engineering discipline to build the next generation of solutions.",
+                "show_in_graphql": 1,
+                "graphql_field_name": "innovationDescription"
+            },
+            {
+                "key": "field_ind_innov_btn_text",
+                "label": "Innovation Button Text",
+                "name": "innovation_btn_text",
+                "type": "text",
+                "default_value": "PARTNER WITH US",
+                "show_in_graphql": 1,
+                "graphql_field_name": "innovationBtnText"
+            },
+            {
+                "key": "field_ind_innov_btn_link",
+                "label": "Innovation Button Link",
+                "name": "innovation_btn_link",
+                "type": "page_link",
+                "instructions": "Select an existing page or enter an external URL",
+                "post_type": [
+                    "page",
+                    "services",
+                    "solutions",
+                    "industries"
+                ],
+                "allow_null": 1,
+                "allow_archives": 0,
+                "multiple": 0,
+                "show_in_graphql": 1,
+                "graphql_field_name": "innovationBtnLink"
+            },
+            {
+                "key": "field_ind_service_1_icon",
+                "label": "Service 1: Icon (Media Library)",
+                "name": "service_1_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service1Icon"
+            },
+            {
+                "key": "field_ind_service_1_title",
+                "label": "Service 1: Title",
+                "name": "service_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service1Title"
+            },
+            {
+                "key": "field_ind_service_1_desc",
+                "label": "Service 1: Description",
+                "name": "service_1_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service1Description"
+            },
+            {
+                "key": "field_ind_service_2_icon",
+                "label": "Service 2: Icon (Media Library)",
+                "name": "service_2_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service2Icon"
+            },
+            {
+                "key": "field_ind_service_2_title",
+                "label": "Service 2: Title",
+                "name": "service_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service2Title"
+            },
+            {
+                "key": "field_ind_service_2_desc",
+                "label": "Service 2: Description",
+                "name": "service_2_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service2Description"
+            },
+            {
+                "key": "field_ind_service_3_icon",
+                "label": "Service 3: Icon (Media Library)",
+                "name": "service_3_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service3Icon"
+            },
+            {
+                "key": "field_ind_service_3_title",
+                "label": "Service 3: Title",
+                "name": "service_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service3Title"
+            },
+            {
+                "key": "field_ind_service_3_desc",
+                "label": "Service 3: Description",
+                "name": "service_3_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service3Description"
+            },
+            {
+                "key": "field_ind_service_4_icon",
+                "label": "Service 4: Icon (Media Library)",
+                "name": "service_4_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service4Icon"
+            },
+            {
+                "key": "field_ind_service_4_title",
+                "label": "Service 4: Title",
+                "name": "service_4_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service4Title"
+            },
+            {
+                "key": "field_ind_service_4_desc",
+                "label": "Service 4: Description",
+                "name": "service_4_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service4Description"
+            },
+            {
+                "key": "field_ind_service_5_icon",
+                "label": "Service 5: Icon (Media Library)",
+                "name": "service_5_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service5Icon"
+            },
+            {
+                "key": "field_ind_service_5_title",
+                "label": "Service 5: Title",
+                "name": "service_5_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service5Title"
+            },
+            {
+                "key": "field_ind_service_5_desc",
+                "label": "Service 5: Description",
+                "name": "service_5_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service5Description"
+            },
+            {
+                "key": "field_ind_service_6_icon",
+                "label": "Service 6: Icon (Media Library)",
+                "name": "service_6_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service6Icon"
+            },
+            {
+                "key": "field_ind_service_6_title",
+                "label": "Service 6: Title",
+                "name": "service_6_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service6Title"
+            },
+            {
+                "key": "field_ind_service_6_desc",
+                "label": "Service 6: Description",
+                "name": "service_6_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service6Description"
+            },
+            {
+                "key": "field_ind_service_7_icon",
+                "label": "Service 7: Icon (Media Library)",
+                "name": "service_7_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service7Icon"
+            },
+            {
+                "key": "field_ind_service_7_title",
+                "label": "Service 7: Title",
+                "name": "service_7_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service7Title"
+            },
+            {
+                "key": "field_ind_service_7_desc",
+                "label": "Service 7: Description",
+                "name": "service_7_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service7Description"
+            },
+            {
+                "key": "field_ind_service_8_icon",
+                "label": "Service 8: Icon (Media Library)",
+                "name": "service_8_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service8Icon"
+            },
+            {
+                "key": "field_ind_service_8_title",
+                "label": "Service 8: Title",
+                "name": "service_8_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "service8Title"
+            },
+            {
+                "key": "field_ind_service_8_desc",
+                "label": "Service 8: Description",
+                "name": "service_8_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "service8Description"
+            },
+            {
+                "key": "field_ind_tab_outcomes",
+                "label": "5. Outcomes",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_ind_outcomes_title",
+                "label": "Outcomes Section Title",
+                "name": "outcomes_title",
+                "type": "text",
+                "default_value": "Outcomes That Matter",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcomesTitle"
+            },
+            {
+                "key": "field_ind_outcomes_desc",
+                "label": "Outcomes Section Description",
+                "name": "outcomes_description",
+                "type": "textarea",
+                "rows": 2,
+                "default_value": "Tangible results for forward-thinking institutions.",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcomesDescription"
+            },
+            {
+                "key": "field_ind_outcome_1_icon",
+                "label": "Outcome 1: Icon (Media Library)",
+                "name": "outcome_1_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome1Icon"
+            },
+            {
+                "key": "field_ind_outcome_1_title",
+                "label": "Outcome 1: Title",
+                "name": "outcome_1_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome1Title"
+            },
+            {
+                "key": "field_ind_outcome_1_desc",
+                "label": "Outcome 1: Description",
+                "name": "outcome_1_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome1Description"
+            },
+            {
+                "key": "field_ind_outcome_2_icon",
+                "label": "Outcome 2: Icon (Media Library)",
+                "name": "outcome_2_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome2Icon"
+            },
+            {
+                "key": "field_ind_outcome_2_title",
+                "label": "Outcome 2: Title",
+                "name": "outcome_2_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome2Title"
+            },
+            {
+                "key": "field_ind_outcome_2_desc",
+                "label": "Outcome 2: Description",
+                "name": "outcome_2_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome2Description"
+            },
+            {
+                "key": "field_ind_outcome_3_icon",
+                "label": "Outcome 3: Icon (Media Library)",
+                "name": "outcome_3_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome3Icon"
+            },
+            {
+                "key": "field_ind_outcome_3_title",
+                "label": "Outcome 3: Title",
+                "name": "outcome_3_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome3Title"
+            },
+            {
+                "key": "field_ind_outcome_3_desc",
+                "label": "Outcome 3: Description",
+                "name": "outcome_3_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome3Description"
+            },
+            {
+                "key": "field_ind_outcome_4_icon",
+                "label": "Outcome 4: Icon (Media Library)",
+                "name": "outcome_4_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome4Icon"
+            },
+            {
+                "key": "field_ind_outcome_4_title",
+                "label": "Outcome 4: Title",
+                "name": "outcome_4_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome4Title"
+            },
+            {
+                "key": "field_ind_outcome_4_desc",
+                "label": "Outcome 4: Description",
+                "name": "outcome_4_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome4Description"
+            },
+            {
+                "key": "field_ind_outcome_5_icon",
+                "label": "Outcome 5: Icon (Media Library)",
+                "name": "outcome_5_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome5Icon"
+            },
+            {
+                "key": "field_ind_outcome_5_title",
+                "label": "Outcome 5: Title",
+                "name": "outcome_5_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome5Title"
+            },
+            {
+                "key": "field_ind_outcome_5_desc",
+                "label": "Outcome 5: Description",
+                "name": "outcome_5_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome5Description"
+            },
+            {
+                "key": "field_ind_outcome_6_icon",
+                "label": "Outcome 6: Icon (Media Library)",
+                "name": "outcome_6_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome6Icon"
+            },
+            {
+                "key": "field_ind_outcome_6_title",
+                "label": "Outcome 6: Title",
+                "name": "outcome_6_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome6Title"
+            },
+            {
+                "key": "field_ind_outcome_6_desc",
+                "label": "Outcome 6: Description",
+                "name": "outcome_6_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome6Description"
+            },
+            {
+                "key": "field_ind_outcome_7_icon",
+                "label": "Outcome 7: Icon (Media Library)",
+                "name": "outcome_7_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome7Icon"
+            },
+            {
+                "key": "field_ind_outcome_7_title",
+                "label": "Outcome 7: Title",
+                "name": "outcome_7_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome7Title"
+            },
+            {
+                "key": "field_ind_outcome_7_desc",
+                "label": "Outcome 7: Description",
+                "name": "outcome_7_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome7Description"
+            },
+            {
+                "key": "field_ind_outcome_8_icon",
+                "label": "Outcome 8: Icon (Media Library)",
+                "name": "outcome_8_icon",
+                "type": "image",
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome8Icon"
+            },
+            {
+                "key": "field_ind_outcome_8_title",
+                "label": "Outcome 8: Title",
+                "name": "outcome_8_title",
+                "type": "text",
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome8Title"
+            },
+            {
+                "key": "field_ind_outcome_8_desc",
+                "label": "Outcome 8: Description",
+                "name": "outcome_8_description",
+                "type": "textarea",
+                "rows": 2,
+                "show_in_graphql": 1,
+                "graphql_field_name": "outcome8Description"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "industries"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": [],
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "show_in_graphql": 1,
+        "graphql_field_name": "industryFields"
+    }
+]

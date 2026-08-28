@@ -21,7 +21,7 @@ export const renderHeroTitle = (title: string | React.ReactNode, baseColor: stri
       if (currentText) {
         renderedContent.push(
           <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
-            {formatQuotesToBold(currentText)}
+            {formatQuotesOnly(currentText)}
           </span>
         );
       }
@@ -32,7 +32,7 @@ export const renderHeroTitle = (title: string | React.ReactNode, baseColor: stri
       if (currentText) {
         renderedContent.push(
           <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
-            {formatQuotesToBold(currentText)}
+            {formatQuotesOnly(currentText)}
           </span>
         );
       }
@@ -42,7 +42,7 @@ export const renderHeroTitle = (title: string | React.ReactNode, baseColor: stri
       if (currentText) {
         renderedContent.push(
           <span key={`text-${i}`} className={isAccent ? "text-[#f99d1c]" : baseColor}>
-            {formatQuotesToBold(currentText)}
+            {formatQuotesOnly(currentText)}
           </span>
         );
       }
@@ -56,13 +56,13 @@ export const renderHeroTitle = (title: string | React.ReactNode, baseColor: stri
   if (currentText) {
     renderedContent.push(
       <span key="text-final" className={isAccent ? "text-[#f99d1c]" : baseColor}>
-        {formatQuotesToBold(currentText)}
+        {formatQuotesOnly(currentText)}
       </span>
     );
   }
 
   if (renderedContent.length === 0) {
-    return formatQuotesToBold(title);
+    return formatQuotesOnly(title as string);
   }
 
   return <>{renderedContent}</>;
@@ -82,7 +82,7 @@ export const renderDynamicIcon = (iconType: string, lucideName: string, imageObj
   return <IconComponent size={size} />;
 };
 
-export const formatQuotesToBold = (text: string) => {
+export const formatQuotesOnly = (text: string) => {
   if (!text) return text;
   // Support straight quotes, smart quotes, and single quotes
   // We split by quotes but now REMOVE them when bolding
@@ -95,6 +95,10 @@ export const formatQuotesToBold = (text: string) => {
     }
     return part;
   });
+};
+
+export const formatQuotesToBold = (text: string | React.ReactNode, baseColor: string = "text-inherit") => {
+  return renderHeroTitle(text, baseColor);
 };
 
 export const formatEventDate = (dateString: string) => {

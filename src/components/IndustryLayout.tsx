@@ -74,9 +74,19 @@ export function IndustryLayout({
                   <p className="text-[#f99d1c] text-base md:text-xl font-medium tracking-normal uppercase mb-4">
                     {subtitle}
                   </p>
-                  <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm">
+                  <p className="text-white/90 text-sm sm:text-lg md:text-[22px] font-light leading-relaxed max-w-2xl drop-shadow-sm mb-8">
                     {overview}
                   </p>
+
+                  <div className="pt-2">
+                    <Link 
+                      href="/contact"
+                      className="bg-[#f99d1c] hover:bg-white hover:text-[#11253e] text-white px-8 py-4 md:px-10 md:py-5 rounded-sm transition-all inline-flex items-center space-x-3 uppercase tracking-widest shadow-2xl shadow-[#f99d1c]/20 group text-[13px] md:text-[14px] font-medium"
+                    >
+                      <span>Consult Us</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
               </Motion.div>
             </div>
