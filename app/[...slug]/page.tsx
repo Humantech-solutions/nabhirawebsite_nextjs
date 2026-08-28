@@ -8,6 +8,9 @@ import {
   getSiteChrome,
   getCaseStudies,
   getTestimonials,
+  getServices,
+  getSolutions,
+  getIndustries,
   getServiceBySlug,
   getSolutionBySlug,
   getIndustryBySlug
@@ -120,25 +123,72 @@ const industryComponentMap: Record<string, React.ComponentType<any>> = {
 };
 
 export async function generateStaticParams() {
-  const pages = await getAllPages();
-  const excludeSlugs = [
-    'about', 'contact', 'careers', 'leadership', 
-    'partners', 'clients', 'awards', 'industries', 
-    'resources', 'solutions', 'home'
+  const routesSet = new Set<string>();
+
+  // 1. Core dedicated static routes
+  const corePages = [
+    "about",
+    "about/leadership",
+    "about/partners",
+    "about/clients",
+    "about/awards",
+    "leadership",
+    "partners",
+    "clients",
+    "awards",
+    "contact",
+    "careers",
+    "sitemap",
   ];
-  
-  return pages
-    .filter((page: any) => page && page.uri)
-    .map((page: any) => {
-      const slugArray = page.uri.split('/').filter(Boolean);
-      return {
-        slug: slugArray,
-      };
-    })
-    .filter((param: { slug: string[] }) => {
-      const firstSlug = param.slug[0];
-      return firstSlug && !excludeSlugs.includes(firstSlug);
+  corePages.forEach((p) => routesSet.add(p));
+
+  // 2. All Solution code components
+  Object.keys(solutionComponentMap).forEach((slug) =>
+    routesSet.add(`solutions/${slug}`)
+  );
+
+  // 3. All Service code components
+  Object.keys(serviceComponentMap).forEach((slug) =>
+    routesSet.add(`services/${slug}`)
+  );
+
+  // 4. All Industry code components
+  Object.keys(industryComponentMap).forEach((slug) =>
+    routesSet.add(`industries/${slug}`)
+  );
+
+  // 5. Dynamic WordPress Pages, Services, Solutions, Industries
+  try {
+    const [wpPages, wpServices, wpSolutions, wpIndustries] = await Promise.all([
+      getAllPages().catch(() => []),
+      getServices().catch(() => []),
+      getSolutions().catch(() => []),
+      getIndustries().catch(() => []),
+    ]);
+
+    (wpPages || []).forEach((p: any) => {
+      const cleanUri = p.uri ? p.uri.replace(/^\/|\/$/g, "") : p.slug;
+      if (cleanUri && cleanUri !== "home") routesSet.add(cleanUri);
     });
+
+    (wpServices || []).forEach((s: any) => {
+      if (s.slug) routesSet.add(`services/${s.slug}`);
+    });
+
+    (wpSolutions || []).forEach((s: any) => {
+      if (s.slug) routesSet.add(`solutions/${s.slug}`);
+    });
+
+    (wpIndustries || []).forEach((i: any) => {
+      if (i.slug) routesSet.add(`industries/${i.slug}`);
+    });
+  } catch (err) {
+    console.warn("[generateStaticParams] WordPress fetch error:", err);
+  }
+
+  return Array.from(routesSet).map((route) => ({
+    slug: route.split("/").filter(Boolean),
+  }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {

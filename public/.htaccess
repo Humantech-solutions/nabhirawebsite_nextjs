@@ -1,0 +1,44 @@
+# Next.js Static Export – Apache / Hostinger Configuration
+# Prevents 301→403 redirect loop on static directory routes and serves custom 404 page
+
+Options -Indexes
+
+# Custom 404 Error Document pointing to Next.js 404 page
+ErrorDocument 404 /404.html
+
+# Serve index.html from every folder (fixes 403 on /services/, /solutions/, /industries/, /contact/, etc.)
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Remove trailing slash redirect (prevents Apache 301 → /path/ → 403 loop)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Serve Next.js static pages: try file, then index.html inside folder
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # Fallback to 404.html for any unknown/unmatched routes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ /404.html [L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Cache static assets
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|ico|svg|woff|woff2|ttf|eot|mp4|webm)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+</IfModule>
