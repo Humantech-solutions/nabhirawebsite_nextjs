@@ -39,7 +39,7 @@ export const navigationConfig = {
           items: [
             { label: "AI Engineering", href: "/services/ai-engineering" },
             { label: "Agentic AI", href: "/services/agentic-ai" },
-            { label: "Intelligent Automation", href: "/solutions/intelligent-automation" }
+            { label: "Intelligent Automation", href: "/services/intelligent-automation" }
           ]
         }
       ]
@@ -99,7 +99,7 @@ export const navigationConfig = {
       { label: "Data Governance", href: "/services/data-governance" },
       { label: "AI Engineering", href: "/services/ai-engineering" },
       { label: "Agentic AI", href: "/services/agentic-ai" },
-      { label: "Intelligent Automation", href: "/solutions/intelligent-automation" }
+      { label: "Intelligent Automation", href: "/services/intelligent-automation" }
     ],
     industries: [
       { label: "Banking & Financial Services", href: "/industries/banking-finance" },

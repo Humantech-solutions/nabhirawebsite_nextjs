@@ -308,7 +308,7 @@ if (link.path && link.path !== '#') {
                                     "AI Consulting": "/solutions/ai-consulting",
                                     "AI Engineering": "/services/ai-engineering",
                                     "Agentic AI": "/services/agentic-ai",
-                                    "Intelligent Automation": "/solutions/intelligent-automation"
+                                    "Intelligent Automation": "/services/intelligent-automation"
                                   };
 
                                   const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -530,7 +530,7 @@ if (link.path && link.path !== '#') {
                                   "AI Consulting": "/solutions/ai-consulting",
                                   "AI Engineering": "/services/ai-engineering",
                                   "Agentic AI": "/services/agentic-ai",
-                                  "Intelligent Automation": "/solutions/intelligent-automation"
+                                  "Intelligent Automation": "/services/intelligent-automation"
                                 };
 
                                 if (dynamicUrl && dynamicUrl !== '#') {

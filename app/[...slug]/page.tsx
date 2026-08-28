@@ -1,4 +1,17 @@
-import { getPageBySlug, getAllPages, getSitemapData, getCareerPosts, getNews, getAllPosts, getSiteChrome, getCaseStudies, getTestimonials, getServiceBySlug, getSolutionBySlug, getIndustryBySlug } from "@/src/lib/wordpress";
+import {
+  getPageBySlug,
+  getAllPages,
+  getSitemapData,
+  getCareerPosts,
+  getNews,
+  getAllPosts,
+  getSiteChrome,
+  getCaseStudies,
+  getTestimonials,
+  getServiceBySlug,
+  getSolutionBySlug,
+  getIndustryBySlug
+} from "@/src/lib/wordpress";
 import { getRecruitProJobs } from "@/src/lib/recruitpro";
 import { notFound } from "next/navigation";
 import { constructMetadata } from "@/src/lib/seo";
@@ -7,7 +20,7 @@ import { Hero } from "@/src/components/Hero";
 import { LimitlessTogether } from "@/src/components/LimitlessTogether";
 import { Sitemap } from "@/src/components/Sitemap";
 
-// Import UI Templates
+// Core Page Templates
 import About from "@/src/pages_migrated/about/About";
 import Contact from "@/src/pages_migrated/Contact";
 import Careers from "@/src/pages_migrated/Careers";
@@ -18,13 +31,96 @@ import Awards from "@/src/pages_migrated/about/Awards";
 import News from "@/src/pages_migrated/resources/News";
 import Blogs from "@/src/pages_migrated/resources/Blogs";
 import CaseStudies from "@/src/pages_migrated/resources/CaseStudies";
+
+// Generic Fallback Templates
 import ServiceTemplate from "@/src/pages_migrated/ServiceTemplate";
 import SolutionTemplate from "@/src/pages_migrated/SolutionTemplate";
 import IndustryTemplate from "@/src/pages_migrated/IndustryTemplate";
 
+// Dedicated Industry Components
+import BankingFinance from "@/src/pages_migrated/industries/BankingFinance";
+import GovernmentPSU from "@/src/pages_migrated/industries/GovernmentPSU";
+import HealthcarePharma from "@/src/pages_migrated/industries/HealthcarePharma";
+import ManufacturingAutomotive from "@/src/pages_migrated/industries/ManufacturingAutomotive";
+import MediaEntertainment from "@/src/pages_migrated/industries/MediaEntertainment";
+import RetailConsumer from "@/src/pages_migrated/industries/RetailConsumer";
+
+// Dedicated Solution Components
+import AILMS from "@/src/pages_migrated/solutions/AILMS";
+import PolicyEngine from "@/src/pages_migrated/solutions/PolicyEngine";
+import CloudInfra from "@/src/pages_migrated/solutions/CloudInfra";
+import ERP from "@/src/pages_migrated/solutions/ERP";
+import HRMS from "@/src/pages_migrated/solutions/HRMS";
+import EnterprisePOS from "@/src/pages_migrated/solutions/EnterprisePOS";
+import DataFoundation from "@/src/pages_migrated/solutions/DataFoundation";
+import AIConsulting from "@/src/pages_migrated/solutions/AIConsulting";
+import LMS from "@/src/pages_migrated/solutions/LMS";
+import POS from "@/src/pages_migrated/solutions/POS";
+import RetailPOS from "@/src/pages_migrated/solutions/RetailPOS";
+
+// Dedicated Service Components
+import CloudTransformation from "@/src/pages_migrated/services/cloud/CloudTransformation";
+import CloudAdvisory from "@/src/pages_migrated/services/cloud/CloudAdvisory";
+import CloudMigration from "@/src/pages_migrated/services/cloud/CloudMigration";
+import CloudModernization from "@/src/pages_migrated/services/cloud/CloudModernization";
+import CloudNativeDevelopment from "@/src/pages_migrated/services/cloud/CloudNativeDevelopment";
+import CloudSecurityGovernance from "@/src/pages_migrated/services/cloud/CloudSecurityGovernance";
+import CloudFinancialManagement from "@/src/pages_migrated/services/cloud/CloudFinancialManagement";
+import DataEngineering from "@/src/pages_migrated/services/data/DataEngineering";
+import DataAnalyticsSolution from "@/src/pages_migrated/services/data/DataAnalyticsSolution";
+import DataAnalytics from "@/src/pages_migrated/services/data/DataAnalytics";
+import DataGovernance from "@/src/pages_migrated/services/data/DataGovernance";
+import ArtificialIntelligence from "@/src/pages_migrated/services/ai/ArtificialIntelligence";
+import AIEngineering from "@/src/pages_migrated/services/ai/AIEngineering";
+import AgenticAI from "@/src/pages_migrated/services/ai/AgenticAI";
+import IntelligentAutomation from "@/src/pages_migrated/services/ai/IntelligentAutomation";
+
+// Component Maps for precise fallback resolution
+const solutionComponentMap: Record<string, React.ComponentType<any>> = {
+  "enterprise-pos": EnterprisePOS,
+  "ailms": AILMS,
+  "ai-lms": AILMS,
+  "policy-engine": PolicyEngine,
+  "cloud-infra": CloudInfra,
+  "erp": ERP,
+  "hrms": HRMS,
+  "data-foundation": DataFoundation,
+  "ai-consulting": AIConsulting,
+  "lms": LMS,
+  "pos": POS,
+  "retail-pos": RetailPOS,
+};
+
+const serviceComponentMap: Record<string, React.ComponentType<any>> = {
+  "cloud-transformation": CloudTransformation,
+  "cloud-advisory": CloudAdvisory,
+  "cloud-migration": CloudMigration,
+  "cloud-modernization": CloudModernization,
+  "cloud-native-development": CloudNativeDevelopment,
+  "cloud-security-governance": CloudSecurityGovernance,
+  "cloud-financial-management": CloudFinancialManagement,
+  "data-engineering": DataEngineering,
+  "data-analytics-solution": DataAnalyticsSolution,
+  "data-analytics": DataAnalytics,
+  "data-governance": DataGovernance,
+  "artificial-intelligence": ArtificialIntelligence,
+  "ai-engineering": AIEngineering,
+  "agentic-ai": AgenticAI,
+  "intelligent-automation": IntelligentAutomation,
+};
+
+const industryComponentMap: Record<string, React.ComponentType<any>> = {
+  "banking-finance": BankingFinance,
+  "banking-and-finance": BankingFinance,
+  "retail-consumer": RetailConsumer,
+  "manufacturing-automotive": ManufacturingAutomotive,
+  "healthcare-pharma": HealthcarePharma,
+  "government-psu": GovernmentPSU,
+  "media-entertainment": MediaEntertainment,
+};
+
 export async function generateStaticParams() {
   const pages = await getAllPages();
-  // Filter out slugs that already have dedicated hardcoded directories in /app
   const excludeSlugs = [
     'about', 'contact', 'careers', 'leadership', 
     'partners', 'clients', 'awards', 'industries', 
@@ -34,7 +130,6 @@ export async function generateStaticParams() {
   return pages
     .filter((page: any) => page && page.uri)
     .map((page: any) => {
-      // Split the uri into an array of segments (e.g., "/parent/child/" -> ["parent", "child"])
       const slugArray = page.uri.split('/').filter(Boolean);
       return {
         slug: slugArray,
@@ -42,7 +137,6 @@ export async function generateStaticParams() {
     })
     .filter((param: { slug: string[] }) => {
       const firstSlug = param.slug[0];
-      // Exclude it if it belongs to a hardcoded root folder
       return firstSlug && !excludeSlugs.includes(firstSlug);
     });
 }
@@ -64,14 +158,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     page = await getPageBySlug(slugString);
   }
   
-  if (!page) {
-    return constructMetadata({ title: "Page Not Found" });
+  if (page) {
+    return constructMetadata({
+      title: page.title || page.name || "Hutech Solutions Technologies",
+      description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Hutech Solutions Technologies",
+    });
+  }
+
+  // Check if a dedicated code component exists for this slug
+  const hasCodePage =
+    (firstSlug === "services" && !!serviceComponentMap[restSlug]) ||
+    (firstSlug === "solutions" && !!solutionComponentMap[restSlug]) ||
+    (firstSlug === "industries" && !!industryComponentMap[restSlug]);
+
+  if (hasCodePage) {
+    const targetSlug = restSlug || firstSlug || "";
+    const formattedSlug = targetSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    return constructMetadata({
+      title: `${formattedSlug} | Hutech Solutions Technologies`,
+      description: `${formattedSlug} - High-impact enterprise technology solutions by Hutech Solutions.`,
+    });
   }
   
-  return constructMetadata({
-    title: page.title || page.name || "Hutech Solutions Technologies",
-    description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Hutech Solutions Technologies",
-  });
+  return constructMetadata({ title: "Page Not Found" });
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
@@ -91,19 +200,51 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
     page = await getPageBySlug(slugString);
   }
 
-  if (!page) {
+  // 1. Handle Solutions Route
+  if (firstSlug === "solutions") {
+    // If page exists in WordPress, use dynamic SolutionTemplate
+    if (page) {
+      return <SolutionTemplate wordpressData={page} />;
+    }
+    // If not in WordPress, check if we have a dedicated code component
+    const SolutionComponent = solutionComponentMap[restSlug];
+    if (SolutionComponent) {
+      return <SolutionComponent wordpressData={null} />;
+    }
+    // Neither in WP nor in code -> 404
     notFound();
   }
 
-  // Handle Dynamic generic CPT Fallbacks
+  // 2. Handle Services Route
   if (firstSlug === "services") {
-    return <ServiceTemplate wordpressData={page} />;
+    // If page exists in WordPress, use dynamic ServiceTemplate
+    if (page) {
+      return <ServiceTemplate wordpressData={page} />;
+    }
+    // If not in WordPress, check if we have a dedicated code component
+    const ServiceComponent = serviceComponentMap[restSlug];
+    if (ServiceComponent) {
+      return <ServiceComponent wordpressData={null} />;
+    }
+    // Neither in WP nor in code -> 404
+    notFound();
   }
-  if (firstSlug === "solutions") {
-    return <SolutionTemplate wordpressData={page} />;
-  }
+
+  // 3. Handle Industries Route
   if (firstSlug === "industries") {
-    return <IndustryTemplate wordpressData={page} />;
+    const IndustryComponent = industryComponentMap[restSlug];
+    if (IndustryComponent) {
+      return <IndustryComponent wordpressData={page} />;
+    }
+    if (page) {
+      return <IndustryTemplate wordpressData={page} />;
+    }
+    // Neither in WP nor in code -> 404
+    notFound();
+  }
+
+  if (!page) {
+    notFound();
   }
 
   const nativeTemplate = page.template?.templateName || "Default";

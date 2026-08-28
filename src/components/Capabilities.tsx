@@ -272,7 +272,7 @@ function ServiceCard({ service, index }: { service: Service, index: number }) {
     "Data Governance": "/services/data-governance",
     "AI Consulting": "/solutions/ai-consulting",
     "Agentic AI": "/services/agentic-ai",
-    "Intelligent Automation": "/solutions/intelligent-automation"
+    "Intelligent Automation": "/services/intelligent-automation"
   };
 
   // Use WP-derived href if available, else fall back to static routeMap
