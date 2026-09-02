@@ -140,7 +140,7 @@ export function Navbar({ data }: { data?: any }) {
     },
     "ABOUT US": {
       type: "simple",
-      items: ["About Hutech Solutions", "Leadership", "Partners Ecosystem", "Our Clients", "Awards"]
+      items: ["About Hutech Solutions", "Leadership", "Partners Ecosystem", "Our Clients", "Awards", "Life at Hutech"]
     }
   };
 
@@ -363,6 +363,7 @@ if (link.path && link.path !== '#') {
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
                               "Awards": "/awards",
+                              "Life at Hutech": "/life-at-hutech",
                               "AI Powered Point of Sales App": "/solutions/enterprise-pos",
                               "AI based LMS system": "/solutions/ailms",
                               "Policy Engine System": "/solutions/policy-engine",
@@ -574,7 +575,8 @@ if (link.path && link.path !== '#') {
                               "Leadership": "/leadership",
                               "Partners Ecosystem": "/partners",
                               "Our Clients": "/clients",
-                               "Awards": "/awards",
+                              "Awards": "/awards",
+                              "Life at Hutech": "/life-at-hutech",
                                "AI Powered Point of Sales App": "/solutions/enterprise-pos",
                                "AI based LMS system": "/solutions/ailms",
                                "Policy Engine System": "/solutions/policy-engine",

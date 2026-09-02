@@ -82,7 +82,8 @@ export const navigationConfig = {
         { label: "Leadership", href: "/leadership" },
         { label: "Partners Ecosystem", href: "/partners" },
         { label: "Our Clients", href: "/clients" },
-        { label: "Awards", href: "/awards" }
+        { label: "Awards", href: "/awards" },
+        { label: "Life at Hutech", href: "/life-at-hutech" }
       ]
     }
   },
@@ -122,6 +123,7 @@ export const navigationConfig = {
       { label: "Leadership", href: "/leadership" },
       { label: "Partners Ecosystem", href: "/partners" },
       { label: "Awards", href: "/awards" },
+      { label: "Life at Hutech", href: "/life-at-hutech" },
       { label: "Blogs", href: "/resources/blogs" },
       { label: "Case Studies", href: "/resources/case-studies" },
       { label: "In the News", href: "/resources/news" },

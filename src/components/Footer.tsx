@@ -196,6 +196,7 @@ const resourceLinks = [
   { label: "Leadership", to: "/leadership" },
   { label: "Partners Ecosystem", to: "/partners" },
   { label: "Awards", to: "/awards" },
+  { label: "Life at Hutech", to: "/life-at-hutech" },
   { label: "Blogs", to: "/resources/blogs" },
   { label: "Case Studies", to: "/resources/case-studies" },
   { label: "In the News", to: "/resources/news" },
