@@ -31,6 +31,7 @@ import Leadership from "@/src/pages_migrated/about/Leadership";
 import Partners from "@/src/pages_migrated/about/Partners";
 import Clients from "@/src/pages_migrated/about/Clients";
 import Awards from "@/src/pages_migrated/about/Awards";
+import LifeAtHutech from "@/src/pages_migrated/about/LifeAtHutech";
 import News from "@/src/pages_migrated/resources/News";
 import Blogs from "@/src/pages_migrated/resources/Blogs";
 import CaseStudies from "@/src/pages_migrated/resources/CaseStudies";
@@ -132,10 +133,12 @@ export async function generateStaticParams() {
     "about/partners",
     "about/clients",
     "about/awards",
+    "about/life-at-hutech",
     "leadership",
     "partners",
     "clients",
     "awards",
+    "life-at-hutech",
     "contact",
     "careers",
     "sitemap",
@@ -339,6 +342,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
   
   if (activeTemplate === "awards") {
     return <Awards wordpressData={page} />;
+  }
+
+  if (activeTemplate === "life-at-hutech" || activeTemplate === "life at hutech") {
+    return <LifeAtHutech wordpressData={page} />;
   }
   
   if (activeTemplate === "news") {
