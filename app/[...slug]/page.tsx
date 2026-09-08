@@ -253,6 +253,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
     page = await getPageBySlug(slugString);
   }
 
+  async function renderContent() {
+
   // 1. Handle Solutions Route
   if (firstSlug === "solutions") {
     // If page exists in WordPress, use dynamic SolutionTemplate
@@ -365,19 +367,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
   }
 
   // --- DEFAULT TEMPLATE FALLBACK ---
-  const hasHero = !!(page.globalSettings?.heroSlides?.heroS1Title || page.globalSettings?.heroSlides?.heroS1ImageUrl || page.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl);
-  const hasLimitless = !!page.globalSettings?.limitlessTogether;
-  
   const isSitemap = slugString.toLowerCase().includes("sitemap") || page.title.toLowerCase() === "sitemap";
   const sitemapData = isSitemap ? await getSitemapData() : null;
 
   return (
-    <div className="bg-white min-h-screen">
-      {hasHero && <Hero data={page.globalSettings.heroSlides} heightClass="h-[400px] md:h-[520px]" />}
-      
-      <main className={`pb-24 ${hasHero ? 'pt-16' : 'pt-32'}`}>
+    <>
+      <main className={`pb-24 pt-32`}>
         <div className="max-w-4xl mx-auto px-6 sm:px-12">
-          {!hasHero && <h1 className="text-4xl font-bold text-[#11253e] mb-12">{page.title}</h1>}
+          <h1 className="text-4xl font-bold text-[#11253e] mb-12">{page.title}</h1>
           <div 
             className="prose prose-slate max-w-none text-[#11253e] font-light leading-relaxed"
             dangerouslySetInnerHTML={{ __html: page.content || "" }} 
@@ -387,7 +384,21 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
           )}
         </div>
       </main>
+    </>
+  );
+  }
 
+  const content = await renderContent();
+
+  const hasHero = !!(page?.globalSettings?.heroSlides?.heroS1Title || page?.globalSettings?.heroSlides?.heroS1ImageUrl || page?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || page?.globalSettings?.heroSlides?.heroS2Title);
+  const hasLimitless = !!page?.globalSettings?.limitlessTogether;
+
+  return (
+    <div className="bg-white min-h-screen">
+      {hasHero && <Hero data={page.globalSettings.heroSlides} heightClass="h-[400px] md:h-[520px]" />}
+      <div className={hasHero ? "hide-page-hero" : ""}>
+        {content}
+      </div>
       {hasLimitless && <LimitlessTogether data={page.globalSettings.limitlessTogether} />}
     </div>
   );
