@@ -11,3 +11,6 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+.hide-page-hero > * > section:first-of-type, .hide-page-hero > section:first-of-type, .hide-page-hero > div > div > section:first-of-type, .hide-page-hero > div > section:first-of-type { display: none !important; }
+

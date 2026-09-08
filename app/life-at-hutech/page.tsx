@@ -4,7 +4,12 @@ import { constructMetadata } from "@/src/lib/seo";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug("life-at-hutech");
+  let page = null;
+  try {
+    page = await getPageBySlug("life-at-hutech");
+  } catch (error) {
+    console.error("Failed to load metadata for life-at-hutech:", error);
+  }
   return constructMetadata({
     title: page?.title || "Life at Hutech | Careers & Culture | Hutech Solutions",
     description:
@@ -14,6 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function LifeAtHutechPage() {
-  const wordpressData = await getPageBySlug("life-at-hutech");
+  let wordpressData = null;
+  try {
+    wordpressData = await getPageBySlug("life-at-hutech");
+  } catch (error) {
+    console.error("Failed to load wordpress data for life-at-hutech:", error);
+  }
   return <LifeAtHutech wordpressData={wordpressData} />;
 }
