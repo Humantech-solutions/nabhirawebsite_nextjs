@@ -1472,6 +1472,7 @@ export async function getAllPosts() {
               slug
             }
           }
+          customAuthorName
           blogPostSettings {
             authorRole
           }
@@ -1561,6 +1562,7 @@ export async function getPostBySlug(slug: string) {
         featuredImage { node { sourceUrl } } 
         author { node { name } }
         categories { nodes { name slug } }
+        customAuthorName
         blogPostSettings {
           authorRole
         }
@@ -1761,6 +1763,7 @@ async function getPostById(id: string) {
         featuredImage { node { sourceUrl } } 
         author { node { name } }
         categories { nodes { name slug } }
+        customAuthorName
         blogPostSettings {
           authorRole
         }
