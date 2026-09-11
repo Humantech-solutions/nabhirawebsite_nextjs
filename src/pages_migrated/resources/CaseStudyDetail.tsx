@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { ArrowLeft, CheckCircle2, Quote, Monitor } from "lucide-react";
 import architectureDiagram from "../../assets/f86ef792b8fce95bf78f308f3a39f029fb47c6a1.png";
+import DashboardCarousel, { DashboardScreen } from "../../components/DashboardCarousel";
 
 export default function CaseStudyDetail({ wordpressData }: { wordpressData: any }) {
   // Use wordpressData exclusively
@@ -283,115 +284,69 @@ export default function CaseStudyDetail({ wordpressData }: { wordpressData: any 
         </section>
       )}
 
-      {/* Application Dashboard Section */}
-      {study.dashboardImage1 && (
-        <section className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #080f1a 0%, #0d1b2e 50%, #0a1525 100%)' }}>
-          {/* Animated grid background */}
-          <div
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `linear-gradient(rgba(249,157,28,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(249,157,28,0.3) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px'
-            }}
+      {/* Trending Modern Ribbon & Carousel Dashboard Showcase */}
+      {(() => {
+        const getImageSrc = (val: any): string | null => {
+          if (!val) return null;
+          if (typeof val === "string") return val.trim() || null;
+          return (
+            val?.sourceUrl ||
+            val?.node?.sourceUrl ||
+            val?.url ||
+            val?.mediaItemUrl ||
+            val?.node?.mediaItemUrl ||
+            null
+          );
+        };
+
+        const customScreens = [1, 2, 3, 4, 5, 6]
+          .map((n) => {
+            const img =
+              getImageSrc(study[`dashboardImage${n}`]) ||
+              getImageSrc(study[`dashboard_image_${n}`]) ||
+              getImageSrc(study[`screen${n}`]) ||
+              getImageSrc(study[`img${n}`]);
+            if (!img) return null;
+            return {
+              id: n,
+              title:
+                study[`dashboardImage${n}Title`] ||
+                study[`dashboardTitle${n}`] ||
+                `Dashboard Interface 0${n}`,
+              description:
+                study[`dashboardImage${n}Description`] ||
+                study[`dashboardDesc${n}`],
+              image: img,
+              badge:
+                study[`dashboardImage${n}Badge`] ||
+                `Screen 0${n}`,
+              url:
+                study[`dashboardImage${n}Url`] ||
+                `app.nabhira.io/dashboard/v2/module-${n}`,
+            } as DashboardScreen;
+          })
+          .concat(
+            Array.isArray(study.screens)
+              ? study.screens.map((s: any, idx: number) => ({
+                  id: `screen-${idx}`,
+                  title: s?.title || `Screen 0${idx + 1}`,
+                  description: s?.description,
+                  image: typeof s === "string" ? s : getImageSrc(s?.image) || "",
+                  badge: s?.badge,
+                  url: s?.url,
+                }))
+              : []
+          )
+          .filter((s) => Boolean(s?.image)) as DashboardScreen[];
+
+        return (
+          <DashboardCarousel
+            sectionTitle={study.dashboardSectionTitle}
+            sectionDescription={study.dashboardSectionDescription}
+            screens={customScreens.length > 0 ? customScreens : undefined}
           />
-          {/* Glow blobs */}
-          <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #f99d1c 0%, transparent 70%)' }} />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #1a6bff 0%, transparent 70%)' }} />
-
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            {/* Section Header */}
-            <Motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center text-center mb-20 space-y-6"
-            >
-              <div className="flex items-center gap-3 px-5 py-2 rounded-full border border-[#f99d1c]/40 bg-[#f99d1c]/10 backdrop-blur-sm">
-                <Monitor size={14} className="text-[#f99d1c]" />
-                <span className="text-[#f99d1c] font-bold text-[10px] uppercase tracking-[0.25em]">Application Dashboards</span>
-              </div>
-              <h2 className="text-white text-4xl md:text-5xl font-light tracking-tight">
-                {study.dashboardSectionTitle || "See It In Action"}
-              </h2>
-              <div className="w-16 h-px bg-[#f99d1c]" />
-              {study.dashboardSectionDescription && (
-                <p className="text-white/60 text-lg font-light max-w-2xl leading-relaxed">
-                  {study.dashboardSectionDescription}
-                </p>
-              )}
-            </Motion.div>
-
-            {/* Dashboard Images Grid */}
-            {(() => {
-              const images = [1,2,3,4,5,6]
-                .map(n => study[`dashboardImage${n}`])
-                .filter(Boolean);
-
-              const BrowserChrome = ({ src, label, delay }: { src: string; label?: string; delay: number }) => (
-                <Motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay }}
-                  viewport={{ once: true }}
-                  className="group relative rounded-2xl overflow-hidden"
-                  style={{ boxShadow: '0 25px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07)' }}
-                >
-                  {/* Browser top bar */}
-                  <div className="bg-[#1a2540] px-4 py-3 flex items-center gap-2 border-b border-white/10">
-                    <div className="flex gap-1.5">
-                      <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                      <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                      <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-                    </div>
-                    <div className="flex-1 mx-3 bg-[#0d1525] rounded-md px-3 py-1 flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-[#f99d1c]/50" />
-                      <div className="h-1.5 bg-white/10 rounded-full flex-1" />
-                    </div>
-                  </div>
-                  {/* Screenshot */}
-                  <div className="relative overflow-hidden bg-[#0d1525]">
-                    <ImageWithFallback
-                      src={src}
-                      alt={label || 'Application Dashboard'}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Hover glow overlay */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(135deg, rgba(249,157,28,0.08) 0%, transparent 60%)' }} />
-                  </div>
-                </Motion.div>
-              );
-
-              if (images.length === 1) {
-                return <BrowserChrome src={images[0]} delay={0} />;
-              }
-
-              if (images.length === 2) {
-                return (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {images.map((src, i) => <BrowserChrome key={i} src={src} delay={i * 0.15} />)}
-                  </div>
-                );
-              }
-
-              // 3+ images: first image featured, rest in grid
-              const [featured, ...rest] = images;
-              return (
-                <div className="space-y-6">
-                  <BrowserChrome src={featured} delay={0} />
-                  <div className={`grid gap-6 ${
-                    rest.length === 1 ? 'grid-cols-1' :
-                    rest.length === 2 ? 'grid-cols-2' :
-                    rest.length >= 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : ''
-                  }`}>
-                    {rest.map((src, i) => <BrowserChrome key={i} src={src} delay={(i + 1) * 0.12} />)}
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-        </section>
-      )}
+        );
+      })()}
 
       {/* Detailed Results Section */}
       {study.result1Title && (

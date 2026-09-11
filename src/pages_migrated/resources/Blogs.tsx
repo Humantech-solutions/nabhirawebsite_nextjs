@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { motion as Motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 import { User, ArrowRight } from "lucide-react";
 import { renderHeroTitle, formatQuotesToBold } from "../../lib/utils";
+import { IPublishCardBanner } from "@/src/components/ipublish/IPublishCardBanner";
 
 // Static fallback posts shown when WordPress is unavailable
 const STATIC_POSTS = [
@@ -54,7 +55,9 @@ const STATIC_POSTS = [
 
 function formatDate(dateStr: string) {
   try {
-    return new Date(dateStr).toLocaleDateString("en-GB", {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return d.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -71,8 +74,15 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
     window.scrollTo(0, 0);
   }, []);
 
-  // Use live WP posts if available, otherwise fall back to static
-  const displayPosts = posts && posts.length > 0 ? posts : STATIC_POSTS;
+  // Sort posts by date of release (newest / most recent first)
+  const displayPosts = useMemo(() => {
+    const sourceList = posts && posts.length > 0 ? posts : STATIC_POSTS;
+    return [...sourceList].sort((a: any, b: any) => {
+      const timeA = new Date(a.rawDate || a.date || a.published_at || a.updated_at || a.created_at || 0).getTime() || 0;
+      const timeB = new Date(b.rawDate || b.date || b.published_at || b.updated_at || b.created_at || 0).getTime() || 0;
+      return timeB - timeA;
+    });
+  }, [posts]);
 
   return (
     <>
@@ -122,15 +132,10 @@ export default function Blogs({ posts, wordpressData, siteChrome }: { posts?: an
                   >
                     <Link href={linkHref} className="block">
                       <div className="aspect-[16/9] overflow-hidden mb-6 rounded-sm relative">
-                        {image ? (
+                        {post.isIPublish && post.ipublishMeta ? (
+                          <IPublishCardBanner blog={post} />
+                        ) : image ? (
                           <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                        ) : post.isIPublish && post.ipublishMeta ? (
-                          <div 
-                            className="w-full h-full group-hover:scale-105 transition-transform duration-700 flex items-center justify-center p-6 text-center"
-                            style={{ background: `linear-gradient(${post.ipublishMeta.gradientDirection}, ${post.ipublishMeta.gradientFrom}, ${post.ipublishMeta.gradientTo})` }}
-                          >
-                            <span className="text-white font-bold text-lg opacity-90 leading-tight drop-shadow-sm">{title}</span>
-                          </div>
                         ) : (
                           <div className="w-full h-full bg-[#11253e]/10 flex items-center justify-center text-[#11253e]/30 text-sm">No image</div>
                         )}

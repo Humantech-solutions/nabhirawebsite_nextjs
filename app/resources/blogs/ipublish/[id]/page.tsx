@@ -8,13 +8,10 @@ import {
 } from "@/src/lib/ipublish";
 import { IPublishDetailClient } from "@/src/components/ipublish/IPublishDetailClient";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   const pages = await getIPublishPages();
-  if (!pages || pages.length === 0) {
-    return [{ id: "dummy-post" }];
-  }
   return pages.map((page) => ({
     id: page.slug,
   }));
@@ -30,7 +27,9 @@ export async function generateMetadata({
 
   if (!content) {
     return {
-      title: "Article Not Found | Hutech Solutions",
+      title: {
+        absolute: "Article Not Found | Hutech Solutions",
+      },
     };
   }
 
@@ -51,7 +50,9 @@ export async function generateMetadata({
   ].filter(Boolean) as string[];
 
   return {
-    title,
+    title: {
+      absolute: title,
+    },
     description,
     keywords: keywordsList.join(", "),
     alternates: {
