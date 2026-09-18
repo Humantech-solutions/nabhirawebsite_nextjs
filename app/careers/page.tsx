@@ -1,7 +1,8 @@
 import Careers from "@/src/pages_migrated/Careers";
 import { getPageBySlug, getGlobalSettings, getCareerPosts } from "@/src/lib/wordpress";
 import { getRecruitProJobs } from "@/src/lib/recruitpro";
-import { constructMetadata } from "@/src/lib/seo";
+import { constructMetadata, getWebPageSchema } from "@/src/lib/seo";
+import { Schema } from "@/src/components/SEO/Schema";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -9,6 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return constructMetadata({
     title: page?.title || "Careers",
     description: "Join Hutech Solutions Technologies and build what is next. Explore our open positions in AI, Cloud, and Data Engineering.",
+    path: "/careers/",
   });
 }
 
@@ -18,5 +20,16 @@ export default async function Page() {
   const wpJobsRaw = await getCareerPosts() || [];
   const allJobs = [...recruitProJobs, ...wpJobsRaw];
   
-  return <Careers wordpressData={wordpressData} wpJobs={allJobs} />;
+  const pageSchema = getWebPageSchema({
+    title: wordpressData?.title || "Careers",
+    description: "Join Hutech Solutions Technologies and build what is next. Explore our open positions in AI, Cloud, and Data Engineering.",
+    path: "/careers/",
+  });
+
+  return (
+    <>
+      <Schema jsonLd={pageSchema} />
+      <Careers wordpressData={wordpressData} wpJobs={allJobs} />
+    </>
+  );
 }

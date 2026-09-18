@@ -2238,6 +2238,8 @@ export async function getCaseStudies() {
           caseStudyFields {
             clientName
             clientIndustry
+            clientDomain
+            geography
             impactMetric
             highlight1
             highlight2
@@ -2259,6 +2261,8 @@ export async function getCaseStudies() {
       subtitle: node.caseStudyFields?.executiveSummaryTitle || "",
       client: node.caseStudyFields?.clientName || "",
       industry: node.caseStudyFields?.clientIndustry || "",
+      clientDomain: node.caseStudyFields?.clientDomain || "",
+      geography: node.caseStudyFields?.geography || "",
       image: node.featuredImage?.node?.sourceUrl || "/images/placeholder.jpg",
       impact: node.caseStudyFields?.impactMetric || "",
       tags:
@@ -2288,6 +2292,8 @@ export async function getCaseStudyBySlug(slug: string) {
         caseStudyFields {
           clientName
           clientIndustry
+          clientDomain
+          geography
           impactMetric
           highlight1
           highlight2

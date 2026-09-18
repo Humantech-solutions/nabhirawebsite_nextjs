@@ -8,7 +8,7 @@ import { SuccessStories } from "../src/components/SuccessStories";
 import { Clients } from "../src/components/Clients";
 import { LimitlessTogether } from "../src/components/LimitlessTogether";
 import { getHomePage, getServices, getIndustries, getTestimonials } from "@/src/lib/wordpress";
-import { constructMetadata } from "@/src/lib/seo";
+import { constructMetadata, getWebPageSchema } from "@/src/lib/seo";
 import { Schema } from "@/src/components/SEO/Schema";
 import { Metadata } from "next";
 
@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return constructMetadata({
     title: homeData?.title || "Digital Transformation & AI Consulting",
     description: homeData?.homePageFields?.capabilities?.cDesc || "Global pioneer in Cloud-first intelligence, Data-driven engineering, and Agentic AI solutions.",
+    path: "/",
   });
 }
 
@@ -31,8 +32,15 @@ export default async function Home() {
   const wnData = fields?.withNabhira;
   const testimonials = await getTestimonials(fields?.successCount || 4, fields?.successCategory?.nodes?.map((n: any) => n.databaseId) || []);
 
+  const pageSchema = getWebPageSchema({
+    title: homeData?.title || "Digital Transformation & AI Consulting",
+    description: homeData?.homePageFields?.capabilities?.cDesc,
+    path: "/",
+  });
+
   return (
     <div className="bg-white min-h-screen">
+      <Schema jsonLd={pageSchema} />
       <Hero data={heroData} />
       <WithNabhira data={wnData} />
       <Capabilities data={fields?.capabilities} services={services} />

@@ -17,7 +17,7 @@ import {
 } from "@/src/lib/wordpress";
 import { getRecruitProJobs } from "@/src/lib/recruitpro";
 import { notFound } from "next/navigation";
-import { constructMetadata } from "@/src/lib/seo";
+import { constructMetadata, getWebPageSchema } from "@/src/lib/seo";
 import { Metadata } from "next";
 import { Hero } from "@/src/components/Hero";
 import { LimitlessTogether } from "@/src/components/LimitlessTogether";
@@ -200,7 +200,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const firstSlug = slug[0];
   const restSlug = slug.slice(1).join('/');
   
-  let page = null;
+  let page: any = null;
   if (firstSlug === "services") {
     page = await getServiceBySlug(restSlug);
   } else if (firstSlug === "solutions") {
@@ -215,6 +215,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return constructMetadata({
       title: page.title || page.name || "Hutech Solutions Technologies",
       description: page.content?.replace(/<[^>]+>/g, '').substring(0, 160) || "Hutech Solutions Technologies",
+      path: `/${slugString}/`,
     });
   }
 
@@ -230,10 +231,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return constructMetadata({
       title: `${formattedSlug} | Hutech Solutions Technologies`,
       description: `${formattedSlug} - High-impact enterprise technology solutions by Hutech Solutions.`,
+      path: `/${slugString}/`,
     });
   }
   
-  return constructMetadata({ title: "Page Not Found" });
+  return constructMetadata({ title: "Page Not Found", path: `/${slugString}/` });
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
@@ -242,7 +244,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
   const firstSlug = slug[0];
   const restSlug = slug.slice(1).join('/');
 
-  let page = null;
+  let page: any = null;
   if (firstSlug === "services") {
     page = await getServiceBySlug(restSlug);
   } else if (firstSlug === "solutions") {
@@ -390,11 +392,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
 
   const content = await renderContent();
 
+  const pageTitle = page?.title || page?.name || (restSlug || firstSlug || "").split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const pageDescription = page?.content?.replace(/<[^>]+>/g, '').substring(0, 160) || page?.description || `${pageTitle} - High-impact enterprise technology solutions by Hutech Solutions.`;
+  const schemaJsonData = getWebPageSchema({
+    title: pageTitle,
+    description: pageDescription,
+    path: `/${slugString}/`,
+  });
+
   const hasHero = !!(page?.globalSettings?.heroSlides?.heroS1Title || page?.globalSettings?.heroSlides?.heroS1ImageUrl || page?.globalSettings?.heroSlides?.heroS1Image?.node?.sourceUrl || page?.globalSettings?.heroSlides?.heroS2Title);
   const hasLimitless = !!page?.globalSettings?.limitlessTogether;
 
   return (
     <div className="bg-white min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJsonData) }}
+      />
       {hasHero && <Hero data={page.globalSettings.heroSlides} heightClass="h-[400px] md:h-[520px]" />}
       <div className={hasHero ? "hide-page-hero" : ""}>
         {content}

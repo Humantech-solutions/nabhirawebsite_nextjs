@@ -1,6 +1,7 @@
 import Events from "@/src/pages_migrated/resources/Events";
 import { getPageBySlug, getEvents } from "@/src/lib/wordpress";
-import { constructMetadata } from "@/src/lib/seo";
+import { constructMetadata, getWebPageSchema } from "@/src/lib/seo";
+import { Schema } from "@/src/components/SEO/Schema";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -8,6 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return constructMetadata({
     title: page?.title || "Upcoming Events & Webinars",
     description: page?.excerpt || "Join our architects and industry leaders as they dismantle the future of digital enterprise.",
+    path: "/resources/events/",
   });
 }
 
@@ -17,5 +19,16 @@ export default async function Page() {
     getEvents()
   ]);
 
-  return <Events wordpressData={wordpressPage} eventsData={eventsData} globalSettings={wordpressPage?.globalSettings} />;
+  const pageSchema = getWebPageSchema({
+    title: wordpressPage?.title || "Upcoming Events & Webinars",
+    description: wordpressPage?.excerpt || "Join our architects and industry leaders as they dismantle the future of digital enterprise.",
+    path: "/resources/events/",
+  });
+
+  return (
+    <>
+      <Schema jsonLd={pageSchema} />
+      <Events wordpressData={wordpressPage} eventsData={eventsData} globalSettings={wordpressPage?.globalSettings} />
+    </>
+  );
 }

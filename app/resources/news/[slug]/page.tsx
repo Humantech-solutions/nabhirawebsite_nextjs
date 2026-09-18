@@ -23,12 +23,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const item = await getNewsBySlug(slug);
 
-  if (!item) return constructMetadata({ title: "News Not Found" });
+  if (!item) return constructMetadata({ title: "News Not Found", path: `/resources/news/${slug}/` });
 
   return constructMetadata({
     title: item.title,
     description: item.excerpt || item.title,
     image: item.image,
+    path: `/resources/news/${slug}/`,
+    type: "article",
+    publishedTime: item.date,
+    authors: [item.source || "Hutech Solutions News"],
   });
 }
 

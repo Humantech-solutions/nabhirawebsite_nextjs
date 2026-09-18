@@ -21,12 +21,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   const study = await getCaseStudyBySlug(id);
 
-  if (!study) return constructMetadata({ title: "Case Study Not Found" });
+  if (!study) return constructMetadata({ title: "Case Study Not Found", path: `/resources/case-studies/${id}/` });
+
+  const keywords = [study.geography, study.clientDomain, study.industry].filter(Boolean) as string[];
 
   return constructMetadata({
     title: study.title,
     description: study.challengeDescription || study.challenge,
     image: study.image,
+    path: `/resources/case-studies/${id}/`,
+    type: "article",
+    publishedTime: study.date || "2026-01-01",
+    authors: ["Hutech Solutions Architects"],
+    keywords: keywords.length > 0 ? keywords : undefined,
   });
 }
 

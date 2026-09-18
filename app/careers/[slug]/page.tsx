@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  if (!wpJob) return constructMetadata({ title: "Job Not Found" });
+  if (!wpJob) return constructMetadata({ title: "Job Not Found", path: `/careers/${slug}/` });
 
   const title = wpJob.title || "Job Opportunity";
   const location = wpJob.location || "Hutech Solutions Technologies";
@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return constructMetadata({
     title: `${title} — ${location}`,
     description: `${title} at Hutech Solutions Technologies. View details and apply.`,
+    path: `/careers/${slug}/`,
   });
 }
 
