@@ -20,12 +20,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const event = await getEventBySlug(slug);
 
-  if (!event) return constructMetadata({ title: "Event Not Found" });
+  if (!event) return constructMetadata({ title: "Event Not Found", path: `/resources/events/${slug}/` });
 
   return constructMetadata({
     title: event.title,
     description: event.excerpt || event.title,
     image: event.image,
+    path: `/resources/events/${slug}/`,
   });
 }
 

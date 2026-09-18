@@ -80,12 +80,30 @@ export default function CaseStudyDetail({ wordpressData }: { wordpressData: any 
                 {study.title}
               </h1>
               
-              <div className="flex items-center gap-8 pt-4">
+              <div className="flex flex-wrap items-center gap-8 pt-4">
                 <div className="space-y-2">
                   <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Industry</p>
                   <p className="text-white text-lg">{study.clientIndustry}</p>
                 </div>
-                <div className="h-12 w-px bg-white/20"></div>
+                <div className="hidden sm:block h-12 w-px bg-white/20"></div>
+                {study.clientDomain && (
+                  <>
+                    <div className="space-y-2">
+                      <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Domain</p>
+                      <p className="text-white text-lg">{study.clientDomain}</p>
+                    </div>
+                    <div className="hidden sm:block h-12 w-px bg-white/20"></div>
+                  </>
+                )}
+                {study.geography && (
+                  <>
+                    <div className="space-y-2">
+                      <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Geography</p>
+                      <p className="text-white text-lg">{study.geography}</p>
+                    </div>
+                    <div className="hidden sm:block h-12 w-px bg-white/20"></div>
+                  </>
+                )}
                 <div className="space-y-2">
                   <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Impact</p>
                   <p className="text-[#f99d1c] text-lg font-bold">{study.impactMetric}</p>

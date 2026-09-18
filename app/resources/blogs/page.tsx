@@ -2,7 +2,8 @@ import Blogs from "@/src/pages_migrated/resources/Blogs";
 import { getAllPosts, getPageBySlug, getSiteChrome } from "@/src/lib/wordpress";
 import { getIPublishAllBlogs, getIPublishImageUrl } from "@/src/lib/ipublish";
 import { extractPatternFromBody } from "@/src/lib/ipublish-pattern";
-import { constructMetadata } from "@/src/lib/seo";
+import { constructMetadata, getWebPageSchema } from "@/src/lib/seo";
+import { Schema } from "@/src/components/SEO/Schema";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -94,5 +95,17 @@ export default async function Page() {
     return timeB - timeA;
   });
 
-  return <Blogs posts={allBlogs} wordpressData={wordpressData} siteChrome={siteChrome} />;
+  const pageSchema = getWebPageSchema({
+    title: wordpressData?.title || "Insights & Perspectives | Hutech Solutions",
+    description:
+      "Explore the latest architectural insights, AI trends, and cloud-native innovations from Hutech Solutions.",
+    path: "/resources/blogs/",
+  });
+
+  return (
+    <>
+      <Schema jsonLd={pageSchema} />
+      <Blogs posts={allBlogs} wordpressData={wordpressData} siteChrome={siteChrome} />
+    </>
+  );
 }

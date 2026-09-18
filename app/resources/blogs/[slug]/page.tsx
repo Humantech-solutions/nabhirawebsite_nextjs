@@ -10,6 +10,8 @@ import {
   getIPublishPages,
   getIPublishImageUrl,
   getIPublishContentById,
+  isIPublishBlogSlugAllowed,
+  normalizeIPublishHtml,
 } from "@/src/lib/ipublish";
 import { IPublishDetailClient } from "@/src/components/ipublish/IPublishDetailClient";
 
@@ -57,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ipublishContent =
     (await getIPublishPageBySlug(slug)) || (await getIPublishContentById(slug));
 
-  if (ipublishContent) {
+  if (ipublishContent && (await isIPublishBlogSlugAllowed(slug))) {
     const title = ipublishContent.seo_title || ipublishContent.title;
     const description =
       ipublishContent.meta_description ||
@@ -148,7 +150,7 @@ export default async function Page({ params }: PageProps) {
   const ipublishContent =
     (await getIPublishPageBySlug(slug)) || (await getIPublishContentById(slug));
 
-  if (ipublishContent) {
+  if (ipublishContent && (await isIPublishBlogSlugAllowed(slug))) {
     const imageUrl = getIPublishImageUrl(ipublishContent.featured_image_url);
     const schemaJsonData = ipublishContent.schema_json
       ? {
@@ -177,6 +179,13 @@ export default async function Page({ params }: PageProps) {
             .join(", "),
         };
 
+    const normalizedContent = {
+      ...ipublishContent,
+      featured_image_url: imageUrl || null,
+      body: normalizeIPublishHtml(ipublishContent.body),
+      current_body: normalizeIPublishHtml(ipublishContent.current_body),
+    };
+
     return (
       <>
         <script
@@ -185,7 +194,7 @@ export default async function Page({ params }: PageProps) {
             __html: JSON.stringify(schemaJsonData),
           }}
         />
-        <IPublishDetailClient content={ipublishContent} slug={slug} />
+        <IPublishDetailClient content={normalizedContent} slug={slug} />
       </>
     );
   }
